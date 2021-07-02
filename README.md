@@ -1,1 +1,1 @@
-# <tinybrain.fans>
+# [tinybrain.fans](tinybrain.fans)
