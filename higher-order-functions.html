@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="A higher-order function either takes in a function as an argument, or returns a function."><title>Higher Order Functions</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Higher Order Functions</h1>
+<p>A higher-order function either takes in a function as an argument, or returns a function.</p>
+<h2>Callback Functions</h2>
+<p>When taking a function as a parameter, this is called a <strong>callback function</strong>. This is used in Javascript built-ins like <code>setTimeout</code>, <code>filter</code>, <code>map</code>, and <code>forEach</code>.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">add2</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">num</span> <span class="o">+</span> <span class="mf">2</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">newArr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">add2</span><span class="p">);</span> <span class="c1">// result: [3,4,5,6]</span>
+</pre></div>
+<h2>Closures</h2>
+<p>Functions that return other functions can create <strong>closures</strong>, which means that the variables within which the function is defined will remain accessable by that function; the variables are <strong>enclosed</strong> within that function's own scope.</p>
+<p>In the example below, a function called <code>counter</code> keeps track of how many times it is called. Even though the function runs and fully completes, the reference to this execution context remains with the function that is returned at the conclusion of that invocation. We cannot <em>directly</em> access <code>count</code> from outside of the scope of <code>counter</code>, but with the returned function, we can add to it and see what <code>count</code>'s value' is at that point.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">add1</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">add1</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// newCounter will now reference the `add1` function within the closure of that invocation of counter</span>
+<span class="kd">var</span> <span class="nx">newCounter</span> <span class="o">=</span> <span class="nx">counter</span><span class="p">();</span> <span class="c1">// 0</span>
+<span class="c1">// This calls `add1` within that same closure, incrementing `count` by 1</span>
+<span class="nx">newCounter</span><span class="p">();</span> <span class="c1">// 1</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Higher-order_function" target="_blank">https://en.wikipedia.org/wiki/Higher-order_function</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="apply,-call-and-bind-in-javascript.html">Apply, Call and Bind in Javascript</a></li><li><a href="react.html">React</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

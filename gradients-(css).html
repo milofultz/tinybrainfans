@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="How to create and use linear gradients in CSS."><title>Gradients (CSS)</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Gradients (CSS)</h1>
+<p>How to create and use linear gradients in <a href="css.html">CSS</a>.</p>
+<h2>Background or Image</h2>
+<div class="highlight"><pre><span></span><span class="c">/*</span>
+<span class="c">linear-gradient(</span>
+<span class="c">  {direction},                      `to left top`, `45deg`, `0.25turn`</span>
+<span class="c">  {starting color}</span>
+<span class="c">    {full color starting position}  `0`, `33%`</span>
+<span class="c">    {full color ending position},   `33%`, `50%`</span>
+<span class="c">  ...more colors</span>
+<span class="c">) </span>
+<span class="c">*/</span>
+
+<span class="p">.</span><span class="nc">gradient</span> <span class="p">{</span>
+  <span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span><span class="p">,</span> <span class="err">$</span><span class="kc">color</span><span class="nv">-primary-light</span><span class="p">,</span> <span class="err">$</span><span class="kc">color</span><span class="nv">-primary-dark</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<p>You can make an immediate switch between colors by setting starting and ending positions at the same value. This example goes to the bottom right from 0%-50% with white and then from 50% to 100% with orange.</p>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">selector</span> <span class="p">{</span>
+	<span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span> <span class="kc">bottom</span><span class="p">,</span> <span class="kc">white</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">orange</span> <span class="mi">50</span><span class="kt">%</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<h2>Text</h2>
+<div class="highlight"><pre><span></span><span class="nt">h1</span><span class="p">.</span><span class="nc">gradient-text</span> <span class="p">{</span>
+	<span class="c">/* Create the bg gradient */</span>
+  <span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span><span class="p">,</span> <span class="err">$</span><span class="kc">color</span><span class="nv">-primary-light</span><span class="p">,</span> <span class="err">$</span><span class="kc">color</span><span class="nv">-primary-dark</span><span class="p">);</span>
+	<span class="c">/* Confine gradient area to width of content */</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+  <span class="c">/* Clip the bg gradient to the text area */</span>
+  <span class="kp">-webkit-</span><span class="k">background-clip</span><span class="p">:</span> <span class="kc">text</span><span class="p">;</span>
+          <span class="k">background-clip</span><span class="p">:</span> <span class="kc">text</span><span class="p">;</span>
+  <span class="c">/* Allow gradient to show through text area */</span>
+  <span class="k">color</span><span class="p">:</span> <span class="kc">transparent</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient()" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient()</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

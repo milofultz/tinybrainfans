@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Text compression minifies and zips files on build or on client side render of your web page."><title>Text Compression (Server)</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Text Compression (Server)</h1>
+<p>Text compression minifies and zips files on build or on client side rendering of your web page. Using this on your deployed webpage can save significant time in page downloads and lead to better user retention.</p>
+<h2>Implementation</h2>
+<p>To accomplish client-side rendering, you will need to implement the compression on the building of your pages (in this case, using <a href="webpack.html">Webpack</a>) as well as on your server (<a href="express.html">Express</a>). This example is for a <a href="react.html">React</a> project using <a href="webpack.html">Webpack</a> and <a href="express.html">Express</a>.</p>
+<h3><a href="webpack.html">Webpack</a></h3>
+<p>First, install <a href="https://github.com/webpack-contrib/compression-webpack-plugin" target="_blank"><code>compression-webpack-plugin</code></a> and add it to your <code>webpack.config.js</code> file:</p>
+<div class="highlight"><pre><span></span><span class="err">module.expor</span><span class="kc">ts</span> <span class="err">=</span> <span class="p">{</span>
+  <span class="err">...</span>
+  <span class="err">plugi</span><span class="kc">ns</span><span class="p">:</span> <span class="p">[</span>
+    <span class="kc">ne</span><span class="err">w</span> <span class="err">Compressio</span><span class="kc">n</span><span class="err">Plugi</span><span class="kc">n</span><span class="err">(</span><span class="p">{</span>
+      <span class="err">algori</span><span class="kc">t</span><span class="err">hm</span><span class="p">:</span> <span class="err">&#39;gzip&#39;</span><span class="p">,</span>
+      <span class="kc">test</span><span class="p">:</span> <span class="err">/\.(js|css)$/i</span><span class="p">,</span>
+    <span class="p">}</span><span class="err">)</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="err">...</span>
+<span class="p">}</span><span class="err">;</span>
+</pre></div>
+<p>This will use <a href="http://www.gzip.org/" target="_blank">GZIP</a> to compress all <a href="javascript.html">JS</a> and <a href="css.html">CSS</a> files in your project.</p>
+<h3><a href="express.html">Express</a></h3>
+<p>Similar to Express's <code>app.use(express.static(...))</code>, this will allow Express to serve the GZIP files to the user. You need to install <a href="https://github.com/tkoenig89/express-static-gzip" target="_blank"><code>express-static-gzip</code></a> and then add this to your server JS file:</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;express&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">expressStaticGzip</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;express-static-gzip&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="nx">expressStaticGzip</span><span class="p">(</span><span class="s2">&quot;/my/rootFolder/&quot;</span><span class="p">));</span>
+</pre></div>
+<h3>On Your Server</h3>
+<p>On your server, add/merge your new code, <code>npm i</code> all the new dependencies, restart any PM2 instances and NGINX, and away you go!</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">https://developers.google.com/speed/pagespeed/insights/</a></li>
+<li><a href="https://stackoverflow.com/questions/57504666/enable-text-compression-using-react-webpack-and-apache" target="_blank">https://stackoverflow.com/questions/57504666/enable-text-compression-using-react-webpack-and-apache</a></li>
+<li><a href="https://stackoverflow.com/questions/50442039/compression-webpack-plugin" target="_blank">https://stackoverflow.com/questions/50442039/compression-webpack-plugin</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

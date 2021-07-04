@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><title>JSON (Python)</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">JSON (Python)</h1>
+<h2>Load <a href="json.html">JSON</a> from file</h2>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+<h2>Save to JSON file</h2>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">save_json</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c1"># with pretty output kwargs</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+<h2>References:</h2>
+<ol>
+<li><a href="https://docs.python.org/3/library/json.html" target="_blank">https://docs.python.org/3/library/json.html</a></li>
+<li><a href="python.html">Python</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

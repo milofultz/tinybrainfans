@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Importing and using external fonts properly in CSS."><title>Fonts (CSS)</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Fonts (CSS)</h1>
+<p>Importing and using external fonts properly in <a href="css.html">CSS</a>.</p>
+<h2>Using <code>@font-face</code></h2>
+<div class="highlight"><pre><span></span><span class="p">@</span><span class="k">font-face</span> <span class="p">{</span>
+	<span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;Verlag Condensed Bold&#39;</span><span class="o">;</span>
+  <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;https://brandlive-upload.s3-us-west-2.amazonaws.com/933/documents/1wp6lcexy4/verlagcondensedbold.otf&#39;</span><span class="o">);</span>
+  <span class="o">[</span> <span class="nt">unicode-range</span><span class="o">:</span> <span class="o">&lt;</span><span class="nt">unicode-range</span><span class="o">&gt;;</span> <span class="o">]</span> <span class="o">||</span>
+  <span class="o">[</span> <span class="nt">font-variant</span><span class="o">:</span> <span class="o">&lt;</span><span class="nt">font-variant</span><span class="o">&gt;;</span> <span class="o">]</span> <span class="o">||</span>
+  <span class="o">[</span> <span class="nt">font-feature-settings</span><span class="o">:</span> <span class="o">&lt;</span><span class="nt">font-feature-settings</span><span class="o">&gt;;</span> <span class="o">]</span> <span class="o">||</span>
+  <span class="o">[</span> <span class="nt">font-variation-settings</span><span class="o">:</span> <span class="o">&lt;</span><span class="nt">font-variation-settings</span><span class="o">&gt;;</span> <span class="o">]</span> <span class="o">||</span>
+  <span class="o">[</span> <span class="nt">font-stretch</span><span class="o">:</span> <span class="o">&lt;</span><span class="nt">font-stretch</span><span class="o">&gt;;</span> <span class="o">]</span> <span class="o">||</span>
+  <span class="nt">font-weight</span><span class="o">:</span> <span class="nt">bold</span><span class="o">;</span>
+  <span class="o">[</span> <span class="nt">font-style</span><span class="o">:</span> <span class="o">&lt;</span><span class="nt">font-style</span><span class="o">&gt;;</span> <span class="o">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>You can include multiple <code>src</code> values via a call to the user's fonts via <code>local(&quot;Font Name&quot;)</code>, <code>url(&quot;...&quot;)</code>, as well as specifying formats after the url (<code>url(&quot;...&quot;) format(&quot;truetype&quot;),</code>), all separated by commas and ending with a semicolon.</p>
+<h2><code>@import</code> vs. <code>&lt;link&gt;</code></h2>
+<p>To bring in another stylesheet with a font attached, <a href="https://fonts.google.com/" target="_blank">Google Fonts</a> and others offer an <code>@import</code> option. <a href="https://stackoverflow.com/questions/12316501/including-google-web-fonts-link-or-import/12380004#12380004" target="_blank">This unfortunately is blocking</a> and and will delay all other loading until that import is complete. Instead, include the url in a <code>&lt;link&gt;</code> and it will load all elements at the same time.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#39;http://fonts.googleapis.com/css?family=Judson:400,400italic,700&#39;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#39;stylesheet&#39;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#39;text/css&#39;</span><span class="p">&gt;</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

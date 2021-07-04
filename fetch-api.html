@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Fetch API is a part of vanilla JS that does HTTP requests."><title>Fetch API</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Fetch API</h1>
+<p>Fetch API is a part of vanilla <a href="javascript.html">Javascript</a> that does <a href="http-requests.html">HTTP requests</a>. </p>
+<h2>Usage</h2>
+<p>The syntax for <code>fetch</code> is <code>fetch(&#x27;URL&#x27;)</code>. <code>fetch()</code> ALWAYS returns <a href="promises.html">promises</a>. These promises will be fulfilled when the data is finished loading, and can be accessed with <code>.then(function (response) { ... })</code>. Within <code>.then</code>, you can resolve this promise with <code>.json()</code>, <code>.text()</code>, or <code>.blob()</code>, which all return their <em>own</em> promise. Errors are handled through a <code>.catch(function (response) { ... })</code>.</p>
+<div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://web.site&#39;</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="c1">// response is a Promise, so it will be resolved within this function</span>
+    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+    <span class="c1">// response.json is *also* a Promise</span>
+  <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// do thing with JSON response</span>
+  <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</pre></div>
+<h3>With async/await</h3>
+<p>If you encapsulate the fetch call within a function, you can declare that function as an <code>async</code> function and make the calls inside the function <code>await</code>. Because it's an <code>async</code> function, it will also return a promise, which can be handled by <code>.then</code> and <code>.catch</code>.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">getJSON</span> <span class="o">=</span> <span class="k">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://web.site&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+  <span class="c1">// do thing with JSON response</span>
+<span class="p">};</span>
+
+<span class="nx">getJSON</span><span class="p">().</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API</a></li>
+<li><a href="https://www.youtube.com/watch?v=tc8DU14qX6I" target="_blank">https://www.youtube.com/watch?v=tc8DU14qX6I</a></li>
+<li><a href="https://www.youtube.com/watch?v=RfMkdvN-23o" target="_blank">https://www.youtube.com/watch?v=RfMkdvN-23o</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

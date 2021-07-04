@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Javascript provides many options to test your code via timing, assertions, and frameworks."><title>Testing (Javascript)</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Testing (Javascript)</h1>
+<p><a href="javascript.html">Javascript</a> provides many options to test your code via timing, assertions, and frameworks.</p>
+<h2>Time</h2>
+<h3>Simplest Timer</h3>
+<div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s1">&#39;process&#39;</span><span class="p">);</span>
+<span class="c1">// do stuff</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">timeEnd</span><span class="p">(</span><span class="s1">&#39;process&#39;</span><span class="p">);</span> <span class="c1">// log time passed since console.time</span>
+</pre></div>
+<h3>Basic Timer Polyfill</h3>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Timer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">start</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">stop</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">end</span>  <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">time</span> <span class="o">=</span> <span class="nx">end</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">start</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Timer:&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="s1">&#39;finished in&#39;</span><span class="p">,</span> <span class="nx">time</span><span class="p">,</span> <span class="s1">&#39;ms&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Timer</span><span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">);</span>
+<span class="c1">// do stuff</span>
+<span class="nx">t</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+</pre></div>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

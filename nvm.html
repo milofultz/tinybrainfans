@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Node Version Manager allows you to use multiple diferent versions of node and switch between them easily."><title>NVM</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">NVM</h1>
+<p>Node Version Manager allows you to use multiple diferent versions of <a href="node.html">node</a> and switch between them easily.</p>
+<h2>Installation</h2>
+<h3>NVM</h3>
+<div class="highlight"><pre><span></span>$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh <span class="p">|</span> bash
+</pre></div>
+<p>Be sure to completely restart your terminal before proceeding.</p>
+<h3>Node</h3>
+<div class="highlight"><pre><span></span>$ nvm install --lts <span class="c1"># most recent version with long term support</span>
+$ nvm install node  <span class="c1"># most recent version without LTS</span>
+</pre></div>
+<h2>Usage</h2>
+<div class="highlight"><pre><span></span>$ nvm use --lts
+$ nvm use node
+</pre></div>
+<h3>Specific Versions</h3>
+<div class="highlight"><pre><span></span>$ nvm ls                <span class="c1"># show all installed versions</span>
+$ nvm install xx.xx.x   <span class="c1"># x&#39;s meaning the version numbers</span>
+$ nvm use xx.xx.x
+$ nvm uninstall xx.xx.x
+</pre></div>
+<h3>Set Default Node Version</h3>
+<div class="highlight"><pre><span></span>$ nvm <span class="nb">alias</span> default xx.xx
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://techstacker.com/run-multiple-node-versions-node-nvm/" target="_blank">https://techstacker.com/run-multiple-node-versions-node-nvm/</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><title>SQLite</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">SQLite</h1>
+<h2>Data Types (version 3)</h2>
+<ul>
+<li>NULL</li>
+<li>INTEGER</li>
+<li>REAL (floating)</li>
+<li>TEXT</li>
+<li>BLOB (blob of data, stored exactly as it was input)</li>
+</ul>
+<h2>Primary Key</h2>
+<p>A column with type <code>INTEGER PRIMARY KEY</code> is an alias for the <code>ROWID</code>, which is always a 64-bit signed integer.</p>
+<div class="highlight"><pre><span></span><span class="nv">CREATE</span> <span class="nv">TABLE</span> <span class="k">IF</span> <span class="nv">NOT</span> <span class="nv">EXISTS</span> <span class="nv">dogs</span> <span class="ss">(</span>
+	<span class="nv">id</span> <span class="nv">INTEGER</span> <span class="nv">PRIMARY</span> <span class="nv">KEY</span>,
+	<span class="nv">dog_name</span> <span class="nv">VARCHAR</span><span class="ss">(</span><span class="mi">10</span><span class="ss">)</span>,
+	<span class="nv">good_boy</span> <span class="nv">INTEGER</span> <span class="nv">DEFAULT</span> <span class="mi">1</span>  <span class="o">--</span> <span class="nv">Boolean</span>, <span class="nv">default</span> <span class="nv">is</span> <span class="nv">TRUE</span>
+<span class="ss">)</span><span class="c1">;</span>
+</pre></div>
+<h2>PRAGMA</h2>
+<p>PRAGMA commands are SQLite specific and are meta commands regarding operation or non-table data.</p>
+<h3>Get column information of a given table</h3>
+<div class="highlight"><pre><span></span>PRAGMA table_info(table_name)
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://sqlite.org/pragma.html#pragma_table_info" target="_blank">https://sqlite.org/pragma.html#pragma_table_info</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

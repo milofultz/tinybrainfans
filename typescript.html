@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Typescript is a superset of Javascript that is strongly typed and values specificity."><title>Typescript</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Typescript</h1>
+<p>Typescript is a superset of <a href="javascript.html">Javascript</a> that is strongly typed and values specificity.</p>
+<h2>Unique Typing Troubleshooting</h2>
+<h3><code>Property &#x27;***&#x27; does not exist on type &#x27;never&#x27;</code></h3>
+<p>This means that the target variable has not ben typed correctly and often will show up when something has not been given a type at all. </p>
+<div class="highlight"><pre><span></span><span class="c1">// incorrect</span>
+<span class="kd">const</span> <span class="nx">thing</span> <span class="o">=</span> <span class="s1">&#39;Oh yeah!&#39;</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">things</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">specificThing</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">9</span> <span class="p">};</span>
+<span class="c1">// correct</span>
+<span class="kd">const</span> <span class="nx">thing</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s1">&#39;Oh yeah!&#39;</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">things</span>: <span class="kt">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">specificThing</span>: <span class="kt">InterfaceName</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">9</span> <span class="p">};</span>
+</pre></div>
+<h4>useState</h4>
+<p>With <code>useState</code> in <a href="react.html">React</a> hooks, you will need to use a special syntax in creation of the hooks themselves. Since useState is a <a href="https://www.typescriptlang.org/docs/handbook/2/generics.html" target="_blank">generic function</a>, the typing happens within the <code>&lt;&gt;</code> characters.</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">[</span><span class="nx">editedHashtagListeners</span><span class="p">,</span> <span class="nx">setEditedHashtagListeners</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">HashtagListener</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+</pre></div>
+<h2>References:</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript" target="_blank">https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript</a></li>
+<li><a href="https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never" target="_blank">https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

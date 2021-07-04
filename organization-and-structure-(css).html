@@ -1,0 +1,224 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Miscellaneous notes and best practices on organization and structure in CSS."><title>Organization and Structure (CSS)</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Organization and Structure (CSS)</h1>
+<p>Miscellaneous notes and best practices on organization and structure in <a href="css.html">CSS</a>.</p>
+<h2>Best Practices</h2>
+<h3>Keep it consistent</h3>
+<p>If you get to set the rules for the project or are working alone, then the most important thing to do is to keep things consistent. Consistency can be applied in all sorts of ways, such as using the same naming conventions for classes, choosing one method of describing color, or maintaining consistent formatting (for example will you use tabs or spaces to indent your code? If spaces, how many spaces?)</p>
+<p>If you are working with a team on an existing project, the first thing to check is whether the project has an existing style guide for CSS. <strong>The team style guide should always win over your own personal preferences</strong>. There often isn't a right or wrong way to do things, but consistency is important.</p>
+<h3>Organize Code with Comments</h3>
+<p>Adding comments to your CSS will help any future developer work with your CSS file, but will also help you when you come back to the project after a break. A good tip is to <strong>add a block of comments between logical sections in your stylesheet</strong> too, to help locate different sections quickly when scanning through, or even give you something to search for to jump right into that part of the CSS. <strong>If you use a string which won't appear in the code you can jump from section to section</strong> by searching for it.</p>
+<div class="highlight"><pre><span></span><span class="c">/* || General Styles */</span>
+<span class="o">...</span>
+<span class="c">/* || Utilities */</span>
+</pre></div>
+<h3>Build Proficient Selectors</h3>
+<p>Don't use IDs in your <a href="selectors-(css).html">selectors</a>. This messes with the specificity and often breaks cascades. In general, in seems like it's best practice to stick with classes as your selectors.</p>
+<p>Keep selectors short, since the longer they get, the more apt they are to break. If you create very specific selectors you will often find that you need to duplicate chunks of your <a href="css.html">CSS</a> to apply the same rules to another element. Try to reduce nesting to two or three levels deep and remove as many location-based selectors as possible. Usually, these longer selectors are overkill and unnecessary. If you do find that you need to use a really specific selector, refactor it into a new manageable class.</p>
+<h3>Use Shorthand Properties &amp; Values</h3>
+<p>Do this to increase readability. If your shorthand <code>font:</code> property is not more readable, then it is not better. Shorthand properties can also introduce undesired resetting of properties (sometimes unrelated) back to their initial value.</p>
+<div class="highlight"><pre><span></span><span class="c">/* bulky, but clear */</span>
+<span class="nt">p</span> <span class="p">{</span>
+  <span class="k">font-family</span><span class="p">:</span> <span class="kc">sans-serif</span><span class="p">;</span>
+  <span class="k">font-size</span><span class="p">:</span> <span class="mf">1.6</span><span class="kt">rem</span><span class="p">;</span>
+  <span class="k">font-style</span><span class="p">:</span> <span class="kc">italic</span><span class="p">;</span>
+  <span class="k">font-weight</span><span class="p">:</span> <span class="mi">400</span><span class="p">;</span>
+  <span class="k">line-height</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* cleaner, but not necessarily clearer */</span>
+<span class="nt">p</span> <span class="p">{</span>
+  <span class="k">font</span><span class="p">:</span> <span class="kc">sans-serif</span> <span class="mf">1.6</span><span class="kt">rem</span> <span class="kc">italic</span> <span class="mi">400</span> <span class="mf">1.5</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Drop Units from Zero Values</h3>
+<div class="highlight"><pre><span></span><span class="c">/* BAD */</span>
+<span class="nt">margin</span><span class="o">:</span> <span class="nt">0px</span> <span class="nt">10px</span> <span class="nt">0px</span> <span class="nt">0px</span><span class="o">;</span>
+<span class="c">/* GOOD */</span>
+<span class="nt">margin</span><span class="o">:</span> <span class="nt">0</span> <span class="nt">10px</span> <span class="nt">0</span> <span class="nt">0</span><span class="o">;</span>
+</pre></div>
+<h3>Use The Right Measurement For The Right Job</h3>
+<p>I have read many different pieces of advice on this. Use <code>rem</code> for everything, use <code>em</code> for everything, don't use <code>px</code> ever, use <code>60ch</code> as the width of a page, etc. I do believe that using <code>rem</code> for everything may cause blowout of a page when zooming in a lot for accessibility, due to enormous borders, margin, etc. This is some advice I found online that seems to make sense:</p>
+<ul>
+<li><code>px</code> for border widths, box shadows, etc. (decoration)</li>
+<li><code>rem</code> or <code>em</code> for font sizes (<code>rem</code> for modular component-based layouts)</li>
+<li><code>vw</code>/<code>vh</code>/<code>%</code> for layout and display specific rules, since they change with the browser size</li>
+<li><code>rem</code> for font sizes and for margins and padding</li>
+<li><code>ch</code> for things like paragraph text widths or sizing containers that will hold monospace fonts (50-70 chars wide is a common human-readable width, so aim for <code>60ch</code> in this case)</li>
+<li><code>em</code> for media queries (e.g. <code>max-width: 40em</code> is equal to 640px with a font-size of 16px, but will scale if user has it set differently)</li>
+<li><code>in</code>/<code>cm</code>/<code>mm</code> for print queries</li>
+</ul>
+<h3>Group &amp; Align <a href="vendor-prefixes-(css).html">Vendor Prefixes</a></h3>
+<p>Keep them together and add whitespace to make the values aligned. </p>
+<p>When using vendor prefixes we need to make sure to place an unprefixed version of our property and value last, after any prefixed versions, to ensure the most desired setting loads last if possible.</p>
+<div class="highlight"><pre><span></span><span class="nt">div</span> <span class="p">{</span>
+  <span class="k">background</span><span class="p">:</span> <span class="bp">-webkit-</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mh">#a1d3b0</span><span class="p">,</span> <span class="mh">#f6f1d3</span><span class="p">);</span>
+  <span class="k">background</span><span class="p">:</span>    <span class="bp">-moz-</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mh">#a1d3b0</span><span class="p">,</span> <span class="mh">#f6f1d3</span><span class="p">);</span>
+  <span class="k">background</span><span class="p">:</span>         <span class="nb">linear-gradient</span><span class="p">(</span><span class="mh">#a1d3b0</span><span class="p">,</span> <span class="mh">#f6f1d3</span><span class="p">);</span>
+  <span class="kp">-webkit-</span><span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+     <span class="kp">-moz-</span><span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+          <span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Modularize Styles for Reuse</h3>
+<p>Refactor names to fit their purpose and reduce hacky &quot;fixes&quot; to shoehorn stuff in to other class rules. Keep your code <a href="don't-repeat-yourself.html">DRY</a>!</p>
+<h3>Break large stylesheets into multiple smaller ones</h3>
+<p>In particular in cases where you have very different styles for distinct parts of the site, you might want to have a stylesheet that includes all the global rules and then smaller ones that include the specific rules needed for those sections. You can link to multiple stylesheets from one page, and the normal rules of the cascade apply, with rules in stylesheets linked later coming after rules in stylesheets linked earlier.</p>
+<h2>Structure / Formatting</h2>
+<h3>Create logical sections in your stylesheet</h3>
+<p>Using the ideas from 7-1 <a href="sass.html">Sass</a> architecture, we can create an organization that will allow us to organize our styles in a way that allows for a logical hierarchical cascade and easy management. The 7 sections are abstracts, vendors, base, layout, components, pages, and themes.</p>
+<h4>Media Queries</h4>
+<p>Note: media queries don't have an exact space so far as I have found, but there are a couple approaches:</p>
+<ul>
+<li>for maintenance and modularity's sake, keeping them with the rest of the relevant rules feels logical.</li>
+<li>for the cascade, putting them at the end of their respective file before the utilities allows them to take priority over rules with similar specificity.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">grid</span> <span class="p">{</span> 
+	<span class="err">...</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">screen</span><span class="o">)</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">800px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nc">grid</span> <span class="p">{</span>
+    <span class="err">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<h4>Abstracts</h4>
+<p>Abstracts are code that does not output <a href="css.html">CSS</a> (variables, and in <a href="sass.html">Sass</a>, functions and mixins).</p>
+<div class="highlight"><pre><span></span><span class="c">/* || VARIABLES */</span>
+
+<span class="p">:</span><span class="nd">root</span> <span class="p">{</span>
+  <span class="nv">--bg-color</span><span class="p">:</span> <span class="mh">#FFF</span><span class="p">;</span>
+  <span class="nv">--text-color-primary</span><span class="p">:</span> <span class="mh">#000</span><span class="p">;</span>
+  <span class="nv">--text-color-secondary</span><span class="p">:</span> <span class="mh">#888</span><span class="p">;</span>
+  <span class="nv">--link-color</span><span class="p">:</span> <span class="mh">#F00</span><span class="p">;</span>
+  
+  <span class="nv">--font-sans</span><span class="p">:</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
+  <span class="nv">--font-serif</span><span class="p">:</span> <span class="n">Times</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
+  
+  <span class="nv">--text-spacing-wide</span><span class="p">:</span> <span class="mf">.5</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h4>Vendors</h4>
+<p>This includes any third party stylesheets, like Bootstrap, or font imports like Google Fonts.</p>
+<div class="highlight"><pre><span></span><span class="c">/* || VENDORS */</span>
+
+<span class="p">@</span><span class="k">import</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+<h4>Base</h4>
+<p>Basic definitions like animations, default styles, typography, resets/normalizers and utilities like classes for center text, margin bottom, etc. It is a good idea to have all of the common styling early in the stylesheet so that all of these styles will generally apply unless you do something special with that element.</p>
+<div class="highlight"><pre><span></span><span class="c">/* || BASE STYLES */</span>
+
+<span class="c">/* | RESETS */</span>
+
+<span class="nt">html</span> <span class="p">{</span>
+  <span class="k">box-sizing</span><span class="p">:</span> <span class="kc">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">*,</span>
+<span class="o">*</span><span class="p">::</span><span class="nd">before</span><span class="o">,</span>
+<span class="o">*</span><span class="p">::</span><span class="nd">after</span> <span class="p">{</span>
+  <span class="k">box-sizing</span><span class="p">:</span> <span class="kc">inherit</span><span class="p">;</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* | ANIMATIONS */</span>
+
+<span class="p">@</span><span class="k">keyframes</span> <span class="nt">animationName</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+
+<span class="c">/* | TYPOGRAPHY */</span>
+
+<span class="nt">html</span> <span class="p">{</span>
+  <span class="k">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="nv">--text-color-primary</span><span class="p">);</span>
+  <span class="k">font-family</span><span class="p">:</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span> <span class="p">{</span> 
+  <span class="err">...</span> 
+<span class="p">}</span>
+
+<span class="nt">a</span> <span class="p">{</span>
+	<span class="err">...</span>
+<span class="p">}</span>
+
+<span class="c">/* | UTILITIES */</span>
+
+<span class="p">.</span><span class="nc">nobullets</span> <span class="p">{</span>
+  <span class="k">list-style</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h4>Layout</h4>
+<p>This could have styles for the main parts of the site (header, footer, navigation, sidebar, etc.), the grid system, or even <a href="css.html">CSS</a> styles for all the forms. These are the &quot;macro&quot; components.</p>
+<div class="highlight"><pre><span></span><span class="c">/* || LAYOUT */</span>
+
+<span class="c">/* | HEADER */</span>
+
+<span class="p">.</span><span class="nc">header</span> <span class="p">{</span>
+  <span class="err">...</span>
+<span class="p">}</span>
+
+<span class="c">/* | FOOTER */</span>
+
+<span class="p">.</span><span class="nc">footer</span> <span class="p">{</span>
+  <span class="err">...</span>
+<span class="p">}</span>
+
+<span class="c">/* | GRID */</span>
+
+<span class="p">.</span><span class="nc">grid</span> <span class="p">{</span>
+  <span class="err">...</span>
+<span class="p">}</span>
+</pre></div>
+<h4>Components</h4>
+<p>Modules that will be reused often throughout the project (buttons, forms, media boxes, etc.). These are the &quot;micro&quot; components in comparison to the layout.</p>
+<div class="highlight"><pre><span></span><span class="c">/* || COMPONENTS */</span>
+
+<span class="c">/* | BUTTON */</span>
+
+<span class="p">.</span><span class="nc">button</span> <span class="p">{</span>
+  <span class="err">...</span>
+<span class="p">}</span>
+
+  <span class="p">.</span><span class="nc">button--white</span> <span class="p">{</span>
+		<span class="err">...</span>
+  <span class="p">}</span>
+
+  <span class="p">.</span><span class="nc">button--magenta</span> <span class="p">{</span>
+		<span class="err">...</span>
+  <span class="p">}</span>
+</pre></div>
+<h4>Page</h4>
+<p>These are styles specific only to the specific page you are on. Many times a home page will have different layouts than the blog or the about page. This is where you would put the styles for that specific page.</p>
+<p>For a single stylesheet, this will likely be just another section as opposed to another file.</p>
+<h4>Theme</h4>
+<p>For large projects, this allows a plug-and-play way to change the theme of your site. Usually this is not used on smaller applications.</p>
+<h2>Example CSS Skeleton / Template</h2>
+<div class="highlight"><pre><span></span><span class="c">/* || ABSTRACTS */</span>
+
+<span class="c">/* || VENDORS */</span>
+
+<span class="c">/* || BASE */</span>
+
+<span class="c">/* || LAYOUT */</span>
+
+<span class="c">/* || COMPONENTS */</span>
+
+<span class="c">/* || PAGES */</span>
+
+<span class="c">/* || THEMES */</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://learn.shayhowe.com/html-css/writing-your-best-code/" target="_blank">https://learn.shayhowe.com/html-css/writing-your-best-code/</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing" target="_blank">https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing</a></li>
+<li><a href="https://www.reddit.com/r/css/comments/kzkthl/what_units_do_you_use_px_vw_and_vh_em_rem/" target="_blank">https://www.reddit.com/r/css/comments/kzkthl/what_units_do_you_use_px_vw_and_vh_em_rem/</a></li>
+<li><a href="https://meyerweb.com/eric/thoughts/2018/06/28/what-is-the-css-ch-unit/" target="_blank">https://meyerweb.com/eric/thoughts/2018/06/28/what-is-the-css-ch-unit/</a></li>
+<li><a href="https://github.com/HugoGiraudel/sass-boilerplate/tree/master/stylesheets" target="_blank">https://github.com/HugoGiraudel/sass-boilerplate/tree/master/stylesheets</a></li>
+<li><a href="https://www.learnhowtoprogram.com/user-interfaces/building-layouts-preprocessors/7-1-sass-architecture" target="_blank">https://www.learnhowtoprogram.com/user-interfaces/building-layouts-preprocessors/7-1-sass-architecture</a></li>
+<li><a href="https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/" target="_blank">https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

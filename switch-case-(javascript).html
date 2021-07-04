@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Switch cases allow if/else style branching but with different side effects."><title>Switch Case (Javascript)</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Switch Case (Javascript)</h1>
+<p>Switch cases in <a href="javascript.html">Javascript</a> act very similar to if/else statements with one very important caveat, being that they will trip the condition that matches <strong>and all that follow it unless a specific <code>break</code> is made.</strong> Default is a special case that will only trip if no other conditions are met <strong>or if <code>break</code> is not invoked.</strong></p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">number</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span>
+
+<span class="k">switch</span> <span class="p">(</span><span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="o">-</span><span class="mf">1</span><span class="o">:</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Definitely negative 1&#39;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="mf">1</span><span class="o">:</span>
+  	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="mf">0</span><span class="o">:</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">);</span>
+    <span class="c1">// Will fall through to default as no explicit `break` was made</span>
+  <span class="k">default</span><span class="o">:</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Definitely not -1&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Logs &#39;True&#39;</span>
+<span class="c1">// number = 2: &#39;Definitely not -1&#39;</span>
+<span class="c1">// number = 0: &#39;False&#39;, &#39;Definitely not -1&#39;</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Express is a Javascript-based server application that will help route requests from the client."><title>Express</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Express</h1>
+<p>Express is a <a href="javascript.html">Javascript</a>-based <a href="server.html">server</a> application that will help route requests from the client.</p>
+<h2>Getting Started</h2>
+<p>First, start your project with <code>npm init</code> in the project folder. Then <code>npm i express</code>. Now you can start implementing the barebones in your project.</p>
+<div class="highlight"><pre><span></span><span class="c1">// app.js</span>
+<span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mf">3000</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Listening on port </span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">`</span><span class="p">));</span>
+</pre></div>
+<p>To get it running, set up your <code>package.json</code> with a script to run. You can also use <a href="https://www.npmjs.com/package/nodemon" target="_blank" title="Nodemon is essential for developing your own apps">nodemon</a> to run and restart upon file changes.</p>
+<div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+	<span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;node app.js&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;dev&quot;</span><span class="p">:</span> <span class="s2">&quot;nodemon app.js&quot;</span>
+<span class="p">}</span>
+</pre></div>
+<p>Upon running one of these scripts (<code>npm run start/dev</code>), you should see a message in your terminal that your app is listening on port 3000.</p>
+<h2>Routes</h2>
+<div class="highlight"><pre><span></span><span class="c1">// Parameters: `route`, and `callback` when request and response objects are received and created </span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;We did it!&#39;</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+<p>Upon completing this and restarting your server, you should be able to go to <code>localhost:3000</code> and see &quot;We did it!&quot; in your browser window.</p>
+<h2>References</h2>
+<ol>
+<li><a href="http://expressjs.com/en/starter/installing.html" target="_blank">http://expressjs.com/en/starter/installing.html</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

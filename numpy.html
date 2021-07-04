@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Numpy is a math library that brings in lots of higher-level math functionality to Python."><title>Numpy</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Numpy</h1>
+<p>This is the standard way to import Numpy into your <a href="python.html">Python</a> project, and it's good practice.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+<h2>Arrays</h2>
+<p>If modifying the array, ensure you make a copy of the array through <code>copy.deepcopy</code></p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</pre></div>
+<h3>Make a multidimensional array</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 3D</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="c1"># 2D</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span> <span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="c1"># 3D</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="p">],</span> <span class="p">[</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span> <span class="p">],</span> <span class="p">[</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span> <span class="p">]</span> <span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</pre></div>
+<h3>Make a multidimensional array filled with something</h3>
+<div class="highlight"><pre><span></span><span class="c1"># returns a 3x5 2D array filled with &#39;.&#39;s</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</pre></div>
+<h3>Get length of each side</h3>
+<div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">array_name</span><span class="p">,</span> <span class="n">axis_number</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Axis 0 size : &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">arr3D</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Axis 1 size : &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">arr3D</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Axis 2 size : &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">arr3D</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+<h3>Accessing elements</h3>
+<p>1D Arrays can be accessed via indexing just like an array. 2D and higher use a slightly different syntax. </p>
+<p>Axes are represented as (Y, X) in 2 dimensional arrays, as in (row, column).</p>
+<div class="highlight"><pre><span></span><span class="c1"># 2D</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span> <span class="p">]</span>
+<span class="n">element</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 1</span>
+<span class="n">element</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># 7</span>
+</pre></div>
+<h3>Iteration</h3>
+<p>To iterate through every element within the array, going through all dimensions:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]])</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">nditer</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+<p>If you want indexes enumerated over also, as a tuple:</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+<h2>References:</h2>
+<ol>
+<li><a href="https://numpy.org/doc/stable/reference/generated/numpy.full.html" target="_blank">https://numpy.org/doc/stable/reference/generated/numpy.full.html</a></li>
+<li><a href="https://stackoverflow.com/questions/5891410/numpy-array-initialization-fill-with-identical-values" target="_blank">https://stackoverflow.com/questions/5891410/numpy-array-initialization-fill-with-identical-values</a></li>
+<li><a href="https://thispointer.com/how-to-get-numpy-array-dimensions-using-numpy-ndarray-shape-numpy-ndarray-size-in-python/" target="_blank">https://thispointer.com/how-to-get-numpy-array-dimensions-using-numpy-ndarray-shape-numpy-ndarray-size-in-python/</a></li>
+<li><a href="https://www.w3schools.com/python/numpy_array_indexing.asp" target="_blank">https://www.w3schools.com/python/numpy_array_indexing.asp</a></li>
+<li><a href="https://www.sharpsightlabs.com/blog/numpy-axes-explained/" target="_blank">https://www.sharpsightlabs.com/blog/numpy-axes-explained/</a></li>
+<li><a href="https://stackoverflow.com/questions/17079279/how-is-axis-indexed-in-numpys-array" target="_blank">https://stackoverflow.com/questions/17079279/how-is-axis-indexed-in-numpys-array</a></li>
+<li><a href="https://stackoverflow.com/questions/37593013/deep-copy-of-a-np-array-of-np-array" target="_blank">https://stackoverflow.com/questions/37593013/deep-copy-of-a-np-array-of-np-array</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

@@ -1,0 +1,199 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Sass is a CSS preprocessor that allows a lot more ease in maintainability and gives much deeper modularity than CSS normally provides."><title>Sass</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Sass</h1>
+<p>Sass is a <a href="css.html">CSS</a> preprocessor that allows a lot more ease in maintainability and gives much deeper modularity than CSS normally provides. Sass is a language that compiles into CSS, most often used in it's <code>.scss</code> variant, as it is much more similar to normal CSS than its counterpart (<code>.sass</code>).</p>
+<h2>Setup/Meta</h2>
+<h3>Install Sass</h3>
+<p>On <a href="macos.html">Mac</a>, use <code>brew install sass/sass/sass</code> to install the newest version of Sass on your machine.</p>
+<h3>Command Line Options</h3>
+<ul>
+<li><code>path/to/input.scss:path/to/output.css</code> - Compile the input file to output file</li>
+<li><code>path/to/inputfiles/:path/to/outputfiles/</code> - Compile any SCSS files within input directory to output directory as CSS </li>
+<li><code>--watch path/to/input.scss:path/to/output.css</code> - Continuously watch the input file and compile it on change to output  file</li>
+<li><code>--watch path/to/inputfiles/:path/to/outputfiles/</code> - Continuously watch the input directory and compile any SCSS files within to output directory as CSS on change</li>
+<li><code>-v</code> - Output the current version that is being run</li>
+<li><code>--sourcemap=none</code> / <code>--no-source-map</code> - Don't output a source map on compile (former for Ruby Sass, latter for Dart Sass</li>
+</ul>
+<h2>Syntax</h2>
+<h3>Comments</h3>
+<p>Comments are done using the standard Javascript syntax: <code>//</code> and <code>/* */</code> for multiline.</p>
+<h3>Variables</h3>
+<p>Variables, like <code>--variable</code> in CSS3, are done by prepending the variable name with a dollar sign</p>
+<div class="highlight"><pre><span></span><span class="nv">$variable-name</span><span class="o">:</span> <span class="n">value</span><span class="p">;</span>
+</pre></div>
+<p>When variables are used in a <code>calc</code> function, the variable needs to be surrounded by <code>#{ }</code>.</p>
+<div class="highlight"><pre><span></span><span class="nt">width</span><span class="nd">:</span> <span class="nt">calc</span><span class="o">(</span><span class="nt">100</span><span class="err">%</span> <span class="nt">-</span> <span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable</span><span class="p">}</span><span class="o">);</span>
+</pre></div>
+<h3>Nesting</h3>
+<p>Instead of writing many specific selectors, you can use nesting to enclose selectors that are children of other selectors. Using an ampersand before a nested selector will write out the selector that is in use at that point in its place when compiled.</p>
+<p>Nesting is extremely useful in <a href="bem.html">BEM</a>, as the otherwise long and ugly class names become much more easy to read and navigate. In Sass, the <code>&amp;</code> is shorthand for the entire selector at that point.</p>
+<div class="highlight"><pre><span></span><span class="c1">// bad</span>
+<span class="nc">.block</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+<span class="nc">.block--modifier</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+<span class="nc">.block__element</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+<span class="nc">.block__element</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+<span class="nc">.block__element--modifier</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+
+<span class="c1">// good</span>
+<span class="nc">.block</span> <span class="p">{</span>
+	<span class="nc">...</span>
+	
+	<span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>  <span class="c1">// &amp; === `.block`</span>
+	  <span class="nc">...</span>
+	<span class="p">}</span>
+	
+	<span class="k">&amp;</span><span class="nt">__element</span> <span class="p">{</span>
+	  <span class="nc">...</span>
+	  
+	  <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+	  	<span class="nc">...</span>
+	  <span class="p">}</span>
+	  
+	  <span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>
+	    <span class="nc">...</span>
+	  <span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Mixins</h3>
+<p>Mixins are a group of declarations or rules that can be reused throughout by copying their contents into a rule. They can also include parameters for dynamic value generation. The <code>mixin</code> is defined by using <code>@mixin</code> and then called with <code>@includes</code> and the name.</p>
+<div class="highlight"><pre><span></span><span class="c1">// with mixin using parameters</span>
+<span class="k">@mixin</span><span class="nf"> box-shadow</span><span class="p">(</span><span class="nv">$x</span><span class="o">,</span> <span class="nv">$y</span><span class="o">,</span> <span class="nv">$blur</span><span class="o">,</span> <span class="nv">$c</span><span class="p">){</span>
+ <span class="nt">-webkit-box-shadow</span><span class="nd">:</span> <span class="err">$</span><span class="nt">x</span> <span class="err">$</span><span class="nt">y</span> <span class="err">$</span><span class="nt">blur</span> <span class="err">$</span><span class="nt">c</span><span class="o">;</span>
+    <span class="nt">-moz-box-shadow</span><span class="nd">:</span> <span class="err">$</span><span class="nt">x</span> <span class="err">$</span><span class="nt">y</span> <span class="err">$</span><span class="nt">blur</span> <span class="err">$</span><span class="nt">c</span><span class="o">;</span>
+     <span class="nt">-ms-box-shadow</span><span class="nd">:</span> <span class="err">$</span><span class="nt">x</span> <span class="err">$</span><span class="nt">y</span> <span class="err">$</span><span class="nt">blur</span> <span class="err">$</span><span class="nt">c</span><span class="o">;</span>
+         <span class="nt">box-shadow</span><span class="nd">:</span> <span class="err">$</span><span class="nt">x</span> <span class="err">$</span><span class="nt">y</span> <span class="err">$</span><span class="nt">blur</span> <span class="err">$</span><span class="nt">c</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="nt">div</span> <span class="p">{</span>
+ <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="mi">0</span><span class="kt">px</span><span class="o">,</span> <span class="mi">0</span><span class="kt">px</span><span class="o">,</span> <span class="mi">4</span><span class="kt">px</span><span class="o">,</span> <span class="mh">#fff</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// compiled result</span>
+<span class="nt">div</span> <span class="p">{</span>
+ <span class="nt">-webkit-box-shadow</span><span class="nd">:</span> <span class="nt">0px</span> <span class="nt">0px</span> <span class="nt">4px</span> <span class="nn">#fff</span><span class="o">;</span>
+    <span class="nt">-moz-box-shadow</span><span class="nd">:</span> <span class="nt">0px</span> <span class="nt">0px</span> <span class="nt">4px</span> <span class="nn">#fff</span><span class="o">;</span>
+     <span class="nt">-ms-box-shadow</span><span class="nd">:</span> <span class="nt">0px</span> <span class="nt">0px</span> <span class="nt">4px</span> <span class="nn">#fff</span><span class="o">;</span>
+         <span class="nt">box-shadow</span><span class="nd">:</span> <span class="nt">0px</span> <span class="nt">0px</span> <span class="nt">4px</span> <span class="nn">#fff</span><span class="o">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Functions</h3>
+<p>Functions are created by using <code>@function</code> with a name and a parameter list. Inside the function, a <code>@return</code> is required. It is common when a raw number is returned to multiply it by <code>1 * unit</code>, with unit being px, em, etc.</p>
+<div class="highlight"><pre><span></span><span class="k">@function</span> <span class="nt">divide</span><span class="o">(</span><span class="err">$</span><span class="nt">a</span><span class="o">,</span> <span class="err">$</span><span class="nt">b</span><span class="o">)</span> <span class="p">{</span>
+  <span class="k">@return</span> <span class="err">$</span><span class="nt">a</span> <span class="o">/</span> <span class="err">$</span><span class="nt">b</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="c1">// called</span>
+<span class="nt">p</span> <span class="p">{</span>
+	<span class="nt">margin</span><span class="nd">:</span> <span class="nt">divide</span><span class="o">(</span><span class="nt">60</span><span class="o">,</span> <span class="nt">2</span><span class="o">)</span> <span class="o">*</span> <span class="nt">1px</span><span class="o">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Conditionals</h3>
+<p><code>@if</code>, <code>@else if</code>, and <code>@else</code> are what they sound like and are used within a <code>mixin</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">@mixin</span><span class="nf"> make-bold</span><span class="p">(</span><span class="nv">$bool</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nv">$bool</span> <span class="o">==</span> <span class="n n-Pseudo">true</span> <span class="p">{</span>
+    <span class="nt">font-weight</span><span class="nd">:</span> <span class="nt">bold</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@mixin</span><span class="nf"> text-effect</span><span class="p">(</span><span class="nv">$val</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nv">$val</span> <span class="o">==</span> <span class="n">danger</span> <span class="p">{</span>
+    <span class="nt">color</span><span class="nd">:</span> <span class="nt">red</span><span class="o">;</span>
+  <span class="p">}</span>
+  <span class="k">@else</span> <span class="nt">if</span> <span class="err">$</span><span class="nt">val</span> <span class="o">==</span> <span class="nt">alert</span> <span class="p">{</span>
+    <span class="nt">color</span><span class="nd">:</span> <span class="nt">yellow</span><span class="o">;</span>
+  <span class="p">}</span>
+  <span class="k">@else</span> <span class="nt">if</span> <span class="err">$</span><span class="nt">val</span> <span class="o">==</span> <span class="nt">success</span> <span class="p">{</span>
+    <span class="nt">color</span><span class="nd">:</span> <span class="nt">green</span><span class="o">;</span>
+  <span class="p">}</span>
+  <span class="k">@else</span> <span class="p">{</span>
+    <span class="nt">color</span><span class="nd">:</span> <span class="nt">black</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Iteration</h3>
+<p>For loops <em>including</em> the last number, use <code>through</code>. For loops <em>excluding</em> the last number, use <code>to</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">@for</span> <span class="nv">$i</span> <span class="ow">from</span> <span class="mi">1</span> <span class="ow">through</span> <span class="mi">12</span> <span class="p">{</span>
+  <span class="nc">.col-</span><span class="si">#{</span><span class="nv">$i</span><span class="si">}</span> <span class="p">{</span> <span class="nt">width</span><span class="nd">:</span> <span class="nt">100</span><span class="err">%</span><span class="o">/</span><span class="nt">12</span> <span class="o">*</span> <span class="err">$</span><span class="nt">i</span><span class="o">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@for</span> <span class="nv">$i</span> <span class="ow">from</span> <span class="mi">1</span> <span class="ow">to</span> <span class="mi">13</span> <span class="p">{</span>
+  <span class="nc">.col-</span><span class="si">#{</span><span class="nv">$i</span><span class="si">}</span> <span class="p">{</span> <span class="nt">width</span><span class="nd">:</span> <span class="nt">100</span><span class="err">%</span><span class="o">/</span><span class="nt">12</span> <span class="o">*</span> <span class="err">$</span><span class="nt">i</span><span class="o">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>For each loops are done with <code>@each</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">@each</span> <span class="err">$</span><span class="nt">color</span> <span class="nt">in</span> <span class="nt">blue</span><span class="o">,</span> <span class="nt">red</span><span class="o">,</span> <span class="nt">green</span> <span class="p">{</span>
+  <span class="nc">.</span><span class="si">#{</span><span class="nv">$color</span><span class="si">}</span><span class="nc">-text</span> <span class="p">{</span><span class="nt">color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">color</span><span class="o">;</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//alternative</span>
+<span class="nv">$colors</span><span class="o">:</span> <span class="p">(</span><span class="n">color1</span><span class="o">:</span> <span class="ni">blue</span><span class="o">,</span> <span class="n">color2</span><span class="o">:</span> <span class="ni">red</span><span class="o">,</span> <span class="n">color3</span><span class="o">:</span> <span class="ni">green</span><span class="p">);</span>
+<span class="k">@each</span> <span class="err">$</span><span class="nt">key</span><span class="o">,</span> <span class="err">$</span><span class="nt">color</span> <span class="nt">in</span> <span class="err">$</span><span class="nt">colors</span> <span class="p">{</span>
+  <span class="nc">.</span><span class="si">#{</span><span class="nv">$color</span><span class="si">}</span><span class="nc">-text</span> <span class="p">{</span><span class="nt">color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">color</span><span class="o">;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>While loops are done with <code>@while</code>.</p>
+<div class="highlight"><pre><span></span><span class="nv">$x</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>  <span class="cm">/* define variable `x` as 1 */</span>
+<span class="k">@while</span> <span class="nv">$x</span> <span class="o">&lt;</span> <span class="mi">13</span> <span class="p">{</span>
+  <span class="nc">.col-</span><span class="si">#{</span><span class="nv">$x</span><span class="si">}</span> <span class="p">{</span> <span class="nt">width</span><span class="nd">:</span> <span class="nt">100</span><span class="err">%</span><span class="o">/</span><span class="nt">12</span> <span class="o">*</span> <span class="err">$</span><span class="nt">x</span><span class="o">;</span><span class="p">}</span>
+  <span class="nv">$x</span><span class="o">:</span> <span class="nv">$x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Imports/Partials</h3>
+<p>You can create separate stylesheets and import them in to your main sheet.</p>
+<p>Partials are what will be <strong>imported</strong> into the main sheet. These filenames start with an underscore and end with <code>.scss</code>.</p>
+<p>Depending on the version of Sass that is being used, they use <code>@import</code> or <code>@use</code> followed by the partial enclosed in single quotes <em>without</em> the underscore or the extension. (<code>@import</code> is being phased out, so if you can, use <code>@use</code>)</p>
+<div class="highlight"><pre><span></span><span class="c1">// partial file is at fp &quot;./base/_base.scss&quot;</span>
+
+<span class="c1">// if using Dart Sass:</span>
+<span class="k">@use</span> <span class="s1">&#39;base/base&#39;</span><span class="o">;</span>
+<span class="o">//</span> <span class="nt">else</span>
+<span class="o">@</span><span class="nt">import</span> <span class="s1">&#39;base/base&#39;</span><span class="o">;</span>
+</pre></div>
+<p><a href="https://www.freecodecamp.org/learn/front-end-libraries/sass/split-your-styles-into-smaller-chunks-with-partials" target="_blank">https://www.freecodecamp.org/learn/front-end-libraries/sass/split-your-styles-into-smaller-chunks-with-partials</a></p>
+<h3>Extending Rules</h3>
+<p>Rules can be extended from one element to another one through copying the rules and then further modification (<code>header</code> -&gt; <code>small-header</code>). <code>@extend</code> followed by the original selector. Extend can also be used on a placeholder rule, defined by using a preceding <code>%</code>. </p>
+<p><a href="https://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/" target="_blank"><strong>Extensions should be used only when the elements it is extending are inherently and thematically related, but extend is generally not advised because you will be &quot;distributing selectors across [your] codebase for purely circumstantial reasons&quot;, leading to bloated and difficult to maintain code.</strong></a></p>
+<p>The difference between this and a mixin is instead of bringing <em>code into another rule</em>, we are bringing the <em>selectors that include the extend command to the rule</em>.</p>
+<div class="highlight"><pre><span></span><span class="err">%</span><span class="nt">panel</span> <span class="p">{</span>
+  <span class="nt">background-color</span><span class="nd">:</span> <span class="nt">red</span><span class="o">;</span>
+  <span class="nt">height</span><span class="nd">:</span> <span class="nt">70px</span><span class="o">;</span>
+  <span class="nt">border</span><span class="nd">:</span> <span class="nt">2px</span> <span class="nt">solid</span> <span class="nt">green</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="nc">.big-panel</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="err">%</span><span class="nt">panel</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">150px</span><span class="o">;</span>
+  <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">2em</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="nc">.long-panel</span> <span class="p">{</span>
+	<span class="k">@extend</span> <span class="err">%</span><span class="nt">panel</span><span class="o">;</span>
+	<span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="c1">// compiled result</span>
+<span class="nc">.big-panel</span><span class="o">,</span>
+<span class="nc">.long-panel</span> <span class="p">{</span>
+	<span class="nt">background-color</span><span class="nd">:</span> <span class="nt">red</span><span class="o">;</span>
+  <span class="nt">height</span><span class="nd">:</span> <span class="nt">70px</span><span class="o">;</span>
+  <span class="nt">border</span><span class="nd">:</span> <span class="nt">2px</span> <span class="nt">solid</span> <span class="nt">green</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="nc">.big-panel</span> <span class="p">{</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">150px</span><span class="o">;</span>
+  <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">2em</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="nc">.long-panel</span> <span class="p">{</span>
+	<span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
+<span class="p">}</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.udemy.com/course/advanced-css-and-sass" target="_blank">https://www.udemy.com/course/advanced-css-and-sass</a></li>
+<li><a href="https://www.freecodecamp.org/learn/front-end-libraries/sass/use-if-and-else-to-add-logic-to-your-styles" target="_blank">https://www.freecodecamp.org/learn/front-end-libraries/sass/</a></li>
+<li><a href="https://sass-lang.com/documentation/at-rules/import" target="_blank">https://sass-lang.com/documentation/at-rules/import</a></li>
+<li><a href="https://sass-lang.com/documentation/at-rules/use" target="_blank">https://sass-lang.com/documentation/at-rules/use</a></li>
+<li><a href="https://sass-lang.com/guide" target="_blank">https://sass-lang.com/guide</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="inverted-triangle-css.html">Inverted Triangle CSS</a></li><li><a href="organization-and-structure-(css).html">Organization and Structure (CSS)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="vendor-prefixes-(css).html">Vendor Prefixes (CSS)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

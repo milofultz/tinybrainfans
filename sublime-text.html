@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Sublime Text is an application made for software development."><title>Sublime Text</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Sublime Text</h1>
+<p>Sublime Text is an application made for software development.</p>
+<h2>Command Line Shortcut</h2>
+<p>To create a symlink in <a href="bash.html">bash</a> that will allow you to open any folder in Sublime Text:</p>
+<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+// or
+<span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.zprofile
+</pre></div>
+<p>Now you can just type <code>subl .</code> in a given folder, a la <code>code .</code> in <a href="visual-studio-code.html">Visual Studio Code</a></p>
+<h2>Troubleshooting Errors</h2>
+<h3>Autocompletion/Snippets</h3>
+<ol>
+<li>Open the console (<code>View &gt; Show Console</code> or <code>ctrl + `</code> on <a href="macos.html">OSX</a>).</li>
+<li>In the console, enter in <code>sublime.log_commands(True)</code>.</li>
+<li>Do what you need to recreate the issue. Immediately after triggering the unwanted behavior, document what you think is causing it that is in the console. In my case it was <code>command: insert_snippet {&quot;contents&quot;: &quot;:$0;&quot;}</code>.</li>
+<li>Depending on which syntax you are in, or which plugin is listed/suspected, use the command palette to <code>View Package File</code> and type in the syntax/plugin. This will show files that are hidden, as well, which makes diagnosing issues with default plugins/syntaxes much  easier. In my case this was in the <code>keymap</code> file.</li>
+<li>Once you find a possible file, open it. <code>Save As</code> in the <code>Packages</code> directory under a new folder called the name of the plugin or syntax. e.g. for the <a href="sass.html">Sass</a> plugin/syntax, I created a folder in <code>Packages</code> called <code>Sass</code> and saved a copy of the <code>Default.sublime-keymap</code> file there, which included my additions. <a href="https://www.sublimetext.com/docs/3/packages.html" target="_blank">You can find more on overriding packages here</a>.</li>
+<li>In my case, I copied the old rule over and changed the <code>{&quot;contents&quot;: &quot;:$0;&quot;}</code> object to <code>{&quot;contents&quot;: &quot;:$0&quot;}</code>, which allowed the colon to be typed without adding any additional characters.</li>
+</ol>
+<h3>Syntax Highlighting</h3>
+<p>Packages in Sublime Text are interdependent on each other and many of the default packages are inferior to third-party (e.g. <a href="babel.html">Babel</a> over <a href="javascript.html">Javascript</a>). When nested syntaxes are not cooperating, in this example <a href="pug.html">Pug</a>'s Javascript syntax, you can <code>Disable Package &gt; Javascript</code> and install <code>Babel</code> and this will cause Pug to correctly highlight conditionals and the succeeding code.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://milofultz.com/2021/03/06/sublime-keymap" target="_blank">https://milofultz.com/2021/03/06/sublime-keymap</a></li>
+<li><a href="https://stackoverflow.com/questions/59635627/how-to-override-sublime-text-3-packages-css3-completion-syntax" target="_blank">https://stackoverflow.com/questions/59635627/how-to-override-sublime-text-3-packages-css3-completion-syntax</a></li>
+<li><a href="https://www.sublimetext.com/docs/command_line.html#mac" target="_blank">https://www.sublimetext.com/docs/command_line.html#mac</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="In programming, test-driven development is when tests are developed first before the code is written."><title>Test-Driven Development</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Test-Driven Development</h1>
+<p>In <a href="programming.html">programming</a>, test-driven development is when tests are developed first before the code is written. </p>
+<blockquote>
+<p>In test-driven development the mantra has always been, red, green, refactor. Write a failing test and run it (red), make the test pass (green), then refactor it (that is look at the code and see if you can make it any better).[1]</p>
+</blockquote>
+<ul>
+<li>You can’t write any production code until you have first written a failing unit test.</li>
+<li>You can’t write more of a unit test than is sufficient to fail, and not compiling is failing.</li>
+<li>You can’t write more production code than is sufficient to pass the currently failing unit test.</li>
+</ul>
+<h2>Best Practices</h2>
+<p>Write the test that forces you to write the code you already know you want to write. </p>
+<p>Avoid the central behaviors as long as possible. Don't go for the gold right away. </p>
+<p>Decouple the production code from the test code by ensuring your tests are not 1:1 for the class methods or functions. Create and refactor as you go in production, but allow the tests to remain.</p>
+<h2>Why Use TDD</h2>
+<ul>
+<li>Your code will ALWAYS be working just a second ago when you last tested.</li>
+<li>It is <a href="https://en.wikipedia.org/wiki/Double-entry_bookkeeping" target="_blank">double-entry bookkeeping</a> for development.</li>
+<li>A test suite that you don't trust is worthless. A test suite that does not allow you to make a decision when it passes is useless. There can be NO HOLES.</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://github.com/gregmalcolm/python_koans" target="_blank">https://github.com/gregmalcolm/python_koans</a></li>
+<li><a href="https://openlibrary.org/works/OL3526663W/Clean_code" target="_blank">Clean Code</a></li>
+<li><a href="https://qualitycoding.org/3-laws-tdd/" target="_blank">https://qualitycoding.org/3-laws-tdd/</a></li>
+<li><a href="https://www.youtube.com/watch?v=58jGpV2Cg50" target="_blank">Examples of TDD in action</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

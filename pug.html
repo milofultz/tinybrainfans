@@ -1,0 +1,131 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Pug is a templating engine for HTML."><title>Pug</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Pug</h1>
+<p>Pug is a templating engine for <a href="html.html">HTML</a> that allows you to write a simpler more condense webpage, as well as integrating <a href="javascript.html">Javascript</a> to dynamically generate pages.</p>
+<h2>Getting Started</h2>
+<p>Install it using <a href="npm.html">NPM</a>: <code>npm i -g pug-cli</code>. You can compile a Pug file directly, or by watching the file and it's dependencies for changes.</p>
+<div class="highlight"><pre><span></span><span class="c1"># compile the single file</span>
+pug filename.pug -o ./outputfolder
+<span class="c1"># watch the file and its dependencies for changes and compile on change</span>
+pug -w filename.pug -o ./outputfolder
+</pre></div>
+<h2>Syntax</h2>
+<p>Writing <a href="html.html">HTML</a> in Pug is very similar to <a href="emmet.html">Emmet</a> shorthand/selectors in <a href="css.html">CSS</a>.</p>
+<p><code>element#id.class(attr=&quot;value&quot; foo=&quot;bar&quot;) innerText</code></p>
+<div class="highlight"><pre><span></span>header#header.header.header__wrapper
+  .header__logo
+    span
+      img.header__logo-img(src=&quot;...&quot; alt=&quot;Logo&quot;)
+      |  Some text!
+  h1 Company Name
+
+//- outputs
+
+//- <span class="nt">&lt;header</span> <span class="na">id=</span><span class="s">&quot;header&quot;</span> <span class="na">class=</span><span class="s">&quot;header header__wrapper&quot;</span><span class="nt">&gt;</span>
+//-   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;header__logo&quot;</span><span class="nt">&gt;</span>
+//-     <span class="nt">&lt;span&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;...&quot;</span> <span class="na">alt=</span><span class="s">&quot;Logo&quot;</span> <span class="nt">/&gt;</span> Some text!<span class="nt">&lt;/span&gt;</span>
+//-   <span class="nt">&lt;/div&gt;</span>
+//-   <span class="nt">&lt;h1&gt;</span>Company Name<span class="nt">&lt;/h1&gt;</span>
+//- <span class="nt">&lt;/header&gt;</span>
+</pre></div>
+<h3>Comments</h3>
+<div class="highlight"><pre><span></span>// This comment will appear in the HTML
+
+//- This is a silent comment
+
+//-
+  Nesting inside a comment creates
+  a comment block
+</pre></div>
+<h3><a href="javascript.html">Javascript</a></h3>
+<p>Any line that starts with a hyphen or anything that follows an equals sign in an attribute list can be valid Javascript.</p>
+<div class="highlight"><pre><span></span>- var num = 6;
+- var name = &quot;John Smith&quot;;
+
+h1(data-name= name.replace(/\s/, &#39;.&#39;).toLowerCase() )= `This guy is probably <span class="cp">${</span><span class="n">num</span><span class="cp">}</span> feet tall!`
+
+//- outputs
+//- <span class="nt">&lt;h1</span> <span class="na">data-name=</span><span class="s">&quot;john.smith&quot;</span><span class="nt">&gt;</span>This guy is probably 6 feet tall!<span class="nt">&lt;/h1&gt;</span>
+</pre></div>
+<h3>Inline</h3>
+<div class="highlight"><pre><span></span>h1: span.header Yeah!
+
+//- Outputs
+//- <span class="nt">&lt;h1&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;header&quot;</span><span class="nt">&gt;</span>Yeah!<span class="nt">&lt;/span&gt;&lt;/h1&gt;</span>
+</pre></div>
+<h3>Multiline</h3>
+<div class="highlight"><pre><span></span>p.
+  This text can be broken 
+  up on multiple lines
+  
+//- outputs
+//- <span class="nt">&lt;p&gt;</span>This text can be broken
+//-     up on multiple lines<span class="nt">&lt;/p&gt;</span>
+  
+script.
+  console.log(&#39;or here&#39;);
+  // This works too.
+</pre></div>
+<h3>Imports / Include</h3>
+<p>Pug allows import of HTML directly as well as Pug files.</p>
+<div class="highlight"><pre><span></span><span class="k">include</span> <span class="nv">filename</span>.<span class="nv">pug</span>
+<span class="k">include</span> <span class="nv">another</span>.<span class="nv">html</span>
+</pre></div>
+<h3>Variables</h3>
+<p>Variables in Pug are defined as they are in Javascript and should be preceded by a hyphen. Multiline variable definitions are done by starting a line with a hyphen, <strong>leaving no whitespace</strong>, and continuing indented on the next line. As long as the indentation remains, you will be in &quot;Javascript land&quot;.</p>
+<div class="highlight"><pre><span></span>- var location = &#39;russia&#39;;
+-
+  var obj = {
+    thing: &quot;one&quot;,
+    otherThing: &quot;two&quot;,
+  }
+
+p= location
+span(class= obj.thing) OK
+
+//- outputs 
+
+//- <span class="nt">&lt;p&gt;</span>russia<span class="nt">&lt;/p&gt;</span>
+//- <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;one&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/span&gt;</span>
+</pre></div>
+<h3>Conditionals</h3>
+<div class="highlight"><pre><span></span>- var location = &#39;russia&#39;;
+- var cold = true;
+
+if location === &#39;los-angeles&#39;
+  p Party!
+else if location === &#39;mexico&#39;
+  p MORE Party!
+else if cold
+  p cold party
+else
+  p no party
+  
+span= cold ? &quot;Brr!&quot; : &quot;*panting*&quot;
+  
+//- outputs 
+//- <span class="nt">&lt;p&gt;</span>cold party<span class="nt">&lt;/p&gt;</span>
+//- <span class="nt">&lt;span&gt;</span>Brr!<span class="nt">&lt;/span&gt;</span>
+</pre></div>
+<h3>Iteration</h3>
+<div class="highlight"><pre><span></span>- var items = [&#39;candy&#39;, &#39;cake&#39;, &#39;ice cream&#39;];
+
+each item in items
+  p.item(id= item.replace(&#39; &#39;, &#39;-&#39;))= item.toUpperCase()
+  
+//- outputs
+//- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;candy&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>CANDY<span class="nt">&lt;/p&gt;</span>
+//- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;cake&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>CAKE<span class="nt">&lt;/p&gt;</span>
+//- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;ice-cream&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>ICE CREAM<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+<h2>Sublime Text Syntax</h2>
+<p>Packages in <a href="sublime-text.html">Sublime Text</a> are interdependent on each other and many of the default packages are inferior to third-party (e.g. Babel over Javascript). When Pug's Javascript syntax is not cooperating or popping to allow Pug's syntax to take over again, you can <code>Disable Package &gt; Javascript</code> and install <code>Babel</code> and this will cause Pug to correctly highlight conditionals and the succeeding code.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.sitepoint.com/a-beginners-guide-to-pug/" target="_blank">https://www.sitepoint.com/a-beginners-guide-to-pug/</a></li>
+<li><a href="https://pughtml.com/" target="_blank">https://pughtml.com/</a></li>
+<li><a href="https://devhints.io/pug" target="_blank">https://devhints.io/pug</a></li>
+<li><a href="https://pugjs.org/language/conditionals.html" target="_blank">https://pugjs.org/language/conditionals.html</a></li>
+<li><a href="https://pugjs.org/language/includes.html" target="_blank">https://pugjs.org/language/includes.html</a></li>
+<li><a href="https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank">https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

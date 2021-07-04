@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="The Canvas API provides a means for drawing graphics via JavaScript and the HTML <canvas> element."><title>Canvas</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Canvas</h1>
+<p>The Canvas API provides a means for drawing graphics via <a href="javascript.html">JavaScript</a> and the <a href="html.html">HTML</a> <canvas> element.</p>
+<h2>Initialization</h2>
+<p>To start using the canvas, put the canvas element in your webpage HTML, along with a width or height in pixels. Fallback content goes in between the opening and closing tag.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">canvas</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;canvas-name&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;150&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;150&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">canvas</span><span class="p">&gt;</span>
+</pre></div>
+<p>The canvas is initially blank and then needs to be accessed, with the new context assigned to a variable. This variable will become the way to draw on the canvas.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;canvas-name&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+</pre></div>
+<h2>Drawing</h2>
+<p>Canvas only supports rectangles and paths.</p>
+<h3>Rectangles</h3>
+<div class="highlight"><pre><span></span><span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>   <span class="c1">// Draws a filled rectangle.</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeRect</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="c1">// Draws a rectangular outline.</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>  <span class="c1">// Clears the specified rectangular area, making it fully transparent.</span>
+</pre></div>
+<h3>Paths</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D#paths" target="_blank">From MDN</a>:</p>
+<p>A path is a list of points, connected by segments of lines that can be of different shapes, curved or not, of different width and of different color. A path, or even a subpath, can be closed. To make shapes using paths, we take some extra steps:</p>
+<ol>
+<li>First, you create the path with <code>beginPath()</code></li>
+<li>Then you use drawing commands to draw into the path</li>
+<li>Once the path has been created, you can stroke or fill the path to render it with <code>closePath()</code></li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">()</span> <span class="c1">// Creates a new path. Once created, future drawing commands are directed into the path and used to build the path up.</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">closePath</span><span class="p">()</span> <span class="c1">// Adds a straight line to the path, going to the start of the current sub-path.</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">()</span>    <span class="c1">// Draws the shape by stroking its outline.</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">fill</span><span class="p">()</span>      <span class="c1">// Draws a solid shape by filling the path&#39;s content area.</span>
+</pre></div>
+<h4>Path Methods</h4>
+<p><code>moveTo(x,y)</code> <strong>moves the pen without recording it as a path</strong> to be drawn or filled.</p>
+<p><code>lineTo(x,y)</code> should be used to draw <strong>straight lines</strong>.</p>
+<p><code>arc(x, y, radius, startAngle, anticlockwise)</code> will draw an <strong>arc centered at x, y</strong>.</p>
+<p><code>arcTo()</code> is often used to make rounded corners <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arcTo" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arcTo</a></p>
+<p><code>quadraticCurveTo(cp1x, cp1y, x, y)</code> and <code>bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)</code> are also good for [rounded shapes](<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D#paths" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D#paths</a>. </p>
+<h2>References</h2>
+<ul>
+<li><a href="https://webglfundamentals.org/webgl/lessons/webgl-anti-patterns.html" target="_blank">https://webglfundamentals.org/webgl/lessons/webgl-anti-patterns.html</a></li>
+</ul>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

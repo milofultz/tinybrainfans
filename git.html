@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="git is a version control system."><title>git</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">git</h1>
+<h2>Commits</h2>
+<ul>
+<li>Add files you want to commit: <code>git add {file or folder name}</code> or <code>git add .</code></li>
+<li>
+Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder name}</code>. This will prompt you with options:<ul>
+<li>y - stage this hunk</li>
+</ul>
+<ul>
+<li>n - do not stage this hunk</li>
+<li>q - quit; do not stage this hunk or any of the remaining ones</li>
+<li>a - stage this hunk and all later hunks in the file</li>
+<li>d - do not stage this hunk or any of the later hunks in the file</li>
+<li>g - select a hunk to go to</li>
+<li>/ - search for a hunk matching the given regex</li>
+<li>j - leave this hunk undecided, see next undecided hunk</li>
+<li>J - leave this hunk undecided, see next hunk</li>
+<li>k - leave this hunk undecided, see previous undecided hunk</li>
+<li>K - leave this hunk undecided, see previous hunk</li>
+<li>s - split the current hunk into smaller hunks</li>
+<li>e - <a href="https://rietta.com/blog/git-patch-manual-split/" target="_blank">manually edit the current hunk</a> (particularly if your code is really close together but needs to be broken down)</li>
+<li>? - print help</li>
+</ul>
+</li>
+</ul>
+<h2>Branches</h2>
+<ul>
+<li>See all branches: <code>git branch</code></li>
+<li>See the remote branches your local repo knows: <code>git branch -a</code></li>
+<li>Checkout an existing branch: <code>git checkout {name}</code></li>
+<li>Create and name a new branch: <code>git branch {name}</code></li>
+<li>Create and checkout a new branch: <code>git checkout -b {name}</code></li>
+<li>Create an orphaned branch: <code>git checkout --orphan {branch_name}</code></li>
+<li>Push the current branch: <code>git push origin HEAD</code></li>
+<li>Rename a branch. Assuming you're currently on the branch you want to rename: <code>git branch -m {name}</code></li>
+<li>
+Merge a branch (source) into another branch (destination):<ul>
+<li>Commit all changes in source branch</li>
+<li>Checkout destination branch</li>
+<li><code>git merge {source-branch}</code></li>
+</ul>
+</li>
+<li>Delete a fully pushed and merged branch: <code>git branch -d {name}</code></li>
+<li>Force delete a local branch: <code>git branch -D {name}</code></li>
+</ul>
+<h3>Orphan Branches</h3>
+<p>Commits usually have one parent, their previous iteration. The root commit (very beginning) of your repo has none, and when you merge commit a fork with another branch or the master branch.</p>
+<p>An orphan branch is a new root commit, where:</p>
+<blockquote>
+<p>The first commit made on this new branch will have no parents, and it will be the root of a new history, totally disconnected from all the other branches and commits. In other words, it creates a new root commit and uses it as a starting point for your new branch.</p>
+</blockquote>
+<h3>Delete All Merged Branches</h3>
+<p>To delete all branches that have been merged, start out by pulling from remote to ensure you are using the most up to date info. Then check which branches are merged by running <code>git branch --merged</code>. We will be using <code>egrep</code> to grab these and put them into a macro that will delete each merged branch that doesn't fit within the regex. To ensure a branch that contains a certain keyword does not get deleted, add it to the <code>egrep -v &quot;(^...)&quot;</code> line, with each keyword separated by an OR <code>|</code>.</p>
+<div class="highlight"><pre><span></span>git branch --merged <span class="p">|</span> egrep -v <span class="s2">&quot;(^\*|master|main|dev|staging)&quot;</span> <span class="p">|</span> xargs git branch -d
+</pre></div>
+<h2>Cherry Pick</h2>
+<h2>Stashing</h2>
+<p><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">Stashing</a> allows you to temporarily save changes without committing anything. </p>
+<p>To stash some changes, use <code>git stash save &#x27;message about stash&#x27;</code>, or just <code>git stash</code> if you want to leave out the message.</p>
+<p>To see what you have stashed, use <code>git stash list</code> to see all stashed code. Then see what is in each stash by using <code>git stash show {index}</code>, and you can see it diffed by using the <code>-p</code> flag.</p>
+<p>Stashes can be listed recalled via the indexes shown: <code>git stash apply {index}</code> or <code>git stash pop {index}</code> if you want to remove it from the stashes after being applied.</p>
+<p>You can <code>git stash drop {index}</code> individual stashes or <code>git stash clear</code> the entire stash.</p>
+<h2>Git Aliases</h2>
+<h3>Flags</h3>
+<ul>
+<li><code>--global</code> will set the alias across your whole machine</li>
+<li><code>--unset</code> will unset the following alias</li>
+<li><code>--unset-all</code> will unset all of the aliases found at the following alias</li>
+</ul>
+<div class="highlight"><pre><span></span>shell&gt; git config --global alias.co checkout <span class="c1"># now &#39;git co&#39; is aliased to &#39;git checkout&#39;</span>
+shell&gt; git config alias.p <span class="s1">&#39;push origin HEAD&#39;</span>  <span class="c1"># now &#39;git p&#39; is aliased to &#39;git push origin HEAD&#39; ONLY for current project</span>
+shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&#39; is no longer aliased</span>
+</pre></div>
+<h2><a href="https://git-scm.com/docs/gitignore" target="_blank">Gitignore</a></h2>
+<p>Creating a <code>.gitignore</code> file in the root folder of your project will ensure every file that matches a line within the file will be ignored by git.</p>
+<ul>
+<li>Using a <code>*</code> will work as a wildcard for every file within that level of the given directory, or as a wildcard within a filename.</li>
+<li>Using two <code>**</code> in the filepath will look within every level recursively from that point forward. e.g. <code>**/.DS_Store</code> will find a file called <code>.DS_Store</code> in the root directory as well as any others in any folders within that root directory. <code>lib/**/__pycache__</code> will match any files or folders named <code>__pycache__</code> that are within the <code>lib</code> directory at any depth.</li>
+</ul>
+<h3>Global gitignore</h3>
+<p>You can ignore files globally by adding them to <code>~/.gitignore_global</code>. </p>
+<h3><a href="https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository" target="_blank">Delete previous files in gitignore</a></h3>
+<p>If you add a file to <code>.gitignore</code> after previously committing that file, you may see untracked changes on those files. You have to remove the old files from the git repository to remove that error.</p>
+<ul>
+<li>Remove the existing files: <code>find . -name {filename} -print0 | xargs -0 git rm -f --ignore-unmatch</code></li>
+<li>Add the file to the gitignore: <code>{filename}</code></li>
+</ul>
+<h2>Meta</h2>
+<h3>Use <a href="vim.html">VIM</a> as Editor</h3>
+<ul>
+<li>Install Vim using homebrew</li>
+<li>Set vim to be the default editor with <code>git config --global core.editor &quot;vim&quot;</code></li>
+</ul>
+<h3>Good Commit Hygiene</h3>
+<ul>
+<li><a href="https://chris.beams.io/posts/git-commit/" target="_blank">https://chris.beams.io/posts/git-commit/</a></li>
+<li><a href="https://dhwthompson.com/2019/my-favourite-git-commit" target="_blank">https://dhwthompson.com/2019/my-favourite-git-commit</a></li>
+<li><a href="https://mtlynch.io/code-review-love/" target="_blank">https://mtlynch.io/code-review-love/</a></li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging" target="_blank">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging</a></li>
+<li><a href="https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323" target="_blank">https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323</a></li>
+<li><a href="https://bugfactory.io/blog/orphaned-brachnes-in-git/" target="_blank">https://bugfactory.io/blog/orphaned-brachnes-in-git/</a></li>
+<li><a href="https://git-scm.com/docs/git-add" target="_blank">https://git-scm.com/docs/git-add</a></li>
+<li><a href="https://devconnected.com/how-to-cherry-pick-git-commits/" target="_blank">https://devconnected.com/how-to-cherry-pick-git-commits/</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

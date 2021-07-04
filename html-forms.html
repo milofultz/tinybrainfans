@@ -1,0 +1,96 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="The basics of HTML forms, semantic HTML forms, and validation."><title>HTML Forms</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">HTML Forms</h1>
+<p>The basics of <a href="html.html">HTML</a> forms, <a href="semantic-html.html">semantic HTML</a> forms, and validation.</p>
+<h2>Form Element</h2>
+<p>The <code>action</code> attribute that defines the action to be done upon submission as an address or href. The <code>method</code> is the <a href="http-methods.html">HTTP method</a> to use in completing the action.</p>
+<h2>Input Types</h2>
+<h3>Input</h3>
+<ul>
+<li>
+Pre-HTML5 input types:<ul>
+<li><code>button</code></li>
+<li><code>checkbox</code></li>
+<li><code>file</code></li>
+<li><code>hidden</code></li>
+<li><code>image</code></li>
+<li><code>password</code></li>
+<li><code>radio</code></li>
+<li><code>reset</code></li>
+<li><code>submit</code></li>
+<li><code>text</code></li>
+</ul>
+</li>
+<li>
+HTML5 input types:<ul>
+<li><code>color</code></li>
+<li><code>date</code></li>
+<li><code>datetime</code></li>
+<li><code>email</code></li>
+<li><code>month</code></li>
+<li><code>number</code></li>
+<li><code>range</code></li>
+<li><code>search</code></li>
+<li><code>tel</code></li>
+<li><code>time</code></li>
+<li><code>url</code></li>
+<li><code>week</code></li>
+</ul>
+</li>
+</ul>
+<p>These values were added to <strong>provide clearer semantic meaning</strong> for inputs as well as to provide better controls for users. Should a browser not understand one of these HTML5 type attribute values, it will automatically <strong>fall back to the</strong> <strong>text</strong> <strong>attribute</strong> value.</p>
+<h3>Label</h3>
+<p>The <code>label</code> element provides a label for an input element, with its <code>for=&quot;&quot;</code> attribute referencing the <code>id</code> attribute of the element it is to label.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;thing&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;thing&quot;</span><span class="p">&gt;</span>Thing!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</pre></div>
+<h3>Select</h3>
+<p>The <code>size</code> attribute chooses how many choices are visible at a time. The boolean attribute <code>multiple</code>, when added to the <code>&lt;select&gt;</code> element for a standard drop-down list, allows a user to choose more than one option from the list at a time. </p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;things&quot;</span><span class="p">&gt;</span>Things!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">multiple</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing1&quot;</span><span class="p">&gt;</span>Thing 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Thing 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+</pre></div>
+<h3>Textarea</h3>
+<p>A <code>textarea</code> has <code>rows</code> and <code>columns</code> attributes to determine the size, but can be done more efficiently with CSS styling.</p>
+<h3>Button</h3>
+<p>Always include <code>type=&quot;button&quot;</code> for compatability across browsers.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span><span class="p">&gt;</span>Click Here<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+<h3>Radio Buttons and Checkboxes</h3>
+<p>A radio button and checkbox <code>input</code> element can be checked by default by adding the <code>checked</code> boolean attribute to the <code>input</code> field. This requires them being within a <code>form</code> element; otherwise they will not select correctly in all browsers.</p>
+<h3>Fieldsets and Legends</h3>
+<p><strong>Fieldsets group form controls and labels into organized sections</strong>. Much like a <code>&lt;section&gt;</code> or other structural element, the <code>&lt;fieldset&gt;</code> is a block-level element that wraps related elements, specifically within a <code>&lt;form&gt;</code> element, for better organization. The <strong><code>&lt;legend&gt;</code> element wraps text describing the form controls that fall within the fieldset</strong>. The markup should include the <code>&lt;legend&gt;</code> element directly after the opening <code>&lt;fieldset&gt;</code> tag.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>Thing Description:<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;things&quot;</span><span class="p">&gt;</span>Things!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">multiple</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing1&quot;</span><span class="p">&gt;</span>Thing 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Thing 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+<h2>Field Validation</h2>
+<h3>Input</h3>
+<p>Use the correct input type (text, email, password, etc.)</p>
+<p>The <code>pattern</code> attribute is used to specify a <strong><a href="regular-expressions.html">regular expression</a></strong> and the field value must match this pattern. This attribute can be used with input types like text, password, email, url, tel and search. Validation occurs upon submission.</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Should match if five numbers from 1 to 4 appear in a row --&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">pattern</span><span class="o">=</span><span class="s">&quot;[1-4]{5}&quot;</span><span class="p">&gt;</span>
+</pre></div>
+<p>A <code>required</code> attribute indicates that a value must be specified for the input element.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+</pre></div>
+<p><code>maxlength</code> is an integer value that specifies the maximum number of characters allowed for a particular input field.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;20&quot;</span><span class="p">&gt;</span>
+</pre></div>
+<p><code>min</code> &amp; <code>max</code> attributes specify the lower and upper limit respectively for an input element.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;5&quot;</span><span class="p">&gt;</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.w3schools.com/html/html_form_elements.asp" target="_blank">https://www.w3schools.com/html/html_form_elements.asp</a></li>
+<li><a href="https://stackoverflow.com/questions/3606657/radio-buttons-checked-attribute-not-working" target="_blank">https://stackoverflow.com/questions/3606657/radio-buttons-checked-attribute-not-working</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

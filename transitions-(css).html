@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Transitions allow you to transform a CSS rule from one set of values to another, and can be triggered either by a pseudoclass selector, on a regular cycle, or just once when loaded."><title>Transitions (CSS)</title><link rel="stylesheet" href="./.styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Transitions (CSS)</h1>
+<p>Transitions allow you to transform a <a href="css.html">CSS</a> rule from one set of values to another, and can be triggered either by a pseudoclass <a href="selectors-(css).html">selector</a>, on a regular cycle, or just once when loaded.</p>
+<p>This example I modified from <a href="http://mdn.io" target="_blank">MDN</a> shows how you would transform the background color of a button on hover:</p>
+<div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">button</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">transition-property</span><span class="p">:</span> <span class="k">background-color</span><span class="p">;</span>
+  <span class="k">transition-duration</span><span class="p">:</span> <span class="mi">4</span><span class="kt">s</span><span class="p">;</span>
+  <span class="k">transition-timing-function</span><span class="p">:</span> <span class="kc">ease</span><span class="p">;</span>
+  <span class="k">transition-delay</span><span class="p">:</span> <span class="mi">2</span><span class="kt">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">#</span><span class="nn">button</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<h3>References:</h3>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p>Submit a change on <a href="http://github.com/milofultz/tinybrainfans" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>
