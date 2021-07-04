@@ -47,6 +47,7 @@ body {
   color: var(--text);
   margin: auto;
   max-width: 40rem;
+  overflow-wrap: break-word;
   padding: 2rem;
 }
 
