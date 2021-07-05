@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="C is a programming language that is very low-level, compiling down to assembly language."><title>C (Programming)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">C (Programming)</h1>
+<p>C is a programming language that is very low-level, compiling down to <a href="assembly.html">assembly</a> language.</p>
+<h2>Hello, World</h2>
+<h3>Code</h3>
+<p>Create a new file called <code>helloworld.c</code> and add this to the contents:</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="c1">  /* Imports the standard library for IO */</span><span class="cp"></span>
+
+<span class="n">main</span><span class="p">()</span>  <span class="cm">/* defines the function main containing no parameters */</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello, world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span> <span class="cm">/* prints &quot;hello, world&quot; in stdio */</span>
+  	<span class="cm">/* note that the newline must be placed deliberately. C does */</span>
+    <span class="cm">/* not add a newline with print like Python does. */</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Compile</h3>
+<p>Then you want to compile it. The basic compiler found on UNIX computers is <code>cc</code>. Compile it by typing <code>cc helloworld.c</code>. This will create a file called <code>a.out</code>, which is the compiled version of your <code>helloworld.c</code>. </p>
+<h3>Run It</h3>
+<p>Run this by typing <code>./a.out</code> in your shell. You should see <code>hello, world</code> in your terminal.</p>
+<h2>Basics</h2>
+<h3>Comments</h3>
+<p>Comments are made using the syntax of <code>/* slash asterisk and opposite on close */</code>.</p>
+<h3>Functions</h3>
+<p><code>main</code> is a special function that will begin executing when running your compiled file. This must be named <code>main</code>, but other functions can take on whatever other names you'd like.</p>
+<h3>Symbolic Constants</h3>
+<p>Symbolic constants allow the developer to avoid <a href="magic-numbers-(programming).html">magic numbers</a> and add semantically useful labels to values. This is done using he syntax <code>#define NAME value</code>.</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#define TAXRATE 0.09</span>
+<span class="cp">#define SERVICECHARGE 2</span>
+
+<span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;The tax rate is %1.2f and the service charge is %d&quot;</span><span class="p">,</span> <span class="n">TAXRATE</span><span class="p">,</span> <span class="n">SERVICECHARGE</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* prints &quot;The tax rate is 0.09 and the service charge is 2&quot;</span>
+</pre></div>
+<p>These statements don't actually <em>do</em> anything in the code. They are handled by the preprocessor and the references to the <code>NAME</code> are simply replaced by the corrseponding <code>value</code> when found. So the above <code>printf</code> line, when eventually seen by the compiler, will be:</p>
+<div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;The tax rate is %1.2f and the service charge is %d&quot;</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div>
+<h3>Types</h3>
+<p>Since C is strongly typed, certain actions that are intuitive in Javascript or Python may not yield the results you wanted. For instance, if you have variable <code>int x</code> and you try and initialize it with a fractional number, the fractional part will be discarded since <code>x</code> stores an <code>int</code>.</p>
+<h3>Variables</h3>
+<p>Variables must be declared before they are used, usually at the beginning before executing your program. They are declared by type and then by name.</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="n">step</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">letter</span><span class="p">;</span>
+</pre></div>
+<h2>Libraries</h2>
+<h3>stdio.h</h3>
+<h4>printf(string, [format, ...])</h4>
+<p>If you use a format tag in the string, like <code>%d</code> or <code>%c</code>, you will need to add what will replace it in the list of <code>format</code> variables.</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">;</span>
+<span class="n">fahr</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">celsius</span> <span class="o">=</span> <span class="mi">37</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d F = %d C&quot;</span><span class="p">,</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">);</span>
+<span class="cm">/* prints &quot;100 F = 37 C&quot; */</span>
+</pre></div>
+<p>The format tags can also be accompanied by the minimum width of characters printed.</p>
+<div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%3d F = %3d C&quot;</span><span class="p">,</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">);</span> <span class="cm">/* prints &quot;100 F = 37  C&quot; */</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2d F = %2d C&quot;</span><span class="p">,</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">);</span> <span class="cm">/* prints &quot;100 F = 37 C&quot; */</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf" target="_blank">https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf</a></li>
+<li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>
