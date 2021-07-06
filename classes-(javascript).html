@@ -10,7 +10,7 @@
 <p>A decorator is a function that accepts an object and <strong>adds more properties or functionality</strong> to it. It's common to use <strong>adjectives</strong> as the names of these decorators. Decorators allow for more DRY code and help keep all elements together that should be, allowing little ambiguity in execution.</p>
 <div class="highlight"><pre><span></span><span class="c1">// this decorator makes obj more &#39;carlike&#39;</span>
 <span class="kd">var</span> <span class="nx">carlike</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">obj</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">move</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">obj</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
   <span class="p">};</span>
@@ -35,14 +35,14 @@
 <h3>Functional Classes with Shared Methods</h3>
 <p>Using shared methods allows you to save space in memory, as only one instance of a method needs to exist, as opposed to one for every single instance.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">loc</span><span class="o">:</span> <span class="nx">loc</span><span class="p">};</span>
-	<span class="c1">// using UnderscoreJS (see polyfill)</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">loc</span><span class="o">:</span> <span class="nx">loc</span><span class="p">};</span>
+  <span class="c1">// using UnderscoreJS (see polyfill)</span>
   <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">carMethods</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">carMethods</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">move</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	  <span class="k">this</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -59,7 +59,7 @@
 <h3>Prototypal Classes</h3>
 <p>Using <code>Object.create()</code>, we can create an object that inherits all properties of the enclosed object into its <code>prototype</code>. This will mean that on a failed lookup, it will search within this object for a reference, inheriting the old objects as they were at the time of inheritance.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
 <span class="p">}</span>
@@ -91,13 +91,13 @@
 <h3>ES6 Classes (<code>class</code>)</h3>
 <p>The ES6 implementation is extremely similar to the pseudoclassical implementation, but uses more syntactic sugar to make it more readable and more similar to other object-oriented languages.</p>
 <div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Car</span> <span class="p">{</span>
-	<span class="nx">constructor</span><span class="p">(</span><span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
-	<span class="p">}</span>
-	
-	<span class="nx">move</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
-	<span class="p">}</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="nx">move</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">newCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
@@ -106,7 +106,7 @@
 <p>Polymorphism is the design of objects to be able to share behaviors and override certain shared behaviors to work more specifically on the new object. There is a super class and a sub class. The sub class inherits the properties and methods from the super class. In the following examples, the super is <code>Shape</code> and the sub is <code>Square</code> or <code>Triangle</code>. </p>
 <h3>Functional Classes</h3>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sides</span><span class="p">,</span> <span class="nx">sideLength</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
     <span class="nx">sides</span><span class="o">:</span> <span class="nx">sides</span><span class="p">,</span>
     <span class="nx">sideLength</span><span class="o">:</span> <span class="nx">sideLength</span>
@@ -130,18 +130,18 @@
 <h3>Functional with Shared Methods</h3>
 <p>Using <code>_.extend</code> to update the object.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sides</span><span class="p">,</span> <span class="nx">sideLength</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
     <span class="nx">sides</span><span class="o">:</span> <span class="nx">sides</span><span class="p">,</span>
     <span class="nx">sideLength</span><span class="o">:</span> <span class="nx">sideLength</span>
   <span class="p">};</span>
-	<span class="c1">// using UnderscoreJS (see polyfill)</span>
+  <span class="c1">// using UnderscoreJS (see polyfill)</span>
   <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">shapeMethods</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">shapeMethods</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">calcPerimeter</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sides</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sides</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
 
@@ -152,7 +152,7 @@
 
 <span class="kd">var</span> <span class="nx">squareMethods</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">calcArea</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
 
@@ -174,7 +174,7 @@
 
 <span class="kd">var</span> <span class="nx">Square</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sideLength</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Square</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
-	<span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">sides</span> <span class="o">=</span> <span class="mf">4</span><span class="p">;</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">sideLength</span> <span class="o">=</span> <span class="nx">sideLength</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
@@ -191,7 +191,7 @@
 <h3>Pseudoclassical Classes</h3>
 <p>Using the <code>new</code> keyword.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sides</span><span class="p">,</span> <span class="nx">sideLength</span><span class="p">)</span> <span class="p">{</span>
-	<span class="c1">// this = Object.create(Shape.prototype);</span>
+  <span class="c1">// this = Object.create(Shape.prototype);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">sides</span> <span class="o">=</span> <span class="nx">sides</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span> <span class="o">=</span> <span class="nx">sideLength</span><span class="p">;</span>

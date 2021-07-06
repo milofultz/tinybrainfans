@@ -29,7 +29,7 @@
 <li>4 - request finished and response is ready</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// if the readyState property of the XHR object (&#39;xhr&#39;) is 4</span>
+  <span class="c1">// if the readyState property of the XHR object (&#39;xhr&#39;) is 4</span>
   <span class="c1">// AND the status in the XHR object is &#39;OK&#39;</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readystatechange</span> <span class="o">==</span> <span class="mf">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mf">200</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// get the responseText from the XHR object (&#39;xhr&#39;)</span>
@@ -40,13 +40,13 @@
 <h3>.onprogress</h3>
 <p><code>.onprogress</code> is a property that holds a function, defined by the developer, that will be called once the <code>readyState</code> is at 3, when the request is being processed.</p>
 <div class="highlight"><pre><span></span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onprogres</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// Show the loading image or something that denotes waiting	</span>
+  <span class="c1">// Show the loading image or something that denotes waiting  </span>
 <span class="p">}</span>
 </pre></div>
 <h3>.onload / .onerror</h3>
 <p><code>.onload</code> and <code>.onerror</code> are properties that hold functions, defined by the developer, that will be called once the <code>readyState</code> is at 4, when the request is finished and response is ready, or when an error is detected.</p>
 <div class="highlight"><pre><span></span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// if the status in the XHR object (xhr) is &#39;OK&#39;</span>
+  <span class="c1">// if the status in the XHR object (xhr) is &#39;OK&#39;</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mf">200</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// get the responseText from the XHR object (&#39;xhr&#39;)</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>

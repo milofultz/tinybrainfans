@@ -13,7 +13,7 @@
 <p>Functions that return other functions can create <strong>closures</strong>, which means that the variables within which the function is defined will remain accessable by that function; the variables are <strong>enclosed</strong> within that function's own scope.</p>
 <p>In the example below, a function called <code>counter</code> keeps track of how many times it is called. Even though the function runs and fully completes, the reference to this execution context remains with the function that is returned at the conclusion of that invocation. We cannot <em>directly</em> access <code>count</code> from outside of the scope of <code>counter</code>, but with the returned function, we can add to it and see what <code>count</code>'s value' is at that point.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">add1</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">count</span><span class="o">++</span><span class="p">;</span>

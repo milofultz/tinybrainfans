@@ -18,14 +18,14 @@
 </pre></div>
 <p>You can make an immediate switch between colors by setting starting and ending positions at the same value. This example goes to the bottom right from 0%-50% with white and then from 50% to 100% with orange.</p>
 <div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">selector</span> <span class="p">{</span>
-	<span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span> <span class="kc">bottom</span><span class="p">,</span> <span class="kc">white</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">orange</span> <span class="mi">50</span><span class="kt">%</span><span class="p">);</span>
+  <span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span> <span class="kc">bottom</span><span class="p">,</span> <span class="kc">white</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">orange</span> <span class="mi">50</span><span class="kt">%</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 <h2>Text</h2>
 <div class="highlight"><pre><span></span><span class="nt">h1</span><span class="p">.</span><span class="nc">gradient-text</span> <span class="p">{</span>
-	<span class="c">/* Create the bg gradient */</span>
+  <span class="c">/* Create the bg gradient */</span>
   <span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span><span class="p">,</span> <span class="err">$</span><span class="kc">color</span><span class="nv">-primary-light</span><span class="p">,</span> <span class="err">$</span><span class="kc">color</span><span class="nv">-primary-dark</span><span class="p">);</span>
-	<span class="c">/* Confine gradient area to width of content */</span>
+  <span class="c">/* Confine gradient area to width of content */</span>
   <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
   <span class="c">/* Clip the bg gradient to the text area */</span>
   <span class="kp">-webkit-</span><span class="k">background-clip</span><span class="p">:</span> <span class="kc">text</span><span class="p">;</span>

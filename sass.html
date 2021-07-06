@@ -35,23 +35,23 @@
 
 <span class="c1">// good</span>
 <span class="nc">.block</span> <span class="p">{</span>
-	<span class="nc">...</span>
-	
-	<span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>  <span class="c1">// &amp; === `.block`</span>
-	  <span class="nc">...</span>
-	<span class="p">}</span>
-	
-	<span class="k">&amp;</span><span class="nt">__element</span> <span class="p">{</span>
-	  <span class="nc">...</span>
-	  
-	  <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
-	  	<span class="nc">...</span>
-	  <span class="p">}</span>
-	  
-	  <span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>
-	    <span class="nc">...</span>
-	  <span class="p">}</span>
-	<span class="p">}</span>
+  <span class="nc">...</span>
+  
+  <span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>  <span class="c1">// &amp; === `.block`</span>
+    <span class="nc">...</span>
+  <span class="p">}</span>
+  
+  <span class="k">&amp;</span><span class="nt">__element</span> <span class="p">{</span>
+    <span class="nc">...</span>
+    
+    <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+      <span class="nc">...</span>
+    <span class="p">}</span>
+    
+    <span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>
+      <span class="nc">...</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 <h3>Mixins</h3>
@@ -84,7 +84,7 @@
 
 <span class="c1">// called</span>
 <span class="nt">p</span> <span class="p">{</span>
-	<span class="nt">margin</span><span class="nd">:</span> <span class="nt">divide</span><span class="o">(</span><span class="nt">60</span><span class="o">,</span> <span class="nt">2</span><span class="o">)</span> <span class="o">*</span> <span class="nt">1px</span><span class="o">;</span>
+  <span class="nt">margin</span><span class="nd">:</span> <span class="nt">divide</span><span class="o">(</span><span class="nt">60</span><span class="o">,</span> <span class="nt">2</span><span class="o">)</span> <span class="o">*</span> <span class="nt">1px</span><span class="o">;</span>
 <span class="p">}</span>
 </pre></div>
 <h3>Conditionals</h3>
@@ -167,14 +167,14 @@
 <span class="p">}</span>
 
 <span class="nc">.long-panel</span> <span class="p">{</span>
-	<span class="k">@extend</span> <span class="err">%</span><span class="nt">panel</span><span class="o">;</span>
-	<span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
+  <span class="k">@extend</span> <span class="err">%</span><span class="nt">panel</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
 <span class="p">}</span>
 
 <span class="c1">// compiled result</span>
 <span class="nc">.big-panel</span><span class="o">,</span>
 <span class="nc">.long-panel</span> <span class="p">{</span>
-	<span class="nt">background-color</span><span class="nd">:</span> <span class="nt">red</span><span class="o">;</span>
+  <span class="nt">background-color</span><span class="nd">:</span> <span class="nt">red</span><span class="o">;</span>
   <span class="nt">height</span><span class="nd">:</span> <span class="nt">70px</span><span class="o">;</span>
   <span class="nt">border</span><span class="nd">:</span> <span class="nt">2px</span> <span class="nt">solid</span> <span class="nt">green</span><span class="o">;</span>
 <span class="p">}</span>
@@ -185,7 +185,7 @@
 <span class="p">}</span>
 
 <span class="nc">.long-panel</span> <span class="p">{</span>
-	<span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
 <span class="p">}</span>
 </pre></div>
 <h2>References</h2>

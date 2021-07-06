@@ -21,14 +21,14 @@
 <h3>CREATE TABLE / IF NOT EXISTS</h3>
 <p>What it sounds like, will make a new table. Use <code>IF NOT EXISTS</code> to skip if table exists. The structure of the table is defined by its table schema, which is a series of columns in the following parentheses. </p>
 <div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">friends</span> <span class="p">(</span>
-	<span class="k">column</span> <span class="n">DataType</span> <span class="n">TableConstraint</span> <span class="k">DEFAULT</span> <span class="n">dafault_value</span><span class="p">,</span>
-	<span class="p">...</span>
+  <span class="k">column</span> <span class="n">DataType</span> <span class="n">TableConstraint</span> <span class="k">DEFAULT</span> <span class="n">dafault_value</span><span class="p">,</span>
+  <span class="p">...</span>
 <span class="p">);</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">dogs</span> <span class="p">(</span>
-	<span class="n">id</span> <span class="nb">INTEGER</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-	<span class="n">dog_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
-	<span class="n">good_boy</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">1</span>  <span class="c1">-- Boolean, default is TRUE</span>
+  <span class="n">id</span> <span class="nb">INTEGER</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+  <span class="n">dog_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+  <span class="n">good_boy</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">1</span>  <span class="c1">-- Boolean, default is TRUE</span>
 <span class="p">);</span>
 </pre></div>
 <h3>ALTER TABLE</h3>
@@ -118,8 +118,8 @@
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">columnName</span><span class="p">,</span> <span class="n">anotherColumn</span> 
 <span class="k">FROM</span> <span class="n">tableName</span>
 <span class="k">WHERE</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
-	<span class="k">AND</span> <span class="n">a</span> <span class="o">=</span> <span class="k">c</span>
-	<span class="k">OR</span> <span class="k">c</span> <span class="o">=</span> <span class="n">b</span>
+  <span class="k">AND</span> <span class="n">a</span> <span class="o">=</span> <span class="k">c</span>
+  <span class="k">OR</span> <span class="k">c</span> <span class="o">=</span> <span class="n">b</span>
 </pre></div>
 <p>Results of a query can be sorted via the <strong>ORDER BY</strong> keywords, followed by <strong>ASC</strong> or <strong>DESC</strong> (<strong>ASC</strong> is the default).</p>
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">columnName</span><span class="p">,</span> <span class="n">anotherColumn</span> 
@@ -142,13 +142,13 @@
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> 
 <span class="k">FROM</span> <span class="n">clients</span> <span class="n">c</span>
 <span class="k">WHERE</span> <span class="n">c</span><span class="p">.</span><span class="k">client</span> <span class="o">=</span> <span class="mi">17</span>
-	<span class="k">AND</span> <span class="n">c</span><span class="p">.</span><span class="k">client</span> <span class="k">IN</span> <span class="p">(</span>
-		<span class="c1"># The following line combines the values of `active_client` and `alt_clients`, separated by a comma </span>
-		<span class="c1"># and effectively creates a new field called &#39;all_clients&#39;.</span>
-		<span class="k">SELECT</span> <span class="nf">CONCAT</span><span class="p">(</span><span class="n">active_client</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">alt_clients</span><span class="p">)</span> <span class="k">AS</span> <span class="n">all_clients</span> 
-		<span class="k">FROM</span> <span class="n">users</span>
-		<span class="k">WHERE</span> <span class="n">userId</span> <span class="o">=</span> <span class="mi">7070</span>
-	<span class="p">);</span>
+  <span class="k">AND</span> <span class="n">c</span><span class="p">.</span><span class="k">client</span> <span class="k">IN</span> <span class="p">(</span>
+    <span class="c1"># The following line combines the values of `active_client` and `alt_clients`, separated by a comma </span>
+    <span class="c1"># and effectively creates a new field called &#39;all_clients&#39;.</span>
+    <span class="k">SELECT</span> <span class="nf">CONCAT</span><span class="p">(</span><span class="n">active_client</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">alt_clients</span><span class="p">)</span> <span class="k">AS</span> <span class="n">all_clients</span> 
+    <span class="k">FROM</span> <span class="n">users</span>
+    <span class="k">WHERE</span> <span class="n">userId</span> <span class="o">=</span> <span class="mi">7070</span>
+  <span class="p">);</span>
 </pre></div>
 <h3>JOIN</h3>
 <p>We can join the data within two or more tables with the <strong>JOIN</strong> clause. The two tables can be linked by a certain column with <strong>ON</strong> followed by an expression. (note: <strong>OUTER</strong> is added in as a legacy keyword for SQL-92)</p>
@@ -174,10 +174,10 @@
 <span class="k">SELECT</span> <span class="o">*</span> 
 <span class="k">FROM</span> <span class="n">table1</span>
 <span class="k">FULL</span> <span class="k">JOIN</span> <span class="n">table2</span> <span class="c1">-- or INNER or LEFT, etc.</span>
-	<span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">table2</span><span class="p">.</span><span class="n">id</span>
+  <span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">table2</span><span class="p">.</span><span class="n">id</span>
 <span class="c1">-- This can be altered to exclude what overlaps</span>
 <span class="k">WHERE</span> <span class="n">table1</span><span class="p">.</span><span class="n">id</span> <span class="k">IS</span> <span class="k">NULL</span> 
-	<span class="k">OR</span> <span class="n">table2</span><span class="p">.</span><span class="n">id</span> <span class="k">IS</span> <span class="k">NULL</span>
+  <span class="k">OR</span> <span class="n">table2</span><span class="p">.</span><span class="n">id</span> <span class="k">IS</span> <span class="k">NULL</span>
 </pre></div>
 <h3>AS</h3>
 <p>Expressions, columns, and tables can all be given aliases using the <strong>AS</strong> keyword.</p>
@@ -197,13 +197,13 @@
 <p>These functions can also be run on subsections of these columns using <strong>GROUP BY</strong>, followed by which segments should be calculated together.</p>
 <div class="highlight"><pre><span></span><span class="c1">-- returns an entry for the player with lowest ERA on each team</span>
 <span class="k">SELECT</span> <span class="n">player_name</span><span class="p">,</span> 
-	<span class="k">MIN</span><span class="p">(</span><span class="n">era</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pitcher_stats</span>
+  <span class="k">MIN</span><span class="p">(</span><span class="n">era</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pitcher_stats</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">team_name</span><span class="p">;</span>
 </pre></div>
 <p>Further filtering of what should be included in each GROUP can be done with <strong>HAVING</strong>, which operates like WHERE on the GROUP BY element.</p>
 <div class="highlight"><pre><span></span><span class="c1">-- returns an entry for the player with lowest ERA above 2 on each team</span>
 <span class="k">SELECT</span> <span class="n">player_name</span><span class="p">,</span> 
-	<span class="k">MIN</span><span class="p">(</span><span class="n">era</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pitcher_stats</span>
+  <span class="k">MIN</span><span class="p">(</span><span class="n">era</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pitcher_stats</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">team_name</span>
 <span class="k">HAVING</span> <span class="n">era</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">;</span>
 </pre></div>
@@ -211,9 +211,9 @@
 <p>You can use <strong>SELECT EXISTS (...)</strong> with an enclosed query to return either a 0 (false) or 1 (true) on if any rows were returned.</p>
 <div class="highlight"><pre><span></span><span class="c1">-- will return 1 if any rows are found where the name field contains &#39;John&#39;</span>
 <span class="k">SELECT</span> <span class="k">EXISTS</span> <span class="p">(</span>
-	<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">SELECT</span> <span class="o">*</span> 
   <span class="k">FROM</span> <span class="n">example_table</span>
-	<span class="k">WHERE</span> <span class="k">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
+  <span class="k">WHERE</span> <span class="k">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
 <span class="p">);</span>
 </pre></div>
 <h3>Order of Query Execution</h3>
@@ -233,7 +233,7 @@
 <p>With incomplete data or default values, you can choose which exact columns you want to add data to by following <strong>INSERT INTO table_name</strong> with a set of columns within parentheses and separated by commas. Inserting data this way <em>ensures</em> forward compatibility, as any new columns that are hardcoded into later versions of the table will not be affected.</p>
 <div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">mytable</span> <span class="p">(</span><span class="k">column_name</span><span class="p">,</span> <span class="n">another_column_name</span><span class="p">)</span>
 <span class="k">VALUES</span> <span class="p">(</span><span class="n">value_or_expr</span><span class="p">,</span> <span class="n">another_value_or_expr</span><span class="p">),</span>
-	<span class="p">(</span><span class="n">value_or_expr_2</span><span class="p">,</span> <span class="n">another_value_or_expr_2</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">value_or_expr_2</span><span class="p">,</span> <span class="n">another_value_or_expr_2</span><span class="p">);</span>
 </pre></div>
 <h3>UPDATE / SET</h3>
 <p><strong>UPDATE</strong> is followed by the name of the table, with <strong>SET</strong> followed by <code>column_name = value_or_expr</code> pairs. These can be used in conjunction with <strong>WHERE</strong> to filter which rows you want updated.</p>
@@ -241,9 +241,9 @@
 <div class="highlight"><pre><span></span><span class="c1">-- Update all costs of candy in food I like by raising them 3%</span>
 <span class="k">UPDATE</span> <span class="n">food_i_like</span>
 <span class="k">SET</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">*</span> <span class="mi">1</span><span class="p">.</span><span class="mi">03</span><span class="p">,</span>
-	<span class="n">updated</span> <span class="o">=</span> <span class="ss">&quot;2021-01-01&quot;</span>
+  <span class="n">updated</span> <span class="o">=</span> <span class="ss">&quot;2021-01-01&quot;</span>
 <span class="k">WHERE</span> 
-	<span class="k">type</span> <span class="o">=</span> <span class="ss">&quot;candy&quot;</span><span class="p">;</span>
+  <span class="k">type</span> <span class="o">=</span> <span class="ss">&quot;candy&quot;</span><span class="p">;</span>
 </pre></div>
 <h3>DELETE FROM</h3>
 <p>The <strong>DELETE</strong> statement describes the table to focus on, with <strong>WHERE</strong> describing which rows to delete (<em>leaving out WHERE will delete the entire table!</em>). If you only are trying to get rid of one thing, use <strong>LIMIT 1</strong> to redundantly ensure you <em>do</em>.</p>

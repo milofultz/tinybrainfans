@@ -2,7 +2,7 @@
 <main id="main"><article id="content"><h1 id="title">Event Listeners (Javascript)</h1>
 <p>Event listeners in <a href="javascript.html">Javascript</a> run a function on the emitting of an event, including <code>click</code>, <code>keyup</code>, <code>resize</code>, and more.</p>
 <div class="highlight"><pre><span></span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;eventType&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-	<span class="c1">// do something</span>
+  <span class="c1">// do something</span>
 <span class="p">});</span>
 </pre></div>
 <p>This adds a listener to whatever element it is attached to. It waits for the 'event' to occur, and once it does, it calls the callback function. The <code>e</code> (short for <code>event</code>)is the callback object, which can give you information on the event and its related elements.</p>
@@ -32,7 +32,7 @@
 
 <span class="c1">// This will fire only when a specific child or any of its children are clicked (delegated to specific children)</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;outer&#39;</span><span class="p">).</span><span class="nx">addEvenetListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="kd">const</span> <span class="nx">innerOne</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;#inner-1&#39;</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">innerOne</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;#inner-1&#39;</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">innerOne</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;delegated&#39;</span><span class="p">);</span>
   <span class="p">}</span>

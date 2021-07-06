@@ -12,40 +12,44 @@
 <h3>Do It <a href="https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490" target="_blank">From Scratch</a> Without Create React App</h3>
 <h4>Get all your parts</h4>
 <ul>
-<li>Initialize a new npm project with <code>npm init</code>. You can skip all the questions with the <code>-y</code> flag.</li>
-<li>Install <code>babel</code> in your development dependencies:
-<code>npm install --save-dev @babel/core @babel/preset-env @babel/preset-react</code>. </li>
-</ul>
-<blockquote>
-<p><em>@babel/core —</em> This contains the babel core configuration,
-<em>@babel/preset-env —</em> This contains different plugins, the most important of which transforms all  ES2015-ES2020 code to be ES5 compatible (the one JavaScript version where almost all browsers implement)
-<em>@babel/preset-react —</em> This contains different plugins to enable React syntax parsing and transformation.</p>
-</blockquote>
+<li>
+<p>Initialize a new <a href="npm.html">npm</a> project with <code>npm init</code>. You can skip all the questions with the <code>-y</code> flag.</p>
+</li>
+<li>
+<p>Install <code>babel</code> in your development dependencies:
+<code>npm install --save-dev @babel/core @babel/preset-env @babel/preset-react</code>. </p>
 <ul>
-<li>Install <code>babel-loader</code> for webpack to use:
-<code>npm install --save-dev babel-loader</code></li>
+<li><em>@babel/core —</em> This contains the babel core configuration, </li>
+<li><em>@babel/preset-env —</em> This contains different plugins, the most important of which transforms all  ES2015-ES2020 code to be ES5 compatible (the one JavaScript version where almost all browsers implement)</li>
+<li><em>@babel/preset-react —</em> This contains different plugins to enable React syntax parsing and transformation.</li>
 </ul>
-<blockquote>
-<p>To transform our code, we will use a package called <code>babel-loader</code>. <code>babel-loader</code> will allow us to transpile our JavaScript file using babel and webpack.</p>
-</blockquote>
+</li>
+<li>
+<p>Install <code>babel-loader</code> for webpack to use:
+<code>npm install --save-dev babel-loader</code></p>
 <ul>
-<li>Install <code>webpack</code> in your development dependencies:
-<code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></li>
+<li>To transform our code, we will use a package called <code>babel-loader</code>. <code>babel-loader</code> will allow us to transpile our JavaScript file using babel and webpack.</li>
 </ul>
-<blockquote>
-<p><em>webpack —</em> the core webpack functionality package.
-<em>webpack-cli —</em> this package is necessary to use the CLI.
-<em>webpack-dev-server —</em> this is for the dev server that allows live reloading</p>
-</blockquote>
+</li>
+<li>
+<p>Install <code>webpack</code> in your development dependencies:
+<code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></p>
 <ul>
-<li>Install <code>react</code> in your project.
-<code>npm install react react-dom</code></li>
-<li>Create the <code>public</code>-facing folder for the client, and an <code>app.js</code> within a sibling <code>src</code> folder</li>
+<li><em>webpack —</em> the core webpack functionality package. </li>
+<li><em>webpack-cli —</em> this package is necessary to use the CLI.</li>
+<li><em>webpack-dev-server —</em> this is for the dev server that allows live reloading</li>
+</ul>
+</li>
+<li>
+<p>Install <code>react</code> in your project.
+<code>npm install react react-dom</code></p>
+</li>
+<li>
+<p>Create the <code>public</code>-facing folder for the client, and an <code>app.js</code> within a sibling <code>src</code> folder</p>
+</li>
 </ul>
 <h4>Make your webpack config and babel config</h4>
-<ul>
-<li>In the root folder, create a <code>webpack.config.js</code> file that pulls in the node <code>path</code> module. This is where you will be putting your entry and output points in your webpack builders. (TA: Search 'webpack configuration' and you should be reminded of all the things you need.)</li>
-</ul>
+<p>In the root folder, create a <code>webpack.config.js</code> file that pulls in the node <code>path</code> module. This is where you will be putting your entry and output points in your webpack builders. (TA: Search 'webpack configuration' and you should be reminded of all the things you need.)</p>
 <div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
@@ -66,9 +70,7 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<ul>
-<li>In the root folder, create a file called <code>babel.config.json</code>. (TA: Search for 'babel config' and you should be able to find everything you need.)</li>
-</ul>
+<p>In the root folder, create a file called <code>babel.config.json</code>. (TA: Search for 'babel config' and you should be able to find everything you need.)</p>
 <div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&quot;@babel/preset-env&quot;</span><span class="p">,</span>
@@ -76,12 +78,8 @@
   <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
-<blockquote>
 <p><code>babel-loader</code> will try to find the babel configuration file —this <code>babel.config.json</code>. The code in this file instructs <code>babel-loader</code> to use <code>@babel/preset-env</code> and <code>@babel/preset-react</code> presets that we have installed earlier when transpiling our code.</p>
-</blockquote>
-<ul>
-<li>Add scripts in package.json for running webpack</li>
-</ul>
+<p>Add scripts in package.json for running webpack</p>
 <div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
   <span class="nt">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack&quot;</span><span class="p">,</span>
   <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack serve&quot;</span><span class="p">,</span> 
@@ -89,9 +87,7 @@
 <span class="p">}</span>
 </pre></div>
 <h4>Create your documents</h4>
-<ul>
-<li>In <code>public</code>, make the html page you will inject into. This needs to have the injection point as well as the webpack bundle.</li>
-</ul>
+<p>In <code>public</code>, make the html page you will inject into. This needs to have the injection point as well as the webpack bundle.</p>
 <div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -103,9 +99,7 @@
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
-<ul>
-<li>In <code>src</code>, create the React JS page that will inject your app into the <code>root</code> div.</li>
-</ul>
+<p>In <code>src</code>, create the React JS page that will inject your app into the <code>root</code> div.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">ReactDOM</span> <span class="kn">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
 
@@ -122,9 +116,7 @@
   <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
 <span class="p">);</span>
 </pre></div>
-<ul>
-<li>Test it out by running <code>npm run start</code> and checking it in a browser.</li>
-</ul>
+<p>Test it out by running <code>npm run start</code> and checking it in a browser.</p>
 <h2>Components</h2>
 <p>Components are reusable pieces of <a href="jsx.html">JSX</a> that can be used to dynamically render HTML. The JSX is written as is, outside of any quotes. When components are referenced, they are written with the closing <code>/</code>. Components are named in PascalCase. </p>
 <p><strong>Note the parentheses used in the arrow function instead of curly braces.</strong> This is because the implicit return will enclose everything within the parentheses and allow it to be placed on multiple lines.</p>

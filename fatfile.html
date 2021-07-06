@@ -424,7 +424,7 @@ $
 <p>SVG's are scalable vector graphics. They consist of instructions for the computer to follow to create the drawing.</p>
 <p>An SVG file is an <a href="xml.html">XML</a> markup file and thus is super simple to create yourself. All SVG's start out with an outer <code>svg</code> element.</p>
 <div class="highlight"><pre><span></span><span class="nt">&lt;svg</span> <span class="na">version=</span><span class="s">&quot;1.1&quot;</span> <span class="na">width=</span><span class="s">&quot;300&quot;</span> <span class="na">height=</span><span class="s">&quot;200&quot;</span> <span class="na">viewBox=</span><span class="s">&quot;x1 y1 x2 y2&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
-	<span class="c">&lt;!-- Version is not necessary --&gt;</span>
+  <span class="c">&lt;!-- Version is not necessary --&gt;</span>
   <span class="c">&lt;!-- W/H set during render, can be overwritten via CSS --&gt;</span>
   <span class="c">&lt;!-- Viewbox is the part of grid to be shown  --&gt;</span>
   <span class="c">&lt;!-- xmlns is required only for SVG files, not inline HTML --&gt;</span>
@@ -585,7 +585,7 @@ $
 </pre></div>
 <p>To get it running, set up your <code>package.json</code> with a script to run. You can also use <a href="https://www.npmjs.com/package/nodemon" target="_blank" title="Nodemon is essential for developing your own apps">nodemon</a> to run and restart upon file changes.</p>
 <div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
-	<span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;node app.js&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;node app.js&quot;</span><span class="p">,</span>
   <span class="nt">&quot;dev&quot;</span><span class="p">:</span> <span class="s2">&quot;nodemon app.js&quot;</span>
 <span class="p">}</span>
 </pre></div>
@@ -617,40 +617,44 @@ $
 <h3>Do It <a href="https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490" target="_blank">From Scratch</a> Without Create React App</h3>
 <h4>Get all your parts</h4>
 <ul>
-<li>Initialize a new npm project with <code>npm init</code>. You can skip all the questions with the <code>-y</code> flag.</li>
-<li>Install <code>babel</code> in your development dependencies:
-<code>npm install --save-dev @babel/core @babel/preset-env @babel/preset-react</code>. </li>
-</ul>
-<blockquote>
-<p><em>@babel/core —</em> This contains the babel core configuration,
-<em>@babel/preset-env —</em> This contains different plugins, the most important of which transforms all  ES2015-ES2020 code to be ES5 compatible (the one JavaScript version where almost all browsers implement)
-<em>@babel/preset-react —</em> This contains different plugins to enable React syntax parsing and transformation.</p>
-</blockquote>
+<li>
+<p>Initialize a new <a href="npm.html">npm</a> project with <code>npm init</code>. You can skip all the questions with the <code>-y</code> flag.</p>
+</li>
+<li>
+<p>Install <code>babel</code> in your development dependencies:
+<code>npm install --save-dev @babel/core @babel/preset-env @babel/preset-react</code>. </p>
 <ul>
-<li>Install <code>babel-loader</code> for webpack to use:
-<code>npm install --save-dev babel-loader</code></li>
+<li><em>@babel/core —</em> This contains the babel core configuration, </li>
+<li><em>@babel/preset-env —</em> This contains different plugins, the most important of which transforms all  ES2015-ES2020 code to be ES5 compatible (the one JavaScript version where almost all browsers implement)</li>
+<li><em>@babel/preset-react —</em> This contains different plugins to enable React syntax parsing and transformation.</li>
 </ul>
-<blockquote>
-<p>To transform our code, we will use a package called <code>babel-loader</code>. <code>babel-loader</code> will allow us to transpile our JavaScript file using babel and webpack.</p>
-</blockquote>
+</li>
+<li>
+<p>Install <code>babel-loader</code> for webpack to use:
+<code>npm install --save-dev babel-loader</code></p>
 <ul>
-<li>Install <code>webpack</code> in your development dependencies:
-<code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></li>
+<li>To transform our code, we will use a package called <code>babel-loader</code>. <code>babel-loader</code> will allow us to transpile our JavaScript file using babel and webpack.</li>
 </ul>
-<blockquote>
-<p><em>webpack —</em> the core webpack functionality package.
-<em>webpack-cli —</em> this package is necessary to use the CLI.
-<em>webpack-dev-server —</em> this is for the dev server that allows live reloading</p>
-</blockquote>
+</li>
+<li>
+<p>Install <code>webpack</code> in your development dependencies:
+<code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></p>
 <ul>
-<li>Install <code>react</code> in your project.
-<code>npm install react react-dom</code></li>
-<li>Create the <code>public</code>-facing folder for the client, and an <code>app.js</code> within a sibling <code>src</code> folder</li>
+<li><em>webpack —</em> the core webpack functionality package. </li>
+<li><em>webpack-cli —</em> this package is necessary to use the CLI.</li>
+<li><em>webpack-dev-server —</em> this is for the dev server that allows live reloading</li>
+</ul>
+</li>
+<li>
+<p>Install <code>react</code> in your project.
+<code>npm install react react-dom</code></p>
+</li>
+<li>
+<p>Create the <code>public</code>-facing folder for the client, and an <code>app.js</code> within a sibling <code>src</code> folder</p>
+</li>
 </ul>
 <h4>Make your webpack config and babel config</h4>
-<ul>
-<li>In the root folder, create a <code>webpack.config.js</code> file that pulls in the node <code>path</code> module. This is where you will be putting your entry and output points in your webpack builders. (TA: Search 'webpack configuration' and you should be reminded of all the things you need.)</li>
-</ul>
+<p>In the root folder, create a <code>webpack.config.js</code> file that pulls in the node <code>path</code> module. This is where you will be putting your entry and output points in your webpack builders. (TA: Search 'webpack configuration' and you should be reminded of all the things you need.)</p>
 <div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
@@ -671,9 +675,7 @@ $
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<ul>
-<li>In the root folder, create a file called <code>babel.config.json</code>. (TA: Search for 'babel config' and you should be able to find everything you need.)</li>
-</ul>
+<p>In the root folder, create a file called <code>babel.config.json</code>. (TA: Search for 'babel config' and you should be able to find everything you need.)</p>
 <div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&quot;@babel/preset-env&quot;</span><span class="p">,</span>
@@ -681,12 +683,8 @@ $
   <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
-<blockquote>
 <p><code>babel-loader</code> will try to find the babel configuration file —this <code>babel.config.json</code>. The code in this file instructs <code>babel-loader</code> to use <code>@babel/preset-env</code> and <code>@babel/preset-react</code> presets that we have installed earlier when transpiling our code.</p>
-</blockquote>
-<ul>
-<li>Add scripts in package.json for running webpack</li>
-</ul>
+<p>Add scripts in package.json for running webpack</p>
 <div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
   <span class="nt">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack&quot;</span><span class="p">,</span>
   <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack serve&quot;</span><span class="p">,</span> 
@@ -694,9 +692,7 @@ $
 <span class="p">}</span>
 </pre></div>
 <h4>Create your documents</h4>
-<ul>
-<li>In <code>public</code>, make the html page you will inject into. This needs to have the injection point as well as the webpack bundle.</li>
-</ul>
+<p>In <code>public</code>, make the html page you will inject into. This needs to have the injection point as well as the webpack bundle.</p>
 <div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -708,9 +704,7 @@ $
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
-<ul>
-<li>In <code>src</code>, create the React JS page that will inject your app into the <code>root</code> div.</li>
-</ul>
+<p>In <code>src</code>, create the React JS page that will inject your app into the <code>root</code> div.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">ReactDOM</span> <span class="kn">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
 
@@ -727,9 +721,7 @@ $
   <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
 <span class="p">);</span>
 </pre></div>
-<ul>
-<li>Test it out by running <code>npm run start</code> and checking it in a browser.</li>
-</ul>
+<p>Test it out by running <code>npm run start</code> and checking it in a browser.</p>
 <h2>Components</h2>
 <p>Components are reusable pieces of <a href="jsx.html">JSX</a> that can be used to dynamically render HTML. The JSX is written as is, outside of any quotes. When components are referenced, they are written with the closing <code>/</code>. Components are named in PascalCase. </p>
 <p><strong>Note the parentheses used in the arrow function instead of curly braces.</strong> This is because the implicit return will enclose everything within the parentheses and allow it to be placed on multiple lines.</p>
@@ -992,12 +984,12 @@ return (
 <p>Magic numbers are numbers that have no semantic meaning within the program. These are problematic for maintenance and bug fixing since somebody reading the code later could have no idea what exactly the numbers represent.</p>
 <div class="highlight"><pre><span></span><span class="cm">/* BAD: Magic Numbers */</span>
 <span class="kd">function</span> <span class="nx">calculateTotal</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="nx">price</span> <span class="o">+</span> <span class="nx">price</span> <span class="o">*</span> <span class="mf">0.09</span> <span class="o">+</span> <span class="mf">2</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">price</span> <span class="o">+</span> <span class="nx">price</span> <span class="o">*</span> <span class="mf">0.09</span> <span class="o">+</span> <span class="mf">2</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/* GOOD: Semantic Meaning! */</span>
 <span class="kd">function</span> <span class="nx">calculateTotal</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">const</span> <span class="nx">taxRate</span> <span class="o">=</span> <span class="mf">0.09</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">taxRate</span> <span class="o">=</span> <span class="mf">0.09</span><span class="p">;</span>
   <span class="kd">const</span> <span class="nx">serviceCharge</span> <span class="o">=</span> <span class="mf">2</span><span class="p">;</span>
   <span class="kd">const</span> <span class="nx">calculatedTax</span> <span class="o">=</span> <span class="nx">price</span> <span class="o">*</span> <span class="mf">0.09</span><span class="p">;</span>
   
@@ -1211,9 +1203,9 @@ $ nvm uninstall xx.xx.x
 <h2>Primary Key</h2>
 <p>A column with type <code>INTEGER PRIMARY KEY</code> is an alias for the <code>ROWID</code>, which is always a 64-bit signed integer.</p>
 <div class="highlight"><pre><span></span><span class="nv">CREATE</span> <span class="nv">TABLE</span> <span class="k">IF</span> <span class="nv">NOT</span> <span class="nv">EXISTS</span> <span class="nv">dogs</span> <span class="ss">(</span>
-	<span class="nv">id</span> <span class="nv">INTEGER</span> <span class="nv">PRIMARY</span> <span class="nv">KEY</span>,
-	<span class="nv">dog_name</span> <span class="nv">VARCHAR</span><span class="ss">(</span><span class="mi">10</span><span class="ss">)</span>,
-	<span class="nv">good_boy</span> <span class="nv">INTEGER</span> <span class="nv">DEFAULT</span> <span class="mi">1</span>  <span class="o">--</span> <span class="nv">Boolean</span>, <span class="nv">default</span> <span class="nv">is</span> <span class="nv">TRUE</span>
+  <span class="nv">id</span> <span class="nv">INTEGER</span> <span class="nv">PRIMARY</span> <span class="nv">KEY</span>,
+  <span class="nv">dog_name</span> <span class="nv">VARCHAR</span><span class="ss">(</span><span class="mi">10</span><span class="ss">)</span>,
+  <span class="nv">good_boy</span> <span class="nv">INTEGER</span> <span class="nv">DEFAULT</span> <span class="mi">1</span>  <span class="o">--</span> <span class="nv">Boolean</span>, <span class="nv">default</span> <span class="nv">is</span> <span class="nv">TRUE</span>
 <span class="ss">)</span><span class="c1">;</span>
 </pre></div>
 <h2>PRAGMA</h2>
@@ -1247,14 +1239,14 @@ $ nvm uninstall xx.xx.x
 <h3>CREATE TABLE / IF NOT EXISTS</h3>
 <p>What it sounds like, will make a new table. Use <code>IF NOT EXISTS</code> to skip if table exists. The structure of the table is defined by its table schema, which is a series of columns in the following parentheses. </p>
 <div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">friends</span> <span class="p">(</span>
-	<span class="k">column</span> <span class="n">DataType</span> <span class="n">TableConstraint</span> <span class="k">DEFAULT</span> <span class="n">dafault_value</span><span class="p">,</span>
-	<span class="p">...</span>
+  <span class="k">column</span> <span class="n">DataType</span> <span class="n">TableConstraint</span> <span class="k">DEFAULT</span> <span class="n">dafault_value</span><span class="p">,</span>
+  <span class="p">...</span>
 <span class="p">);</span>
 </pre></div>
 <div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">dogs</span> <span class="p">(</span>
-	<span class="n">id</span> <span class="nb">INTEGER</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-	<span class="n">dog_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
-	<span class="n">good_boy</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">1</span>  <span class="c1">-- Boolean, default is TRUE</span>
+  <span class="n">id</span> <span class="nb">INTEGER</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+  <span class="n">dog_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+  <span class="n">good_boy</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">1</span>  <span class="c1">-- Boolean, default is TRUE</span>
 <span class="p">);</span>
 </pre></div>
 <h3>ALTER TABLE</h3>
@@ -1344,8 +1336,8 @@ $ nvm uninstall xx.xx.x
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">columnName</span><span class="p">,</span> <span class="n">anotherColumn</span> 
 <span class="k">FROM</span> <span class="n">tableName</span>
 <span class="k">WHERE</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
-	<span class="k">AND</span> <span class="n">a</span> <span class="o">=</span> <span class="k">c</span>
-	<span class="k">OR</span> <span class="k">c</span> <span class="o">=</span> <span class="n">b</span>
+  <span class="k">AND</span> <span class="n">a</span> <span class="o">=</span> <span class="k">c</span>
+  <span class="k">OR</span> <span class="k">c</span> <span class="o">=</span> <span class="n">b</span>
 </pre></div>
 <p>Results of a query can be sorted via the <strong>ORDER BY</strong> keywords, followed by <strong>ASC</strong> or <strong>DESC</strong> (<strong>ASC</strong> is the default).</p>
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">columnName</span><span class="p">,</span> <span class="n">anotherColumn</span> 
@@ -1368,13 +1360,13 @@ $ nvm uninstall xx.xx.x
 <div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> 
 <span class="k">FROM</span> <span class="n">clients</span> <span class="n">c</span>
 <span class="k">WHERE</span> <span class="n">c</span><span class="p">.</span><span class="k">client</span> <span class="o">=</span> <span class="mi">17</span>
-	<span class="k">AND</span> <span class="n">c</span><span class="p">.</span><span class="k">client</span> <span class="k">IN</span> <span class="p">(</span>
-		<span class="c1"># The following line combines the values of `active_client` and `alt_clients`, separated by a comma </span>
-		<span class="c1"># and effectively creates a new field called &#39;all_clients&#39;.</span>
-		<span class="k">SELECT</span> <span class="nf">CONCAT</span><span class="p">(</span><span class="n">active_client</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">alt_clients</span><span class="p">)</span> <span class="k">AS</span> <span class="n">all_clients</span> 
-		<span class="k">FROM</span> <span class="n">users</span>
-		<span class="k">WHERE</span> <span class="n">userId</span> <span class="o">=</span> <span class="mi">7070</span>
-	<span class="p">);</span>
+  <span class="k">AND</span> <span class="n">c</span><span class="p">.</span><span class="k">client</span> <span class="k">IN</span> <span class="p">(</span>
+    <span class="c1"># The following line combines the values of `active_client` and `alt_clients`, separated by a comma </span>
+    <span class="c1"># and effectively creates a new field called &#39;all_clients&#39;.</span>
+    <span class="k">SELECT</span> <span class="nf">CONCAT</span><span class="p">(</span><span class="n">active_client</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">alt_clients</span><span class="p">)</span> <span class="k">AS</span> <span class="n">all_clients</span> 
+    <span class="k">FROM</span> <span class="n">users</span>
+    <span class="k">WHERE</span> <span class="n">userId</span> <span class="o">=</span> <span class="mi">7070</span>
+  <span class="p">);</span>
 </pre></div>
 <h3>JOIN</h3>
 <p>We can join the data within two or more tables with the <strong>JOIN</strong> clause. The two tables can be linked by a certain column with <strong>ON</strong> followed by an expression. (note: <strong>OUTER</strong> is added in as a legacy keyword for SQL-92)</p>
@@ -1400,10 +1392,10 @@ $ nvm uninstall xx.xx.x
 <span class="k">SELECT</span> <span class="o">*</span> 
 <span class="k">FROM</span> <span class="n">table1</span>
 <span class="k">FULL</span> <span class="k">JOIN</span> <span class="n">table2</span> <span class="c1">-- or INNER or LEFT, etc.</span>
-	<span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">table2</span><span class="p">.</span><span class="n">id</span>
+  <span class="k">ON</span> <span class="n">table1</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">table2</span><span class="p">.</span><span class="n">id</span>
 <span class="c1">-- This can be altered to exclude what overlaps</span>
 <span class="k">WHERE</span> <span class="n">table1</span><span class="p">.</span><span class="n">id</span> <span class="k">IS</span> <span class="k">NULL</span> 
-	<span class="k">OR</span> <span class="n">table2</span><span class="p">.</span><span class="n">id</span> <span class="k">IS</span> <span class="k">NULL</span>
+  <span class="k">OR</span> <span class="n">table2</span><span class="p">.</span><span class="n">id</span> <span class="k">IS</span> <span class="k">NULL</span>
 </pre></div>
 <h3>AS</h3>
 <p>Expressions, columns, and tables can all be given aliases using the <strong>AS</strong> keyword.</p>
@@ -1423,13 +1415,13 @@ $ nvm uninstall xx.xx.x
 <p>These functions can also be run on subsections of these columns using <strong>GROUP BY</strong>, followed by which segments should be calculated together.</p>
 <div class="highlight"><pre><span></span><span class="c1">-- returns an entry for the player with lowest ERA on each team</span>
 <span class="k">SELECT</span> <span class="n">player_name</span><span class="p">,</span> 
-	<span class="k">MIN</span><span class="p">(</span><span class="n">era</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pitcher_stats</span>
+  <span class="k">MIN</span><span class="p">(</span><span class="n">era</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pitcher_stats</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">team_name</span><span class="p">;</span>
 </pre></div>
 <p>Further filtering of what should be included in each GROUP can be done with <strong>HAVING</strong>, which operates like WHERE on the GROUP BY element.</p>
 <div class="highlight"><pre><span></span><span class="c1">-- returns an entry for the player with lowest ERA above 2 on each team</span>
 <span class="k">SELECT</span> <span class="n">player_name</span><span class="p">,</span> 
-	<span class="k">MIN</span><span class="p">(</span><span class="n">era</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pitcher_stats</span>
+  <span class="k">MIN</span><span class="p">(</span><span class="n">era</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pitcher_stats</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">team_name</span>
 <span class="k">HAVING</span> <span class="n">era</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">;</span>
 </pre></div>
@@ -1437,9 +1429,9 @@ $ nvm uninstall xx.xx.x
 <p>You can use <strong>SELECT EXISTS (...)</strong> with an enclosed query to return either a 0 (false) or 1 (true) on if any rows were returned.</p>
 <div class="highlight"><pre><span></span><span class="c1">-- will return 1 if any rows are found where the name field contains &#39;John&#39;</span>
 <span class="k">SELECT</span> <span class="k">EXISTS</span> <span class="p">(</span>
-	<span class="k">SELECT</span> <span class="o">*</span> 
+  <span class="k">SELECT</span> <span class="o">*</span> 
   <span class="k">FROM</span> <span class="n">example_table</span>
-	<span class="k">WHERE</span> <span class="k">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
+  <span class="k">WHERE</span> <span class="k">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
 <span class="p">);</span>
 </pre></div>
 <h3>Order of Query Execution</h3>
@@ -1459,7 +1451,7 @@ $ nvm uninstall xx.xx.x
 <p>With incomplete data or default values, you can choose which exact columns you want to add data to by following <strong>INSERT INTO table_name</strong> with a set of columns within parentheses and separated by commas. Inserting data this way <em>ensures</em> forward compatibility, as any new columns that are hardcoded into later versions of the table will not be affected.</p>
 <div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">mytable</span> <span class="p">(</span><span class="k">column_name</span><span class="p">,</span> <span class="n">another_column_name</span><span class="p">)</span>
 <span class="k">VALUES</span> <span class="p">(</span><span class="n">value_or_expr</span><span class="p">,</span> <span class="n">another_value_or_expr</span><span class="p">),</span>
-	<span class="p">(</span><span class="n">value_or_expr_2</span><span class="p">,</span> <span class="n">another_value_or_expr_2</span><span class="p">);</span>
+  <span class="p">(</span><span class="n">value_or_expr_2</span><span class="p">,</span> <span class="n">another_value_or_expr_2</span><span class="p">);</span>
 </pre></div>
 <h3>UPDATE / SET</h3>
 <p><strong>UPDATE</strong> is followed by the name of the table, with <strong>SET</strong> followed by <code>column_name = value_or_expr</code> pairs. These can be used in conjunction with <strong>WHERE</strong> to filter which rows you want updated.</p>
@@ -1467,9 +1459,9 @@ $ nvm uninstall xx.xx.x
 <div class="highlight"><pre><span></span><span class="c1">-- Update all costs of candy in food I like by raising them 3%</span>
 <span class="k">UPDATE</span> <span class="n">food_i_like</span>
 <span class="k">SET</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">*</span> <span class="mi">1</span><span class="p">.</span><span class="mi">03</span><span class="p">,</span>
-	<span class="n">updated</span> <span class="o">=</span> <span class="ss">&quot;2021-01-01&quot;</span>
+  <span class="n">updated</span> <span class="o">=</span> <span class="ss">&quot;2021-01-01&quot;</span>
 <span class="k">WHERE</span> 
-	<span class="k">type</span> <span class="o">=</span> <span class="ss">&quot;candy&quot;</span><span class="p">;</span>
+  <span class="k">type</span> <span class="o">=</span> <span class="ss">&quot;candy&quot;</span><span class="p">;</span>
 </pre></div>
 <h3>DELETE FROM</h3>
 <p>The <strong>DELETE</strong> statement describes the table to focus on, with <strong>WHERE</strong> describing which rows to delete (<em>leaving out WHERE will delete the entire table!</em>). If you only are trying to get rid of one thing, use <strong>LIMIT 1</strong> to redundantly ensure you <em>do</em>.</p>
@@ -1848,7 +1840,7 @@ $ nvm uninstall xx.xx.x
 <p>Importing and using external fonts properly in <a href="css.html">CSS</a>.</p>
 <h2>Using <code>@font-face</code></h2>
 <div class="highlight"><pre><span></span><span class="p">@</span><span class="k">font-face</span> <span class="p">{</span>
-	<span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;Verlag Condensed Bold&#39;</span><span class="o">;</span>
+  <span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;Verlag Condensed Bold&#39;</span><span class="o">;</span>
   <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;https://brandlive-upload.s3-us-west-2.amazonaws.com/933/documents/1wp6lcexy4/verlagcondensedbold.otf&#39;</span><span class="o">);</span>
   <span class="o">[</span> <span class="nt">unicode-range</span><span class="o">:</span> <span class="o">&lt;</span><span class="nt">unicode-range</span><span class="o">&gt;;</span> <span class="o">]</span> <span class="o">||</span>
   <span class="o">[</span> <span class="nt">font-variant</span><span class="o">:</span> <span class="o">&lt;</span><span class="nt">font-variant</span><span class="o">&gt;;</span> <span class="o">]</span> <span class="o">||</span>
@@ -1904,23 +1896,23 @@ $ nvm uninstall xx.xx.x
 
 <span class="c1">// good</span>
 <span class="nc">.block</span> <span class="p">{</span>
-	<span class="nc">...</span>
-	
-	<span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>  <span class="c1">// &amp; === `.block`</span>
-	  <span class="nc">...</span>
-	<span class="p">}</span>
-	
-	<span class="k">&amp;</span><span class="nt">__element</span> <span class="p">{</span>
-	  <span class="nc">...</span>
-	  
-	  <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
-	  	<span class="nc">...</span>
-	  <span class="p">}</span>
-	  
-	  <span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>
-	    <span class="nc">...</span>
-	  <span class="p">}</span>
-	<span class="p">}</span>
+  <span class="nc">...</span>
+  
+  <span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>  <span class="c1">// &amp; === `.block`</span>
+    <span class="nc">...</span>
+  <span class="p">}</span>
+  
+  <span class="k">&amp;</span><span class="nt">__element</span> <span class="p">{</span>
+    <span class="nc">...</span>
+    
+    <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+      <span class="nc">...</span>
+    <span class="p">}</span>
+    
+    <span class="k">&amp;</span><span class="nt">--modifier</span> <span class="p">{</span>
+      <span class="nc">...</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 <h3>Mixins</h3>
@@ -1953,7 +1945,7 @@ $ nvm uninstall xx.xx.x
 
 <span class="c1">// called</span>
 <span class="nt">p</span> <span class="p">{</span>
-	<span class="nt">margin</span><span class="nd">:</span> <span class="nt">divide</span><span class="o">(</span><span class="nt">60</span><span class="o">,</span> <span class="nt">2</span><span class="o">)</span> <span class="o">*</span> <span class="nt">1px</span><span class="o">;</span>
+  <span class="nt">margin</span><span class="nd">:</span> <span class="nt">divide</span><span class="o">(</span><span class="nt">60</span><span class="o">,</span> <span class="nt">2</span><span class="o">)</span> <span class="o">*</span> <span class="nt">1px</span><span class="o">;</span>
 <span class="p">}</span>
 </pre></div>
 <h3>Conditionals</h3>
@@ -2036,14 +2028,14 @@ $ nvm uninstall xx.xx.x
 <span class="p">}</span>
 
 <span class="nc">.long-panel</span> <span class="p">{</span>
-	<span class="k">@extend</span> <span class="err">%</span><span class="nt">panel</span><span class="o">;</span>
-	<span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
+  <span class="k">@extend</span> <span class="err">%</span><span class="nt">panel</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
 <span class="p">}</span>
 
 <span class="c1">// compiled result</span>
 <span class="nc">.big-panel</span><span class="o">,</span>
 <span class="nc">.long-panel</span> <span class="p">{</span>
-	<span class="nt">background-color</span><span class="nd">:</span> <span class="nt">red</span><span class="o">;</span>
+  <span class="nt">background-color</span><span class="nd">:</span> <span class="nt">red</span><span class="o">;</span>
   <span class="nt">height</span><span class="nd">:</span> <span class="nt">70px</span><span class="o">;</span>
   <span class="nt">border</span><span class="nd">:</span> <span class="nt">2px</span> <span class="nt">solid</span> <span class="nt">green</span><span class="o">;</span>
 <span class="p">}</span>
@@ -2054,7 +2046,7 @@ $ nvm uninstall xx.xx.x
 <span class="p">}</span>
 
 <span class="nc">.long-panel</span> <span class="p">{</span>
-	<span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
+  <span class="nt">width</span><span class="nd">:</span> <span class="nt">1000px</span><span class="o">;</span>
 <span class="p">}</span>
 </pre></div>
 <h2>References</h2>
@@ -2238,7 +2230,7 @@ $ nvm uninstall xx.xx.x
   <span class="nv">--purple</span><span class="p">:</span> <span class="mh">#ab9df2</span><span class="p">;</span>
   
   <span class="nv">--white</span><span class="p">:</span>  <span class="mh">#fdf9f3</span><span class="p">;</span>
-  <span class="nv">--gray</span><span class="p">:</span> 	<span class="mh">#bcbbbb</span><span class="p">;</span>
+  <span class="nv">--gray</span><span class="p">:</span>   <span class="mh">#bcbbbb</span><span class="p">;</span>
   <span class="nv">--black</span><span class="p">:</span>  <span class="mh">#2c292d</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -2313,7 +2305,7 @@ $ nvm uninstall xx.xx.x
   <span class="nv">--dark-red</span><span class="p">:</span>    <span class="mh">#aa0000</span><span class="p">;</span> <span class="c">/* candy apple */</span>
   <span class="nv">--dark-orange</span><span class="p">:</span> <span class="mh">#aa5500</span><span class="p">;</span> <span class="c">/* tan */</span>
   <span class="nv">--dark-green</span><span class="p">:</span>  <span class="mh">#00aa00</span><span class="p">;</span> <span class="c">/* grass */</span>
-  <span class="nv">--dark-cyan</span><span class="p">:</span> 	 <span class="mh">#00aaaa</span><span class="p">;</span> <span class="c">/* tiffany blue */</span>
+  <span class="nv">--dark-cyan</span><span class="p">:</span>    <span class="mh">#00aaaa</span><span class="p">;</span> <span class="c">/* tiffany blue */</span>
   <span class="nv">--dark-blue</span><span class="p">:</span>   <span class="mh">#0000aa</span><span class="p">;</span> <span class="c">/* deep blue */</span>
   <span class="nv">--dark-purple</span><span class="p">:</span> <span class="mh">#aa00aa</span><span class="p">;</span> <span class="c">/* magenta */</span>
   
@@ -2325,8 +2317,8 @@ $ nvm uninstall xx.xx.x
   <span class="nv">--purple</span><span class="p">:</span> <span class="mh">#ff55ff</span><span class="p">;</span> <span class="c">/* pink */</span>
   
   <span class="nv">--white</span><span class="p">:</span>      <span class="mh">#ffffff</span><span class="p">;</span>
-	<span class="nv">--gray-light</span><span class="p">:</span> <span class="mh">#aaaaaa</span><span class="p">;</span>
-  <span class="nv">--gray-dark</span><span class="p">:</span> 	<span class="mh">#555555</span><span class="p">;</span>
+  <span class="nv">--gray-light</span><span class="p">:</span> <span class="mh">#aaaaaa</span><span class="p">;</span>
+  <span class="nv">--gray-dark</span><span class="p">:</span>   <span class="mh">#555555</span><span class="p">;</span>
   <span class="nv">--black</span><span class="p">:</span>      <span class="mh">#000000</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -2510,7 +2502,7 @@ $ nvm uninstall xx.xx.x
 <li>for the cascade, putting them at the end of their respective file before the utilities allows them to take priority over rules with similar specificity.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">grid</span> <span class="p">{</span> 
-	<span class="err">...</span>
+  <span class="err">...</span>
 <span class="p">}</span>
 
 <span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">screen</span><span class="o">)</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">800px</span><span class="o">)</span> <span class="p">{</span>
@@ -2577,7 +2569,7 @@ $ nvm uninstall xx.xx.x
 <span class="p">}</span>
 
 <span class="nt">a</span> <span class="p">{</span>
-	<span class="err">...</span>
+  <span class="err">...</span>
 <span class="p">}</span>
 
 <span class="c">/* | UTILITIES */</span>
@@ -2621,11 +2613,11 @@ $ nvm uninstall xx.xx.x
 <span class="p">}</span>
 
   <span class="p">.</span><span class="nc">button--white</span> <span class="p">{</span>
-		<span class="err">...</span>
+    <span class="err">...</span>
   <span class="p">}</span>
 
   <span class="p">.</span><span class="nc">button--magenta</span> <span class="p">{</span>
-		<span class="err">...</span>
+    <span class="err">...</span>
   <span class="p">}</span>
 </pre></div>
 <h4>Page</h4>
@@ -2677,14 +2669,14 @@ $ nvm uninstall xx.xx.x
 </pre></div>
 <p>You can make an immediate switch between colors by setting starting and ending positions at the same value. This example goes to the bottom right from 0%-50% with white and then from 50% to 100% with orange.</p>
 <div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">selector</span> <span class="p">{</span>
-	<span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span> <span class="kc">bottom</span><span class="p">,</span> <span class="kc">white</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">orange</span> <span class="mi">50</span><span class="kt">%</span><span class="p">);</span>
+  <span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span> <span class="kc">bottom</span><span class="p">,</span> <span class="kc">white</span> <span class="mi">50</span><span class="kt">%</span><span class="p">,</span> <span class="kc">orange</span> <span class="mi">50</span><span class="kt">%</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 <h2>Text</h2>
 <div class="highlight"><pre><span></span><span class="nt">h1</span><span class="p">.</span><span class="nc">gradient-text</span> <span class="p">{</span>
-	<span class="c">/* Create the bg gradient */</span>
+  <span class="c">/* Create the bg gradient */</span>
   <span class="k">background-image</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span><span class="p">,</span> <span class="err">$</span><span class="kc">color</span><span class="nv">-primary-light</span><span class="p">,</span> <span class="err">$</span><span class="kc">color</span><span class="nv">-primary-dark</span><span class="p">);</span>
-	<span class="c">/* Confine gradient area to width of content */</span>
+  <span class="c">/* Confine gradient area to width of content */</span>
   <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
   <span class="c">/* Clip the bg gradient to the text area */</span>
   <span class="kp">-webkit-</span><span class="k">background-clip</span><span class="p">:</span> <span class="kc">text</span><span class="p">;</span>
@@ -2788,12 +2780,12 @@ $ nvm uninstall xx.xx.x
 <p>The basics of <a href="html.html">HTML5</a> tables and <a href="semantic-html.html">semantic HTML</a> tables.</p>
 <h2>Summary of All Elements</h2>
 <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span> <span class="na">summary</span><span class="o">=</span><span class="s">&quot;Extended summary for accessibility and screen readers&quot;</span><span class="p">&gt;</span>
-	<span class="c">&lt;!-- caption or title --&gt;</span>
+  <span class="c">&lt;!-- caption or title --&gt;</span>
   <span class="p">&lt;</span><span class="nt">caption</span><span class="p">&gt;</span>Caption<span class="p">&lt;/</span><span class="nt">caption</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
-		<span class="c">&lt;!-- row --&gt;</span>
+    <span class="c">&lt;!-- row --&gt;</span>
     <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span> 
-			<span class="c">&lt;!-- col header --&gt;</span>
+      <span class="c">&lt;!-- col header --&gt;</span>
       <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Shortened heading for accessibility/screen readers&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Header 1<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Shortened heading for accessibility/screen readers&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span><span class="p">&gt;</span>Header 2<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
@@ -2802,7 +2794,7 @@ $ nvm uninstall xx.xx.x
     <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
       <span class="c">&lt;!-- row header --&gt;</span>
       <span class="p">&lt;</span><span class="nt">th</span> <span class="na">abbr</span><span class="o">=</span><span class="s">&quot;Shortened heading for accessibility/screen readers&quot;</span> <span class="na">scope</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>Row Header<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
-			<span class="c">&lt;!-- table data --&gt;</span>
+      <span class="c">&lt;!-- table data --&gt;</span>
       <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Some data<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
@@ -2880,8 +2872,8 @@ HTML5 input types:<ul>
 <p>The <code>size</code> attribute chooses how many choices are visible at a time. The boolean attribute <code>multiple</code>, when added to the <code>&lt;select&gt;</code> element for a standard drop-down list, allows a user to choose more than one option from the list at a time. </p>
 <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;things&quot;</span><span class="p">&gt;</span>Things!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">multiple</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing1&quot;</span><span class="p">&gt;</span>Thing 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Thing 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing1&quot;</span><span class="p">&gt;</span>Thing 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Thing 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
 </pre></div>
 <h3>Textarea</h3>
@@ -2928,7 +2920,7 @@ HTML5 input types:<ul>
 </ol>
 </article><article><h1><a href="npm.html">NPM</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li></ul></section></article><article><h1><a href="emmet.html">Emmet</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li></ul></section></article><article><h1><a href="emmet.html">Emmet</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li></ul></section></article><article><h1><a href="sublime-text.html">Sublime Text</a></h1>
 <p>Sublime Text is an application made for software development.</p>
@@ -3146,11 +3138,11 @@ each item in items
 <p>The syntax for <code>fetch</code> is <code>fetch(&#x27;URL&#x27;)</code>. <code>fetch()</code> ALWAYS returns <a href="promises.html">promises</a>. These promises will be fulfilled when the data is finished loading, and can be accessed with <code>.then(function (response) { ... })</code>. Within <code>.then</code>, you can resolve this promise with <code>.json()</code>, <code>.text()</code>, or <code>.blob()</code>, which all return their <em>own</em> promise. Errors are handled through a <code>.catch(function (response) { ... })</code>.</p>
 <div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://web.site&#39;</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-	  <span class="c1">// response is a Promise, so it will be resolved within this function</span>
+    <span class="c1">// response is a Promise, so it will be resolved within this function</span>
     <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
     <span class="c1">// response.json is *also* a Promise</span>
   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
-		<span class="c1">// do thing with JSON response</span>
+    <span class="c1">// do thing with JSON response</span>
   <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
   <span class="p">});</span>
@@ -3282,7 +3274,7 @@ each item in items
 <p>A decorator is a function that accepts an object and <strong>adds more properties or functionality</strong> to it. It's common to use <strong>adjectives</strong> as the names of these decorators. Decorators allow for more DRY code and help keep all elements together that should be, allowing little ambiguity in execution.</p>
 <div class="highlight"><pre><span></span><span class="c1">// this decorator makes obj more &#39;carlike&#39;</span>
 <span class="kd">var</span> <span class="nx">carlike</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">obj</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">move</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">obj</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
   <span class="p">};</span>
@@ -3307,14 +3299,14 @@ each item in items
 <h3>Functional Classes with Shared Methods</h3>
 <p>Using shared methods allows you to save space in memory, as only one instance of a method needs to exist, as opposed to one for every single instance.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">loc</span><span class="o">:</span> <span class="nx">loc</span><span class="p">};</span>
-	<span class="c1">// using UnderscoreJS (see polyfill)</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">loc</span><span class="o">:</span> <span class="nx">loc</span><span class="p">};</span>
+  <span class="c1">// using UnderscoreJS (see polyfill)</span>
   <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">carMethods</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">carMethods</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">move</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	  <span class="k">this</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -3331,7 +3323,7 @@ each item in items
 <h3>Prototypal Classes</h3>
 <p>Using <code>Object.create()</code>, we can create an object that inherits all properties of the enclosed object into its <code>prototype</code>. This will mean that on a failed lookup, it will search within this object for a reference, inheriting the old objects as they were at the time of inheritance.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
 <span class="p">}</span>
@@ -3363,13 +3355,13 @@ each item in items
 <h3>ES6 Classes (<code>class</code>)</h3>
 <p>The ES6 implementation is extremely similar to the pseudoclassical implementation, but uses more syntactic sugar to make it more readable and more similar to other object-oriented languages.</p>
 <div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nx">Car</span> <span class="p">{</span>
-	<span class="nx">constructor</span><span class="p">(</span><span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
-	<span class="p">}</span>
-	
-	<span class="nx">move</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
-	<span class="p">}</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">loc</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loc</span> <span class="o">=</span> <span class="nx">loc</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="nx">move</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">loc</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">newCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
@@ -3378,7 +3370,7 @@ each item in items
 <p>Polymorphism is the design of objects to be able to share behaviors and override certain shared behaviors to work more specifically on the new object. There is a super class and a sub class. The sub class inherits the properties and methods from the super class. In the following examples, the super is <code>Shape</code> and the sub is <code>Square</code> or <code>Triangle</code>. </p>
 <h3>Functional Classes</h3>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sides</span><span class="p">,</span> <span class="nx">sideLength</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
     <span class="nx">sides</span><span class="o">:</span> <span class="nx">sides</span><span class="p">,</span>
     <span class="nx">sideLength</span><span class="o">:</span> <span class="nx">sideLength</span>
@@ -3402,18 +3394,18 @@ each item in items
 <h3>Functional with Shared Methods</h3>
 <p>Using <code>_.extend</code> to update the object.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sides</span><span class="p">,</span> <span class="nx">sideLength</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
     <span class="nx">sides</span><span class="o">:</span> <span class="nx">sides</span><span class="p">,</span>
     <span class="nx">sideLength</span><span class="o">:</span> <span class="nx">sideLength</span>
   <span class="p">};</span>
-	<span class="c1">// using UnderscoreJS (see polyfill)</span>
+  <span class="c1">// using UnderscoreJS (see polyfill)</span>
   <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">shapeMethods</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">shapeMethods</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">calcPerimeter</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sides</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sides</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">};</span>
 
@@ -3424,7 +3416,7 @@ each item in items
 
 <span class="kd">var</span> <span class="nx">squareMethods</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">calcArea</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span><span class="p">,</span> <span class="mf">2</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
 
@@ -3446,7 +3438,7 @@ each item in items
 
 <span class="kd">var</span> <span class="nx">Square</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sideLength</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Square</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
-	<span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">sides</span> <span class="o">=</span> <span class="mf">4</span><span class="p">;</span>
   <span class="nx">obj</span><span class="p">.</span><span class="nx">sideLength</span> <span class="o">=</span> <span class="nx">sideLength</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
@@ -3463,7 +3455,7 @@ each item in items
 <h3>Pseudoclassical Classes</h3>
 <p>Using the <code>new</code> keyword.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sides</span><span class="p">,</span> <span class="nx">sideLength</span><span class="p">)</span> <span class="p">{</span>
-	<span class="c1">// this = Object.create(Shape.prototype);</span>
+  <span class="c1">// this = Object.create(Shape.prototype);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">sides</span> <span class="o">=</span> <span class="nx">sides</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">sideLength</span> <span class="o">=</span> <span class="nx">sideLength</span><span class="p">;</span>
@@ -3542,7 +3534,7 @@ each item in items
 <p>Functions that return other functions can create <strong>closures</strong>, which means that the variables within which the function is defined will remain accessable by that function; the variables are <strong>enclosed</strong> within that function's own scope.</p>
 <p>In the example below, a function called <code>counter</code> keeps track of how many times it is called. Even though the function runs and fully completes, the reference to this execution context remains with the function that is returned at the conclusion of that invocation. We cannot <em>directly</em> access <code>count</code> from outside of the scope of <code>counter</code>, but with the returned function, we can add to it and see what <code>count</code>'s value' is at that point.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">add1</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
@@ -3602,7 +3594,7 @@ each item in items
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Definitely negative 1&#39;</span><span class="p">);</span>
     <span class="k">break</span><span class="p">;</span>
   <span class="k">case</span> <span class="mf">1</span><span class="o">:</span>
-  	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">);</span>
     <span class="k">break</span><span class="p">;</span>
   <span class="k">case</span> <span class="mf">0</span><span class="o">:</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">);</span>
@@ -3724,8 +3716,8 @@ each item in items
 <li>If you have defined your function as part of an object, like <code>var obj = { funcName: function (a) { ... } }</code>, then <code>this</code> is bound to <code>obj</code>.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">greeting</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="p">)</span> <span class="p">},</span>
-	<span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Hello world&quot;</span>
+  <span class="nx">greeting</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="p">)</span> <span class="p">},</span>
+  <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Hello world&quot;</span>
 <span class="p">}</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">greeting</span><span class="p">();</span> <span class="c1">// `this` is bound to `obj`; logs &quot;Hello world&quot;</span>
 <span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">greeting</span><span class="p">;</span>
@@ -3863,7 +3855,7 @@ each item in items
 </article><article><h1>Event Listeners (Javascript)</h1>
 <p>Event listeners in <a href="javascript.html">Javascript</a> run a function on the emitting of an event, including <code>click</code>, <code>keyup</code>, <code>resize</code>, and more.</p>
 <div class="highlight"><pre><span></span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;eventType&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-	<span class="c1">// do something</span>
+  <span class="c1">// do something</span>
 <span class="p">});</span>
 </pre></div>
 <p>This adds a listener to whatever element it is attached to. It waits for the 'event' to occur, and once it does, it calls the callback function. The <code>e</code> (short for <code>event</code>)is the callback object, which can give you information on the event and its related elements.</p>
@@ -3893,7 +3885,7 @@ each item in items
 
 <span class="c1">// This will fire only when a specific child or any of its children are clicked (delegated to specific children)</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;outer&#39;</span><span class="p">).</span><span class="nx">addEvenetListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="kd">const</span> <span class="nx">innerOne</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;#inner-1&#39;</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">innerOne</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;#inner-1&#39;</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">innerOne</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;delegated&#39;</span><span class="p">);</span>
   <span class="p">}</span>
@@ -3960,7 +3952,7 @@ each item in items
 <li>4 - request finished and response is ready</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// if the readyState property of the XHR object (&#39;xhr&#39;) is 4</span>
+  <span class="c1">// if the readyState property of the XHR object (&#39;xhr&#39;) is 4</span>
   <span class="c1">// AND the status in the XHR object is &#39;OK&#39;</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readystatechange</span> <span class="o">==</span> <span class="mf">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mf">200</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// get the responseText from the XHR object (&#39;xhr&#39;)</span>
@@ -3971,13 +3963,13 @@ each item in items
 <h3>.onprogress</h3>
 <p><code>.onprogress</code> is a property that holds a function, defined by the developer, that will be called once the <code>readyState</code> is at 3, when the request is being processed.</p>
 <div class="highlight"><pre><span></span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onprogres</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// Show the loading image or something that denotes waiting	</span>
+  <span class="c1">// Show the loading image or something that denotes waiting  </span>
 <span class="p">}</span>
 </pre></div>
 <h3>.onload / .onerror</h3>
 <p><code>.onload</code> and <code>.onerror</code> are properties that hold functions, defined by the developer, that will be called once the <code>readyState</code> is at 4, when the request is finished and response is ready, or when an error is detected.</p>
 <div class="highlight"><pre><span></span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// if the status in the XHR object (xhr) is &#39;OK&#39;</span>
+  <span class="c1">// if the status in the XHR object (xhr) is &#39;OK&#39;</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mf">200</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// get the responseText from the XHR object (&#39;xhr&#39;)</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">)</span>

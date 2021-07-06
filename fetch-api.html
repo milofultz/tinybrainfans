@@ -5,11 +5,11 @@
 <p>The syntax for <code>fetch</code> is <code>fetch(&#x27;URL&#x27;)</code>. <code>fetch()</code> ALWAYS returns <a href="promises.html">promises</a>. These promises will be fulfilled when the data is finished loading, and can be accessed with <code>.then(function (response) { ... })</code>. Within <code>.then</code>, you can resolve this promise with <code>.json()</code>, <code>.text()</code>, or <code>.blob()</code>, which all return their <em>own</em> promise. Errors are handled through a <code>.catch(function (response) { ... })</code>.</p>
 <div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://web.site&#39;</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-	  <span class="c1">// response is a Promise, so it will be resolved within this function</span>
+    <span class="c1">// response is a Promise, so it will be resolved within this function</span>
     <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
     <span class="c1">// response.json is *also* a Promise</span>
   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
-		<span class="c1">// do thing with JSON response</span>
+    <span class="c1">// do thing with JSON response</span>
   <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
   <span class="p">});</span>

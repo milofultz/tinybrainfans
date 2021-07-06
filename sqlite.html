@@ -11,9 +11,9 @@
 <h2>Primary Key</h2>
 <p>A column with type <code>INTEGER PRIMARY KEY</code> is an alias for the <code>ROWID</code>, which is always a 64-bit signed integer.</p>
 <div class="highlight"><pre><span></span><span class="nv">CREATE</span> <span class="nv">TABLE</span> <span class="k">IF</span> <span class="nv">NOT</span> <span class="nv">EXISTS</span> <span class="nv">dogs</span> <span class="ss">(</span>
-	<span class="nv">id</span> <span class="nv">INTEGER</span> <span class="nv">PRIMARY</span> <span class="nv">KEY</span>,
-	<span class="nv">dog_name</span> <span class="nv">VARCHAR</span><span class="ss">(</span><span class="mi">10</span><span class="ss">)</span>,
-	<span class="nv">good_boy</span> <span class="nv">INTEGER</span> <span class="nv">DEFAULT</span> <span class="mi">1</span>  <span class="o">--</span> <span class="nv">Boolean</span>, <span class="nv">default</span> <span class="nv">is</span> <span class="nv">TRUE</span>
+  <span class="nv">id</span> <span class="nv">INTEGER</span> <span class="nv">PRIMARY</span> <span class="nv">KEY</span>,
+  <span class="nv">dog_name</span> <span class="nv">VARCHAR</span><span class="ss">(</span><span class="mi">10</span><span class="ss">)</span>,
+  <span class="nv">good_boy</span> <span class="nv">INTEGER</span> <span class="nv">DEFAULT</span> <span class="mi">1</span>  <span class="o">--</span> <span class="nv">Boolean</span>, <span class="nv">default</span> <span class="nv">is</span> <span class="nv">TRUE</span>
 <span class="ss">)</span><span class="c1">;</span>
 </pre></div>
 <h2>PRAGMA</h2>

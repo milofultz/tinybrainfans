@@ -3,12 +3,12 @@
 <p>Magic numbers are numbers that have no semantic meaning within the program. These are problematic for maintenance and bug fixing since somebody reading the code later could have no idea what exactly the numbers represent.</p>
 <div class="highlight"><pre><span></span><span class="cm">/* BAD: Magic Numbers */</span>
 <span class="kd">function</span> <span class="nx">calculateTotal</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="nx">price</span> <span class="o">+</span> <span class="nx">price</span> <span class="o">*</span> <span class="mf">0.09</span> <span class="o">+</span> <span class="mf">2</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">price</span> <span class="o">+</span> <span class="nx">price</span> <span class="o">*</span> <span class="mf">0.09</span> <span class="o">+</span> <span class="mf">2</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/* GOOD: Semantic Meaning! */</span>
 <span class="kd">function</span> <span class="nx">calculateTotal</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">const</span> <span class="nx">taxRate</span> <span class="o">=</span> <span class="mf">0.09</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">taxRate</span> <span class="o">=</span> <span class="mf">0.09</span><span class="p">;</span>
   <span class="kd">const</span> <span class="nx">serviceCharge</span> <span class="o">=</span> <span class="mf">2</span><span class="p">;</span>
   <span class="kd">const</span> <span class="nx">calculatedTax</span> <span class="o">=</span> <span class="nx">price</span> <span class="o">*</span> <span class="mf">0.09</span><span class="p">;</span>
   
