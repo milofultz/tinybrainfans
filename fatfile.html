@@ -289,6 +289,20 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <span class="nb">alias</span> <span class="nv">poo</span><span class="o">=</span><span class="s2">&quot;say &#39;I have to poop really bad&#39;&quot;</span>
 </pre></div>
 <p>When complete, run <code>source ~/.bashrc</code> or <code>source ~/.zshrc</code> and restart bash to have them take effect.</p>
+<h2>Pipe</h2>
+<blockquote>
+<p>To connect the STDOUT of one <strong>command</strong> to the STDIN of <strong>another</strong> use the | symbol, commonly known as a pipe.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># long way</span>
+$ thing1 &gt; tempfile
+$ thing2 &lt; tempfile
+
+<span class="c1"># shorter</span>
+$ thing1 &gt; tempfile <span class="o">&amp;&amp;</span> thing2 &lt; tempfile
+
+<span class="c1"># shortest</span>
+$ thing1 <span class="p">|</span> thing2
+</pre></div>
 <h2>Base64</h2>
 <p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64. </p>
 <p><code>echo -n &#x27;some string&#x27; | base64 &gt; output.txt</code> will encode a string as input and not encode unusable chars, like line feeds.</p>
@@ -297,6 +311,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <ol>
 <li><a href="https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/" target="_blank">https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/</a></li>
 <li><a href="https://linuxize.com/post/how-to-create-bash-aliases/" target="_blank">https://linuxize.com/post/how-to-create-bash-aliases/</a></li>
+<li><a href="https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf" target="_blank">https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="stack.html">stack</a></h1>
 <p>There's currently nothing here.</p>
