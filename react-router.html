@@ -1,0 +1,163 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="React Router is a way to link to other pages dynamically within your React single page application."><title>React Router</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">React Router</h1>
+<p>React Router is a way to link to other pages dynamically within your React single page application.</p>
+<p>All of these examples were pulled straight from the <a href="https://reactrouter.com/web/guides/quick-start" target="_blank" title="React Router Quick Start">docs</a>.</p>
+<h2>Installation</h2>
+<p><code>npm install react-router-dom</code></p>
+<h2>Usage</h2>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span>
+  <span class="n">BrowserRouter</span> <span class="k">as</span> <span class="n">Router</span><span class="p">,</span>
+  <span class="n">Switch</span><span class="p">,</span>
+  <span class="n">Route</span><span class="p">,</span>
+  <span class="n">Link</span>
+<span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;react-router-dom&quot;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">Router</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">nav</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/users&quot;</span><span class="o">&gt;</span><span class="n">Users</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">nav</span><span class="o">&gt;</span>
+
+        <span class="p">{</span><span class="o">/*</span> <span class="n">A</span> <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span> <span class="n">looks</span> <span class="n">through</span> <span class="n">its</span> <span class="n">children</span> <span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;</span><span class="n">s</span> <span class="ow">and</span>
+            <span class="n">renders</span> <span class="n">the</span> <span class="n">first</span> <span class="n">one</span> <span class="n">that</span> <span class="n">matches</span> <span class="n">the</span> <span class="n">current</span> <span class="n">URL</span><span class="o">.</span> <span class="o">*/</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">About</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/users&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Users</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Home</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Switch</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">Router</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">About</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Users</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Users</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Nested Routing</h3>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span>
+  <span class="n">BrowserRouter</span> <span class="k">as</span> <span class="n">Router</span><span class="p">,</span>
+  <span class="n">Switch</span><span class="p">,</span>
+  <span class="n">Route</span><span class="p">,</span>
+  <span class="n">Link</span><span class="p">,</span>
+  <span class="n">useRouteMatch</span><span class="p">,</span>
+  <span class="n">useParams</span>
+<span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;react-router-dom&quot;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">Router</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/topics&quot;</span><span class="o">&gt;</span><span class="n">Topics</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">About</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/topics&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Topics</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Home</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Switch</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">Router</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">About</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Topics</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="n">match</span> <span class="o">=</span> <span class="n">useRouteMatch</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Topics</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+
+      <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="p">{</span><span class="err">`$</span><span class="p">{</span><span class="n">match</span><span class="o">.</span><span class="n">url</span><span class="p">}</span><span class="o">/</span><span class="n">components</span><span class="err">`</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Components</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="p">{</span><span class="err">`$</span><span class="p">{</span><span class="n">match</span><span class="o">.</span><span class="n">url</span><span class="p">}</span><span class="o">/</span><span class="n">props</span><span class="o">-</span><span class="n">v</span><span class="o">-</span><span class="n">state</span><span class="err">`</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="n">Props</span> <span class="n">v</span><span class="o">.</span> <span class="n">State</span>
+          <span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+
+      <span class="p">{</span><span class="o">/*</span> <span class="n">The</span> <span class="n">Topics</span> <span class="n">page</span> <span class="n">has</span> <span class="n">its</span> <span class="n">own</span> <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span> <span class="k">with</span> <span class="n">more</span> <span class="n">routes</span>
+          <span class="n">that</span> <span class="n">build</span> <span class="n">on</span> <span class="n">the</span> <span class="o">/</span><span class="n">topics</span> <span class="n">URL</span> <span class="n">path</span><span class="o">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">think</span> <span class="n">of</span> <span class="n">the</span>
+          <span class="mi">2</span><span class="n">nd</span> <span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;</span> <span class="n">here</span> <span class="k">as</span> <span class="n">an</span> <span class="s2">&quot;index&quot;</span> <span class="n">page</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">topics</span><span class="p">,</span> <span class="ow">or</span>
+          <span class="n">the</span> <span class="n">page</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">shown</span> <span class="n">when</span> <span class="n">no</span> <span class="n">topic</span> <span class="ow">is</span> <span class="n">selected</span> <span class="o">*/</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="p">{</span><span class="err">`$</span><span class="p">{</span><span class="n">match</span><span class="o">.</span><span class="n">path</span><span class="p">}</span><span class="o">/</span><span class="p">:</span><span class="n">topicId</span><span class="err">`</span><span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Topic</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="p">{</span><span class="n">match</span><span class="o">.</span><span class="n">path</span><span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Please</span> <span class="n">select</span> <span class="n">a</span> <span class="n">topic</span><span class="o">.&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">Switch</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Topic</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="p">{</span> <span class="n">topicId</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useParams</span><span class="p">();</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Requested</span> <span class="n">topic</span> <span class="n">ID</span><span class="p">:</span> <span class="p">{</span><span class="n">topicId</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li>
+<p><a href="https://github.com/ReactTraining/react-router" target="_blank">https://github.com/ReactTraining/react-router</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/philosophy.md" target="_blank">https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/philosophy.md</a></p>
+</li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

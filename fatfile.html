@@ -489,7 +489,7 @@ $
 </ol>
 </article><article><h1><a href="javascript.html">Javascript</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-(javascript).html">Classes (Javascript)</a></li><li><a href="dom-manipulation-(javascript).html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-(javascript).html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="lexical-scoping.html">Lexical Scoping</a></li><li><a href="operators-(javascript).html">Operators (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-(javascript).html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-(javascript).html">Switch Case (Javascript)</a></li><li><a href="testing-(javascript).html">Testing (Javascript)</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section></article><article><h1><a href="regular-expressions.html">Regular Expressions</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-(javascript).html">Classes (Javascript)</a></li><li><a href="dom-manipulation-(javascript).html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-(javascript).html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="lexical-scoping-(javascript).html">Lexical Scoping (Javascript)</a></li><li><a href="operators-(javascript).html">Operators (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-(javascript).html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-(javascript).html">Switch Case (Javascript)</a></li><li><a href="testing-(javascript).html">Testing (Javascript)</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section></article><article><h1><a href="regular-expressions.html">Regular Expressions</a></h1>
 <p>Regular Expressions or &quot;regex&quot; is used to describe a series of characters. If it has a pattern in its formatting, regex can be used.</p>
 <h2>Regular Expression Syntax</h2>
 <p>This syntax is for <a href="javascript.html">Javascript</a>, but it is mostly what I have used in everything so far.</p>
@@ -630,121 +630,7 @@ $
 <section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li></ul></section></article><article><h1><a href="react.html">React</a></h1>
 <p>React is a <a href="javascript.html">Javascript</a> framework for implementing dynamic single page applications into your site.</p>
 <h2>Setting Up</h2>
-<p>For React to work properly, you will need three things: </p>
-<ul>
-<li><a href="babel.html">Babel</a> - This is a transpiler that will allow you to use JSX within your components and make your site usable to clients that do not have ES6 functionality available.</li>
-<li><a href="webpack.html">Webpack</a> - This is a compiler that will take all of your modules, styles, etc. and put them together.</li>
-<li>React - This is the meat and potatoes that will render your page, let you use state, hooks, etc.</li>
-</ul>
-<p>The easiest way to do this is with <a href="https://create-react-app.dev/" target="_blank">create-react-app</a>. But if you want to know how it works:</p>
-<h3>Do It <a href="https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490" target="_blank">From Scratch</a> Without Create React App</h3>
-<h4>Get all your parts</h4>
-<ul>
-<li>
-<p>Initialize a new <a href="npm.html">npm</a> project with <code>npm init</code>. You can skip all the questions with the <code>-y</code> flag.</p>
-</li>
-<li>
-<p>Install <code>babel</code> in your development dependencies:
-<code>npm install --save-dev @babel/core @babel/preset-env @babel/preset-react</code>. </p>
-<ul>
-<li><em>@babel/core —</em> This contains the babel core configuration, </li>
-<li><em>@babel/preset-env —</em> This contains different plugins, the most important of which transforms all  ES2015-ES2020 code to be ES5 compatible (the one JavaScript version where almost all browsers implement)</li>
-<li><em>@babel/preset-react —</em> This contains different plugins to enable React syntax parsing and transformation.</li>
-</ul>
-</li>
-<li>
-<p>Install <code>babel-loader</code> for webpack to use:
-<code>npm install --save-dev babel-loader</code></p>
-<ul>
-<li>To transform our code, we will use a package called <code>babel-loader</code>. <code>babel-loader</code> will allow us to transpile our JavaScript file using babel and webpack.</li>
-</ul>
-</li>
-<li>
-<p>Install <code>webpack</code> in your development dependencies:
-<code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></p>
-<ul>
-<li><em>webpack —</em> the core webpack functionality package. </li>
-<li><em>webpack-cli —</em> this package is necessary to use the CLI.</li>
-<li><em>webpack-dev-server —</em> this is for the dev server that allows live reloading</li>
-</ul>
-</li>
-<li>
-<p>Install <code>react</code> in your project.
-<code>npm install react react-dom</code></p>
-</li>
-<li>
-<p>Create the <code>public</code>-facing folder for the client, and an <code>app.js</code> within a sibling <code>src</code> folder</p>
-</li>
-</ul>
-<h4>Make your webpack config and babel config</h4>
-<p>In the root folder, create a <code>webpack.config.js</code> file that pulls in the node <code>path</code> module. This is where you will be putting your entry and output points in your webpack builders. (TA: Search 'webpack configuration' and you should be reminded of all the things you need.)</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;.src/app.js&#39;</span><span class="p">,</span>     <span class="c1">// which file your app will be pulling the data from for it&#39;s dependency graph</span>
-  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;bundle.js&#39;</span><span class="p">,</span>  <span class="c1">// the name of the file it will output the bundle to</span>
-    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">),</span>  <span class="c1">// the output folder fo your bundles</span>
-  <span class="p">},</span>
-  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>  <span class="c1">// determines which loader to use</span>
-    <span class="nx">rules</span><span class="o">:</span> <span class="p">[{</span>
-      <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
-      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.jsx?$/</span><span class="p">,</span>            <span class="c1">// transform js files</span>
-      <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>  <span class="c1">// but not node_modules</span>
-    <span class="p">}]</span>
-  <span class="p">},</span>
-  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">contentBase</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">),</span> <span class="c1">// where to serve from when running the webpack dev server</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-<p>In the root folder, create a file called <code>babel.config.json</code>. (TA: Search for 'babel config' and you should be able to find everything you need.)</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;@babel/preset-env&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;@babel/preset-react&quot;</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-<p><code>babel-loader</code> will try to find the babel configuration file —this <code>babel.config.json</code>. The code in this file instructs <code>babel-loader</code> to use <code>@babel/preset-env</code> and <code>@babel/preset-react</code> presets that we have installed earlier when transpiling our code.</p>
-<p>Add scripts in package.json for running webpack</p>
-<div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
-  <span class="nt">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack serve&quot;</span><span class="p">,</span> 
-  <span class="nt">&quot;watch&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack --watch&quot;</span>
-<span class="p">}</span>
-</pre></div>
-<h4>Create your documents</h4>
-<p>In <code>public</code>, make the html page you will inject into. This needs to have the injection point as well as the webpack bundle.</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Test<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;bundle.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
-<p>In <code>src</code>, create the React JS page that will inject your app into the <code>root</code> div.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">ReactDOM</span> <span class="kn">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
-
-<span class="n">const</span> <span class="n">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Wow</span><span class="err">!</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">stuff</span><span class="o">.&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-  <span class="p">)</span>
-<span class="p">}</span>
-
-<span class="n">ReactDOM</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">,</span> 
-  <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-<p>Test it out by running <code>npm run start</code> and checking it in a browser.</p>
+<p>Use <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> with <a href="npm.html">npm</a> or <a href="react-from-scratch.html">build it from scratch</a>.</p>
 <h2>Components</h2>
 <p>Components are reusable pieces of <a href="jsx.html">JSX</a> that can be used to dynamically render HTML. The JSX is written as is, outside of any quotes. When components are referenced, they are written with the closing <code>/</code>. Components are named in PascalCase. </p>
 <p><strong>Note the parentheses used in the arrow function instead of curly braces.</strong> This is because the implicit return will enclose everything within the parentheses and allow it to be placed on multiple lines.</p>
@@ -962,6 +848,8 @@ return (
 <span class="p">};</span>
 </pre></div>
 <p>For the element to properly rerender, you must update the state by using the <code>setState</code> method. This will cause what React calls &quot;reconciliation&quot;, which will update what needs to be updated in the <a href="dom.html">DOM</a>.</p>
+<h2>React Router</h2>
+<p>React Router is</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://reactjs.org/docs/introducing-jsx.html" target="_blank">https://reactjs.org/docs/introducing-jsx.html</a></li>
@@ -971,7 +859,7 @@ return (
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section></article><article><h1><a href="model-view-controller.html">Model View Controller</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section></article><article><h1><a href="model-view-controller.html">Model View Controller</a></h1>
 <p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
 <h2>Components</h2>
 <h3>Model</h3>
@@ -2943,7 +2831,7 @@ HTML5 input types:<ul>
 </ol>
 </article><article><h1><a href="npm.html">NPM</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li></ul></section></article><article><h1><a href="emmet.html">Emmet</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li></ul></section></article><article><h1><a href="emmet.html">Emmet</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li></ul></section></article><article><h1><a href="sublime-text.html">Sublime Text</a></h1>
 <p>Sublime Text is an application made for software development.</p>
@@ -3103,7 +2991,7 @@ each item in items
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="webpack.html">Webpack</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section></article><article><h1>Text Compression (Server)</h1>
+<section><h2>Backlinks:</h2><ul><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section></article><article><h1>Text Compression (Server)</h1>
 <p>Text compression minifies and zips files on build or on client side rendering of your web page. Using this on your deployed webpage can save significant time in page downloads and lead to better user retention.</p>
 <h2>Implementation</h2>
 <p>To accomplish client-side rendering, you will need to implement the compression on the building of your pages (in this case, using <a href="webpack.html">Webpack</a>) as well as on your server (<a href="express.html">Express</a>). This example is for a <a href="react.html">React</a> project using <a href="webpack.html">Webpack</a> and <a href="express.html">Express</a>.</p>
@@ -3151,7 +3039,7 @@ each item in items
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="babel.html">Babel</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="http-requests.html">HTTP requests</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="http-requests.html">HTTP requests</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="fetch-api.html">Fetch API</a></li></ul></section></article><article><h1><a href="promises.html">promises</a></h1>
 <p>There's currently nothing here.</p>
@@ -3728,9 +3616,7 @@ each item in items
 <li><a href="https://stackoverflow.com/questions/4106809/how-can-i-change-an-elements-text-without-changing-its-child-elements" target="_blank">https://stackoverflow.com/questions/4106809/how-can-i-change-an-elements-text-without-changing-its-child-elements</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML</a></li>
 </ol>
-</article><article><h1><a href="jsx.html">JSX</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li></ul></section></article><article><h1><a href="lexical-scoping.html">Lexical Scoping</a></h1>
+</article><article><h1>Lexical Scoping (Javascript)</h1>
 <p><strong>Lexical Scoping</strong> defines how variable names are resolved in nested functions: inner functions contain the scope of parent functions even if the parent function has returned.</p>
 <p>With <a href="javascript.html">Javascript</a>, a new scope is created <strong>only</strong> through function definitions. Every time a new function scope is created, it will contain the scope of the parent functions, along with its own. This does not go both ways, however: the outer scope does not have access to those in the inner scope.</p>
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m outside&quot;</span><span class="p">;</span>
@@ -3769,8 +3655,9 @@ each item in items
 <li><a href="https://stackoverflow.com/questions/1047454/what-is-lexical-scope" target="_blank">https://stackoverflow.com/questions/1047454/what-is-lexical-scope</a></li>
 <li><a href="http://howtonode.org/what-is-this" target="_blank">http://howtonode.org/what-is-this</a></li>
 <li><a href="https://medium.com/better-programming/how-javascript-works-1706b9b66c4d" target="_blank">https://medium.com/better-programming/how-javascript-works-1706b9b66c4d</a></li>
-<li>Hack Reactor Precourse</li>
 </ol>
+</article><article><h1><a href="lexical-scoping.html">Lexical Scoping</a></h1>
+<p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section></article><article><h1>Variables (Javascript)</h1>
 <p>All variables in <a href="javascript.html">Javascript</a> are <code>undefined</code> by default after declaration.</p>
 <h2>Difference Between Var, Let, and Const</h2>
@@ -4076,7 +3963,290 @@ each item in items
 <ol>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split</a></li>
 </ol>
-</article><article><h1>C (Programming)</h1>
+</article><article><h1><a href="react-from-scratch.html">React from Scratch</a></h1>
+<p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
+<p>For React to work properly, you will need three things: </p>
+<ul>
+<li><a href="babel.html">Babel</a> - This is a transpiler that will allow you to use JSX within your components and make your site usable to clients that do not have ES6 functionality available.</li>
+<li><a href="webpack.html">Webpack</a> - This is a compiler that will take all of your modules, styles, etc. and put them together.</li>
+<li><a href="react.html">React</a> - This is the meat and potatoes that will render your page, let you use state, hooks, etc.</li>
+</ul>
+<p>The easiest way to do this is with <a href="https://create-react-app.dev/" target="_blank">create-react-app</a>. But if you want to know how it works:</p>
+<h2>Get all your parts</h2>
+<ul>
+<li>
+<p>Initialize a new <a href="npm.html">npm</a> project with <code>npm init</code>. You can skip all the questions with the <code>-y</code> flag.</p>
+</li>
+<li>
+<p>Install <code>babel</code> in your development dependencies:
+<code>npm install --save-dev @babel/core @babel/preset-env @babel/preset-react</code>. </p>
+<ul>
+<li><em>@babel/core —</em> This contains the babel core configuration, </li>
+<li><em>@babel/preset-env —</em> This contains different plugins, the most important of which transforms all  ES2015-ES2020 code to be ES5 compatible (the one JavaScript version where almost all browsers implement)</li>
+<li><em>@babel/preset-react —</em> This contains different plugins to enable React syntax parsing and transformation.</li>
+</ul>
+</li>
+<li>
+<p>Install <code>babel-loader</code> for webpack to use:
+<code>npm install --save-dev babel-loader</code></p>
+<ul>
+<li>To transform our code, we will use a package called <code>babel-loader</code>. <code>babel-loader</code> will allow us to transpile our JavaScript file using babel and webpack.</li>
+</ul>
+</li>
+<li>
+<p>Install <code>webpack</code> in your development dependencies:
+<code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></p>
+<ul>
+<li><em>webpack —</em> the core webpack functionality package. </li>
+<li><em>webpack-cli —</em> this package is necessary to use the CLI.</li>
+<li><em>webpack-dev-server —</em> this is for the dev server that allows live reloading</li>
+</ul>
+</li>
+<li>
+<p>Install <code>react</code> in your project.
+<code>npm install react react-dom</code></p>
+</li>
+<li>
+<p>Create the <code>public</code>-facing folder for the client, and an <code>app.js</code> within a sibling <code>src</code> folder</p>
+</li>
+</ul>
+<h2>Make your webpack config and babel config</h2>
+<p>In the root folder, create a <code>webpack.config.js</code> file that pulls in the node <code>path</code> module. This is where you will be putting your entry and output points in your webpack builders. (TA: Search 'webpack configuration' and you should be reminded of all the things you need.)</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;.src/app.js&#39;</span><span class="p">,</span>     <span class="c1">// which file your app will be pulling the data from for it&#39;s dependency graph</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;bundle.js&#39;</span><span class="p">,</span>  <span class="c1">// the name of the file it will output the bundle to</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">),</span>  <span class="c1">// the output folder fo your bundles</span>
+  <span class="p">},</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>  <span class="c1">// determines which loader to use</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">[{</span>
+      <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
+      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.jsx?$/</span><span class="p">,</span>            <span class="c1">// transform js files</span>
+      <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>  <span class="c1">// but not node_modules</span>
+    <span class="p">}]</span>
+  <span class="p">},</span>
+  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">contentBase</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">),</span> <span class="c1">// where to serve from when running the webpack dev server</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>In the root folder, create a file called <code>babel.config.json</code>. (TA: Search for 'babel config' and you should be able to find everything you need.)</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;@babel/preset-env&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;@babel/preset-react&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p><code>babel-loader</code> will try to find the babel configuration file —this <code>babel.config.json</code>. The code in this file instructs <code>babel-loader</code> to use <code>@babel/preset-env</code> and <code>@babel/preset-react</code> presets that we have installed earlier when transpiling our code.</p>
+<p>Add scripts in package.json for running webpack</p>
+<div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nt">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack serve&quot;</span><span class="p">,</span> 
+  <span class="nt">&quot;watch&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack --watch&quot;</span>
+<span class="p">}</span>
+</pre></div>
+<h2>Create your documents</h2>
+<p>In <code>public</code>, make the html page you will inject into. This needs to have the injection point as well as the webpack bundle.</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Test<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;bundle.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+<p>In <code>src</code>, create the React JS page that will inject your app into the <code>root</code> div.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">ReactDOM</span> <span class="kn">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
+
+<span class="n">const</span> <span class="n">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Wow</span><span class="err">!</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">stuff</span><span class="o">.&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">ReactDOM</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">,</span> 
+  <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+<p>Test it out by running <code>npm run start</code> and checking it in a browser.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490" target="_blank">https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li></ul></section></article><article><h1><a href="react-router.html">React Router</a></h1>
+<p>React Router is a way to link to other pages dynamically within your React single page application.</p>
+<p>All of these examples were pulled straight from the <a href="https://reactrouter.com/web/guides/quick-start" target="_blank" title="React Router Quick Start">docs</a>.</p>
+<h2>Installation</h2>
+<p><code>npm install react-router-dom</code></p>
+<h2>Usage</h2>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span>
+  <span class="n">BrowserRouter</span> <span class="k">as</span> <span class="n">Router</span><span class="p">,</span>
+  <span class="n">Switch</span><span class="p">,</span>
+  <span class="n">Route</span><span class="p">,</span>
+  <span class="n">Link</span>
+<span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;react-router-dom&quot;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">Router</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">nav</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/users&quot;</span><span class="o">&gt;</span><span class="n">Users</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">nav</span><span class="o">&gt;</span>
+
+        <span class="p">{</span><span class="o">/*</span> <span class="n">A</span> <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span> <span class="n">looks</span> <span class="n">through</span> <span class="n">its</span> <span class="n">children</span> <span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;</span><span class="n">s</span> <span class="ow">and</span>
+            <span class="n">renders</span> <span class="n">the</span> <span class="n">first</span> <span class="n">one</span> <span class="n">that</span> <span class="n">matches</span> <span class="n">the</span> <span class="n">current</span> <span class="n">URL</span><span class="o">.</span> <span class="o">*/</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">About</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/users&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Users</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Home</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Switch</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">Router</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">About</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Users</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Users</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Nested Routing</h3>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span>
+  <span class="n">BrowserRouter</span> <span class="k">as</span> <span class="n">Router</span><span class="p">,</span>
+  <span class="n">Switch</span><span class="p">,</span>
+  <span class="n">Route</span><span class="p">,</span>
+  <span class="n">Link</span><span class="p">,</span>
+  <span class="n">useRouteMatch</span><span class="p">,</span>
+  <span class="n">useParams</span>
+<span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;react-router-dom&quot;</span><span class="p">;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">Router</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/topics&quot;</span><span class="o">&gt;</span><span class="n">Topics</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">About</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/topics&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Topics</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">Home</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Switch</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">Router</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">About</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Topics</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="n">match</span> <span class="o">=</span> <span class="n">useRouteMatch</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Topics</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+
+      <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="p">{</span><span class="err">`$</span><span class="p">{</span><span class="n">match</span><span class="o">.</span><span class="n">url</span><span class="p">}</span><span class="o">/</span><span class="n">components</span><span class="err">`</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Components</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="p">{</span><span class="err">`$</span><span class="p">{</span><span class="n">match</span><span class="o">.</span><span class="n">url</span><span class="p">}</span><span class="o">/</span><span class="n">props</span><span class="o">-</span><span class="n">v</span><span class="o">-</span><span class="n">state</span><span class="err">`</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="n">Props</span> <span class="n">v</span><span class="o">.</span> <span class="n">State</span>
+          <span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+
+      <span class="p">{</span><span class="o">/*</span> <span class="n">The</span> <span class="n">Topics</span> <span class="n">page</span> <span class="n">has</span> <span class="n">its</span> <span class="n">own</span> <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span> <span class="k">with</span> <span class="n">more</span> <span class="n">routes</span>
+          <span class="n">that</span> <span class="n">build</span> <span class="n">on</span> <span class="n">the</span> <span class="o">/</span><span class="n">topics</span> <span class="n">URL</span> <span class="n">path</span><span class="o">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">think</span> <span class="n">of</span> <span class="n">the</span>
+          <span class="mi">2</span><span class="n">nd</span> <span class="o">&lt;</span><span class="n">Route</span><span class="o">&gt;</span> <span class="n">here</span> <span class="k">as</span> <span class="n">an</span> <span class="s2">&quot;index&quot;</span> <span class="n">page</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">topics</span><span class="p">,</span> <span class="ow">or</span>
+          <span class="n">the</span> <span class="n">page</span> <span class="n">that</span> <span class="ow">is</span> <span class="n">shown</span> <span class="n">when</span> <span class="n">no</span> <span class="n">topic</span> <span class="ow">is</span> <span class="n">selected</span> <span class="o">*/</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="n">Switch</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="p">{</span><span class="err">`$</span><span class="p">{</span><span class="n">match</span><span class="o">.</span><span class="n">path</span><span class="p">}</span><span class="o">/</span><span class="p">:</span><span class="n">topicId</span><span class="err">`</span><span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">Topic</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="p">{</span><span class="n">match</span><span class="o">.</span><span class="n">path</span><span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Please</span> <span class="n">select</span> <span class="n">a</span> <span class="n">topic</span><span class="o">.&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">Switch</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="n">Topic</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="p">{</span> <span class="n">topicId</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useParams</span><span class="p">();</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Requested</span> <span class="n">topic</span> <span class="n">ID</span><span class="p">:</span> <span class="p">{</span><span class="n">topicId</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li>
+<p><a href="https://github.com/ReactTraining/react-router" target="_blank">https://github.com/ReactTraining/react-router</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/philosophy.md" target="_blank">https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/philosophy.md</a></p>
+</li>
+</ol>
+</article><article><h1><a href="jsx.html">JSX</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li></ul></section></article><article><h1>C (Programming)</h1>
 <p>C is a programming language that is very low-level, compiling down to <a href="assembly.html">assembly</a> language.</p>
 <h2>Hello, World</h2>
 <h3>Code</h3>
