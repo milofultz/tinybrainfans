@@ -19,7 +19,10 @@
 <p>Run this by typing <code>./a.out</code> in your shell. You should see <code>hello, world</code> in your terminal.</p>
 <h2>Basics</h2>
 <h3>Comments</h3>
-<p>Comments are made using the syntax of <code>/* slash asterisk and opposite on close */</code>.</p>
+<div class="highlight"><pre><span></span><span class="c1">// Single line comment</span>
+<span class="cm">/* Multiline</span>
+<span class="cm">   comment */</span>
+</pre></div>
 <h3>Functions</h3>
 <p><code>main</code> is a special function that will begin executing when running your compiled file. This must be named <code>main</code>, but other functions can take on whatever other names you'd like.</p>
 <h3>Symbolic Constants</h3>
@@ -59,6 +62,8 @@
 <div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%3d F = %3d C&quot;</span><span class="p">,</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">);</span> <span class="cm">/* prints &quot;100 F = 37  C&quot; */</span>
 <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2d F = %2d C&quot;</span><span class="p">,</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">);</span> <span class="cm">/* prints &quot;100 F = 37 C&quot; */</span>
 </pre></div>
+<h4>getchar(), putchar(x)</h4>
+<p><code>getchar</code> will resolve to a character from stdin, and <code>putchar(x)</code> will put the value of <code>x</code> in stdout.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf" target="_blank">https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf</a></li>

@@ -55,6 +55,12 @@ Merge a branch (source) into another branch (destination):<ul>
 <div class="highlight"><pre><span></span>git branch --merged <span class="p">|</span> egrep -v <span class="s2">&quot;(^\*|master|main|dev|staging)&quot;</span> <span class="p">|</span> xargs git branch -d
 </pre></div>
 <h2>Cherry Pick</h2>
+<h2>Revert</h2>
+<p>A revert allows you to go back to a previous commit, reversing those previous between commit X (HEAD) and commit Y(the selected commit). This will create a reversal commit for each commit to be undone between X and Y. In the case of a single commit to be undone, it will make a single reversal commit.</p>
+<p>To revert one or many commits, open your <code>git log</code> and find the commit you want to revert back to. Save this hash.</p>
+<p>The <code>-m</code> flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1. </p>
+<div class="highlight"><pre><span></span>$ git revert <span class="o">[</span>-m <span class="m">1</span><span class="o">]</span> &lt;commit-hash&gt;
+</pre></div>
 <h2>Stashing</h2>
 <p><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">Stashing</a> allows you to temporarily save changes without committing anything. </p>
 <p>To stash some changes, use <code>git stash save &#x27;message about stash&#x27;</code>, or just <code>git stash</code> if you want to leave out the message.</p>
@@ -105,5 +111,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li><a href="https://bugfactory.io/blog/orphaned-brachnes-in-git/" target="_blank">https://bugfactory.io/blog/orphaned-brachnes-in-git/</a></li>
 <li><a href="https://git-scm.com/docs/git-add" target="_blank">https://git-scm.com/docs/git-add</a></li>
 <li><a href="https://devconnected.com/how-to-cherry-pick-git-commits/" target="_blank">https://devconnected.com/how-to-cherry-pick-git-commits/</a></li>
+<li><a href="https://phoenixnap.com/kb/git-revert-last-commit" target="_blank">https://phoenixnap.com/kb/git-revert-last-commit</a></li>
+<li><a href="https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given" target="_blank">https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

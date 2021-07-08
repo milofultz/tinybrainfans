@@ -1,8 +1,25 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Typescript is a superset of Javascript that is strongly typed and values specificity."><title>Typescript</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content"><h1 id="title">Typescript</h1>
 <p>Typescript is a superset of <a href="javascript.html">Javascript</a> that is strongly typed and values specificity.</p>
-<h2>Unique Typing Troubleshooting</h2>
-<h3><code>Property &#x27;***&#x27; does not exist on type &#x27;never&#x27;</code></h3>
+<h2>Interface</h2>
+<h2>Type Annotations</h2>
+<p>Type annotations are done at the declaration of a variable with a colon followed by the type or interface.</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">greeting</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">numbers</span>: <span class="kt">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">uniqueCharacters</span>: <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]);</span>
+<span class="kd">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="nx">sayHi</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">johnSmith</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
+  <span class="nx">sayHi</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">return</span> <span class="nx">greeting</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Unique Typing Troubleshooting</h3>
+<h4><code>Property &#x27;***&#x27; does not exist on type &#x27;never&#x27;</code></h4>
 <p>This means that the target variable has not ben typed correctly and often will show up when something has not been given a type at all. </p>
 <div class="highlight"><pre><span></span><span class="c1">// incorrect</span>
 <span class="kd">const</span> <span class="nx">thing</span> <span class="o">=</span> <span class="s1">&#39;Oh yeah!&#39;</span><span class="p">;</span>
