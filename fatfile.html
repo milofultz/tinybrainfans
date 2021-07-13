@@ -3,7 +3,7 @@
 <p>Can I give you consulting math 101? You may already know this, and if so, forgive me.</p>
 <ul>
 <li>Decide how much you want to make. Let's use a nice round number. USD$100,000 (Not saying this is your number, yours may be USD$250,000, or whatever. This is just an example.)</li>
-<li>Remember to add health insurance, business insurance, error&amp;omission insurance, taxes and fees and everything else. (Call an insurance broker, techinsurance.com, etc.)</li>
+<li>Remember to add health insurance, business insurance, error &amp; omission insurance, taxes and fees and everything else. (Call an insurance broker, techinsurance.com, etc.)</li>
 <li>Let's call this compiled number USD$150,000. (again, just an example.)</li>
 <li>Double it. USD$300,000. You can expect no more than 50% utilization, and you have to spend time finding the next client/gig/opportunity. So you will only make half a years worth of hourly salary.</li>
 <li>Convert to hourly. There are 2080 working hours in a year. So you can have a vacation, call it 2000. Divide 300,000 by 2,000. That's 150. So your hourly rate is $150/hour.</li>
@@ -183,7 +183,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 </ul>
 </article><article><h1><a href="macos.html">MacOS</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="applescript.html">Applescript</a></li><li><a href="assembly.html">Assembly</a></li><li><a href="sass.html">Sass</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="applescript.html">Applescript</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="applescript.html">Applescript</a></li><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="sass.html">Sass</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="applescript.html">Applescript</a></h1>
 <p>Applescript is a programming language used to create scripts in <a href="macos.html">Mac</a> computers.</p>
 <h2>Variables</h2>
 <div class="highlight"><pre><span></span><span class="k">set</span> <span class="nv">variableName</span> <span class="k">to</span> <span class="nv">value</span>
@@ -259,187 +259,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li><a href="https://www.reddit.com/r/webdev/comments/kzqmhb/im_in_awe_of_you_all/" target="_blank">https://www.reddit.com/r/webdev/comments/kzqmhb/im_in_awe_of_you_all/</a></li>
 <li><a href="https://softwareengineering.stackexchange.com/questions/43151/should-you-sacrifice-code-readability-with-how-efficient-code-is" target="_blank">https://softwareengineering.stackexchange.com/questions/43151/should-you-sacrifice-code-readability-with-how-efficient-code-is</a></li>
 </ol>
-</article><article><h1><a href="bash.html">bash</a></h1>
-<h2>Basic Functions</h2>
-<ul>
-<li><code>cp [-r] ./source ./destination</code> - Copy file or directory <code>[-r]</code> from source to destination</li>
-<li><code>mv [-r] ./source ./destination</code> - Move/rename file or directory <code>[-r]</code> from source to destination</li>
-</ul>
-<h2><a href="https://www.maketecheasier.com/run-bash-commands-background-linux/" target="_blank">Background Tasks</a></h2>
-<p>You can run tasks in the background within a <a href="terminal.html">terminal</a> window by placing an <code>&amp;</code> at the end of the command you want running. You can see these background jobs with <code>jobs</code> and kill the job that you want with <code>kill %</code> followed by the index, or just <code>kill %</code> to kill all jobs.</p>
-<h2>Event Designators</h2>
-<p>An event designator is a reference to a command line entry in the  history list.  Unless the reference is absolute, events are relative  to the current position in the history list.</p>
-<ul>
-<li><code>$_</code> Repeat the last argument used, e.g. <code>mkdir folder-name &amp;&amp; cd &quot;$_&quot;</code></li>
-<li><code>!!</code> Repeats the previous command</li>
-<li><code>!10</code> Repeat the 10th command from the history</li>
-<li><code>!-2</code> Repeat the 2nd command (from the last) from the history</li>
-<li><code>!string</code> Repeat the command that starts with “string” from the history</li>
-<li><code>!?string</code> Repeat the command that contains the word “string” from the history</li>
-<li><code>^str1^str2^</code> Substitute str1 in the previous command with str2 and execute it</li>
-<li><code>!!:$</code> Gets the last argument from the previous command.</li>
-<li><code>!string:n</code> Gets the nth argument from the command that starts with “string” from the history.</li>
-<li><code>!^</code> first argument of the previous command</li>
-<li><code>!$</code> last argument of the previous command</li>
-<li><code>!*</code> all arguments of the previous command</li>
-<li><code>!:2</code> second argument of the previous command</li>
-<li><code>!:2-3</code> second to third arguments of the previous command</li>
-<li><code>!:2-$</code> second to last arguments of the previous command</li>
-<li><code>!:2*</code> second to last arguments of the previous command</li>
-<li><code>!:2-</code> second to next to last arguments of the previous command</li>
-<li><code>!:0</code> the command itself</li>
-</ul>
-<h2>Aliases</h2>
-<p>WIthin your <code>~/.bashrc</code> file, add this line and populate it how you need:</p>
-<div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">alias_name</span><span class="o">=</span><span class="s2">&quot;command_to_run&quot;</span>
-
-<span class="c1"># e.g.</span>
-<span class="nb">alias</span> <span class="nv">poo</span><span class="o">=</span><span class="s2">&quot;say &#39;I have to poop really bad&#39;&quot;</span>
-</pre></div>
-<p>When complete, run <code>source ~/.bashrc</code> or <code>source ~/.zshrc</code> and restart bash to have them take effect.</p>
-<h2>Pipe</h2>
-<blockquote>
-<p>To connect the STDOUT of one <strong>command</strong> to the STDIN of <strong>another</strong> use the | symbol, commonly known as a pipe.</p>
-</blockquote>
-<div class="highlight"><pre><span></span><span class="c1"># long way</span>
-$ thing1 &gt; tempfile
-$ thing2 &lt; tempfile
-
-<span class="c1"># shorter</span>
-$ thing1 &gt; tempfile <span class="o">&amp;&amp;</span> thing2 &lt; tempfile
-
-<span class="c1"># shortest</span>
-$ thing1 <span class="p">|</span> thing2
-</pre></div>
-<h2>Base64</h2>
-<p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64. </p>
-<p><code>echo -n &#x27;some string&#x27; | base64 &gt; output.txt</code> will encode a string as input and not encode unusable chars, like line feeds.</p>
-<p>The <code>--decode</code> flag may be added to reverse this process.</p>
-<h2>References</h2>
-<ol>
-<li><a href="https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/" target="_blank">https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/</a></li>
-<li><a href="https://linuxize.com/post/how-to-create-bash-aliases/" target="_blank">https://linuxize.com/post/how-to-create-bash-aliases/</a></li>
-<li><a href="https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf" target="_blank">https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf</a></li>
-</ol>
-<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="stack.html">stack</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section></article><article><h1><a href="assembly.html">Assembly</a></h1>
-<p>x86 assembly language is an extemely low-level human-readable machine code.</p>
-<h2>Getting Started</h2>
-<h3>Compiler</h3>
-<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a>, which can be installed on <a href="macos.html">OSX</a> using <a href="https://brew.sh/" target="_blank">homebrew</a> with <code>brew install nasm</code>.</p>
-<h3>Your First Program</h3>
-<p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
-<div class="highlight"><pre><span></span><span class="p">;</span> <span class="o">----------------------------------------------------------------------------------------</span>
-<span class="p">;</span> <span class="n">Writes</span> <span class="s2">&quot;Hello, World&quot;</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span> <span class="n">using</span> <span class="n">only</span> <span class="n">system</span> <span class="n">calls</span><span class="o">.</span> <span class="n">Runs</span> <span class="n">on</span> <span class="mi">64</span><span class="o">-</span><span class="n">bit</span> <span class="n">macOS</span> <span class="n">only</span><span class="o">.</span>
-<span class="p">;</span> <span class="o">----------------------------------------------------------------------------------------</span>
- 
-        <span class="n">global</span>    <span class="n">start</span>                   <span class="p">;</span> <span class="n">nasm</span><span class="o">-</span><span class="n">specific</span> <span class="n">way</span> <span class="n">to</span> <span class="n">define</span> <span class="n">a</span> <span class="n">location</span> <span class="k">for</span> <span class="n">the</span> <span class="n">linker</span>
- 
-        <span class="n">section</span>   <span class="o">.</span><span class="n">text</span>                   <span class="p">;</span> <span class="n">The</span> <span class="o">.</span><span class="n">text</span> <span class="n">section</span> <span class="n">holds</span> <span class="n">all</span> <span class="n">the</span> <span class="n">instructions</span> <span class="k">for</span> <span class="n">the</span> 
-                                          <span class="p">;</span> <span class="n">assembler</span> <span class="n">to</span> <span class="n">execute</span><span class="o">.</span>
-<span class="n">start</span><span class="p">:</span>                                <span class="p">;</span> <span class="n">The</span> <span class="n">label</span> <span class="n">that</span> <span class="k">is</span> <span class="n">referenced</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">above</span> <span class="n">global</span> <span class="n">call</span>
-        <span class="n">mov</span>       <span class="n">rax</span><span class="p">,</span> <span class="mh">0x02000004</span>         <span class="p">;</span> <span class="n">system</span> <span class="n">call</span> <span class="k">for</span> <span class="n">write</span> <span class="p">(</span><span class="n">copy</span> <span class="n">param</span> <span class="n">Y</span> <span class="n">into</span> <span class="n">param</span> <span class="n">X</span><span class="p">)</span>
-        <span class="n">mov</span>       <span class="n">rdi</span><span class="p">,</span> <span class="mi">1</span>                  <span class="p">;</span> <span class="n">file</span> <span class="n">handle</span> <span class="mi">1</span> <span class="k">is</span> <span class="n">stdout</span>
-        <span class="n">mov</span>       <span class="n">rsi</span><span class="p">,</span> <span class="n">message</span>            <span class="p">;</span> <span class="n">address</span> <span class="n">of</span> <span class="n">string</span> <span class="n">to</span> <span class="n">output</span>
-        <span class="n">mov</span>       <span class="n">rdx</span><span class="p">,</span> <span class="mi">13</span>                 <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">bytes</span> <span class="p">(</span><span class="n">message</span> <span class="k">is</span> <span class="mi">13</span> <span class="n">chars</span> <span class="n">long</span><span class="p">)</span>
-        <span class="n">syscall</span>                           <span class="p">;</span> <span class="n">invoke</span> <span class="n">operating</span> <span class="n">system</span> <span class="n">to</span> <span class="n">do</span> <span class="n">the</span> <span class="n">write</span>
-        <span class="n">mov</span>       <span class="n">rax</span><span class="p">,</span> <span class="mh">0x02000001</span>         <span class="p">;</span> <span class="n">system</span> <span class="n">call</span> <span class="k">for</span> <span class="n">exit</span>
-        <span class="n">xor</span>       <span class="n">rdi</span><span class="p">,</span> <span class="n">rdi</span>                <span class="p">;</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
-        <span class="n">syscall</span>                           <span class="p">;</span> <span class="n">invoke</span> <span class="n">operating</span> <span class="n">system</span> <span class="n">to</span> <span class="n">exit</span>
- 
-        <span class="n">section</span>   <span class="o">.</span><span class="n">data</span>                   <span class="p">;</span> <span class="n">The</span> <span class="o">.</span><span class="n">data</span> <span class="n">section</span> <span class="n">contains</span> <span class="n">constants</span>
-<span class="n">message</span><span class="p">:</span>                              <span class="p">;</span> <span class="n">The</span> <span class="n">label</span> <span class="n">referenced</span> <span class="n">above</span>
-        <span class="n">db</span>        <span class="s2">&quot;Hello, World&quot;</span><span class="p">,</span> <span class="mi">10</span>      <span class="p">;</span> <span class="n">note</span> <span class="n">the</span> <span class="n">newline</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span>
-</pre></div>
-<h3>Assembling Your Code</h3>
-<p>Assembling your code will translate it from the human readable assembly language into a file object. The following bash command will run <code>nasm</code> using the Mach-O 64bit object <code>-f</code>ile notation format used by the 64-bit version of <a href="macos.html">MacOS</a> and create <code>-o</code>utput <code>hello_world.o</code>.</p>
-<div class="highlight"><pre><span></span>$ nasm -f macho64 hello_world.asm -o hello_world.o
-</pre></div>
-<h3>Linking Your File</h3>
-<p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">Linking</a> your newly created output file will pull all the needed libraries into a single executable. The following bash command will run <code>ld</code>, the GNU linker, and finish the creation of your executable.</p>
-<div class="highlight"><pre><span></span>$ ld -macosx_version_min <span class="m">10</span>.7.0 hello_world.o -o hello_world
-</pre></div>
-<p>The <code>-macosx_version_min</code> flag is added to remove the warning that is present without it. I read that it still builds fine without it, but that has not been true in my experience.</p>
-<h3>Executing Your File</h3>
-<div class="highlight"><pre><span></span>$ ./hello_world
-Hello, World
-$
-</pre></div>
-<p>Running <code>./hello_world</code> in <a href="bash.html">bash</a> should result in the message being displayed.</p>
-<h2>Syntax and Keywords</h2>
-<h3>Basics</h3>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>mov</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>y</em></td>
-</tr>
-<tr>
-<td><code>and</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> and <em>y</em></td>
-</tr>
-<tr>
-<td><code>or</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> or <em>y</em></td>
-</tr>
-<tr>
-<td><code>xor</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> xor <em>y</em></td>
-</tr>
-<tr>
-<td><code>add</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> + <em>y</em></td>
-</tr>
-<tr>
-<td><code>sub</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> – <em>y</em></td>
-</tr>
-<tr>
-<td><code>inc</code> <em>x</em></td>
-<td><em>x</em> ← <em>x</em> + 1</td>
-</tr>
-<tr>
-<td><code>dec</code> <em>x</em></td>
-<td><em>x</em> ← <em>x</em> – 1</td>
-</tr>
-<tr>
-<td><code>syscall</code></td>
-<td>Invoke an operating system routine</td>
-</tr>
-<tr>
-<td><code>db</code></td>
-<td>A <a href="http://www.nasm.us/xdoc/2.11.02/html/nasmdoc3.html#section-3.2" target="_blank">pseudo-instruction</a>  that declares bytes that will be in memory when the program runs</td>
-</tr>
-</tbody></table><h3><code>section</code></h3>
-<p>A section is an assembler directive that tells the assembler what kind of code follows. Generally, you put code in a section called <code>.text</code> and your constant data in a section called <code>.data</code>.</p>
-<h2>Glossary</h2>
-<h3>Registers</h3>
-<p>Registers are the working memory within which you can do some computations and then save in more long-term memory. Their size is dictated by the architecture on which your code will run (32- or 64-bit).</p>
-<h3>Stack</h3>
-<p>The <a href="stack.html">stack</a> operates as LIFO (last in, first out). The stack is an array that keeps a pointer on the last value.</p>
-<h2>References</h2>
-<ol>
-<li><a href="https://medium.com/@thisura1998/hello-world-assembly-program-on-macos-mojave-d5d65f0ce7c6" target="_blank">https://medium.com/@thisura1998/hello-world-assembly-program-on-macos-mojave-d5d65f0ce7c6</a></li>
-<li><a href="https://cs.lmu.edu/~ray/notes/nasmtutorial/" target="_blank">https://cs.lmu.edu/~ray/notes/nasmtutorial/</a></li>
-<li><a href="https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave" target="_blank">https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave</a></li>
-<li><a href="https://www.nasm.us/doc/" target="_blank">https://www.nasm.us/doc/</a></li>
-<li><a href="https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm</a></li>
-<li><a href="https://www.youtube.com/watch?v=qhkEOyK1ek0" target="_blank">https://www.youtube.com/watch?v=qhkEOyK1ek0</a></li>
-<li><a href="https://www.youtube.com/watch?v=wLXIWKUWpSs" target="_blank">https://www.youtube.com/watch?v=wLXIWKUWpSs</a></li>
-<li><a href="https://github.com/camsaul/hello_world_x86_64_asm_os_x" target="_blank">https://github.com/camsaul/hello_world_x86_64_asm_os_x</a></li>
-<li><a href="http://zathras.de/angelweb/blog-learn-nasm-on-os-x.htm" target="_blank">http://zathras.de/angelweb/blog-learn-nasm-on-os-x.htm</a></li>
-<li><a href="http://caswenson.com/2009_09_26_assembly_language_programming_under_os_x_with_nasm" target="_blank">http://caswenson.com/2009_09_26_assembly_language_programming_under_os_x_with_nasm</a></li>
-<li><a href="https://lord.io/assembly-on-osx/" target="_blank">https://lord.io/assembly-on-osx/</a></li>
-<li><a href="https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/" target="_blank">https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/</a></li>
-</ol>
-<section><h2>Backlinks:</h2><ul><li><a href="c-(programming).html">C (Programming)</a></li></ul></section></article><article><h1><a href="xml.html">XML</a></h1>
+</article><article><h1><a href="xml.html">XML</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="svg.html">SVG</a></li></ul></section></article><article><h1><a href="html.html">HTML</a></h1>
 <p>There's currently nothing here.</p>
@@ -489,7 +309,7 @@ $
 </ol>
 </article><article><h1><a href="javascript.html">Javascript</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-(javascript).html">Classes (Javascript)</a></li><li><a href="dom-manipulation-(javascript).html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-(javascript).html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="lexical-scoping-(javascript).html">Lexical Scoping (Javascript)</a></li><li><a href="operators-(javascript).html">Operators (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-(javascript).html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-(javascript).html">Switch Case (Javascript)</a></li><li><a href="testing-(javascript).html">Testing (Javascript)</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section></article><article><h1><a href="regular-expressions.html">Regular Expressions</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-(javascript).html">Classes (Javascript)</a></li><li><a href="dom-manipulation-(javascript).html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-(javascript).html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="lexical-scoping-(javascript).html">Lexical Scoping (Javascript)</a></li><li><a href="npm.html">NPM</a></li><li><a href="operators-(javascript).html">Operators (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-(javascript).html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-(javascript).html">Switch Case (Javascript)</a></li><li><a href="testing-(javascript).html">Testing (Javascript)</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section></article><article><h1><a href="regular-expressions.html">Regular Expressions</a></h1>
 <p>Regular Expressions or &quot;regex&quot; is used to describe a series of characters. If it has a pattern in its formatting, regex can be used.</p>
 <h2>Regular Expression Syntax</h2>
 <p>This syntax is for <a href="javascript.html">Javascript</a>, but it is mostly what I have used in everything so far.</p>
@@ -591,7 +411,7 @@ $
 </ul>
 </article><article><h1><a href="database.html">database</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="sql.html">SQL</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section></article><article><h1><a href="handlebars.html">Handlebars</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="sql.html">SQL</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section></article><article><h1><a href="handlebars.html">Handlebars</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li></ul></section></article><article><h1><a href="jinja2.html">Jinja2</a></h1>
 <p>There's currently nothing here.</p>
@@ -625,7 +445,7 @@ $
 <ol>
 <li><a href="http://expressjs.com/en/starter/installing.html" target="_blank">http://expressjs.com/en/starter/installing.html</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section></article><article><h1><a href="angular.html">Angular</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section></article><article><h1><a href="angular.html">Angular</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li></ul></section></article><article><h1><a href="react.html">React</a></h1>
 <p>React is a <a href="javascript.html">Javascript</a> framework for implementing dynamic single page applications into your site.</p>
@@ -1012,9 +832,71 @@ $ grep <span class="s1">&#39;THIS THAT&#39;</span> dir/file.name
 </ol>
 </article><article><h1><a href="terminal.html">terminal</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="bash.html">bash</a></li></ul></section></article><article><h1><a href="node.html">node</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="bash.html">bash</a></li></ul></section></article><article><h1><a href="bash.html">bash</a></h1>
+<h2>Basic Functions</h2>
+<ul>
+<li><code>cp [-r] ./source ./destination</code> - Copy file or directory <code>[-r]</code> from source to destination</li>
+<li><code>mv [-r] ./source ./destination</code> - Move/rename file or directory <code>[-r]</code> from source to destination</li>
+</ul>
+<h2><a href="https://www.maketecheasier.com/run-bash-commands-background-linux/" target="_blank">Background Tasks</a></h2>
+<p>You can run tasks in the background within a <a href="terminal.html">terminal</a> window by placing an <code>&amp;</code> at the end of the command you want running. You can see these background jobs with <code>jobs</code> and kill the job that you want with <code>kill %</code> followed by the index, or just <code>kill %</code> to kill all jobs.</p>
+<h2>Event Designators</h2>
+<p>An event designator is a reference to a command line entry in the  history list.  Unless the reference is absolute, events are relative  to the current position in the history list.</p>
+<ul>
+<li><code>$_</code> Repeat the last argument used, e.g. <code>mkdir folder-name &amp;&amp; cd &quot;$_&quot;</code></li>
+<li><code>!!</code> Repeats the previous command</li>
+<li><code>!10</code> Repeat the 10th command from the history</li>
+<li><code>!-2</code> Repeat the 2nd command (from the last) from the history</li>
+<li><code>!string</code> Repeat the command that starts with “string” from the history</li>
+<li><code>!?string</code> Repeat the command that contains the word “string” from the history</li>
+<li><code>^str1^str2^</code> Substitute str1 in the previous command with str2 and execute it</li>
+<li><code>!!:$</code> Gets the last argument from the previous command.</li>
+<li><code>!string:n</code> Gets the nth argument from the command that starts with “string” from the history.</li>
+<li><code>!^</code> first argument of the previous command</li>
+<li><code>!$</code> last argument of the previous command</li>
+<li><code>!*</code> all arguments of the previous command</li>
+<li><code>!:2</code> second argument of the previous command</li>
+<li><code>!:2-3</code> second to third arguments of the previous command</li>
+<li><code>!:2-$</code> second to last arguments of the previous command</li>
+<li><code>!:2*</code> second to last arguments of the previous command</li>
+<li><code>!:2-</code> second to next to last arguments of the previous command</li>
+<li><code>!:0</code> the command itself</li>
+</ul>
+<h2>Aliases</h2>
+<p>WIthin your <code>~/.bashrc</code> file, add this line and populate it how you need:</p>
+<div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">alias_name</span><span class="o">=</span><span class="s2">&quot;command_to_run&quot;</span>
+
+<span class="c1"># e.g.</span>
+<span class="nb">alias</span> <span class="nv">poo</span><span class="o">=</span><span class="s2">&quot;say &#39;I have to poop really bad&#39;&quot;</span>
+</pre></div>
+<p>When complete, run <code>source ~/.bashrc</code> or <code>source ~/.zshrc</code> and restart bash to have them take effect.</p>
+<h2>Pipe</h2>
+<blockquote>
+<p>To connect the STDOUT of one <strong>command</strong> to the STDIN of <strong>another</strong> use the | symbol, commonly known as a pipe.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># long way</span>
+$ thing1 &gt; tempfile
+$ thing2 &lt; tempfile
+
+<span class="c1"># shorter</span>
+$ thing1 &gt; tempfile <span class="o">&amp;&amp;</span> thing2 &lt; tempfile
+
+<span class="c1"># shortest</span>
+$ thing1 <span class="p">|</span> thing2
+</pre></div>
+<h2>Base64</h2>
+<p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64. </p>
+<p><code>echo -n &#x27;some string&#x27; | base64 &gt; output.txt</code> will encode a string as input and not encode unusable chars, like line feeds.</p>
+<p>The <code>--decode</code> flag may be added to reverse this process.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/" target="_blank">https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/</a></li>
+<li><a href="https://linuxize.com/post/how-to-create-bash-aliases/" target="_blank">https://linuxize.com/post/how-to-create-bash-aliases/</a></li>
+<li><a href="https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf" target="_blank">https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="node.html">node</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="nvm.html">NVM</a></li></ul></section></article><article><h1><a href="nvm.html">NVM</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="npm.html">NPM</a></li><li><a href="nvm.html">NVM</a></li><li><a href="postgres.html">Postgres</a></li></ul></section></article><article><h1><a href="nvm.html">NVM</a></h1>
 <p>Node Version Manager allows you to use multiple diferent versions of <a href="node.html">node</a> and switch between them easily.</p>
 <h2>Installation</h2>
 <h3>NVM</h3>
@@ -2613,7 +2495,366 @@ $ nvm uninstall xx.xx.x
 <ol>
 <li><a href="https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/" target="_blank">https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/</a></li>
 </ol>
-</article><article><h1><a href="canvas.html">Canvas</a></h1>
+</article><article><h1><a href="assembly.html">Assembly</a></h1>
+<p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
+<h2>Compilation and Linking</h2>
+<p>For more specifics, visit the <a href="assembly-(unix).html">OSX</a> and <a href="assembly-(windows).html">Windows</a> assembly pages. </p>
+<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a> for <a href="unix.html">Unix</a> systems and <a href="https://www.masm32.com" target="_blank">masm</a> for <a href="windows.html">Windows</a> systems.</p>
+<p>After you have written your code, you will need to assemble your code, translating it from the human readable assembly language into a file object.</p>
+<p>You will then need to <a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">link</a> your newly created output file. This will pull all the needed libraries into a single executable. </p>
+<h2>Syntax and Keywords</h2>
+<h3>Operators</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mov</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>y</em></td>
+</tr>
+<tr>
+<td><code>and</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> &amp; <em>y</em></td>
+</tr>
+<tr>
+<td><code>or</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> | <em>y</em></td>
+</tr>
+<tr>
+<td><code>xor</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> ^ <em>y</em></td>
+</tr>
+<tr>
+<td><code>add</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> + <em>y</em></td>
+</tr>
+<tr>
+<td><code>sub</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> – <em>y</em></td>
+</tr>
+<tr>
+<td><code>mul</code> <em>x</em></td>
+<td><em>EAX</em> ← <em>EAX</em> * <em>x</em></td>
+</tr>
+<tr>
+<td><code>div</code> <em>x</em></td>
+<td><em>EAX</em> ← <em>EAX</em> ÷ <em>x</em></td>
+</tr>
+<tr>
+<td><code>inc</code> <em>x</em></td>
+<td><em>x</em> ← <em>x</em> + 1</td>
+</tr>
+<tr>
+<td><code>dec</code> <em>x</em></td>
+<td><em>x</em> ← <em>x</em> – 1</td>
+</tr>
+</tbody></table><h3>Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cmp</code> <em>x</em>, <em>y</em></td>
+<td>Set the</td>
+</tr>
+<tr>
+<td><code>jmp</code> <em>label</em></td>
+<td>When this line is reached, jump to the line labeled <em>label</em></td>
+</tr>
+<tr>
+<td><code>je</code> <em>label</em> / <code>jz</code> <em>label</em></td>
+<td>When <code>ZF</code> is 0, jump to <em>label</em></td>
+</tr>
+<tr>
+<td><code>jne</code> <em>label</em> / <code>jnz</code> <em>label</em></td>
+<td>When <code>ZF</code> is NOT 0, jump to <em>label</em></td>
+</tr>
+</tbody></table><h3><a href="http://www.nasm.us/xdoc/2.11.02/html/nasmdoc3.html#section-3.2" target="_blank">Pseudo-instructions</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>syscall</code></td>
+<td>Invoke an operating system routine</td>
+</tr>
+<tr>
+<td><code>db</code></td>
+<td>A pseudo-instruction that declares bytes that will be in memory when the program runs</td>
+</tr>
+</tbody></table><h3><code>section</code></h3>
+<p>A section is an assembler directive that tells the assembler what kind of code follows. Generally, you put code in a section called <code>.text</code> and your constant data in a section called <code>.data</code>.</p>
+<h2>Registers</h2>
+<h3>32-Bit General Purpose</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EAX</td>
+<td>Accumulator Register</td>
+<td>calculations for operations and results data</td>
+</tr>
+<tr>
+<td>EBX</td>
+<td>Base Register</td>
+<td>pointer to data in the DS segment</td>
+</tr>
+<tr>
+<td>ECX</td>
+<td>Count Register</td>
+<td>counter for string and loop operations</td>
+</tr>
+<tr>
+<td>EDX</td>
+<td>Data Register</td>
+<td>input/output pointer</td>
+</tr>
+<tr>
+<td>ESI</td>
+<td>Source Index</td>
+<td>source pointer for string operations</td>
+</tr>
+<tr>
+<td>EDI</td>
+<td>Destination Index</td>
+<td>destination pointer for string operations</td>
+</tr>
+<tr>
+<td>ESP</td>
+<td>Stack Pointer</td>
+<td>stack pointer, <strong>should not be used</strong></td>
+</tr>
+<tr>
+<td>EBP</td>
+<td>Base Pointer</td>
+<td>pointer to data on the stack</td>
+</tr>
+</tbody></table><h3>16-Bit Segment</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS</td>
+<td>Code Segment</td>
+<td>where instructions being executed are stored</td>
+</tr>
+<tr>
+<td>DS, ES, FS, GS</td>
+<td>Data Segment</td>
+<td>data segment</td>
+</tr>
+<tr>
+<td>SS</td>
+<td>Stack Segment</td>
+<td>where the stack for the current program is stored</td>
+</tr>
+</tbody></table><h3>32-Bit Other</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EFLAGS</td>
+<td>Code Segment</td>
+<td>status, control, and system flags</td>
+</tr>
+<tr>
+<td>EIP</td>
+<td>Instruction Pointer</td>
+<td>offset for the next instruction to be executed</td>
+</tr>
+</tbody></table><h2>Flags</h2>
+<h3>Carry Flag (<code>CF</code>)</h3>
+<p>The carry flag is set to 1 (true) when the second operand of an operation is smaller than the first. For example if you <code>cmp 2 1</code>, the result will be a <code>CF</code> of 1 (true), since 1 - 2 goes negative, meaning that the first operand is larger than the first.</p>
+<h3>Overflow Flag (<code>OF</code>)</h3>
+<p>The overflow flag will be set to 1 (true) if the operation overflows beyond the bounds of the integers and their storage. This could happen if you are dealing with numbers that go beyond the boundaries involved (e.g. adding two numbers that go above 256 with an 8-bit unsigned integer, or adding two 8-bit unsigned integers that go beyond 128).</p>
+<h3>Sign Flag (<code>SF</code>)</h3>
+<p>The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.  </p>
+<h3>Zero Flag (<code>ZF</code>)</h3>
+<p>The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.</p>
+<h2>Stack</h2>
+<p>The <a href="stack-(programming).html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
+<p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
+<div class="highlight"><pre><span></span>push 3
+pop eax
+ret
+</pre></div>
+<p>This will push three values to the stack <strong>in reverse order of what the function expects, because LIFO</strong>, and then invokes the function, which will use those values.</p>
+<div class="highlight"><pre><span></span><span class="n">push</span><span class="w"> </span><span class="o">[</span><span class="n">var</span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="k">last</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="k">first</span><span class="w"></span>
+<span class="n">push</span><span class="w"> </span><span class="mi">216</span><span class="w">   </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">second</span><span class="w"> </span><span class="k">parameter</span><span class="w"></span>
+<span class="n">push</span><span class="w"> </span><span class="n">eax</span><span class="w">   </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="k">last</span><span class="w"></span>
+
+<span class="k">call</span><span class="w"> </span><span class="n">_myFunc</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">Call</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">assume</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">naming</span><span class="p">)</span><span class="w"></span>
+
+<span class="k">add</span><span class="w"> </span><span class="n">esp</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="w">  </span><span class="p">;</span><span class="w"> </span><span class="n">Flush</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<span class="w">      </span><span class="p">;</span><span class="w"> </span><span class="n">adding</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">pointer</span><span class="w"></span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm</a></li>
+<li><a href="https://www.youtube.com/watch?v=qhkEOyK1ek0" target="_blank">https://www.youtube.com/watch?v=qhkEOyK1ek0</a></li>
+<li><a href="https://www.youtube.com/watch?v=wLXIWKUWpSs" target="_blank">https://www.youtube.com/watch?v=wLXIWKUWpSs</a></li>
+<li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
+<li><a href="https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html" target="_blank">https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html</a></li>
+<li><a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html" target="_blank">https://www.cs.virginia.edu/~evans/cs216/guides/x86.html</a></li>
+<li><a href="https://www.hellboundhackers.org/articles/read-article.php?article_id=729" target="_blank">https://www.hellboundhackers.org/articles/read-article.php?article_id=729</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c-(programming).html">C (Programming)</a></li></ul></section></article><article><h1><a href="windows.html">Windows</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li></ul></section></article><article><h1>Assembly (Windows)</h1>
+<p><a href="assembly.html">Assembly</a> on <a href="windows.html">Windows</a> utilizes <a href="https://masm32.com/" target="_blank">masm</a>, Microsoft's proprietary assembler and linker.</p>
+<h2>Compilation, Linking, and Execution</h2>
+<h3>Compiler</h3>
+<p>You will first need <a href="https://masm32.com/" target="_blank">masm</a> to compile your assembly into machine code. masm can be installed via the <a href="https://www.masm32.com/install.htm" target="_blank">MASM32 SDK</a>.</p>
+<h3>Your First Program</h3>
+<p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
+<div class="highlight"><pre><span></span><span class="nf">.386</span>                  <span class="c1">; Tell assembler to use the 386 instruction set</span>
+<span class="na">.model</span> <span class="no">flat</span><span class="p">,</span> <span class="no">stdcall</span>            <span class="c1">; Specify the flat memory model and use stdcall to pass parameters RtoL</span>
+<span class="nf">option</span> <span class="no">casemap</span> <span class="p">:</span><span class="no">none</span>          <span class="c1">; Force case sensitivity</span>
+
+<span class="nf">include</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">include</span><span class="err">\</span><span class="no">windows.inc</span>    <span class="c1">; Include Win32 API constants and defs</span>
+<span class="nf">include</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">include</span><span class="err">\</span><span class="no">kernel32.inc</span>   <span class="c1">; Include ExitProcess</span>
+<span class="nf">include</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">include</span><span class="err">\</span><span class="no">masm32.inc</span>     <span class="c1">; Include StdOut</span>
+
+<span class="nf">includelib</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">lib</span><span class="err">\</span><span class="no">kernel32.lib</span>   <span class="c1">; The libraries necessary for the above includes to function</span>
+<span class="nf">includelib</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">lib</span><span class="err">\</span><span class="no">masm32.lib</span>
+
+<span class="na">.data</span>                   <span class="c1">; The section for all initialized data</span>
+  <span class="nf">HelloWorld</span> <span class="no">db</span> <span class="err">&quot;</span><span class="no">Hello</span> <span class="no">World</span><span class="p">!</span><span class="err">&quot;</span><span class="p">,</span> <span class="mi">0</span>    <span class="c1">; definebyte HelloWorld to equal Hello World! plus a NUL char</span>
+
+<span class="na">.code</span>                    <span class="c1">; Starting point for program code</span>
+<span class="nl">start:</span>                   <span class="c1">; All code must live between this and end start</span>
+  <span class="nf">invoke</span> <span class="no">StdOut</span><span class="p">,</span> <span class="no">addr</span> <span class="no">HelloWorld</span>    <span class="c1">; Run function StdOut with address of HelloWorld as the param </span>
+  <span class="nf">invoke</span> <span class="no">ExitProcess</span><span class="p">,</span> <span class="mi">0</span>         <span class="c1">; Invoke ExitProcess with 0 (success) as the parameter</span>
+
+<span class="nf">end</span> <span class="no">start</span> 
+</pre></div>
+<h3>Assembling Your Code</h3>
+<p>Assembling your code will translate it from the human readable assembly language into a file object. The following command will run masm and create output <code>hello_world.obj</code>.</p>
+<div class="highlight"><pre><span></span><span class="se">\m</span>asm32<span class="se">\b</span>in<span class="se">\m</span>l /c /Zd /coff hello_world.asm
+</pre></div>
+<h3>Linking Your File</h3>
+<p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">Linking</a> your newly created output file will pull all the needed libraries into a single executable. The following command will run Link, the masmlinker, and finish the creation of your executable.</p>
+<div class="highlight"><pre><span></span><span class="se">\m</span>asm32<span class="se">\b</span>in<span class="se">\L</span>ink /SUBSYSTEM:CONSOLE hello_world.obj
+</pre></div>
+<h3>Executing Your File</h3>
+<div class="highlight"><pre><span></span>hello_world.exe
+Hello, World!
+</pre></div>
+<p>Running <code>hello_world.exe</code>  in the command line should result in the message being displayed.</p>
+<h2>masm-specific Syntax</h2>
+<h3><code>invoke</code></h3>
+<p><code>invoke</code> is a special function in <a href="https://masm32.com/" target="_blank">masm</a> to call functions without having to push parameters beforehand.</p>
+<div class="highlight"><pre><span></span><span class="n">invoke</span><span class="w"> </span><span class="n">SendMessage</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">hWnd</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">WM_CLOSE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="p">;</span><span class="w"> </span><span class="n">equivalent</span><span class="w"> </span><span class="k">to</span><span class="w"></span>
+
+<span class="n">push</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="n">push</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="n">push</span><span class="w"> </span><span class="n">WM_CLOSE</span><span class="w"></span>
+<span class="n">push</span><span class="w"> </span><span class="o">[</span><span class="n">hWnd</span><span class="o">]</span><span class="w"></span>
+<span class="k">call</span><span class="w"> </span><span class="o">[</span><span class="n">SendMessage</span><span class="o">]</span><span class="w"></span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
+<li><a href="https://masm32.com/" target="_blank">https://masm32.com/</a> </li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section></article><article><h1><a href="machine-code.html">machine code</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section></article><article><h1>Assembly (Unix)</h1>
+<p><a href="assembly.html">Assembly</a> on <a href="unix.html">Unix</a> is largely the same between <a href="macos.html">MacOS</a> and <a href="linux.html">Linux</a> computers.</p>
+<h2>Compilation, Linking, and Execution</h2>
+<h3>Compiler</h3>
+<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a>, which can be installed on <a href="macos.html">OSX</a> using <a href="https://brew.sh/" target="_blank">homebrew</a> with <code>brew install nasm</code>.</p>
+<h3>Your First Program</h3>
+<p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
+<div class="highlight"><pre><span></span><span class="p">;</span> <span class="o">----------------------------------------------------------------------------------------</span>
+<span class="p">;</span> <span class="n">Writes</span> <span class="s2">&quot;Hello, World&quot;</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span> <span class="n">using</span> <span class="n">only</span> <span class="n">system</span> <span class="n">calls</span><span class="o">.</span> <span class="n">Runs</span> <span class="n">on</span> <span class="mi">64</span><span class="o">-</span><span class="n">bit</span> <span class="n">macOS</span> <span class="n">only</span><span class="o">.</span>
+<span class="p">;</span> <span class="o">----------------------------------------------------------------------------------------</span>
+ 
+        <span class="n">global</span>    <span class="n">start</span>                   <span class="p">;</span> <span class="n">nasm</span><span class="o">-</span><span class="n">specific</span> <span class="n">way</span> <span class="n">to</span> <span class="n">define</span> <span class="n">a</span> <span class="n">location</span> <span class="k">for</span> <span class="n">the</span> <span class="n">linker</span>
+ 
+        <span class="n">section</span>   <span class="o">.</span><span class="n">text</span>                   <span class="p">;</span> <span class="n">The</span> <span class="o">.</span><span class="n">text</span> <span class="n">section</span> <span class="n">holds</span> <span class="n">all</span> <span class="n">the</span> <span class="n">instructions</span> <span class="k">for</span> <span class="n">the</span> 
+                                          <span class="p">;</span> <span class="n">assembler</span> <span class="n">to</span> <span class="n">execute</span><span class="o">.</span>
+<span class="n">start</span><span class="p">:</span>                                <span class="p">;</span> <span class="n">The</span> <span class="n">label</span> <span class="n">that</span> <span class="k">is</span> <span class="n">referenced</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">above</span> <span class="n">global</span> <span class="n">call</span>
+        <span class="n">mov</span>       <span class="n">rax</span><span class="p">,</span> <span class="mh">0x02000004</span>         <span class="p">;</span> <span class="n">system</span> <span class="n">call</span> <span class="k">for</span> <span class="n">write</span> <span class="p">(</span><span class="n">copy</span> <span class="n">param</span> <span class="n">Y</span> <span class="n">into</span> <span class="n">param</span> <span class="n">X</span><span class="p">)</span>
+        <span class="n">mov</span>       <span class="n">rdi</span><span class="p">,</span> <span class="mi">1</span>                  <span class="p">;</span> <span class="n">file</span> <span class="n">handle</span> <span class="mi">1</span> <span class="k">is</span> <span class="n">stdout</span>
+        <span class="n">mov</span>       <span class="n">rsi</span><span class="p">,</span> <span class="n">message</span>            <span class="p">;</span> <span class="n">address</span> <span class="n">of</span> <span class="n">string</span> <span class="n">to</span> <span class="n">output</span>
+        <span class="n">mov</span>       <span class="n">rdx</span><span class="p">,</span> <span class="mi">13</span>                 <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">bytes</span> <span class="p">(</span><span class="n">message</span> <span class="k">is</span> <span class="mi">13</span> <span class="n">chars</span> <span class="n">long</span><span class="p">)</span>
+        <span class="n">syscall</span>                           <span class="p">;</span> <span class="n">invoke</span> <span class="n">operating</span> <span class="n">system</span> <span class="n">to</span> <span class="n">do</span> <span class="n">the</span> <span class="n">write</span>
+        <span class="n">mov</span>       <span class="n">rax</span><span class="p">,</span> <span class="mh">0x02000001</span>         <span class="p">;</span> <span class="n">system</span> <span class="n">call</span> <span class="k">for</span> <span class="n">exit</span>
+        <span class="n">xor</span>       <span class="n">rdi</span><span class="p">,</span> <span class="n">rdi</span>                <span class="p">;</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+        <span class="n">syscall</span>                           <span class="p">;</span> <span class="n">invoke</span> <span class="n">operating</span> <span class="n">system</span> <span class="n">to</span> <span class="n">exit</span>
+ 
+        <span class="n">section</span>   <span class="o">.</span><span class="n">data</span>                   <span class="p">;</span> <span class="n">The</span> <span class="o">.</span><span class="n">data</span> <span class="n">section</span> <span class="n">contains</span> <span class="n">constants</span>
+<span class="n">message</span><span class="p">:</span>                              <span class="p">;</span> <span class="n">The</span> <span class="n">label</span> <span class="n">referenced</span> <span class="n">above</span>
+        <span class="n">db</span>        <span class="s2">&quot;Hello, World&quot;</span><span class="p">,</span> <span class="mi">10</span>      <span class="p">;</span> <span class="n">note</span> <span class="n">the</span> <span class="n">newline</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span>
+</pre></div>
+<h3>Assembling Your Code</h3>
+<p>Assembling your code will translate it from the human readable assembly language into a file object. The following bash command will run <code>nasm</code> using the Mach-O 64bit object <code>-f</code>ile notation format used by the 64-bit version of <a href="macos.html">MacOS</a> and create <code>-o</code>utput <code>hello_world.o</code>.</p>
+<div class="highlight"><pre><span></span>$ nasm -f macho64 hello_world.asm -o hello_world.o
+</pre></div>
+<h3>Linking Your File</h3>
+<p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">Linking</a> your newly created output file will pull all the needed libraries into a single executable. The following <a href="bash.html">bash</a> command will run <code>ld</code>, the GNU linker, and finish the creation of your executable.</p>
+<div class="highlight"><pre><span></span>$ ld -macosx_version_min <span class="m">10</span>.7.0 hello_world.o -o hello_world
+</pre></div>
+<p>The <code>-macosx_version_min</code> flag is added to remove the warning that is present without it. I read that it still builds fine without it, but that has not been true in my experience.</p>
+<h3>Executing Your File</h3>
+<div class="highlight"><pre><span></span>$ ./hello_world
+Hello, World
+</pre></div>
+<p>Running <code>./hello_world</code> in <a href="bash.html">bash</a> should result in the message being displayed.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://medium.com/@thisura1998/hello-world-assembly-program-on-macos-mojave-d5d65f0ce7c6" target="_blank">https://medium.com/@thisura1998/hello-world-assembly-program-on-macos-mojave-d5d65f0ce7c6</a></li>
+<li><a href="https://cs.lmu.edu/~ray/notes/nasmtutorial/" target="_blank">https://cs.lmu.edu/~ray/notes/nasmtutorial/</a></li>
+<li><a href="https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave" target="_blank">https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave</a></li>
+<li><a href="https://www.nasm.us/doc/" target="_blank">https://www.nasm.us/doc/</a></li>
+<li><a href="https://www.youtube.com/watch?v=qhkEOyK1ek0" target="_blank">https://www.youtube.com/watch?v=qhkEOyK1ek0</a></li>
+<li><a href="https://www.youtube.com/watch?v=wLXIWKUWpSs" target="_blank">https://www.youtube.com/watch?v=wLXIWKUWpSs</a></li>
+<li><a href="https://github.com/camsaul/hello_world_x86_64_asm_os_x" target="_blank">https://github.com/camsaul/hello_world_x86_64_asm_os_x</a></li>
+<li><a href="http://zathras.de/angelweb/blog-learn-nasm-on-os-x.htm" target="_blank">http://zathras.de/angelweb/blog-learn-nasm-on-os-x.htm</a></li>
+<li><a href="http://caswenson.com/2009_09_26_assembly_language_programming_under_os_x_with_nasm" target="_blank">http://caswenson.com/2009_09_26_assembly_language_programming_under_os_x_with_nasm</a></li>
+<li><a href="https://lord.io/assembly-on-osx/" target="_blank">https://lord.io/assembly-on-osx/</a></li>
+<li><a href="https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/" target="_blank">https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section></article><article><h1><a href="unix.html">Unix</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-(unix).html">Assembly (Unix)</a></li></ul></section></article><article><h1>Stack (Programming)</h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section></article><article><h1><a href="linux.html">Linux</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li></ul></section></article><article><h1><a href="canvas.html">Canvas</a></h1>
 <p>The Canvas API provides a means for drawing graphics via <a href="javascript.html">JavaScript</a> and the <a href="html.html">HTML</a> <canvas> element.</p>
 <h2>Initialization</h2>
 <p>To start using the canvas, put the canvas element in your webpage HTML, along with a width or height in pixels. Fallback content goes in between the opening and closing tag.</p>
@@ -2830,8 +3071,11 @@ HTML5 input types:<ul>
 <li><a href="https://stackoverflow.com/questions/3606657/radio-buttons-checked-attribute-not-working" target="_blank">https://stackoverflow.com/questions/3606657/radio-buttons-checked-attribute-not-working</a></li>
 </ol>
 </article><article><h1><a href="npm.html">NPM</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li></ul></section></article><article><h1><a href="emmet.html">Emmet</a></h1>
+<p>Node Package Manager helps with <a href="node.html">Node</a> development in <a href="javascript.html">Javascript</a>.</p>
+<h2>devDependencies</h2>
+<p>You can save packages as a devDependency by using <code>--save-dev</code> as an option in the CLI.</p>
+<p><code>devDependencies</code> are for the <strong>developers</strong> of the project. Things like test frameworks, documentation, etc. If someone downloads and uses your project, they won't have the dev dependencies installed. If someone wants to build on your project, they can download the dev dependencies.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="postgres.html">Postgres</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li></ul></section></article><article><h1><a href="emmet.html">Emmet</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li></ul></section></article><article><h1><a href="sublime-text.html">Sublime Text</a></h1>
 <p>Sublime Text is an application made for software development.</p>
@@ -2989,7 +3233,113 @@ each item in items
 <li><a href="https://pugjs.org/language/includes.html" target="_blank">https://pugjs.org/language/includes.html</a></li>
 <li><a href="https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank">https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="webpack.html">Webpack</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="homebrew.html">homebrew</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="postgres.html">Postgres</a></li></ul></section></article><article><h1><a href="postgres.html">Postgres</a></h1>
+<p>Postgres is a relational <a href="database.html">database</a> management system.</p>
+<h2>Getting Started</h2>
+<p>This tutorial will be for getting started with Postgres using <a href="node.html">node</a> on a <a href="macos.html">Mac</a>.</p>
+<h3>Local Machine</h3>
+<h4>Installation</h4>
+<p>Install Postgres using <a href="homebrew.html">homebrew</a>: <code>brew install postgres</code></p>
+<p>In a new terminal window, start up the local database: <code>postgres -D /usr/local/var/postgres</code></p>
+<p>If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>.</p>
+<h4>Initialization</h4>
+<p>Create a new table in your database: <code>CREATE TABLE numbers( age integer );</code></p>
+<p>Insert a value into the new table: <code>INSERT INTO numbers VALUES (732);</code></p>
+<h3>Javascript</h3>
+<p>Initialize a new <a href="npm.html">npm</a> project, and then install <code>pg</code>, <code>pg-format</code>, and <a href="express.html"><code>express</code></a>.</p>
+<p>Create a new file in your project called <code>server.js</code> and copy this into it's contents:</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span> <span class="c1">// Server</span>
+<span class="kd">var</span> <span class="nx">pg</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg&#39;</span><span class="p">);</span>             <span class="c1">// Postgres </span>
+<span class="kd">var</span> <span class="nx">format</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg-format&#39;</span><span class="p">);</span>  <span class="c1">// For dynamic SQL queries (a la MySQL ?)</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>              <span class="c1">// Start your server</span>
+
+<span class="kd">var</span> <span class="nx">PGUSER</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span>     <span class="c1">// Definte the username and database</span>
+<span class="kd">var</span> <span class="nx">PGDATABASE</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span> <span class="c1">// previously set up in Postgres.</span>
+
+<span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mf">732</span><span class="p">;</span>                      <span class="c1">// Used so we can reference our earlier insertion.</span>
+
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">user</span><span class="o">:</span> <span class="nx">PGUSER</span><span class="p">,</span>
+  <span class="nx">database</span><span class="o">:</span> <span class="nx">PGDATABASE</span><span class="p">,</span>
+  <span class="nx">max</span><span class="o">:</span> <span class="mf">10</span><span class="p">,</span>                          <span class="c1">// max number of clients in the pool</span>
+  <span class="nx">idleTimeoutMillis</span><span class="o">:</span> <span class="mf">30000</span>          <span class="c1">// how long a client is allowed to remain idle before being closed</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pg</span><span class="p">.</span><span class="nx">Pool</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>     <span class="c1">// Create a new connection instance</span>
+
+<span class="nx">pool</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">client</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Connect to the DB</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>     <span class="c1">// Connect to the Express server</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening on 3000&#39;</span><span class="p">)</span>
+  <span class="p">});</span>
+  <span class="c1">// Build a dynamic query using `age`</span>
+  <span class="kd">var</span> <span class="nx">ageQuery</span> <span class="o">=</span> <span class="nx">format</span><span class="p">(</span><span class="s1">&#39;SELECT * from numbers WHERE age = %L&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
+  <span class="c1">// Query the DB for all rows from the numbers table where age is = 732</span>
+  <span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">ageQuery</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<p>Now in your terminal, run <code>node server.js</code> and assuming the database is still running, if should return:</p>
+<div class="highlight"><pre><span></span>listening on 3000
+{ age: 732 }
+</pre></div>
+<h2>Schemas</h2>
+<p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
+<p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">schema_example</span>
+  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">people</span><span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">age</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">birthday</span> <span class="nb">DATE</span>
+  <span class="p">)</span>
+  <span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">john_club</span> <span class="k">AS</span>
+    <span class="k">SELECT</span> 
+      <span class="o">*</span>
+    <span class="k">FROM</span>
+      <span class="n">people</span>
+    <span class="k">WHERE</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
+</pre></div>
+<h2>Views</h2>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\dt</code></td>
+<td>Display all tables in the database</td>
+</tr>
+<tr>
+<td><code>TABLE x</code></td>
+<td>Show the contents of table x.</td>
+</tr>
+<tr>
+<td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
+<td>Show all schema in a given database</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://hub.packtpub.com/how-setup-postgresql-nodejs/" target="_blank">https://hub.packtpub.com/how-setup-postgresql-nodejs/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-show-tables/" target="_blank">https://www.postgresqltutorial.com/postgresql-show-tables/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-create-schema/" target="_blank">https://www.postgresqltutorial.com/postgresql-create-schema/</a></li>
+<li><a href="https://www.guru99.com/postgresql-view.html" target="_blank">https://www.guru99.com/postgresql-view.html</a></li>
+</ol>
+</article><article><h1><a href="webpack.html">Webpack</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section></article><article><h1>Text Compression (Server)</h1>
 <p>Text compression minifies and zips files on build or on client side rendering of your web page. Using this on your deployed webpage can save significant time in page downloads and lead to better user retention.</p>
@@ -3078,7 +3428,6 @@ each item in items
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li></ul></section></article><article><h1><a href="typescript.html">Typescript</a></h1>
 <p>Typescript is a superset of <a href="javascript.html">Javascript</a> that is strongly typed and values specificity.</p>
-<h2>Interface</h2>
 <h2>Type Annotations</h2>
 <p>Type annotations are done at the declaration of a variable with a colon followed by the type or interface.</p>
 <div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">greeting</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
@@ -3094,6 +3443,40 @@ each item in items
   <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
   <span class="nx">sayHi</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">return</span> <span class="nx">greeting</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div>
+<h3>Annotations with Object Destructuring</h3>
+<div class="highlight"><pre><span></span><span class="c1">// without annotation</span>
+<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">person</span><span class="p">,</span> <span class="nx">job</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="p">,</span>
+    <span class="nx">age</span><span class="p">,</span>
+  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// with annotation</span>
+<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> 
+      <span class="p">({</span> <span class="nx">person</span><span class="p">,</span> <span class="nx">job</span> <span class="p">}</span><span class="o">:</span> <span class="p">{</span> <span class="nx">person</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">number</span> <span class="p">},</span> <span class="nx">job</span>: <span class="kt">string</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span>
+    <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// with type or interface</span>
+<span class="kd">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">number</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">person</span>: <span class="kt">Person</span><span class="p">,</span> <span class="nx">job</span>: <span class="kt">string</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span>
+    <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 <h3>Unique Typing Troubleshooting</h3>
 <h4><code>Property &#x27;***&#x27; does not exist on type &#x27;never&#x27;</code></h4>
@@ -3111,10 +3494,44 @@ each item in items
 <p>With <code>useState</code> in <a href="react.html">React</a> hooks, you will need to use a special syntax in creation of the hooks themselves. Since useState is a <a href="https://www.typescriptlang.org/docs/handbook/2/generics.html" target="_blank">generic function</a>, the typing happens within the <code>&lt;&gt;</code> characters.</p>
 <div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">[</span><span class="nx">editedHashtagListeners</span><span class="p">,</span> <span class="nx">setEditedHashtagListeners</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">HashtagListener</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
 </pre></div>
+<h2>Interface and Type</h2>
+<p>Interfaces and types are two ways to define a type of object, declaring the types of the contained properties.</p>
+<h3>Type</h3>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="nx">pets</span>: <span class="kt">string</span><span class="p">[]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">john</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
+  <span class="nx">pets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span> <span class="s1">&#39;Doug&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">household</span>: <span class="kt">Person</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">john</span><span class="p">];</span>
+</pre></div>
+<h3>Interface</h3>
+<div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="nx">pets</span>: <span class="kt">string</span><span class="p">[]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">john</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
+  <span class="nx">pets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span> <span class="s1">&#39;Doug&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">household</span>: <span class="kt">Person</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">john</span><span class="p">];</span>
+</pre></div>
 <h2>References:</h2>
 <ol>
 <li><a href="https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript" target="_blank">https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript</a></li>
 <li><a href="https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never" target="_blank">https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never</a></li>
+<li><a href="https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation" target="_blank">https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces" target="_blank">https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section></article><article><h1>Testing (Javascript)</h1>
 <p><a href="javascript.html">Javascript</a> provides many options to test your code via timing, assertions, and frameworks.</p>

@@ -1,50 +1,13 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="x86 assembly language is an extemely low-level human-readable machine code."><title>Assembly</title><link rel="stylesheet" href="./styles.css"></head><body>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding machine code."><title>Assembly</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content"><h1 id="title">Assembly</h1>
-<p>x86 assembly language is an extemely low-level human-readable machine code.</p>
-<h2>Getting Started</h2>
-<h3>Compiler</h3>
-<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a>, which can be installed on <a href="macos.html">OSX</a> using <a href="https://brew.sh/" target="_blank">homebrew</a> with <code>brew install nasm</code>.</p>
-<h3>Your First Program</h3>
-<p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
-<div class="highlight"><pre><span></span><span class="p">;</span> <span class="o">----------------------------------------------------------------------------------------</span>
-<span class="p">;</span> <span class="n">Writes</span> <span class="s2">&quot;Hello, World&quot;</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span> <span class="n">using</span> <span class="n">only</span> <span class="n">system</span> <span class="n">calls</span><span class="o">.</span> <span class="n">Runs</span> <span class="n">on</span> <span class="mi">64</span><span class="o">-</span><span class="n">bit</span> <span class="n">macOS</span> <span class="n">only</span><span class="o">.</span>
-<span class="p">;</span> <span class="o">----------------------------------------------------------------------------------------</span>
- 
-        <span class="n">global</span>    <span class="n">start</span>                   <span class="p">;</span> <span class="n">nasm</span><span class="o">-</span><span class="n">specific</span> <span class="n">way</span> <span class="n">to</span> <span class="n">define</span> <span class="n">a</span> <span class="n">location</span> <span class="k">for</span> <span class="n">the</span> <span class="n">linker</span>
- 
-        <span class="n">section</span>   <span class="o">.</span><span class="n">text</span>                   <span class="p">;</span> <span class="n">The</span> <span class="o">.</span><span class="n">text</span> <span class="n">section</span> <span class="n">holds</span> <span class="n">all</span> <span class="n">the</span> <span class="n">instructions</span> <span class="k">for</span> <span class="n">the</span> 
-                                          <span class="p">;</span> <span class="n">assembler</span> <span class="n">to</span> <span class="n">execute</span><span class="o">.</span>
-<span class="n">start</span><span class="p">:</span>                                <span class="p">;</span> <span class="n">The</span> <span class="n">label</span> <span class="n">that</span> <span class="k">is</span> <span class="n">referenced</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">above</span> <span class="n">global</span> <span class="n">call</span>
-        <span class="n">mov</span>       <span class="n">rax</span><span class="p">,</span> <span class="mh">0x02000004</span>         <span class="p">;</span> <span class="n">system</span> <span class="n">call</span> <span class="k">for</span> <span class="n">write</span> <span class="p">(</span><span class="n">copy</span> <span class="n">param</span> <span class="n">Y</span> <span class="n">into</span> <span class="n">param</span> <span class="n">X</span><span class="p">)</span>
-        <span class="n">mov</span>       <span class="n">rdi</span><span class="p">,</span> <span class="mi">1</span>                  <span class="p">;</span> <span class="n">file</span> <span class="n">handle</span> <span class="mi">1</span> <span class="k">is</span> <span class="n">stdout</span>
-        <span class="n">mov</span>       <span class="n">rsi</span><span class="p">,</span> <span class="n">message</span>            <span class="p">;</span> <span class="n">address</span> <span class="n">of</span> <span class="n">string</span> <span class="n">to</span> <span class="n">output</span>
-        <span class="n">mov</span>       <span class="n">rdx</span><span class="p">,</span> <span class="mi">13</span>                 <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">bytes</span> <span class="p">(</span><span class="n">message</span> <span class="k">is</span> <span class="mi">13</span> <span class="n">chars</span> <span class="n">long</span><span class="p">)</span>
-        <span class="n">syscall</span>                           <span class="p">;</span> <span class="n">invoke</span> <span class="n">operating</span> <span class="n">system</span> <span class="n">to</span> <span class="n">do</span> <span class="n">the</span> <span class="n">write</span>
-        <span class="n">mov</span>       <span class="n">rax</span><span class="p">,</span> <span class="mh">0x02000001</span>         <span class="p">;</span> <span class="n">system</span> <span class="n">call</span> <span class="k">for</span> <span class="n">exit</span>
-        <span class="n">xor</span>       <span class="n">rdi</span><span class="p">,</span> <span class="n">rdi</span>                <span class="p">;</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
-        <span class="n">syscall</span>                           <span class="p">;</span> <span class="n">invoke</span> <span class="n">operating</span> <span class="n">system</span> <span class="n">to</span> <span class="n">exit</span>
- 
-        <span class="n">section</span>   <span class="o">.</span><span class="n">data</span>                   <span class="p">;</span> <span class="n">The</span> <span class="o">.</span><span class="n">data</span> <span class="n">section</span> <span class="n">contains</span> <span class="n">constants</span>
-<span class="n">message</span><span class="p">:</span>                              <span class="p">;</span> <span class="n">The</span> <span class="n">label</span> <span class="n">referenced</span> <span class="n">above</span>
-        <span class="n">db</span>        <span class="s2">&quot;Hello, World&quot;</span><span class="p">,</span> <span class="mi">10</span>      <span class="p">;</span> <span class="n">note</span> <span class="n">the</span> <span class="n">newline</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span>
-</pre></div>
-<h3>Assembling Your Code</h3>
-<p>Assembling your code will translate it from the human readable assembly language into a file object. The following bash command will run <code>nasm</code> using the Mach-O 64bit object <code>-f</code>ile notation format used by the 64-bit version of <a href="macos.html">MacOS</a> and create <code>-o</code>utput <code>hello_world.o</code>.</p>
-<div class="highlight"><pre><span></span>$ nasm -f macho64 hello_world.asm -o hello_world.o
-</pre></div>
-<h3>Linking Your File</h3>
-<p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">Linking</a> your newly created output file will pull all the needed libraries into a single executable. The following bash command will run <code>ld</code>, the GNU linker, and finish the creation of your executable.</p>
-<div class="highlight"><pre><span></span>$ ld -macosx_version_min <span class="m">10</span>.7.0 hello_world.o -o hello_world
-</pre></div>
-<p>The <code>-macosx_version_min</code> flag is added to remove the warning that is present without it. I read that it still builds fine without it, but that has not been true in my experience.</p>
-<h3>Executing Your File</h3>
-<div class="highlight"><pre><span></span>$ ./hello_world
-Hello, World
-$
-</pre></div>
-<p>Running <code>./hello_world</code> in <a href="bash.html">bash</a> should result in the message being displayed.</p>
+<p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
+<h2>Compilation and Linking</h2>
+<p>For more specifics, visit the <a href="assembly-(unix).html">OSX</a> and <a href="assembly-(windows).html">Windows</a> assembly pages. </p>
+<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a> for <a href="unix.html">Unix</a> systems and <a href="https://www.masm32.com" target="_blank">masm</a> for <a href="windows.html">Windows</a> systems.</p>
+<p>After you have written your code, you will need to assemble your code, translating it from the human readable assembly language into a file object.</p>
+<p>You will then need to <a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">link</a> your newly created output file. This will pull all the needed libraries into a single executable. </p>
 <h2>Syntax and Keywords</h2>
-<h3>Basics</h3>
+<h3>Operators</h3>
 <table>
 <thead>
 <tr>
@@ -59,15 +22,15 @@ $
 </tr>
 <tr>
 <td><code>and</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> and <em>y</em></td>
+<td><em>x</em> ← <em>x</em> &amp; <em>y</em></td>
 </tr>
 <tr>
 <td><code>or</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> or <em>y</em></td>
+<td><em>x</em> ← <em>x</em> | <em>y</em></td>
 </tr>
 <tr>
 <td><code>xor</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> xor <em>y</em></td>
+<td><em>x</em> ← <em>x</em> ^ <em>y</em></td>
 </tr>
 <tr>
 <td><code>add</code> <em>x</em>, <em>y</em></td>
@@ -78,6 +41,14 @@ $
 <td><em>x</em> ← <em>x</em> – <em>y</em></td>
 </tr>
 <tr>
+<td><code>mul</code> <em>x</em></td>
+<td><em>EAX</em> ← <em>EAX</em> * <em>x</em></td>
+</tr>
+<tr>
+<td><code>div</code> <em>x</em></td>
+<td><em>EAX</em> ← <em>EAX</em> ÷ <em>x</em></td>
+</tr>
+<tr>
 <td><code>inc</code> <em>x</em></td>
 <td><em>x</em> ← <em>x</em> + 1</td>
 </tr>
@@ -85,34 +56,180 @@ $
 <td><code>dec</code> <em>x</em></td>
 <td><em>x</em> ← <em>x</em> – 1</td>
 </tr>
+</tbody></table><h3>Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cmp</code> <em>x</em>, <em>y</em></td>
+<td>Set the</td>
+</tr>
+<tr>
+<td><code>jmp</code> <em>label</em></td>
+<td>When this line is reached, jump to the line labeled <em>label</em></td>
+</tr>
+<tr>
+<td><code>je</code> <em>label</em> / <code>jz</code> <em>label</em></td>
+<td>When <code>ZF</code> is 0, jump to <em>label</em></td>
+</tr>
+<tr>
+<td><code>jne</code> <em>label</em> / <code>jnz</code> <em>label</em></td>
+<td>When <code>ZF</code> is NOT 0, jump to <em>label</em></td>
+</tr>
+</tbody></table><h3><a href="http://www.nasm.us/xdoc/2.11.02/html/nasmdoc3.html#section-3.2" target="_blank">Pseudo-instructions</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>syscall</code></td>
 <td>Invoke an operating system routine</td>
 </tr>
 <tr>
 <td><code>db</code></td>
-<td>A <a href="http://www.nasm.us/xdoc/2.11.02/html/nasmdoc3.html#section-3.2" target="_blank">pseudo-instruction</a>  that declares bytes that will be in memory when the program runs</td>
+<td>A pseudo-instruction that declares bytes that will be in memory when the program runs</td>
 </tr>
 </tbody></table><h3><code>section</code></h3>
 <p>A section is an assembler directive that tells the assembler what kind of code follows. Generally, you put code in a section called <code>.text</code> and your constant data in a section called <code>.data</code>.</p>
-<h2>Glossary</h2>
-<h3>Registers</h3>
-<p>Registers are the working memory within which you can do some computations and then save in more long-term memory. Their size is dictated by the architecture on which your code will run (32- or 64-bit).</p>
-<h3>Stack</h3>
-<p>The <a href="stack.html">stack</a> operates as LIFO (last in, first out). The stack is an array that keeps a pointer on the last value.</p>
+<h2>Registers</h2>
+<h3>32-Bit General Purpose</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EAX</td>
+<td>Accumulator Register</td>
+<td>calculations for operations and results data</td>
+</tr>
+<tr>
+<td>EBX</td>
+<td>Base Register</td>
+<td>pointer to data in the DS segment</td>
+</tr>
+<tr>
+<td>ECX</td>
+<td>Count Register</td>
+<td>counter for string and loop operations</td>
+</tr>
+<tr>
+<td>EDX</td>
+<td>Data Register</td>
+<td>input/output pointer</td>
+</tr>
+<tr>
+<td>ESI</td>
+<td>Source Index</td>
+<td>source pointer for string operations</td>
+</tr>
+<tr>
+<td>EDI</td>
+<td>Destination Index</td>
+<td>destination pointer for string operations</td>
+</tr>
+<tr>
+<td>ESP</td>
+<td>Stack Pointer</td>
+<td>stack pointer, <strong>should not be used</strong></td>
+</tr>
+<tr>
+<td>EBP</td>
+<td>Base Pointer</td>
+<td>pointer to data on the stack</td>
+</tr>
+</tbody></table><h3>16-Bit Segment</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS</td>
+<td>Code Segment</td>
+<td>where instructions being executed are stored</td>
+</tr>
+<tr>
+<td>DS, ES, FS, GS</td>
+<td>Data Segment</td>
+<td>data segment</td>
+</tr>
+<tr>
+<td>SS</td>
+<td>Stack Segment</td>
+<td>where the stack for the current program is stored</td>
+</tr>
+</tbody></table><h3>32-Bit Other</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EFLAGS</td>
+<td>Code Segment</td>
+<td>status, control, and system flags</td>
+</tr>
+<tr>
+<td>EIP</td>
+<td>Instruction Pointer</td>
+<td>offset for the next instruction to be executed</td>
+</tr>
+</tbody></table><h2>Flags</h2>
+<h3>Carry Flag (<code>CF</code>)</h3>
+<p>The carry flag is set to 1 (true) when the second operand of an operation is smaller than the first. For example if you <code>cmp 2 1</code>, the result will be a <code>CF</code> of 1 (true), since 1 - 2 goes negative, meaning that the first operand is larger than the first.</p>
+<h3>Overflow Flag (<code>OF</code>)</h3>
+<p>The overflow flag will be set to 1 (true) if the operation overflows beyond the bounds of the integers and their storage. This could happen if you are dealing with numbers that go beyond the boundaries involved (e.g. adding two numbers that go above 256 with an 8-bit unsigned integer, or adding two 8-bit unsigned integers that go beyond 128).</p>
+<h3>Sign Flag (<code>SF</code>)</h3>
+<p>The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.  </p>
+<h3>Zero Flag (<code>ZF</code>)</h3>
+<p>The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.</p>
+<h2>Stack</h2>
+<p>The <a href="stack-(programming).html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
+<p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
+<div class="highlight"><pre><span></span>push 3
+pop eax
+ret
+</pre></div>
+<p>This will push three values to the stack <strong>in reverse order of what the function expects, because LIFO</strong>, and then invokes the function, which will use those values.</p>
+<div class="highlight"><pre><span></span><span class="n">push</span><span class="w"> </span><span class="o">[</span><span class="n">var</span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="k">last</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="k">first</span><span class="w"></span>
+<span class="n">push</span><span class="w"> </span><span class="mi">216</span><span class="w">   </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">second</span><span class="w"> </span><span class="k">parameter</span><span class="w"></span>
+<span class="n">push</span><span class="w"> </span><span class="n">eax</span><span class="w">   </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="k">last</span><span class="w"></span>
+
+<span class="k">call</span><span class="w"> </span><span class="n">_myFunc</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">Call</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">assume</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">naming</span><span class="p">)</span><span class="w"></span>
+
+<span class="k">add</span><span class="w"> </span><span class="n">esp</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="w">  </span><span class="p">;</span><span class="w"> </span><span class="n">Flush</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<span class="w">      </span><span class="p">;</span><span class="w"> </span><span class="n">adding</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">pointer</span><span class="w"></span>
+</pre></div>
 <h2>References</h2>
 <ol>
-<li><a href="https://medium.com/@thisura1998/hello-world-assembly-program-on-macos-mojave-d5d65f0ce7c6" target="_blank">https://medium.com/@thisura1998/hello-world-assembly-program-on-macos-mojave-d5d65f0ce7c6</a></li>
-<li><a href="https://cs.lmu.edu/~ray/notes/nasmtutorial/" target="_blank">https://cs.lmu.edu/~ray/notes/nasmtutorial/</a></li>
-<li><a href="https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave" target="_blank">https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave</a></li>
-<li><a href="https://www.nasm.us/doc/" target="_blank">https://www.nasm.us/doc/</a></li>
 <li><a href="https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm</a></li>
 <li><a href="https://www.youtube.com/watch?v=qhkEOyK1ek0" target="_blank">https://www.youtube.com/watch?v=qhkEOyK1ek0</a></li>
 <li><a href="https://www.youtube.com/watch?v=wLXIWKUWpSs" target="_blank">https://www.youtube.com/watch?v=wLXIWKUWpSs</a></li>
-<li><a href="https://github.com/camsaul/hello_world_x86_64_asm_os_x" target="_blank">https://github.com/camsaul/hello_world_x86_64_asm_os_x</a></li>
-<li><a href="http://zathras.de/angelweb/blog-learn-nasm-on-os-x.htm" target="_blank">http://zathras.de/angelweb/blog-learn-nasm-on-os-x.htm</a></li>
-<li><a href="http://caswenson.com/2009_09_26_assembly_language_programming_under_os_x_with_nasm" target="_blank">http://caswenson.com/2009_09_26_assembly_language_programming_under_os_x_with_nasm</a></li>
-<li><a href="https://lord.io/assembly-on-osx/" target="_blank">https://lord.io/assembly-on-osx/</a></li>
-<li><a href="https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/" target="_blank">https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/</a></li>
+<li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
+<li><a href="https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html" target="_blank">https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html</a></li>
+<li><a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html" target="_blank">https://www.cs.virginia.edu/~evans/cs216/guides/x86.html</a></li>
+<li><a href="https://www.hellboundhackers.org/articles/read-article.php?article_id=729" target="_blank">https://www.hellboundhackers.org/articles/read-article.php?article_id=729</a></li>
 </ol>
-<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="c-(programming).html">C (Programming)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c-(programming).html">C (Programming)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

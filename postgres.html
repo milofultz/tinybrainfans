@@ -1,0 +1,106 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Postgres is a relational database management system."><title>Postgres</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Postgres</h1>
+<p>Postgres is a relational <a href="database.html">database</a> management system.</p>
+<h2>Getting Started</h2>
+<p>This tutorial will be for getting started with Postgres using <a href="node.html">node</a> on a <a href="macos.html">Mac</a>.</p>
+<h3>Local Machine</h3>
+<h4>Installation</h4>
+<p>Install Postgres using <a href="homebrew.html">homebrew</a>: <code>brew install postgres</code></p>
+<p>In a new terminal window, start up the local database: <code>postgres -D /usr/local/var/postgres</code></p>
+<p>If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>.</p>
+<h4>Initialization</h4>
+<p>Create a new table in your database: <code>CREATE TABLE numbers( age integer );</code></p>
+<p>Insert a value into the new table: <code>INSERT INTO numbers VALUES (732);</code></p>
+<h3>Javascript</h3>
+<p>Initialize a new <a href="npm.html">npm</a> project, and then install <code>pg</code>, <code>pg-format</code>, and <a href="express.html"><code>express</code></a>.</p>
+<p>Create a new file in your project called <code>server.js</code> and copy this into it's contents:</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span> <span class="c1">// Server</span>
+<span class="kd">var</span> <span class="nx">pg</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg&#39;</span><span class="p">);</span>             <span class="c1">// Postgres </span>
+<span class="kd">var</span> <span class="nx">format</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg-format&#39;</span><span class="p">);</span>  <span class="c1">// For dynamic SQL queries (a la MySQL ?)</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>              <span class="c1">// Start your server</span>
+
+<span class="kd">var</span> <span class="nx">PGUSER</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span>     <span class="c1">// Definte the username and database</span>
+<span class="kd">var</span> <span class="nx">PGDATABASE</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span> <span class="c1">// previously set up in Postgres.</span>
+
+<span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mf">732</span><span class="p">;</span>                      <span class="c1">// Used so we can reference our earlier insertion.</span>
+
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">user</span><span class="o">:</span> <span class="nx">PGUSER</span><span class="p">,</span>
+  <span class="nx">database</span><span class="o">:</span> <span class="nx">PGDATABASE</span><span class="p">,</span>
+  <span class="nx">max</span><span class="o">:</span> <span class="mf">10</span><span class="p">,</span>                          <span class="c1">// max number of clients in the pool</span>
+  <span class="nx">idleTimeoutMillis</span><span class="o">:</span> <span class="mf">30000</span>          <span class="c1">// how long a client is allowed to remain idle before being closed</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pg</span><span class="p">.</span><span class="nx">Pool</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>     <span class="c1">// Create a new connection instance</span>
+
+<span class="nx">pool</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">client</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Connect to the DB</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>     <span class="c1">// Connect to the Express server</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening on 3000&#39;</span><span class="p">)</span>
+  <span class="p">});</span>
+  <span class="c1">// Build a dynamic query using `age`</span>
+  <span class="kd">var</span> <span class="nx">ageQuery</span> <span class="o">=</span> <span class="nx">format</span><span class="p">(</span><span class="s1">&#39;SELECT * from numbers WHERE age = %L&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
+  <span class="c1">// Query the DB for all rows from the numbers table where age is = 732</span>
+  <span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">ageQuery</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<p>Now in your terminal, run <code>node server.js</code> and assuming the database is still running, if should return:</p>
+<div class="highlight"><pre><span></span>listening on 3000
+{ age: 732 }
+</pre></div>
+<h2>Schemas</h2>
+<p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
+<p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">schema_example</span>
+  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">people</span><span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">age</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">birthday</span> <span class="nb">DATE</span>
+  <span class="p">)</span>
+  <span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">john_club</span> <span class="k">AS</span>
+    <span class="k">SELECT</span> 
+      <span class="o">*</span>
+    <span class="k">FROM</span>
+      <span class="n">people</span>
+    <span class="k">WHERE</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
+</pre></div>
+<h2>Views</h2>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\dt</code></td>
+<td>Display all tables in the database</td>
+</tr>
+<tr>
+<td><code>TABLE x</code></td>
+<td>Show the contents of table x.</td>
+</tr>
+<tr>
+<td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
+<td>Show all schema in a given database</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://hub.packtpub.com/how-setup-postgresql-nodejs/" target="_blank">https://hub.packtpub.com/how-setup-postgresql-nodejs/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-show-tables/" target="_blank">https://www.postgresqltutorial.com/postgresql-show-tables/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-create-schema/" target="_blank">https://www.postgresqltutorial.com/postgresql-create-schema/</a></li>
+<li><a href="https://www.guru99.com/postgresql-view.html" target="_blank">https://www.guru99.com/postgresql-view.html</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>
