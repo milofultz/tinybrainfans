@@ -1,0 +1,38 @@
+---
+title: Fonts (CSS)
+description: Importing and using external fonts properly in CSS.
+---
+
+Importing and using external fonts properly in {{CSS}}.
+
+## Using `@font-face`
+
+```css
+@font-face {
+	font-family: 'Verlag Condensed Bold';
+  src: url('https://brandlive-upload.s3-us-west-2.amazonaws.com/933/documents/1wp6lcexy4/verlagcondensedbold.otf');
+  [ unicode-range: <unicode-range>; ] ||
+  [ font-variant: <font-variant>; ] ||
+  [ font-feature-settings: <font-feature-settings>; ] ||
+  [ font-variation-settings: <font-variation-settings>; ] ||
+  [ font-stretch: <font-stretch>; ] ||
+  font-weight: bold;
+  [ font-style: <font-style>; ]
+}
+```
+
+You can include multiple `src` values via a call to the user's fonts via `local("Font Name")`, `url("...")`, as well as specifying formats after the url (`url("...") format("truetype"),`), all separated by commas and ending with a semicolon.
+
+## `@import` vs. `<link>`
+
+To bring in another stylesheet with a font attached, [Google Fonts](https://fonts.google.com/) and others offer an `@import` option. [This unfortunately is blocking][use link over import] and and will delay all other loading until that import is complete. Instead, include the url in a `<link>` and it will load all elements at the same time.
+
+```html
+<link href='http://fonts.googleapis.com/css?family=Judson:400,400italic,700' rel='stylesheet' type='text/css'>
+```
+
+## References
+
+1. https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face
+
+[use link over import]: https://stackoverflow.com/questions/12316501/including-google-web-fonts-link-or-import/12380004#12380004
