@@ -91,6 +91,16 @@ script.
   // This works too.
 ```
 
+### Self-Closing Tags
+
+```
+hr 
+//- outputs <hr/>
+
+foo/
+//- outputs <foo/>
+```
+
 ### Imports / Include
 
 Pug allows import of HTML directly as well as Pug files.
