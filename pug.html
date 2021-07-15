@@ -107,6 +107,7 @@ span= cold ? &quot;Brr!&quot; : &quot;*panting*&quot;
 //- <span class="nt">&lt;span&gt;</span>Brr!<span class="nt">&lt;/span&gt;</span>
 </pre></div>
 <h3>Iteration</h3>
+<h4>Arrays</h4>
 <div class="highlight"><pre><span></span>- var items = [&#39;candy&#39;, &#39;cake&#39;, &#39;ice cream&#39;];
 
 each item in items
@@ -116,6 +117,20 @@ each item in items
 //- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;candy&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>CANDY<span class="nt">&lt;/p&gt;</span>
 //- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;cake&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>CAKE<span class="nt">&lt;/p&gt;</span>
 //- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;ice-cream&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>ICE CREAM<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+<h4>Objects</h4>
+<div class="highlight"><pre><span></span>- 
+  var people = {
+    &#39;John&#39;: &#39;Johnson&#39;,
+    &#39;Ashley&#39;: &#39;Ashtown&#39;,
+  };
+
+each last, first in people
+  p= first + &#39; &#39; + last
+  
+//- outputs
+//- <span class="nt">&lt;p&gt;</span>John Johnson<span class="nt">&lt;/p&gt;</span>
+//- <span class="nt">&lt;p&gt;</span>Ashley Ashtown<span class="nt">&lt;/p&gt;</span>
 </pre></div>
 <h2>Sublime Text Syntax</h2>
 <p>Packages in <a href="sublime-text.html">Sublime Text</a> are interdependent on each other and many of the default packages are inferior to third-party (e.g. Babel over Javascript). When Pug's Javascript syntax is not cooperating or popping to allow Pug's syntax to take over again, you can <code>Disable Package &gt; Javascript</code> and install <code>Babel</code> and this will cause Pug to correctly highlight conditionals and the succeeding code.</p>

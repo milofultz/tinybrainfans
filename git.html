@@ -55,6 +55,10 @@ Merge a branch (source) into another branch (destination):<ul>
 <div class="highlight"><pre><span></span>git branch --merged <span class="p">|</span> egrep -v <span class="s2">&quot;(^\*|master|main|dev|staging)&quot;</span> <span class="p">|</span> xargs git branch -d
 </pre></div>
 <h2>Cherry Pick</h2>
+<blockquote>
+<p>When should I use cherry-pick? <strong>The short answer is: as rarely as possible.</strong></p>
+</blockquote>
+<p>Cherry picking</p>
 <h2>Revert</h2>
 <p>A revert allows you to go back to a previous commit, reversing those previous between commit X (HEAD) and commit Y(the selected commit). This will create a reversal commit for each commit to be undone between X and Y. In the case of a single commit to be undone, it will make a single reversal commit.</p>
 <p>To revert one or many commits, open your <code>git log</code> and find the commit you want to revert back to. Save this hash.</p>
@@ -92,6 +96,22 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li>Remove the existing files: <code>find . -name {filename} -print0 | xargs -0 git rm -f --ignore-unmatch</code></li>
 <li>Add the file to the gitignore: <code>{filename}</code></li>
 </ul>
+<h2>Credentials</h2>
+<p>If you receive a message like this when trying to push up to your repo:</p>
+<div class="highlight"><pre><span></span><span class="n">remote</span><span class="o">:</span> <span class="n">HTTP</span> <span class="n">Basic</span><span class="o">:</span> <span class="n">Access</span> <span class="n">denied</span>
+<span class="n">fatal</span><span class="o">:</span> <span class="n">Authentication</span> <span class="n">failed</span> <span class="k">for</span> <span class="s1">&#39;https://gitlab.com/myusername/repo.git&#39;</span>
+</pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><span class="n">remote</span><span class="o">:</span> <span class="n">Invalid</span> <span class="n">username</span> <span class="n">or</span> <span class="n">password</span><span class="o">.</span>
+<span class="n">fatal</span><span class="o">:</span> <span class="n">Authentication</span> <span class="n">failed</span> <span class="k">for</span> <span class="s1">&#39;https://github.com/milofultz/tod.git/&#39;</span>
+</pre></div>
+<p>Then you may have revoked or renewed your token and need to reset it. To do so, type this in the terminal:</p>
+<div class="highlight"><pre><span></span>$ git credential reject
+</pre></div>
+<p>And when you receive a new line, enter in <code>url=</code> followed by the url that showed up previously in the error message. Then use ctrl-c or ctrl-d to quit.</p>
+<div class="highlight"><pre><span></span>url=https://github.com/milofultz/tod.git/
+</pre></div>
+<p>On trying to push again, you will get prompted for authentication and it will work.</p>
 <h2>Meta</h2>
 <h3>Use <a href="vim.html">VIM</a> as Editor</h3>
 <ul>
@@ -113,5 +133,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li><a href="https://devconnected.com/how-to-cherry-pick-git-commits/" target="_blank">https://devconnected.com/how-to-cherry-pick-git-commits/</a></li>
 <li><a href="https://phoenixnap.com/kb/git-revert-last-commit" target="_blank">https://phoenixnap.com/kb/git-revert-last-commit</a></li>
 <li><a href="https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given" target="_blank">https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given</a></li>
+<li><a href="https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote" target="_blank">https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote</a></li>
+<li><a href="https://www.git-tower.com/learn/git/faq/cherry-pick/" target="_blank">https://www.git-tower.com/learn/git/faq/cherry-pick/</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

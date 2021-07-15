@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="MongoDB is a NoSQL database management system using documents similar to JSON."><title>MongoDB</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">MongoDB</h1>
+<p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system using documents similar to <a href="json.html">JSON</a>.</p>
+<h2>Getting Started</h2>
+<p>This will start a new project using your local server and mongoose via <a href="node.html">node</a>.</p>
+<h3>Local Machine</h3>
+<p>Install MongoDB using <code>brew services install mongodb-community</code>. Once installed, you can start your local server using <code>brew services start mongodb-community</code> (Be sure to stop the server when completed with your work using <code>brew services stop mongodb-community</code>).</p>
+<p>In the terminal, start the mongo shell: <code>mongo</code>.</p>
+<h3>Database</h3>
+<p>Create a new database: </p>
+<h3>Node</h3>
+<p>Create a new folder and initialize a new node project using <a href="npm.html">npm</a>: <code>npm init -y</code>. Then install <code>npm i mongoose</code>.</p>
+<p>Create a new file called <code>server.js</code> and copy this into the contents:</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>                <span class="c1">// import Mongoose</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;mongodb://localhost:27017/test&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="c1">// create connection to localhost</span>
+  <span class="nx">useNewUrlParser</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> 
+  <span class="nx">useUnifiedTopology</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="s1">&#39;connection error:&#39;</span><span class="p">));</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>                            <span class="c1">// Inside here is where the action happens</span>
+  <span class="kd">const</span> <span class="nx">kittySchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span>
+  <span class="p">});</span>
+  <span class="kd">const</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span> <span class="p">});</span> <span class="c1">// Create schema for collection</span>
+  
+  <span class="kd">const</span> <span class="nx">kitty</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zildjian&#39;</span> <span class="p">});</span>         <span class="c1">// Create a new document of Cat</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitty</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>                             <span class="c1">// &#39;Zildjian&#39;</span>
+  <span class="nx">kitty</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;meow&#39;</span><span class="p">));</span>                   <span class="c1">// Save the new document in the Cat collection</span>
+<span class="p">});</span>
+</pre></div>
+<p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
+<h2>Syntax</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show dbs</code></td>
+<td>List all databases on the given server</td>
+</tr>
+<tr>
+<td><code>use database_name</code></td>
+<td>Enter into <code>database_name</code>, preparing to query.</td>
+</tr>
+<tr>
+<td><code>show collections</code> / <code>show tables</code></td>
+<td>List all collections/tables in the selected database.</td>
+</tr>
+<tr>
+<td><code>db.collection_name.find()</code></td>
+<td>Return all documents in collection <code>collection_name</code>.</td>
+</tr>
+<tr>
+<td><code>db.people.find({name: &#x27;John&#x27;})</code></td>
+<td>Return all documents in <code>people</code> whose name is John.</td>
+</tr>
+<tr>
+<td><code>db.people.insert({name: &#x27;John&#x27;, age: 40})</code></td>
+<td>Create a document in <code>people</code> (note: if a new collection is selected via <code>use</code>, this will create the new collection)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
+<li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
+<li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
+<li><a href="https://www.npmjs.com/package/mongoose" target="_blank">https://www.npmjs.com/package/mongoose</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

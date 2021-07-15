@@ -73,6 +73,20 @@
 <td>Finally, SQL can store binary data in blobs right in the database. These values are often opaque to the database, so you usually have to store them with the right metadata to requery them.</td>
 </tr>
 </tbody></table><h2>Table Constraints</h2>
+<p>Constraints are a special expression in the table's initialization that directs the table to operate in a specific way.</p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">products</span> <span class="p">(</span>
+  <span class="n">product_id</span> <span class="nb">INT</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span>
+  <span class="n">name</span> <span class="nb">TEXT</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">reviews</span> <span class="p">(</span>
+  <span class="n">review_id</span> <span class="nb">INT</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span>
+  <span class="n">product_id</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span>
+    <span class="k">REFERENCES</span> <span class="n">products</span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
 <table>
 <thead>
 <tr>
@@ -328,5 +342,7 @@
 <ol>
 <li><a href="common-sql-queries.html">Common SQL Queries</a></li>
 <li><a href="https://sqlbolt.com/" target="_blank">https://sqlbolt.com/</a></li>
+<li><a href="https://www.mysqltutorial.org/mysql-primary-key/" target="_blank">https://www.mysqltutorial.org/mysql-primary-key/</a></li>
+<li><a href="https://www.educba.com/mysql-constraints/" target="_blank">https://www.educba.com/mysql-constraints/</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

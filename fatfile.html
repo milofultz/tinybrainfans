@@ -103,6 +103,10 @@ Merge a branch (source) into another branch (destination):<ul>
 <div class="highlight"><pre><span></span>git branch --merged <span class="p">|</span> egrep -v <span class="s2">&quot;(^\*|master|main|dev|staging)&quot;</span> <span class="p">|</span> xargs git branch -d
 </pre></div>
 <h2>Cherry Pick</h2>
+<blockquote>
+<p>When should I use cherry-pick? <strong>The short answer is: as rarely as possible.</strong></p>
+</blockquote>
+<p>Cherry picking</p>
 <h2>Revert</h2>
 <p>A revert allows you to go back to a previous commit, reversing those previous between commit X (HEAD) and commit Y(the selected commit). This will create a reversal commit for each commit to be undone between X and Y. In the case of a single commit to be undone, it will make a single reversal commit.</p>
 <p>To revert one or many commits, open your <code>git log</code> and find the commit you want to revert back to. Save this hash.</p>
@@ -140,6 +144,22 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li>Remove the existing files: <code>find . -name {filename} -print0 | xargs -0 git rm -f --ignore-unmatch</code></li>
 <li>Add the file to the gitignore: <code>{filename}</code></li>
 </ul>
+<h2>Credentials</h2>
+<p>If you receive a message like this when trying to push up to your repo:</p>
+<div class="highlight"><pre><span></span><span class="n">remote</span><span class="o">:</span> <span class="n">HTTP</span> <span class="n">Basic</span><span class="o">:</span> <span class="n">Access</span> <span class="n">denied</span>
+<span class="n">fatal</span><span class="o">:</span> <span class="n">Authentication</span> <span class="n">failed</span> <span class="k">for</span> <span class="s1">&#39;https://gitlab.com/myusername/repo.git&#39;</span>
+</pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><span class="n">remote</span><span class="o">:</span> <span class="n">Invalid</span> <span class="n">username</span> <span class="n">or</span> <span class="n">password</span><span class="o">.</span>
+<span class="n">fatal</span><span class="o">:</span> <span class="n">Authentication</span> <span class="n">failed</span> <span class="k">for</span> <span class="s1">&#39;https://github.com/milofultz/tod.git/&#39;</span>
+</pre></div>
+<p>Then you may have revoked or renewed your token and need to reset it. To do so, type this in the terminal:</p>
+<div class="highlight"><pre><span></span>$ git credential reject
+</pre></div>
+<p>And when you receive a new line, enter in <code>url=</code> followed by the url that showed up previously in the error message. Then use ctrl-c or ctrl-d to quit.</p>
+<div class="highlight"><pre><span></span>url=https://github.com/milofultz/tod.git/
+</pre></div>
+<p>On trying to push again, you will get prompted for authentication and it will work.</p>
 <h2>Meta</h2>
 <h3>Use <a href="vim.html">VIM</a> as Editor</h3>
 <ul>
@@ -161,6 +181,8 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li><a href="https://devconnected.com/how-to-cherry-pick-git-commits/" target="_blank">https://devconnected.com/how-to-cherry-pick-git-commits/</a></li>
 <li><a href="https://phoenixnap.com/kb/git-revert-last-commit" target="_blank">https://phoenixnap.com/kb/git-revert-last-commit</a></li>
 <li><a href="https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given" target="_blank">https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given</a></li>
+<li><a href="https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote" target="_blank">https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote</a></li>
+<li><a href="https://www.git-tower.com/learn/git/faq/cherry-pick/" target="_blank">https://www.git-tower.com/learn/git/faq/cherry-pick/</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></section></article><article><h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
 <p>Your README file contains a high level overview for people interested in using, contributing, or perusing your code.</p>
@@ -411,7 +433,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 </ul>
 </article><article><h1><a href="database.html">database</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="sql.html">SQL</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section></article><article><h1><a href="handlebars.html">Handlebars</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="sql.html">SQL</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section></article><article><h1><a href="handlebars.html">Handlebars</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li></ul></section></article><article><h1><a href="jinja2.html">Jinja2</a></h1>
 <p>There's currently nothing here.</p>
@@ -896,7 +918,7 @@ $ thing1 <span class="p">|</span> thing2
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="node.html">node</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="npm.html">NPM</a></li><li><a href="nvm.html">NVM</a></li><li><a href="postgres.html">Postgres</a></li></ul></section></article><article><h1><a href="nvm.html">NVM</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="npm.html">NPM</a></li><li><a href="nvm.html">NVM</a></li><li><a href="postgres.html">Postgres</a></li></ul></section></article><article><h1><a href="nvm.html">NVM</a></h1>
 <p>Node Version Manager allows you to use multiple diferent versions of <a href="node.html">node</a> and switch between them easily.</p>
 <h2>Installation</h2>
 <h3>NVM</h3>
@@ -1084,6 +1106,20 @@ $ nvm uninstall xx.xx.x
 <td>Finally, SQL can store binary data in blobs right in the database. These values are often opaque to the database, so you usually have to store them with the right metadata to requery them.</td>
 </tr>
 </tbody></table><h2>Table Constraints</h2>
+<p>Constraints are a special expression in the table's initialization that directs the table to operate in a specific way.</p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">products</span> <span class="p">(</span>
+  <span class="n">product_id</span> <span class="nb">INT</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span>
+  <span class="n">name</span> <span class="nb">TEXT</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">reviews</span> <span class="p">(</span>
+  <span class="n">review_id</span> <span class="nb">INT</span> <span class="n">AUTOINCREMENT</span><span class="p">,</span>
+  <span class="n">product_id</span> <span class="nb">INT</span><span class="p">,</span>
+  <span class="k">FOREIGN</span> <span class="k">KEY</span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span>
+    <span class="k">REFERENCES</span> <span class="n">products</span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
 <table>
 <thead>
 <tr>
@@ -1339,6 +1375,8 @@ $ nvm uninstall xx.xx.x
 <ol>
 <li><a href="common-sql-queries.html">Common SQL Queries</a></li>
 <li><a href="https://sqlbolt.com/" target="_blank">https://sqlbolt.com/</a></li>
+<li><a href="https://www.mysqltutorial.org/mysql-primary-key/" target="_blank">https://www.mysqltutorial.org/mysql-primary-key/</a></li>
+<li><a href="https://www.educba.com/mysql-constraints/" target="_blank">https://www.educba.com/mysql-constraints/</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section></article><article><h1>SQLite3 (Python)</h1>
 <p>How to use <a href="sqlite.html">SQLite</a> with <a href="python.html">Python</a>.</p>
@@ -1449,7 +1487,7 @@ $ nvm uninstall xx.xx.x
 </ol>
 </article><article><h1><a href="json.html">JSON</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="json-(python).html">JSON (Python)</a></li></ul></section></article><article><h1>JSON (Python)</h1>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="json-(python).html">JSON (Python)</a></li><li><a href="mongodb.html">MongoDB</a></li></ul></section></article><article><h1>JSON (Python)</h1>
 <h2>Load <a href="json.html">JSON</a> from file</h2>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -2974,108 +3012,12 @@ Hello, World
 <li><a href="https://learn.shayhowe.com/html-css/organizing-data-with-tables/" target="_blank">https://learn.shayhowe.com/html-css/organizing-data-with-tables/</a></li>
 <li><a href="https://www.456bereastreet.com/archive/200410/bring_on_the_tables/" target="_blank">https://www.456bereastreet.com/archive/200410/bring_on_the_tables/</a></li>
 </ol>
-</article><article><h1><a href="http-methods.html">HTTP Methods</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="html-forms.html">HTML Forms</a></li></ul></section></article><article><h1><a href="html-forms.html">HTML Forms</a></h1>
-<p>The basics of <a href="html.html">HTML</a> forms, <a href="semantic-html.html">semantic HTML</a> forms, and validation.</p>
-<h2>Form Element</h2>
-<p>The <code>action</code> attribute that defines the action to be done upon submission as an address or href. The <code>method</code> is the <a href="http-methods.html">HTTP method</a> to use in completing the action.</p>
-<h2>Input Types</h2>
-<h3>Input</h3>
-<ul>
-<li>
-Pre-HTML5 input types:<ul>
-<li><code>button</code></li>
-<li><code>checkbox</code></li>
-<li><code>file</code></li>
-<li><code>hidden</code></li>
-<li><code>image</code></li>
-<li><code>password</code></li>
-<li><code>radio</code></li>
-<li><code>reset</code></li>
-<li><code>submit</code></li>
-<li><code>text</code></li>
-</ul>
-</li>
-<li>
-HTML5 input types:<ul>
-<li><code>color</code></li>
-<li><code>date</code></li>
-<li><code>datetime</code></li>
-<li><code>email</code></li>
-<li><code>month</code></li>
-<li><code>number</code></li>
-<li><code>range</code></li>
-<li><code>search</code></li>
-<li><code>tel</code></li>
-<li><code>time</code></li>
-<li><code>url</code></li>
-<li><code>week</code></li>
-</ul>
-</li>
-</ul>
-<p>These values were added to <strong>provide clearer semantic meaning</strong> for inputs as well as to provide better controls for users. Should a browser not understand one of these HTML5 type attribute values, it will automatically <strong>fall back to the</strong> <strong>text</strong> <strong>attribute</strong> value.</p>
-<h3>Label</h3>
-<p>The <code>label</code> element provides a label for an input element, with its <code>for=&quot;&quot;</code> attribute referencing the <code>id</code> attribute of the element it is to label.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;thing&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;thing&quot;</span><span class="p">&gt;</span>Thing!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-</pre></div>
-<h3>Select</h3>
-<p>The <code>size</code> attribute chooses how many choices are visible at a time. The boolean attribute <code>multiple</code>, when added to the <code>&lt;select&gt;</code> element for a standard drop-down list, allows a user to choose more than one option from the list at a time. </p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;things&quot;</span><span class="p">&gt;</span>Things!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">multiple</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing1&quot;</span><span class="p">&gt;</span>Thing 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Thing 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
-</pre></div>
-<h3>Textarea</h3>
-<p>A <code>textarea</code> has <code>rows</code> and <code>columns</code> attributes to determine the size, but can be done more efficiently with CSS styling.</p>
-<h3>Button</h3>
-<p>Always include <code>type=&quot;button&quot;</code> for compatability across browsers.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span><span class="p">&gt;</span>Click Here<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-</pre></div>
-<h3>Radio Buttons and Checkboxes</h3>
-<p>A radio button and checkbox <code>input</code> element can be checked by default by adding the <code>checked</code> boolean attribute to the <code>input</code> field. This requires them being within a <code>form</code> element; otherwise they will not select correctly in all browsers.</p>
-<h3>Fieldsets and Legends</h3>
-<p><strong>Fieldsets group form controls and labels into organized sections</strong>. Much like a <code>&lt;section&gt;</code> or other structural element, the <code>&lt;fieldset&gt;</code> is a block-level element that wraps related elements, specifically within a <code>&lt;form&gt;</code> element, for better organization. The <strong><code>&lt;legend&gt;</code> element wraps text describing the form controls that fall within the fieldset</strong>. The markup should include the <code>&lt;legend&gt;</code> element directly after the opening <code>&lt;fieldset&gt;</code> tag.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">fieldset</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>Thing Description:<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;things&quot;</span><span class="p">&gt;</span>Things!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">multiple</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing1&quot;</span><span class="p">&gt;</span>Thing 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Thing 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-</pre></div>
-<h2>Field Validation</h2>
-<h3>Input</h3>
-<p>Use the correct input type (text, email, password, etc.)</p>
-<p>The <code>pattern</code> attribute is used to specify a <strong><a href="regular-expressions.html">regular expression</a></strong> and the field value must match this pattern. This attribute can be used with input types like text, password, email, url, tel and search. Validation occurs upon submission.</p>
-<div class="highlight"><pre><span></span><span class="c">&lt;!-- Should match if five numbers from 1 to 4 appear in a row --&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">pattern</span><span class="o">=</span><span class="s">&quot;[1-4]{5}&quot;</span><span class="p">&gt;</span>
-</pre></div>
-<p>A <code>required</code> attribute indicates that a value must be specified for the input element.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
-</pre></div>
-<p><code>maxlength</code> is an integer value that specifies the maximum number of characters allowed for a particular input field.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;20&quot;</span><span class="p">&gt;</span>
-</pre></div>
-<p><code>min</code> &amp; <code>max</code> attributes specify the lower and upper limit respectively for an input element.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;5&quot;</span><span class="p">&gt;</span>
-</pre></div>
-<h2>References</h2>
-<ol>
-<li><a href="https://www.w3schools.com/html/html_form_elements.asp" target="_blank">https://www.w3schools.com/html/html_form_elements.asp</a></li>
-<li><a href="https://stackoverflow.com/questions/3606657/radio-buttons-checked-attribute-not-working" target="_blank">https://stackoverflow.com/questions/3606657/radio-buttons-checked-attribute-not-working</a></li>
-</ol>
 </article><article><h1><a href="npm.html">NPM</a></h1>
 <p>Node Package Manager helps with <a href="node.html">Node</a> development in <a href="javascript.html">Javascript</a>.</p>
 <h2>devDependencies</h2>
 <p>You can save packages as a devDependency by using <code>--save-dev</code> as an option in the CLI.</p>
 <p><code>devDependencies</code> are for the <strong>developers</strong> of the project. Things like test frameworks, documentation, etc. If someone downloads and uses your project, they won't have the dev dependencies installed. If someone wants to build on your project, they can download the dev dependencies.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="postgres.html">Postgres</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li></ul></section></article><article><h1><a href="emmet.html">Emmet</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li></ul></section></article><article><h1><a href="emmet.html">Emmet</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li></ul></section></article><article><h1><a href="sublime-text.html">Sublime Text</a></h1>
 <p>Sublime Text is an application made for software development.</p>
@@ -3212,6 +3154,7 @@ span= cold ? &quot;Brr!&quot; : &quot;*panting*&quot;
 //- <span class="nt">&lt;span&gt;</span>Brr!<span class="nt">&lt;/span&gt;</span>
 </pre></div>
 <h3>Iteration</h3>
+<h4>Arrays</h4>
 <div class="highlight"><pre><span></span>- var items = [&#39;candy&#39;, &#39;cake&#39;, &#39;ice cream&#39;];
 
 each item in items
@@ -3221,6 +3164,20 @@ each item in items
 //- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;candy&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>CANDY<span class="nt">&lt;/p&gt;</span>
 //- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;cake&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>CAKE<span class="nt">&lt;/p&gt;</span>
 //- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;ice-cream&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>ICE CREAM<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+<h4>Objects</h4>
+<div class="highlight"><pre><span></span>- 
+  var people = {
+    &#39;John&#39;: &#39;Johnson&#39;,
+    &#39;Ashley&#39;: &#39;Ashtown&#39;,
+  };
+
+each last, first in people
+  p= first + &#39; &#39; + last
+  
+//- outputs
+//- <span class="nt">&lt;p&gt;</span>John Johnson<span class="nt">&lt;/p&gt;</span>
+//- <span class="nt">&lt;p&gt;</span>Ashley Ashtown<span class="nt">&lt;/p&gt;</span>
 </pre></div>
 <h2>Sublime Text Syntax</h2>
 <p>Packages in <a href="sublime-text.html">Sublime Text</a> are interdependent on each other and many of the default packages are inferior to third-party (e.g. Babel over Javascript). When Pug's Javascript syntax is not cooperating or popping to allow Pug's syntax to take over again, you can <code>Disable Package &gt; Javascript</code> and install <code>Babel</code> and this will cause Pug to correctly highlight conditionals and the succeeding code.</p>
@@ -3233,111 +3190,101 @@ each item in items
 <li><a href="https://pugjs.org/language/includes.html" target="_blank">https://pugjs.org/language/includes.html</a></li>
 <li><a href="https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank">https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="homebrew.html">homebrew</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section></article><article><h1><a href="http-methods.html">HTTP Methods</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="postgres.html">Postgres</a></li></ul></section></article><article><h1><a href="postgres.html">Postgres</a></h1>
-<p>Postgres is a relational <a href="database.html">database</a> management system.</p>
-<h2>Getting Started</h2>
-<p>This tutorial will be for getting started with Postgres using <a href="node.html">node</a> on a <a href="macos.html">Mac</a>.</p>
-<h3>Local Machine</h3>
-<h4>Installation</h4>
-<p>Install Postgres using <a href="homebrew.html">homebrew</a>: <code>brew install postgres</code></p>
-<p>In a new terminal window, start up the local database: <code>postgres -D /usr/local/var/postgres</code></p>
-<p>If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>.</p>
-<h4>Initialization</h4>
-<p>Create a new table in your database: <code>CREATE TABLE numbers( age integer );</code></p>
-<p>Insert a value into the new table: <code>INSERT INTO numbers VALUES (732);</code></p>
-<h3>Javascript</h3>
-<p>Initialize a new <a href="npm.html">npm</a> project, and then install <code>pg</code>, <code>pg-format</code>, and <a href="express.html"><code>express</code></a>.</p>
-<p>Create a new file in your project called <code>server.js</code> and copy this into it's contents:</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span> <span class="c1">// Server</span>
-<span class="kd">var</span> <span class="nx">pg</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg&#39;</span><span class="p">);</span>             <span class="c1">// Postgres </span>
-<span class="kd">var</span> <span class="nx">format</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg-format&#39;</span><span class="p">);</span>  <span class="c1">// For dynamic SQL queries (a la MySQL ?)</span>
-
-<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>              <span class="c1">// Start your server</span>
-
-<span class="kd">var</span> <span class="nx">PGUSER</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span>     <span class="c1">// Definte the username and database</span>
-<span class="kd">var</span> <span class="nx">PGDATABASE</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span> <span class="c1">// previously set up in Postgres.</span>
-
-<span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mf">732</span><span class="p">;</span>                      <span class="c1">// Used so we can reference our earlier insertion.</span>
-
-<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">user</span><span class="o">:</span> <span class="nx">PGUSER</span><span class="p">,</span>
-  <span class="nx">database</span><span class="o">:</span> <span class="nx">PGDATABASE</span><span class="p">,</span>
-  <span class="nx">max</span><span class="o">:</span> <span class="mf">10</span><span class="p">,</span>                          <span class="c1">// max number of clients in the pool</span>
-  <span class="nx">idleTimeoutMillis</span><span class="o">:</span> <span class="mf">30000</span>          <span class="c1">// how long a client is allowed to remain idle before being closed</span>
-<span class="p">};</span>
-
-<span class="kd">var</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pg</span><span class="p">.</span><span class="nx">Pool</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>     <span class="c1">// Create a new connection instance</span>
-
-<span class="nx">pool</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">client</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Connect to the DB</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>     <span class="c1">// Connect to the Express server</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening on 3000&#39;</span><span class="p">)</span>
-  <span class="p">});</span>
-  <span class="c1">// Build a dynamic query using `age`</span>
-  <span class="kd">var</span> <span class="nx">ageQuery</span> <span class="o">=</span> <span class="nx">format</span><span class="p">(</span><span class="s1">&#39;SELECT * from numbers WHERE age = %L&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
-  <span class="c1">// Query the DB for all rows from the numbers table where age is = 732</span>
-  <span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">ageQuery</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
-  <span class="p">});</span>
-<span class="p">});</span>
+<section><h2>Backlinks:</h2><ul><li><a href="html-forms.html">HTML Forms</a></li></ul></section></article><article><h1><a href="html-forms.html">HTML Forms</a></h1>
+<p>The basics of <a href="html.html">HTML</a> forms, <a href="semantic-html.html">semantic HTML</a> forms, and validation.</p>
+<h2>Form Element</h2>
+<p>The <code>action</code> attribute that defines the action to be done upon submission as an address or href. The <code>method</code> is the <a href="http-methods.html">HTTP method</a> to use in completing the action.</p>
+<h2>Input Types</h2>
+<h3>Input</h3>
+<ul>
+<li>
+Pre-HTML5 input types:<ul>
+<li><code>button</code></li>
+<li><code>checkbox</code></li>
+<li><code>file</code></li>
+<li><code>hidden</code></li>
+<li><code>image</code></li>
+<li><code>password</code></li>
+<li><code>radio</code></li>
+<li><code>reset</code></li>
+<li><code>submit</code></li>
+<li><code>text</code></li>
+</ul>
+</li>
+<li>
+HTML5 input types:<ul>
+<li><code>color</code></li>
+<li><code>date</code></li>
+<li><code>datetime</code></li>
+<li><code>email</code></li>
+<li><code>month</code></li>
+<li><code>number</code></li>
+<li><code>range</code></li>
+<li><code>search</code></li>
+<li><code>tel</code></li>
+<li><code>time</code></li>
+<li><code>url</code></li>
+<li><code>week</code></li>
+</ul>
+</li>
+</ul>
+<p>These values were added to <strong>provide clearer semantic meaning</strong> for inputs as well as to provide better controls for users. Should a browser not understand one of these HTML5 type attribute values, it will automatically <strong>fall back to the</strong> <strong>text</strong> <strong>attribute</strong> value.</p>
+<h3>Label</h3>
+<p>The <code>label</code> element provides a label for an input element, with its <code>for=&quot;&quot;</code> attribute referencing the <code>id</code> attribute of the element it is to label.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;thing&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;thing&quot;</span><span class="p">&gt;</span>Thing!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
 </pre></div>
-<p>Now in your terminal, run <code>node server.js</code> and assuming the database is still running, if should return:</p>
-<div class="highlight"><pre><span></span>listening on 3000
-{ age: 732 }
+<h3>Select</h3>
+<p>The <code>size</code> attribute chooses how many choices are visible at a time. The boolean attribute <code>multiple</code>, when added to the <code>&lt;select&gt;</code> element for a standard drop-down list, allows a user to choose more than one option from the list at a time. </p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;things&quot;</span><span class="p">&gt;</span>Things!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">multiple</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing1&quot;</span><span class="p">&gt;</span>Thing 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Thing 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
 </pre></div>
-<h2>Schemas</h2>
-<p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
-<p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">schema_example</span>
-  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">people</span><span class="p">(</span>
-    <span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-    <span class="n">name</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="n">age</span> <span class="nb">INT</span><span class="p">,</span>
-    <span class="n">birthday</span> <span class="nb">DATE</span>
-  <span class="p">)</span>
-  <span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">john_club</span> <span class="k">AS</span>
-    <span class="k">SELECT</span> 
-      <span class="o">*</span>
-    <span class="k">FROM</span>
-      <span class="n">people</span>
-    <span class="k">WHERE</span>
-      <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
+<h3>Textarea</h3>
+<p>A <code>textarea</code> has <code>rows</code> and <code>columns</code> attributes to determine the size, but can be done more efficiently with CSS styling.</p>
+<h3>Button</h3>
+<p>Always include <code>type=&quot;button&quot;</code> for compatability across browsers.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span><span class="p">&gt;</span>Click Here<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </pre></div>
-<h2>Views</h2>
-<h2>Commands</h2>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\dt</code></td>
-<td>Display all tables in the database</td>
-</tr>
-<tr>
-<td><code>TABLE x</code></td>
-<td>Show the contents of table x.</td>
-</tr>
-<tr>
-<td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
-<td>Show all schema in a given database</td>
-</tr>
-</tbody></table><h2>References</h2>
+<h3>Radio Buttons and Checkboxes</h3>
+<p>A radio button and checkbox <code>input</code> element can be checked by default by adding the <code>checked</code> boolean attribute to the <code>input</code> field. This requires them being within a <code>form</code> element; otherwise they will not select correctly in all browsers.</p>
+<h3>Fieldsets and Legends</h3>
+<p><strong>Fieldsets group form controls and labels into organized sections</strong>. Much like a <code>&lt;section&gt;</code> or other structural element, the <code>&lt;fieldset&gt;</code> is a block-level element that wraps related elements, specifically within a <code>&lt;form&gt;</code> element, for better organization. The <strong><code>&lt;legend&gt;</code> element wraps text describing the form controls that fall within the fieldset</strong>. The markup should include the <code>&lt;legend&gt;</code> element directly after the opening <code>&lt;fieldset&gt;</code> tag.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">legend</span><span class="p">&gt;</span>Thing Description:<span class="p">&lt;/</span><span class="nt">legend</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;things&quot;</span><span class="p">&gt;</span>Things!<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;things&quot;</span> <span class="na">multiple</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing1&quot;</span><span class="p">&gt;</span>Thing 1<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;thing2&quot;</span> <span class="na">selected</span><span class="p">&gt;</span>Thing 2<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">fieldset</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+<h2>Field Validation</h2>
+<h3>Input</h3>
+<p>Use the correct input type (text, email, password, etc.)</p>
+<p>The <code>pattern</code> attribute is used to specify a <strong><a href="regular-expressions.html">regular expression</a></strong> and the field value must match this pattern. This attribute can be used with input types like text, password, email, url, tel and search. Validation occurs upon submission.</p>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- Should match if five numbers from 1 to 4 appear in a row --&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">pattern</span><span class="o">=</span><span class="s">&quot;[1-4]{5}&quot;</span><span class="p">&gt;</span>
+</pre></div>
+<p>A <code>required</code> attribute indicates that a value must be specified for the input element.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+</pre></div>
+<p><code>maxlength</code> is an integer value that specifies the maximum number of characters allowed for a particular input field.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;20&quot;</span><span class="p">&gt;</span>
+</pre></div>
+<p><code>min</code> &amp; <code>max</code> attributes specify the lower and upper limit respectively for an input element.</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;5&quot;</span><span class="p">&gt;</span>
+</pre></div>
+<h2>References</h2>
 <ol>
-<li><a href="https://hub.packtpub.com/how-setup-postgresql-nodejs/" target="_blank">https://hub.packtpub.com/how-setup-postgresql-nodejs/</a></li>
-<li><a href="https://www.postgresqltutorial.com/postgresql-show-tables/" target="_blank">https://www.postgresqltutorial.com/postgresql-show-tables/</a></li>
-<li><a href="https://www.postgresqltutorial.com/postgresql-create-schema/" target="_blank">https://www.postgresqltutorial.com/postgresql-create-schema/</a></li>
-<li><a href="https://www.guru99.com/postgresql-view.html" target="_blank">https://www.guru99.com/postgresql-view.html</a></li>
+<li><a href="https://www.w3schools.com/html/html_form_elements.asp" target="_blank">https://www.w3schools.com/html/html_form_elements.asp</a></li>
+<li><a href="https://stackoverflow.com/questions/3606657/radio-buttons-checked-attribute-not-working" target="_blank">https://stackoverflow.com/questions/3606657/radio-buttons-checked-attribute-not-working</a></li>
 </ol>
 </article><article><h1><a href="webpack.html">Webpack</a></h1>
 <p>There's currently nothing here.</p>
@@ -4663,7 +4610,94 @@ each item in items
 </ol>
 </article><article><h1><a href="jsx.html">JSX</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li></ul></section></article><article><h1>C (Programming)</h1>
+<section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li></ul></section></article><article><h1><a href="nosql.html">NoSQL</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section></article><article><h1><a href="mongodb.html">MongoDB</a></h1>
+<p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system using documents similar to <a href="json.html">JSON</a>.</p>
+<h2>Getting Started</h2>
+<p>This will start a new project using your local server and mongoose via <a href="node.html">node</a>.</p>
+<h3>Local Machine</h3>
+<p>Install MongoDB using <code>brew services install mongodb-community</code>. Once installed, you can start your local server using <code>brew services start mongodb-community</code> (Be sure to stop the server when completed with your work using <code>brew services stop mongodb-community</code>).</p>
+<p>In the terminal, start the mongo shell: <code>mongo</code>.</p>
+<h3>Database</h3>
+<p>Create a new database: </p>
+<h3>Node</h3>
+<p>Create a new folder and initialize a new node project using <a href="npm.html">npm</a>: <code>npm init -y</code>. Then install <code>npm i mongoose</code>.</p>
+<p>Create a new file called <code>server.js</code> and copy this into the contents:</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>                <span class="c1">// import Mongoose</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;mongodb://localhost:27017/test&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="c1">// create connection to localhost</span>
+  <span class="nx">useNewUrlParser</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> 
+  <span class="nx">useUnifiedTopology</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="s1">&#39;connection error:&#39;</span><span class="p">));</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>                            <span class="c1">// Inside here is where the action happens</span>
+  <span class="kd">const</span> <span class="nx">kittySchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span>
+  <span class="p">});</span>
+  <span class="kd">const</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span> <span class="p">});</span> <span class="c1">// Create schema for collection</span>
+  
+  <span class="kd">const</span> <span class="nx">kitty</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zildjian&#39;</span> <span class="p">});</span>         <span class="c1">// Create a new document of Cat</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitty</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>                             <span class="c1">// &#39;Zildjian&#39;</span>
+  <span class="nx">kitty</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;meow&#39;</span><span class="p">));</span>                   <span class="c1">// Save the new document in the Cat collection</span>
+<span class="p">});</span>
+</pre></div>
+<p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
+<h2>Syntax</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show dbs</code></td>
+<td>List all databases on the given server</td>
+</tr>
+<tr>
+<td><code>use database_name</code></td>
+<td>Enter into <code>database_name</code>, preparing to query.</td>
+</tr>
+<tr>
+<td><code>show collections</code> / <code>show tables</code></td>
+<td>List all collections/tables in the selected database.</td>
+</tr>
+<tr>
+<td><code>db.collection_name.find()</code></td>
+<td>Return all documents in collection <code>collection_name</code>.</td>
+</tr>
+<tr>
+<td><code>db.people.find({name: &#x27;John&#x27;})</code></td>
+<td>Return all documents in <code>people</code> whose name is John.</td>
+</tr>
+<tr>
+<td><code>db.people.insert({name: &#x27;John&#x27;, age: 40})</code></td>
+<td>Create a document in <code>people</code> (note: if a new collection is selected via <code>use</code>, this will create the new collection)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
+<li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
+<li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
+<li><a href="https://www.npmjs.com/package/mongoose" target="_blank">https://www.npmjs.com/package/mongoose</a></li>
+</ol>
+</article><article><h1>C (Programming)</h1>
 <p>C is a programming language that is very low-level, compiling down to <a href="assembly.html">assembly</a> language.</p>
 <h2>Hello, World</h2>
 <h3>Code</h3>
@@ -4732,6 +4766,112 @@ each item in items
 <ol>
 <li><a href="https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf" target="_blank">https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf</a></li>
 <li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
+</ol>
+</article><article><h1><a href="homebrew.html">homebrew</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="postgres.html">Postgres</a></li></ul></section></article><article><h1><a href="postgres.html">Postgres</a></h1>
+<p>Postgres is a relational <a href="database.html">database</a> management system.</p>
+<h2>Getting Started</h2>
+<p>This tutorial will be for getting started with Postgres using <a href="node.html">node</a> on a <a href="macos.html">Mac</a>.</p>
+<h3>Local Machine</h3>
+<h4>Installation</h4>
+<p>Install Postgres using <a href="homebrew.html">homebrew</a>: <code>brew install postgres</code></p>
+<p>In a new terminal window, start up the local database: <code>postgres -U username -d database_name</code>, filling in the blanks as needed. If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>. The DB can be also started using <code>brew services start postgres</code> (Be sure to stop the server when completed with your work using <code>brew services stop postgres</code>).</p>
+<p>To enter into interactive mode, in your terminal, enter <code>psql</code>. From here, you can enter in any queries you'd like. Ensure they all end with a semicolon, or else you will not get any return back and it will throw.</p>
+<h4>Initialization</h4>
+<p>Create a new table in your database: <code>CREATE TABLE numbers( age integer );</code></p>
+<p>Insert a value into the new table: <code>INSERT INTO numbers VALUES (732);</code></p>
+<h3>Javascript</h3>
+<p>Initialize a new <a href="npm.html">npm</a> project, and then install <code>pg</code>, <code>pg-format</code>, and <a href="express.html"><code>express</code></a>.</p>
+<p>Create a new file in your project called <code>server.js</code> and copy this into it's contents:</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span> <span class="c1">// Server</span>
+<span class="kd">var</span> <span class="nx">pg</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg&#39;</span><span class="p">);</span>             <span class="c1">// Postgres </span>
+<span class="kd">var</span> <span class="nx">format</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg-format&#39;</span><span class="p">);</span>  <span class="c1">// For dynamic SQL queries (a la MySQL ?)</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>              <span class="c1">// Start your server</span>
+
+<span class="kd">var</span> <span class="nx">PGUSER</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span>     <span class="c1">// Definte the username and database</span>
+<span class="kd">var</span> <span class="nx">PGDATABASE</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span> <span class="c1">// previously set up in Postgres.</span>
+
+<span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mf">732</span><span class="p">;</span>                      <span class="c1">// Used so we can reference our earlier insertion.</span>
+
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">user</span><span class="o">:</span> <span class="nx">PGUSER</span><span class="p">,</span>
+  <span class="nx">database</span><span class="o">:</span> <span class="nx">PGDATABASE</span><span class="p">,</span>
+  <span class="nx">max</span><span class="o">:</span> <span class="mf">10</span><span class="p">,</span>                          <span class="c1">// max number of clients in the pool</span>
+  <span class="nx">idleTimeoutMillis</span><span class="o">:</span> <span class="mf">30000</span>          <span class="c1">// how long a client is allowed to remain idle before being closed</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pg</span><span class="p">.</span><span class="nx">Pool</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>     <span class="c1">// Create a new connection instance</span>
+
+<span class="nx">pool</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">client</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Connect to the DB</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>     <span class="c1">// Connect to the Express server</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening on 3000&#39;</span><span class="p">)</span>
+  <span class="p">});</span>
+  <span class="c1">// Build a dynamic query using `age`</span>
+  <span class="kd">var</span> <span class="nx">ageQuery</span> <span class="o">=</span> <span class="nx">format</span><span class="p">(</span><span class="s1">&#39;SELECT * from numbers WHERE age = %L&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
+  <span class="c1">// Query the DB for all rows from the numbers table where age is = 732</span>
+  <span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">ageQuery</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<p>Now in your terminal, run <code>node server.js</code> and assuming the database is still running, if should return:</p>
+<div class="highlight"><pre><span></span>listening on 3000
+{ age: 732 }
+</pre></div>
+<h2>Schemas</h2>
+<p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
+<p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">schema_example</span>
+  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">people</span><span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">age</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">birthday</span> <span class="nb">DATE</span>
+  <span class="p">)</span>
+  <span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">john_club</span> <span class="k">AS</span>
+    <span class="k">SELECT</span> 
+      <span class="o">*</span>
+    <span class="k">FROM</span>
+      <span class="n">people</span>
+    <span class="k">WHERE</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
+</pre></div>
+<h2>Views</h2>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\dt</code></td>
+<td>Display all tables in the database</td>
+</tr>
+<tr>
+<td><code>TABLE x</code></td>
+<td>Show the contents of table x.</td>
+</tr>
+<tr>
+<td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
+<td>Show all schema in a given database</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://hub.packtpub.com/how-setup-postgresql-nodejs/" target="_blank">https://hub.packtpub.com/how-setup-postgresql-nodejs/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-show-tables/" target="_blank">https://www.postgresqltutorial.com/postgresql-show-tables/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-create-schema/" target="_blank">https://www.postgresqltutorial.com/postgresql-create-schema/</a></li>
+<li><a href="https://www.guru99.com/postgresql-view.html" target="_blank">https://www.guru99.com/postgresql-view.html</a></li>
 </ol>
 </article><article><h1><a href="common-sql-queries.html">Common SQL Queries</a></h1>
 <p>These are some common <a href="sql.html">SQL</a> queries that come up. All <code>?</code> symbols represent a place where you would dynamically insert info, like with Node's <a href="mysql.html">MySQL</a> module.</p>

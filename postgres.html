@@ -6,8 +6,8 @@
 <h3>Local Machine</h3>
 <h4>Installation</h4>
 <p>Install Postgres using <a href="homebrew.html">homebrew</a>: <code>brew install postgres</code></p>
-<p>In a new terminal window, start up the local database: <code>postgres -D /usr/local/var/postgres</code></p>
-<p>If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>.</p>
+<p>In a new terminal window, start up the local database: <code>postgres -U username -d database_name</code>, filling in the blanks as needed. If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>. The DB can be also started using <code>brew services start postgres</code> (Be sure to stop the server when completed with your work using <code>brew services stop postgres</code>).</p>
+<p>To enter into interactive mode, in your terminal, enter <code>psql</code>. From here, you can enter in any queries you'd like. Ensure they all end with a semicolon, or else you will not get any return back and it will throw.</p>
 <h4>Initialization</h4>
 <p>Create a new table in your database: <code>CREATE TABLE numbers( age integer );</code></p>
 <p>Insert a value into the new table: <code>INSERT INTO numbers VALUES (732);</code></p>
