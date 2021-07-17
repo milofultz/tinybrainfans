@@ -144,6 +144,7 @@ pre {
   color: var(--white);
   font-family: monospace;
   padding: 1rem;
+  white-space: nowrap;
 }
 
 code {
