@@ -144,7 +144,6 @@ pre {
   color: var(--white);
   font-family: monospace;
   padding: 1rem;
-  white-space: pre;
 }
 
 code {
@@ -161,7 +160,7 @@ pre code {
 }
 
 .highlight {
-  overflow-y: auto;
+  overflow-x: auto;
 }
 
 ul input[type="checkbox"],
