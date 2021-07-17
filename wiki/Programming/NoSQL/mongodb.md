@@ -17,7 +17,7 @@ In the terminal, start the mongo shell: `mongo`.
 
 ### Database
 
-Create a new database: 
+Creating a new database is done when a query is made.
 
 ### Node
 
@@ -49,23 +49,38 @@ db.once('open', function() { 													 // Inside here is where the action ha
 
 In the terminal, run `node server.js`. This should log `'Zildjian'` along with `meow`.
 
+## Data Import
+
+Use [`mongoimport`][] to bring in Extended {{JSON}}, {{CSV}}, or {{TSV}} files to your Mongo database. First, start up your database, and then use [`mongoimport`][] in the command line:
+
+```bash
+$ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
+#             use the PetHotel db      use header line as field names
+
+# If no header line is availabe:       list them out after the --fields option
+$ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
+```
+
 ## Syntax
 
 | Command                                     | Effect                                                       |
 | ------------------------------------------- | ------------------------------------------------------------ |
 | `show dbs`                                  | List all databases on the given server                       |
 | `use database_name`                         | Enter into `database_name`, preparing to query.              |
+| `db.dropDatabase()`                         | Delete the selected database                                 |
 | `show collections` / `show tables`          | List all collections/tables in the selected database.        |
 | `db.collection_name.find()`                 | Return all documents in collection `collection_name`.        |
 | `db.people.find({name: 'John'})`            | Return all documents in `people` whose name is John.         |
 | `db.people.insert({name: 'John', age: 40})` | Create a document in `people` (note: if a new collection is selected via `use`, this will create the new collection) |
 
-
-
 ## References
 
 1. https://www.mongodb.com/basics/examples
 2. https://www.mongodb.com/basics/create-database
-3. https://mongoosejs.com/
-4. https://www.npmjs.com/package/mongoose
-5. https://docs.mongodb.com/manual/core/aggregation-pipeline/
+3. https://docs.mongodb.com/manual/core/databases-and-collections/
+4. https://mongoosejs.com/
+5. https://www.npmjs.com/package/mongoose
+6. https://docs.mongodb.com/manual/core/aggregation-pipeline/
+7. https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/
+
+[`mongoimport`]: https://docs.mongodb.com/database-tools/mongoimport/

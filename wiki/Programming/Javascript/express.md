@@ -41,9 +41,23 @@ app.get('/', (req, res) => {
 
 Upon completing this and restarting your server, you should be able to go to `localhost:3000` and see "We did it!" in your browser window.
 
+### Query Parameters
+
+You can access the query parameters via the `req.query` object.
+
+```javascript
+// .../products?example=1?another=five
+app.get('/products', (req, res) => {
+  const example = req.query.example;
+  const another = req.query.another;
+  res.send(JSON.stringify([example, another]));
+});
+```
+
 ## References
 
 1. http://expressjs.com/en/starter/installing.html
+2. https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express
 
 [nodemon]: https://www.npmjs.com/package/nodemon "Nodemon is essential for developing your own apps"
 

@@ -5,8 +5,8 @@ description: git is a version control system.
 
 ## Commits
 
-- Add files you want to commit: `git add {file or folder name}` or `git add .`
-- Add only portions of a file as 'hunks': `git add --patch/-p {file or folder name}`. This will prompt you with options:
+- Add files you want to commit: `git add {file or folder name}` or `git add .` (you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, use the `--patch` flag insteadl)
+- Add only portions of a file as 'hunks': `git add --patch/-p {file or folder name}` (file or folder is optional). This will prompt you with options:
   - y - stage this hunk
   * n - do not stage this hunk
   * q - quit; do not stage this hunk or any of the remaining ones

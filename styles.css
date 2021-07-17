@@ -159,6 +159,10 @@ pre code {
   margin-left: -0.25rem;
 }
 
+.highlight {
+  overflow-y: auto;
+}
+
 ul input[type="checkbox"],
 ol input[type="checkbox"] {
   margin-left: -1rem;

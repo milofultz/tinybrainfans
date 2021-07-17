@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Arrays in Javascript have many specific methods for modification and analysis. Some are cunfusiong or hard to recall."><title>Arrays (Javascript)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Arrays (Javascript)</h1>
+<p><a href="array.html">Arrays</a> in <a href="javascript.html">Javascript</a> have many specific methods for modification and analysis. Some are cunfusiong or hard to recall.</p>
+<h2>Modification</h2>
+<h3>sort</h3>
+<p>The sort function can work with or without a sorting function that sorts <strong>in place</strong>. Without, it will simply convert every value into a string and compare via Unicode point value. With, it follows this formula: <code>.sort(compareFunction)</code>. </p>
+<p>From <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank">MDN</a>:</p>
+<blockquote>
+<p>If <code>compareFunction(a, b)</code> returns a value &gt; than 0, sort <code>b</code> before <code>a</code>. If <code>compareFunction(a, b)</code> returns a value ≤ 0, leave <code>a</code> and <code>b</code> in the same order.    </p>
+</blockquote>
+<p>An example compare function:</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">4</span><span class="p">,</span><span class="mf">1</span><span class="p">];</span>
+
+<span class="kd">const</span> <span class="nx">compareFunction</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&lt;</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// leave a before b</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// place b before a</span>
+    <span class="k">return</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// a === b</span>
+    <span class="c1">// leave a before b</span>
+    <span class="k">return</span> <span class="mf">0</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">array</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">compareFunction</span><span class="p">);</span> <span class="c1">// array now equals [1,2,3,4]</span>
+</pre></div>
+<h3>splice</h3>
+<p>Splice works for both removal and insertion of array elements. Splice operates in place and will return whatever elements were spliced from the array.</p>
+<p><code>splice(start, deleteCount, [item, ...])</code></p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span> <span class="c1">// returns [2,3,4]; array now equals [1]</span>
+
+<span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">);</span> <span class="c1">// returns [2]; array now equals [1,3,4]</span>
+
+<span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">17</span><span class="p">);</span> <span class="c1">// returns [2]; array now equals [1,17,3,4]</span>
+</pre></div>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

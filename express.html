@@ -25,8 +25,18 @@
 <span class="p">});</span>
 </pre></div>
 <p>Upon completing this and restarting your server, you should be able to go to <code>localhost:3000</code> and see &quot;We did it!&quot; in your browser window.</p>
+<h3>Query Parameters</h3>
+<p>You can access the query parameters via the <code>req.query</code> object.</p>
+<div class="highlight"><pre><span></span><span class="c1">// .../products?example=1?another=five</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/products&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">example</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">example</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">another</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">another</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span><span class="nx">example</span><span class="p">,</span> <span class="nx">another</span><span class="p">]));</span>
+<span class="p">});</span>
+</pre></div>
 <h2>References</h2>
 <ol>
 <li><a href="http://expressjs.com/en/starter/installing.html" target="_blank">http://expressjs.com/en/starter/installing.html</a></li>
+<li><a href="https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express" target="_blank">https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

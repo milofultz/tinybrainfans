@@ -7,7 +7,7 @@
 <p>Install MongoDB using <code>brew services install mongodb-community</code>. Once installed, you can start your local server using <code>brew services start mongodb-community</code> (Be sure to stop the server when completed with your work using <code>brew services stop mongodb-community</code>).</p>
 <p>In the terminal, start the mongo shell: <code>mongo</code>.</p>
 <h3>Database</h3>
-<p>Create a new database: </p>
+<p>Creating a new database is done when a query is made.</p>
 <h3>Node</h3>
 <p>Create a new folder and initialize a new node project using <a href="npm.html">npm</a>: <code>npm init -y</code>. Then install <code>npm i mongoose</code>.</p>
 <p>Create a new file called <code>server.js</code> and copy this into the contents:</p>
@@ -32,6 +32,14 @@
 <span class="p">});</span>
 </pre></div>
 <p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
+<h2>Data Import</h2>
+<p>Use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> to bring in Extended <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a> files to your Mongo database. First, start up your database, and then use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> in the command line:</p>
+<div class="highlight"><pre><span></span>$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --headerline --file<span class="o">=</span>pets.csv
+<span class="c1">#             use the PetHotel db      use header line as field names</span>
+
+<span class="c1"># If no header line is availabe:       list them out after the --fields option</span>
+$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --fields<span class="o">=</span>_id,name,type --file<span class="o">=</span>pets.csv
+</pre></div>
 <h2>Syntax</h2>
 <table>
 <thead>
@@ -48,6 +56,10 @@
 <tr>
 <td><code>use database_name</code></td>
 <td>Enter into <code>database_name</code>, preparing to query.</td>
+</tr>
+<tr>
+<td><code>db.dropDatabase()</code></td>
+<td>Delete the selected database</td>
 </tr>
 <tr>
 <td><code>show collections</code> / <code>show tables</code></td>
@@ -69,8 +81,10 @@
 <ol>
 <li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
 <li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
+<li><a href="https://docs.mongodb.com/manual/core/databases-and-collections/" target="_blank">https://docs.mongodb.com/manual/core/databases-and-collections/</a></li>
 <li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
 <li><a href="https://www.npmjs.com/package/mongoose" target="_blank">https://www.npmjs.com/package/mongoose</a></li>
 <li><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline/" target="_blank">https://docs.mongodb.com/manual/core/aggregation-pipeline/</a></li>
+<li><a href="https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/" target="_blank">https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/</a></li>
 </ol>
 </article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>

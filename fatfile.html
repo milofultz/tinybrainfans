@@ -50,9 +50,9 @@
 <section><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></section></article><article><h1><a href="git.html">git</a></h1>
 <h2>Commits</h2>
 <ul>
-<li>Add files you want to commit: <code>git add {file or folder name}</code> or <code>git add .</code></li>
+<li>Add files you want to commit: <code>git add {file or folder name}</code> or <code>git add .</code> (you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, use the <code>--patch</code> flag insteadl)</li>
 <li>
-Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder name}</code>. This will prompt you with options:<ul>
+Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder name}</code> (file or folder is optional). This will prompt you with options:<ul>
 <li>y - stage this hunk</li>
 </ul>
 <ul>
@@ -333,7 +333,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 </ol>
 </article><article><h1><a href="javascript.html">Javascript</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-(javascript).html">Classes (Javascript)</a></li><li><a href="dom-manipulation-(javascript).html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-(javascript).html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="lexical-scoping-(javascript).html">Lexical Scoping (Javascript)</a></li><li><a href="npm.html">NPM</a></li><li><a href="operators-(javascript).html">Operators (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-(javascript).html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-(javascript).html">Switch Case (Javascript)</a></li><li><a href="testing-(javascript).html">Testing (Javascript)</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section></article><article><h1><a href="regular-expressions.html">Regular Expressions</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="arrays-(javascript).html">Arrays (Javascript)</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-(javascript).html">Classes (Javascript)</a></li><li><a href="dom-manipulation-(javascript).html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-(javascript).html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="lexical-scoping-(javascript).html">Lexical Scoping (Javascript)</a></li><li><a href="npm.html">NPM</a></li><li><a href="operators-(javascript).html">Operators (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-(javascript).html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-(javascript).html">Switch Case (Javascript)</a></li><li><a href="testing-(javascript).html">Testing (Javascript)</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section></article><article><h1><a href="regular-expressions.html">Regular Expressions</a></h1>
 <p>Regular Expressions or &quot;regex&quot; is used to describe a series of characters. If it has a pattern in its formatting, regex can be used.</p>
 <h2>Regular Expression Syntax</h2>
 <p>This syntax is for <a href="javascript.html">Javascript</a>, but it is mostly what I have used in everything so far.</p>
@@ -465,9 +465,19 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <span class="p">});</span>
 </pre></div>
 <p>Upon completing this and restarting your server, you should be able to go to <code>localhost:3000</code> and see &quot;We did it!&quot; in your browser window.</p>
+<h3>Query Parameters</h3>
+<p>You can access the query parameters via the <code>req.query</code> object.</p>
+<div class="highlight"><pre><span></span><span class="c1">// .../products?example=1?another=five</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/products&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">example</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">example</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">another</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">another</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span><span class="nx">example</span><span class="p">,</span> <span class="nx">another</span><span class="p">]));</span>
+<span class="p">});</span>
+</pre></div>
 <h2>References</h2>
 <ol>
 <li><a href="http://expressjs.com/en/starter/installing.html" target="_blank">http://expressjs.com/en/starter/installing.html</a></li>
+<li><a href="https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express" target="_blank">https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section></article><article><h1><a href="angular.html">Angular</a></h1>
 <p>There's currently nothing here.</p>
@@ -3382,114 +3392,48 @@ HTML5 input types:<ul>
 <li><a href="https://www.youtube.com/watch?v=tc8DU14qX6I" target="_blank">https://www.youtube.com/watch?v=tc8DU14qX6I</a></li>
 <li><a href="https://www.youtube.com/watch?v=RfMkdvN-23o" target="_blank">https://www.youtube.com/watch?v=RfMkdvN-23o</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li></ul></section></article><article><h1><a href="typescript.html">Typescript</a></h1>
-<p>Typescript is a superset of <a href="javascript.html">Javascript</a> that is strongly typed and values specificity.</p>
-<h2>Type Annotations</h2>
-<p>Type annotations are done at the declaration of a variable with a colon followed by the type or interface.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">greeting</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">numbers</span>: <span class="kt">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">uniqueCharacters</span>: <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]);</span>
-<span class="kd">interface</span> <span class="nx">Person</span> <span class="p">{</span>
-  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
-  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
-  <span class="nx">sayHi</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="kd">const</span> <span class="nx">johnSmith</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
-  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
-  <span class="nx">sayHi</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">return</span> <span class="nx">greeting</span><span class="p">;</span>
-<span class="p">}</span>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li></ul></section></article><article><h1><a href="array.html">Array</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="arrays-(javascript).html">Arrays (Javascript)</a></li></ul></section></article><article><h1>Arrays (Javascript)</h1>
+<p><a href="array.html">Arrays</a> in <a href="javascript.html">Javascript</a> have many specific methods for modification and analysis. Some are cunfusiong or hard to recall.</p>
+<h2>Modification</h2>
+<h3>sort</h3>
+<p>The sort function can work with or without a sorting function that sorts <strong>in place</strong>. Without, it will simply convert every value into a string and compare via Unicode point value. With, it follows this formula: <code>.sort(compareFunction)</code>. </p>
+<p>From <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank">MDN</a>:</p>
+<blockquote>
+<p>If <code>compareFunction(a, b)</code> returns a value &gt; than 0, sort <code>b</code> before <code>a</code>. If <code>compareFunction(a, b)</code> returns a value ≤ 0, leave <code>a</code> and <code>b</code> in the same order.    </p>
+</blockquote>
+<p>An example compare function:</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">4</span><span class="p">,</span><span class="mf">1</span><span class="p">];</span>
+
+<span class="kd">const</span> <span class="nx">compareFunction</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&lt;</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// leave a before b</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// place b before a</span>
+    <span class="k">return</span> <span class="mf">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// a === b</span>
+    <span class="c1">// leave a before b</span>
+    <span class="k">return</span> <span class="mf">0</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">array</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">compareFunction</span><span class="p">);</span> <span class="c1">// array now equals [1,2,3,4]</span>
 </pre></div>
-<h3>Annotations with Object Destructuring</h3>
-<div class="highlight"><pre><span></span><span class="c1">// without annotation</span>
-<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">person</span><span class="p">,</span> <span class="nx">job</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="p">,</span>
-    <span class="nx">age</span><span class="p">,</span>
-  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
-  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-<span class="p">};</span>
+<h3>splice</h3>
+<p>Splice works for both removal and insertion of array elements. Splice operates in place and will return whatever elements were spliced from the array.</p>
+<p><code>splice(start, deleteCount, [item, ...])</code></p>
+<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span> <span class="c1">// returns [2,3,4]; array now equals [1]</span>
 
-<span class="c1">// with annotation</span>
-<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> 
-      <span class="p">({</span> <span class="nx">person</span><span class="p">,</span> <span class="nx">job</span> <span class="p">}</span><span class="o">:</span> <span class="p">{</span> <span class="nx">person</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">number</span> <span class="p">},</span> <span class="nx">job</span>: <span class="kt">string</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span>
-    <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
-    <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
-  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
-  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">);</span> <span class="c1">// returns [2]; array now equals [1,3,4]</span>
 
-<span class="c1">// with type or interface</span>
-<span class="kd">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
-  <span class="nx">age</span>: <span class="kt">number</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">person</span>: <span class="kt">Person</span><span class="p">,</span> <span class="nx">job</span>: <span class="kt">string</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span>
-    <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
-    <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
-  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
-  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">17</span><span class="p">);</span> <span class="c1">// returns [2]; array now equals [1,17,3,4]</span>
 </pre></div>
-<h3>Unique Typing Troubleshooting</h3>
-<h4><code>Property &#x27;***&#x27; does not exist on type &#x27;never&#x27;</code></h4>
-<p>This means that the target variable has not ben typed correctly and often will show up when something has not been given a type at all. </p>
-<div class="highlight"><pre><span></span><span class="c1">// incorrect</span>
-<span class="kd">const</span> <span class="nx">thing</span> <span class="o">=</span> <span class="s1">&#39;Oh yeah!&#39;</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">things</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">specificThing</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">9</span> <span class="p">};</span>
-<span class="c1">// correct</span>
-<span class="kd">const</span> <span class="nx">thing</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s1">&#39;Oh yeah!&#39;</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">things</span>: <span class="kt">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">specificThing</span>: <span class="kt">InterfaceName</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">9</span> <span class="p">};</span>
-</pre></div>
-<h4>useState</h4>
-<p>With <code>useState</code> in <a href="react.html">React</a> hooks, you will need to use a special syntax in creation of the hooks themselves. Since useState is a <a href="https://www.typescriptlang.org/docs/handbook/2/generics.html" target="_blank">generic function</a>, the typing happens within the <code>&lt;&gt;</code> characters.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">[</span><span class="nx">editedHashtagListeners</span><span class="p">,</span> <span class="nx">setEditedHashtagListeners</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">HashtagListener</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
-</pre></div>
-<h2>Interface and Type</h2>
-<p>Interfaces and types are two ways to define a type of object, declaring the types of the contained properties.</p>
-<h3>Type</h3>
-<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
-  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
-  <span class="nx">pets</span>: <span class="kt">string</span><span class="p">[]</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="nx">john</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
-  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
-  <span class="nx">pets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span> <span class="s1">&#39;Doug&#39;</span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="nx">household</span>: <span class="kt">Person</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">john</span><span class="p">];</span>
-</pre></div>
-<h3>Interface</h3>
-<div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nx">Person</span> <span class="p">{</span>
-  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
-  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
-  <span class="nx">pets</span>: <span class="kt">string</span><span class="p">[]</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="nx">john</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
-  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
-  <span class="nx">pets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span> <span class="s1">&#39;Doug&#39;</span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="kd">const</span> <span class="nx">household</span>: <span class="kt">Person</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">john</span><span class="p">];</span>
-</pre></div>
-<h2>References:</h2>
-<ol>
-<li><a href="https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript" target="_blank">https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript</a></li>
-<li><a href="https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never" target="_blank">https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never</a></li>
-<li><a href="https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation" target="_blank">https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation</a></li>
-<li><a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces" target="_blank">https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces</a></li>
-</ol>
-<section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section></article><article><h1>Testing (Javascript)</h1>
+</article><article><h1>Testing (Javascript)</h1>
 <p><a href="javascript.html">Javascript</a> provides many options to test your code via timing, assertions, and frameworks.</p>
 <h2>Time</h2>
 <h3>Simplest Timer</h3>
@@ -3821,7 +3765,9 @@ HTML5 input types:<ul>
 </ol>
 </article><article><h1><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></h1>
 <p>Put the local <a href="json.html">JSON</a> file in a <a href="javascript.html">Javascript</a> file and prepend the <a href="json.html">JSON</a> with <code>const variableName = </code> and just treat it like an object literal. Put the file you created before your main app file in the <a href="html.html">HTML</a> and you will be able to access it.</p>
-</article><article><h1><a href="higher-order-functions.html">Higher Order Functions</a></h1>
+</article><article><h1><a href="server.html">server</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="express.html">Express</a></li></ul></section></article><article><h1><a href="higher-order-functions.html">Higher Order Functions</a></h1>
 <p>A higher-order function either takes in a function as an argument, or returns a function.</p>
 <h2>Callback Functions</h2>
 <p>When taking a function as a parameter, this is called a <strong>callback function</strong>. This is used in Javascript built-ins like <code>setTimeout</code>, <code>filter</code>, <code>map</code>, and <code>forEach</code>.</p>
@@ -4213,9 +4159,114 @@ HTML5 input types:<ul>
 <li><a href="https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757286#content" target="_blank">https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757286#content</a></li>
 <li><a href="https://www.w3schools.com/jsref/dom_obj_event.asp" target="_blank">https://www.w3schools.com/jsref/dom_obj_event.asp</a></li>
 </ol>
-</article><article><h1><a href="server.html">server</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="express.html">Express</a></li></ul></section></article><article><h1><a href="eslint.html">ESLint</a></h1>
+</article><article><h1><a href="typescript.html">Typescript</a></h1>
+<p>Typescript is a superset of <a href="javascript.html">Javascript</a> that is strongly typed and values specificity.</p>
+<h2>Type Annotations</h2>
+<p>Type annotations are done at the declaration of a variable with a colon followed by the type or interface.</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">greeting</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">numbers</span>: <span class="kt">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">uniqueCharacters</span>: <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]);</span>
+<span class="kd">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="nx">sayHi</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">johnSmith</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
+  <span class="nx">sayHi</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">return</span> <span class="nx">greeting</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Annotations with Object Destructuring</h3>
+<div class="highlight"><pre><span></span><span class="c1">// without annotation</span>
+<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">person</span><span class="p">,</span> <span class="nx">job</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="p">,</span>
+    <span class="nx">age</span><span class="p">,</span>
+  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// with annotation</span>
+<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> 
+      <span class="p">({</span> <span class="nx">person</span><span class="p">,</span> <span class="nx">job</span> <span class="p">}</span><span class="o">:</span> <span class="p">{</span> <span class="nx">person</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">number</span> <span class="p">},</span> <span class="nx">job</span>: <span class="kt">string</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span>
+    <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// with type or interface</span>
+<span class="kd">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">number</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">getNameAndAge</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">person</span>: <span class="kt">Person</span><span class="p">,</span> <span class="nx">job</span>: <span class="kt">string</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span>
+    <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">job</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<h3>Unique Typing Troubleshooting</h3>
+<h4><code>Property &#x27;***&#x27; does not exist on type &#x27;never&#x27;</code></h4>
+<p>This means that the target variable has not ben typed correctly and often will show up when something has not been given a type at all. </p>
+<div class="highlight"><pre><span></span><span class="c1">// incorrect</span>
+<span class="kd">const</span> <span class="nx">thing</span> <span class="o">=</span> <span class="s1">&#39;Oh yeah!&#39;</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">things</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">specificThing</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">9</span> <span class="p">};</span>
+<span class="c1">// correct</span>
+<span class="kd">const</span> <span class="nx">thing</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s1">&#39;Oh yeah!&#39;</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">things</span>: <span class="kt">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">specificThing</span>: <span class="kt">InterfaceName</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">9</span> <span class="p">};</span>
+</pre></div>
+<h4>useState</h4>
+<p>With <code>useState</code> in <a href="react.html">React</a> hooks, you will need to use a special syntax in creation of the hooks themselves. Since useState is a <a href="https://www.typescriptlang.org/docs/handbook/2/generics.html" target="_blank">generic function</a>, the typing happens within the <code>&lt;&gt;</code> characters.</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">[</span><span class="nx">editedHashtagListeners</span><span class="p">,</span> <span class="nx">setEditedHashtagListeners</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">HashtagListener</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+</pre></div>
+<h2>Interface and Type</h2>
+<p>Interfaces and types are two ways to define a type of object, declaring the types of the contained properties.</p>
+<h3>Type</h3>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="nx">pets</span>: <span class="kt">string</span><span class="p">[]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">john</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
+  <span class="nx">pets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span> <span class="s1">&#39;Doug&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">household</span>: <span class="kt">Person</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">john</span><span class="p">];</span>
+</pre></div>
+<h3>Interface</h3>
+<div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
+  <span class="nx">pets</span>: <span class="kt">string</span><span class="p">[]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">john</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
+  <span class="nx">pets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Mary&#39;</span><span class="p">,</span> <span class="s1">&#39;Doug&#39;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">household</span>: <span class="kt">Person</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">john</span><span class="p">];</span>
+</pre></div>
+<h2>References:</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript" target="_blank">https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript</a></li>
+<li><a href="https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never" target="_blank">https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never</a></li>
+<li><a href="https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation" target="_blank">https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces" target="_blank">https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section></article><article><h1><a href="eslint.html">ESLint</a></h1>
 <p>Enforce rules and raise warnings to keep your <a href="javascript.html">Javascript</a>, <a href="typescript.html">Typescript</a>, and <a href="react.html">React</a> code clean and bug free.</p>
 <h2>Ignore rule in a file</h2>
 <p>By placing this at the top of the file, it will ignore this rule throughout the entire file. <code>/* eslint-disable {rule} */</code></p>
@@ -4621,6 +4672,10 @@ HTML5 input types:<ul>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li></ul></section></article><article><h1><a href="nosql.html">NoSQL</a></h1>
 <p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section></article><article><h1><a href="csv.html">CSV</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section></article><article><h1><a href="tsv.html">TSV</a></h1>
+<p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section></article><article><h1><a href="mongodb.html">MongoDB</a></h1>
 <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system using documents similar to <a href="json.html">JSON</a>.</p>
 <h2>Getting Started</h2>
@@ -4629,7 +4684,7 @@ HTML5 input types:<ul>
 <p>Install MongoDB using <code>brew services install mongodb-community</code>. Once installed, you can start your local server using <code>brew services start mongodb-community</code> (Be sure to stop the server when completed with your work using <code>brew services stop mongodb-community</code>).</p>
 <p>In the terminal, start the mongo shell: <code>mongo</code>.</p>
 <h3>Database</h3>
-<p>Create a new database: </p>
+<p>Creating a new database is done when a query is made.</p>
 <h3>Node</h3>
 <p>Create a new folder and initialize a new node project using <a href="npm.html">npm</a>: <code>npm init -y</code>. Then install <code>npm i mongoose</code>.</p>
 <p>Create a new file called <code>server.js</code> and copy this into the contents:</p>
@@ -4654,6 +4709,14 @@ HTML5 input types:<ul>
 <span class="p">});</span>
 </pre></div>
 <p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
+<h2>Data Import</h2>
+<p>Use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> to bring in Extended <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a> files to your Mongo database. First, start up your database, and then use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> in the command line:</p>
+<div class="highlight"><pre><span></span>$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --headerline --file<span class="o">=</span>pets.csv
+<span class="c1">#             use the PetHotel db      use header line as field names</span>
+
+<span class="c1"># If no header line is availabe:       list them out after the --fields option</span>
+$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --fields<span class="o">=</span>_id,name,type --file<span class="o">=</span>pets.csv
+</pre></div>
 <h2>Syntax</h2>
 <table>
 <thead>
@@ -4670,6 +4733,10 @@ HTML5 input types:<ul>
 <tr>
 <td><code>use database_name</code></td>
 <td>Enter into <code>database_name</code>, preparing to query.</td>
+</tr>
+<tr>
+<td><code>db.dropDatabase()</code></td>
+<td>Delete the selected database</td>
 </tr>
 <tr>
 <td><code>show collections</code> / <code>show tables</code></td>
@@ -4691,9 +4758,11 @@ HTML5 input types:<ul>
 <ol>
 <li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
 <li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
+<li><a href="https://docs.mongodb.com/manual/core/databases-and-collections/" target="_blank">https://docs.mongodb.com/manual/core/databases-and-collections/</a></li>
 <li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
 <li><a href="https://www.npmjs.com/package/mongoose" target="_blank">https://www.npmjs.com/package/mongoose</a></li>
 <li><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline/" target="_blank">https://docs.mongodb.com/manual/core/aggregation-pipeline/</a></li>
+<li><a href="https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/" target="_blank">https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/</a></li>
 </ol>
 </article><article><h1>C (Programming)</h1>
 <p>C is a programming language that is very low-level, compiling down to <a href="assembly.html">assembly</a> language.</p>
