@@ -89,6 +89,7 @@ h6 {
 /* Mobile typography */
 @media screen and (max-width: 768px) {
   body {
+    font-size: 14px;
     padding: 1rem;
   }
 
@@ -157,6 +158,12 @@ pre {
 
 pre code {
   margin-left: -0.25rem;
+}
+
+@media screen and (max-width: 768px) {
+  pre {
+    font-size: 12px
+  }
 }
 
 ul input[type="checkbox"],
