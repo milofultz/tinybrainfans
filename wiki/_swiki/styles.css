@@ -220,17 +220,19 @@ footer {
 
 nav,
 footer .social {
-  display: flex;
-  gap: 2rem;
+  display: grid;
+  gap: .5rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   justify-content: center;
 }
 
 nav {
   font-weight: bold;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 footer .social {
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 /* Fatfile */

@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Arrays in C, like all things in C, require a lot more care than higher level languages."><title>Arrays (C)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Arrays (C)</h1>
+<p>Arrays in <a href="c.html">C</a>, like all things in C, require a lot more care than higher level languages.</p>
+<h2>Initialization</h2>
+<p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>. </p>
+<p>You can set the values of each of these items with curly braces. </p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span> <span class="p">};</span>
+<span class="kt">int</span> <span class="n">zeroArray</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</pre></div>
+<p>In an array of integers, if the list of values within the curly braces is less than the amount needed to fill it completely, all remaining values will resort to zero. Meaning that you can instantiate an array of integers with 0 via <code>int array[n] = { 0 }</code>.</p>
+<h2>Access/Modification</h2>
+<p>Arrays can be accessed or modified as normal via square brackets.</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+
+<span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">array</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value" target="_blank">https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value</a></li>
+</ol>
+</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

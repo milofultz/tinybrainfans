@@ -761,7 +761,7 @@ return (
   <span class="k">return</span> <span class="nx">price</span> <span class="o">+</span> <span class="nx">calculatedTax</span> <span class="o">+</span> <span class="nx">serviceCharge</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
-<section><h2>Backlinks:</h2><ul><li><a href="c-(programming).html">C (Programming)</a></li></ul></section></article><article><h1><a href="accessibility.html">Accessibility</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="c.html">C</a></li></ul></section></article><article><h1><a href="accessibility.html">Accessibility</a></h1>
 <h2>Checklist</h2>
 <p>Use this <a href="https://www.a11yproject.com/checklist/" target="_blank">checklist</a> to ensure you are doing your best to meet accessibility requirements.</p>
 <h2>Contrast</h2>
@@ -2778,7 +2778,7 @@ ret
 <li><a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html" target="_blank">https://www.cs.virginia.edu/~evans/cs216/guides/x86.html</a></li>
 <li><a href="https://www.hellboundhackers.org/articles/read-article.php?article_id=729" target="_blank">https://www.hellboundhackers.org/articles/read-article.php?article_id=729</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c-(programming).html">C (Programming)</a></li></ul></section></article><article><h1><a href="windows.html">Windows</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li></ul></section></article><article><h1><a href="windows.html">Windows</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li></ul></section></article><article><h1>Assembly (Windows)</h1>
 <p><a href="assembly.html">Assembly</a> on <a href="windows.html">Windows</a> utilizes <a href="https://masm32.com/" target="_blank">masm</a>, Microsoft's proprietary assembler and linker.</p>
@@ -4764,7 +4764,7 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline/" target="_blank">https://docs.mongodb.com/manual/core/aggregation-pipeline/</a></li>
 <li><a href="https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/" target="_blank">https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/</a></li>
 </ol>
-</article><article><h1>C (Programming)</h1>
+</article><article><h1><a href="c.html">C</a></h1>
 <p>C is a programming language that is very low-level, compiling down to <a href="assembly.html">assembly</a> language.</p>
 <h2>Hello, World</h2>
 <h3>Code</h3>
@@ -4789,6 +4789,46 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <span class="cm">   comment */</span>
 </pre></div>
 <h3>Functions</h3>
+<p>Here is the structure of a function definition.</p>
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">return-type function-name(parameter declarations, if any)</span>
+<span class="cm">{</span>
+<span class="cm">  declarations</span>
+<span class="cm">  statements</span>
+<span class="cm">}</span>
+<span class="cm">*/</span>
+
+<span class="c1">// An example</span>
+
+<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">sum</span><span class="p">;</span>
+  <span class="n">sum</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>When invoked within the <code>main</code> function, a <strong>function prototype</strong> is required to ensure that all invocations and definitions match up.</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span> <span class="n">add</span><span class="p">(</span><span class="mi">-3</span><span class="p">,</span><span class="n">i</span><span class="p">));</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">sum</span><span class="p">;</span>
+  <span class="n">sum</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<h4><code>main()</code></h4>
 <p><code>main</code> is a special function that will begin executing when running your compiled file. This must be named <code>main</code>, but other functions can take on whatever other names you'd like.</p>
 <h3>Symbolic Constants</h3>
 <p>Symbolic constants allow the developer to avoid <a href="magic-numbers-(programming).html">magic numbers</a> and add semantically useful labels to values. This is done using he syntax <code>#define NAME value</code>.</p>
@@ -4808,6 +4848,7 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 </pre></div>
 <h3>Types</h3>
 <p>Since C is strongly typed, certain actions that are intuitive in Javascript or Python may not yield the results you wanted. For instance, if you have variable <code>int x</code> and you try and initialize it with a fractional number, the fractional part will be discarded since <code>x</code> stores an <code>int</code>.</p>
+<p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code></p>
 <h3>Variables</h3>
 <p>Variables must be declared before they are used, usually at the beginning before executing your program. They are declared by type and then by name.</p>
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="n">step</span><span class="p">;</span>
@@ -4829,10 +4870,32 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 </pre></div>
 <h4>getchar(), putchar(x)</h4>
 <p><code>getchar</code> will resolve to a character from stdin, and <code>putchar(x)</code> will put the value of <code>x</code> in stdout.</p>
+<h2>Sandboxing</h2>
+<p>You can send text via stdin using <code>printf &quot;123xyz&quot; | ./program.out</code>, with program.out being the name of the compiled program.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf" target="_blank">https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf</a></li>
 <li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="arrays-(c).html">Arrays (C)</a></li></ul></section></article><article><h1>Arrays (C)</h1>
+<p>Arrays in <a href="c.html">C</a>, like all things in C, require a lot more care than higher level languages.</p>
+<h2>Initialization</h2>
+<p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>. </p>
+<p>You can set the values of each of these items with curly braces. </p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span> <span class="p">};</span>
+<span class="kt">int</span> <span class="n">zeroArray</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</pre></div>
+<p>In an array of integers, if the list of values within the curly braces is less than the amount needed to fill it completely, all remaining values will resort to zero. Meaning that you can instantiate an array of integers with 0 via <code>int array[n] = { 0 }</code>.</p>
+<h2>Access/Modification</h2>
+<p>Arrays can be accessed or modified as normal via square brackets.</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+
+<span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">array</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value" target="_blank">https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value</a></li>
 </ol>
 </article><article><h1><a href="homebrew.html">homebrew</a></h1>
 <p>There's currently nothing here.</p>
@@ -4958,4 +5021,4 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <h2>References</h2>
 <section><h2>Backlinks:</h2><ul><li><a href="sql.html">SQL</a></li></ul></section></article><article><h1><a href="mysql.html">MySQL</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li></ul></section></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p></div></footer></body></html>
+<section><h2>Backlinks:</h2><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li></ul></section></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

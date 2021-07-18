@@ -1,5 +1,5 @@
 ---
-title: C (Programming)
+title: C
 description: C is a programming language that is very low-level, compiling down to assembly language.
 ---
 
@@ -42,6 +42,53 @@ Run this by typing `./a.out` in your shell. You should see `hello, world` in you
 
 ### Functions
 
+Here is the structure of a function definition.
+
+```c
+/*
+return-type function-name(parameter declarations, if any)
+{
+	declarations
+	statements
+}
+*/
+
+// An example
+
+int add(int m, int n)
+{
+  int sum;
+  sum = m + n;
+  return sum;
+}
+```
+
+When invoked within the `main` function, a **function prototype** is required to ensure that all invocations and definitions match up.
+
+```c
+#include <stdio.h>
+
+int add(int m, int n);
+
+int main()
+{
+  int i;
+
+  for (i = 0; i < 10; ++i)
+      printf("%d %d %d\n", i, add(2,i), add(-3,i));
+  return 0;
+}
+
+int add(int m, int n)
+{
+  int sum;
+  sum = m + n;
+  return sum;
+}
+```
+
+#### `main()`
+
 `main` is a special function that will begin executing when running your compiled file. This must be named `main`, but other functions can take on whatever other names you'd like.
 
 ### Symbolic Constants
@@ -70,6 +117,8 @@ printf("The tax rate is %1.2f and the service charge is %d", 0.09, 2);
 ### Types
 
 Since C is strongly typed, certain actions that are intuitive in Javascript or Python may not yield the results you wanted. For instance, if you have variable `int x` and you try and initialize it with a fractional number, the fractional part will be discarded since `x` stores an `int`.
+
+Arrays are intialized as normal, but followed by `n` items that should reside in the array: `int numbers[n]`
 
 ### Variables
 
@@ -106,6 +155,10 @@ printf("%2d F = %2d C", fahr, celsius); /* prints "100 F = 37 C" */
 #### getchar(), putchar(x)
 
 `getchar` will resolve to a character from stdin, and `putchar(x)` will put the value of `x` in stdout.
+
+## Sandboxing
+
+You can send text via stdin using `printf "123xyz" | ./program.out`, with program.out being the name of the compiled program.
 
 ## References
 
