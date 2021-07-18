@@ -224,6 +224,7 @@ footer .social {
   gap: .5rem 2rem;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   justify-content: center;
+  text-align: center;
 }
 
 nav {
