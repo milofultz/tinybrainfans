@@ -7,7 +7,7 @@ MongoDB is a {{NoSQL}} {{database}} management system using documents similar to
 
 ## Getting Started
 
-This will start a new project using your local server and mongoose via {{node}}.
+This will start a new project using your local server and {{mongoose}} via {{node}}.
 
 ### Local Machine
 
@@ -49,13 +49,17 @@ db.once('open', function() { 													 // Inside here is where the action ha
 
 In the terminal, run `node server.js`. This should log `'Zildjian'` along with `meow`.
 
+## Indexes
+
+If your collection does not have an index, your query could take a very long time, as it will have to scan every single document within your collection and analyze it to see if it matches your query.
+
 ## Data Import
 
 Use [`mongoimport`][] to bring in Extended {{JSON}}, {{CSV}}, or {{TSV}} files to your Mongo database. First, start up your database, and then use [`mongoimport`][] in the command line:
 
 ```bash
-$ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
 #             use the PetHotel db      use header line as field names
+$ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
 
 # If no header line is availabe:       list them out after the --fields option
 $ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
@@ -82,5 +86,6 @@ $ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
 5. https://www.npmjs.com/package/mongoose
 6. https://docs.mongodb.com/manual/core/aggregation-pipeline/
 7. https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/
+8. https://docs.mongodb.com/manual/indexes/
 
 [`mongoimport`]: https://docs.mongodb.com/database-tools/mongoimport/

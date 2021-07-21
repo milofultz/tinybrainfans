@@ -23,48 +23,6 @@
 <span class="cm">/* Multiline</span>
 <span class="cm">   comment */</span>
 </pre></div>
-<h3>Functions</h3>
-<p>Here is the structure of a function definition.</p>
-<div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm">return-type function-name(parameter declarations, if any)</span>
-<span class="cm">{</span>
-<span class="cm">  declarations</span>
-<span class="cm">  statements</span>
-<span class="cm">}</span>
-<span class="cm">*/</span>
-
-<span class="c1">// An example</span>
-
-<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">sum</span><span class="p">;</span>
-  <span class="n">sum</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span>
-  <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-<p>When invoked within the <code>main</code> function, a <strong>function prototype</strong> is required to ensure that all invocations and definitions match up.</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-
-<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span> <span class="n">add</span><span class="p">(</span><span class="mi">-3</span><span class="p">,</span><span class="n">i</span><span class="p">));</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">sum</span><span class="p">;</span>
-  <span class="n">sum</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span>
-  <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-<h4><code>main()</code></h4>
-<p><code>main</code> is a special function that will begin executing when running your compiled file. This must be named <code>main</code>, but other functions can take on whatever other names you'd like.</p>
 <h3>Symbolic Constants</h3>
 <p>Symbolic constants allow the developer to avoid <a href="magic-numbers-(programming).html">magic numbers</a> and add semantically useful labels to values. This is done using he syntax <code>#define NAME value</code>.</p>
 <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
@@ -83,12 +41,43 @@
 </pre></div>
 <h3>Types</h3>
 <p>Since C is strongly typed, certain actions that are intuitive in Javascript or Python may not yield the results you wanted. For instance, if you have variable <code>int x</code> and you try and initialize it with a fractional number, the fractional part will be discarded since <code>x</code> stores an <code>int</code>.</p>
-<p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code></p>
-<h3>Variables</h3>
+<p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>.</p>
+<p><em>The following list is only what I've used most and by no means a complete list. <a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">Look at the Wikipedia page for more info</a>.</em></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Bits</th>
+<th>Limits</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>8</td>
+<td>-127, +127</td>
+<td><code>%c</code></td>
+<td>Used for characters within strings (array of chars)</td>
+</tr>
+<tr>
+<td>int</td>
+<td>16</td>
+<td>-32,767, +32,767</td>
+<td><code>%i</code>/<code>%d</code></td>
+<td>Used for numbers and traversing data from stdin</td>
+</tr>
+</tbody></table><h3>Variables</h3>
 <p>Variables must be declared before they are used, usually at the beginning before executing your program. They are declared by type and then by name.</p>
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="n">step</span><span class="p">;</span>
 <span class="kt">char</span> <span class="n">letter</span><span class="p">;</span>
 </pre></div>
+<p>Variables that exist in and only within a given function are called <strong>automatic</strong> variables. They come into existence only when the function begins and disappear when the function is finished.</p>
+<h4>External Variables</h4>
+<p>External variables are defined exactly once outside of any function. This is so that the computer can set aside storage. Within each function that will use that, you will need to declare that variable, and preface that declaration with <code>extern</code>. For instance if <code>max</code> is an external variable, you would declare it within the function as <code>extern int max</code>.</p>
+<p>If multiple source files are used, for instance defining X in one file and wanting to use it in another file, the <code>extern</code> declaration is required. If it is all in one file, they can be omitted. </p>
+<p>Common practice is to define all external variables in a header file with a <code>.h</code> extension and then <code>#include</code> it in your source files.</p>
 <h2>Libraries</h2>
 <h3>stdio.h</h3>
 <h4>printf(string, [format, ...])</h4>
@@ -107,9 +96,11 @@
 <p><code>getchar</code> will resolve to a character from stdin, and <code>putchar(x)</code> will put the value of <code>x</code> in stdout.</p>
 <h2>Sandboxing</h2>
 <p>You can send text via stdin using <code>printf &quot;123xyz&quot; | ./program.out</code>, with program.out being the name of the compiled program.</p>
+<p>You can also use an online REPL, like <a href="https://replit.com/languages/c" target="_blank">replit.com</a>.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf" target="_blank">https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf</a></li>
 <li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
+<li><a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">https://en.wikipedia.org/wiki/C_data_types</a></li>
 </ol>
-<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="arrays-(c).html">Arrays (C)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="arrays-(c).html">Arrays (C)</a></li><li><a href="functions-(c).html">Functions (C)</a></li><li><a href="strings-(c).html">Strings (C)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

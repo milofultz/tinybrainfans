@@ -29,6 +29,62 @@ array[0] = 100;
 array[4] = 500;
 ```
 
+## Information
+
+### Size/Length
+
+The size or length of an array needs some calculation. The built in `sizeof` function will return the size of an array *in bytes*, which is not particularly helpful unless you know the size of each cell. So you can use the `sizeof` function to get the size of the first cell and divide the total size by that value.
+
+```c
+#include <stdio.h>
+
+int main() 
+{
+    int total, single, len;
+  	int array[10];
+  
+    total = sizeof(array);
+    single = sizeof(array[0]);
+    len = total / single;
+
+    printf("total: %d, single: %d,len: %d", total, single, len);
+		// total: 40, single: 4, len: 10
+
+    return 0;
+}
+```
+
+Integers that are passed in as arguments will not be able to utilize this technique. The length will need to be calculated ahead of time and passed in as another argument.
+
+```c
+#include <stdio.h>
+
+void reverse(char str[], int len);
+
+int main() 
+{
+    int total, single, len;
+  	char array[] = "hello";
+  
+    total = sizeof(array);
+    single = sizeof(array[0]);
+    len = total / single;
+    printf("%d, %d, %d\n", total, single, len);
+  
+  	reverse(array, len);
+
+    return 0;
+}
+
+void reverse(char str[], int len)
+{
+  int i;
+  
+  for (i = len - 1; i >= 0; i--)
+    printf("%c", str[i]);
+}
+```
+
 ## References
 
 1. https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value

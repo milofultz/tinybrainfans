@@ -3,14 +3,28 @@
 <p>These are some resources on how to use the collections <a href="python.html">Python</a> package.</p>
 <h2>defaultdict(type)</h2>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
 <span class="n">counter</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">counter</span><span class="p">[</span><span class="s2">&quot;sheep&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="s2">&quot;sheep&quot;</span><span class="p">])</span>  <span class="c1"># 1</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="s2">&quot;dog&quot;</span><span class="p">])</span>  <span class="c1"># 0</span>
 </pre></div>
 <p>Will allow builtin methods based on the default type. <code>defaultdict(int)</code> will allow a <code>+= 1</code> on any key and it will be defined immediately if doesn't exist; <code>(set)</code> will allow <code>.add(value)</code> to a set and will create it if none exists, etc.</p>
+<h2>deque</h2>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="n">cards</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">deck</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">cards</span><span class="p">)</span>
+
+<span class="n">top_card</span> <span class="o">=</span> <span class="n">deck</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+<span class="n">deck</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">top_card</span><span class="p">)</span>
+
+<span class="c1"># cards == [2,3,4,1]</span>
+</pre></div>
+<p>If you need a copy of the deque, you will need to import the <code>copy.deepcopy</code> method, as slices don't work. If you need to slice, you can use <code>itertools.islice</code>.</p>
+<p>Note that if you are looking for a queue, you can use a standard list as a queue by using <code>list.pop(0)</code> and <code>list.append(item)</code>. It is much faster and requires no imports.</p>
 <h2>References</h2>
 <ol>
-<li><a href="https://docs.python.org/3/library/collections.html#collections.defaultdict" target="_blank">https://docs.python.org/3/library/collections.html#collections.defaultdict</a></li>
+<li><a href="https://docs.python.org/3/library/collections.html" target="_blank">https://docs.python.org/3/library/collections.html</a></li>
 </ol>
 </article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

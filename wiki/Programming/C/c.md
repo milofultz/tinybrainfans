@@ -40,57 +40,6 @@ Run this by typing `./a.out` in your shell. You should see `hello, world` in you
    comment */
 ```
 
-### Functions
-
-Here is the structure of a function definition.
-
-```c
-/*
-return-type function-name(parameter declarations, if any)
-{
-	declarations
-	statements
-}
-*/
-
-// An example
-
-int add(int m, int n)
-{
-  int sum;
-  sum = m + n;
-  return sum;
-}
-```
-
-When invoked within the `main` function, a **function prototype** is required to ensure that all invocations and definitions match up.
-
-```c
-#include <stdio.h>
-
-int add(int m, int n);
-
-int main()
-{
-  int i;
-
-  for (i = 0; i < 10; ++i)
-      printf("%d %d %d\n", i, add(2,i), add(-3,i));
-  return 0;
-}
-
-int add(int m, int n)
-{
-  int sum;
-  sum = m + n;
-  return sum;
-}
-```
-
-#### `main()`
-
-`main` is a special function that will begin executing when running your compiled file. This must be named `main`, but other functions can take on whatever other names you'd like.
-
 ### Symbolic Constants
 
 Symbolic constants allow the developer to avoid {{magic numbers|Magic Numbers (Programming)}} and add semantically useful labels to values. This is done using he syntax `#define NAME value`.
@@ -118,7 +67,14 @@ printf("The tax rate is %1.2f and the service charge is %d", 0.09, 2);
 
 Since C is strongly typed, certain actions that are intuitive in Javascript or Python may not yield the results you wanted. For instance, if you have variable `int x` and you try and initialize it with a fractional number, the fractional part will be discarded since `x` stores an `int`.
 
-Arrays are intialized as normal, but followed by `n` items that should reside in the array: `int numbers[n]`
+Arrays are intialized as normal, but followed by `n` items that should reside in the array: `int numbers[n]`.
+
+*The following list is only what I've used most and by no means a complete list. [Look at the Wikipedia page for more info](https://en.wikipedia.org/wiki/C_data_types).*
+
+Type | Bits | Limits |Format | Description
+--- | --- | --- | --- | ---
+char | 8 | -127, +127 | `%c` | Used for characters within strings (array of chars)
+int | 16 | -32,767, +32,767 | `%i`/`%d` | Used for numbers and traversing data from stdin
 
 ### Variables
 
@@ -128,6 +84,16 @@ Variables must be declared before they are used, usually at the beginning before
 int num, step;
 char letter;
 ```
+
+Variables that exist in and only within a given function are called **automatic** variables. They come into existence only when the function begins and disappear when the function is finished.
+
+#### External Variables
+
+External variables are defined exactly once outside of any function. This is so that the computer can set aside storage. Within each function that will use that, you will need to declare that variable, and preface that declaration with `extern`. For instance if `max` is an external variable, you would declare it within the function as `extern int max`.
+
+If multiple source files are used, for instance defining X in one file and wanting to use it in another file, the `extern` declaration is required. If it is all in one file, they can be omitted. 
+
+Common practice is to define all external variables in a header file with a `.h` extension and then `#include` it in your source files.
 
 ## Libraries
 
@@ -160,7 +126,10 @@ printf("%2d F = %2d C", fahr, celsius); /* prints "100 F = 37 C" */
 
 You can send text via stdin using `printf "123xyz" | ./program.out`, with program.out being the name of the compiled program.
 
+You can also use an online REPL, like [replit.com](https://replit.com/languages/c).
+
 ## References
 
 1. https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf
 2. https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement
+3. https://en.wikipedia.org/wiki/C_data_types
