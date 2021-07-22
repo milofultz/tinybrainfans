@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Arrays in C, like all things in C, require a lot more care than higher level languages."><title>Arrays (C)</title><link rel="stylesheet" href="./styles.css"></head><body>
-<main id="main"><article id="content"><h1 id="title">Arrays (C)</h1>
-<p>Arrays in <a href="c.html">C</a>, like all things in C, require a lot more care than higher level languages.</p>
+<main id="main"><article id="content">            <h1 id="title">Arrays (C)</h1>
+            <p>Arrays in <a href="c.html">C</a>, like all things in C, require a lot more care than higher level languages.</p>
 <h2>Initialization</h2>
 <p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>. </p>
 <p>You can set the values of each of these items with curly braces. </p>
@@ -24,7 +24,7 @@
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">total</span><span class="p">,</span> <span class="n">single</span><span class="p">,</span> <span class="n">len</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-  
+
     <span class="n">total</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">);</span>
     <span class="n">single</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
     <span class="n">len</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="n">single</span><span class="p">;</span>
@@ -44,12 +44,12 @@
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">total</span><span class="p">,</span> <span class="n">single</span><span class="p">,</span> <span class="n">len</span><span class="p">;</span>
     <span class="kt">char</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;hello&quot;</span><span class="p">;</span>
-  
+
     <span class="n">total</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">);</span>
     <span class="n">single</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
     <span class="n">len</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="n">single</span><span class="p">;</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d, %d, %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="n">single</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
-  
+
     <span class="n">reverse</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -58,7 +58,7 @@
 <span class="kt">void</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">char</span> <span class="n">str</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-  
+
   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%c&quot;</span><span class="p">,</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="p">}</span>
@@ -67,4 +67,5 @@
 <ol>
 <li><a href="https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value" target="_blank">https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value</a></li>
 </ol>
-<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="strings-(c).html">Strings (C)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="strings-(c).html">Strings (C)</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202107182334</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

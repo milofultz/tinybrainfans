@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="How to create and use a debouncer in Python."><title>Debounce (Python)</title><link rel="stylesheet" href="./styles.css"></head><body>
-<main id="main"><article id="content"><h1 id="title">Debounce (Python)</h1>
-<p>How to create and use a <a href="debounce.html">debouncer</a> in <a href="python.html">Python</a>.</p>
+<main id="main"><article id="content">            <h1 id="title">Debounce (Python)</h1>
+            <p>How to create and use a <a href="debounce.html">debouncer</a> in <a href="python.html">Python</a>.</p>
 <p>In both of these examples, the inner function won't run until at least DEBOUNCE_TIME seconds has passed.</p>
 <h2>Standalone</h2>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Timer</span>
@@ -16,7 +16,7 @@
 
     <span class="k">def</span> <span class="nf">print_message</span><span class="p">():</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-    
+
     <span class="k">if</span> <span class="n">debounced_action</span><span class="p">:</span>
         <span class="n">debounced_action</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
     <span class="n">debounced_action</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">DEBOUNCE_TIME</span><span class="p">,</span> <span class="n">print_message</span><span class="p">)</span>
@@ -55,12 +55,12 @@
         <span class="k">return</span> <span class="n">debounced</span>
     <span class="k">return</span> <span class="n">decorator</span>
 
-  
+
 <span class="nd">@debounce</span><span class="p">(</span><span class="n">DEBOUNCE_TIME</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">print_message</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-    
+
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">print_message</span><span class="p">(</span><span class="s2">&quot;Won&#39;t print this one&quot;</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span>
@@ -73,4 +73,5 @@
 <ol>
 <li><a href="https://gist.github.com/walkermatt/2871026" target="_blank">https://gist.github.com/walkermatt/2871026</a></li>
 </ol>
-</article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+
+<p class="last-modified"><em>Last modified: 202107212151</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

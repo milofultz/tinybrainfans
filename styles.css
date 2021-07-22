@@ -212,6 +212,10 @@ tbody tr:nth-child(2n) {
   background-color: var(--background-off);
 }
 
+.last-modified {
+  opacity: 0.4;
+}
+
 footer {
   border-top: 2px solid var(--background-off);
   margin-top: 1.5rem;

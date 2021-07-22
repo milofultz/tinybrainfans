@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="MongoDB is a NoSQL database management system using documents similar to JSON."><title>MongoDB</title><link rel="stylesheet" href="./styles.css"></head><body>
-<main id="main"><article id="content"><h1 id="title">MongoDB</h1>
-<p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system using documents similar to <a href="json.html">JSON</a>.</p>
+<main id="main"><article id="content">            <h1 id="title">MongoDB</h1>
+            <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system using documents similar to <a href="json.html">JSON</a>.</p>
 <h2>Getting Started</h2>
 <p>This will start a new project using your local server and <a href="mongoose.html">mongoose</a> via <a href="node.html">node</a>.</p>
 <h3>Local Machine</h3>
@@ -24,7 +24,7 @@
     <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span>
   <span class="p">});</span>
   <span class="kd">const</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span> <span class="p">});</span> <span class="c1">// Create schema for collection</span>
-  
+
   <span class="kd">const</span> <span class="nx">kitty</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zildjian&#39;</span> <span class="p">});</span>         <span class="c1">// Create a new document of Cat</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitty</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>                             <span class="c1">// &#39;Zildjian&#39;</span>
   <span class="nx">kitty</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
@@ -90,4 +90,5 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/" target="_blank">https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/</a></li>
 <li><a href="https://docs.mongodb.com/manual/indexes/" target="_blank">https://docs.mongodb.com/manual/indexes/</a></li>
 </ol>
-<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="mongoose-(javascript).html">Mongoose (Javascript)</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="mongoose-(javascript).html">Mongoose (Javascript)</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202107200546</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="React is a Javascript framework for implementing dynamic single page applications into your site."><title>React</title><link rel="stylesheet" href="./styles.css"></head><body>
-<main id="main"><article id="content"><h1 id="title">React</h1>
-<p>React is a <a href="javascript.html">Javascript</a> framework for implementing dynamic single page applications into your site.</p>
+<main id="main"><article id="content">            <h1 id="title">React</h1>
+            <p>React is a <a href="javascript.html">Javascript</a> framework for implementing dynamic single page applications into your site.</p>
 <h2>Setting Up</h2>
 <p>Use <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> with <a href="npm.html">npm</a> or <a href="react-from-scratch.html">build it from scratch</a>.</p>
 <h2>Components</h2>
@@ -131,7 +131,7 @@ export default GroceryListItem;
     <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
       <span class="nb">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
     <span class="p">}</span>
-    
+
     <span class="n">logInteraction</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="n">const</span> <span class="n">logObject</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">timstamp</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> 
@@ -140,7 +140,7 @@ export default GroceryListItem;
       <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">logObject</span><span class="p">);</span>
       <span class="o">//</span> <span class="n">POST</span> <span class="n">to</span> <span class="n">server</span>
     <span class="p">}</span>
-  
+
   <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
       <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;tracking-wrapper&quot;</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">logInteraction</span><span class="p">}</span><span class="o">&gt;</span>
@@ -160,7 +160,7 @@ export default GroceryListItem;
   const onListItemClick = function (e) {
     console.log(&quot;Yum!&quot;);
   };
-  
+
   return (
     <span class="nt">&lt;li</span> <span class="na">onClick=</span><span class="s">{onListItemClick}</span><span class="nt">&gt;</span>{props.item}<span class="nt">&lt;/li&gt;</span>
   )
@@ -231,4 +231,5 @@ return (
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ol>
-<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202107081810</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
