@@ -10,9 +10,16 @@ Typescript is a superset of {{Javascript}} that is strongly typed and values spe
 Type annotations are done at the declaration of a variable with a colon followed by the type or interface.
 
 ```typescript
+// Primitives
 const greeting: string = "Hello there!";
+
+// Arrays
 const numbers: number[] = [1, 2, 3, 4];
+
+// Generics
 const uniqueCharacters: Set<string> = new Set(['a', 'b', 'c']);
+
+// Interfaces/Types
 interface Person {
   name: string,
   age: number,
@@ -22,7 +29,12 @@ const johnSmith: Person = {
   name: "John Smith",
   age: 40,
   sayHi: () => return greeting;
-}
+};
+
+// Functions
+const add = (a: number, b: number): number => {
+  return a + b;
+};
 ```
 
 ### Annotations with Object Destructuring
@@ -133,6 +145,7 @@ const household: Person[] = [john];
 2. https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never
 3. https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation
 4. https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
+5. https://lzomedia.com/blog/how-to-apply-type-annotations-to-functions-in-typescript/
 
 [generic function]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 

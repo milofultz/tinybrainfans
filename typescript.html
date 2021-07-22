@@ -3,9 +3,16 @@
             <p>Typescript is a superset of <a href="javascript.html">Javascript</a> that is strongly typed and values specificity.</p>
 <h2>Type Annotations</h2>
 <p>Type annotations are done at the declaration of a variable with a colon followed by the type or interface.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">greeting</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="c1">// Primitives</span>
+<span class="kd">const</span> <span class="nx">greeting</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
+
+<span class="c1">// Arrays</span>
 <span class="kd">const</span> <span class="nx">numbers</span>: <span class="kt">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">4</span><span class="p">];</span>
+
+<span class="c1">// Generics</span>
 <span class="kd">const</span> <span class="nx">uniqueCharacters</span>: <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]);</span>
+
+<span class="c1">// Interfaces/Types</span>
 <span class="kd">interface</span> <span class="nx">Person</span> <span class="p">{</span>
   <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
   <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
@@ -15,7 +22,12 @@
   <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;John Smith&quot;</span><span class="p">,</span>
   <span class="nx">age</span>: <span class="kt">40</span><span class="p">,</span>
   <span class="nx">sayHi</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">return</span> <span class="nx">greeting</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Functions</span>
+<span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">b</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 <h3>Annotations with Object Destructuring</h3>
 <div class="highlight"><pre><span></span><span class="c1">// without annotation</span>
@@ -105,6 +117,7 @@
 <li><a href="https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never" target="_blank">https://stackoverflow.com/questions/53598449/react-hooks-and-typescript-property-does-not-exist-on-type-never</a></li>
 <li><a href="https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation" target="_blank">https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation</a></li>
 <li><a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces" target="_blank">https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces</a></li>
+<li><a href="https://lzomedia.com/blog/how-to-apply-type-annotations-to-functions-in-typescript/" target="_blank">https://lzomedia.com/blog/how-to-apply-type-annotations-to-functions-in-typescript/</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107090148</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107222145</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
