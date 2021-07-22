@@ -213,7 +213,7 @@ tbody tr:nth-child(2n) {
 }
 
 .last-modified {
-  opacity: 0.4;
+  color: var(--text-off);
 }
 
 footer {
