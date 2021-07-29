@@ -5,6 +5,25 @@ description: Typescript is a superset of Javascript that is strongly typed and v
 
 Typescript is a superset of {{Javascript}} that is strongly typed and values specificity.
 
+## Casting
+
+You can cast one type as another in a couple different ways.
+
+```typescript
+// In these examples, query selector will naturally return an HTMLElement. To 
+// access the `value`, we will need to cast it as an HTMLInputElement.
+
+let input;
+
+// using 'as'
+input = document.querySelector('input[type="text"]') as HTMLInputElement;
+
+// using <>
+input = <HTMLInputElement>document.querySelector('input[type="text"]');
+```
+
+When using TypeScript with JSX, only `as`-style assertions are allowed.
+
 ## Type Annotations
 
 Type annotations are done at the declaration of a variable with a colon followed by the type or interface.
@@ -146,6 +165,7 @@ const household: Person[] = [john];
 3. https://stackoverflow.com/questions/41443242/how-to-correct-flow-warning-destructuring-missing-annotation
 4. https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
 5. https://lzomedia.com/blog/how-to-apply-type-annotations-to-functions-in-typescript/
+6. https://stackoverflow.com/questions/12989741/the-property-value-does-not-exist-on-value-of-type-htmlelement
 
 [generic function]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 

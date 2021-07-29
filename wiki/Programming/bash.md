@@ -72,10 +72,21 @@ $ thing1 | thing2
 
 The `--decode` flag may be added to reverse this process.
 
+## Troubleshooting
+
+### Errors from Windows
+
+If you got a script that looks totally fine but is throwing errors that make very little to no sense, like failing `cd` and `cp`, it's probably containing `\r` from a Windows computer.
+
+```bash
+tr -d "\r" < oldname.sh > newname.sh
+```
+
 ## References
 
 1. https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/
 3. https://linuxize.com/post/how-to-create-bash-aliases/
 3. https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf
+4. https://stackoverflow.com/a/11428439
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/

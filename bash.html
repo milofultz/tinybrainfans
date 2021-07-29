@@ -55,11 +55,17 @@ $ thing1 <span class="p">|</span> thing2
 <p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64. </p>
 <p><code>echo -n &#x27;some string&#x27; | base64 &gt; output.txt</code> will encode a string as input and not encode unusable chars, like line feeds.</p>
 <p>The <code>--decode</code> flag may be added to reverse this process.</p>
+<h2>Troubleshooting</h2>
+<h3>Errors from Windows</h3>
+<p>If you got a script that looks totally fine but is throwing errors that make very little to no sense, like failing <code>cd</code> and <code>cp</code>, it's probably containing <code>\r</code> from a Windows computer.</p>
+<div class="highlight"><pre><span></span>tr -d <span class="s2">&quot;\r&quot;</span> &lt; oldname.sh &gt; newname.sh
+</pre></div>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/" target="_blank">https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/</a></li>
 <li><a href="https://linuxize.com/post/how-to-create-bash-aliases/" target="_blank">https://linuxize.com/post/how-to-create-bash-aliases/</a></li>
 <li><a href="https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf" target="_blank">https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf</a></li>
+<li><a href="https://stackoverflow.com/a/11428439" target="_blank">https://stackoverflow.com/a/11428439</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107070528</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107281718</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

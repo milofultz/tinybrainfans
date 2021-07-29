@@ -76,6 +76,8 @@ Type | Bits | Limits |Format | Description
 char | 8 | -127, +127 | `%c` | Used for characters within strings (array of chars)
 int | 16 | -32,767, +32,767 | `%i`/`%d` | Used for numbers and traversing data from stdin
 
+Unsigned numbers are always zero or higher and will have a range of 0 to (2^n) - 1. Signed numbers are negative or positive and have a range of -(2^n-1) to (2^n-1) - 1.
+
 ### Variables
 
 Variables must be declared before they are used, usually at the beginning before executing your program. They are declared by type and then by name.
