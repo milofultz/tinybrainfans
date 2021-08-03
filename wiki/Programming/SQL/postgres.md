@@ -101,7 +101,14 @@ CREATE SCHEMA schema_example
   		name = 'John';
 ```
 
-## Views
+## Querying JSONB Columns
+
+```postgres
+SELECT
+	column_name -> 'property_name' AS display_name
+FROM
+	table_name;
+```
 
 ## Commands
 
@@ -119,3 +126,4 @@ CREATE SCHEMA schema_example
 4. https://www.guru99.com/postgresql-view.html
 5. https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546
 6. https://www.postgresqltutorial.com/postgresql-cheat-sheet/
+7. https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433

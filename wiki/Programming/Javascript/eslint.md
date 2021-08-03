@@ -10,4 +10,3 @@ Enforce rules and raise warnings to keep your {{Javascript}}, {{Typescript}}, an
 By placing this at the top of the file, it will ignore this rule throughout the entire file. `/* eslint-disable {rule} */`
 
 To disable a rule for only one line, place this after the code on the offending line. `// eslint-disable-line {rule}`
-

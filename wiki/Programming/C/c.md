@@ -40,7 +40,9 @@ Run this by typing `./a.out` in your shell. You should see `hello, world` in you
    comment */
 ```
 
-### Symbolic Constants
+### Constants
+
+#### Symbolic Constants
 
 Symbolic constants allow the developer to avoid {{magic numbers|Magic Numbers (Programming)}} and add semantically useful labels to values. This is done using he syntax `#define NAME value`.
 
@@ -63,20 +65,18 @@ These statements don't actually *do* anything in the code. They are handled by t
 printf("The tax rate is %1.2f and the service charge is %d", 0.09, 2);
 ```
 
-### Types
+#### Enumeration Constants
 
-Since C is strongly typed, certain actions that are intuitive in Javascript or Python may not yield the results you wanted. For instance, if you have variable `int x` and you try and initialize it with a fractional number, the fractional part will be discarded since `x` stores an `int`.
+An enumeration constant is a list of constant integer values. They will start at 0, incrementing on each new constant, unless otherwise defined.
 
-Arrays are intialized as normal, but followed by `n` items that should reside in the array: `int numbers[n]`.
+```c
+enum boolean { FALSE, TRUE }; // FALSE == 0, TRUE == 1
+enum months { JAN = 1, FEB, MAR, ...}; // JAN == 1, FEB == 2...
+enum fib { FIRST = 1, SECOND = 1, THIRD,
+           FOURTH, FIFTH = 5, SIXTH = 8 } // THIRD == 2, FOURTH == 3...
+```
 
-*The following list is only what I've used most and by no means a complete list. [Look at the Wikipedia page for more info](https://en.wikipedia.org/wiki/C_data_types).*
-
-Type | Bits | Limits |Format | Description
---- | --- | --- | --- | ---
-char | 8 | -127, +127 | `%c` | Used for characters within strings (array of chars)
-int | 16 | -32,767, +32,767 | `%i`/`%d` | Used for numbers and traversing data from stdin
-
-Unsigned numbers are always zero or higher and will have a range of 0 to (2^n) - 1. Signed numbers are negative or positive and have a range of -(2^n-1) to (2^n-1) - 1.
+These constants can be used the same as symbolic constants.
 
 ### Variables
 
@@ -88,6 +88,8 @@ char letter;
 ```
 
 Variables that exist in and only within a given function are called **automatic** variables. They come into existence only when the function begins and disappear when the function is finished.
+
+The `const` keyword may be added to any variable declaration. This means that the variable declared will not change throughout its usage.
 
 #### External Variables
 
@@ -134,4 +136,3 @@ You can also use an online REPL, like [replit.com](https://replit.com/languages/
 
 1. https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf
 2. https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement
-3. https://en.wikipedia.org/wiki/C_data_types

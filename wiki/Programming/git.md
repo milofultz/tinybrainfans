@@ -22,6 +22,12 @@ description: git is a version control system.
   * e - [manually edit the current hunk][manually edit hunk] (particularly if your code is really close together but needs to be broken down)
   * ? - print help
 
+### Case Sensitivity
+
+Git by default is not case sensitive when it comes to filenames and will ignore renaming of file structures that are only by case. To change this default behavior, use `git config core.ignorecase false`. **Note that setting this option to false on a case-insensitive file system is generally a bad idea. Doing so will lead to weird errors. For example, renaming a file in a way that only changes letter case will cause git to report spurious conflicts or create duplicate files.**
+
+If it is a file or files, you can change their name as normal and then within git via this command: `git mv -f filename.txt Filename.txt`. This will make it show up in your commit. If it is a directory, you will need to do this with every file within the directory.
+
 ## Branches
 
 - See all branches: `git branch`
@@ -175,6 +181,7 @@ CRLF => LF: https://stackoverflow.com/questions/20168639/git-commit-get-fatal-er
 7. https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given
 8. https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote
 9. https://www.git-tower.com/learn/git/faq/cherry-pick/
+10. https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git
 
 [manually edit hunk]: https://rietta.com/blog/git-patch-manual-split/
 [stashing]: https://www.freecodecamp.org/news/git-stash-explained/

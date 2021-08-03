@@ -122,7 +122,9 @@ const [editedHashtagListeners, setEditedHashtagListeners] = useState<HashtagList
 
 Interfaces and types are two ways to define a type of object, declaring the types of the contained properties.
 
-### Type
+### Differences
+
+#### Type
 
 ```typescript
 type Person = {
@@ -140,7 +142,7 @@ const john: Person = {
 const household: Person[] = [john];
 ```
 
-### Interface
+#### Interface
 
 ```typescript
 interface Person {
@@ -158,6 +160,38 @@ const john: Person = {
 const household: Person[] = [john];
 ```
 
+### Creating Fixed Values
+
+```typescript
+type Roles = 'owner' | 'admin';
+
+interface User {
+  name: string;
+  // value must be an array containing values within Roles
+  roles: Roles[];
+}
+```
+
+### Defining Unknown Property Keys
+
+```typescript
+type Roles = 'owner' | 'admin';
+
+interface Channel {
+  id: string;
+  name: string;
+}
+
+interface User {
+  name: string;
+	channels: {
+    // channel at `index` must be a string
+    // value must be an array containing values within Roles
+    [index: string]: Roles[];
+  }  
+}
+```
+
 ## References:
 
 1. https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript
@@ -166,6 +200,8 @@ const household: Person[] = [john];
 4. https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
 5. https://lzomedia.com/blog/how-to-apply-type-annotations-to-functions-in-typescript/
 6. https://stackoverflow.com/questions/12989741/the-property-value-does-not-exist-on-value-of-type-htmlelement
+7. https://stackoverflow.com/questions/61851004/describe-interface-fixed-values-in-array-element-of-typescript
+8. https://stackoverflow.com/questions/23914271/typescript-interface-definition-with-an-unknown-property-key
 
 [generic function]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 

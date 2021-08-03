@@ -24,6 +24,9 @@ Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder
 </ul>
 </li>
 </ul>
+<h3>Case Sensitivity</h3>
+<p>Git by default is not case sensitive when it comes to filenames and will ignore renaming of file structures that are only by case. To change this default behavior, use <code>git config core.ignorecase false</code>. <strong>Note that setting this option to false on a case-insensitive file system is generally a bad idea. Doing so will lead to weird errors. For example, renaming a file in a way that only changes letter case will cause git to report spurious conflicts or create duplicate files.</strong></p>
+<p>If it is a file or files, you can change their name as normal and then within git via this command: <code>git mv -f filename.txt Filename.txt</code>. This will make it show up in your commit. If it is a directory, you will need to do this with every file within the directory.</p>
 <h2>Branches</h2>
 <ul>
 <li>See all branches: <code>git branch</code></li>
@@ -137,6 +140,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li><a href="https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given" target="_blank">https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given</a></li>
 <li><a href="https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote" target="_blank">https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote</a></li>
 <li><a href="https://www.git-tower.com/learn/git/faq/cherry-pick/" target="_blank">https://www.git-tower.com/learn/git/faq/cherry-pick/</a></li>
+<li><a href="https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git" target="_blank">https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107171600</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108031658</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

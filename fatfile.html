@@ -78,6 +78,9 @@ Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder
 </ul>
 </li>
 </ul>
+<h3>Case Sensitivity</h3>
+<p>Git by default is not case sensitive when it comes to filenames and will ignore renaming of file structures that are only by case. To change this default behavior, use <code>git config core.ignorecase false</code>. <strong>Note that setting this option to false on a case-insensitive file system is generally a bad idea. Doing so will lead to weird errors. For example, renaming a file in a way that only changes letter case will cause git to report spurious conflicts or create duplicate files.</strong></p>
+<p>If it is a file or files, you can change their name as normal and then within git via this command: <code>git mv -f filename.txt Filename.txt</code>. This will make it show up in your commit. If it is a directory, you will need to do this with every file within the directory.</p>
 <h2>Branches</h2>
 <ul>
 <li>See all branches: <code>git branch</code></li>
@@ -191,9 +194,10 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li><a href="https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given" target="_blank">https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given</a></li>
 <li><a href="https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote" target="_blank">https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote</a></li>
 <li><a href="https://www.git-tower.com/learn/git/faq/cherry-pick/" target="_blank">https://www.git-tower.com/learn/git/faq/cherry-pick/</a></li>
+<li><a href="https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git" target="_blank">https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107171600</em></p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
+<p class="last-modified"><em>Last modified: 202108031658</em></p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
             <p>Your README file contains a high level overview for people interested in using, contributing, or perusing your code.</p>
 <h2>Structure/Content</h2>
 <ul>
@@ -347,7 +351,7 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 
 <p class="last-modified"><em>Last modified: 202107020546</em></p></article><article><h1><a href="javascript.html">Javascript</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="arrays-(javascript).html">Arrays (Javascript)</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-(javascript).html">Classes (Javascript)</a></li><li><a href="dom-manipulation-(javascript).html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-(javascript).html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="lexical-scoping-(javascript).html">Lexical Scoping (Javascript)</a></li><li><a href="mocha-and-chai-(javascript).html">Mocha and Chai (Javascript)</a></li><li><a href="mongoose-(javascript).html">Mongoose (Javascript)</a></li><li><a href="npm.html">NPM</a></li><li><a href="operators-(javascript).html">Operators (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-(javascript).html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-(javascript).html">Switch Case (Javascript)</a></li><li><a href="testing-(javascript).html">Testing (Javascript)</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="arrays-(javascript).html">Arrays (Javascript)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-(javascript).html">Classes (Javascript)</a></li><li><a href="dom-manipulation-(javascript).html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-(javascript).html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="lexical-scoping-(javascript).html">Lexical Scoping (Javascript)</a></li><li><a href="mocha-and-chai-(javascript).html">Mocha and Chai (Javascript)</a></li><li><a href="mongoose-(javascript).html">Mongoose (Javascript)</a></li><li><a href="npm.html">NPM</a></li><li><a href="operators-(javascript).html">Operators (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-(javascript).html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-(javascript).html">Switch Case (Javascript)</a></li><li><a href="testing-(javascript).html">Testing (Javascript)</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-(javascript).html">Variables (Javascript)</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="regular-expressions.html">Regular Expressions</a></h1>
             <p>Regular Expressions or &quot;regex&quot; is used to describe a series of characters. If it has a pattern in its formatting, regex can be used.</p>
 <h2>Regular Expression Syntax</h2>
@@ -735,7 +739,7 @@ return (
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section>
+<section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section>
 <p class="last-modified"><em>Last modified: 202107081810</em></p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
             <p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
 <h2>Components</h2>
@@ -1007,7 +1011,7 @@ $ nvm uninstall xx.xx.x
 
 <p class="last-modified"><em>Last modified: 202107021741</em></p></article><article><h1><a href="python.html">Python</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="collections-(python).html">Collections (Python)</a></li><li><a href="datetime-(python).html">Datetime (Python)</a></li><li><a href="debounce-(python).html">Debounce (Python)</a></li><li><a href="itertools-(python).html">Itertools (Python)</a></li><li><a href="json-(python).html">JSON (Python)</a></li><li><a href="math-(python).html">Math (Python)</a></li><li><a href="numpy.html">Numpy</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li><li><a href="virtual-environments-(python).html">Virtual Environments (Python)</a></li></ul></section>
+<section><h2>Backlinks:</h2><ul><li><a href="c-data-types.html">C Data Types</a></li><li><a href="collections-(python).html">Collections (Python)</a></li><li><a href="datetime-(python).html">Datetime (Python)</a></li><li><a href="debounce-(python).html">Debounce (Python)</a></li><li><a href="itertools-(python).html">Itertools (Python)</a></li><li><a href="json-(python).html">JSON (Python)</a></li><li><a href="math-(python).html">Math (Python)</a></li><li><a href="numpy.html">Numpy</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li><li><a href="virtual-environments-(python).html">Virtual Environments (Python)</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Collections (Python)</h1>
             <p>These are some resources on how to use the collections <a href="python.html">Python</a> package.</p>
 <h2>defaultdict(type)</h2>
@@ -4662,7 +4666,8 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 </pre></div>
 <h2>Interface and Type</h2>
 <p>Interfaces and types are two ways to define a type of object, declaring the types of the contained properties.</p>
-<h3>Type</h3>
+<h3>Differences</h3>
+<h4>Type</h4>
 <div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
   <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
@@ -4677,7 +4682,7 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 
 <span class="kd">const</span> <span class="nx">household</span>: <span class="kt">Person</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">john</span><span class="p">];</span>
 </pre></div>
-<h3>Interface</h3>
+<h4>Interface</h4>
 <div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nx">Person</span> <span class="p">{</span>
   <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span>
   <span class="nx">age</span>: <span class="kt">number</span><span class="p">,</span>
@@ -4692,6 +4697,32 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 
 <span class="kd">const</span> <span class="nx">household</span>: <span class="kt">Person</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">john</span><span class="p">];</span>
 </pre></div>
+<h3>Creating Fixed Values</h3>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Roles</span> <span class="o">=</span> <span class="s1">&#39;owner&#39;</span> <span class="o">|</span> <span class="s1">&#39;admin&#39;</span><span class="p">;</span>
+
+<span class="kd">interface</span> <span class="nx">User</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="c1">// value must be an array containing values within Roles</span>
+  <span class="nx">roles</span>: <span class="kt">Roles</span><span class="p">[];</span>
+<span class="p">}</span>
+</pre></div>
+<h3>Defining Unknown Property Keys</h3>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Roles</span> <span class="o">=</span> <span class="s1">&#39;owner&#39;</span> <span class="o">|</span> <span class="s1">&#39;admin&#39;</span><span class="p">;</span>
+
+<span class="kd">interface</span> <span class="nx">Channel</span> <span class="p">{</span>
+  <span class="nx">id</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span> <span class="nx">User</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="nx">channels</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// channel at `index` must be a string</span>
+    <span class="c1">// value must be an array containing values within Roles</span>
+    <span class="p">[</span><span class="nx">index</span>: <span class="kt">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">Roles</span><span class="p">[];</span>
+  <span class="p">}</span>  
+<span class="p">}</span>
+</pre></div>
 <h2>References:</h2>
 <ol>
 <li><a href="https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript" target="_blank">https://stackoverflow.com/questions/52423842/what-is-not-assignable-to-parameter-of-type-never-error-in-typescript</a></li>
@@ -4700,15 +4731,17 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces" target="_blank">https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces</a></li>
 <li><a href="https://lzomedia.com/blog/how-to-apply-type-annotations-to-functions-in-typescript/" target="_blank">https://lzomedia.com/blog/how-to-apply-type-annotations-to-functions-in-typescript/</a></li>
 <li><a href="https://stackoverflow.com/questions/12989741/the-property-value-does-not-exist-on-value-of-type-htmlelement" target="_blank">https://stackoverflow.com/questions/12989741/the-property-value-does-not-exist-on-value-of-type-htmlelement</a></li>
+<li><a href="https://stackoverflow.com/questions/61851004/describe-interface-fixed-values-in-array-element-of-typescript" target="_blank">https://stackoverflow.com/questions/61851004/describe-interface-fixed-values-in-array-element-of-typescript</a></li>
+<li><a href="https://stackoverflow.com/questions/23914271/typescript-interface-definition-with-an-unknown-property-key" target="_blank">https://stackoverflow.com/questions/23914271/typescript-interface-definition-with-an-unknown-property-key</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107281505</em></p></article><article>            <h1><a href="eslint.html">ESLint</a></h1>
+<p class="last-modified"><em>Last modified: 202107301940</em></p></article><article>            <h1><a href="eslint.html">ESLint</a></h1>
             <p>Enforce rules and raise warnings to keep your <a href="javascript.html">Javascript</a>, <a href="typescript.html">Typescript</a>, and <a href="react.html">React</a> code clean and bug free.</p>
 <h2>Ignore rule in a file</h2>
 <p>By placing this at the top of the file, it will ignore this rule throughout the entire file. <code>/* eslint-disable {rule} */</code></p>
 <p>To disable a rule for only one line, place this after the code on the offending line. <code>// eslint-disable-line {rule}</code></p>
 
-<p class="last-modified"><em>Last modified: 202107020538</em></p></article><article><h1><a href="http.html">HTTP</a></h1>
+<p class="last-modified"><em>Last modified: 202107291557</em></p></article><article><h1><a href="http.html">HTTP</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="ajax.html">AJAX</a></h1>
@@ -4827,7 +4860,65 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020550</em></p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
+<p class="last-modified"><em>Last modified: 202107020550</em></p></article><article>            <h1><a href="react-hooks.html">React Hooks</a></h1>
+            <p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
+<h2>Types</h2>
+<p>These examples are using Typescript for type annotations and clarity.</p>
+<h3><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a></h3>
+<p>useState lets you use state within a functional component.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">interface</span> <span class="n">Name</span> <span class="p">{</span>
+  <span class="n">first</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span>
+  <span class="n">last</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">const</span> <span class="n">testComponent</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>  
+  <span class="o">//</span> <span class="n">this</span> <span class="n">will</span> <span class="n">create</span> <span class="n">a</span> <span class="n">getter</span> <span class="ow">and</span> <span class="n">setter</span> <span class="k">for</span> <span class="n">state</span> <span class="n">variable</span> <span class="err">`</span><span class="n">names</span><span class="err">`</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">counter</span><span class="p">,</span> <span class="n">setCounter</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="o">&lt;</span><span class="n">number</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">names</span><span class="p">,</span> <span class="n">setNames</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="o">&lt;</span><span class="n">Name</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+
+  <span class="o">//</span> <span class="n">sets</span> <span class="n">counter</span> 
+  <span class="n">setCounter</span><span class="p">(</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+  <span class="n">const</span> <span class="n">newName</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">first</span><span class="p">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+    <span class="n">last</span><span class="p">:</span> <span class="s1">&#39;Smith&#39;</span><span class="p">,</span>
+  <span class="p">};</span>
+  <span class="n">setNames</span><span class="p">([</span>
+    <span class="o">...</span><span class="n">names</span><span class="p">,</span>
+    <span class="n">newName</span>
+  <span class="p">]);</span>
+
+  <span class="o">...</span>
+</pre></div>
+<h3><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h3>
+<p>useEffect lets you perform side effects on <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span> <span class="n">useEffect</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">const</span> <span class="n">testComponent</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">...</span>
+
+  <span class="o">//</span> <span class="n">this</span> <span class="n">will</span> <span class="n">run</span> <span class="n">on</span> <span class="n">every</span> <span class="n">rerender</span> <span class="p">(</span><span class="n">generally</span> <span class="n">don</span><span class="s1">&#39;t want this)</span>
+  <span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">do</span> <span class="n">stuff</span>
+  <span class="p">});</span>
+
+  <span class="o">//</span> <span class="n">this</span> <span class="n">will</span> <span class="n">run</span> <span class="n">the</span> <span class="n">function</span> <span class="n">once</span> <span class="n">on</span> <span class="n">mount</span>
+  <span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">do</span> <span class="n">stuff</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="o">//</span> <span class="n">this</span> <span class="n">will</span> <span class="n">run</span> <span class="n">anytime</span> <span class="n">that</span> <span class="n">variable</span> <span class="err">`</span><span class="n">names</span><span class="err">`</span> <span class="ow">is</span> <span class="n">changed</span>
+  <span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">do</span> <span class="n">stuff</span>
+  <span class="p">},</span> <span class="p">[</span><span class="n">names</span><span class="p">]);</span>
+
+  <span class="o">...</span>
+</pre></div>
+<h2>References</h2>
+
+<p class="last-modified"><em>Last modified: 202107301716</em></p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
             <p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
 <p>For React to work properly, you will need three things: </p>
 <ul>
@@ -5149,7 +5240,8 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <span class="cm">/* Multiline</span>
 <span class="cm">   comment */</span>
 </pre></div>
-<h3>Symbolic Constants</h3>
+<h3>Constants</h3>
+<h4>Symbolic Constants</h4>
 <p>Symbolic constants allow the developer to avoid <a href="magic-numbers-(programming).html">magic numbers</a> and add semantically useful labels to values. This is done using he syntax <code>#define NAME value</code>.</p>
 <div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#define TAXRATE 0.09</span>
@@ -5165,42 +5257,21 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <p>These statements don't actually <em>do</em> anything in the code. They are handled by the preprocessor and the references to the <code>NAME</code> are simply replaced by the corrseponding <code>value</code> when found. So the above <code>printf</code> line, when eventually seen by the compiler, will be:</p>
 <div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;The tax rate is %1.2f and the service charge is %d&quot;</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 </pre></div>
-<h3>Types</h3>
-<p>Since C is strongly typed, certain actions that are intuitive in Javascript or Python may not yield the results you wanted. For instance, if you have variable <code>int x</code> and you try and initialize it with a fractional number, the fractional part will be discarded since <code>x</code> stores an <code>int</code>.</p>
-<p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>.</p>
-<p><em>The following list is only what I've used most and by no means a complete list. <a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">Look at the Wikipedia page for more info</a>.</em></p>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Bits</th>
-<th>Limits</th>
-<th>Format</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>char</td>
-<td>8</td>
-<td>-127, +127</td>
-<td><code>%c</code></td>
-<td>Used for characters within strings (array of chars)</td>
-</tr>
-<tr>
-<td>int</td>
-<td>16</td>
-<td>-32,767, +32,767</td>
-<td><code>%i</code>/<code>%d</code></td>
-<td>Used for numbers and traversing data from stdin</td>
-</tr>
-</tbody></table><p>Unsigned numbers are always zero or higher and will have a range of 0 to (2^n) - 1. Signed numbers are negative or positive and have a range of -(2^n-1) to (2^n-1) - 1.</p>
+<h4>Enumeration Constants</h4>
+<p>An enumeration constant is a list of constant integer values. They will start at 0, incrementing on each new constant, unless otherwise defined.</p>
+<div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">boolean</span> <span class="p">{</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">TRUE</span> <span class="p">};</span> <span class="c1">// FALSE == 0, TRUE == 1</span>
+<span class="k">enum</span> <span class="n">months</span> <span class="p">{</span> <span class="n">JAN</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">FEB</span><span class="p">,</span> <span class="n">MAR</span><span class="p">,</span> <span class="p">...};</span> <span class="c1">// JAN == 1, FEB == 2...</span>
+<span class="k">enum</span> <span class="n">fib</span> <span class="p">{</span> <span class="n">FIRST</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">SECOND</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">THIRD</span><span class="p">,</span>
+           <span class="n">FOURTH</span><span class="p">,</span> <span class="n">FIFTH</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">SIXTH</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">}</span> <span class="c1">// THIRD == 2, FOURTH == 3...</span>
+</pre></div>
+<p>These constants can be used the same as symbolic constants.</p>
 <h3>Variables</h3>
 <p>Variables must be declared before they are used, usually at the beginning before executing your program. They are declared by type and then by name.</p>
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="n">step</span><span class="p">;</span>
 <span class="kt">char</span> <span class="n">letter</span><span class="p">;</span>
 </pre></div>
 <p>Variables that exist in and only within a given function are called <strong>automatic</strong> variables. They come into existence only when the function begins and disappear when the function is finished.</p>
+<p>The <code>const</code> keyword may be added to any variable declaration. This means that the variable declared will not change throughout its usage.</p>
 <h4>External Variables</h4>
 <p>External variables are defined exactly once outside of any function. This is so that the computer can set aside storage. Within each function that will use that, you will need to declare that variable, and preface that declaration with <code>extern</code>. For instance if <code>max</code> is an external variable, you would declare it within the function as <code>extern int max</code>.</p>
 <p>If multiple source files are used, for instance defining X in one file and wanting to use it in another file, the <code>extern</code> declaration is required. If it is all in one file, they can be omitted. </p>
@@ -5228,10 +5299,9 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <ol>
 <li><a href="https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf" target="_blank">https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf</a></li>
 <li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
-<li><a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">https://en.wikipedia.org/wiki/C_data_types</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="arrays-(c).html">Arrays (C)</a></li><li><a href="functions-(c).html">Functions (C)</a></li><li><a href="strings-(c).html">Strings (C)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107240303</em></p></article><article>            <h1>Functions (C)</h1>
+<section><h2>Backlinks:</h2><ul><li><a href="arrays-(c).html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="functions-(c).html">Functions (C)</a></li><li><a href="strings-(c).html">Strings (C)</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202108010309</em></p></article><article>            <h1>Functions (C)</h1>
             <h2>Basics</h2>
 <p>Here is the structure of a function definition in <a href="c.html">C</a>.</p>
 <div class="highlight"><pre><span></span><span class="cm">/*</span>
@@ -5350,8 +5420,99 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <ol>
 <li><a href="https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value" target="_blank">https://stackoverflow.com/questions/201101/how-to-initialize-all-members-of-an-array-to-the-same-value</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="strings-(c).html">Strings (C)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107182301</em></p></article><article>            <h1>Strings (C)</h1>
+<section><h2>Backlinks:</h2><ul><li><a href="c-data-types.html">C Data Types</a></li><li><a href="strings-(c).html">Strings (C)</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202107182301</em></p></article><article>            <h1><a href="c-data-types.html">C Data Types</a></h1>
+            <p>The different data types in <a href="c.html">C</a> all have their own characteristics.</p>
+<p>Since C is strongly typed, certain actions that are intuitive in <a href="javascript.html">Javascript</a> or <a href="python.html">Python</a> may not yield the results you wanted. For instance, if you have variable <code>int x</code> and you try and initialize it with a fractional number, the fractional part will be discarded since <code>x</code> stores an <code>int</code>.</p>
+<p><a href="arrays-(c).html">Arrays</a> are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>.</p>
+<p><em>The following list is only what I've used most and by no means a complete list. <a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">Look at the Wikipedia page for more info</a>.</em></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Bits</th>
+<th>Limits</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>char</code></td>
+<td>8</td>
+<td>-127, +127</td>
+<td><code>%c</code></td>
+<td>Used for characters within strings (array of chars)</td>
+</tr>
+<tr>
+<td>signed short <code>int</code></td>
+<td>16</td>
+<td>-32,767, +32,767</td>
+<td><code>%i</code></td>
+<td>Used for numbers and traversing data from stdin</td>
+</tr>
+<tr>
+<td>unsigned short <code>int</code></td>
+<td>16</td>
+<td>0, +65,535</td>
+<td><code>%u</code></td>
+<td></td>
+</tr>
+<tr>
+<td>signed <code>int</code></td>
+<td>16</td>
+<td>-2,147,483,648, +2,147,483,647</td>
+<td><code>%i</code></td>
+<td></td>
+</tr>
+<tr>
+<td>unsigned <code>int</code></td>
+<td>32</td>
+<td>0, +4,294,967,295</td>
+<td><code>%i</code></td>
+<td></td>
+</tr>
+<tr>
+<td>signed long <code>int</code></td>
+<td>64</td>
+<td>-9,223,372,036,854,775,808, +9,223,372,036,854,775,807</td>
+<td><code>%li</code></td>
+<td></td>
+</tr>
+<tr>
+<td>unsigned long <code>int</code></td>
+<td>64</td>
+<td>0, +18,446,744,073,709,551,615</td>
+<td><code>%lu</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>32</td>
+<td>n/a</td>
+<td><code>%f</code></td>
+<td>Use for floating point numbers</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>64</td>
+<td>n/a</td>
+<td><code>%lf</code></td>
+<td>Use for really long floating point numbers</td>
+</tr>
+</tbody></table><h2>Signed/Unsigned</h2>
+<p>Unsigned numbers are always zero or higher and will have a range of 0 to (2^n) - 1. Signed numbers are negative or positive and have a range of -(2^n-1) to (2^n-1) - 1.</p>
+<h2>Int</h2>
+<p><code>int</code>'s can be <code>short</code> or <code>long</code>. Each processor has their own limitations they will choose, but <code>short</code> is always smaller than <code>long</code>, <code>short</code> must be at least 16 bits, and <code>long</code> must be at least 32 bits. It is usually the case that <code>short</code> is 16 bits and <code>long</code> is 32 bits, but the real value on your processor can be found as symbolic constants within the <code>&lt;limits.h&gt;</code> header.</p>
+<p><code>int</code> values can be represented as standard decimal (<code>123</code>), octal (<code>0173</code>), or as hexadecimal (<code>0x7B</code>).</p>
+<h2>Float</h2>
+<p>The type <code>long double</code> represents extended-precision floating point. The processor decides the final size of floats and the real values can be found as symbolic constants within the <code>&lt;float.h&gt;</code> header.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">https://en.wikipedia.org/wiki/C_data_types</a></li>
+</ul>
+
+<p class="last-modified"><em>Last modified: 202108010344</em></p></article><article>            <h1>Strings (C)</h1>
             <p>Strings in <a href="c.html">C</a> are <a href="arrays-(c).html">arrays</a> of characters.</p>
 <h2>Basics</h2>
 <p>Both of these strings are arrays of 6 characters in length. These two are the same:</p>
@@ -5447,7 +5608,12 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
     <span class="k">WHERE</span>
       <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
 </pre></div>
-<h2>Views</h2>
+<h2>Querying JSONB Columns</h2>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span>
+  <span class="n">column_name</span> <span class="o">-&gt;</span> <span class="s1">&#39;property_name&#39;</span> <span class="k">AS</span> <span class="n">display_name</span>
+<span class="k">FROM</span>
+  <span class="n">table_name</span><span class="p">;</span>
+</pre></div>
 <h2>Commands</h2>
 <table>
 <thead>
@@ -5477,9 +5643,10 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://www.guru99.com/postgresql-view.html" target="_blank">https://www.guru99.com/postgresql-view.html</a></li>
 <li><a href="https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546" target="_blank">https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546</a></li>
 <li><a href="https://www.postgresqltutorial.com/postgresql-cheat-sheet/" target="_blank">https://www.postgresqltutorial.com/postgresql-cheat-sheet/</a></li>
+<li><a href="https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433" target="_blank">https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107150135</em></p></article><article>            <h1><a href="common-sql-queries.html">Common SQL Queries</a></h1>
+<p class="last-modified"><em>Last modified: 202107301943</em></p></article><article>            <h1><a href="common-sql-queries.html">Common SQL Queries</a></h1>
             <p>These are some common <a href="sql.html">SQL</a> queries that come up. All <code>?</code> symbols represent a place where you would dynamically insert info, like with Node's <a href="mysql.html">MySQL</a> module.</p>
 <h2>Retrieval</h2>
 <p>Get the info from all rows with a given email</p>
