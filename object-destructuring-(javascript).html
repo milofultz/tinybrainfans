@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Object destructuring in Javascript allows you to create constants from items within an object."><title>Object Destructuring (Javascript)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Object Destructuring (Javascript)</h1>
+            <p>Object destructuring in <a href="javascript.html">Javascript</a> allows you to create constants from items within an object.</p>
+<h2>How</h2>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">initialObject</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">first</span><span class="o">:</span> <span class="mf">123</span><span class="p">,</span>
+  <span class="nx">second</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;yeah&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">],</span>
+  <span class="nx">third</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">thing</span><span class="o">:</span> <span class="mf">1</span><span class="p">,</span>
+    <span class="nx">another</span><span class="o">:</span> <span class="mf">2</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">initialObject</span><span class="p">.</span><span class="nx">first</span><span class="p">)</span> <span class="c1">// 123</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">initialObject</span><span class="p">.</span><span class="nx">second</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span> <span class="c1">// &#39;yeah</span>
+</pre></div>
+<h3>Basic</h3>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">{</span> <span class="nx">first</span><span class="p">,</span> <span class="nx">second</span><span class="p">,</span> <span class="nx">third</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">initialObject</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">first</span><span class="p">)</span> <span class="c1">// 123</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">second</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span> <span class="c1">// &#39;yeah&#39;</span>
+</pre></div>
+<h3>Custom Names</h3>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span> <span class="nx">tom</span><span class="p">,</span> <span class="nx">second</span><span class="o">:</span> <span class="nx">cruise</span><span class="p">,</span> <span class="nx">third</span><span class="o">:</span> <span class="nx">hello</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">initialObject</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tom</span><span class="p">)</span> <span class="c1">// 123</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cruise</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span> <span class="c1">// &#39;yeah&#39;</span>
+</pre></div>
+<h2>References</h2>
+<ul>
+<li><a href="https://flaviocopes.com/how-to-rename-object-destructuring/" target="_blank">https://flaviocopes.com/how-to-rename-object-destructuring/</a></li>
+</ul>
+
+<p class="last-modified"><em>Last modified: 202108102211</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

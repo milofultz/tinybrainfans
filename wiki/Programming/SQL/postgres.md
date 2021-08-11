@@ -103,6 +103,8 @@ CREATE SCHEMA schema_example
 
 ## Querying JSONB Columns
 
+The way to retrieve the values found at given columns in a JSONB column is by using the single or double arrow, `->` and `->>` respectively. The former will retrieve the value in its original type, while the latter will return the value as a string.
+
 ```postgres
 SELECT
 	column_name -> 'property_name' AS display_name
@@ -127,3 +129,4 @@ FROM
 5. https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546
 6. https://www.postgresqltutorial.com/postgresql-cheat-sheet/
 7. https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433
+8. https://www.postgresql.org/docs/12/functions-json.html

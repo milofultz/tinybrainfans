@@ -51,6 +51,7 @@ const johnSmith: Person = {
 };
 
 // Functions
+//           Param Types            Output type
 const add = (a: number, b: number): number => {
   return a + b;
 };
@@ -115,6 +116,10 @@ const specificThing: InterfaceName = { name: 'John', age: 9 };
 With `useState` in {{React}} hooks, you will need to use a special syntax in creation of the hooks themselves. Since useState is a [generic function][], the typing happens within the `<>` characters.
 
 ```typescript
+type HashtagListener {
+	...
+}
+
 const [editedHashtagListeners, setEditedHashtagListeners] = useState<HashtagListener[]>([]);
 ```
 
@@ -177,11 +182,6 @@ interface User {
 ```typescript
 type Roles = 'owner' | 'admin';
 
-interface Channel {
-  id: string;
-  name: string;
-}
-
 interface User {
   name: string;
 	channels: {
@@ -202,6 +202,7 @@ interface User {
 6. https://stackoverflow.com/questions/12989741/the-property-value-does-not-exist-on-value-of-type-htmlelement
 7. https://stackoverflow.com/questions/61851004/describe-interface-fixed-values-in-array-element-of-typescript
 8. https://stackoverflow.com/questions/23914271/typescript-interface-definition-with-an-unknown-property-key
+9. https://basarat.gitbook.io/typescript/type-system
 
 [generic function]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 

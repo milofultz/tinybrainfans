@@ -39,6 +39,7 @@
 <span class="p">};</span>
 
 <span class="c1">// Functions</span>
+<span class="c1">//           Param Types            Output type</span>
 <span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">b</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
 <span class="p">};</span>
@@ -91,7 +92,11 @@
 </pre></div>
 <h4>useState</h4>
 <p>With <code>useState</code> in <a href="react.html">React</a> hooks, you will need to use a special syntax in creation of the hooks themselves. Since useState is a <a href="https://www.typescriptlang.org/docs/handbook/2/generics.html" target="_blank">generic function</a>, the typing happens within the <code>&lt;&gt;</code> characters.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">[</span><span class="nx">editedHashtagListeners</span><span class="p">,</span> <span class="nx">setEditedHashtagListeners</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">HashtagListener</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+<div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">HashtagListener</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="p">[</span><span class="nx">editedHashtagListeners</span><span class="p">,</span> <span class="nx">setEditedHashtagListeners</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">HashtagListener</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
 </pre></div>
 <h2>Interface and Type</h2>
 <p>Interfaces and types are two ways to define a type of object, declaring the types of the contained properties.</p>
@@ -138,11 +143,6 @@
 <h3>Defining Unknown Property Keys</h3>
 <div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Roles</span> <span class="o">=</span> <span class="s1">&#39;owner&#39;</span> <span class="o">|</span> <span class="s1">&#39;admin&#39;</span><span class="p">;</span>
 
-<span class="kd">interface</span> <span class="nx">Channel</span> <span class="p">{</span>
-  <span class="nx">id</span>: <span class="kt">string</span><span class="p">;</span>
-  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
-<span class="p">}</span>
-
 <span class="kd">interface</span> <span class="nx">User</span> <span class="p">{</span>
   <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
   <span class="nx">channels</span><span class="o">:</span> <span class="p">{</span>
@@ -162,6 +162,7 @@
 <li><a href="https://stackoverflow.com/questions/12989741/the-property-value-does-not-exist-on-value-of-type-htmlelement" target="_blank">https://stackoverflow.com/questions/12989741/the-property-value-does-not-exist-on-value-of-type-htmlelement</a></li>
 <li><a href="https://stackoverflow.com/questions/61851004/describe-interface-fixed-values-in-array-element-of-typescript" target="_blank">https://stackoverflow.com/questions/61851004/describe-interface-fixed-values-in-array-element-of-typescript</a></li>
 <li><a href="https://stackoverflow.com/questions/23914271/typescript-interface-definition-with-an-unknown-property-key" target="_blank">https://stackoverflow.com/questions/23914271/typescript-interface-definition-with-an-unknown-property-key</a></li>
+<li><a href="https://basarat.gitbook.io/typescript/type-system" target="_blank">https://basarat.gitbook.io/typescript/type-system</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107301940</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108111828</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

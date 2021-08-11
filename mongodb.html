@@ -20,12 +20,20 @@
 <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="s1">&#39;connection error:&#39;</span><span class="p">));</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>                            <span class="c1">// Inside here is where the action happens</span>
+  <span class="c1">// Create schema for collection</span>
   <span class="kd">const</span> <span class="nx">kittySchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="nx">color</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+      <span class="kr">enum</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">],</span>
+    <span class="p">},</span>
   <span class="p">});</span>
-  <span class="kd">const</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span> <span class="p">});</span> <span class="c1">// Create schema for collection</span>
+  <span class="kd">const</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span> <span class="p">});</span> 
 
-  <span class="kd">const</span> <span class="nx">kitty</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zildjian&#39;</span> <span class="p">});</span>         <span class="c1">// Create a new document of Cat</span>
+  <span class="kd">const</span> <span class="nx">kitty</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">({</span> 
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zildjian&#39;</span><span class="p">,</span>
+    <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;orange&#39;</span>
+  <span class="p">});</span>         <span class="c1">// Create a new document of Cat</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitty</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>                             <span class="c1">// &#39;Zildjian&#39;</span>
   <span class="nx">kitty</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;meow&#39;</span><span class="p">));</span>                   <span class="c1">// Save the new document in the Cat collection</span>
@@ -34,6 +42,9 @@
 <p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
 <h2>Indexes</h2>
 <p>If your collection does not have an index, your query could take a very long time, as it will have to scan every single document within your collection and analyze it to see if it matches your query.</p>
+<div class="highlight"><pre><span></span>// create an index in collectionName from highest score to lowest
+db.collectionName.createIndex( { score: -1 } )
+</pre></div>
 <h2>Data Import</h2>
 <p>Use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> to bring in Extended <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a> files to your Mongo database. First, start up your database, and then use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> in the command line:</p>
 <div class="highlight"><pre><span></span><span class="c1">#             use the PetHotel db      use header line as field names</span>
@@ -41,6 +52,48 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 
 <span class="c1"># If no header line is availabe:       list them out after the --fields option</span>
 $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --fields<span class="o">=</span>_id,name,type --file<span class="o">=</span>pets.csv
+</pre></div>
+<h2>Data Modification</h2>
+<p>If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.</p>
+<p>Let's assume a collection of dogs:</p>
+<div class="highlight"><pre><span></span><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="p">...,</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Doggo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;goodBoy&quot;</span><span class="o">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="c1">// should be a boolean</span>
+    <span class="s2">&quot;enemy&quot;</span><span class="o">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>   <span class="c1">// or could be &quot;mailman&quot; or other string</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</pre></div>
+<p>When completed, this will change all <code>goodboy</code> properties to a boolean and if <code>enemy</code> was imported with <code>null</code> as the string, it will convert it into an actual null value. The <code>bulkWrite</code> is done as it is <strong>much</strong> faster than sending individual requests.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">requests</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">dogs</span><span class="p">.</span><span class="nx">find</span><span class="p">({});</span>
+
+<span class="nx">cursor</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">requests</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> 
+    <span class="s2">&quot;updateOne&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;filter&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">_id</span> <span class="p">},</span>
+      <span class="s2">&quot;update&quot;</span><span class="o">:</span> <span class="p">{</span> 
+        <span class="s2">&quot;$set&quot;</span><span class="o">:</span> <span class="p">{</span> 
+          <span class="s2">&quot;goodBoy&quot;</span><span class="o">:</span> <span class="nb">Boolean</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">goodboy</span><span class="p">),</span>
+          <span class="s2">&quot;enemy&quot;</span><span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">enemy</span> <span class="o">===</span> <span class="s1">&#39;null&#39;</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">enemy</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">requests</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mf">1000</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Execute per 1000 operations and re-init</span>
+    <span class="nx">db</span><span class="p">.</span><span class="nx">dogs</span><span class="p">.</span><span class="nx">bulkWrite</span><span class="p">(</span><span class="nx">requests</span><span class="p">);</span>
+    <span class="nx">requests</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">requests</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">dogs</span><span class="p">.</span><span class="nx">bulkWrite</span><span class="p">(</span><span class="nx">requests</span><span class="p">);</span>
+  <span class="nx">requests</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="p">}</span>
 </pre></div>
 <h2>Syntax</h2>
 <table>
@@ -80,15 +133,16 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <td>Create a document in <code>people</code> (note: if a new collection is selected via <code>use</code>, this will create the new collection)</td>
 </tr>
 </tbody></table><h2>References</h2>
+<h3>Mongo</h3>
 <ol>
 <li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
 <li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
 <li><a href="https://docs.mongodb.com/manual/core/databases-and-collections/" target="_blank">https://docs.mongodb.com/manual/core/databases-and-collections/</a></li>
-<li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
-<li><a href="https://www.npmjs.com/package/mongoose" target="_blank">https://www.npmjs.com/package/mongoose</a></li>
 <li><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline/" target="_blank">https://docs.mongodb.com/manual/core/aggregation-pipeline/</a></li>
 <li><a href="https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/" target="_blank">https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/</a></li>
 <li><a href="https://docs.mongodb.com/manual/indexes/" target="_blank">https://docs.mongodb.com/manual/indexes/</a></li>
+<li><a href="https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query" target="_blank">https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query</a></li>
+<li><a href="https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/" target="_blank">https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="mongoose-(javascript).html">Mongoose (Javascript)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107200304</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108090238</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

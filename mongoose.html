@@ -1,5 +1,52 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><title>mongoose</title><link rel="stylesheet" href="./styles.css"></head><body>
-<main id="main"><article id="content"><h1 id="title">mongoose</h1>
-<p>There's currently nothing here.</p>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Mongoose is a Javascript package for interacting with Mongo databases."><title>Mongoose</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Mongoose</h1>
+            <p>Mongoose is a <a href="javascript.html">Javascript</a> package for interacting with <a href="mongo.html">Mongo</a> databases.</p>
+<h2>Schemas and Models</h2>
+<p>Basic schemas are written very simply using a standard JSON format.</p>
+<p>The following schema is for a registration form. It has five fields, all with differing implementations. Most basic, you can just put the key followed by it's type. If you want extended functionality, you can utilize it by using object notation.</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">attendeeSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">lastName</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+  <span class="nx">email</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">match</span><span class="o">:</span> <span class="sr">/[a-z0-9!#$%&amp;&#39;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&#39;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">shirt</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="kr">enum</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;XS&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;XL&#39;</span><span class="p">,</span> <span class="s1">&#39;XXL&#39;</span><span class="p">],</span>
+    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">skillLevel</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+    <span class="kr">enum</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;beginner&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;expert&#39;</span><span class="p">],</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<p>Once your schema is created, you will then create a model that will be utilized within your code.</p>
+<div class="highlight"><pre><span></span><span class="c1">// mongoose.model(collection, schema), where collection is the</span>
+<span class="c1">// name of the collection in your database.</span>
+<span class="kd">const</span> <span class="nx">Attendee</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;attendee&#39;</span><span class="p">,</span> <span class="nx">attendeeSchema</span><span class="p">);</span>
+</pre></div>
+<p>This makes it easy to encapsulate the whole thing inside of a file for export in a <a href="node.html">node</a> project.</p>
+<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">attendeeSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
+  <span class="p">...</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">Attendee</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Attendee&#39;</span><span class="p">,</span> <span class="nx">attendeeSchema</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Attendee</span><span class="p">;</span>
+</pre></div>
+<h2>References</h2>
+<ol>
+<li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
+<li><a href="https://www.npmjs.com/package/mongoose" target="_blank">https://www.npmjs.com/package/mongoose</a></li>
+<li><a href="https://mongoosejs.com/docs/validation.html" target="_blank">https://mongoosejs.com/docs/validation.html</a></li>
+</ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108071723</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

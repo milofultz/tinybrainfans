@@ -65,8 +65,6 @@ git branch --merged | egrep -v "(^\*|master|main|dev|staging)" | xargs git branc
 
 > When should I use cherry-pick? **The short answer is: as rarely as possible.**
 
-Cherry picking
-
 ## Revert
 
 A revert allows you to go back to a previous commit, reversing those previous between commit X (HEAD) and commit Y(the selected commit). This will create a reversal commit for each commit to be undone between X and Y. In the case of a single commit to be undone, it will make a single reversal commit.
