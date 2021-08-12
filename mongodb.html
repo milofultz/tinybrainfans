@@ -53,6 +53,37 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <span class="c1"># If no header line is availabe:       list them out after the --fields option</span>
 $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --fields<span class="o">=</span>_id,name,type --file<span class="o">=</span>pets.csv
 </pre></div>
+<h3>Types</h3>
+<p>You can specify the <a href="https://docs.mongodb.com/database-tools/mongoimport/#std-option-mongoimport.--columnsHaveTypes" target="_blank">types</a> of the columns within the header line of your CSV.</p>
+<div class="highlight"><pre><span></span>id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+1,&quot;This product was great!&quot;,true,8
+</pre></div>
+<div class="highlight"><pre><span></span>$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --headerline --columnsHaveTypes --file<span class="o">=</span>pets.csv
+</pre></div>
+<h3>Null Values</h3>
+<p>If you have null values in your CSV, you can remove these <code>null</code> values between two commas (or after one if at the end of a line) and tell mongoimport to <code>--ignoreBlanks</code>. This won't import null values, but when interacting with your database, you can use the <a href="https://docs.mongodb.com/manual/reference/operator/query/exists/#mongodb-query-op.-exists" target="_blank"><code>$exists</code></a> query operator to query for them and <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/#mongodb-expression-exp.-ifNull" target="_blank"><code>$ifNull</code> </a> to cast missing fields as <code>null</code> in an aggregation pipeline.</p>
+<p>In the below example, the summary is null, but we still want it to accept strings.</p>
+<div class="highlight"><pre><span></span>id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+1,null,true,8
+</pre></div>
+<p>If we were to import this as is, we would end up with a summary field containing an empty string. After replacing the <code>,null,</code> with <code>,,</code> and using <code>--ignoreBlanks</code> on import, this field ends up missing, which is the desired behavior. </p>
+<p>To query for fields that have a missing of <code>null</code> field:</p>
+<div class="highlight"><pre><span></span>&gt; db.collection_name.find({ summary: { $exists: false }})
+</pre></div>
+<p>And to get the field back with a <code>null</code> value in the place of that missing field:</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">db</span><span class="p">.</span><span class="n">collection_name</span><span class="p">.</span><span class="n">aggregate</span><span class="p">([</span>
+<span class="p">...</span> <span class="c1">// match document with id of 1</span>
+<span class="p">...</span> <span class="p">{</span> <span class="n">$match</span><span class="o">:</span> <span class="p">{</span> <span class="nl">id:</span> <span class="mh">1</span> <span class="p">}},</span>
+<span class="p">...</span> <span class="c1">// show all fields and cast summary to null if missing</span>
+<span class="p">...</span> <span class="p">{</span> <span class="n">$project</span><span class="o">:</span> <span class="p">{</span>
+<span class="p">...</span>   <span class="nl">_id:</span> <span class="mh">0</span><span class="p">,</span>
+<span class="p">...</span>   <span class="nl">id:</span> <span class="mh">1</span><span class="p">,</span>
+<span class="p">...</span>   <span class="nl">summary:</span> <span class="p">{</span> <span class="n">$ifNull</span><span class="o">:</span> <span class="p">[</span> <span class="p">&#39;</span><span class="n">$summary</span><span class="p">&#39;,</span> <span class="n">null</span> <span class="p">]},</span>
+<span class="p">...</span>   <span class="nl">recommend:</span> <span class="mh">1</span><span class="p">,</span>
+<span class="p">...</span>   <span class="nl">helpfulness:</span> <span class="mh">1</span>
+<span class="p">...</span> <span class="p">}}</span>
+<span class="p">...</span> <span class="p">]);</span>
+</pre></div>
 <h2>Data Modification</h2>
 <p>If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.</p>
 <p>Let's assume a collection of dogs:</p>
@@ -125,16 +156,19 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <td>Return all documents in collection <code>collection_name</code>.</td>
 </tr>
 <tr>
-<td><code>db.people.find({name: &#x27;John&#x27;})</code></td>
-<td>Return all documents in <code>people</code> whose name is John.</td>
+<td><code>db.collection_name.find({name: &#x27;John&#x27;})</code></td>
+<td>Return all documents in <code>collection_name</code> whose name is John.</td>
 </tr>
 <tr>
-<td><code>db.people.insert({name: &#x27;John&#x27;, age: 40})</code></td>
-<td>Create a document in <code>people</code> (note: if a new collection is selected via <code>use</code>, this will create the new collection)</td>
+<td><code>db.collection_name.insert({name: &#x27;John&#x27;, age: 40})</code></td>
+<td>Create a document in <code>collection_name</code> (note: if a new collection is selected via <code>use</code>, this will create the new collection)</td>
+</tr>
+<tr>
+<td><code>db.collection_name.renameCollection(&#x27;newName&#x27;, dropOld)</code></td>
+<td>Rename <code>collection_name</code> to <code>newName</code> and if drop old table if <code>dropOld</code> is true.</td>
 </tr>
 </tbody></table><h2>References</h2>
-<h3>Mongo</h3>
-<ol>
+<ul>
 <li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
 <li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
 <li><a href="https://docs.mongodb.com/manual/core/databases-and-collections/" target="_blank">https://docs.mongodb.com/manual/core/databases-and-collections/</a></li>
@@ -143,6 +177,7 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://docs.mongodb.com/manual/indexes/" target="_blank">https://docs.mongodb.com/manual/indexes/</a></li>
 <li><a href="https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query" target="_blank">https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query</a></li>
 <li><a href="https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/" target="_blank">https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/</a></li>
-</ol>
+<li><a href="https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types" target="_blank">https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types</a></li>
+</ul>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="mongoose-(javascript).html">Mongoose (Javascript)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108090238</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108121502</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

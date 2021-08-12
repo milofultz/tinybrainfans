@@ -134,6 +134,8 @@ add esp, 12	; Flush the three 4 byte values on the stack by
 9. https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html
 10. https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
 7. https://www.hellboundhackers.org/articles/read-article.php?article_id=729
+8. https://www.chibialiens.com/8086/8086CheatSheet.pdf
+9. https://www.chibialiens.com/8086/
 
 [masm]: https://www.masm32.com
 [nasm]: https://nasm.us/

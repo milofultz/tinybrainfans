@@ -78,6 +78,55 @@ $ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
 $ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
 ```
 
+### Types
+
+You can specify the [types](https://docs.mongodb.com/database-tools/mongoimport/#std-option-mongoimport.--columnsHaveTypes) of the columns within the header line of your CSV.
+
+```csv
+id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+1,"This product was great!",true,8
+```
+
+```bash
+$ mongoimport --db=PetHotel --type=csv --headerline --columnsHaveTypes --file=pets.csv
+```
+
+### Null Values
+
+If you have null values in your CSV, you can remove these `null` values between two commas (or after one if at the end of a line) and tell mongoimport to `--ignoreBlanks`. This won't import null values, but when interacting with your database, you can use the [`$exists`](https://docs.mongodb.com/manual/reference/operator/query/exists/#mongodb-query-op.-exists) query operator to query for them and [`$ifNull` ](https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/#mongodb-expression-exp.-ifNull) to cast missing fields as `null` in an aggregation pipeline.
+
+In the below example, the summary is null, but we still want it to accept strings.
+
+```csv
+id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+1,null,true,8
+```
+
+If we were to import this as is, we would end up with a summary field containing an empty string. After replacing the `,null,` with `,,` and using `--ignoreBlanks` on import, this field ends up missing, which is the desired behavior. 
+
+To query for fields that have a missing of `null` field:
+
+```mongosh
+> db.collection_name.find({ summary: { $exists: false }})
+```
+
+And to get the field back with a `null` value in the place of that missing field:
+
+```mongosh
+> db.collection_name.aggregate([
+... // match document with id of 1
+... { $match: { id: 1 }},
+... // show all fields and cast summary to null if missing
+... { $project: {
+... 	_id: 0,
+... 	id: 1,
+... 	summary: { $ifNull: [ '$summary', null ]},
+... 	recommend: 1,
+... 	helpfulness: 1
+... }}
+... ]);
+```
+
 ## Data Modification
 
 If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.
@@ -130,27 +179,27 @@ if (requests.length) {
 
 ## Syntax
 
-| Command                                     | Effect                                                       |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| `show dbs`                                  | List all databases on the given server                       |
-| `use database_name`                         | Enter into `database_name`, preparing to query.              |
-| `db.dropDatabase()`                         | Delete the selected database                                 |
-| `show collections` / `show tables`          | List all collections/tables in the selected database.        |
-| `db.collection_name.find()`                 | Return all documents in collection `collection_name`.        |
-| `db.people.find({name: 'John'})`            | Return all documents in `people` whose name is John.         |
-| `db.people.insert({name: 'John', age: 40})` | Create a document in `people` (note: if a new collection is selected via `use`, this will create the new collection) |
+| Command                                                   | Effect                                                       |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+| `show dbs`                                                | List all databases on the given server                       |
+| `use database_name`                                       | Enter into `database_name`, preparing to query.              |
+| `db.dropDatabase()`                                       | Delete the selected database                                 |
+| `show collections` / `show tables`                        | List all collections/tables in the selected database.        |
+| `db.collection_name.find()`                               | Return all documents in collection `collection_name`.        |
+| `db.collection_name.find({name: 'John'})`                 | Return all documents in `collection_name` whose name is John. |
+| `db.collection_name.insert({name: 'John', age: 40})`      | Create a document in `collection_name` (note: if a new collection is selected via `use`, this will create the new collection) |
+| `db.collection_name.renameCollection('newName', dropOld)` | Rename `collection_name` to `newName` and if drop old table if `dropOld` is true. |
 
 ## References
 
-### Mongo
-
-1. https://www.mongodb.com/basics/examples
-2. https://www.mongodb.com/basics/create-database
-3. https://docs.mongodb.com/manual/core/databases-and-collections/
-4. https://docs.mongodb.com/manual/core/aggregation-pipeline/
-5. https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/
-6. https://docs.mongodb.com/manual/indexes/
-7. https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query
-8. https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/
+- https://www.mongodb.com/basics/examples
+- https://www.mongodb.com/basics/create-database
+- https://docs.mongodb.com/manual/core/databases-and-collections/
+- https://docs.mongodb.com/manual/core/aggregation-pipeline/
+- https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/
+- https://docs.mongodb.com/manual/indexes/
+- https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query
+- https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/
+- https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types
 
 [`mongoimport`]: https://docs.mongodb.com/database-tools/mongoimport/
