@@ -1,6 +1,6 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="MongoDB is a NoSQL database management system using documents similar to JSON."><title>MongoDB</title><link rel="stylesheet" href="./styles.css"></head><body>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="MongoDB is a NoSQL database management system based on Javascript using documents similar to JSON."><title>MongoDB</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">MongoDB</h1>
-            <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system using documents similar to <a href="json.html">JSON</a>.</p>
+            <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system based on <a href="javascript.html">Javascript</a> using documents similar to <a href="json.html">JSON</a>.</p>
 <h2>Getting Started</h2>
 <p>This will start a new project using your local server and <a href="mongoose.html">mongoose</a> via <a href="node.html">node</a>.</p>
 <h3>Local Machine</h3>
@@ -45,7 +45,15 @@
 <div class="highlight"><pre><span></span>// create an index in collectionName from highest score to lowest
 db.collectionName.createIndex( { score: -1 } )
 </pre></div>
-<h2>Data Import</h2>
+<h2>Import and Export</h2>
+<h3><a href="https://docs.mongodb.com/database-tools/mongoexport" target="_blank"><code>mongoexport</code></a>: Export <a href="json.html">JSON</a> or <a href="csv.html">CSV</a></h3>
+<div class="highlight"><pre><span></span>$ mongoexport --db<span class="o">=</span>dbName --collection<span class="o">=</span>collectionName --out<span class="o">=</span>filename.json
+</pre></div>
+<p>When you export in CSV format, you must specify the fields in the documents to export.</p>
+<div class="highlight"><pre><span></span><span class="c1"># for CSV etc.</span>
+$ mongoexport --db<span class="o">=</span>dbName --collection<span class="o">=</span>collectionName --fields<span class="o">=</span>name,address --out<span class="o">=</span>filename.json
+</pre></div>
+<h3><a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a>: Import <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a></h3>
 <p>Use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> to bring in Extended <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a> files to your Mongo database. First, start up your database, and then use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> in the command line:</p>
 <div class="highlight"><pre><span></span><span class="c1">#             use the PetHotel db      use header line as field names</span>
 $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --headerline --file<span class="o">=</span>pets.csv
@@ -53,14 +61,14 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <span class="c1"># If no header line is availabe:       list them out after the --fields option</span>
 $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --fields<span class="o">=</span>_id,name,type --file<span class="o">=</span>pets.csv
 </pre></div>
-<h3>Types</h3>
+<h4>Types</h4>
 <p>You can specify the <a href="https://docs.mongodb.com/database-tools/mongoimport/#std-option-mongoimport.--columnsHaveTypes" target="_blank">types</a> of the columns within the header line of your CSV.</p>
 <div class="highlight"><pre><span></span>id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
 1,&quot;This product was great!&quot;,true,8
 </pre></div>
 <div class="highlight"><pre><span></span>$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --headerline --columnsHaveTypes --file<span class="o">=</span>pets.csv
 </pre></div>
-<h3>Null Values</h3>
+<h4>Null Values</h4>
 <p>If you have null values in your CSV, you can remove these <code>null</code> values between two commas (or after one if at the end of a line) and tell mongoimport to <code>--ignoreBlanks</code>. This won't import null values, but when interacting with your database, you can use the <a href="https://docs.mongodb.com/manual/reference/operator/query/exists/#mongodb-query-op.-exists" target="_blank"><code>$exists</code></a> query operator to query for them and <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/#mongodb-expression-exp.-ifNull" target="_blank"><code>$ifNull</code> </a> to cast missing fields as <code>null</code> in an aggregation pipeline.</p>
 <p>In the below example, the summary is null, but we still want it to accept strings.</p>
 <div class="highlight"><pre><span></span>id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
@@ -84,6 +92,14 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <span class="p">...</span> <span class="p">}}</span>
 <span class="p">...</span> <span class="p">]);</span>
 </pre></div>
+<h3><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>: Export BSON (native format)</h3>
+<p>To export a collection or database from a mongo database, use <a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>.</p>
+<div class="highlight"><pre><span></span>$ mongodump --db<span class="o">=</span>dbName --collection<span class="o">=</span>collectionName --out<span class="o">=</span>path/for/output
+</pre></div>
+<h3><a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>: Import BSON (native format)</h3>
+<p>To import a collection or database from a dumped mongo database, use <a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>.</p>
+<div class="highlight"><pre><span></span>$ mongorestore -d dbName ./dump/path
+</pre></div>
 <h2>Data Modification</h2>
 <p>If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.</p>
 <p>Let's assume a collection of dogs:</p>
@@ -98,32 +114,32 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <span class="p">]</span>
 </pre></div>
 <p>When completed, this will change all <code>goodboy</code> properties to a boolean and if <code>enemy</code> was imported with <code>null</code> as the string, it will convert it into an actual null value. The <code>bulkWrite</code> is done as it is <strong>much</strong> faster than sending individual requests.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">requests</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="kd">var</span> <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">dogs</span><span class="p">.</span><span class="nx">find</span><span class="p">({});</span>
+<div class="highlight"><pre><span></span><span class="k">var</span> <span class="n">requests</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">var</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">dogs</span><span class="o">.</span><span class="n">find</span><span class="p">({});</span>
 
-<span class="nx">cursor</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">requests</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> 
-    <span class="s2">&quot;updateOne&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;filter&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">_id</span> <span class="p">},</span>
-      <span class="s2">&quot;update&quot;</span><span class="o">:</span> <span class="p">{</span> 
-        <span class="s2">&quot;$set&quot;</span><span class="o">:</span> <span class="p">{</span> 
-          <span class="s2">&quot;goodBoy&quot;</span><span class="o">:</span> <span class="nb">Boolean</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">goodboy</span><span class="p">),</span>
-          <span class="s2">&quot;enemy&quot;</span><span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">enemy</span> <span class="o">===</span> <span class="s1">&#39;null&#39;</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">enemy</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">forEach</span><span class="p">(</span><span class="n">item</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">requests</span><span class="o">.</span><span class="n">push</span><span class="p">({</span> 
+    <span class="s2">&quot;updateOne&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">_id</span> <span class="p">},</span>
+      <span class="s2">&quot;update&quot;</span><span class="p">:</span> <span class="p">{</span> 
+        <span class="s2">&quot;$set&quot;</span><span class="p">:</span> <span class="p">{</span> 
+          <span class="s2">&quot;goodBoy&quot;</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">goodboy</span><span class="p">),</span>
+          <span class="s2">&quot;enemy&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">enemy</span> <span class="o">===</span> <span class="s1">&#39;null&#39;</span> <span class="err">?</span> <span class="nb nb-Type">null</span> <span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">enemy</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">});</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="nx">requests</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mf">1000</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Execute per 1000 operations and re-init</span>
-    <span class="nx">db</span><span class="p">.</span><span class="nx">dogs</span><span class="p">.</span><span class="nx">bulkWrite</span><span class="p">(</span><span class="nx">requests</span><span class="p">);</span>
-    <span class="nx">requests</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">length</span> <span class="o">===</span> <span class="mi">1000</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Execute</span> <span class="n">per</span> <span class="mi">1000</span> <span class="n">operations</span> <span class="ow">and</span> <span class="n">re</span><span class="o">-</span><span class="n">init</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">dogs</span><span class="o">.</span><span class="n">bulkWrite</span><span class="p">(</span><span class="n">requests</span><span class="p">);</span>
+    <span class="n">requests</span> <span class="o">=</span> <span class="p">[];</span>
   <span class="p">}</span>
 <span class="p">});</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nx">requests</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">db</span><span class="p">.</span><span class="nx">dogs</span><span class="p">.</span><span class="nx">bulkWrite</span><span class="p">(</span><span class="nx">requests</span><span class="p">);</span>
-  <span class="nx">requests</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">db</span><span class="o">.</span><span class="n">dogs</span><span class="o">.</span><span class="n">bulkWrite</span><span class="p">(</span><span class="n">requests</span><span class="p">);</span>
+  <span class="n">requests</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="p">}</span>
 </pre></div>
 <h2>Syntax</h2>
@@ -178,6 +194,8 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query" target="_blank">https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query</a></li>
 <li><a href="https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/" target="_blank">https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/</a></li>
 <li><a href="https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types" target="_blank">https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types</a></li>
+<li><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank">https://docs.mongodb.com/database-tools/mongodump/</a></li>
+<li><a href="https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file" target="_blank">https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file</a></li>
 </ul>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="mongoose-(javascript).html">Mongoose (Javascript)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108121502</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108150110</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

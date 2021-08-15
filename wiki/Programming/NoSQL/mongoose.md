@@ -101,6 +101,12 @@ const Attendee = mongoose.model('Attendee', attendeeSchema);
 module.exports = Attendee;
 ```
 
+## Remote Database
+
+```
+mongoose.connect('mongodb://username:password@host:port', {useNewUrlParser: true});
+```
+
 ## Troubleshooting
 
 ### Return Object
@@ -110,3 +116,5 @@ The return of a query is not a plain Javascript object and will show weird behav
 ## References
 
 1. https://mongoosejs.com/
+2. https://stackoverflow.com/questions/33614229/how-to-use-mongo-mongoose-to-connect-to-a-remote-database
+3. https://mongoosejs.com/docs/connections.html

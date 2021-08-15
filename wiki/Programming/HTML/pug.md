@@ -66,6 +66,19 @@ h1(data-name= name.replace(/\s/, '.').toLowerCase() )= `This guy is probably ${n
 //- <h1 data-name="john.smith">This guy is probably 6 feet tall!</h1>
 ```
 
+#### Inserting HTML via Javascript
+
+```
+- var num = 6;
+- var name = "John Smith";
+
+- const john = `This guy is <i>probably</i> ${num} feet tall!`;
+h1(data-name= name.replace(/\s/, '.').toLowerCase() )= !{john}
+
+//- outputs
+//- <h1 data-name="john.smith">This guy is <i>probably</i> 6 feet tall!</h1>
+```
+
 ### Inline
 
 ```
@@ -198,3 +211,4 @@ Packages in {{Sublime Text}} are interdependent on each other and many of the de
 4. https://pugjs.org/language/conditionals.html
 5. https://pugjs.org/language/includes.html
 6. https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax
+7. https://stackoverflow.com/questions/27107451/how-to-insert-raw-html-in-pug-file-not-include-external-html-file

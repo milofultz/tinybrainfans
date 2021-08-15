@@ -78,12 +78,17 @@
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Attendee</span><span class="p">;</span>
 </pre></div>
+<h2>Remote Database</h2>
+<div class="highlight"><pre><span></span><span class="n">mongoose</span><span class="p">.</span><span class="k">connect</span><span class="p">(</span><span class="s1">&#39;mongodb://username:password@host:port&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="nl">useNewUrlParser</span><span class="p">:</span><span class="w"> </span><span class="k">true</span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+</pre></div>
 <h2>Troubleshooting</h2>
 <h3>Return Object</h3>
 <p>The return of a query is not a plain Javascript object and will show weird behavior when trying to add to/remove from/modify it. If you want a plain Javascript object in return, you can use <code>.lean()</code> within your chain to cast it. </p>
 <h2>References</h2>
 <ol>
 <li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
+<li><a href="https://stackoverflow.com/questions/33614229/how-to-use-mongo-mongoose-to-connect-to-a-remote-database" target="_blank">https://stackoverflow.com/questions/33614229/how-to-use-mongo-mongoose-to-connect-to-a-remote-database</a></li>
+<li><a href="https://mongoosejs.com/docs/connections.html" target="_blank">https://mongoosejs.com/docs/connections.html</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202108112350</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108150035</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~500k)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

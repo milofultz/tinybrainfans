@@ -1,9 +1,9 @@
 ---
 title: MongoDB
-description: MongoDB is a NoSQL database management system using documents similar to JSON.
+description: MongoDB is a NoSQL database management system based on Javascript using documents similar to JSON.
 ---
 
-MongoDB is a {{NoSQL}} {{database}} management system using documents similar to {{JSON}}.
+MongoDB is a {{NoSQL}} {{database}} management system based on {{Javascript}} using documents similar to {{JSON}}.
 
 ## Getting Started
 
@@ -66,7 +66,22 @@ If your collection does not have an index, your query could take a very long tim
 db.collectionName.createIndex( { score: -1 } )
 ```
 
-## Data Import
+## Import and Export
+
+### [`mongoexport`][]: Export {{JSON}} or {{CSV}}
+
+```bash
+$ mongoexport --db=dbName --collection=collectionName --out=filename.json
+```
+
+When you export in CSV format, you must specify the fields in the documents to export.
+
+```bash
+# for CSV etc.
+$ mongoexport --db=dbName --collection=collectionName --fields=name,address --out=filename.json
+```
+
+### [`mongoimport`][]: Import {{JSON}}, {{CSV}}, or {{TSV}}
 
 Use [`mongoimport`][] to bring in Extended {{JSON}}, {{CSV}}, or {{TSV}} files to your Mongo database. First, start up your database, and then use [`mongoimport`][] in the command line:
 
@@ -78,7 +93,7 @@ $ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
 $ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
 ```
 
-### Types
+#### Types
 
 You can specify the [types](https://docs.mongodb.com/database-tools/mongoimport/#std-option-mongoimport.--columnsHaveTypes) of the columns within the header line of your CSV.
 
@@ -91,7 +106,7 @@ id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
 $ mongoimport --db=PetHotel --type=csv --headerline --columnsHaveTypes --file=pets.csv
 ```
 
-### Null Values
+#### Null Values
 
 If you have null values in your CSV, you can remove these `null` values between two commas (or after one if at the end of a line) and tell mongoimport to `--ignoreBlanks`. This won't import null values, but when interacting with your database, you can use the [`$exists`](https://docs.mongodb.com/manual/reference/operator/query/exists/#mongodb-query-op.-exists) query operator to query for them and [`$ifNull` ](https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/#mongodb-expression-exp.-ifNull) to cast missing fields as `null` in an aggregation pipeline.
 
@@ -127,6 +142,22 @@ And to get the field back with a `null` value in the place of that missing field
 ... ]);
 ```
 
+### [`mongodump`][]: Export BSON (native format)
+
+To export a collection or database from a mongo database, use [`mongodump`][].
+
+```bash
+$ mongodump --db=dbName --collection=collectionName --out=path/for/output
+```
+
+### [`mongorestore`][]: Import BSON (native format)
+
+To import a collection or database from a dumped mongo database, use [`mongorestore`][].
+
+```bash
+$ mongorestore -d dbName ./dump/path
+```
+
 ## Data Modification
 
 If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.
@@ -147,7 +178,7 @@ Let's assume a collection of dogs:
 
 When completed, this will change all `goodboy` properties to a boolean and if `enemy` was imported with `null` as the string, it will convert it into an actual null value. The `bulkWrite` is done as it is **much** faster than sending individual requests.
 
-```javascript
+```mongosh
 var requests = [];
 var cursor = db.dogs.find({});
 
@@ -201,5 +232,11 @@ if (requests.length) {
 - https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query
 - https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/
 - https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types
+- https://docs.mongodb.com/database-tools/mongodump/
+- https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file
 
 [`mongoimport`]: https://docs.mongodb.com/database-tools/mongoimport/
+[`mongoexport`]: https://docs.mongodb.com/database-tools/mongoexport
+[ `mongorestore`]: https://docs.mongodb.com/database-tools/mongorestore/
+[ `mongodump`]: https://docs.mongodb.com/database-tools/mongodump/
+
