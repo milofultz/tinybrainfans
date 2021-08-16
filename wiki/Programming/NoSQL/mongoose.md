@@ -1,5 +1,5 @@
 ---
-title: Mongoose (Javascript)
+title: Mongoose
 description: Mongoose is an NPM package that allows a simple and schema'd Javascript entrypoint to your Mongo database.
 ---
 
