@@ -21,6 +21,30 @@ Save and quit | `:wq` |
 Save only if file changed and quit | `:x` |
 Save As | `:w newFileName` |
 
+### Find
+
+Description | Command | Notes
+--- | --- | ---
+Find | `/searchpattern` |Go to next occurrence with `n` and previous with `N`
+Find and Replace | `:1,$s/searchpattern/replacepattern` | To replace all, add `/g` to the end of the command
+
+### Navigation
+
+Description | Command | Notes
+--- | --- | ---
+Go to beginning of file | `gg` | 
+Go to end of file | `G` |
+Go to beginning of line | `0` |
+Go to end of line | `$` |
+
+### Delete
+
+Description | Command | Notes
+--- | --- | ---
+Delete line | `dd` | 
+Delete `3` lines | `3dd` | 
+Delete from current column to end of line | `D` |
+
 ## References
 
 - https://www.vim.org/
