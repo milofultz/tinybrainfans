@@ -7,7 +7,7 @@ description: Simple but not intuitive (and definitely forgettable) things about 
 
 If you are experiencing difficulty with your road shifters, it is likely that the grease inside of the mechanism has accumulated dust and no longer catches the shifting thingy. It may be good to mount the bike or place it upside down (much harder) so you can shift easily.
 
-Squeeze the brakes until you see the inside of the shifting mechanism. Spray a liquid penetrant like Pb Blaster or Kroil inside of the mechanism and try shifting up and down repeatedly for a couple minutes. You should notice an improvement, but it probably won't be fixed. Wait and repeat in a couple of hours.
+Squeeze the brakes until you see the inside of the shifting mechanism. Spray a liquid penetrant like Pb Blaster or Kroil (**NOT WD40**) inside of the mechanism and try shifting up and down repeatedly for a couple minutes. You should notice an improvement, but it probably won't be fixed. Wait and repeat in a couple of hours.
 
 Once finished, get some compressed air and flush out any gunk in there, and some isopropyl alcohol if you want to be super thorough.
 
