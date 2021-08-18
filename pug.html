@@ -149,6 +149,60 @@ each last, first in people
 //- <span class="nt">&lt;p&gt;</span>John Johnson<span class="nt">&lt;/p&gt;</span>
 //- <span class="nt">&lt;p&gt;</span>Ashley Ashtown<span class="nt">&lt;/p&gt;</span>
 </pre></div>
+<h3>Mixins</h3>
+<p>Mixins allow one piece of code to be reused over and over with different variables, returning a modified version of the template within the declaration.</p>
+<p>The mixin needs to be declared and defined. It's usually easiest to do this in a separate file and include them in. Lets call this <code>_mixins.pug</code>:</p>
+<div class="highlight"><pre><span></span>//- Here the mixins are declared
+
+mixin makeStrong(text)
+  strong= text
+
+mixin makeList(list)
+  ul.generated-list
+    each item in list
+      li= item
+</pre></div>
+<p>Then the file that will use them needs to include that file:</p>
+<div class="highlight"><pre><span></span><span class="n">include</span> <span class="n">_mixins</span><span class="o">.</span><span class="n">pug</span>
+
+<span class="o">-</span> <span class="k">const</span> <span class="n">faveFoods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;pie&#39;</span><span class="p">,</span> <span class="s1">&#39;spaghetti&#39;</span><span class="p">];</span>
+
+<span class="n">h1</span> <span class="n">This</span> <span class="k">is</span> <span class="n">my</span> <span class="n">list</span><span class="o">!</span>
+<span class="o">.</span><span class="n">contents</span>
+  <span class="n">p</span>
+    <span class="o">+</span><span class="n">makeStrong</span><span class="p">(</span><span class="s1">&#39;I love these foods!&#39;</span><span class="p">)</span>
+  <span class="o">+</span><span class="n">makeList</span><span class="p">(</span><span class="n">faveFoods</span><span class="p">)</span>
+</pre></div>
+<p>Compiling this will return this HTML:</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;h1&gt;</span>This is my list!<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;contents&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;&lt;strong&gt;</span>I love these foods!<span class="nt">&lt;/strong&gt;&lt;/p&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;generated-list&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;</span>pizza<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>pie<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>spaghetti<span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+<h4>Blocks</h4>
+<p>You can pass in a block to a mixin, where a block is some pug that is &quot;within&quot; the mixin invocation. The block is called by name within the mixin itself. In <code>_mixins.pug</code>:</p>
+<div class="highlight"><pre><span></span>mixin wrapper
+  section.wrapper
+    block
+</pre></div>
+<p>In the main file:</p>
+<div class="highlight"><pre><span></span><span class="k">include</span> <span class="nv">_mixins</span>.<span class="nv">pug</span>
+
+<span class="o">+</span><span class="nv">wrapper</span>
+  <span class="nv">h1</span> <span class="nv">the</span> <span class="nv">REAL</span> <span class="nv">content</span>
+  <span class="nv">p</span>.<span class="nv">yeah</span> <span class="nv">this</span> <span class="nv">is</span> <span class="nv">some</span> <span class="nv">stuff</span>
+</pre></div>
+<p>Outputs:</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;wrapper&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>the REAL content<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;yeah&quot;</span><span class="nt">&gt;</span>this is some stuff<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+</pre></div>
 <h2>Sublime Text Syntax</h2>
 <p>Packages in <a href="sublime-text.html">Sublime Text</a> are interdependent on each other and many of the default packages are inferior to third-party (e.g. Babel over Javascript). When Pug's Javascript syntax is not cooperating or popping to allow Pug's syntax to take over again, you can <code>Disable Package &gt; Javascript</code> and install <code>Babel</code> and this will cause Pug to correctly highlight conditionals and the succeeding code.</p>
 <h2>References</h2>
@@ -160,6 +214,7 @@ each last, first in people
 <li><a href="https://pugjs.org/language/includes.html" target="_blank">https://pugjs.org/language/includes.html</a></li>
 <li><a href="https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank">https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax</a></li>
 <li><a href="https://stackoverflow.com/questions/27107451/how-to-insert-raw-html-in-pug-file-not-include-external-html-file" target="_blank">https://stackoverflow.com/questions/27107451/how-to-insert-raw-html-in-pug-file-not-include-external-html-file</a></li>
+<li><a href="https://pugjs.org/language/mixins.html" target="_blank">https://pugjs.org/language/mixins.html</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108131842</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~608kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108182241</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~613kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

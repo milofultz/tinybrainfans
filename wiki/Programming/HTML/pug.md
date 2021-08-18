@@ -199,6 +199,81 @@ each last, first in people
 //- <p>Ashley Ashtown</p>
 ```
 
+### Mixins
+
+Mixins allow one piece of code to be reused over and over with different variables, returning a modified version of the template within the declaration.
+
+The mixin needs to be declared and defined. It's usually easiest to do this in a separate file and include them in. Lets call this `_mixins.pug`:
+
+```
+//- Here the mixins are declared
+
+mixin makeStrong(text)
+	strong= text
+
+mixin makeList(list)
+	ul.generated-list
+		each item in list
+			li= item
+```
+
+Then the file that will use them needs to include that file:
+
+```
+include _mixins.pug
+
+- const faveFoods = ['pizza', 'pie', 'spaghetti'];
+
+h1 This is my list!
+.contents
+	p
+		+makeStrong('I love these foods!')
+	+makeList(faveFoods)
+```
+
+Compiling this will return this HTML:
+
+```
+<h1>This is my list!</h1>
+<div class="contents">
+	<p><strong>I love these foods!</strong></p>
+	<ul class="generated-list">
+		<li>pizza</li>
+		<li>pie</li>
+		<li>spaghetti</li>
+  </ul>
+</div>
+```
+
+#### Blocks
+
+You can pass in a block to a mixin, where a block is some pug that is "within" the mixin invocation. The block is called by name within the mixin itself. In `_mixins.pug`:
+
+```
+mixin wrapper
+	section.wrapper
+		block
+```
+
+In the main file:
+
+```
+include _mixins.pug
+
++wrapper
+	h1 the REAL content
+	p.yeah this is some stuff
+```
+
+Outputs:
+
+```
+<section class="wrapper">
+	<h1>the REAL content</h1>
+	<p class="yeah">this is some stuff</p>
+</section>
+```
+
 ## Sublime Text Syntax
 
 Packages in {{Sublime Text}} are interdependent on each other and many of the default packages are inferior to third-party (e.g. Babel over Javascript). When Pug's Javascript syntax is not cooperating or popping to allow Pug's syntax to take over again, you can `Disable Package > Javascript` and install `Babel` and this will cause Pug to correctly highlight conditionals and the succeeding code.
@@ -212,3 +287,4 @@ Packages in {{Sublime Text}} are interdependent on each other and many of the de
 5. https://pugjs.org/language/includes.html
 6. https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax
 7. https://stackoverflow.com/questions/27107451/how-to-insert-raw-html-in-pug-file-not-include-external-html-file
+8. https://pugjs.org/language/mixins.html
