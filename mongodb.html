@@ -100,6 +100,10 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <p>To import a collection or database from a dumped mongo database, use <a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>.</p>
 <div class="highlight"><pre><span></span>$ mongorestore -d dbName ./dump/path
 </pre></div>
+<h2>Clone Database</h2>
+<p>You can clone a database on the same server using the following command:</p>
+<div class="highlight"><pre><span></span>$ mongodump --archive --db<span class="o">=</span>dbName <span class="p">|</span> mongorestore --archive  --nsFrom<span class="o">=</span><span class="s1">&#39;dbName.*&#39;</span> --nsTo<span class="o">=</span><span class="s1">&#39;newDbName.*&#39;</span>
+</pre></div>
 <h2>Data Modification</h2>
 <p>If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.</p>
 <p>Let's assume a collection of dogs:</p>
@@ -198,4 +202,4 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file" target="_blank">https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file</a></li>
 </ul>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="mongoose.html">Mongoose</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108150110</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~613kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108200033</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~618kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

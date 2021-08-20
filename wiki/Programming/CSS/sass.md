@@ -80,6 +80,8 @@ Nesting is extremely useful in {{BEM}}, as the otherwise long and ugly class nam
 
 Mixins are a group of declarations or rules that can be reused throughout by copying their contents into a rule. They can also include parameters for dynamic value generation. The `mixin` is defined by using `@mixin` and then called with `@includes` and the name.
 
+**NOTE: You have to `@include` (not `@use`) the mixin partial to every file that uses it.**
+
 ```scss
 // with mixin using parameters
 @mixin box-shadow($x, $y, $blur, $c){

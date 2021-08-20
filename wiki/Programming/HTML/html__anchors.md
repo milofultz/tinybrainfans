@@ -2,6 +2,22 @@
 title: Anchor Tags (HTML)
 ---
 
+## In-page Navigation
+
+Using an `#id` as your `href` and either setting the  `name` attribute of an anchor tag or the `id` of an element, you can navigate immediately within a document via a normal anchor link.
+
+```html
+<a href="#bob">Click here to go to bob!</a>
+
+<!-- a bunch of other stuff -->
+
+<a name="bob"></a>
+<!-- or -->
+<div id="bob">
+  <img src="pic/of/bob" />
+</div>
+```
+
 ## Download
 
 Using the `download` attribute will instruct the browser to download the file enclosed in the value of the download attr. The value is optional.
