@@ -3387,6 +3387,24 @@ Hello, World
 <span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.zprofile
 </pre></div>
 <p>Now you can just type <code>subl .</code> in a given folder, a la <code>code .</code> in <a href="visual-studio-code.html">Visual Studio Code</a></p>
+<h2>Key Bindings</h2>
+<h3>Multiple Commands</h3>
+<p>Sublime Text 4 provided the ability to <code>chain</code> multiple commands and args together, while Sublime Text 2 and 3 required the use of the <a href="https://github.com/jisaacks/ChainOfCommand" target="_blank">Chain Of Command plugin</a>. Both use the same syntax:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="err">//</span> <span class="err">Li</span><span class="kc">n</span><span class="err">k</span> <span class="err">Ope</span><span class="kc">ner</span>
+    <span class="err">//</span> <span class="err">This</span> <span class="err">example</span> <span class="err">uses</span> <span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="err">//gi</span><span class="kc">t</span><span class="err">hub.com/NoxAr</span><span class="kc">t</span><span class="err">/SublimeTex</span><span class="kc">t</span><span class="mi">2-</span><span class="err">Li</span><span class="kc">n</span><span class="err">kOpe</span><span class="kc">ner</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;super+shift+u&quot;</span><span class="p">],</span>
+        <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;chain&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;commands&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">[</span><span class="s2">&quot;expand_selection&quot;</span><span class="p">,</span> <span class="p">{</span><span class="nt">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;smart&quot;</span><span class="p">}],</span>
+                <span class="p">[</span><span class="s2">&quot;link_opener_open_url&quot;</span><span class="p">]</span>
+            <span class="p">],</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 <h2>Troubleshooting Errors</h2>
 <h3>Autocompletion/Snippets</h3>
 <ol>
@@ -3406,7 +3424,7 @@ Hello, World
 <li><a href="https://www.sublimetext.com/docs/command_line.html#mac" target="_blank">https://www.sublimetext.com/docs/command_line.html#mac</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107020503</em></p></article><article>            <h1><a href="pug.html">Pug</a></h1>
+<p class="last-modified"><em>Last modified: 202108230316</em></p></article><article>            <h1><a href="pug.html">Pug</a></h1>
             <p>Pug is a templating engine for <a href="html.html">HTML</a> that allows you to write a simpler more condense webpage, as well as integrating <a href="javascript.html">Javascript</a> to dynamically generate pages.</p>
 <h2>Getting Started</h2>
 <p>Install it using <a href="npm.html">NPM</a>: <code>npm i -g pug-cli</code>. You can compile a Pug file directly, or by watching the file and it's dependencies for changes.</p>
@@ -3415,6 +3433,8 @@ pug filename.pug -o ./outputfolder
 <span class="c1"># watch the file and its dependencies for changes and compile on change</span>
 pug -w filename.pug -o ./outputfolder
 </pre></div>
+<h3>Iteration/Testing</h3>
+<p>You can do quick testing of code at <a href="https://pughtml.com/" target="_blank">https://pughtml.com/</a>.</p>
 <h2>Syntax</h2>
 <p>Writing <a href="html.html">HTML</a> in Pug is very similar to <a href="emmet.html">Emmet</a> shorthand/selectors in <a href="css.html">CSS</a>.</p>
 <p><code>element#id.class(attr=&quot;value&quot; foo=&quot;bar&quot;) innerText</code></p>
@@ -3474,13 +3494,18 @@ h1(data-name= name.replace(/\s/, &#39;.&#39;).toLowerCase() )= !{john}
   This text can be broken 
   up on multiple lines
 
+p
+  img(src=&quot;stuff&quot;)
+  | This works, too.
+
 //- outputs
 //- <span class="nt">&lt;p&gt;</span>This text can be broken
 //-     up on multiple lines<span class="nt">&lt;/p&gt;</span>
+//- <span class="nt">&lt;p&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;stuff&quot;</span> <span class="nt">/&gt;</span>This works, too.<span class="nt">&lt;/p&gt;</span>
 
 script.
   console.log(&#39;or here&#39;);
-  // This works too.
+  // Works for script tags, as well.
 </pre></div>
 <h3>Self-Closing Tags</h3>
 <div class="highlight"><pre><span></span>hr 
@@ -3624,7 +3649,7 @@ mixin makeList(list)
 <li><a href="https://pugjs.org/language/mixins.html" target="_blank">https://pugjs.org/language/mixins.html</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108182241</em></p></article><article><h1><a href="http-methods.html">HTTP Methods</a></h1>
+<p class="last-modified"><em>Last modified: 202108250032</em></p></article><article><h1><a href="http-methods.html">HTTP Methods</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="html-forms.html">HTML Forms</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="html-forms.html">HTML Forms</a></h1>
@@ -5747,7 +5772,7 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file" target="_blank">https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file</a></li>
 </ul>
 <section><h2>Backlinks:</h2><ul><li><a href="mongoose.html">Mongoose</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108200033</em></p></article><article>            <h1><a href="mongoose.html">Mongoose</a></h1>
+<p class="last-modified"><em>Last modified: 202108230454</em></p></article><article>            <h1><a href="mongoose.html">Mongoose</a></h1>
             <p>Mongoose is an <a href="npm.html">NPM</a> package that allows a simple and schema'd <a href="javascript.html">Javascript</a> entrypoint to your <a href="mongodb.html">Mongo database</a>.</p>
 <h2>Basics</h2>
 <h3>Setup</h3>
@@ -6298,4 +6323,4 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <p class="last-modified"><em>Last modified: 202105310620</em></p></article><article><h1><a href="mysql.html">MySQL</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~618kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: </em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

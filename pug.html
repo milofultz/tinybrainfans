@@ -8,6 +8,8 @@ pug filename.pug -o ./outputfolder
 <span class="c1"># watch the file and its dependencies for changes and compile on change</span>
 pug -w filename.pug -o ./outputfolder
 </pre></div>
+<h3>Iteration/Testing</h3>
+<p>You can do quick testing of code at <a href="https://pughtml.com/" target="_blank">https://pughtml.com/</a>.</p>
 <h2>Syntax</h2>
 <p>Writing <a href="html.html">HTML</a> in Pug is very similar to <a href="emmet.html">Emmet</a> shorthand/selectors in <a href="css.html">CSS</a>.</p>
 <p><code>element#id.class(attr=&quot;value&quot; foo=&quot;bar&quot;) innerText</code></p>
@@ -67,13 +69,18 @@ h1(data-name= name.replace(/\s/, &#39;.&#39;).toLowerCase() )= !{john}
   This text can be broken 
   up on multiple lines
 
+p
+  img(src=&quot;stuff&quot;)
+  | This works, too.
+
 //- outputs
 //- <span class="nt">&lt;p&gt;</span>This text can be broken
 //-     up on multiple lines<span class="nt">&lt;/p&gt;</span>
+//- <span class="nt">&lt;p&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;stuff&quot;</span> <span class="nt">/&gt;</span>This works, too.<span class="nt">&lt;/p&gt;</span>
 
 script.
   console.log(&#39;or here&#39;);
-  // This works too.
+  // Works for script tags, as well.
 </pre></div>
 <h3>Self-Closing Tags</h3>
 <div class="highlight"><pre><span></span>hr 
@@ -217,4 +224,4 @@ mixin makeList(list)
 <li><a href="https://pugjs.org/language/mixins.html" target="_blank">https://pugjs.org/language/mixins.html</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108182241</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~618kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108250032</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

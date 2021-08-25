@@ -16,6 +16,10 @@ pug filename.pug -o ./outputfolder
 pug -w filename.pug -o ./outputfolder
 ```
 
+### Iteration/Testing
+
+You can do quick testing of code at <https://pughtml.com/>.
+
 ## Syntax
 
 Writing {{HTML}} in Pug is very similar to {{Emmet}} shorthand/selectors in {{CSS}}.
@@ -94,14 +98,19 @@ h1: span.header Yeah!
 p.
   This text can be broken 
   up on multiple lines
+
+p
+	img(src="stuff")
+	| This works, too.
   
 //- outputs
 //- <p>This text can be broken
 //-     up on multiple lines</p>
+//- <p><img src="stuff" />This works, too.</p>
   
 script.
   console.log('or here');
-  // This works too.
+  // Works for script tags, as well.
 ```
 
 ### Self-Closing Tags

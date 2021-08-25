@@ -17,6 +17,29 @@ echo 'export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PA
 
 Now you can just type `subl .` in a given folder, a la `code .` in {{Visual Studio Code}}
 
+## Key Bindings
+
+### Multiple Commands
+
+Sublime Text 4 provided the ability to `chain` multiple commands and args together, while Sublime Text 2 and 3 required the use of the [Chain Of Command plugin](https://github.com/jisaacks/ChainOfCommand). Both use the same syntax:
+
+```json
+{
+    // Link Opener
+    // This example uses https://github.com/NoxArt/SublimeText2-LinkOpener
+    {
+        "keys": ["super+shift+u"],
+        "command": "chain",
+        "args": {
+            "commands": [
+                ["expand_selection", {"to": "smart"}],
+                ["link_opener_open_url"]
+            ],
+        }
+    }
+}
+```
+
 ## Troubleshooting Errors
 
 ### Autocompletion/Snippets

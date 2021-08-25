@@ -166,8 +166,6 @@ You can clone a database on the same server using the following command:
 $ mongodump --archive --db=dbName | mongorestore --archive  --nsFrom='dbName.*' --nsTo='newDbName.*'
 ```
 
-
-
 ## Data Modification
 
 If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.
