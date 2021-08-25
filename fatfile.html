@@ -3483,6 +3483,16 @@ h1(data-name= name.replace(/\s/, &#39;.&#39;).toLowerCase() )= !{john}
 //- outputs
 //- <span class="nt">&lt;h1</span> <span class="na">data-name=</span><span class="s">&quot;john.smith&quot;</span><span class="nt">&gt;</span>This guy is <span class="nt">&lt;i&gt;</span>probably<span class="nt">&lt;/i&gt;</span> 6 feet tall!<span class="nt">&lt;/h1&gt;</span>
 </pre></div>
+<h4>On a Text Node</h4>
+<div class="highlight"><pre><span></span>- const test = &quot;Yeah!&quot;;
+
+p
+  span thing!
+  = test
+
+//- Outputs:
+//- <span class="nt">&lt;p&gt;&lt;span&gt;</span>thing!<span class="nt">&lt;/span&gt;</span>Yeah!<span class="nt">&lt;/p&gt;</span>
+</pre></div>
 <h3>Inline</h3>
 <div class="highlight"><pre><span></span>h1: span.header Yeah!
 
@@ -3649,7 +3659,7 @@ mixin makeList(list)
 <li><a href="https://pugjs.org/language/mixins.html" target="_blank">https://pugjs.org/language/mixins.html</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108250032</em></p></article><article><h1><a href="http-methods.html">HTTP Methods</a></h1>
+<p class="last-modified"><em>Last modified: 202108250037</em></p></article><article><h1><a href="http-methods.html">HTTP Methods</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="html-forms.html">HTML Forms</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="html-forms.html">HTML Forms</a></h1>

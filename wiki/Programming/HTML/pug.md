@@ -83,6 +83,19 @@ h1(data-name= name.replace(/\s/, '.').toLowerCase() )= !{john}
 //- <h1 data-name="john.smith">This guy is <i>probably</i> 6 feet tall!</h1>
 ```
 
+#### On a Text Node
+
+```
+- const test = "Yeah!";
+
+p
+	span thing!
+	= test
+	
+//- Outputs:
+//- <p><span>thing!</span>Yeah!</p>
+```
+
 ### Inline
 
 ```
