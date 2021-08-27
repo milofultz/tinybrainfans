@@ -3,20 +3,20 @@
             <p><a href="javascript.html">Javascript</a> Date objects have some weird intricacies that need attention.</p>
 <h2>Time Zones</h2>
 <p>JavaScript's Date object tracks time in UTC internally, but typically accepts input and <strong>produces output in the local time of the computer it's running on</strong>. The way to mitigate this (IMO undesired) opinion is two options.</p>
-<div class="highlight"><pre><span></span><span class="c1">// will change time based on computer&#39;s time zone</span>
-<span class="kd">var</span> <span class="nx">myBirthday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;January 1, 1990&#39;</span><span class="p">);</span>
-</pre></div>
+<pre><code class="language-javascript">// will change time based on computer&#x27;s time zone
+var myBirthday = (&#x27;January 1, 1990&#x27;);
+</code></pre>
 <h3>UNIX Timestamp</h3>
 <p>If you use a website like <a href="https://www.unixtimestamp.com/" target="_blank">unixtimestamp.com</a>, you can convert your times beforehand and using these as input, will always produce the correct time regardless of timezone.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myBirthday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;631180800&#39;</span><span class="p">);</span>
-</pre></div>
+<pre><code class="language-javascript">var myBirthday = (&#x27;631180800&#x27;);
+</code></pre>
 <h3>Specify <code>GMT+0:00</code> Time Zone</h3>
 <p>When inputting a more human-readable datetime stamp, follow it with <code>GMT+0:00</code> and this will force a normalized timezone, regardless of the computer's settings.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">myBirthday</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;January 1, 1990 GMT+0:00&#39;</span><span class="p">);</span>
-</pre></div>
+<pre><code class="language-javascript">var myBirthday = (&#x27;January 1, 1990 GMT+0:00&#x27;);
+</code></pre>
 <h2>References</h2>
 <ul>
 <li><a href="https://stackoverflow.com/questions/15141762/how-to-initialize-a-javascript-date-to-a-particular-time-zone" target="_blank">https://stackoverflow.com/questions/15141762/how-to-initialize-a-javascript-date-to-a-particular-time-zone</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108191820</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108191820</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -11,141 +11,141 @@
 <h3>Node</h3>
 <p>Create a new folder and initialize a new node project using <a href="npm.html">npm</a>: <code>npm init -y</code>. Then install <code>npm i mongoose</code>.</p>
 <p>Create a new file called <code>server.js</code> and copy this into the contents:</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">mongoose</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>                <span class="c1">// import Mongoose</span>
-<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;mongodb://localhost:27017/test&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="c1">// create connection to localhost</span>
-  <span class="nx">useNewUrlParser</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> 
-  <span class="nx">useUnifiedTopology</span><span class="o">:</span> <span class="kc">true</span>
-<span class="p">});</span>
+<pre><code class="language-javascript">  const mongoose = require(&#x27;mongoose&#x27;);                // import Mongoose
+mongoose.connect(&#x27;mongodb://localhost:27017/test&#x27;, { // create connection to localhost
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+});
 
-<span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="s1">&#39;connection error:&#39;</span><span class="p">));</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>                            <span class="c1">// Inside here is where the action happens</span>
-  <span class="c1">// Create schema for collection</span>
-  <span class="kd">const</span> <span class="nx">kittySchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">({</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
-    <span class="nx">color</span><span class="o">:</span> <span class="p">{</span>
-      <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
-      <span class="kr">enum</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">],</span>
-    <span class="p">},</span>
-  <span class="p">});</span>
-  <span class="kd">const</span> <span class="nx">Cat</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Cat&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span> <span class="p">});</span> 
+const db = mongoose.connection;
+db.on(&#x27;error&#x27;, console.error.bind(console, &#x27;connection error:&#x27;));
+db.once(&#x27;open&#x27;, function() {                            // Inside here is where the action happens
+  // Create schema for collection
+  const kittySchema = new mongoose.Schema({
+    name: String,
+    color: {
+      type: String,
+      enum: [&#x27;brown&#x27;, &#x27;orange&#x27;],
+    },
+  });
+  const Cat = mongoose.model(&#x27;Cat&#x27;, { name: String }); 
 
-  <span class="kd">const</span> <span class="nx">kitty</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">({</span> 
-    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zildjian&#39;</span><span class="p">,</span>
-    <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;orange&#39;</span>
-  <span class="p">});</span>         <span class="c1">// Create a new document of Cat</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitty</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>                             <span class="c1">// &#39;Zildjian&#39;</span>
-  <span class="nx">kitty</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;meow&#39;</span><span class="p">));</span>                   <span class="c1">// Save the new document in the Cat collection</span>
-<span class="p">});</span>
-</pre></div>
+  const kitty = new Cat({ 
+    name: &#x27;Zildjian&#x27;,
+    color: &#x27;orange&#x27;
+  });         // Create a new document of Cat
+  console.log(kitty.name);                             // &#x27;Zildjian&#x27;
+  kitty.save()
+    .then(() =&gt; console.log(&#x27;meow&#x27;));                   // Save the new document in the Cat collection
+});
+</code></pre>
 <p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
 <h2>Indexes</h2>
 <p>If your collection does not have an index, your query could take a very long time, as it will have to scan every single document within your collection and analyze it to see if it matches your query.</p>
-<div class="highlight"><pre><span></span>// create an index in collectionName from highest score to lowest
+<pre><code class="language-mongosh">// create an index in collectionName from highest score to lowest
 db.collectionName.createIndex( { score: -1 } )
-</pre></div>
+</code></pre>
 <h2>Import and Export</h2>
 <h3><a href="https://docs.mongodb.com/database-tools/mongoexport" target="_blank"><code>mongoexport</code></a>: Export <a href="json.html">JSON</a> or <a href="csv.html">CSV</a></h3>
-<div class="highlight"><pre><span></span>$ mongoexport --db<span class="o">=</span>dbName --collection<span class="o">=</span>collectionName --out<span class="o">=</span>filename.json
-</pre></div>
+<pre><code class="language-bash">$ mongoexport --db=dbName --collection=collectionName --out=filename.json
+</code></pre>
 <p>When you export in CSV format, you must specify the fields in the documents to export.</p>
-<div class="highlight"><pre><span></span><span class="c1"># for CSV etc.</span>
-$ mongoexport --db<span class="o">=</span>dbName --collection<span class="o">=</span>collectionName --fields<span class="o">=</span>name,address --out<span class="o">=</span>filename.json
-</pre></div>
+<pre><code class="language-bash"># for CSV etc.
+$ mongoexport --db=dbName --collection=collectionName --fields=name,address --out=filename.json
+</code></pre>
 <h3><a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a>: Import <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a></h3>
 <p>Use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> to bring in Extended <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a> files to your Mongo database. First, start up your database, and then use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> in the command line:</p>
-<div class="highlight"><pre><span></span><span class="c1">#             use the PetHotel db      use header line as field names</span>
-$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --headerline --file<span class="o">=</span>pets.csv
+<pre><code class="language-bash">#             use the PetHotel db      use header line as field names
+$ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
 
-<span class="c1"># If no header line is availabe:       list them out after the --fields option</span>
-$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --fields<span class="o">=</span>_id,name,type --file<span class="o">=</span>pets.csv
-</pre></div>
+# If no header line is availabe:       list them out after the --fields option
+$ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
+</code></pre>
 <h4>Types</h4>
 <p>You can specify the <a href="https://docs.mongodb.com/database-tools/mongoimport/#std-option-mongoimport.--columnsHaveTypes" target="_blank">types</a> of the columns within the header line of your CSV.</p>
-<div class="highlight"><pre><span></span>id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+<pre><code class="language-csv">id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
 1,&quot;This product was great!&quot;,true,8
-</pre></div>
-<div class="highlight"><pre><span></span>$ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span>csv --headerline --columnsHaveTypes --file<span class="o">=</span>pets.csv
-</pre></div>
+</code></pre>
+<pre><code class="language-bash">$ mongoimport --db=PetHotel --type=csv --headerline --columnsHaveTypes --file=pets.csv
+</code></pre>
 <h4>Null Values</h4>
 <p>If you have null values in your CSV, you can remove these <code>null</code> values between two commas (or after one if at the end of a line) and tell mongoimport to <code>--ignoreBlanks</code>. This won't import null values, but when interacting with your database, you can use the <a href="https://docs.mongodb.com/manual/reference/operator/query/exists/#mongodb-query-op.-exists" target="_blank"><code>$exists</code></a> query operator to query for them and <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/#mongodb-expression-exp.-ifNull" target="_blank"><code>$ifNull</code> </a> to cast missing fields as <code>null</code> in an aggregation pipeline.</p>
 <p>In the below example, the summary is null, but we still want it to accept strings.</p>
-<div class="highlight"><pre><span></span>id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+<pre><code class="language-csv">id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
 1,null,true,8
-</pre></div>
+</code></pre>
 <p>If we were to import this as is, we would end up with a summary field containing an empty string. After replacing the <code>,null,</code> with <code>,,</code> and using <code>--ignoreBlanks</code> on import, this field ends up missing, which is the desired behavior. </p>
 <p>To query for fields that have a missing of <code>null</code> field:</p>
-<div class="highlight"><pre><span></span>&gt; db.collection_name.find({ summary: { $exists: false }})
-</pre></div>
+<pre><code class="language-mongosh">&gt; db.collection_name.find({ summary: { $exists: false }})
+</code></pre>
 <p>And to get the field back with a <code>null</code> value in the place of that missing field:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">db</span><span class="p">.</span><span class="n">collection_name</span><span class="p">.</span><span class="n">aggregate</span><span class="p">([</span>
-<span class="p">...</span> <span class="c1">// match document with id of 1</span>
-<span class="p">...</span> <span class="p">{</span> <span class="n">$match</span><span class="o">:</span> <span class="p">{</span> <span class="nl">id:</span> <span class="mh">1</span> <span class="p">}},</span>
-<span class="p">...</span> <span class="c1">// show all fields and cast summary to null if missing</span>
-<span class="p">...</span> <span class="p">{</span> <span class="n">$project</span><span class="o">:</span> <span class="p">{</span>
-<span class="p">...</span>   <span class="nl">_id:</span> <span class="mh">0</span><span class="p">,</span>
-<span class="p">...</span>   <span class="nl">id:</span> <span class="mh">1</span><span class="p">,</span>
-<span class="p">...</span>   <span class="nl">summary:</span> <span class="p">{</span> <span class="n">$ifNull</span><span class="o">:</span> <span class="p">[</span> <span class="p">&#39;</span><span class="n">$summary</span><span class="p">&#39;,</span> <span class="n">null</span> <span class="p">]},</span>
-<span class="p">...</span>   <span class="nl">recommend:</span> <span class="mh">1</span><span class="p">,</span>
-<span class="p">...</span>   <span class="nl">helpfulness:</span> <span class="mh">1</span>
-<span class="p">...</span> <span class="p">}}</span>
-<span class="p">...</span> <span class="p">]);</span>
-</pre></div>
+<pre><code class="language-mongosh">&gt; db.collection_name.aggregate([
+... // match document with id of 1
+... { $match: { id: 1 }},
+... // show all fields and cast summary to null if missing
+... { $project: {
+...   _id: 0,
+...   id: 1,
+...   summary: { $ifNull: [ &#x27;$summary&#x27;, null ]},
+...   recommend: 1,
+...   helpfulness: 1
+... }}
+... ]);
+</code></pre>
 <h3><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>: Export BSON (native format)</h3>
 <p>To export a collection or database from a mongo database, use <a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>.</p>
-<div class="highlight"><pre><span></span>$ mongodump --db<span class="o">=</span>dbName --collection<span class="o">=</span>collectionName --out<span class="o">=</span>path/for/output
-</pre></div>
+<pre><code class="language-bash">$ mongodump --db=dbName --collection=collectionName --out=path/for/output
+</code></pre>
 <h3><a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>: Import BSON (native format)</h3>
 <p>To import a collection or database from a dumped mongo database, use <a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>.</p>
-<div class="highlight"><pre><span></span>$ mongorestore -d dbName ./dump/path
-</pre></div>
+<pre><code class="language-bash">$ mongorestore -d dbName ./dump/path
+</code></pre>
 <h2>Clone Database</h2>
 <p>You can clone a database on the same server using the following command:</p>
-<div class="highlight"><pre><span></span>$ mongodump --archive --db<span class="o">=</span>dbName <span class="p">|</span> mongorestore --archive  --nsFrom<span class="o">=</span><span class="s1">&#39;dbName.*&#39;</span> --nsTo<span class="o">=</span><span class="s1">&#39;newDbName.*&#39;</span>
-</pre></div>
+<pre><code class="language-bash">$ mongodump --archive --db=dbName | mongorestore --archive  --nsFrom=&#x27;dbName.*&#x27; --nsTo=&#x27;newDbName.*&#x27;
+</code></pre>
 <h2>Data Modification</h2>
 <p>If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.</p>
 <p>Let's assume a collection of dogs:</p>
-<div class="highlight"><pre><span></span><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="p">...,</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Doggo&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;goodBoy&quot;</span><span class="o">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="c1">// should be a boolean</span>
-    <span class="s2">&quot;enemy&quot;</span><span class="o">:</span> <span class="s2">&quot;null&quot;</span><span class="p">,</span>   <span class="c1">// or could be &quot;mailman&quot; or other string</span>
-  <span class="p">},</span>
-  <span class="p">...</span>
-<span class="p">]</span>
-</pre></div>
+<pre><code class="language-javascript">[
+  {
+    &quot;_id&quot;: ...,
+    &quot;name&quot;: &quot;Doggo&quot;,
+    &quot;goodBoy&quot;: &quot;true&quot;, // should be a boolean
+    &quot;enemy&quot;: &quot;null&quot;,   // or could be &quot;mailman&quot; or other string
+  },
+  ...
+]
+</code></pre>
 <p>When completed, this will change all <code>goodboy</code> properties to a boolean and if <code>enemy</code> was imported with <code>null</code> as the string, it will convert it into an actual null value. The <code>bulkWrite</code> is done as it is <strong>much</strong> faster than sending individual requests.</p>
-<div class="highlight"><pre><span></span><span class="k">var</span> <span class="n">requests</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="k">var</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">dogs</span><span class="o">.</span><span class="n">find</span><span class="p">({});</span>
+<pre><code class="language-mongosh">var requests = [];
+var cursor = db.dogs.find({});
 
-<span class="n">cursor</span><span class="o">.</span><span class="n">forEach</span><span class="p">(</span><span class="n">item</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="n">requests</span><span class="o">.</span><span class="n">push</span><span class="p">({</span> 
-    <span class="s2">&quot;updateOne&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">_id</span> <span class="p">},</span>
-      <span class="s2">&quot;update&quot;</span><span class="p">:</span> <span class="p">{</span> 
-        <span class="s2">&quot;$set&quot;</span><span class="p">:</span> <span class="p">{</span> 
-          <span class="s2">&quot;goodBoy&quot;</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">goodboy</span><span class="p">),</span>
-          <span class="s2">&quot;enemy&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">enemy</span> <span class="o">===</span> <span class="s1">&#39;null&#39;</span> <span class="err">?</span> <span class="nb nb-Type">null</span> <span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">enemy</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
+cursor.forEach(item =&gt; {
+  requests.push({ 
+    &quot;updateOne&quot;: {
+      &quot;filter&quot;: { &quot;_id&quot;: item._id },
+      &quot;update&quot;: { 
+        &quot;$set&quot;: { 
+          &quot;goodBoy&quot;: Boolean(item.goodboy),
+          &quot;enemy&quot;: item.enemy === &#x27;null&#x27; ? null : item.enemy
+        }
+      }
+    }
+  });
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">length</span> <span class="o">===</span> <span class="mi">1000</span><span class="p">)</span> <span class="p">{</span>
-    <span class="o">//</span> <span class="n">Execute</span> <span class="n">per</span> <span class="mi">1000</span> <span class="n">operations</span> <span class="ow">and</span> <span class="n">re</span><span class="o">-</span><span class="n">init</span>
-    <span class="n">db</span><span class="o">.</span><span class="n">dogs</span><span class="o">.</span><span class="n">bulkWrite</span><span class="p">(</span><span class="n">requests</span><span class="p">);</span>
-    <span class="n">requests</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="p">}</span>
-<span class="p">});</span>
+  if (requests.length === 1000) {
+    // Execute per 1000 operations and re-init
+    db.dogs.bulkWrite(requests);
+    requests = [];
+  }
+});
 
-<span class="k">if</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">db</span><span class="o">.</span><span class="n">dogs</span><span class="o">.</span><span class="n">bulkWrite</span><span class="p">(</span><span class="n">requests</span><span class="p">);</span>
-  <span class="n">requests</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="p">}</span>
-</pre></div>
+if (requests.length) {
+  db.dogs.bulkWrite(requests);
+  requests = [];
+}
+</code></pre>
 <h2>Syntax</h2>
 <table>
 <thead>
@@ -202,4 +202,4 @@ $ mongoimport --db<span class="o">=</span>PetHotel --type<span class="o">=</span
 <li><a href="https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file" target="_blank">https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file</a></li>
 </ul>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="mongoose.html">Mongoose</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108230454</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108230454</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

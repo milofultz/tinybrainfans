@@ -6,81 +6,81 @@
 <h2>Components</h2>
 <p>Components are reusable pieces of <a href="jsx.html">JSX</a> that can be used to dynamically render HTML. The JSX is written as is, outside of any quotes. When components are referenced, they are written with the closing <code>/</code>. Components are named in PascalCase. </p>
 <p><strong>Note the parentheses used in the arrow function instead of curly braces.</strong> This is because the implicit return will enclose everything within the parentheses and allow it to be placed on multiple lines.</p>
-<div class="highlight"><pre><span></span>const FoodItem = () =&gt; (
-  <span class="nt">&lt;li&gt;</span>Get some of this food!<span class="nt">&lt;/li&gt;</span>
+<pre><code class="language-react">const FoodItem = () =&gt; (
+  &lt;li&gt;Get some of this food!&lt;/li&gt;
 );
 
 const GroceryList = () =&gt; (
-  <span class="nt">&lt;ul&gt;</span>
-    <span class="nt">&lt;FoodItem</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;FoodItem</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/ul&gt;</span>
+  &lt;ul&gt;
+    &lt;FoodItem /&gt;
+    &lt;FoodItem /&gt;
+  &lt;/ul&gt;
 );
-</pre></div>
+</code></pre>
 <p>These are rendered via the render method of the <code>ReactDOM</code>, which takes the component followed by the destination it will be appended to. Most common is that you will have a single div that your whole website will be injected into, i.e. <code>&lt;div class=&quot;app&quot;&gt;&lt;/div&gt;</code>.</p>
-<div class="highlight"><pre><span></span>ReactDOM.render(&lt;GroceryList /&gt;, document.getElementById(&#39;main&#39;));
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c">&lt;!-- output in associated HTML file --&gt;</span>
+<pre><code class="language-react">ReactDOM.render(&lt;GroceryList /&gt;, document.getElementById(&#x27;main&#x27;));
+</code></pre>
+<pre><code class="language-html">&lt;!-- output in associated HTML file --&gt;
 
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;main&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Get some of this food!<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Get some of this food!<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
+&lt;div id=&quot;main&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Get some of this food!&lt;/li&gt;
+    &lt;li&gt;Get some of this food!&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
 <h4>Component Properties, or Props</h4>
 <p>Properties are attributes that can be passed into and used to populate parts of that component. Props are always passed in as an object of keys that correspond to the attributes given on the JSX element. e.g. <code>&lt;Component name={&quot;John&quot;} age={6} /&gt;</code> will pass <code>{ name: &quot;John&quot;, age: 6 }</code> into the <code>Component</code>. Props are surrounded by curly braces when they are assigned and when they are recalled. Inside the curly braces, valid <a href="javascript.html">Javascript</a> may be called.</p>
-<div class="highlight"><pre><span></span>const GroceryListItem = (props) =&gt; (
-  <span class="nt">&lt;li&gt;</span>{props.item.toUpperCase()}<span class="nt">&lt;/li&gt;</span>
+<pre><code class="language-react">const GroceryListItem = (props) =&gt; (
+  &lt;li&gt;{props.item.toUpperCase()}&lt;/li&gt;
 );
 
 const GroceryList = (props) =&gt; (
-  <span class="nt">&lt;ul&gt;</span>
-    {props.groceryItems.map(propItem =&gt; <span class="nt">&lt;GroceryListItem</span> <span class="na">item=</span><span class="s">{propItem}</span> <span class="nt">/&gt;</span>)}
-  <span class="nt">&lt;/ul&gt;</span>
+  &lt;ul&gt;
+    {props.groceryItems.map(propItem =&gt; &lt;GroceryListItem item={propItem} /&gt;)}
+  &lt;/ul&gt;
 );
 
 ReactDOM.render(
-  <span class="nt">&lt;GroceryList</span> <span class="na">groceryItems=</span><span class="s">{[&#39;candy&#39;,</span> <span class="err">&#39;cookies&#39;,</span> <span class="err">&#39;ice</span> <span class="err">cream&#39;]}</span> <span class="nt">/&gt;</span>, 
-  document.getElementById(&#39;app&#39;)
+  &lt;GroceryList groceryItems={[&#x27;candy&#x27;, &#x27;cookies&#x27;, &#x27;ice cream&#x27;]} /&gt;, 
+  document.getElementById(&#x27;app&#x27;)
 );
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c">&lt;!-- output in associated HTML file --&gt;</span>
+</code></pre>
+<pre><code class="language-html">&lt;!-- output in associated HTML file --&gt;
 
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>CANDY<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>COOKIES<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>ICE CREAM<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
+&lt;div id=&quot;app&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;CANDY&lt;/li&gt;
+    &lt;li&gt;COOKIES&lt;/li&gt;
+    &lt;li&gt;ICE CREAM&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
 <h4>Default Props</h4>
-<div class="highlight"><pre><span></span>const GroceryListItem = (props) =&gt; (
-  <span class="nt">&lt;li&gt;</span>{props.item.toUpperCase()}<span class="nt">&lt;/li&gt;</span>
+<pre><code class="language-react">const GroceryListItem = (props) =&gt; (
+  &lt;li&gt;{props.item.toUpperCase()}&lt;/li&gt;
 );
 
 GroceryListItem.defaultProps = {
-  item: &#39;Milk&#39;,
+  item: &#x27;Milk&#x27;,
 };
 
 const GroceryList = (props) =&gt; (
-  <span class="nt">&lt;ul&gt;</span>
-    <span class="nt">&lt;GroceryListItem</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/ul&gt;</span>
+  &lt;ul&gt;
+    &lt;GroceryListItem /&gt;
+  &lt;/ul&gt;
 );
 
-ReactDOM.render(<span class="nt">&lt;GroceryList</span> <span class="nt">/&gt;</span>, document.getElementById(&#39;app&#39;));
-</pre></div>
-<div class="highlight"><pre><span></span><span class="c">&lt;!-- output in associated HTML --&gt;</span>
+ReactDOM.render(&lt;GroceryList /&gt;, document.getElementById(&#x27;app&#x27;));
+</code></pre>
+<pre><code class="language-html">&lt;!-- output in associated HTML --&gt;
 
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>MILK<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
+&lt;div id=&quot;app&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;MILK&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
 <h4>PropTypes</h4>
 <p>You can add type checking to your props to make your code a bit more robust. If the types you entered don't match the element's type, then it will only give a warning in the console and will still render (as long as it is able).</p>
 <p>Primitive types in PropTypes:</p>
@@ -94,131 +94,131 @@ ReactDOM.render(<span class="nt">&lt;GroceryList</span> <span class="nt">/&gt;</
 <li>symbol</li>
 </ul>
 <p>You can also specify <code>.isRequired</code> at the end of your propType definition.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">PropTypes</span> <span class="kn">from</span> <span class="s1">&#39;prop-types&#39;</span><span class="p">;</span>
+<pre><code class="language-react">import PropTypes from &#x27;prop-types&#x27;;
 
-<span class="n">const</span> <span class="n">GroceryListItem</span> <span class="o">=</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
-  <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">toUpperCase</span><span class="p">()}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-<span class="p">);</span>
+const GroceryListItem = (props) =&gt; (
+  &lt;li&gt;{props.item.toUpperCase()}&lt;/li&gt;
+);
 
-<span class="n">GroceryListItem</span><span class="o">.</span><span class="n">propTypes</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">item</span><span class="p">:</span> <span class="n">PropTypes</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">isRequired</span><span class="p">;</span>
-<span class="p">};</span>
-</pre></div>
+GroceryListItem.propTypes = {
+  item: PropTypes.string.isRequired;
+};
+</code></pre>
 <h4>Exporting Components</h4>
 <p>You can put the component into another file and import it in by using the <code>export default componentName</code> syntax.</p>
-<div class="highlight"><pre><span></span>// GroceryListItem.js
+<pre><code class="language-react">// GroceryListItem.js
 const GroceryListItem = (props) =&gt; (
-  <span class="nt">&lt;li&gt;</span>{props.item.toUpperCase()}<span class="nt">&lt;/li&gt;</span>
+  &lt;li&gt;{props.item.toUpperCase()}&lt;/li&gt;
 );
 
 export default GroceryListItem;
-</pre></div>
-<div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">app</span><span class="o">.</span><span class="n">js</span>
-<span class="kn">import</span> <span class="nn">...</span>
-<span class="kn">import</span> <span class="nn">GroceryListItem</span> <span class="kn">from</span> <span class="s1">&#39;./GroceryListItem.js&#39;</span><span class="p">;</span>
+</code></pre>
+<pre><code class="language-react">// app.js
+import ...
+import GroceryListItem from &#x27;./GroceryListItem.js&#x27;;
 
-<span class="n">ReactDOM</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="n">GroceryListItem</span> <span class="n">item</span><span class="o">=</span><span class="s2">&quot;candy&quot;</span> <span class="o">/&gt;</span><span class="p">,</span> 
-  <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
+ReactDOM.render(
+  &lt;GroceryListItem item=&quot;candy&quot; /&gt;, 
+  document.getElementById(&#x27;app&#x27;)
+);
+</code></pre>
 <h4><a href="https://reactjs.org/docs/higher-order-components.html" target="_blank">Higher Order Components</a></h4>
 <p>Higher order components are just <a href="higher-order-functions.html">higher order functions</a> in React, in that they are functions that spit out another function based on what is input. One example is a React HOC that takes in a component and adds logging capabilities to it. Since it is wrapping the entire element</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">...</span>
+<pre><code class="language-react">import ...
 
-<span class="n">const</span> <span class="n">TrackingWrapper</span> <span class="o">=</span> <span class="p">({</span> <span class="n">WrappedComponent</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">class</span> <span class="nc">extends</span> <span class="n">React</span><span class="o">.</span><span class="n">Component</span> <span class="p">{</span>
-    <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nb">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
-    <span class="p">}</span>
+const TrackingWrapper = ({ WrappedComponent }) =&gt; {
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+    }
 
-    <span class="n">logInteraction</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="n">const</span> <span class="n">logObject</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">timstamp</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> 
-        <span class="n">element</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">target</span>
-      <span class="p">};</span>
-      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">logObject</span><span class="p">);</span>
-      <span class="o">//</span> <span class="n">POST</span> <span class="n">to</span> <span class="n">server</span>
-    <span class="p">}</span>
+    logInteraction(event) =&gt; {
+      const logObject = {
+        timstamp: Date.now(), 
+        element: event.target
+      };
+      console.log(logObject);
+      // POST to server
+    }
 
-  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;tracking-wrapper&quot;</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">logInteraction</span><span class="p">}</span><span class="o">&gt;</span>
-        <span class="p">{</span><span class="o">/*</span> <span class="n">This</span> <span class="n">will</span> <span class="k">pass</span> <span class="ow">in</span> <span class="nb">all</span> <span class="n">props</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">the</span> <span class="n">WrappedComponent</span> <span class="ow">in</span> <span class="n">their</span> <span class="n">given</span> <span class="n">namespace</span> <span class="o">*/</span><span class="p">}</span>
-        <span class="p">{</span><span class="o">/*</span> <span class="n">Equivalent</span> <span class="n">to</span> <span class="n">the</span> <span class="n">spread</span> <span class="n">operator</span> <span class="n">on</span> <span class="n">a</span> <span class="n">function</span> <span class="n">definition</span> <span class="o">*/</span><span class="p">}</span>
-        <span class="o">&lt;</span><span class="n">WrappedComponent</span> <span class="p">{</span><span class="o">...</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="p">}</span> <span class="o">/&gt;</span>
-      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">};</span>
+  render() {
+    return (
+      &lt;div className=&quot;tracking-wrapper&quot; onClick={this.logInteraction}&gt;
+        {/* This will pass in all props passed to the WrappedComponent in their given namespace */}
+        {/* Equivalent to the spread operator on a function definition */}
+        &lt;WrappedComponent {...this.props} /&gt;
+      &lt;/div&gt;
+    )
+  }
+};
 
-<span class="n">export</span> <span class="n">default</span> <span class="n">TrackingWrapper</span><span class="p">;</span>
-</pre></div>
+export default TrackingWrapper;
+</code></pre>
 <h3>User Interaction/Event Listeners</h3>
 <p>Components can have local event listeners assigned directly to themselves.</p>
-<div class="highlight"><pre><span></span>const GroceryListItem = (props) =&gt; {
+<pre><code class="language-react">const GroceryListItem = (props) =&gt; {
   const onListItemClick = function (e) {
     console.log(&quot;Yum!&quot;);
   };
 
   return (
-    <span class="nt">&lt;li</span> <span class="na">onClick=</span><span class="s">{onListItemClick}</span><span class="nt">&gt;</span>{props.item}<span class="nt">&lt;/li&gt;</span>
+    &lt;li onClick={onListItemClick}&gt;{props.item}&lt;/li&gt;
   )
 };
-</pre></div>
+</code></pre>
 <p>If you want to use an event listener on a class component that will be used within another <code>this</code> context, you need to be sure you maintain the correct <code>this</code>, either through <code><a href="apply,-call-and-bind-in-javascript.html">bind</a></code>, or the more sexy use of an anonymous arrow function.</p>
-<div class="highlight"><pre><span></span>// Good
+<pre><code class="language-react">// Good
 return (
-  <span class="nt">&lt;li</span> <span class="na">onClick=</span><span class="s">{this.onListItemClick.bind(this)}</span><span class="nt">&gt;</span>{props.item}<span class="nt">&lt;/li&gt;</span>
+  &lt;li onClick={this.onListItemClick.bind(this)}&gt;{props.item}&lt;/li&gt;
 )
 
 // Better
 return (
-  <span class="nt">&lt;li</span> <span class="na">onClick=</span><span class="s">{()</span> <span class="err">=</span><span class="nt">&gt;</span> this.onListItemClick()}&gt;{props.item}<span class="nt">&lt;/li&gt;</span>
+  &lt;li onClick={() =&gt; this.onListItemClick()}&gt;{props.item}&lt;/li&gt;
 )
-</pre></div>
+</code></pre>
 <h3>Stateless Functional vs. Class</h3>
 <p>All of the previous examples have used stateless functional components, which are declared at runtime and essentially become a static web page. If you want to have user interaction and a dynamic webpage, you will want to include <strong>state</strong>. State is just a dynamic memory for a given component, e.g. whether it has been clicked or has a given property. State is only included on class components and is initialized in the constructor.</p>
 <p>First you will want to convert your stateless functional component into a class component.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="n">GroceryListItem</span> <span class="k">extends</span> <span class="n">React</span><span class="o">.</span><span class="n">Component</span> <span class="p">{</span>
-  <span class="n">constructor</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
-  <span class="p">}</span>
+<pre><code class="language-react">class GroceryListItem extends React.Component {
+  constructor (props) {
+    super(props);
+  }
 
-  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">item</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">};</span>
-</pre></div>
+  render () {
+    return (
+      &lt;li&gt;{this.props.item}&lt;/li&gt;
+    )
+  }
+};
+</code></pre>
 <p>Then you can add your <strong>state</strong> to the element via the class. When <code>this.setState</code> is called, the element rerenders in the <a href="dom.html">DOM</a>, applying whatever changes you have made to the state and control flow of the rendering of the element.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="n">GroceryListItem</span> <span class="k">extends</span> <span class="n">React</span><span class="o">.</span><span class="n">Component</span> <span class="p">{</span>
-  <span class="n">constructor</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">super</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+<pre><code class="language-react">class GroceryListItem extends React.Component {
+  constructor (props) {
+    super(props);
 
-    <span class="n">this</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">hover</span><span class="p">:</span> <span class="bp">false</span><span class="p">,</span>
-    <span class="p">};</span>
-  <span class="p">};</span>
+    this.state = {
+      hover: false,
+    };
+  };
 
-  <span class="n">onClick</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({</span>
-      <span class="n">hover</span><span class="p">:</span> <span class="o">!</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">hover</span><span class="p">,</span>
-    <span class="p">});</span>
-  <span class="p">};</span>
+  onClick () {
+    this.setState({
+      hover: !this.state.hover,
+    });
+  };
 
-  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">const</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">fontWeight</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">hover</span> <span class="err">?</span> <span class="s2">&quot;bold&quot;</span> <span class="p">:</span> <span class="s2">&quot;normal&quot;</span>
-    <span class="p">};</span>
+  render () {
+    const style = {
+      fontWeight: this.state.hover ? &quot;bold&quot; : &quot;normal&quot;
+    };
 
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="n">li</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">style</span><span class="p">}</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">onClick</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">)}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">item</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
-    <span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">};</span>
-</pre></div>
+    return (
+      &lt;li style={style} onClick={this.onClick.bind(this)}&gt;{this.props.item}&lt;/li&gt;
+    );
+  };
+};
+</code></pre>
 <p>For the element to properly rerender, you must update the state by using the <code>setState</code> method. This will cause what React calls &quot;reconciliation&quot;, which will update what needs to be updated in the <a href="dom.html">DOM</a>.</p>
 <h2>React Router</h2>
 <p>React Router is</p>
@@ -232,4 +232,4 @@ return (
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107081810</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107081810</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -1,13 +1,13 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Vendor prefixes are used to ensure that older or unsupported browsers have every possibility of implementing the desired rule."><title>Vendor Prefixes (CSS)</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">Vendor Prefixes (CSS)</h1>
             <p>Vendor prefixes are used to ensure that older or unsupported browsers have every possibility of implementing the desired rule. Vendor prefixes are before the declarations and denote which tech/browser/setup it is intended for.</p>
-<div class="highlight"><pre><span></span><span class="nt">div</span> <span class="p">{</span>
-  <span class="kp">-webkit-</span><span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">4</span><span class="kt">px</span> <span class="mh">#fff</span><span class="p">;</span>
-     <span class="kp">-moz-</span><span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">4</span><span class="kt">px</span> <span class="mh">#fff</span><span class="p">;</span>
-      <span class="kp">-ms-</span><span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">4</span><span class="kt">px</span> <span class="mh">#fff</span><span class="p">;</span>
-          <span class="k">box-shadow</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">4</span><span class="kt">px</span> <span class="mh">#fff</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+<pre><code class="language-css">div {
+  -webkit-box-shadow: 0px 0px 4px #fff;
+     -moz-box-shadow: 0px 0px 4px #fff;
+      -ms-box-shadow: 0px 0px 4px #fff;
+          box-shadow: 0px 0px 4px #fff;
+}
+</code></pre>
 <h2>Using <a href="sass.html">Sass</a></h2>
 <p><a href="sass.html">Sass</a> mixins allow browser prefixes to be done easily.</p>
 <h2>Using <a href="https://github.com/postcss/autoprefixer#preprocessors" target="_blank">Autoprefixer</a></h2>
@@ -23,4 +23,4 @@
 <li><a href="https://css-tricks.com/snippets/sass/mixin-prefix-properties/" target="_blank">https://css-tricks.com/snippets/sass/mixin-prefix-properties/</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="organization-and-structure-(css).html">Organization and Structure (CSS)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107020520</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107020520</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

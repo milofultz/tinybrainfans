@@ -3,26 +3,26 @@
             <p>Resources on how to use the itertools <a href="python.html">Python</a> package.</p>
 <h2>itertools.product()</h2>
 <p>Avoid using nested for loops to iterate through multiple different lists or numbers</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">var1</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">min1</span><span class="p">,</span><span class="n">max1</span><span class="p">,</span><span class="n">step1</span><span class="p">):</span>
-  <span class="k">for</span> <span class="n">var2</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">min2</span><span class="p">,</span><span class="n">max2</span><span class="p">,</span><span class="n">step2</span><span class="p">):</span>
-    <span class="o">...</span>
-      <span class="o">...</span>
-        <span class="o">...</span>
-          <span class="k">for</span> <span class="n">var6</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">min6</span><span class="p">,</span><span class="n">max6</span><span class="p">,</span><span class="n">step6</span><span class="p">):</span>
-            <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Do something and be icky in the process due</span>
-<span class="sd">            to being in the middle of six nested for loops</span>
-<span class="sd">            &#39;&#39;&#39;</span>
-<span class="n">x1</span> <span class="o">=</span> <span class="n">xrange</span><span class="p">(</span><span class="n">min1</span><span class="p">,</span><span class="n">max1</span><span class="p">,</span><span class="n">step1</span><span class="p">)</span>
-<span class="n">x2</span> <span class="o">=</span> <span class="n">xrange</span><span class="p">(</span><span class="n">min2</span><span class="p">,</span><span class="n">max2</span><span class="p">,</span><span class="n">step2</span><span class="p">)</span>
-<span class="n">x3</span> <span class="o">=</span> <span class="n">xrange</span><span class="p">(</span><span class="n">min3</span><span class="p">,</span><span class="n">max3</span><span class="p">,</span><span class="n">step3</span><span class="p">)</span>
-<span class="o">...</span>
-<span class="k">for</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">v5</span><span class="p">,</span> <span class="n">v6</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">,</span> <span class="n">x5</span><span class="p">,</span> <span class="n">x6</span><span class="p">):</span>
-  <span class="n">icky_thing</span><span class="p">(</span><span class="o">....</span><span class="p">)</span>
-</pre></div>
+<pre><code class="language-python">for var1 in xrange(min1,max1,step1):
+  for var2 in xrange(min2,max2,step2):
+    ...
+      ...
+        ...
+          for var6 in xrange(min6,max6,step6):
+            &#x27;&#x27;&#x27;
+            Do something and be icky in the process due
+            to being in the middle of six nested for loops
+            &#x27;&#x27;&#x27;
+x1 = xrange(min1,max1,step1)
+x2 = xrange(min2,max2,step2)
+x3 = xrange(min3,max3,step3)
+...
+for v1, v2, v3, v4, v5, v6 in itertools.product(x1, x2, x3, x4, x5, x6):
+  icky_thing(....)
+</code></pre>
 <h2>References:</h2>
 <ol>
 <li><a href="https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops" target="_blank">https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020541</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107020541</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

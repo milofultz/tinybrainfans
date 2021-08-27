@@ -208,20 +208,20 @@
 <h2>Stack</h2>
 <p>The <a href="stack-(programming).html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
 <p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
-<div class="highlight"><pre><span></span>push 3
+<pre><code class="language-assembly">push 3
 pop eax
 ret
-</pre></div>
+</code></pre>
 <p>This will push three values to the stack <strong>in reverse order of what the function expects, because LIFO</strong>, and then invokes the function, which will use those values.</p>
-<div class="highlight"><pre><span></span><span class="n">push</span><span class="w"> </span><span class="o">[</span><span class="n">var</span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="k">last</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="k">first</span><span class="w"></span>
-<span class="n">push</span><span class="w"> </span><span class="mi">216</span><span class="w">   </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">second</span><span class="w"> </span><span class="k">parameter</span><span class="w"></span>
-<span class="n">push</span><span class="w"> </span><span class="n">eax</span><span class="w">   </span><span class="p">;</span><span class="w"> </span><span class="n">Push</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="k">last</span><span class="w"></span>
+<pre><code class="language-assembly">push [var] ; Push last parameter first
+push 216   ; Push the second parameter
+push eax   ; Push first parameter last
 
-<span class="k">call</span><span class="w"> </span><span class="n">_myFunc</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">Call</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">assume</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="n">naming</span><span class="p">)</span><span class="w"></span>
+call _myFunc ; Call the function (assume C naming)
 
-<span class="k">add</span><span class="w"> </span><span class="n">esp</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="w">  </span><span class="p">;</span><span class="w"> </span><span class="n">Flush</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">byte</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
-<span class="w">      </span><span class="p">;</span><span class="w"> </span><span class="n">adding</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">pointer</span><span class="w"></span>
-</pre></div>
+add esp, 12  ; Flush the three 4 byte values on the stack by 
+      ; adding 12 to the stack pointer
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm</a></li>
@@ -235,4 +235,4 @@ ret
 <li><a href="https://www.chibialiens.com/8086/" target="_blank">https://www.chibialiens.com/8086/</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108120025</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108120005</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

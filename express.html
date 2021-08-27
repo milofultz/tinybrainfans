@@ -3,41 +3,41 @@
             <p>Express is a <a href="javascript.html">Javascript</a>-based <a href="server.html">server</a> application that will help route requests from the client.</p>
 <h2>Getting Started</h2>
 <p>First, start your project with <code>npm init</code> in the project folder. Then <code>npm i express</code>. Now you can start implementing the barebones in your project.</p>
-<div class="highlight"><pre><span></span><span class="c1">// app.js</span>
-<span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
-<span class="kd">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mf">3000</span><span class="p">;</span>
+<pre><code class="language-javascript">// app.js
+const express = require(&#x27;express&#x27;);
+const app = express();
+const port = 3000;
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Listening on port </span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">`</span><span class="p">));</span>
-</pre></div>
+app.listen(port, () =&gt; console.log(`Listening on port ${port}`));
+</code></pre>
 <p>To get it running, set up your <code>package.json</code> with a script to run. You can also use <a href="https://www.npmjs.com/package/nodemon" target="_blank" title="Nodemon is essential for developing your own apps">nodemon</a> to run and restart upon file changes.</p>
-<div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
-  <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;node app.js&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;dev&quot;</span><span class="p">:</span> <span class="s2">&quot;nodemon app.js&quot;</span>
-<span class="p">}</span>
-</pre></div>
+<pre><code class="language-json">&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;node app.js&quot;,
+  &quot;dev&quot;: &quot;nodemon app.js&quot;
+}
+</code></pre>
 <p>Upon running one of these scripts (<code>npm run start/dev</code>), you should see a message in your terminal that your app is listening on port 3000.</p>
 <h2>Routes</h2>
-<div class="highlight"><pre><span></span><span class="c1">// Parameters: `route`, and `callback` when request and response objects are received and created </span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;We did it!&#39;</span><span class="p">;</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
+<pre><code class="language-javascript">// Parameters: `route`, and `callback` when request and response objects are received and created 
+app.get(&#x27;/&#x27;, (req, res) =&gt; {
+  data = &#x27;We did it!&#x27;;
+  res.send(data);
+});
+</code></pre>
 <p>Upon completing this and restarting your server, you should be able to go to <code>localhost:3000</code> and see &quot;We did it!&quot; in your browser window.</p>
 <h3>Query Parameters</h3>
 <p>You can access the query parameters via the <code>req.query</code> object.</p>
-<div class="highlight"><pre><span></span><span class="c1">// .../products?example=1?another=five</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/products&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">example</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">example</span><span class="p">;</span>
-  <span class="kd">const</span> <span class="nx">another</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">another</span><span class="p">;</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span><span class="nx">example</span><span class="p">,</span> <span class="nx">another</span><span class="p">]));</span>
-<span class="p">});</span>
-</pre></div>
+<pre><code class="language-javascript">// .../products?example=1?another=five
+app.get(&#x27;/products&#x27;, (req, res) =&gt; {
+  const example = req.query.example;
+  const another = req.query.another;
+  res.send(JSON.stringify([example, another]));
+});
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="http://expressjs.com/en/starter/installing.html" target="_blank">http://expressjs.com/en/starter/installing.html</a></li>
 <li><a href="https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express" target="_blank">https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="text-compression-(server).html">Text Compression (Server)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107172004</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107172004</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

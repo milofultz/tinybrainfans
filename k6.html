@@ -2,26 +2,26 @@
 <main id="main"><article id="content">            <h1 id="title">K6</h1>
             <p>K6 is an open-source load testing program for API's via <a href="javascript.html">Javascript</a>.</p>
 <h2>Basics</h2>
-<div class="highlight"><pre><span></span>$ brew install k6
-</pre></div>
+<pre><code class="language-bash">$ brew install k6
+</code></pre>
 <p>Create a new file, <code>script.js</code>,  to hold your basic script:</p>
-<div class="highlight"><pre><span></span><span class="k">import</span> <span class="nx">http</span> <span class="k">from</span> <span class="s1">&#39;k6/http&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">sleep</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;k6&#39;</span><span class="p">;</span>
+<pre><code class="language-javascript">import http from &#x27;k6/http&#x27;;
+import { sleep } from &#x27;k6&#x27;;
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://test.k6.io&#39;</span><span class="p">);</span>
-  <span class="nx">sleep</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
-<span class="p">};</span>
-</pre></div>
+export default function () {
+  http.get(&#x27;https://test.k6.io&#x27;);
+  sleep(1);
+};
+</code></pre>
 <p>Now run your new test in your terminal with <code>k6 run script.js</code>.</p>
 <h2>Design</h2>
 <p>You can design your tests with startup code that runs only once and the defaut function, which will be run over and over for the duration of the test by each virtual user.</p>
-<div class="highlight"><pre><span></span><span class="c1">// init code</span>
+<pre><code class="language-javascript">// init code
 
-<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// vu code</span>
-<span class="p">}</span>
-</pre></div>
+export default function() {
+  // vu code
+}
+</code></pre>
 <h2><a href="https://k6.io/docs/using-k6/metrics/" target="_blank">Metrics</a></h2>
 <table>
 <thead>
@@ -81,11 +81,11 @@
 </tr>
 </tbody></table><h2>Options</h2>
 <p>Options can be included in your script as an <code>export</code> called <code>options</code>:</p>
-<div class="highlight"><pre><span></span><span class="k">export</span> <span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">vus</span><span class="o">:</span> <span class="mf">10</span><span class="p">,</span>
-  <span class="nx">duration</span><span class="o">:</span> <span class="s1">&#39;30s&#39;</span><span class="p">,</span>
-<span class="p">};</span>
-</pre></div>
+<pre><code class="language-javascript">export let options = {
+  vus: 10,
+  duration: &#x27;30s&#x27;,
+};
+</code></pre>
 <p>If these options are to be used in a CLI, they should be prefaced with two hyphens and followed directly by their argument.</p>
 <table>
 <thead>
@@ -111,4 +111,4 @@
 <li><a href="https://k6.io/docs/getting-started/running-k6/" target="_blank">https://k6.io/docs/getting-started/running-k6/</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108060551</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108060551</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

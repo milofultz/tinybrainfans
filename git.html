@@ -55,8 +55,8 @@ Merge a branch (source) into another branch (destination):<ul>
 </blockquote>
 <h3>Delete All Merged Branches</h3>
 <p>To delete all branches that have been merged, start out by pulling from remote to ensure you are using the most up to date info. Then check which branches are merged by running <code>git branch --merged</code>. We will be using <code>egrep</code> to grab these and put them into a macro that will delete each merged branch that doesn't fit within the regex. To ensure a branch that contains a certain keyword does not get deleted, add it to the <code>egrep -v &quot;(^...)&quot;</code> line, with each keyword separated by an OR <code>|</code>.</p>
-<div class="highlight"><pre><span></span>git branch --merged <span class="p">|</span> egrep -v <span class="s2">&quot;(^\*|master|main|dev|staging)&quot;</span> <span class="p">|</span> xargs git branch -d
-</pre></div>
+<pre><code class="language-bash">git branch --merged | egrep -v &quot;(^\*|master|main|dev|staging)&quot; | xargs git branch -d
+</code></pre>
 <h2>Cherry Pick</h2>
 <blockquote>
 <p>When should I use cherry-pick? <strong>The short answer is: as rarely as possible.</strong></p>
@@ -65,8 +65,8 @@ Merge a branch (source) into another branch (destination):<ul>
 <p>A revert allows you to go back to a previous commit, reversing those previous between commit X (HEAD) and commit Y(the selected commit). This will create a reversal commit for each commit to be undone between X and Y. In the case of a single commit to be undone, it will make a single reversal commit.</p>
 <p>To revert one or many commits, open your <code>git log</code> and find the commit you want to revert back to. Save this hash.</p>
 <p>The <code>-m</code> flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1. </p>
-<div class="highlight"><pre><span></span>$ git revert <span class="o">[</span>-m <span class="m">1</span><span class="o">]</span> &lt;commit-hash&gt;
-</pre></div>
+<pre><code class="language-bash">$ git revert [-m 1] &lt;commit-hash&gt;
+</code></pre>
 <h2>Stashing</h2>
 <p><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">Stashing</a> allows you to temporarily save changes without committing anything. </p>
 <p>To stash some changes, use <code>git stash save &#x27;message about stash&#x27;</code>, or just <code>git stash</code> if you want to leave out the message.</p>
@@ -74,16 +74,19 @@ Merge a branch (source) into another branch (destination):<ul>
 <p>Stashes can be listed recalled via the indexes shown: <code>git stash apply {index}</code> or <code>git stash pop {index}</code> if you want to remove it from the stashes after being applied.</p>
 <p>You can <code>git stash drop {index}</code> individual stashes or <code>git stash clear</code> the entire stash.</p>
 <h2>Git Aliases</h2>
-<h3>Flags</h3>
 <ul>
 <li><code>--global</code> will set the alias across your whole machine</li>
 <li><code>--unset</code> will unset the following alias</li>
 <li><code>--unset-all</code> will unset all of the aliases found at the following alias</li>
 </ul>
-<div class="highlight"><pre><span></span>shell&gt; git config --global alias.co checkout <span class="c1"># now &#39;git co&#39; is aliased to &#39;git checkout&#39;</span>
-shell&gt; git config alias.p <span class="s1">&#39;push origin HEAD&#39;</span>  <span class="c1"># now &#39;git p&#39; is aliased to &#39;git push origin HEAD&#39; ONLY for current project</span>
-shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&#39; is no longer aliased</span>
-</pre></div>
+<pre><code class="language-bash">shell&gt; git config --global alias.co checkout # now &#x27;git co&#x27; is aliased to &#x27;git checkout&#x27;
+shell&gt; git config alias.p &#x27;push origin HEAD&#x27;  # now &#x27;git p&#x27; is aliased to &#x27;git push origin HEAD&#x27; ONLY for current project
+shell&gt; git config --global --unset alias.p # now &#x27;git p&#x27; is no longer aliased
+</code></pre>
+<h3>List All Aliases</h3>
+<p>Running this will give you the <code>git alias</code> command, which will list all of your current git aliases.</p>
+<pre><code class="language-bash">$ git config --global alias.alias &quot;! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /&quot;
+</code></pre>
 <h2><a href="https://git-scm.com/docs/gitignore" target="_blank">Gitignore</a></h2>
 <p>Creating a <code>.gitignore</code> file in the root folder of your project will ensure every file that matches a line within the file will be ignored by git.</p>
 <ul>
@@ -100,23 +103,25 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 </ul>
 <h2>Credentials</h2>
 <p>If you receive a message like this when trying to push up to your repo:</p>
-<div class="highlight"><pre><span></span><span class="n">remote</span><span class="o">:</span> <span class="n">HTTP</span> <span class="n">Basic</span><span class="o">:</span> <span class="n">Access</span> <span class="n">denied</span>
-<span class="n">fatal</span><span class="o">:</span> <span class="n">Authentication</span> <span class="n">failed</span> <span class="k">for</span> <span class="s1">&#39;https://gitlab.com/myusername/repo.git&#39;</span>
-</pre></div>
+<pre><code>remote: HTTP Basic: Access denied
+fatal: Authentication failed for &#x27;https://gitlab.com/myusername/repo.git&#x27;
+</code></pre>
 <p>or</p>
-<div class="highlight"><pre><span></span><span class="n">remote</span><span class="o">:</span> <span class="n">Invalid</span> <span class="n">username</span> <span class="n">or</span> <span class="n">password</span><span class="o">.</span>
-<span class="n">fatal</span><span class="o">:</span> <span class="n">Authentication</span> <span class="n">failed</span> <span class="k">for</span> <span class="s1">&#39;https://github.com/milofultz/tod.git/&#39;</span>
-</pre></div>
+<pre><code>remote: Invalid username or password.
+fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x27;
+</code></pre>
 <p>Then you may have revoked or renewed your token and need to reset it. To do so, type this in the terminal:</p>
-<div class="highlight"><pre><span></span>$ git credential reject
-</pre></div>
+<pre><code class="language-bash">$ git credential reject
+</code></pre>
 <p>And when you receive a new line, enter in <code>url=</code> followed by the url that showed up previously in the error message. Then use ctrl-c or ctrl-d to quit.</p>
-<div class="highlight"><pre><span></span>url=https://github.com/milofultz/tod.git/
-</pre></div>
+<pre><code>url=https://github.com/milofultz/tod.git/
+</code></pre>
 <p>On trying to push again, you will get prompted for authentication and it will work.</p>
 <h2>Errors</h2>
 <p>CRLF =&gt; LF: <a href="https://stackoverflow.com/questions/20168639/git-commit-get-fatal-error-fatal-crlf-would-be-replaced-by-lf-in/31144141#31144141" target="_blank">https://stackoverflow.com/questions/20168639/git-commit-get-fatal-error-fatal-crlf-would-be-replaced-by-lf-in/31144141#31144141</a></p>
 <h2>Meta</h2>
+<h3>Simplify git Call</h3>
+<p>In your <a href="bash.html">Bash</a> or equivalent rc file, set an alias of <code>g</code> to <code>git</code>. Surprisingly has saved me quite a bit of mistypes and extra key typing.</p>
 <h3>Use <a href="vim.html">VIM</a> as Editor</h3>
 <ul>
 <li>Install Vim using homebrew</li>
@@ -141,5 +146,5 @@ shell&gt; git config --global --unset alias.p <span class="c1"># now &#39;git p&
 <li><a href="https://www.git-tower.com/learn/git/faq/cherry-pick/" target="_blank">https://www.git-tower.com/learn/git/faq/cherry-pick/</a></li>
 <li><a href="https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git" target="_blank">https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git</a></li>
 </ol>
-<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108042052</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202108260209</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

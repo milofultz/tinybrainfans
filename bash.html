@@ -31,26 +31,26 @@
 </ul>
 <h2>Aliases</h2>
 <p>WIthin your <code>~/.bashrc</code> file, add this line and populate it how you need:</p>
-<div class="highlight"><pre><span></span><span class="nb">alias</span> <span class="nv">alias_name</span><span class="o">=</span><span class="s2">&quot;command_to_run&quot;</span>
+<pre><code class="language-bash">alias alias_name=&quot;command_to_run&quot;
 
-<span class="c1"># e.g.</span>
-<span class="nb">alias</span> <span class="nv">poo</span><span class="o">=</span><span class="s2">&quot;say &#39;I have to poop really bad&#39;&quot;</span>
-</pre></div>
+# e.g.
+alias poo=&quot;say &#x27;I have to poop really bad&#x27;&quot;
+</code></pre>
 <p>When complete, run <code>source ~/.bashrc</code> or <code>source ~/.zshrc</code> and restart bash to have them take effect.</p>
 <h2>Pipe</h2>
 <blockquote>
 <p>To connect the STDOUT of one <strong>command</strong> to the STDIN of <strong>another</strong> use the | symbol, commonly known as a pipe.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><span class="c1"># long way</span>
+<pre><code class="language-bash"># long way
 $ thing1 &gt; tempfile
 $ thing2 &lt; tempfile
 
-<span class="c1"># shorter</span>
-$ thing1 &gt; tempfile <span class="o">&amp;&amp;</span> thing2 &lt; tempfile
+# shorter
+$ thing1 &gt; tempfile &amp;&amp; thing2 &lt; tempfile
 
-<span class="c1"># shortest</span>
-$ thing1 <span class="p">|</span> thing2
-</pre></div>
+# shortest
+$ thing1 | thing2
+</code></pre>
 <h2>Base64</h2>
 <p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64. </p>
 <p><code>echo -n &#x27;some string&#x27; | base64 &gt; output.txt</code> will encode a string as input and not encode unusable chars, like line feeds.</p>
@@ -58,8 +58,8 @@ $ thing1 <span class="p">|</span> thing2
 <h2>Troubleshooting</h2>
 <h3>Errors from Windows</h3>
 <p>If you got a script that looks totally fine but is throwing errors that make very little to no sense, like failing <code>cd</code> and <code>cp</code>, it's probably containing <code>\r</code> from a Windows computer.</p>
-<div class="highlight"><pre><span></span>tr -d <span class="s2">&quot;\r&quot;</span> &lt; oldname.sh &gt; newname.sh
-</pre></div>
+<pre><code class="language-bash">tr -d &quot;\r&quot; &lt; oldname.sh &gt; newname.sh
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/" target="_blank">https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/</a></li>
@@ -67,5 +67,5 @@ $ thing1 <span class="p">|</span> thing2
 <li><a href="https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf" target="_blank">https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf</a></li>
 <li><a href="https://stackoverflow.com/a/11428439" target="_blank">https://stackoverflow.com/a/11428439</a></li>
 </ol>
-<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107281718</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="git.html">git</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202107281718</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

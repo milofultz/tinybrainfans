@@ -3,29 +3,29 @@
             <p>Sublime Text is an application made for software development.</p>
 <h2>Command Line Shortcut</h2>
 <p>To create a symlink in <a href="bash.html">bash</a> that will allow you to open any folder in Sublime Text:</p>
-<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+<pre><code class="language-bash">echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bash_profile
 // or
-<span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.zprofile
-</pre></div>
+echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#x27; &gt;&gt; ~/.zprofile
+</code></pre>
 <p>Now you can just type <code>subl .</code> in a given folder, a la <code>code .</code> in <a href="visual-studio-code.html">Visual Studio Code</a></p>
 <h2>Key Bindings</h2>
 <h3>Multiple Commands</h3>
 <p>Sublime Text 4 provided the ability to <code>chain</code> multiple commands and args together, while Sublime Text 2 and 3 required the use of the <a href="https://github.com/jisaacks/ChainOfCommand" target="_blank">Chain Of Command plugin</a>. Both use the same syntax:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="err">//</span> <span class="err">Li</span><span class="kc">n</span><span class="err">k</span> <span class="err">Ope</span><span class="kc">ner</span>
-    <span class="err">//</span> <span class="err">This</span> <span class="err">example</span> <span class="err">uses</span> <span class="err">h</span><span class="kc">tt</span><span class="err">ps</span><span class="p">:</span><span class="err">//gi</span><span class="kc">t</span><span class="err">hub.com/NoxAr</span><span class="kc">t</span><span class="err">/SublimeTex</span><span class="kc">t</span><span class="mi">2-</span><span class="err">Li</span><span class="kc">n</span><span class="err">kOpe</span><span class="kc">ner</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;super+shift+u&quot;</span><span class="p">],</span>
-        <span class="nt">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;chain&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&quot;commands&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">[</span><span class="s2">&quot;expand_selection&quot;</span><span class="p">,</span> <span class="p">{</span><span class="nt">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;smart&quot;</span><span class="p">}],</span>
-                <span class="p">[</span><span class="s2">&quot;link_opener_open_url&quot;</span><span class="p">]</span>
-            <span class="p">],</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
+<pre><code class="language-json">{
+    // Link Opener
+    // This example uses https://github.com/NoxArt/SublimeText2-LinkOpener
+    {
+        &quot;keys&quot;: [&quot;super+shift+u&quot;],
+        &quot;command&quot;: &quot;chain&quot;,
+        &quot;args&quot;: {
+            &quot;commands&quot;: [
+                [&quot;expand_selection&quot;, {&quot;to&quot;: &quot;smart&quot;}],
+                [&quot;link_opener_open_url&quot;]
+            ],
+        }
+    }
+}
+</code></pre>
 <h2>Troubleshooting Errors</h2>
 <h3>Autocompletion/Snippets</h3>
 <ol>
@@ -45,4 +45,4 @@
 <li><a href="https://www.sublimetext.com/docs/command_line.html#mac" target="_blank">https://www.sublimetext.com/docs/command_line.html#mac</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="pug.html">Pug</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108230316</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108230316</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

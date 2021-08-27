@@ -3,15 +3,15 @@
             <p>These are some common <a href="sql.html">SQL</a> queries that come up. All <code>?</code> symbols represent a place where you would dynamically insert info, like with Node's <a href="mysql.html">MySQL</a> module.</p>
 <h2>Retrieval</h2>
 <p>Get the info from all rows with a given email</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">example_table</span>
-  <span class="k">WHERE</span> <span class="n">email</span> <span class="o">=</span> <span class="nv">?</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-mysql">SELECT * FROM example_table
+  WHERE email = ?;
+</code></pre>
 <p><a href="https://learnsql.com/blog/how-to-find-duplicate-values-in-sql/" target="_blank" title="Finding duplicate values in SQL">See if more than one entry exists with a given email</a></p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">email</span><span class="p">,</span> <span class="nf">COUNT</span><span class="p">(</span><span class="n">email</span><span class="p">)</span> 
-  <span class="k">FROM</span> <span class="n">example_table</span>
-  <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">email</span>
-  <span class="k">HAVING</span> <span class="nf">COUNT</span><span class="p">(</span><span class="n">email</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-mysql">SELECT email, COUNT(email) 
+  FROM example_table
+  GROUP BY email
+  HAVING COUNT(email) &gt; 1;
+</code></pre>
 <h2>References</h2>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sql.html">SQL</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202105310620</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202105310620</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -10,20 +10,20 @@
 </ul>
 <h2>Primary Key</h2>
 <p>A column with type <code>INTEGER PRIMARY KEY</code> is an alias for the <code>ROWID</code>, which is always a 64-bit signed integer.</p>
-<div class="highlight"><pre><span></span><span class="nv">CREATE</span> <span class="nv">TABLE</span> <span class="k">IF</span> <span class="nv">NOT</span> <span class="nv">EXISTS</span> <span class="nv">dogs</span> <span class="ss">(</span>
-  <span class="nv">id</span> <span class="nv">INTEGER</span> <span class="nv">PRIMARY</span> <span class="nv">KEY</span>,
-  <span class="nv">dog_name</span> <span class="nv">VARCHAR</span><span class="ss">(</span><span class="mi">10</span><span class="ss">)</span>,
-  <span class="nv">good_boy</span> <span class="nv">INTEGER</span> <span class="nv">DEFAULT</span> <span class="mi">1</span>  <span class="o">--</span> <span class="nv">Boolean</span>, <span class="nv">default</span> <span class="nv">is</span> <span class="nv">TRUE</span>
-<span class="ss">)</span><span class="c1">;</span>
-</pre></div>
+<pre><code class="language-sqlite">CREATE TABLE IF NOT EXISTS dogs (
+  id INTEGER PRIMARY KEY,
+  dog_name VARCHAR(10),
+  good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
+);
+</code></pre>
 <h2>PRAGMA</h2>
 <p>PRAGMA commands are SQLite specific and are meta commands regarding operation or non-table data.</p>
 <h3>Get column information of a given table</h3>
-<div class="highlight"><pre><span></span>PRAGMA table_info(table_name)
-</pre></div>
+<pre><code class="language-sqlite">PRAGMA table_info(table_name)
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://sqlite.org/pragma.html#pragma_table_info" target="_blank">https://sqlite.org/pragma.html#pragma_table_info</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202105310513</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107020546</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

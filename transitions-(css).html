@@ -2,21 +2,21 @@
 <main id="main"><article id="content">            <h1 id="title">Transitions (CSS)</h1>
             <p>Transitions allow you to transform a <a href="css.html">CSS</a> rule from one set of values to another, and can be triggered either by a pseudoclass <a href="selectors-(css).html">selector</a>, on a regular cycle, or just once when loaded.</p>
 <p>This example I modified from <a href="http://mdn.io" target="_blank">MDN</a> shows how you would transform the background color of a button on hover:</p>
-<div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">button</span> <span class="p">{</span>
-  <span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="k">transition-property</span><span class="p">:</span> <span class="k">background-color</span><span class="p">;</span>
-  <span class="k">transition-duration</span><span class="p">:</span> <span class="mi">4</span><span class="kt">s</span><span class="p">;</span>
-  <span class="k">transition-timing-function</span><span class="p">:</span> <span class="kc">ease</span><span class="p">;</span>
-  <span class="k">transition-delay</span><span class="p">:</span> <span class="mi">2</span><span class="kt">s</span><span class="p">;</span>
-<span class="p">}</span>
+<pre><code class="language-css">#button {
+  background-color: rgba(0, 2, 143, 1);
+  transition-property: background-color;
+  transition-duration: 4s;
+  transition-timing-function: ease;
+  transition-delay: 2s;
+}
 
-<span class="p">#</span><span class="nn">button</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
-  <span class="k">background-color</span><span class="p">:</span> <span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
+#button:hover {
+  background-color: rgba(0, 2, 143, 0.5);
+}
+</code></pre>
 <h3>References:</h3>
 <ol>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020518</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107020518</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

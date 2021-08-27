@@ -6,41 +6,41 @@
 <p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a>, which can be installed on <a href="macos.html">OSX</a> using <a href="https://brew.sh/" target="_blank">homebrew</a> with <code>brew install nasm</code>.</p>
 <h3>Your First Program</h3>
 <p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
-<div class="highlight"><pre><span></span><span class="p">;</span> <span class="o">----------------------------------------------------------------------------------------</span>
-<span class="p">;</span> <span class="n">Writes</span> <span class="s2">&quot;Hello, World&quot;</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span> <span class="n">using</span> <span class="n">only</span> <span class="n">system</span> <span class="n">calls</span><span class="o">.</span> <span class="n">Runs</span> <span class="n">on</span> <span class="mi">64</span><span class="o">-</span><span class="n">bit</span> <span class="n">macOS</span> <span class="n">only</span><span class="o">.</span>
-<span class="p">;</span> <span class="o">----------------------------------------------------------------------------------------</span>
+<pre><code class="language-assembly">; ----------------------------------------------------------------------------------------
+; Writes &quot;Hello, World&quot; to the console using only system calls. Runs on 64-bit macOS only.
+; ----------------------------------------------------------------------------------------
 
-        <span class="n">global</span>    <span class="n">start</span>                   <span class="p">;</span> <span class="n">nasm</span><span class="o">-</span><span class="n">specific</span> <span class="n">way</span> <span class="n">to</span> <span class="n">define</span> <span class="n">a</span> <span class="n">location</span> <span class="k">for</span> <span class="n">the</span> <span class="n">linker</span>
+        global    start                   ; nasm-specific way to define a location for the linker
 
-        <span class="n">section</span>   <span class="o">.</span><span class="n">text</span>                   <span class="p">;</span> <span class="n">The</span> <span class="o">.</span><span class="n">text</span> <span class="n">section</span> <span class="n">holds</span> <span class="n">all</span> <span class="n">the</span> <span class="n">instructions</span> <span class="k">for</span> <span class="n">the</span> 
-                                          <span class="p">;</span> <span class="n">assembler</span> <span class="n">to</span> <span class="n">execute</span><span class="o">.</span>
-<span class="n">start</span><span class="p">:</span>                                <span class="p">;</span> <span class="n">The</span> <span class="n">label</span> <span class="n">that</span> <span class="k">is</span> <span class="n">referenced</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">above</span> <span class="n">global</span> <span class="n">call</span>
-        <span class="n">mov</span>       <span class="n">rax</span><span class="p">,</span> <span class="mh">0x02000004</span>         <span class="p">;</span> <span class="n">system</span> <span class="n">call</span> <span class="k">for</span> <span class="n">write</span> <span class="p">(</span><span class="n">copy</span> <span class="n">param</span> <span class="n">Y</span> <span class="n">into</span> <span class="n">param</span> <span class="n">X</span><span class="p">)</span>
-        <span class="n">mov</span>       <span class="n">rdi</span><span class="p">,</span> <span class="mi">1</span>                  <span class="p">;</span> <span class="n">file</span> <span class="n">handle</span> <span class="mi">1</span> <span class="k">is</span> <span class="n">stdout</span>
-        <span class="n">mov</span>       <span class="n">rsi</span><span class="p">,</span> <span class="n">message</span>            <span class="p">;</span> <span class="n">address</span> <span class="n">of</span> <span class="n">string</span> <span class="n">to</span> <span class="n">output</span>
-        <span class="n">mov</span>       <span class="n">rdx</span><span class="p">,</span> <span class="mi">13</span>                 <span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">bytes</span> <span class="p">(</span><span class="n">message</span> <span class="k">is</span> <span class="mi">13</span> <span class="n">chars</span> <span class="n">long</span><span class="p">)</span>
-        <span class="n">syscall</span>                           <span class="p">;</span> <span class="n">invoke</span> <span class="n">operating</span> <span class="n">system</span> <span class="n">to</span> <span class="n">do</span> <span class="n">the</span> <span class="n">write</span>
-        <span class="n">mov</span>       <span class="n">rax</span><span class="p">,</span> <span class="mh">0x02000001</span>         <span class="p">;</span> <span class="n">system</span> <span class="n">call</span> <span class="k">for</span> <span class="n">exit</span>
-        <span class="n">xor</span>       <span class="n">rdi</span><span class="p">,</span> <span class="n">rdi</span>                <span class="p">;</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
-        <span class="n">syscall</span>                           <span class="p">;</span> <span class="n">invoke</span> <span class="n">operating</span> <span class="n">system</span> <span class="n">to</span> <span class="n">exit</span>
+        section   .text                   ; The .text section holds all the instructions for the 
+                                          ; assembler to execute.
+start:                                ; The label that is referenced in the above global call
+        mov       rax, 0x02000004         ; system call for write (copy param Y into param X)
+        mov       rdi, 1                  ; file handle 1 is stdout
+        mov       rsi, message            ; address of string to output
+        mov       rdx, 13                 ; number of bytes (message is 13 chars long)
+        syscall                           ; invoke operating system to do the write
+        mov       rax, 0x02000001         ; system call for exit
+        xor       rdi, rdi                ; exit code 0
+        syscall                           ; invoke operating system to exit
 
-        <span class="n">section</span>   <span class="o">.</span><span class="n">data</span>                   <span class="p">;</span> <span class="n">The</span> <span class="o">.</span><span class="n">data</span> <span class="n">section</span> <span class="n">contains</span> <span class="n">constants</span>
-<span class="n">message</span><span class="p">:</span>                              <span class="p">;</span> <span class="n">The</span> <span class="n">label</span> <span class="n">referenced</span> <span class="n">above</span>
-        <span class="n">db</span>        <span class="s2">&quot;Hello, World&quot;</span><span class="p">,</span> <span class="mi">10</span>      <span class="p">;</span> <span class="n">note</span> <span class="n">the</span> <span class="n">newline</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span>
-</pre></div>
+        section   .data                   ; The .data section contains constants
+message:                              ; The label referenced above
+        db        &quot;Hello, World&quot;, 10      ; note the newline at the end
+</code></pre>
 <h3>Assembling Your Code</h3>
 <p>Assembling your code will translate it from the human readable assembly language into a file object. The following bash command will run <code>nasm</code> using the Mach-O 64bit object <code>-f</code>ile notation format used by the 64-bit version of <a href="macos.html">MacOS</a> and create <code>-o</code>utput <code>hello_world.o</code>.</p>
-<div class="highlight"><pre><span></span>$ nasm -f macho64 hello_world.asm -o hello_world.o
-</pre></div>
+<pre><code class="language-bash">$ nasm -f macho64 hello_world.asm -o hello_world.o
+</code></pre>
 <h3>Linking Your File</h3>
 <p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">Linking</a> your newly created output file will pull all the needed libraries into a single executable. The following <a href="bash.html">bash</a> command will run <code>ld</code>, the GNU linker, and finish the creation of your executable.</p>
-<div class="highlight"><pre><span></span>$ ld -macosx_version_min <span class="m">10</span>.7.0 hello_world.o -o hello_world
-</pre></div>
+<pre><code class="language-bash">$ ld -macosx_version_min 10.7.0 hello_world.o -o hello_world
+</code></pre>
 <p>The <code>-macosx_version_min</code> flag is added to remove the warning that is present without it. I read that it still builds fine without it, but that has not been true in my experience.</p>
 <h3>Executing Your File</h3>
-<div class="highlight"><pre><span></span>$ ./hello_world
+<pre><code class="language-bash">$ ./hello_world
 Hello, World
-</pre></div>
+</code></pre>
 <p>Running <code>./hello_world</code> in <a href="bash.html">bash</a> should result in the message being displayed.</p>
 <h2>References</h2>
 <ol>
@@ -57,4 +57,4 @@ Hello, World
 <li><a href="https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/" target="_blank">https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107112052</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107112052</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

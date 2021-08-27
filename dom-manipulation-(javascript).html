@@ -14,14 +14,14 @@
 <li><code>X.innerHTML = &#x27;&lt;i&gt;italics&lt;/i&gt;</code></li>
 <li><code>X.insertAdjacentHTML(position, Y)</code> will insert <a href="html.html">HTML</a> string Y at position of element X. <a href="https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/" target="_blank">(This method is much better than an <code>innerHTML +=</code>)</a> The positions are as follows:</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="c">&lt;!-- beforebegin --&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="c">&lt;!-- afterbegin --&gt;</span>
+<pre><code class="language-html">&lt;!-- beforebegin --&gt;
+&lt;p&gt;
+  &lt;!-- afterbegin --&gt;
   foo
-  <span class="c">&lt;!-- beforeend --&gt;</span>
-<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="c">&lt;!-- afterend --&gt;</span>
-</pre></div>
+  &lt;!-- beforeend --&gt;
+&lt;/p&gt;
+&lt;!-- afterend --&gt;
+</code></pre>
 <ul>
 <li><code>X.textContent = &#x27;text&#x27;</code></li>
 <li><code>X.innerText = &#x27;text&#x27;</code></li>
@@ -56,13 +56,13 @@
 <p>The <code>DOMParser</code> allows you to parse <a href="html.html">HTML</a> in as a string, returning an <code>HTMLDocument</code> object. This allows you to interact with the DOM elements and alter them much more simply and easily than using regex or find/replace in a text-editor.</p>
 <p>The DOMParser operates very similarly to <a href="jquery.html">jQuery</a>'s ability to parse HTML in as a string within <code>$(&#x27;&lt;input&gt;&#x27;)</code>. The difference is that DOMParser returns an HTMLDocument instead of a <a href="jquery.html">jQuery</a> object.</p>
 <h3>Importing Plain Text</h3>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DOMParser</span><span class="p">();</span>
-<span class="kd">const</span> <span class="nx">htmlDoc</span> <span class="o">=</span> <span class="nx">parser</span><span class="p">.</span><span class="nx">parseFromString</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="s1">&#39;text/html&#39;</span><span class="p">);</span>
-</pre></div>
+<pre><code class="language-javascript">const parser = new DOMParser();
+const htmlDoc = parser.parseFromString(input, &#x27;text/html&#x27;);
+</code></pre>
 <h3>Exporting Plain Text</h3>
 <p>You can return each of the top level elements (<code>head</code>, <code>body</code>) as plain text using <code>innerHTML</code>.  </p>
-<div class="highlight"><pre><span></span><span class="k">return</span> <span class="nx">htmlDoc</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-javascript">return htmlDoc.body.innerHTML;
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/DOMParser</a></li>
@@ -73,4 +73,4 @@
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107041952</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107041952</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

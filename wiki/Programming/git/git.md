@@ -91,8 +91,6 @@ You can `git stash drop {index}` individual stashes or `git stash clear` the ent
 
 ## Git Aliases
 
-### Flags
-
 - `--global` will set the alias across your whole machine
 - `--unset` will unset the following alias
 - `--unset-all` will unset all of the aliases found at the following alias
@@ -101,6 +99,14 @@ You can `git stash drop {index}` individual stashes or `git stash clear` the ent
 shell> git config --global alias.co checkout # now 'git co' is aliased to 'git checkout'
 shell> git config alias.p 'push origin HEAD'  # now 'git p' is aliased to 'git push origin HEAD' ONLY for current project
 shell> git config --global --unset alias.p # now 'git p' is no longer aliased
+```
+
+### List All Aliases
+
+Running this will give you the `git alias` command, which will list all of your current git aliases.
+
+```bash
+$ git config --global alias.alias "! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /"
 ```
 
 ## [Gitignore][]
@@ -156,6 +162,10 @@ On trying to push again, you will get prompted for authentication and it will wo
 CRLF => LF: https://stackoverflow.com/questions/20168639/git-commit-get-fatal-error-fatal-crlf-would-be-replaced-by-lf-in/31144141#31144141
 
 ## Meta
+
+### Simplify git Call
+
+In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprisingly has saved me quite a bit of mistypes and extra key typing.
 
 ### Use {{VIM}} as Editor
 

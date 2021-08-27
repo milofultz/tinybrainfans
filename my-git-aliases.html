@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="This is a list of all of my current aliases I use with git."><title>My git Aliases</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">My git Aliases</h1>
+            <p>This is a list of all of my current aliases I use with <a href="git.html">git</a>. This is an output of my <code>git alias</code> command, which you will see below. Learn how to set these in the <a href="git.html">git</a> page.</p>
+<pre><code>hist = log --pretty=format:&#x27;%h %ad | %s%d [%an]&#x27; --graph --date=short
+co = checkout
+ci = commit
+cm = commit -m
+s = status
+ap = add -p
+pu = push origin HEAD
+pl = pull origin HEAD
+b = branch
+cb = checkout -b
+aa = add .
+ca = commit --amend
+st = status
+a = add
+bd = branch -D
+alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
+</code></pre>
+<h2>References</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/7066325/list-git-aliases" target="_blank">https://stackoverflow.com/questions/7066325/list-git-aliases</a></li>
+</ul>
+
+<p class="last-modified"><em>Last modified: 202108260207</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

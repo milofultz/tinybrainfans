@@ -1,28 +1,28 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="grep finds string patterns within a given file or folder."><title>grep</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">grep</h1>
             <p><code>grep</code> finds string patterns within a given file or folder.</p>
-<div class="highlight"><pre><span></span>$ grep PATTERN dir/file.name
-$ grep <span class="s1">&#39;THIS THAT&#39;</span> dir/file.name
-</pre></div>
+<pre><code class="language-bash">$ grep PATTERN dir/file.name
+$ grep &#x27;THIS THAT&#x27; dir/file.name
+</code></pre>
 <h2>Regular Expressions</h2>
 <p><strong>Square brackets</strong> do the same as normal, and also includes special POSIX groups, that do what you assume: <code>[:alnum:]</code>, <code>[:alpha:]</code>, <code>[:blank:]</code>, <code>[:cntrl:]</code>, <code>[:digit:]</code>, <code>[:graph:]</code>, <code>[:lower:]</code>, <code>[:print:]</code>, <code>[:punct:]</code>, <code>[:space:]</code>, <code>[:upper:]</code>, and <code>[:xdigit:]</code>.</p>
 <h2>Search with OR, AND, NOT</h2>
 <h3>OR</h3>
-<div class="highlight"><pre><span></span>$ grep <span class="s1">&#39;PATTERN1\|PATTERN2&#39;</span> dir/file.name
-</pre></div>
+<pre><code class="language-bash">$ grep &#x27;PATTERN1\|PATTERN2&#x27; dir/file.name
+</code></pre>
 <h3>AND</h3>
-<div class="highlight"><pre><span></span>$ grep PATTERN1 dir/file.name <span class="p">|</span> grep PATTERN2
-</pre></div>
+<pre><code class="language-bash">$ grep PATTERN1 dir/file.name | grep PATTERN2
+</code></pre>
 <h3>NOT</h3>
-<div class="highlight"><pre><span></span>$ grep -v <span class="s1">&#39;NOTPATTERN&#39;</span> dir/file.name
-</pre></div>
+<pre><code class="language-bash">$ grep -v &#x27;NOTPATTERN&#x27; dir/file.name
+</code></pre>
 <h3>Chain together a NOT with a regular search</h3>
-<div class="highlight"><pre><span></span>$ grep <span class="s1">&#39;THIS&#39;</span> dir/file.name <span class="p">|</span> grep -v <span class="s2">&quot;NOT THIS&#39;</span>
-</pre></div>
+<pre><code class="language-bash">$ grep &#x27;THIS&#x27; dir/file.name | grep -v &quot;NOT THIS&#x27;
+</code></pre>
 <h2>Options</h2>
 <p>Options with a single hyphen can be combined and placed after <code>grep</code>. Double hyphen options are separated.</p>
-<div class="highlight"><pre><span></span>$ grep -rin PATTERN file.diz
-</pre></div>
+<pre><code class="language-bash">$ grep -rin PATTERN file.diz
+</code></pre>
 <ul>
 <li><code>-r</code>: search recursively within a folder</li>
 <li><code>-i</code>: ignore case of search pattern</li>
@@ -34,11 +34,11 @@ $ grep <span class="s1">&#39;THIS THAT&#39;</span> dir/file.name
 </ul>
 <h2>Output Formatting</h2>
 <p>You can use <code>awk</code> to print out a formatted output. <code>-F</code> and the following char is where in the string <code>awk</code> will split. Each split section can be called using $NF, with NF being the number of the field we want. $0 is everything.</p>
-<div class="highlight"><pre><span></span>grep IDEA <span class="p">|</span> awk -F: <span class="s1">&#39;{print $1}&#39;</span>
-</pre></div>
+<pre><code class="language-bash">grep IDEA | awk -F: &#x27;{print $1}&#x27;
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.man7.org/linux/man-pages/man1/grep.1.html" target="_blank">https://www.man7.org/linux/man-pages/man1/grep.1.html</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202105310508</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202105310508</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

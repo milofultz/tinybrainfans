@@ -2,36 +2,36 @@
 <main id="main"><article id="content">            <h1 id="title">SVG</h1>
             <p>SVG's are scalable vector graphics. They consist of instructions for the computer to follow to create the drawing.</p>
 <p>An SVG file is an <a href="xml.html">XML</a> markup file and thus is super simple to create yourself. All SVG's start out with an outer <code>svg</code> element.</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;svg</span> <span class="na">version=</span><span class="s">&quot;1.1&quot;</span> <span class="na">width=</span><span class="s">&quot;300&quot;</span> <span class="na">height=</span><span class="s">&quot;200&quot;</span> <span class="na">viewBox=</span><span class="s">&quot;x1 y1 x2 y2&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
-  <span class="c">&lt;!-- Version is not necessary --&gt;</span>
-  <span class="c">&lt;!-- W/H set during render, can be overwritten via CSS --&gt;</span>
-  <span class="c">&lt;!-- Viewbox is the part of grid to be shown  --&gt;</span>
-  <span class="c">&lt;!-- xmlns is required only for SVG files, not inline HTML --&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</pre></div>
+<pre><code class="language-xml">&lt;svg version=&quot;1.1&quot; width=&quot;300&quot; height=&quot;200&quot; viewBox=&quot;x1 y1 x2 y2&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+  &lt;!-- Version is not necessary --&gt;
+  &lt;!-- W/H set during render, can be overwritten via CSS --&gt;
+  &lt;!-- Viewbox is the part of grid to be shown  --&gt;
+  &lt;!-- xmlns is required only for SVG files, not inline HTML --&gt;
+&lt;/svg&gt;
+</code></pre>
 <h2>Drawing Shapes and Paths</h2>
 <p>SVG's use a grid system, where positive X is <strong>right</strong> and positive Y is <strong>down</strong>. The top left of the document is then <code>0, 0</code>.</p>
 <p>By default, renderings that come first, are placed below renderings that come later.</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;svg</span> <span class="err">...</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;rect</span> <span class="err">...</span><span class="nt">&gt;&lt;/rect&gt;</span>      // Behind the circle
-  <span class="nt">&lt;circle</span> <span class="err">...</span><span class="nt">&gt;&lt;/circle&gt;</span>  // On top of the rect
-<span class="nt">&lt;/svg&gt;</span>
-</pre></div>
+<pre><code class="language-xml">&lt;svg ...&gt;
+  &lt;rect ...&gt;&lt;/rect&gt;      // Behind the circle
+  &lt;circle ...&gt;&lt;/circle&gt;  // On top of the rect
+&lt;/svg&gt;
+</code></pre>
 <p>You can group SVG elements in a <code>&lt;g&gt;</code> container, and all transformations made on the container will occur to their children.</p>
 <h3>Path</h3>
 <p>The <code>path</code> element is how you &quot;pick up&quot; and &quot;put down&quot; your &quot;pen&quot;, as well as draw the lines which can make up a filled shape or just a stroked line. The directions go within the <code>d</code> attribute.</p>
 <p><code>M x y</code> is when you place your pen a given position without a stroke. <code>L x y</code>is when you draw a line to (x,y) from your starting point.</p>
-<div class="highlight"><pre><span></span><span class="c">&lt;!-- This will move the pen to (0, 10) and draw a line to (10, 0) in the given box --&gt;</span>
-<span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">&quot;M 0 10 L 10 0&quot;</span><span class="nt">&gt;&lt;/path&gt;</span>
-</pre></div>
+<pre><code class="language-xml">&lt;!-- This will move the pen to (0, 10) and draw a line to (10, 0) in the given box --&gt;
+&lt;path d=&quot;M 0 10 L 10 0&quot;&gt;&lt;/path&gt; 
+</code></pre>
 <h3>Shapes</h3>
 <p>Rectangles are drawn with the <code>rect</code> element.</p>
 <p>Circles are drawn with the <code>circle</code> element, with a center X/Y and a radius.</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">&quot;50&quot;</span> <span class="na">cy=</span><span class="s">&quot;50&quot;</span> <span class="na">r=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
-</pre></div>
+<pre><code class="language-xml">&lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;50&quot;/&gt;
+</code></pre>
 <p>Other polygons are drawn with the <code>polygon</code> element and a series of <code>X,Y</code> points separated by spaces.</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;polygon</span> <span class="na">points=</span><span class="s">&quot;0,100 50,25 50,75 100,0&quot;</span> <span class="nt">/&gt;</span>
-</pre></div>
+<pre><code class="language-xml">&lt;polygon points=&quot;0,100 50,25 50,75 100,0&quot; /&gt;
+</code></pre>
 <h2>External file or inline <a href="html.html">HTML</a>?</h2>
 <p>External files allow the computer to only have to load the data once and then reuse it throughout the page. If you have it written out multiple times, that is a lot of extra work.</p>
 <h2>References</h2>
@@ -44,4 +44,4 @@
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020546</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107020546</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

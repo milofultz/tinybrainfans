@@ -3,28 +3,28 @@
             <p>How to use <a href="css.html">CSS</a> to give or take away the user's ability to select text on a page.</p>
 <h2>Disable</h2>
 <p>Particularly with <code>span</code> or <code>div</code> style buttons that can be clicked a bunch and end up with their text selected.</p>
-<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">disable-select</span><span class="p">{</span>
-  <span class="kp">-webkit-</span><span class="n">touch-callout</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="c">/* iOS Safari */</span>
-    <span class="kp">-webkit-</span><span class="k">user-select</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="c">/* Safari */</span>
-     <span class="kp">-khtml-</span><span class="k">user-select</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="c">/* Konqueror HTML */</span>
-       <span class="kp">-moz-</span><span class="k">user-select</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="c">/* Firefox */</span>
-        <span class="kp">-ms-</span><span class="k">user-select</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="c">/* Internet Explorer/Edge */</span>
-            <span class="k">user-select</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="c">/* Non-prefixed version, currently</span>
-<span class="c">                                  supported by Chrome and Opera */</span>
-<span class="p">}</span>
-</pre></div>
+<pre><code class="language-css">.disable-select{
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+</code></pre>
 <h2>Select All</h2>
 <p>This allows all the inner text to be copied when clicking inside the selected element.</p>
-<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">copy-all-text</span><span class="p">{</span>  
-  <span class="kp">-webkit-</span><span class="k">user-select</span><span class="p">:</span> <span class="kc">all</span><span class="p">;</span>  <span class="c">/* Chrome all / Safari all */</span>
-     <span class="kp">-moz-</span><span class="k">user-select</span><span class="p">:</span> <span class="kc">all</span><span class="p">;</span>  <span class="c">/* Firefox all */</span>
-      <span class="kp">-ms-</span><span class="k">user-select</span><span class="p">:</span> <span class="kc">all</span><span class="p">;</span>  <span class="c">/* IE 10+ */</span>
-          <span class="k">user-select</span><span class="p">:</span> <span class="kc">all</span><span class="p">;</span>  <span class="c">/* Likely future */</span>   
-<span class="p">}</span>
-</pre></div>
+<pre><code class="language-css">.copy-all-text{  
+  -webkit-user-select: all;  /* Chrome all / Safari all */
+     -moz-user-select: all;  /* Firefox all */
+      -ms-user-select: all;  /* IE 10+ */
+          user-select: all;  /* Likely future */   
+}
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.freakyjolly.com/how-to-disable-text-selection-highlighting/" target="_blank">https://www.freakyjolly.com/how-to-disable-text-selection-highlighting/</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020517</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107020517</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

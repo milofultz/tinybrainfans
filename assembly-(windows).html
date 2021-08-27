@@ -6,57 +6,57 @@
 <p>You will first need <a href="https://masm32.com/" target="_blank">masm</a> to compile your assembly into machine code. masm can be installed via the <a href="https://www.masm32.com/install.htm" target="_blank">MASM32 SDK</a>.</p>
 <h3>Your First Program</h3>
 <p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
-<div class="highlight"><pre><span></span><span class="nf">.386</span>                  <span class="c1">; Tell assembler to use the 386 instruction set</span>
-<span class="na">.model</span> <span class="no">flat</span><span class="p">,</span> <span class="no">stdcall</span>            <span class="c1">; Specify the flat memory model and use stdcall to pass parameters RtoL</span>
-<span class="nf">option</span> <span class="no">casemap</span> <span class="p">:</span><span class="no">none</span>          <span class="c1">; Force case sensitivity</span>
+<pre><code class="language-assembly">.386                  ; Tell assembler to use the 386 instruction set
+.model flat, stdcall            ; Specify the flat memory model and use stdcall to pass parameters RtoL
+option casemap :none          ; Force case sensitivity
 
-<span class="nf">include</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">include</span><span class="err">\</span><span class="no">windows.inc</span>    <span class="c1">; Include Win32 API constants and defs</span>
-<span class="nf">include</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">include</span><span class="err">\</span><span class="no">kernel32.inc</span>   <span class="c1">; Include ExitProcess</span>
-<span class="nf">include</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">include</span><span class="err">\</span><span class="no">masm32.inc</span>     <span class="c1">; Include StdOut</span>
+include \masm32\include\windows.inc    ; Include Win32 API constants and defs
+include \masm32\include\kernel32.inc   ; Include ExitProcess
+include \masm32\include\masm32.inc     ; Include StdOut
 
-<span class="nf">includelib</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">lib</span><span class="err">\</span><span class="no">kernel32.lib</span>   <span class="c1">; The libraries necessary for the above includes to function</span>
-<span class="nf">includelib</span> <span class="err">\</span><span class="no">masm32</span><span class="err">\</span><span class="no">lib</span><span class="err">\</span><span class="no">masm32.lib</span>
+includelib \masm32\lib\kernel32.lib   ; The libraries necessary for the above includes to function
+includelib \masm32\lib\masm32.lib
 
-<span class="na">.data</span>                   <span class="c1">; The section for all initialized data</span>
-  <span class="nf">HelloWorld</span> <span class="no">db</span> <span class="err">&quot;</span><span class="no">Hello</span> <span class="no">World</span><span class="p">!</span><span class="err">&quot;</span><span class="p">,</span> <span class="mi">0</span>    <span class="c1">; definebyte HelloWorld to equal Hello World! plus a NUL char</span>
+.data                   ; The section for all initialized data
+  HelloWorld db &quot;Hello World!&quot;, 0    ; definebyte HelloWorld to equal Hello World! plus a NUL char
 
-<span class="na">.code</span>                    <span class="c1">; Starting point for program code</span>
-<span class="nl">start:</span>                   <span class="c1">; All code must live between this and end start</span>
-  <span class="nf">invoke</span> <span class="no">StdOut</span><span class="p">,</span> <span class="no">addr</span> <span class="no">HelloWorld</span>    <span class="c1">; Run function StdOut with address of HelloWorld as the param </span>
-  <span class="nf">invoke</span> <span class="no">ExitProcess</span><span class="p">,</span> <span class="mi">0</span>         <span class="c1">; Invoke ExitProcess with 0 (success) as the parameter</span>
+.code                    ; Starting point for program code
+start:                   ; All code must live between this and end start
+  invoke StdOut, addr HelloWorld    ; Run function StdOut with address of HelloWorld as the param 
+  invoke ExitProcess, 0         ; Invoke ExitProcess with 0 (success) as the parameter
 
-<span class="nf">end</span> <span class="no">start</span> 
-</pre></div>
+end start 
+</code></pre>
 <h3>Assembling Your Code</h3>
 <p>Assembling your code will translate it from the human readable assembly language into a file object. The following command will run masm and create output <code>hello_world.obj</code>.</p>
-<div class="highlight"><pre><span></span><span class="se">\m</span>asm32<span class="se">\b</span>in<span class="se">\m</span>l /c /Zd /coff hello_world.asm
-</pre></div>
+<pre><code class="language-shell">\masm32\bin\ml /c /Zd /coff hello_world.asm
+</code></pre>
 <h3>Linking Your File</h3>
 <p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">Linking</a> your newly created output file will pull all the needed libraries into a single executable. The following command will run Link, the masmlinker, and finish the creation of your executable.</p>
-<div class="highlight"><pre><span></span><span class="se">\m</span>asm32<span class="se">\b</span>in<span class="se">\L</span>ink /SUBSYSTEM:CONSOLE hello_world.obj
-</pre></div>
+<pre><code class="language-shell">\masm32\bin\Link /SUBSYSTEM:CONSOLE hello_world.obj
+</code></pre>
 <h3>Executing Your File</h3>
-<div class="highlight"><pre><span></span>hello_world.exe
+<pre><code class="language-shell">hello_world.exe
 Hello, World!
-</pre></div>
+</code></pre>
 <p>Running <code>hello_world.exe</code>  in the command line should result in the message being displayed.</p>
 <h2>masm-specific Syntax</h2>
 <h3><code>invoke</code></h3>
 <p><code>invoke</code> is a special function in <a href="https://masm32.com/" target="_blank">masm</a> to call functions without having to push parameters beforehand.</p>
-<div class="highlight"><pre><span></span><span class="n">invoke</span><span class="w"> </span><span class="n">SendMessage</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">hWnd</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">WM_CLOSE</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<pre><code class="language-masm">invoke SendMessage, [hWnd], WM_CLOSE, 0, 0
 
-<span class="p">;</span><span class="w"> </span><span class="n">equivalent</span><span class="w"> </span><span class="k">to</span><span class="w"></span>
+; equivalent to
 
-<span class="n">push</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="n">push</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="n">push</span><span class="w"> </span><span class="n">WM_CLOSE</span><span class="w"></span>
-<span class="n">push</span><span class="w"> </span><span class="o">[</span><span class="n">hWnd</span><span class="o">]</span><span class="w"></span>
-<span class="k">call</span><span class="w"> </span><span class="o">[</span><span class="n">SendMessage</span><span class="o">]</span><span class="w"></span>
-</pre></div>
+push 0
+push 0
+push WM_CLOSE
+push [hWnd]
+call [SendMessage]
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
 <li><a href="https://masm32.com/" target="_blank">https://masm32.com/</a> </li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107112140</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107112140</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

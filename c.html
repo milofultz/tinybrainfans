@@ -4,55 +4,55 @@
 <h2>Hello, World</h2>
 <h3>Code</h3>
 <p>Create a new file called <code>helloworld.c</code> and add this to the contents:</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="c1">  /* Imports the standard library for IO */</span><span class="cp"></span>
+<pre><code class="language-c">#include &lt;stdio.h&gt;  /* Imports the standard library for IO */
 
-<span class="n">main</span><span class="p">()</span>  <span class="cm">/* defines the function main containing no parameters */</span>
-<span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;hello, world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span> <span class="cm">/* prints &quot;hello, world&quot; in stdio */</span>
-    <span class="cm">/* note that the newline must be placed deliberately. C does */</span>
-    <span class="cm">/* not add a newline with print like Python does. */</span>
-<span class="p">}</span>
-</pre></div>
+main()  /* defines the function main containing no parameters */
+{
+    printf(&quot;hello, world\n&quot;); /* prints &quot;hello, world&quot; in stdio */
+    /* note that the newline must be placed deliberately. C does */
+    /* not add a newline with print like Python does. */
+}
+</code></pre>
 <h3>Compile</h3>
 <p>Then you want to compile it. The basic compiler found on UNIX computers is <code>cc</code>. Compile it by typing <code>cc helloworld.c</code>. This will create a file called <code>a.out</code>, which is the compiled version of your <code>helloworld.c</code>. </p>
 <h3>Run It</h3>
 <p>Run this by typing <code>./a.out</code> in your shell. You should see <code>hello, world</code> in your terminal.</p>
 <h2>Basics</h2>
 <h3>Comments</h3>
-<div class="highlight"><pre><span></span><span class="c1">// Single line comment</span>
-<span class="cm">/* Multiline</span>
-<span class="cm">   comment */</span>
-</pre></div>
+<pre><code class="language-c">// Single line comment
+/* Multiline
+   comment */
+</code></pre>
 <h3>Constants</h3>
 <h4>Symbolic Constants</h4>
 <p>Symbolic constants allow the developer to avoid <a href="magic-numbers-(programming).html">magic numbers</a> and add semantically useful labels to values. This is done using he syntax <code>#define NAME value</code>.</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#define TAXRATE 0.09</span>
-<span class="cp">#define SERVICECHARGE 2</span>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#define TAXRATE 0.09
+#define SERVICECHARGE 2
 
-<span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;The tax rate is %1.2f and the service charge is %d&quot;</span><span class="p">,</span> <span class="n">TAXRATE</span><span class="p">,</span> <span class="n">SERVICECHARGE</span><span class="p">);</span>
-<span class="p">}</span>
+main()
+{
+  printf(&quot;The tax rate is %1.2f and the service charge is %d&quot;, TAXRATE, SERVICECHARGE);
+}
 
-<span class="cm">/* prints &quot;The tax rate is 0.09 and the service charge is 2&quot;</span>
-</pre></div>
+/* prints &quot;The tax rate is 0.09 and the service charge is 2&quot;
+</code></pre>
 <p>These statements don't actually <em>do</em> anything in the code. They are handled by the preprocessor and the references to the <code>NAME</code> are simply replaced by the corrseponding <code>value</code> when found. So the above <code>printf</code> line, when eventually seen by the compiler, will be:</p>
-<div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;The tax rate is %1.2f and the service charge is %d&quot;</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-</pre></div>
+<pre><code class="language-c">printf(&quot;The tax rate is %1.2f and the service charge is %d&quot;, 0.09, 2);
+</code></pre>
 <h4>Enumeration Constants</h4>
 <p>An enumeration constant is a list of constant integer values. They will start at 0, incrementing on each new constant, unless otherwise defined.</p>
-<div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">boolean</span> <span class="p">{</span> <span class="n">FALSE</span><span class="p">,</span> <span class="n">TRUE</span> <span class="p">};</span> <span class="c1">// FALSE == 0, TRUE == 1</span>
-<span class="k">enum</span> <span class="n">months</span> <span class="p">{</span> <span class="n">JAN</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">FEB</span><span class="p">,</span> <span class="n">MAR</span><span class="p">,</span> <span class="p">...};</span> <span class="c1">// JAN == 1, FEB == 2...</span>
-<span class="k">enum</span> <span class="n">fib</span> <span class="p">{</span> <span class="n">FIRST</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">SECOND</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">THIRD</span><span class="p">,</span>
-           <span class="n">FOURTH</span><span class="p">,</span> <span class="n">FIFTH</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">SIXTH</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">}</span> <span class="c1">// THIRD == 2, FOURTH == 3...</span>
-</pre></div>
+<pre><code class="language-c">enum boolean { FALSE, TRUE }; // FALSE == 0, TRUE == 1
+enum months { JAN = 1, FEB, MAR, ...}; // JAN == 1, FEB == 2...
+enum fib { FIRST = 1, SECOND = 1, THIRD,
+           FOURTH, FIFTH = 5, SIXTH = 8 } // THIRD == 2, FOURTH == 3...
+</code></pre>
 <p>These constants can be used the same as symbolic constants.</p>
 <h3>Variables</h3>
 <p>Variables must be declared before they are used, usually at the beginning before executing your program. They are declared by type and then by name.</p>
-<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="n">step</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">letter</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-c">int num, step;
+char letter;
+</code></pre>
 <p>Variables that exist in and only within a given function are called <strong>automatic</strong> variables. They come into existence only when the function begins and disappear when the function is finished.</p>
 <p>The <code>const</code> keyword may be added to any variable declaration. This means that the variable declared will not change throughout its usage.</p>
 <h4>External Variables</h4>
@@ -63,16 +63,16 @@
 <h3>stdio.h</h3>
 <h4>printf(string, [format, ...])</h4>
 <p>If you use a format tag in the string, like <code>%d</code> or <code>%c</code>, you will need to add what will replace it in the list of <code>format</code> variables.</p>
-<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">;</span>
-<span class="n">fahr</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-<span class="n">celsius</span> <span class="o">=</span> <span class="mi">37</span><span class="p">;</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d F = %d C&quot;</span><span class="p">,</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">);</span>
-<span class="cm">/* prints &quot;100 F = 37 C&quot; */</span>
-</pre></div>
+<pre><code class="language-c">int fahr, celsius;
+fahr = 100;
+celsius = 37;
+printf(&quot;%d F = %d C&quot;, fahr, celsius);
+/* prints &quot;100 F = 37 C&quot; */
+</code></pre>
 <p>The format tags can also be accompanied by the minimum width of characters printed.</p>
-<div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%3d F = %3d C&quot;</span><span class="p">,</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">);</span> <span class="cm">/* prints &quot;100 F = 37  C&quot; */</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%2d F = %2d C&quot;</span><span class="p">,</span> <span class="n">fahr</span><span class="p">,</span> <span class="n">celsius</span><span class="p">);</span> <span class="cm">/* prints &quot;100 F = 37 C&quot; */</span>
-</pre></div>
+<pre><code class="language-c">printf(&quot;%3d F = %3d C&quot;, fahr, celsius); /* prints &quot;100 F = 37  C&quot; */
+printf(&quot;%2d F = %2d C&quot;, fahr, celsius); /* prints &quot;100 F = 37 C&quot; */
+</code></pre>
 <h4>getchar(), putchar(x)</h4>
 <p><code>getchar</code> will resolve to a character from stdin, and <code>putchar(x)</code> will put the value of <code>x</code> in stdout.</p>
 <h2>Sandboxing</h2>
@@ -84,4 +84,4 @@
 <li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="arrays-(c).html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="functions-(c).html">Functions (C)</a></li><li><a href="strings-(c).html">Strings (C)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108010309</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108011853</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

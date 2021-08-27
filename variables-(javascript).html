@@ -11,66 +11,66 @@
 <p><strong><a href="lexical-scoping.html">Block scoped</a></strong> means within a block or indentation level (starting with <code>{</code> and ending with <code>}</code>) or outside of a function. This means that one can use <code>let</code> outside of a function and declare a new variable with <code>let</code> again within a function.</p>
 <h3>const</h3>
 <p><code>const</code> is block scoped. Short for &quot;constant&quot;, meaning that it is a variable that once defined, cannot be redefined, changed through reassignment, redeclared, or updated. This also means one can cannot initialize a variable through <code>const</code> without a value. <code>const</code> can only be accessed within the scope they were created.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
-<span class="c1">// This can never be changed, as it is a constant.</span>
-<span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">;</span> <span class="c1">// This throws an error</span>
-</pre></div>
+<pre><code class="language-javascript">const greeting = &quot;Hello there!&quot;;
+// This can never be changed, as it is a constant.
+greeting = &quot;Hi.&quot;; // This throws an error
+</code></pre>
 <p>Reference types created with <code>const</code> can have their <em>attributes</em> updated, but cannot be updated itself.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;brothers&quot;</span> <span class="o">=</span> <span class="mf">3</span><span class="p">;</span>
-<span class="p">}</span>
+<pre><code class="language-javascript"> const greeting = {
+    &quot;brothers&quot; = 3;
+}
 
-<span class="c1">// Not accepted, since `greeting` is has already been declared and assigned a value</span>
-<span class="kd">const</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;sisters&quot;</span> <span class="o">=</span> <span class="mf">2</span><span class="p">;</span>
-<span class="p">}</span>
+// Not accepted, since `greeting` is has already been declared and assigned a value
+const greeting = {
+    &quot;sisters&quot; = 2;
+}
 
-<span class="kd">const</span> <span class="nx">brothers</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span> <span class="c1">// Accepted</span>
-<span class="kd">const</span> <span class="nx">brothers</span><span class="p">;</span> <span class="c1">// Unaccepted</span>
-</pre></div>
+const brothers = 1; // Accepted
+const brothers; // Unaccepted
+</code></pre>
 <h3>let</h3>
 <p><code>let</code> is also block scoped; <code>let</code> variables can be updated, but not redeclared.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
-<span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">;</span>
-<span class="c1">// This throws an error and won&#39;t work</span>
-<span class="kd">let</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hey hey hey&quot;</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-javascript">let greeting = &quot;Hello there!&quot;;
+greeting = &quot;Hi.&quot;;
+// This throws an error and won&#x27;t work
+let greeting = &quot;Hey hey hey&quot;;
+</code></pre>
 <h3>var</h3>
 <p><code>var</code> variables are function scoped and not a constant. Even when defined within a function, they can affect the global scope. These variables can also be redeclared and updated at any point.</p>
 <p>As of ES2015, <code>const</code> and <code>let</code> are fully supported in modern browsers, so <code>var</code> is not advised.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hey bayBEE!&quot;</span><span class="p">;</span>
-<span class="c1">//These are all acceptable</span>
-</pre></div>
+<pre><code class="language-javascript">var greeting = &quot;Hello there!&quot;;
+var greeting = &quot;Hey bayBEE!&quot;;
+//These are all acceptable
+</code></pre>
 <p>Define Multiple Variables At Once</p>
 <p>One can use commas to const many different variables at once.</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">yes</span> <span class="o">=</span> <span class="s1">&#39;yes&#39;</span><span class="p">,</span>
-      <span class="nx">no</span> <span class="o">=</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span>
-      <span class="nx">hi</span> <span class="o">=</span> <span class="s1">&#39;hi&#39;</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-javascript">const yes = &#x27;yes&#x27;,
+      no = &#x27;no&#x27;,
+      hi = &#x27;hi&#x27;;
+</code></pre>
 <h3>Global Declaration</h3>
 <p>Global variable declarations are made by using no keyword before the definition:</p>
-<div class="highlight"><pre><span></span><span class="nx">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-javascript">greeting = &quot;Hi.&quot;;
+</code></pre>
 <h2>Assignment as an Expression (a la Walrus Operator)</h2>
 <p><a href="https://stackoverflow.com/questions/63121979/is-there-a-walrus-operator-in-node-js/63122014#63122014" target="_blank">You can define a variable while running a condition</a> on an <code>if</code> or a <code>while</code> loop. This can help remove extra lines of code or going through variables over and over. Since the innermost parentheses get resolved first, it will function normally after assignment.</p>
-<div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">!==</span> <span class="mf">3</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-  <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
-<span class="p">}</span>
+<pre><code class="language-javascript">let i = 0;
+while (i !== 3) {
+  console.log(i);
+  i++;
+}
 
-<span class="c1">// Logs (0, 1, 2)</span>
+// Logs (0, 1, 2)
 
-<span class="c1">// Written using assignment as an expression</span>
+// Written using assignment as an expression
 
-<span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">((</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mf">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">3</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// === (i = i + 1) &lt; 3 === i &lt; 3</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-<span class="p">}</span>
+let i = -1;
+while ((i = i + 1) &lt; 3) { // === (i = i + 1) &lt; 3 === i &lt; 3
+  console.log(i);
+}
 
-<span class="c1">// Logs (0, 1, 2)</span>
-</pre></div>
+// Logs (0, 1, 2)
+</code></pre>
 <h2>Hoisting</h2>
 <blockquote>
 <p>The JS code interpretation performed in two passes. During the first pass, the interpreter processes variable and function declarations. The second pass is the actual code execution step. The interpreter processes function expressions and undeclared variables.[7]</p>
@@ -78,37 +78,37 @@
 <h3>Hoisting Variables</h3>
 <p>The term &quot;hoisting&quot; is meant to represent a literal hoisting of variable and function declarations to the top of a Javascript file, where they will be declared before the file is interpreted (while this is not technically what happens, it's certainly more memorable).</p>
 <p>Consider the following example:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="mf">3</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-javascript">var a = 1;
+console.log(a + &#x27; &#x27; + d);
+var d = 3;
+</code></pre>
 <p>In this example, because interpreters normally run from top to bottom, executing each line as they go, one would expect an error thrown at the <code>console.log</code> because it would not be aware of any variable named <code>d</code>. Because of hoisting, however, <code>d</code> is <em>declared</em> by the interpreter but not <em>initialized with a value</em>, so it actually logs <code>undefined</code> instead.</p>
 <p>Another weird case:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span>
-<span class="nx">d</span> <span class="o">=</span> <span class="mf">3</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">d</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-javascript">var a = 1;
+d = 3;
+console.log(a + &#x27; &#x27; + d);
+var d;
+</code></pre>
 <p>Since the declaration of <code>d</code> (<code>var d;</code>) is &quot;hoisted&quot; above the assignment (<code>d = 3;</code>), this actually does not throw any errors and logs <code>3</code>.</p>
 <h3>Hoisting Functions</h3>
 <p>The hoisting of functions is similar to variable hoisting, in that the declaration of any named functions will be &quot;hoisted&quot;. However, what makes functions different in this is that <strong>their definition will be hoisted as well as their declaration</strong>.</p>
 <p>In general, you do not want to hoist any functions within the browser unless you have a good reason, since it costs a lot of extra memory for the browser. This can be avoided by using anonymous functions as opposed to named functions like below:</p>
-<div class="highlight"><pre><span></span><span class="c1">// Outputs: &quot;Definition hoisted!&quot;</span>
-<span class="nx">definitionHoisted</span><span class="p">();</span>
+<pre><code class="language-javascript">// Outputs: &quot;Definition hoisted!&quot;
+definitionHoisted();
 
-<span class="c1">// TypeError: undefined is not a function</span>
-<span class="nx">definitionNotHoisted</span><span class="p">();</span>
+// TypeError: undefined is not a function
+definitionNotHoisted();
 
-<span class="c1">// named function</span>
-<span class="kd">function</span> <span class="nx">definitionHoisted</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Definition hoisted!&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+// named function
+function definitionHoisted() {
+    console.log(&quot;Definition hoisted!&quot;);
+}
 
-<span class="c1">// anonymous function</span>
-<span class="kd">var</span> <span class="nx">definitionNotHoisted</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Definition not hoisted!&quot;</span><span class="p">);</span>
-<span class="p">};</span>
-</pre></div>
+// anonymous function
+var definitionNotHoisted = function () {
+    console.log(&quot;Definition not hoisted!&quot;);
+};
+</code></pre>
 <h2>References:</h2>
 <ol>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const</a></li>
@@ -121,4 +121,4 @@
 <li><a href="http://adripofjavascript.com/blog/drips/variable-and-function-hoisting.html" target="_blank">http://adripofjavascript.com/blog/drips/variable-and-function-hoisting.html</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202106291355</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202106291355</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

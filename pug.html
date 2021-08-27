@@ -3,17 +3,17 @@
             <p>Pug is a templating engine for <a href="html.html">HTML</a> that allows you to write a simpler more condense webpage, as well as integrating <a href="javascript.html">Javascript</a> to dynamically generate pages.</p>
 <h2>Getting Started</h2>
 <p>Install it using <a href="npm.html">NPM</a>: <code>npm i -g pug-cli</code>. You can compile a Pug file directly, or by watching the file and it's dependencies for changes.</p>
-<div class="highlight"><pre><span></span><span class="c1"># compile the single file</span>
+<pre><code class="language-bash"># compile the single file
 pug filename.pug -o ./outputfolder
-<span class="c1"># watch the file and its dependencies for changes and compile on change</span>
+# watch the file and its dependencies for changes and compile on change
 pug -w filename.pug -o ./outputfolder
-</pre></div>
+</code></pre>
 <h3>Iteration/Testing</h3>
 <p>You can do quick testing of code at <a href="https://pughtml.com/" target="_blank">https://pughtml.com/</a>.</p>
 <h2>Syntax</h2>
 <p>Writing <a href="html.html">HTML</a> in Pug is very similar to <a href="emmet.html">Emmet</a> shorthand/selectors in <a href="css.html">CSS</a>.</p>
 <p><code>element#id.class(attr=&quot;value&quot; foo=&quot;bar&quot;) innerText</code></p>
-<div class="highlight"><pre><span></span>header#header.header.header__wrapper
+<pre><code>header#header.header.header__wrapper
   .header__logo
     span
       img.header__logo-img(src=&quot;...&quot; alt=&quot;Logo&quot;)
@@ -22,60 +22,60 @@ pug -w filename.pug -o ./outputfolder
 
 //- outputs
 
-//- <span class="nt">&lt;header</span> <span class="na">id=</span><span class="s">&quot;header&quot;</span> <span class="na">class=</span><span class="s">&quot;header header__wrapper&quot;</span><span class="nt">&gt;</span>
-//-   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;header__logo&quot;</span><span class="nt">&gt;</span>
-//-     <span class="nt">&lt;span&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;...&quot;</span> <span class="na">alt=</span><span class="s">&quot;Logo&quot;</span> <span class="nt">/&gt;</span> Some text!<span class="nt">&lt;/span&gt;</span>
-//-   <span class="nt">&lt;/div&gt;</span>
-//-   <span class="nt">&lt;h1&gt;</span>Company Name<span class="nt">&lt;/h1&gt;</span>
-//- <span class="nt">&lt;/header&gt;</span>
-</pre></div>
+//- &lt;header id=&quot;header&quot; class=&quot;header header__wrapper&quot;&gt;
+//-   &lt;div class=&quot;header__logo&quot;&gt;
+//-     &lt;span&gt;&lt;img src=&quot;...&quot; alt=&quot;Logo&quot; /&gt; Some text!&lt;/span&gt;
+//-   &lt;/div&gt;
+//-   &lt;h1&gt;Company Name&lt;/h1&gt;
+//- &lt;/header&gt;
+</code></pre>
 <h3>Comments</h3>
-<div class="highlight"><pre><span></span>// This comment will appear in the HTML
+<pre><code>// This comment will appear in the HTML
 
 //- This is a silent comment
 
 //-
   Nesting inside a comment creates
   a comment block
-</pre></div>
+</code></pre>
 <h3><a href="javascript.html">Javascript</a></h3>
 <p>Any line that starts with a hyphen or anything that follows an equals sign in an attribute list can be valid Javascript.</p>
-<div class="highlight"><pre><span></span>- var num = 6;
+<pre><code>- var num = 6;
 - var name = &quot;John Smith&quot;;
 
-h1(data-name= name.replace(/\s/, &#39;.&#39;).toLowerCase() )= `This guy is probably <span class="cp">${</span><span class="n">num</span><span class="cp">}</span> feet tall!`
+h1(data-name= name.replace(/\s/, &#x27;.&#x27;).toLowerCase() )= `This guy is probably ${num} feet tall!`
 
 //- outputs
-//- <span class="nt">&lt;h1</span> <span class="na">data-name=</span><span class="s">&quot;john.smith&quot;</span><span class="nt">&gt;</span>This guy is probably 6 feet tall!<span class="nt">&lt;/h1&gt;</span>
-</pre></div>
+//- &lt;h1 data-name=&quot;john.smith&quot;&gt;This guy is probably 6 feet tall!&lt;/h1&gt;
+</code></pre>
 <h4>Inserting HTML via Javascript</h4>
-<div class="highlight"><pre><span></span>- var num = 6;
+<pre><code>- var num = 6;
 - var name = &quot;John Smith&quot;;
 
-- const john = `This guy is <span class="nt">&lt;i&gt;</span>probably<span class="nt">&lt;/i&gt;</span> <span class="cp">${</span><span class="n">num</span><span class="cp">}</span> feet tall!`;
-h1(data-name= name.replace(/\s/, &#39;.&#39;).toLowerCase() )= !{john}
+- const john = `This guy is &lt;i&gt;probably&lt;/i&gt; ${num} feet tall!`;
+h1(data-name= name.replace(/\s/, &#x27;.&#x27;).toLowerCase() )= !{john}
 
 //- outputs
-//- <span class="nt">&lt;h1</span> <span class="na">data-name=</span><span class="s">&quot;john.smith&quot;</span><span class="nt">&gt;</span>This guy is <span class="nt">&lt;i&gt;</span>probably<span class="nt">&lt;/i&gt;</span> 6 feet tall!<span class="nt">&lt;/h1&gt;</span>
-</pre></div>
+//- &lt;h1 data-name=&quot;john.smith&quot;&gt;This guy is &lt;i&gt;probably&lt;/i&gt; 6 feet tall!&lt;/h1&gt;
+</code></pre>
 <h4>On a Text Node</h4>
-<div class="highlight"><pre><span></span>- const test = &quot;Yeah!&quot;;
+<pre><code>- const test = &quot;Yeah!&quot;;
 
 p
   span thing!
   = test
 
 //- Outputs:
-//- <span class="nt">&lt;p&gt;&lt;span&gt;</span>thing!<span class="nt">&lt;/span&gt;</span>Yeah!<span class="nt">&lt;/p&gt;</span>
-</pre></div>
+//- &lt;p&gt;&lt;span&gt;thing!&lt;/span&gt;Yeah!&lt;/p&gt;
+</code></pre>
 <h3>Inline</h3>
-<div class="highlight"><pre><span></span>h1: span.header Yeah!
+<pre><code>h1: span.header Yeah!
 
 //- Outputs
-//- <span class="nt">&lt;h1&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;header&quot;</span><span class="nt">&gt;</span>Yeah!<span class="nt">&lt;/span&gt;&lt;/h1&gt;</span>
-</pre></div>
+//- &lt;h1&gt;&lt;span class=&quot;header&quot;&gt;Yeah!&lt;/span&gt;&lt;/h1&gt;
+</code></pre>
 <h3>Multiline</h3>
-<div class="highlight"><pre><span></span>p.
+<pre><code>p.
   This text can be broken 
   up on multiple lines
 
@@ -84,29 +84,29 @@ p
   | This works, too.
 
 //- outputs
-//- <span class="nt">&lt;p&gt;</span>This text can be broken
-//-     up on multiple lines<span class="nt">&lt;/p&gt;</span>
-//- <span class="nt">&lt;p&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;stuff&quot;</span> <span class="nt">/&gt;</span>This works, too.<span class="nt">&lt;/p&gt;</span>
+//- &lt;p&gt;This text can be broken
+//-     up on multiple lines&lt;/p&gt;
+//- &lt;p&gt;&lt;img src=&quot;stuff&quot; /&gt;This works, too.&lt;/p&gt;
 
 script.
-  console.log(&#39;or here&#39;);
+  console.log(&#x27;or here&#x27;);
   // Works for script tags, as well.
-</pre></div>
+</code></pre>
 <h3>Self-Closing Tags</h3>
-<div class="highlight"><pre><span></span>hr 
+<pre><code>hr 
 //- outputs &lt;hr/&gt;
 
 foo/
 //- outputs &lt;foo/&gt;
-</pre></div>
+</code></pre>
 <h3>Imports / Include</h3>
 <p>Pug allows import of HTML directly as well as Pug files.</p>
-<div class="highlight"><pre><span></span><span class="k">include</span> <span class="nv">filename</span>.<span class="nv">pug</span>
-<span class="k">include</span> <span class="nv">another</span>.<span class="nv">html</span>
-</pre></div>
+<pre><code>include filename.pug
+include another.html
+</code></pre>
 <h3>Variables</h3>
 <p>Variables in Pug are defined as they are in Javascript and should be preceded by a hyphen. Multiline variable definitions are done by starting a line with a hyphen, <strong>leaving no whitespace</strong>, and continuing indented on the next line. As long as the indentation remains, you will be in &quot;Javascript land&quot;.</p>
-<div class="highlight"><pre><span></span>- var location = &#39;russia&#39;;
+<pre><code>- var location = &#x27;russia&#x27;;
 -
   var obj = {
     thing: &quot;one&quot;,
@@ -118,16 +118,16 @@ span(class= obj.thing) OK
 
 //- outputs 
 
-//- <span class="nt">&lt;p&gt;</span>russia<span class="nt">&lt;/p&gt;</span>
-//- <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;one&quot;</span><span class="nt">&gt;</span>OK<span class="nt">&lt;/span&gt;</span>
-</pre></div>
+//- &lt;p&gt;russia&lt;/p&gt;
+//- &lt;span class=&quot;one&quot;&gt;OK&lt;/span&gt;
+</code></pre>
 <h3>Conditionals</h3>
-<div class="highlight"><pre><span></span>- var location = &#39;russia&#39;;
+<pre><code>- var location = &#x27;russia&#x27;;
 - var cold = true;
 
-if location === &#39;los-angeles&#39;
+if location === &#x27;los-angeles&#x27;
   p Party!
-else if location === &#39;mexico&#39;
+else if location === &#x27;mexico&#x27;
   p MORE Party!
 else if cold
   p cold party
@@ -137,39 +137,39 @@ else
 span= cold ? &quot;Brr!&quot; : &quot;*panting*&quot;
 
 //- outputs 
-//- <span class="nt">&lt;p&gt;</span>cold party<span class="nt">&lt;/p&gt;</span>
-//- <span class="nt">&lt;span&gt;</span>Brr!<span class="nt">&lt;/span&gt;</span>
-</pre></div>
+//- &lt;p&gt;cold party&lt;/p&gt;
+//- &lt;span&gt;Brr!&lt;/span&gt;
+</code></pre>
 <h3>Iteration</h3>
 <h4>Arrays</h4>
-<div class="highlight"><pre><span></span>- var items = [&#39;candy&#39;, &#39;cake&#39;, &#39;ice cream&#39;];
+<pre><code>- var items = [&#x27;candy&#x27;, &#x27;cake&#x27;, &#x27;ice cream&#x27;];
 
 each item in items
-  p.item(id= item.replace(&#39; &#39;, &#39;-&#39;))= item.toUpperCase()
+  p.item(id= item.replace(&#x27; &#x27;, &#x27;-&#x27;))= item.toUpperCase()
 
 //- outputs
-//- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;candy&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>CANDY<span class="nt">&lt;/p&gt;</span>
-//- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;cake&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>CAKE<span class="nt">&lt;/p&gt;</span>
-//- <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;ice-cream&quot;</span> <span class="na">class=</span><span class="s">&quot;item&quot;</span><span class="nt">&gt;</span>ICE CREAM<span class="nt">&lt;/p&gt;</span>
-</pre></div>
+//- &lt;p id=&quot;candy&quot; class=&quot;item&quot;&gt;CANDY&lt;/p&gt;
+//- &lt;p id=&quot;cake&quot; class=&quot;item&quot;&gt;CAKE&lt;/p&gt;
+//- &lt;p id=&quot;ice-cream&quot; class=&quot;item&quot;&gt;ICE CREAM&lt;/p&gt;
+</code></pre>
 <h4>Objects</h4>
-<div class="highlight"><pre><span></span>- 
+<pre><code>- 
   var people = {
-    &#39;John&#39;: &#39;Johnson&#39;,
-    &#39;Ashley&#39;: &#39;Ashtown&#39;,
+    &#x27;John&#x27;: &#x27;Johnson&#x27;,
+    &#x27;Ashley&#x27;: &#x27;Ashtown&#x27;,
   };
 
 each last, first in people
-  p= first + &#39; &#39; + last
+  p= first + &#x27; &#x27; + last
 
 //- outputs
-//- <span class="nt">&lt;p&gt;</span>John Johnson<span class="nt">&lt;/p&gt;</span>
-//- <span class="nt">&lt;p&gt;</span>Ashley Ashtown<span class="nt">&lt;/p&gt;</span>
-</pre></div>
+//- &lt;p&gt;John Johnson&lt;/p&gt;
+//- &lt;p&gt;Ashley Ashtown&lt;/p&gt;
+</code></pre>
 <h3>Mixins</h3>
 <p>Mixins allow one piece of code to be reused over and over with different variables, returning a modified version of the template within the declaration.</p>
 <p>The mixin needs to be declared and defined. It's usually easiest to do this in a separate file and include them in. Lets call this <code>_mixins.pug</code>:</p>
-<div class="highlight"><pre><span></span>//- Here the mixins are declared
+<pre><code>//- Here the mixins are declared
 
 mixin makeStrong(text)
   strong= text
@@ -178,48 +178,48 @@ mixin makeList(list)
   ul.generated-list
     each item in list
       li= item
-</pre></div>
+</code></pre>
 <p>Then the file that will use them needs to include that file:</p>
-<div class="highlight"><pre><span></span><span class="n">include</span> <span class="n">_mixins</span><span class="o">.</span><span class="n">pug</span>
+<pre><code>include _mixins.pug
 
-<span class="o">-</span> <span class="k">const</span> <span class="n">faveFoods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pizza&#39;</span><span class="p">,</span> <span class="s1">&#39;pie&#39;</span><span class="p">,</span> <span class="s1">&#39;spaghetti&#39;</span><span class="p">];</span>
+- const faveFoods = [&#x27;pizza&#x27;, &#x27;pie&#x27;, &#x27;spaghetti&#x27;];
 
-<span class="n">h1</span> <span class="n">This</span> <span class="k">is</span> <span class="n">my</span> <span class="n">list</span><span class="o">!</span>
-<span class="o">.</span><span class="n">contents</span>
-  <span class="n">p</span>
-    <span class="o">+</span><span class="n">makeStrong</span><span class="p">(</span><span class="s1">&#39;I love these foods!&#39;</span><span class="p">)</span>
-  <span class="o">+</span><span class="n">makeList</span><span class="p">(</span><span class="n">faveFoods</span><span class="p">)</span>
-</pre></div>
+h1 This is my list!
+.contents
+  p
+    +makeStrong(&#x27;I love these foods!&#x27;)
+  +makeList(faveFoods)
+</code></pre>
 <p>Compiling this will return this HTML:</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;h1&gt;</span>This is my list!<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;contents&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;p&gt;&lt;strong&gt;</span>I love these foods!<span class="nt">&lt;/strong&gt;&lt;/p&gt;</span>
-  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;generated-list&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;li&gt;</span>pizza<span class="nt">&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;</span>pie<span class="nt">&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;</span>spaghetti<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</pre></div>
+<pre><code>&lt;h1&gt;This is my list!&lt;/h1&gt;
+&lt;div class=&quot;contents&quot;&gt;
+  &lt;p&gt;&lt;strong&gt;I love these foods!&lt;/strong&gt;&lt;/p&gt;
+  &lt;ul class=&quot;generated-list&quot;&gt;
+    &lt;li&gt;pizza&lt;/li&gt;
+    &lt;li&gt;pie&lt;/li&gt;
+    &lt;li&gt;spaghetti&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
 <h4>Blocks</h4>
 <p>You can pass in a block to a mixin, where a block is some pug that is &quot;within&quot; the mixin invocation. The block is called by name within the mixin itself. In <code>_mixins.pug</code>:</p>
-<div class="highlight"><pre><span></span>mixin wrapper
+<pre><code>mixin wrapper
   section.wrapper
     block
-</pre></div>
+</code></pre>
 <p>In the main file:</p>
-<div class="highlight"><pre><span></span><span class="k">include</span> <span class="nv">_mixins</span>.<span class="nv">pug</span>
+<pre><code>include _mixins.pug
 
-<span class="o">+</span><span class="nv">wrapper</span>
-  <span class="nv">h1</span> <span class="nv">the</span> <span class="nv">REAL</span> <span class="nv">content</span>
-  <span class="nv">p</span>.<span class="nv">yeah</span> <span class="nv">this</span> <span class="nv">is</span> <span class="nv">some</span> <span class="nv">stuff</span>
-</pre></div>
++wrapper
+  h1 the REAL content
+  p.yeah this is some stuff
+</code></pre>
 <p>Outputs:</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;wrapper&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;h1&gt;</span>the REAL content<span class="nt">&lt;/h1&gt;</span>
-  <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;yeah&quot;</span><span class="nt">&gt;</span>this is some stuff<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/section&gt;</span>
-</pre></div>
+<pre><code>&lt;section class=&quot;wrapper&quot;&gt;
+  &lt;h1&gt;the REAL content&lt;/h1&gt;
+  &lt;p class=&quot;yeah&quot;&gt;this is some stuff&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
 <h2>Sublime Text Syntax</h2>
 <p>Packages in <a href="sublime-text.html">Sublime Text</a> are interdependent on each other and many of the default packages are inferior to third-party (e.g. Babel over Javascript). When Pug's Javascript syntax is not cooperating or popping to allow Pug's syntax to take over again, you can <code>Disable Package &gt; Javascript</code> and install <code>Babel</code> and this will cause Pug to correctly highlight conditionals and the succeeding code.</p>
 <h2>References</h2>
@@ -234,4 +234,4 @@ mixin makeList(list)
 <li><a href="https://pugjs.org/language/mixins.html" target="_blank">https://pugjs.org/language/mixins.html</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108250037</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108250037</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

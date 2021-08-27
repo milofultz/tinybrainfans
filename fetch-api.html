@@ -3,29 +3,29 @@
             <p>Fetch API is a part of vanilla <a href="javascript.html">Javascript</a> that does <a href="http-requests.html">HTTP requests</a>. </p>
 <h2>Usage</h2>
 <p>The syntax for <code>fetch</code> is <code>fetch(&#x27;URL&#x27;)</code>. <code>fetch()</code> ALWAYS returns <a href="promises.html">promises</a>. These promises will be fulfilled when the data is finished loading, and can be accessed with <code>.then(function (response) { ... })</code>. Within <code>.then</code>, you can resolve this promise with <code>.json()</code>, <code>.text()</code>, or <code>.blob()</code>, which all return their <em>own</em> promise. Errors are handled through a <code>.catch(function (response) { ... })</code>.</p>
-<div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://web.site&#39;</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// response is a Promise, so it will be resolved within this function</span>
-    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-    <span class="c1">// response.json is *also* a Promise</span>
-  <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// do thing with JSON response</span>
-  <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">});</span>
-</pre></div>
+<pre><code class="language-javascript">fetch(&#x27;http://web.site&#x27;)
+  .then(function (response) {
+    // response is a Promise, so it will be resolved within this function
+    return response.json();
+    // response.json is *also* a Promise
+  }).then(function (json) {
+    // do thing with JSON response
+  }).catch(function (error) {
+    console.log(error);
+  });
+</code></pre>
 <h3>With async/await</h3>
 <p>If you encapsulate the fetch call within a function, you can declare that function as an <code>async</code> function and make the calls inside the function <code>await</code>. Because it's an <code>async</code> function, it will also return a promise, which can be handled by <code>.then</code> and <code>.catch</code>.</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">getJSON</span> <span class="o">=</span> <span class="k">async</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://web.site&#39;</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-  <span class="c1">// do thing with JSON response</span>
-<span class="p">};</span>
+<pre><code class="language-javascript">var getJSON = async function () {
+  var response = await fetch(&#x27;http://web.site&#x27;);
+  var json = await response.json();
+  // do thing with JSON response
+};
 
-<span class="nx">getJSON</span><span class="p">().</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
+getJSON().catch(function (error) {
+  console.log(error);
+});
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API</a></li>
@@ -33,4 +33,4 @@
 <li><a href="https://www.youtube.com/watch?v=RfMkdvN-23o" target="_blank">https://www.youtube.com/watch?v=RfMkdvN-23o</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107020539</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107020539</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

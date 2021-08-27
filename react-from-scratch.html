@@ -48,76 +48,76 @@
 </ul>
 <h2>Make your webpack config and babel config</h2>
 <p>In the root folder, create a <code>webpack.config.js</code> file that pulls in the node <code>path</code> module. This is where you will be putting your entry and output points in your webpack builders. (TA: Search 'webpack configuration' and you should be reminded of all the things you need.)</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+<pre><code class="language-javascript">const path = require(&#x27;path&#x27;);
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;.src/app.js&#39;</span><span class="p">,</span>     <span class="c1">// which file your app will be pulling the data from for it&#39;s dependency graph</span>
-  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;bundle.js&#39;</span><span class="p">,</span>  <span class="c1">// the name of the file it will output the bundle to</span>
-    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">),</span>  <span class="c1">// the output folder fo your bundles</span>
-  <span class="p">},</span>
-  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>  <span class="c1">// determines which loader to use</span>
-    <span class="nx">rules</span><span class="o">:</span> <span class="p">[{</span>
-      <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
-      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.jsx?$/</span><span class="p">,</span>            <span class="c1">// transform js files</span>
-      <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>  <span class="c1">// but not node_modules</span>
-    <span class="p">}]</span>
-  <span class="p">},</span>
-  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">contentBase</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">),</span> <span class="c1">// where to serve from when running the webpack dev server</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
+module.exports = {
+  entry: &#x27;.src/app.js&#x27;,     // which file your app will be pulling the data from for it&#x27;s dependency graph
+  output: {
+    filename: &#x27;bundle.js&#x27;,  // the name of the file it will output the bundle to
+    path: path.join(__dirname, &#x27;public&#x27;),  // the output folder fo your bundles
+  },
+  module: {  // determines which loader to use
+    rules: [{
+      loader: &#x27;babel-loader&#x27;,
+      test: /\.jsx?$/,            // transform js files
+      exclude: /node_modules/,  // but not node_modules
+    }]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, &#x27;public&#x27;), // where to serve from when running the webpack dev server
+  }
+}
+</code></pre>
 <p>In the root folder, create a file called <code>babel.config.json</code>. (TA: Search for 'babel config' and you should be able to find everything you need.)</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;@babel/preset-env&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;@babel/preset-react&quot;</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
+<pre><code class="language-json">{
+  &quot;presets&quot;: [
+    &quot;@babel/preset-env&quot;,
+    &quot;@babel/preset-react&quot;
+  ]
+}
+</code></pre>
 <p><code>babel-loader</code> will try to find the babel configuration file —this <code>babel.config.json</code>. The code in this file instructs <code>babel-loader</code> to use <code>@babel/preset-env</code> and <code>@babel/preset-react</code> presets that we have installed earlier when transpiling our code.</p>
 <p>Add scripts in package.json for running webpack</p>
-<div class="highlight"><pre><span></span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
-  <span class="nt">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack serve&quot;</span><span class="p">,</span> 
-  <span class="nt">&quot;watch&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack --watch&quot;</span>
-<span class="p">}</span>
-</pre></div>
+<pre><code class="language-json">&quot;scripts&quot;: {
+  &quot;build&quot;: &quot;webpack&quot;,
+  &quot;start&quot;: &quot;webpack serve&quot;, 
+  &quot;watch&quot;: &quot;webpack --watch&quot;
+}
+</code></pre>
 <h2>Create your documents</h2>
 <p>In <code>public</code>, make the html page you will inject into. This needs to have the injection point as well as the webpack bundle.</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Test<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;root&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;bundle.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Test&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+    &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <p>In <code>src</code>, create the React JS page that will inject your app into the <code>root</code> div.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="kn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">ReactDOM</span> <span class="kn">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+import ReactDOM from &#x27;react-dom&#x27;;
 
-<span class="n">const</span> <span class="n">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Wow</span><span class="err">!</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">stuff</span><span class="o">.&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-  <span class="p">)</span>
-<span class="p">}</span>
+const App = () =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Wow! This is some stuff.&lt;/h1&gt;
+    &lt;/div&gt;
+  )
+}
 
-<span class="n">ReactDOM</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">,</span> 
-  <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
+ReactDOM.render(
+  &lt;App /&gt;, 
+  document.getElementById(&#x27;root&#x27;)
+);
+</code></pre>
 <p>Test it out by running <code>npm run start</code> and checking it in a browser.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490" target="_blank">https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107081809</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107081809</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

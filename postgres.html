@@ -14,73 +14,73 @@
 <h3>Javascript</h3>
 <p>Initialize a new <a href="npm.html">npm</a> project, and then install <code>pg</code>, <code>pg-format</code>, and <a href="express.html"><code>express</code></a>.</p>
 <p>Create a new file in your project called <code>server.js</code> and copy this into it's contents:</p>
-<div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span> <span class="c1">// Server</span>
-<span class="kd">var</span> <span class="nx">pg</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg&#39;</span><span class="p">);</span>             <span class="c1">// Postgres </span>
-<span class="kd">var</span> <span class="nx">format</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pg-format&#39;</span><span class="p">);</span>  <span class="c1">// For dynamic SQL queries (a la MySQL ?)</span>
+<pre><code class="language-javascript">const express = require(&#x27;express&#x27;); // Server
+var pg = require(&#x27;pg&#x27;);             // Postgres 
+var format = require(&#x27;pg-format&#x27;);  // For dynamic SQL queries (a la MySQL ?)
 
-<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>              <span class="c1">// Start your server</span>
+const app = express();              // Start your server
 
-<span class="kd">var</span> <span class="nx">PGUSER</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span>     <span class="c1">// Definte the username and database</span>
-<span class="kd">var</span> <span class="nx">PGDATABASE</span> <span class="o">=</span> <span class="s1">&#39;&lt;your username&gt;&#39;</span><span class="p">;</span> <span class="c1">// previously set up in Postgres.</span>
+var PGUSER = &#x27;&lt;your username&gt;&#x27;;     // Definte the username and database
+var PGDATABASE = &#x27;&lt;your username&gt;&#x27;; // previously set up in Postgres.
 
-<span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mf">732</span><span class="p">;</span>                      <span class="c1">// Used so we can reference our earlier insertion.</span>
+var age = 732;                      // Used so we can reference our earlier insertion.
 
-<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">user</span><span class="o">:</span> <span class="nx">PGUSER</span><span class="p">,</span>
-  <span class="nx">database</span><span class="o">:</span> <span class="nx">PGDATABASE</span><span class="p">,</span>
-  <span class="nx">max</span><span class="o">:</span> <span class="mf">10</span><span class="p">,</span>                          <span class="c1">// max number of clients in the pool</span>
-  <span class="nx">idleTimeoutMillis</span><span class="o">:</span> <span class="mf">30000</span>          <span class="c1">// how long a client is allowed to remain idle before being closed</span>
-<span class="p">};</span>
+var config = {
+  user: PGUSER,
+  database: PGDATABASE,
+  max: 10,                          // max number of clients in the pool
+  idleTimeoutMillis: 30000          // how long a client is allowed to remain idle before being closed
+};
 
-<span class="kd">var</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pg</span><span class="p">.</span><span class="nx">Pool</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>     <span class="c1">// Create a new connection instance</span>
+var pool = new pg.Pool(config);     // Create a new connection instance
 
-<span class="nx">pool</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">client</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Connect to the DB</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>     <span class="c1">// Connect to the Express server</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening on 3000&#39;</span><span class="p">)</span>
-  <span class="p">});</span>
-  <span class="c1">// Build a dynamic query using `age`</span>
-  <span class="kd">var</span> <span class="nx">ageQuery</span> <span class="o">=</span> <span class="nx">format</span><span class="p">(</span><span class="s1">&#39;SELECT * from numbers WHERE age = %L&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="p">);</span>
-  <span class="c1">// Query the DB for all rows from the numbers table where age is = 732</span>
-  <span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">ageQuery</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
+pool.connect(function (err, client, done) { // Connect to the DB
+  if (err) {
+    console.log(err);
+  }
+  app.listen(3000, function () {     // Connect to the Express server
+    console.log(&#x27;listening on 3000&#x27;)
+  });
+  // Build a dynamic query using `age`
+  var ageQuery = format(&#x27;SELECT * from numbers WHERE age = %L&#x27;, age);
+  // Query the DB for all rows from the numbers table where age is = 732
+  client.query(ageQuery, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(result.rows[0]);
+  });
+});
+</code></pre>
 <p>Now in your terminal, run <code>node server.js</code> and assuming the database is still running, if should return:</p>
-<div class="highlight"><pre><span></span>listening on 3000
+<pre><code>listening on 3000
 { age: 732 }
-</pre></div>
+</code></pre>
 <h2>Schemas</h2>
 <p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
 <p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">schema_example</span>
-  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">people</span><span class="p">(</span>
-    <span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-    <span class="n">name</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="n">age</span> <span class="nb">INT</span><span class="p">,</span>
-    <span class="n">birthday</span> <span class="nb">DATE</span>
-  <span class="p">)</span>
-  <span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">john_club</span> <span class="k">AS</span>
-    <span class="k">SELECT</span> 
-      <span class="o">*</span>
-    <span class="k">FROM</span>
-      <span class="n">people</span>
-    <span class="k">WHERE</span>
-      <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-sql">CREATE SCHEMA schema_example
+  CREATE TABLE people(
+    id INT PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INT,
+    birthday DATE
+  )
+  CREATE VIEW john_club AS
+    SELECT 
+      *
+    FROM
+      people
+    WHERE
+      name = &#x27;John&#x27;;
+</code></pre>
 <h2>Querying JSONB Columns</h2>
 <p>The way to retrieve the values found at given columns in a JSONB column is by using the single or double arrow, <code>-&gt;</code> and <code>-&gt;&gt;</code> respectively. The former will retrieve the value in its original type, while the latter will return the value as a string.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span>
-  <span class="n">column_name</span> <span class="o">-&gt;</span> <span class="s1">&#39;property_name&#39;</span> <span class="k">AS</span> <span class="n">display_name</span>
-<span class="k">FROM</span>
-  <span class="n">table_name</span><span class="p">;</span>
-</pre></div>
+<pre><code class="language-postgres">SELECT
+  column_name -&gt; &#x27;property_name&#x27; AS display_name
+FROM
+  table_name;
+</code></pre>
 <h2>Commands</h2>
 <table>
 <thead>
@@ -114,4 +114,4 @@
 <li><a href="https://www.postgresql.org/docs/12/functions-json.html" target="_blank">https://www.postgresql.org/docs/12/functions-json.html</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202108102041</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~620kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108102041</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
