@@ -70,8 +70,6 @@ A **value** refers to a number prefaced by a `#`, whereas an **address/location*
 | `BCC label` | Branch on Carry Clear |                                                          |
 | `BCS label` | Branch on Carry Set   |                                                          |
 
-
-
 ## References
 
 - http://skilldrick.github.io/easy6502/
