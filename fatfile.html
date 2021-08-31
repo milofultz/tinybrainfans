@@ -43,7 +43,17 @@
 <li><a href="https://www.reddit.com/r/adventofcode/comments/7kd8jt/what_would_you_say_are_the_minimal_skills_for/dre0uu3/" target="_blank">https://www.reddit.com/r/adventofcode/comments/7kd8jt/what_would_you_say_are_the_minimal_skills_for/dre0uu3/</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107021453</em></p></article><article>            <h1><a href="bike-maintenance.html">Bike Maintenance</a></h1>
+<p class="last-modified"><em>Last modified: 202107021453</em></p></article><article>            <h1><a href="essays.html">Essays</a></h1>
+            <p><a href="https://web.mit.edu/jmorzins/www/C-H-speech.html" target="_blank">Bill Watterson's &quot;SOME THOUGHTS ON THE REAL WORLD BY ONE WHO GLIMPSED IT AND FLED&quot;</a></p>
+<blockquote>
+<p>When it seemed I would be writing about &quot;Midnite Madness Sale-abrations&quot; for the rest of my life, a friend used to console me that cream always rises to the top. I used to think, so do people who throw themselves into the sea.</p>
+</blockquote>
+<p><a href="https://dannybarnes.com/blog/how-play-someone-elses-band" target="_blank">Danny Barnes' &quot;how to play in someone else's band {gain twenty years of road experience with a five minute read}&quot;</a></p>
+<blockquote>
+<p>your path for achieving success is two fold: 1. play great. 2. in all things, be easy to deal with.</p>
+</blockquote>
+
+<p class="last-modified"><em>Last modified: 202108300218</em></p></article><article>            <h1><a href="bike-maintenance.html">Bike Maintenance</a></h1>
             <h2>Sticky/Unresponsive Road Shifters</h2>
 <p>If you are experiencing difficulty with your road shifters, it is likely that the grease inside of the mechanism has accumulated dust and no longer catches the shifting thingy. It may be good to mount the bike or place it upside down (much harder) so you can shift easily.</p>
 <p>Squeeze the brakes until you see the inside of the shifting mechanism. Spray a liquid penetrant like Pb Blaster or Kroil (<strong>NOT WD40</strong>) inside of the mechanism and try shifting up and down repeatedly for a couple minutes. You should notice an improvement, but it probably won't be fixed. Wait and repeat in a couple of hours.</p>
@@ -1133,191 +1143,447 @@ $ nvm uninstall xx.xx.x
 <li><a href="https://techstacker.com/run-multiple-node-versions-node-nvm/" target="_blank">https://techstacker.com/run-multiple-node-versions-node-nvm/</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107021741</em></p></article><article><h1><a href="python.html">Python</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="c-data-types.html">C Data Types</a></li><li><a href="collections-(python).html">Collections (Python)</a></li><li><a href="datetime-(python).html">Datetime (Python)</a></li><li><a href="debounce-(python).html">Debounce (Python)</a></li><li><a href="itertools-(python).html">Itertools (Python)</a></li><li><a href="json-(python).html">JSON (Python)</a></li><li><a href="math-(python).html">Math (Python)</a></li><li><a href="numpy.html">Numpy</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li><li><a href="virtual-environments-(python).html">Virtual Environments (Python)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Collections (Python)</h1>
-            <p>These are some resources on how to use the collections <a href="python.html">Python</a> package.</p>
-<h2>defaultdict(type)</h2>
-<pre><code class="language-python">from collections import defaultdict
+<p class="last-modified"><em>Last modified: 202107021741</em></p></article><article>            <h1><a href="mongodb.html">MongoDB</a></h1>
+            <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system based on <a href="javascript.html">Javascript</a> using documents similar to <a href="json.html">JSON</a>.</p>
+<h2>Getting Started</h2>
+<p>This will start a new project using your local server and <a href="mongoose.html">mongoose</a> via <a href="node.html">node</a>.</p>
+<h3>Local Machine</h3>
+<p>Install MongoDB using <code>brew services install mongodb-community</code>. Once installed, you can start your local server using <code>brew services start mongodb-community</code> (Be sure to stop the server when completed with your work using <code>brew services stop mongodb-community</code>).</p>
+<p>In the terminal, start the mongo shell: <code>mongo</code>.</p>
+<h3>Database</h3>
+<p>Creating a new database is done when a query is made.</p>
+<h3>Node</h3>
+<p>Create a new folder and initialize a new node project using <a href="npm.html">npm</a>: <code>npm init -y</code>. Then install <code>npm i mongoose</code>.</p>
+<p>Create a new file called <code>server.js</code> and copy this into the contents:</p>
+<pre><code class="language-javascript">  const mongoose = require(&#x27;mongoose&#x27;);                // import Mongoose
+mongoose.connect(&#x27;mongodb://localhost:27017/test&#x27;, { // create connection to localhost
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+});
 
-counter = defaultdict(int)
-counter[&quot;sheep&quot;] += 1
-print(counter[&quot;sheep&quot;])  # 1
-print(counter[&quot;dog&quot;])  # 0
+const db = mongoose.connection;
+db.on(&#x27;error&#x27;, console.error.bind(console, &#x27;connection error:&#x27;));
+db.once(&#x27;open&#x27;, function() {                            // Inside here is where the action happens
+  // Create schema for collection
+  const kittySchema = new mongoose.Schema({
+    name: String,
+    color: {
+      type: String,
+      enum: [&#x27;brown&#x27;, &#x27;orange&#x27;],
+    },
+  });
+  const Cat = mongoose.model(&#x27;Cat&#x27;, { name: String }); 
+
+  const kitty = new Cat({ 
+    name: &#x27;Zildjian&#x27;,
+    color: &#x27;orange&#x27;
+  });         // Create a new document of Cat
+  console.log(kitty.name);                             // &#x27;Zildjian&#x27;
+  kitty.save()
+    .then(() =&gt; console.log(&#x27;meow&#x27;));                   // Save the new document in the Cat collection
+});
 </code></pre>
-<p>Will allow builtin methods based on the default type. <code>defaultdict(int)</code> will allow a <code>+= 1</code> on any key and it will be defined immediately if doesn't exist; <code>(set)</code> will allow <code>.add(value)</code> to a set and will create it if none exists, etc.</p>
-<h2>deque</h2>
-<pre><code class="language-python">from collections import deque
-
-cards = [1,2,3,4]
-deck = deque(cards)
-
-top_card = deck.popleft()
-deck.append(top_card)
-
-# cards == [2,3,4,1]
+<p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
+<h2>Indexes</h2>
+<p>If your collection does not have an index, your query could take a very long time, as it will have to scan every single document within your collection and analyze it to see if it matches your query.</p>
+<pre><code class="language-mongosh">// create an index in collectionName from highest score to lowest
+db.collectionName.createIndex( { score: -1 } )
 </code></pre>
-<p>If you need a copy of the deque, you will need to import the <code>copy.deepcopy</code> method, as slices don't work. If you need to slice, you can use <code>itertools.islice</code>.</p>
-<p>Note that if you are looking for a queue, you can use a standard list as a queue by using <code>list.pop(0)</code> and <code>list.append(item)</code>. It is much faster and requires no imports.</p>
-<h2>References</h2>
-<ol>
-<li><a href="https://docs.python.org/3/library/collections.html" target="_blank">https://docs.python.org/3/library/collections.html</a></li>
-</ol>
-
-<p class="last-modified"><em>Last modified: 202107181935</em></p></article><article>            <h1>Itertools (Python)</h1>
-            <p>Resources on how to use the itertools <a href="python.html">Python</a> package.</p>
-<h2>itertools.product()</h2>
-<p>Avoid using nested for loops to iterate through multiple different lists or numbers</p>
-<pre><code class="language-python">for var1 in xrange(min1,max1,step1):
-  for var2 in xrange(min2,max2,step2):
-    ...
-      ...
-        ...
-          for var6 in xrange(min6,max6,step6):
-            &#x27;&#x27;&#x27;
-            Do something and be icky in the process due
-            to being in the middle of six nested for loops
-            &#x27;&#x27;&#x27;
-x1 = xrange(min1,max1,step1)
-x2 = xrange(min2,max2,step2)
-x3 = xrange(min3,max3,step3)
-...
-for v1, v2, v3, v4, v5, v6 in itertools.product(x1, x2, x3, x4, x5, x6):
-  icky_thing(....)
+<h2>Import and Export</h2>
+<h3><a href="https://docs.mongodb.com/database-tools/mongoexport" target="_blank"><code>mongoexport</code></a>: Export <a href="json.html">JSON</a> or <a href="csv.html">CSV</a></h3>
+<pre><code class="language-bash">$ mongoexport --db=dbName --collection=collectionName --out=filename.json
 </code></pre>
-<h2>References:</h2>
-<ol>
-<li><a href="https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops" target="_blank">https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops</a></li>
-</ol>
-
-<p class="last-modified"><em>Last modified: 202107020541</em></p></article><article>            <h1>Virtual Environments (Python)</h1>
-            <p>Virtual environments allow you to develop in a clean slate, leaving nothing to global packages and allowing easy installation by others.</p>
-<p>You are in a virtual environment for your <a href="python.html">Python</a> project when you see the env name (in this case, literally <code>env</code>) to the left of the bash prompt.</p>
-<h2>Create</h2>
-<p><code>cd</code> to project folder and then type:</p>
-<pre><code class="language-bash">python3 -m venv env
+<p>When you export in CSV format, you must specify the fields in the documents to export.</p>
+<pre><code class="language-bash"># for CSV etc.
+$ mongoexport --db=dbName --collection=collectionName --fields=name,address --out=filename.json
 </code></pre>
-<h2>Activate</h2>
-<p><code>cd</code> to project folder and then type:</p>
-<pre><code class="language-bash">source env/bin/activate
+<h3><a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a>: Import <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a></h3>
+<p>Use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> to bring in Extended <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a> files to your Mongo database. First, start up your database, and then use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> in the command line:</p>
+<pre><code class="language-bash">#             use the PetHotel db      use header line as field names
+$ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
+
+# If no header line is availabe:       list them out after the --fields option
+$ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
 </code></pre>
-<h2>Deactivate</h2>
-<pre><code class="language-bash">deactivate
+<h4>Types</h4>
+<p>You can specify the <a href="https://docs.mongodb.com/database-tools/mongoimport/#std-option-mongoimport.--columnsHaveTypes" target="_blank">types</a> of the columns within the header line of your CSV.</p>
+<pre><code class="language-csv">id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+1,&quot;This product was great!&quot;,true,8
 </code></pre>
-
-<p class="last-modified"><em>Last modified: 202107020544</em></p></article><article>            <h1>Datetime (Python)</h1>
-            <p>These are some resources on how to use the <a href="https://docs.python.org/3/library/datetime.html" target="_blank">datetime</a> <a href="python.html">Python</a> package.</p>
-<h2>Using datetime</h2>
-<p><code>datetime.datetime.now().isoformat()</code> - to get a string of the current date and time</p>
-<h2>References</h2>
-
-<p class="last-modified"><em>Last modified: 202107020541</em></p></article><article><h1><a href="debounce.html">Debounce</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="debounce-(python).html">Debounce (Python)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Debounce (Python)</h1>
-            <p>How to create and use a <a href="debounce.html">debouncer</a> in <a href="python.html">Python</a>.</p>
-<p>In both of these examples, the inner function won't run until at least DEBOUNCE_TIME seconds has passed.</p>
-<h2>Standalone</h2>
-<pre><code class="language-python">from threading import Timer
-import time
-
-DEBOUNCE_TIME = 1  # 1 second
-debounced_action = None
-
-
-def debounce_action(message: str) -&gt; None:
-    &quot;&quot;&quot; Print the last message to be invoked within a certain amount of time &quot;&quot;&quot;
-    global debounced_action
-
-    def print_message():
-        print(message)
-
-    if debounced_action:
-        debounced_action.cancel()
-    debounced_action = Timer(DEBOUNCE_TIME, print_message)
-    debounced_action.start()
-
-
-if __name__ == &quot;__main__&quot;:
-    debounce_action(&quot;Won&#x27;t print this one&quot;)
-    time.sleep(.5)
-    debounce_action(&quot;Or this one&quot;)
-    time.sleep(.99)
-    debounce_action(&quot;This one will though!&quot;)
+<pre><code class="language-bash">$ mongoimport --db=PetHotel --type=csv --headerline --columnsHaveTypes --file=pets.csv
 </code></pre>
-<p>The benefit of using this standalone is that you can have multiple items debouncing with the same inner function and different parameters by using a dict to store the different <code>debounced_action</code>s instead of using a singular global.</p>
-<h2>Decorator</h2>
-<pre><code class="language-python">from threading import Timer
-import time
-
-DEBOUNCE_TIME = 1
-
-
-def debounce(wait):
-    &quot;&quot;&quot; Decorator that will postpone a functions
-        execution until after wait seconds
-        have elapsed since the last time it was invoked. &quot;&quot;&quot;
-    def decorator(fn):
-        def debounced(*args, **kwargs):
-            def call_it():
-                fn(*args, **kwargs)
-            try:
-                debounced.t.cancel()
-            except(AttributeError):
-                pass
-            debounced.t = Timer(wait, call_it)
-            debounced.t.start()
-        return debounced
-    return decorator
-
-
-@debounce(DEBOUNCE_TIME)
-def print_message(message: str):
-    print(message)
-
-
-if __name__ == &quot;__main__&quot;:
-    print_message(&quot;Won&#x27;t print this one&quot;)
-    time.sleep(.5)
-    print_message(&quot;Or this one&quot;)
-    time.sleep(.99)
-    print_message(&quot;This one will though!&quot;)
+<h4>Null Values</h4>
+<p>If you have null values in your CSV, you can remove these <code>null</code> values between two commas (or after one if at the end of a line) and tell mongoimport to <code>--ignoreBlanks</code>. This won't import null values, but when interacting with your database, you can use the <a href="https://docs.mongodb.com/manual/reference/operator/query/exists/#mongodb-query-op.-exists" target="_blank"><code>$exists</code></a> query operator to query for them and <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/#mongodb-expression-exp.-ifNull" target="_blank"><code>$ifNull</code> </a> to cast missing fields as <code>null</code> in an aggregation pipeline.</p>
+<p>In the below example, the summary is null, but we still want it to accept strings.</p>
+<pre><code class="language-csv">id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+1,null,true,8
 </code></pre>
-<p>The benefit of using a decorator is you can throw it on any function that needs debouncing at it saves you the reuse of the debouncing code in multiple places.</p>
-<h2>References:</h2>
-<ol>
-<li><a href="https://gist.github.com/walkermatt/2871026" target="_blank">https://gist.github.com/walkermatt/2871026</a></li>
-</ol>
+<p>If we were to import this as is, we would end up with a summary field containing an empty string. After replacing the <code>,null,</code> with <code>,,</code> and using <code>--ignoreBlanks</code> on import, this field ends up missing, which is the desired behavior. </p>
+<p>To query for fields that have a missing of <code>null</code> field:</p>
+<pre><code class="language-mongosh">&gt; db.collection_name.find({ summary: { $exists: false }})
+</code></pre>
+<p>And to get the field back with a <code>null</code> value in the place of that missing field:</p>
+<pre><code class="language-mongosh">&gt; db.collection_name.aggregate([
+... // match document with id of 1
+... { $match: { id: 1 }},
+... // show all fields and cast summary to null if missing
+... { $project: {
+...   _id: 0,
+...   id: 1,
+...   summary: { $ifNull: [ &#x27;$summary&#x27;, null ]},
+...   recommend: 1,
+...   helpfulness: 1
+... }}
+... ]);
+</code></pre>
+<h3><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>: Export BSON (native format)</h3>
+<p>To export a collection or database from a mongo database, use <a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>.</p>
+<pre><code class="language-bash">$ mongodump --db=dbName --collection=collectionName --out=path/for/output
+</code></pre>
+<h3><a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>: Import BSON (native format)</h3>
+<p>To import a collection or database from a dumped mongo database, use <a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>.</p>
+<pre><code class="language-bash">$ mongorestore -d dbName ./dump/path
+</code></pre>
+<h2>Clone Database</h2>
+<p>You can clone a database on the same server using the following command:</p>
+<pre><code class="language-bash">$ mongodump --archive --db=dbName | mongorestore --archive  --nsFrom=&#x27;dbName.*&#x27; --nsTo=&#x27;newDbName.*&#x27;
+</code></pre>
+<h2>Data Modification</h2>
+<p>If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.</p>
+<p>Let's assume a collection of dogs:</p>
+<pre><code class="language-javascript">[
+  {
+    &quot;_id&quot;: ...,
+    &quot;name&quot;: &quot;Doggo&quot;,
+    &quot;goodBoy&quot;: &quot;true&quot;, // should be a boolean
+    &quot;enemy&quot;: &quot;null&quot;,   // or could be &quot;mailman&quot; or other string
+  },
+  ...
+]
+</code></pre>
+<p>When completed, this will change all <code>goodboy</code> properties to a boolean and if <code>enemy</code> was imported with <code>null</code> as the string, it will convert it into an actual null value. The <code>bulkWrite</code> is done as it is <strong>much</strong> faster than sending individual requests.</p>
+<pre><code class="language-mongosh">var requests = [];
+var cursor = db.dogs.find({});
 
-<p class="last-modified"><em>Last modified: 202107212151</em></p></article><article>            <h1><a href="sqlite.html">SQLite</a></h1>
-            <h2>Data Types (version 3)</h2>
+cursor.forEach(item =&gt; {
+  requests.push({ 
+    &quot;updateOne&quot;: {
+      &quot;filter&quot;: { &quot;_id&quot;: item._id },
+      &quot;update&quot;: { 
+        &quot;$set&quot;: { 
+          &quot;goodBoy&quot;: Boolean(item.goodboy),
+          &quot;enemy&quot;: item.enemy === &#x27;null&#x27; ? null : item.enemy
+        }
+      }
+    }
+  });
+
+  if (requests.length === 1000) {
+    // Execute per 1000 operations and re-init
+    db.dogs.bulkWrite(requests);
+    requests = [];
+  }
+});
+
+if (requests.length) {
+  db.dogs.bulkWrite(requests);
+  requests = [];
+}
+</code></pre>
+<h2>Syntax</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show dbs</code></td>
+<td>List all databases on the given server</td>
+</tr>
+<tr>
+<td><code>use database_name</code></td>
+<td>Enter into <code>database_name</code>, preparing to query.</td>
+</tr>
+<tr>
+<td><code>db.dropDatabase()</code></td>
+<td>Delete the selected database</td>
+</tr>
+<tr>
+<td><code>show collections</code> / <code>show tables</code></td>
+<td>List all collections/tables in the selected database.</td>
+</tr>
+<tr>
+<td><code>db.collection_name.find()</code></td>
+<td>Return all documents in collection <code>collection_name</code>.</td>
+</tr>
+<tr>
+<td><code>db.collection_name.find({name: &#x27;John&#x27;})</code></td>
+<td>Return all documents in <code>collection_name</code> whose name is John.</td>
+</tr>
+<tr>
+<td><code>db.collection_name.insert({name: &#x27;John&#x27;, age: 40})</code></td>
+<td>Create a document in <code>collection_name</code> (note: if a new collection is selected via <code>use</code>, this will create the new collection)</td>
+</tr>
+<tr>
+<td><code>db.collection_name.renameCollection(&#x27;newName&#x27;, dropOld)</code></td>
+<td>Rename <code>collection_name</code> to <code>newName</code> and if drop old table if <code>dropOld</code> is true.</td>
+</tr>
+</tbody></table><h2>References</h2>
 <ul>
-<li>NULL</li>
-<li>INTEGER</li>
-<li>REAL (floating)</li>
-<li>TEXT</li>
-<li>BLOB (blob of data, stored exactly as it was input)</li>
+<li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
+<li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
+<li><a href="https://docs.mongodb.com/manual/core/databases-and-collections/" target="_blank">https://docs.mongodb.com/manual/core/databases-and-collections/</a></li>
+<li><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline/" target="_blank">https://docs.mongodb.com/manual/core/aggregation-pipeline/</a></li>
+<li><a href="https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/" target="_blank">https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/</a></li>
+<li><a href="https://docs.mongodb.com/manual/indexes/" target="_blank">https://docs.mongodb.com/manual/indexes/</a></li>
+<li><a href="https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query" target="_blank">https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query</a></li>
+<li><a href="https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/" target="_blank">https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/</a></li>
+<li><a href="https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types" target="_blank">https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types</a></li>
+<li><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank">https://docs.mongodb.com/database-tools/mongodump/</a></li>
+<li><a href="https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file" target="_blank">https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file</a></li>
 </ul>
-<h2>Primary Key</h2>
-<p>A column with type <code>INTEGER PRIMARY KEY</code> is an alias for the <code>ROWID</code>, which is always a 64-bit signed integer.</p>
-<pre><code class="language-sqlite">CREATE TABLE IF NOT EXISTS dogs (
-  id INTEGER PRIMARY KEY,
-  dog_name VARCHAR(10),
-  good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
-);
+<section><h2>Backlinks:</h2><ul><li><a href="mongoose.html">Mongoose</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202108230454</em></p></article><article>            <h1><a href="mongoose.html">Mongoose</a></h1>
+            <p>Mongoose is an <a href="npm.html">NPM</a> package that allows a simple and schema'd <a href="javascript.html">Javascript</a> entrypoint to your <a href="mongodb.html">Mongo database</a>.</p>
+<h2>Basics</h2>
+<h3>Setup</h3>
+<p>Install mongoose: <code>npm i mongoose</code> and ensure your <a href="database.html">database</a> is running.</p>
+<h3>Project</h3>
+<p>Create a new file called <code>server.js</code> and put this within.</p>
+<pre><code class="language-javascript">// Initilize database
+
+const mongoose = require(&quot;mongoose&quot;);
+const dbName = &quot;test&quot;;
+mongoose.connect(`mongodb://localhost:27017/${dbName}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Create test schema
+
+const testSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  friends: [String],
+});
+
+// Create a model from your schema
+
+// this first param is the name of your collection in your test database
+const Test = mongoose.model(&quot;test&quot;, testSchema);
+
+// Connect to database
+
+const db = mongoose.connection;
+db.on(&quot;error&quot;, console.error.bind(console, &quot;connection error:&quot;));
+db.once(&quot;open&quot;, () =&gt; {
+  console.log(`Mongoose DB &quot;${dbName}&quot; initialized\n`)
+});
 </code></pre>
-<h2>PRAGMA</h2>
-<p>PRAGMA commands are SQLite specific and are meta commands regarding operation or non-table data.</p>
-<h3>Get column information of a given table</h3>
-<pre><code class="language-sqlite">PRAGMA table_info(table_name)
+<p>This will have created your basics. You can now start creating queries, inserting items into your database, etc.</p>
+<h2>Schemas and Models</h2>
+<p>Basic schemas are written very simply using a standard JSON format.</p>
+<p>The following schema is for a registration form. It has five fields, all with differing implementations. Most basic, you can just put the key followed by it's type. If you want extended functionality, you can utilize it by using object notation.</p>
+<pre><code class="language-javascript">const attendeeSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: String,
+  email: {
+    type: String,
+    required: true,
+    match: /[a-z0-9!#$%&amp;&#x27;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&#x27;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+  },
+  shirt: {
+    type: String,
+    enum: [&#x27;XS&#x27;, &#x27;S&#x27;, &#x27;M&#x27;, &#x27;L&#x27;, &#x27;XL&#x27;, &#x27;XXL&#x27;],
+    required: true,
+  },
+  skillLevel: {
+    type: String,
+    enum: [&#x27;beginner&#x27;, &#x27;intermediate&#x27;, &#x27;expert&#x27;],
+  }
+});
 </code></pre>
+<p>Once your schema is created, you will then create a model that will be utilized within your code.</p>
+<pre><code class="language-javascript">// mongoose.model(collection, schema), where collection is the
+// name of the collection in your database.
+const Attendee = mongoose.model(&#x27;attendee&#x27;, attendeeSchema);
+</code></pre>
+<p>This makes it easy to encapsulate the whole thing inside of a file for export in a <a href="node.html">node</a> project.</p>
+<pre><code class="language-javascript">const mongoose = require(&#x27;mongoose&#x27;);
+
+const attendeeSchema = new mongoose.Schema({
+  ...
+});
+
+const Attendee = mongoose.model(&#x27;Attendee&#x27;, attendeeSchema);
+
+module.exports = Attendee;
+</code></pre>
+<h2>Remote Database</h2>
+<pre><code>mongoose.connect(&#x27;mongodb://username:password@host:port&#x27;, {useNewUrlParser: true});
+</code></pre>
+<h2>Troubleshooting</h2>
+<h3>Return Object</h3>
+<p>The return of a query is not a plain Javascript object and will show weird behavior when trying to add to/remove from/modify it. If you want a plain Javascript object in return, you can use <code>.lean()</code> within your chain to cast it. </p>
 <h2>References</h2>
 <ol>
-<li><a href="https://sqlite.org/pragma.html#pragma_table_info" target="_blank">https://sqlite.org/pragma.html#pragma_table_info</a></li>
+<li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
+<li><a href="https://stackoverflow.com/questions/33614229/how-to-use-mongo-mongoose-to-connect-to-a-remote-database" target="_blank">https://stackoverflow.com/questions/33614229/how-to-use-mongo-mongoose-to-connect-to-a-remote-database</a></li>
+<li><a href="https://mongoosejs.com/docs/connections.html" target="_blank">https://mongoosejs.com/docs/connections.html</a></li>
 </ol>
-<section><h2>Backlinks:</h2><ul><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107020546</em></p></article><article>            <h1><a href="sql.html">SQL</a></h1>
+<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202108162339</em></p></article><article><h1><a href="nosql.html">NoSQL</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="json.html">JSON</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="json-(python).html">JSON (Python)</a></li><li><a href="mongodb.html">MongoDB</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="csv.html">CSV</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="tsv.html">TSV</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="homebrew.html">homebrew</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="postgres.html">Postgres</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="postgres.html">Postgres</a></h1>
+            <p>Postgres is a relational <a href="database.html">database</a> management system.</p>
+<h2>Getting Started</h2>
+<p>This tutorial will be for getting started with Postgres using <a href="node.html">node</a> on a <a href="macos.html">Mac</a>.</p>
+<h3>Local Machine</h3>
+<h4>Installation</h4>
+<p>Install Postgres using <a href="homebrew.html">homebrew</a>: <code>brew install postgres</code></p>
+<p>In a new terminal window, start up the local database: <code>postgres -U username -d database_name</code>, filling in the blanks as needed. If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>. The DB can be also started using <code>brew services start postgres</code> (Be sure to stop the server when completed with your work using <code>brew services stop postgres</code>).</p>
+<p>To enter into interactive mode, in your terminal, enter <code>psql</code>. From here, you can enter in any queries you'd like. Ensure they all end with a semicolon, or else you will not get any return back and it will throw.</p>
+<h4>Initialization</h4>
+<p>Create a new table in your database: <code>CREATE TABLE numbers( age integer );</code></p>
+<p>Insert a value into the new table: <code>INSERT INTO numbers VALUES (732);</code></p>
+<h3>Javascript</h3>
+<p>Initialize a new <a href="npm.html">npm</a> project, and then install <code>pg</code>, <code>pg-format</code>, and <a href="express.html"><code>express</code></a>.</p>
+<p>Create a new file in your project called <code>server.js</code> and copy this into it's contents:</p>
+<pre><code class="language-javascript">const express = require(&#x27;express&#x27;); // Server
+var pg = require(&#x27;pg&#x27;);             // Postgres 
+var format = require(&#x27;pg-format&#x27;);  // For dynamic SQL queries (a la MySQL ?)
+
+const app = express();              // Start your server
+
+var PGUSER = &#x27;&lt;your username&gt;&#x27;;     // Definte the username and database
+var PGDATABASE = &#x27;&lt;your username&gt;&#x27;; // previously set up in Postgres.
+
+var age = 732;                      // Used so we can reference our earlier insertion.
+
+var config = {
+  user: PGUSER,
+  database: PGDATABASE,
+  max: 10,                          // max number of clients in the pool
+  idleTimeoutMillis: 30000          // how long a client is allowed to remain idle before being closed
+};
+
+var pool = new pg.Pool(config);     // Create a new connection instance
+
+pool.connect(function (err, client, done) { // Connect to the DB
+  if (err) {
+    console.log(err);
+  }
+  app.listen(3000, function () {     // Connect to the Express server
+    console.log(&#x27;listening on 3000&#x27;)
+  });
+  // Build a dynamic query using `age`
+  var ageQuery = format(&#x27;SELECT * from numbers WHERE age = %L&#x27;, age);
+  // Query the DB for all rows from the numbers table where age is = 732
+  client.query(ageQuery, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(result.rows[0]);
+  });
+});
+</code></pre>
+<p>Now in your terminal, run <code>node server.js</code> and assuming the database is still running, if should return:</p>
+<pre><code>listening on 3000
+{ age: 732 }
+</code></pre>
+<h2>Schemas</h2>
+<p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
+<p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
+<pre><code class="language-sql">CREATE SCHEMA schema_example
+  CREATE TABLE people(
+    id INT PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INT,
+    birthday DATE
+  )
+  CREATE VIEW john_club AS
+    SELECT 
+      *
+    FROM
+      people
+    WHERE
+      name = &#x27;John&#x27;;
+</code></pre>
+<h2>Querying JSONB Columns</h2>
+<p>The way to retrieve the values found at given columns in a JSONB column is by using the single or double arrow, <code>-&gt;</code> and <code>-&gt;&gt;</code> respectively. The former will retrieve the value in its original type, while the latter will return the value as a string.</p>
+<pre><code class="language-postgres">SELECT
+  column_name -&gt; &#x27;property_name&#x27; AS display_name
+FROM
+  table_name;
+</code></pre>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\dt</code></td>
+<td>Display all tables in the database</td>
+</tr>
+<tr>
+<td><code>TABLE x</code></td>
+<td>Show the contents of table x.</td>
+</tr>
+<tr>
+<td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
+<td>Show all schema in a given database</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://hub.packtpub.com/how-setup-postgresql-nodejs/" target="_blank">https://hub.packtpub.com/how-setup-postgresql-nodejs/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-show-tables/" target="_blank">https://www.postgresqltutorial.com/postgresql-show-tables/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-create-schema/" target="_blank">https://www.postgresqltutorial.com/postgresql-create-schema/</a></li>
+<li><a href="https://www.guru99.com/postgresql-view.html" target="_blank">https://www.guru99.com/postgresql-view.html</a></li>
+<li><a href="https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546" target="_blank">https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-cheat-sheet/" target="_blank">https://www.postgresqltutorial.com/postgresql-cheat-sheet/</a></li>
+<li><a href="https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433" target="_blank">https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433</a></li>
+<li><a href="https://www.postgresql.org/docs/12/functions-json.html" target="_blank">https://www.postgresql.org/docs/12/functions-json.html</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202108102041</em></p></article><article>            <h1><a href="common-sql-queries.html">Common SQL Queries</a></h1>
+            <p>These are some common <a href="sql.html">SQL</a> queries that come up. All <code>?</code> symbols represent a place where you would dynamically insert info, like with Node's <a href="mysql.html">MySQL</a> module.</p>
+<h2>Retrieval</h2>
+<p>Get the info from all rows with a given email</p>
+<pre><code class="language-mysql">SELECT * FROM example_table
+  WHERE email = ?;
+</code></pre>
+<p><a href="https://learnsql.com/blog/how-to-find-duplicate-values-in-sql/" target="_blank" title="Finding duplicate values in SQL">See if more than one entry exists with a given email</a></p>
+<pre><code class="language-mysql">SELECT email, COUNT(email) 
+  FROM example_table
+  GROUP BY email
+  HAVING COUNT(email) &gt; 1;
+</code></pre>
+<h2>References</h2>
+<section><h2>Backlinks:</h2><ul><li><a href="sql.html">SQL</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202105310620</em></p></article><article>            <h1><a href="sql.html">SQL</a></h1>
             <p>SQL is a Structured Query Language that uses a relational <a href="database.html">database</a>. A relational database represents a collection of related 2D tables, like spreadsheet. <strong>Tables</strong> of information about a certain thing hold <strong>rows</strong> that are specific instances of that thing with <strong>columns</strong> that show shared characteristics of those instances.</p>
 <p><strong>Database schemas</strong> describe the structure of each table and the datatypes that each column can contain.</p>
 <h2>Basic Syntax Rules</h2>
@@ -1664,7 +1930,194 @@ FROM 2000_Temp_Data;
 <li><a href="https://www.educba.com/mysql-constraints/" target="_blank">https://www.educba.com/mysql-constraints/</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107140251</em></p></article><article>            <h1>SQLite3 (Python)</h1>
+<p class="last-modified"><em>Last modified: 202107140251</em></p></article><article>            <h1><a href="sqlite.html">SQLite</a></h1>
+            <h2>Data Types (version 3)</h2>
+<ul>
+<li>NULL</li>
+<li>INTEGER</li>
+<li>REAL (floating)</li>
+<li>TEXT</li>
+<li>BLOB (blob of data, stored exactly as it was input)</li>
+</ul>
+<h2>Primary Key</h2>
+<p>A column with type <code>INTEGER PRIMARY KEY</code> is an alias for the <code>ROWID</code>, which is always a 64-bit signed integer.</p>
+<pre><code class="language-sqlite">CREATE TABLE IF NOT EXISTS dogs (
+  id INTEGER PRIMARY KEY,
+  dog_name VARCHAR(10),
+  good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
+);
+</code></pre>
+<h2>PRAGMA</h2>
+<p>PRAGMA commands are SQLite specific and are meta commands regarding operation or non-table data.</p>
+<h3>Get column information of a given table</h3>
+<pre><code class="language-sqlite">PRAGMA table_info(table_name)
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://sqlite.org/pragma.html#pragma_table_info" target="_blank">https://sqlite.org/pragma.html#pragma_table_info</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202107020546</em></p></article><article><h1><a href="mysql.html">MySQL</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="python.html">Python</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="c-data-types.html">C Data Types</a></li><li><a href="collections-(python).html">Collections (Python)</a></li><li><a href="datetime-(python).html">Datetime (Python)</a></li><li><a href="debounce-(python).html">Debounce (Python)</a></li><li><a href="itertools-(python).html">Itertools (Python)</a></li><li><a href="json-(python).html">JSON (Python)</a></li><li><a href="math-(python).html">Math (Python)</a></li><li><a href="numpy.html">Numpy</a></li><li><a href="sqlite3-(python).html">SQLite3 (Python)</a></li><li><a href="virtual-environments-(python).html">Virtual Environments (Python)</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Collections (Python)</h1>
+            <p>These are some resources on how to use the collections <a href="python.html">Python</a> package.</p>
+<h2>defaultdict(type)</h2>
+<pre><code class="language-python">from collections import defaultdict
+
+counter = defaultdict(int)
+counter[&quot;sheep&quot;] += 1
+print(counter[&quot;sheep&quot;])  # 1
+print(counter[&quot;dog&quot;])  # 0
+</code></pre>
+<p>Will allow builtin methods based on the default type. <code>defaultdict(int)</code> will allow a <code>+= 1</code> on any key and it will be defined immediately if doesn't exist; <code>(set)</code> will allow <code>.add(value)</code> to a set and will create it if none exists, etc.</p>
+<h2>deque</h2>
+<pre><code class="language-python">from collections import deque
+
+cards = [1,2,3,4]
+deck = deque(cards)
+
+top_card = deck.popleft()
+deck.append(top_card)
+
+# cards == [2,3,4,1]
+</code></pre>
+<p>If you need a copy of the deque, you will need to import the <code>copy.deepcopy</code> method, as slices don't work. If you need to slice, you can use <code>itertools.islice</code>.</p>
+<p>Note that if you are looking for a queue, you can use a standard list as a queue by using <code>list.pop(0)</code> and <code>list.append(item)</code>. It is much faster and requires no imports.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://docs.python.org/3/library/collections.html" target="_blank">https://docs.python.org/3/library/collections.html</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202107181935</em></p></article><article>            <h1>Itertools (Python)</h1>
+            <p>Resources on how to use the itertools <a href="python.html">Python</a> package.</p>
+<h2>itertools.product()</h2>
+<p>Avoid using nested for loops to iterate through multiple different lists or numbers</p>
+<pre><code class="language-python">for var1 in xrange(min1,max1,step1):
+  for var2 in xrange(min2,max2,step2):
+    ...
+      ...
+        ...
+          for var6 in xrange(min6,max6,step6):
+            &#x27;&#x27;&#x27;
+            Do something and be icky in the process due
+            to being in the middle of six nested for loops
+            &#x27;&#x27;&#x27;
+x1 = xrange(min1,max1,step1)
+x2 = xrange(min2,max2,step2)
+x3 = xrange(min3,max3,step3)
+...
+for v1, v2, v3, v4, v5, v6 in itertools.product(x1, x2, x3, x4, x5, x6):
+  icky_thing(....)
+</code></pre>
+<h2>References:</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops" target="_blank">https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202107020541</em></p></article><article>            <h1>Virtual Environments (Python)</h1>
+            <p>Virtual environments allow you to develop in a clean slate, leaving nothing to global packages and allowing easy installation by others.</p>
+<p>You are in a virtual environment for your <a href="python.html">Python</a> project when you see the env name (in this case, literally <code>env</code>) to the left of the bash prompt.</p>
+<h2>Create</h2>
+<p><code>cd</code> to project folder and then type:</p>
+<pre><code class="language-bash">python3 -m venv env
+</code></pre>
+<h2>Activate</h2>
+<p><code>cd</code> to project folder and then type:</p>
+<pre><code class="language-bash">source env/bin/activate
+</code></pre>
+<h2>Deactivate</h2>
+<pre><code class="language-bash">deactivate
+</code></pre>
+
+<p class="last-modified"><em>Last modified: 202107020544</em></p></article><article>            <h1>Datetime (Python)</h1>
+            <p>These are some resources on how to use the <a href="https://docs.python.org/3/library/datetime.html" target="_blank">datetime</a> <a href="python.html">Python</a> package.</p>
+<h2>Using datetime</h2>
+<p><code>datetime.datetime.now().isoformat()</code> - to get a string of the current date and time</p>
+<h2>References</h2>
+
+<p class="last-modified"><em>Last modified: 202107020541</em></p></article><article><h1><a href="debounce.html">Debounce</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="debounce-(python).html">Debounce (Python)</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Debounce (Python)</h1>
+            <p>How to create and use a <a href="debounce.html">debouncer</a> in <a href="python.html">Python</a>.</p>
+<p>In both of these examples, the inner function won't run until at least DEBOUNCE_TIME seconds has passed.</p>
+<h2>Standalone</h2>
+<pre><code class="language-python">from threading import Timer
+import time
+
+DEBOUNCE_TIME = 1  # 1 second
+debounced_action = None
+
+
+def debounce_action(message: str) -&gt; None:
+    &quot;&quot;&quot; Print the last message to be invoked within a certain amount of time &quot;&quot;&quot;
+    global debounced_action
+
+    def print_message():
+        print(message)
+
+    if debounced_action:
+        debounced_action.cancel()
+    debounced_action = Timer(DEBOUNCE_TIME, print_message)
+    debounced_action.start()
+
+
+if __name__ == &quot;__main__&quot;:
+    debounce_action(&quot;Won&#x27;t print this one&quot;)
+    time.sleep(.5)
+    debounce_action(&quot;Or this one&quot;)
+    time.sleep(.99)
+    debounce_action(&quot;This one will though!&quot;)
+</code></pre>
+<p>The benefit of using this standalone is that you can have multiple items debouncing with the same inner function and different parameters by using a dict to store the different <code>debounced_action</code>s instead of using a singular global.</p>
+<h2>Decorator</h2>
+<pre><code class="language-python">from threading import Timer
+import time
+
+DEBOUNCE_TIME = 1
+
+
+def debounce(wait):
+    &quot;&quot;&quot; Decorator that will postpone a functions
+        execution until after wait seconds
+        have elapsed since the last time it was invoked. &quot;&quot;&quot;
+    def decorator(fn):
+        def debounced(*args, **kwargs):
+            def call_it():
+                fn(*args, **kwargs)
+            try:
+                debounced.t.cancel()
+            except(AttributeError):
+                pass
+            debounced.t = Timer(wait, call_it)
+            debounced.t.start()
+        return debounced
+    return decorator
+
+
+@debounce(DEBOUNCE_TIME)
+def print_message(message: str):
+    print(message)
+
+
+if __name__ == &quot;__main__&quot;:
+    print_message(&quot;Won&#x27;t print this one&quot;)
+    time.sleep(.5)
+    print_message(&quot;Or this one&quot;)
+    time.sleep(.99)
+    print_message(&quot;This one will though!&quot;)
+</code></pre>
+<p>The benefit of using a decorator is you can throw it on any function that needs debouncing at it saves you the reuse of the debouncing code in multiple places.</p>
+<h2>References:</h2>
+<ol>
+<li><a href="https://gist.github.com/walkermatt/2871026" target="_blank">https://gist.github.com/walkermatt/2871026</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202107212151</em></p></article><article>            <h1>SQLite3 (Python)</h1>
             <p>How to use <a href="sqlite.html">SQLite</a> with <a href="python.html">Python</a>.</p>
 <h2>Opening/Closing Connections and Command Execution</h2>
 <p>After importing the built-in <code>sqlite3</code> module, you need to establish a connection with your <a href="database.html">database</a>. </p>
@@ -1775,10 +2228,7 @@ round(3.1415926, 3)  # 3.142
 <li><a href="https://tutorialdeep.com/knowhow/round-float-to-2-decimal-places-python/" target="_blank">https://tutorialdeep.com/knowhow/round-float-to-2-decimal-places-python/</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020542</em></p></article><article><h1><a href="json.html">JSON</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="json-(python).html">JSON (Python)</a></li><li><a href="mongodb.html">MongoDB</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>JSON (Python)</h1>
+<p class="last-modified"><em>Last modified: 202107020542</em></p></article><article>            <h1>JSON (Python)</h1>
             <h2>Load <a href="json.html">JSON</a> from file</h2>
 <pre><code class="language-python">def load_json(fp):
     with open(fp, &#x27;r&#x27;) as f:
@@ -3217,7 +3667,178 @@ Hello, World
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Assembly (6502)</h1>
             <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
 <p>The Motorola 6502 is a microcontroller based on their 6800 series, but simplified, less expensive, and faster.</p>
-<h2>References</h2>
+<!--
+
+## Setup
+
+Insert emulation/compilation instructions here
+
+-->
+<h2>Syntax</h2>
+<h3>Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Syntax</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hexadecimal</td>
+<td><code>$xy</code></td>
+<td><code>x</code> are hex digits. Trailing numbers can extend.</td>
+</tr>
+<tr>
+<td>Decimal</td>
+<td><code>xy</code></td>
+<td><code>x</code> are decimal digits. Trailing numbers can extend</td>
+</tr>
+</tbody></table><h3>Addressing Modes</h3>
+<p>These will all use <code>STA</code> but can be used with any command that uses an address.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Syntax</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Absolute</td>
+<td><code>STA $c000</code></td>
+<td>Look up the value at this full memory location</td>
+</tr>
+<tr>
+<td>Zero page</td>
+<td><code>STA $c0</code></td>
+<td>Look up the value at <code>$00c0</code>, <code>c0</code> within the zero page</td>
+</tr>
+<tr>
+<td>Absolute, X</td>
+<td><code>STA $c000,X</code></td>
+<td>Look up the value at <code>$c000</code> + the value in register X (also can be used with Y)</td>
+</tr>
+<tr>
+<td>Zero page, X</td>
+<td><code>STA $c0,X</code></td>
+<td>Look up the value at <code>$00c0</code> + the value in register X (also can be used with Y)</td>
+</tr>
+<tr>
+<td>Immediate</td>
+<td><code>#$c0</code></td>
+<td>Use value <code>$c0</code></td>
+</tr>
+<tr>
+<td>Relative</td>
+<td><code>$c0</code> or <code>label</code></td>
+<td>Go <code>$c0</code> bytes forward/backward (to get to label position)</td>
+</tr>
+<tr>
+<td>Implicit</td>
+<td><code>INX</code></td>
+<td>Do what instruction implies (no args)</td>
+</tr>
+<tr>
+<td>Indirect</td>
+<td><code>$c000</code></td>
+<td>Do instruction found at memory address <code>$c000</code> and the following byte</td>
+</tr>
+<tr>
+<td>Indexed Indirect</td>
+<td><code>STA ($c0,X)</code></td>
+<td>Store in A the value at <code>$00c0</code> + <code>X</code></td>
+</tr>
+</tbody></table><h3>Commands</h3>
+<p>A <strong>value</strong> refers to a number prefaced by a <code>#</code>, whereas an <strong>address/location</strong> refers to a hexadecimal address.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Argument(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BRK</code></td>
+<td></td>
+<td>Break out of the program</td>
+</tr>
+<tr>
+<td><code>LDA n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Load n into register A</td>
+</tr>
+<tr>
+<td><code>STA n</code></td>
+<td>n: memory address/location</td>
+<td>Store value in register A at  n</td>
+</tr>
+<tr>
+<td><code>TAX</code></td>
+<td></td>
+<td>Transfer value in A to X</td>
+</tr>
+<tr>
+<td><code>INX</code></td>
+<td></td>
+<td>Increment value in X by 1</td>
+</tr>
+<tr>
+<td><code>ADC n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Add n with carry to the A register</td>
+</tr>
+</tbody></table><h4>Flag Commands</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Argument(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CPX n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Compare value at X to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0.</td>
+</tr>
+</tbody></table><h4>Branching</h4>
+<p><strong>label</strong>: A label within 256 bytes of invocation</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Name</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BEQ label</code></td>
+<td>Branch on EQual</td>
+<td>If <code>Z</code> flag is 1 (comparison was equal), go to label</td>
+</tr>
+<tr>
+<td><code>BNE label</code></td>
+<td>Branch on Not Equal</td>
+<td>If <code>Z</code> flag is 0 (comparison was not equal), go to label</td>
+</tr>
+<tr>
+<td><code>BCC label</code></td>
+<td>Branch on Carry Clear</td>
+<td></td>
+</tr>
+<tr>
+<td><code>BCS label</code></td>
+<td>Branch on Carry Set</td>
+<td></td>
+</tr>
+</tbody></table><h2>References</h2>
 <ul>
 <li><a href="http://skilldrick.github.io/easy6502/" target="_blank">http://skilldrick.github.io/easy6502/</a></li>
 <li><a href="https://wiki.xxiivv.com/site/assembly.html" target="_blank">https://wiki.xxiivv.com/site/assembly.html</a></li>
@@ -3227,7 +3848,7 @@ Hello, World
 <li><a href="https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up" target="_blank">https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108191458</em></p></article><article>            <h1>Assembly (Amiga)</h1>
+<p class="last-modified"><em>Last modified: 202108310108</em></p></article><article>            <h1>Assembly (Amiga)</h1>
             <p>The Amiga was a personal computer from the 80's built on the Motorola 68000 chipset.</p>
 <h2>References</h2>
 <ul>
@@ -4387,7 +5008,7 @@ var newSquare = new Square(&#x27;square&#x27;, 5);
 <li><a href="https://radialglo.github.io/blog/2014/11/24/understanding-pseudoclassical-inheritance-in-javascript/" target="_blank">https://radialglo.github.io/blog/2014/11/24/understanding-pseudoclassical-inheritance-in-javascript/</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020555</em></p></article><article>            <h1>Promises and Async Await (Javascript)</h1>
+<p class="last-modified"><em>Last modified: 202108290252</em></p></article><article>            <h1>Promises and Async Await (Javascript)</h1>
             <p>Promises and async/await are a way to handle asynchronous actions in <a href="javascript.html">Javascript</a>.</p>
 <h2>Promises</h2>
 <pre><code class="language-javascript">const getDataFromAPI = () =&gt; {
@@ -5584,310 +6205,6 @@ function Topic() {
 <p class="last-modified"><em>Last modified: 202107081858</em></p></article><article><h1><a href="jsx.html">JSX</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="react.html">React</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="mongodb.html">MongoDB</a></h1>
-            <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system based on <a href="javascript.html">Javascript</a> using documents similar to <a href="json.html">JSON</a>.</p>
-<h2>Getting Started</h2>
-<p>This will start a new project using your local server and <a href="mongoose.html">mongoose</a> via <a href="node.html">node</a>.</p>
-<h3>Local Machine</h3>
-<p>Install MongoDB using <code>brew services install mongodb-community</code>. Once installed, you can start your local server using <code>brew services start mongodb-community</code> (Be sure to stop the server when completed with your work using <code>brew services stop mongodb-community</code>).</p>
-<p>In the terminal, start the mongo shell: <code>mongo</code>.</p>
-<h3>Database</h3>
-<p>Creating a new database is done when a query is made.</p>
-<h3>Node</h3>
-<p>Create a new folder and initialize a new node project using <a href="npm.html">npm</a>: <code>npm init -y</code>. Then install <code>npm i mongoose</code>.</p>
-<p>Create a new file called <code>server.js</code> and copy this into the contents:</p>
-<pre><code class="language-javascript">  const mongoose = require(&#x27;mongoose&#x27;);                // import Mongoose
-mongoose.connect(&#x27;mongodb://localhost:27017/test&#x27;, { // create connection to localhost
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-});
-
-const db = mongoose.connection;
-db.on(&#x27;error&#x27;, console.error.bind(console, &#x27;connection error:&#x27;));
-db.once(&#x27;open&#x27;, function() {                            // Inside here is where the action happens
-  // Create schema for collection
-  const kittySchema = new mongoose.Schema({
-    name: String,
-    color: {
-      type: String,
-      enum: [&#x27;brown&#x27;, &#x27;orange&#x27;],
-    },
-  });
-  const Cat = mongoose.model(&#x27;Cat&#x27;, { name: String }); 
-
-  const kitty = new Cat({ 
-    name: &#x27;Zildjian&#x27;,
-    color: &#x27;orange&#x27;
-  });         // Create a new document of Cat
-  console.log(kitty.name);                             // &#x27;Zildjian&#x27;
-  kitty.save()
-    .then(() =&gt; console.log(&#x27;meow&#x27;));                   // Save the new document in the Cat collection
-});
-</code></pre>
-<p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
-<h2>Indexes</h2>
-<p>If your collection does not have an index, your query could take a very long time, as it will have to scan every single document within your collection and analyze it to see if it matches your query.</p>
-<pre><code class="language-mongosh">// create an index in collectionName from highest score to lowest
-db.collectionName.createIndex( { score: -1 } )
-</code></pre>
-<h2>Import and Export</h2>
-<h3><a href="https://docs.mongodb.com/database-tools/mongoexport" target="_blank"><code>mongoexport</code></a>: Export <a href="json.html">JSON</a> or <a href="csv.html">CSV</a></h3>
-<pre><code class="language-bash">$ mongoexport --db=dbName --collection=collectionName --out=filename.json
-</code></pre>
-<p>When you export in CSV format, you must specify the fields in the documents to export.</p>
-<pre><code class="language-bash"># for CSV etc.
-$ mongoexport --db=dbName --collection=collectionName --fields=name,address --out=filename.json
-</code></pre>
-<h3><a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a>: Import <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a></h3>
-<p>Use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> to bring in Extended <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a> files to your Mongo database. First, start up your database, and then use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> in the command line:</p>
-<pre><code class="language-bash">#             use the PetHotel db      use header line as field names
-$ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
-
-# If no header line is availabe:       list them out after the --fields option
-$ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
-</code></pre>
-<h4>Types</h4>
-<p>You can specify the <a href="https://docs.mongodb.com/database-tools/mongoimport/#std-option-mongoimport.--columnsHaveTypes" target="_blank">types</a> of the columns within the header line of your CSV.</p>
-<pre><code class="language-csv">id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
-1,&quot;This product was great!&quot;,true,8
-</code></pre>
-<pre><code class="language-bash">$ mongoimport --db=PetHotel --type=csv --headerline --columnsHaveTypes --file=pets.csv
-</code></pre>
-<h4>Null Values</h4>
-<p>If you have null values in your CSV, you can remove these <code>null</code> values between two commas (or after one if at the end of a line) and tell mongoimport to <code>--ignoreBlanks</code>. This won't import null values, but when interacting with your database, you can use the <a href="https://docs.mongodb.com/manual/reference/operator/query/exists/#mongodb-query-op.-exists" target="_blank"><code>$exists</code></a> query operator to query for them and <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/#mongodb-expression-exp.-ifNull" target="_blank"><code>$ifNull</code> </a> to cast missing fields as <code>null</code> in an aggregation pipeline.</p>
-<p>In the below example, the summary is null, but we still want it to accept strings.</p>
-<pre><code class="language-csv">id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
-1,null,true,8
-</code></pre>
-<p>If we were to import this as is, we would end up with a summary field containing an empty string. After replacing the <code>,null,</code> with <code>,,</code> and using <code>--ignoreBlanks</code> on import, this field ends up missing, which is the desired behavior. </p>
-<p>To query for fields that have a missing of <code>null</code> field:</p>
-<pre><code class="language-mongosh">&gt; db.collection_name.find({ summary: { $exists: false }})
-</code></pre>
-<p>And to get the field back with a <code>null</code> value in the place of that missing field:</p>
-<pre><code class="language-mongosh">&gt; db.collection_name.aggregate([
-... // match document with id of 1
-... { $match: { id: 1 }},
-... // show all fields and cast summary to null if missing
-... { $project: {
-...   _id: 0,
-...   id: 1,
-...   summary: { $ifNull: [ &#x27;$summary&#x27;, null ]},
-...   recommend: 1,
-...   helpfulness: 1
-... }}
-... ]);
-</code></pre>
-<h3><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>: Export BSON (native format)</h3>
-<p>To export a collection or database from a mongo database, use <a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>.</p>
-<pre><code class="language-bash">$ mongodump --db=dbName --collection=collectionName --out=path/for/output
-</code></pre>
-<h3><a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>: Import BSON (native format)</h3>
-<p>To import a collection or database from a dumped mongo database, use <a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>.</p>
-<pre><code class="language-bash">$ mongorestore -d dbName ./dump/path
-</code></pre>
-<h2>Clone Database</h2>
-<p>You can clone a database on the same server using the following command:</p>
-<pre><code class="language-bash">$ mongodump --archive --db=dbName | mongorestore --archive  --nsFrom=&#x27;dbName.*&#x27; --nsTo=&#x27;newDbName.*&#x27;
-</code></pre>
-<h2>Data Modification</h2>
-<p>If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.</p>
-<p>Let's assume a collection of dogs:</p>
-<pre><code class="language-javascript">[
-  {
-    &quot;_id&quot;: ...,
-    &quot;name&quot;: &quot;Doggo&quot;,
-    &quot;goodBoy&quot;: &quot;true&quot;, // should be a boolean
-    &quot;enemy&quot;: &quot;null&quot;,   // or could be &quot;mailman&quot; or other string
-  },
-  ...
-]
-</code></pre>
-<p>When completed, this will change all <code>goodboy</code> properties to a boolean and if <code>enemy</code> was imported with <code>null</code> as the string, it will convert it into an actual null value. The <code>bulkWrite</code> is done as it is <strong>much</strong> faster than sending individual requests.</p>
-<pre><code class="language-mongosh">var requests = [];
-var cursor = db.dogs.find({});
-
-cursor.forEach(item =&gt; {
-  requests.push({ 
-    &quot;updateOne&quot;: {
-      &quot;filter&quot;: { &quot;_id&quot;: item._id },
-      &quot;update&quot;: { 
-        &quot;$set&quot;: { 
-          &quot;goodBoy&quot;: Boolean(item.goodboy),
-          &quot;enemy&quot;: item.enemy === &#x27;null&#x27; ? null : item.enemy
-        }
-      }
-    }
-  });
-
-  if (requests.length === 1000) {
-    // Execute per 1000 operations and re-init
-    db.dogs.bulkWrite(requests);
-    requests = [];
-  }
-});
-
-if (requests.length) {
-  db.dogs.bulkWrite(requests);
-  requests = [];
-}
-</code></pre>
-<h2>Syntax</h2>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>show dbs</code></td>
-<td>List all databases on the given server</td>
-</tr>
-<tr>
-<td><code>use database_name</code></td>
-<td>Enter into <code>database_name</code>, preparing to query.</td>
-</tr>
-<tr>
-<td><code>db.dropDatabase()</code></td>
-<td>Delete the selected database</td>
-</tr>
-<tr>
-<td><code>show collections</code> / <code>show tables</code></td>
-<td>List all collections/tables in the selected database.</td>
-</tr>
-<tr>
-<td><code>db.collection_name.find()</code></td>
-<td>Return all documents in collection <code>collection_name</code>.</td>
-</tr>
-<tr>
-<td><code>db.collection_name.find({name: &#x27;John&#x27;})</code></td>
-<td>Return all documents in <code>collection_name</code> whose name is John.</td>
-</tr>
-<tr>
-<td><code>db.collection_name.insert({name: &#x27;John&#x27;, age: 40})</code></td>
-<td>Create a document in <code>collection_name</code> (note: if a new collection is selected via <code>use</code>, this will create the new collection)</td>
-</tr>
-<tr>
-<td><code>db.collection_name.renameCollection(&#x27;newName&#x27;, dropOld)</code></td>
-<td>Rename <code>collection_name</code> to <code>newName</code> and if drop old table if <code>dropOld</code> is true.</td>
-</tr>
-</tbody></table><h2>References</h2>
-<ul>
-<li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
-<li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
-<li><a href="https://docs.mongodb.com/manual/core/databases-and-collections/" target="_blank">https://docs.mongodb.com/manual/core/databases-and-collections/</a></li>
-<li><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline/" target="_blank">https://docs.mongodb.com/manual/core/aggregation-pipeline/</a></li>
-<li><a href="https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/" target="_blank">https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/</a></li>
-<li><a href="https://docs.mongodb.com/manual/indexes/" target="_blank">https://docs.mongodb.com/manual/indexes/</a></li>
-<li><a href="https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query" target="_blank">https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query</a></li>
-<li><a href="https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/" target="_blank">https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/</a></li>
-<li><a href="https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types" target="_blank">https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types</a></li>
-<li><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank">https://docs.mongodb.com/database-tools/mongodump/</a></li>
-<li><a href="https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file" target="_blank">https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file</a></li>
-</ul>
-<section><h2>Backlinks:</h2><ul><li><a href="mongoose.html">Mongoose</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108230454</em></p></article><article>            <h1><a href="mongoose.html">Mongoose</a></h1>
-            <p>Mongoose is an <a href="npm.html">NPM</a> package that allows a simple and schema'd <a href="javascript.html">Javascript</a> entrypoint to your <a href="mongodb.html">Mongo database</a>.</p>
-<h2>Basics</h2>
-<h3>Setup</h3>
-<p>Install mongoose: <code>npm i mongoose</code> and ensure your <a href="database.html">database</a> is running.</p>
-<h3>Project</h3>
-<p>Create a new file called <code>server.js</code> and put this within.</p>
-<pre><code class="language-javascript">// Initilize database
-
-const mongoose = require(&quot;mongoose&quot;);
-const dbName = &quot;test&quot;;
-mongoose.connect(`mongodb://localhost:27017/${dbName}`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-// Create test schema
-
-const testSchema = new mongoose.Schema({
-  name: String,
-  age: Number,
-  friends: [String],
-});
-
-// Create a model from your schema
-
-// this first param is the name of your collection in your test database
-const Test = mongoose.model(&quot;test&quot;, testSchema);
-
-// Connect to database
-
-const db = mongoose.connection;
-db.on(&quot;error&quot;, console.error.bind(console, &quot;connection error:&quot;));
-db.once(&quot;open&quot;, () =&gt; {
-  console.log(`Mongoose DB &quot;${dbName}&quot; initialized\n`)
-});
-</code></pre>
-<p>This will have created your basics. You can now start creating queries, inserting items into your database, etc.</p>
-<h2>Schemas and Models</h2>
-<p>Basic schemas are written very simply using a standard JSON format.</p>
-<p>The following schema is for a registration form. It has five fields, all with differing implementations. Most basic, you can just put the key followed by it's type. If you want extended functionality, you can utilize it by using object notation.</p>
-<pre><code class="language-javascript">const attendeeSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: String,
-  email: {
-    type: String,
-    required: true,
-    match: /[a-z0-9!#$%&amp;&#x27;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&#x27;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-  },
-  shirt: {
-    type: String,
-    enum: [&#x27;XS&#x27;, &#x27;S&#x27;, &#x27;M&#x27;, &#x27;L&#x27;, &#x27;XL&#x27;, &#x27;XXL&#x27;],
-    required: true,
-  },
-  skillLevel: {
-    type: String,
-    enum: [&#x27;beginner&#x27;, &#x27;intermediate&#x27;, &#x27;expert&#x27;],
-  }
-});
-</code></pre>
-<p>Once your schema is created, you will then create a model that will be utilized within your code.</p>
-<pre><code class="language-javascript">// mongoose.model(collection, schema), where collection is the
-// name of the collection in your database.
-const Attendee = mongoose.model(&#x27;attendee&#x27;, attendeeSchema);
-</code></pre>
-<p>This makes it easy to encapsulate the whole thing inside of a file for export in a <a href="node.html">node</a> project.</p>
-<pre><code class="language-javascript">const mongoose = require(&#x27;mongoose&#x27;);
-
-const attendeeSchema = new mongoose.Schema({
-  ...
-});
-
-const Attendee = mongoose.model(&#x27;Attendee&#x27;, attendeeSchema);
-
-module.exports = Attendee;
-</code></pre>
-<h2>Remote Database</h2>
-<pre><code>mongoose.connect(&#x27;mongodb://username:password@host:port&#x27;, {useNewUrlParser: true});
-</code></pre>
-<h2>Troubleshooting</h2>
-<h3>Return Object</h3>
-<p>The return of a query is not a plain Javascript object and will show weird behavior when trying to add to/remove from/modify it. If you want a plain Javascript object in return, you can use <code>.lean()</code> within your chain to cast it. </p>
-<h2>References</h2>
-<ol>
-<li><a href="https://mongoosejs.com/" target="_blank">https://mongoosejs.com/</a></li>
-<li><a href="https://stackoverflow.com/questions/33614229/how-to-use-mongo-mongoose-to-connect-to-a-remote-database" target="_blank">https://stackoverflow.com/questions/33614229/how-to-use-mongo-mongoose-to-connect-to-a-remote-database</a></li>
-<li><a href="https://mongoosejs.com/docs/connections.html" target="_blank">https://mongoosejs.com/docs/connections.html</a></li>
-</ol>
-<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108162339</em></p></article><article><h1><a href="nosql.html">NoSQL</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="csv.html">CSV</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="tsv.html">TSV</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="mongodb.html">MongoDB</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="c.html">C</a></h1>
             <p>C is a programming language that is very low-level, compiling down to <a href="assembly.html">assembly</a> language.</p>
 <h2>Hello, World</h2>
@@ -6226,140 +6543,4 @@ alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 <li><a href="https://stackoverflow.com/questions/7066325/list-git-aliases" target="_blank">https://stackoverflow.com/questions/7066325/list-git-aliases</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108260207</em></p></article><article><h1><a href="homebrew.html">homebrew</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="postgres.html">Postgres</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="postgres.html">Postgres</a></h1>
-            <p>Postgres is a relational <a href="database.html">database</a> management system.</p>
-<h2>Getting Started</h2>
-<p>This tutorial will be for getting started with Postgres using <a href="node.html">node</a> on a <a href="macos.html">Mac</a>.</p>
-<h3>Local Machine</h3>
-<h4>Installation</h4>
-<p>Install Postgres using <a href="homebrew.html">homebrew</a>: <code>brew install postgres</code></p>
-<p>In a new terminal window, start up the local database: <code>postgres -U username -d database_name</code>, filling in the blanks as needed. If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>. The DB can be also started using <code>brew services start postgres</code> (Be sure to stop the server when completed with your work using <code>brew services stop postgres</code>).</p>
-<p>To enter into interactive mode, in your terminal, enter <code>psql</code>. From here, you can enter in any queries you'd like. Ensure they all end with a semicolon, or else you will not get any return back and it will throw.</p>
-<h4>Initialization</h4>
-<p>Create a new table in your database: <code>CREATE TABLE numbers( age integer );</code></p>
-<p>Insert a value into the new table: <code>INSERT INTO numbers VALUES (732);</code></p>
-<h3>Javascript</h3>
-<p>Initialize a new <a href="npm.html">npm</a> project, and then install <code>pg</code>, <code>pg-format</code>, and <a href="express.html"><code>express</code></a>.</p>
-<p>Create a new file in your project called <code>server.js</code> and copy this into it's contents:</p>
-<pre><code class="language-javascript">const express = require(&#x27;express&#x27;); // Server
-var pg = require(&#x27;pg&#x27;);             // Postgres 
-var format = require(&#x27;pg-format&#x27;);  // For dynamic SQL queries (a la MySQL ?)
-
-const app = express();              // Start your server
-
-var PGUSER = &#x27;&lt;your username&gt;&#x27;;     // Definte the username and database
-var PGDATABASE = &#x27;&lt;your username&gt;&#x27;; // previously set up in Postgres.
-
-var age = 732;                      // Used so we can reference our earlier insertion.
-
-var config = {
-  user: PGUSER,
-  database: PGDATABASE,
-  max: 10,                          // max number of clients in the pool
-  idleTimeoutMillis: 30000          // how long a client is allowed to remain idle before being closed
-};
-
-var pool = new pg.Pool(config);     // Create a new connection instance
-
-pool.connect(function (err, client, done) { // Connect to the DB
-  if (err) {
-    console.log(err);
-  }
-  app.listen(3000, function () {     // Connect to the Express server
-    console.log(&#x27;listening on 3000&#x27;)
-  });
-  // Build a dynamic query using `age`
-  var ageQuery = format(&#x27;SELECT * from numbers WHERE age = %L&#x27;, age);
-  // Query the DB for all rows from the numbers table where age is = 732
-  client.query(ageQuery, function (err, result) {
-    if (err) {
-      console.log(err);
-    }
-    console.log(result.rows[0]);
-  });
-});
-</code></pre>
-<p>Now in your terminal, run <code>node server.js</code> and assuming the database is still running, if should return:</p>
-<pre><code>listening on 3000
-{ age: 732 }
-</code></pre>
-<h2>Schemas</h2>
-<p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
-<p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
-<pre><code class="language-sql">CREATE SCHEMA schema_example
-  CREATE TABLE people(
-    id INT PRIMARY KEY,
-    name TEXT NOT NULL,
-    age INT,
-    birthday DATE
-  )
-  CREATE VIEW john_club AS
-    SELECT 
-      *
-    FROM
-      people
-    WHERE
-      name = &#x27;John&#x27;;
-</code></pre>
-<h2>Querying JSONB Columns</h2>
-<p>The way to retrieve the values found at given columns in a JSONB column is by using the single or double arrow, <code>-&gt;</code> and <code>-&gt;&gt;</code> respectively. The former will retrieve the value in its original type, while the latter will return the value as a string.</p>
-<pre><code class="language-postgres">SELECT
-  column_name -&gt; &#x27;property_name&#x27; AS display_name
-FROM
-  table_name;
-</code></pre>
-<h2>Commands</h2>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\dt</code></td>
-<td>Display all tables in the database</td>
-</tr>
-<tr>
-<td><code>TABLE x</code></td>
-<td>Show the contents of table x.</td>
-</tr>
-<tr>
-<td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
-<td>Show all schema in a given database</td>
-</tr>
-</tbody></table><h2>References</h2>
-<ol>
-<li><a href="https://hub.packtpub.com/how-setup-postgresql-nodejs/" target="_blank">https://hub.packtpub.com/how-setup-postgresql-nodejs/</a></li>
-<li><a href="https://www.postgresqltutorial.com/postgresql-show-tables/" target="_blank">https://www.postgresqltutorial.com/postgresql-show-tables/</a></li>
-<li><a href="https://www.postgresqltutorial.com/postgresql-create-schema/" target="_blank">https://www.postgresqltutorial.com/postgresql-create-schema/</a></li>
-<li><a href="https://www.guru99.com/postgresql-view.html" target="_blank">https://www.guru99.com/postgresql-view.html</a></li>
-<li><a href="https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546" target="_blank">https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546</a></li>
-<li><a href="https://www.postgresqltutorial.com/postgresql-cheat-sheet/" target="_blank">https://www.postgresqltutorial.com/postgresql-cheat-sheet/</a></li>
-<li><a href="https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433" target="_blank">https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433</a></li>
-<li><a href="https://www.postgresql.org/docs/12/functions-json.html" target="_blank">https://www.postgresql.org/docs/12/functions-json.html</a></li>
-</ol>
-
-<p class="last-modified"><em>Last modified: 202108102041</em></p></article><article>            <h1><a href="common-sql-queries.html">Common SQL Queries</a></h1>
-            <p>These are some common <a href="sql.html">SQL</a> queries that come up. All <code>?</code> symbols represent a place where you would dynamically insert info, like with Node's <a href="mysql.html">MySQL</a> module.</p>
-<h2>Retrieval</h2>
-<p>Get the info from all rows with a given email</p>
-<pre><code class="language-mysql">SELECT * FROM example_table
-  WHERE email = ?;
-</code></pre>
-<p><a href="https://learnsql.com/blog/how-to-find-duplicate-values-in-sql/" target="_blank" title="Finding duplicate values in SQL">See if more than one entry exists with a given email</a></p>
-<pre><code class="language-mysql">SELECT email, COUNT(email) 
-  FROM example_table
-  GROUP BY email
-  HAVING COUNT(email) &gt; 1;
-</code></pre>
-<h2>References</h2>
-<section><h2>Backlinks:</h2><ul><li><a href="sql.html">SQL</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202105310620</em></p></article><article><h1><a href="mysql.html">MySQL</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108260207</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~632kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

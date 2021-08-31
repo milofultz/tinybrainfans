@@ -2,7 +2,178 @@
 <main id="main"><article id="content">            <h1 id="title">Assembly (6502)</h1>
             <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
 <p>The Motorola 6502 is a microcontroller based on their 6800 series, but simplified, less expensive, and faster.</p>
-<h2>References</h2>
+<!--
+
+## Setup
+
+Insert emulation/compilation instructions here
+
+-->
+<h2>Syntax</h2>
+<h3>Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Syntax</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hexadecimal</td>
+<td><code>$xy</code></td>
+<td><code>x</code> are hex digits. Trailing numbers can extend.</td>
+</tr>
+<tr>
+<td>Decimal</td>
+<td><code>xy</code></td>
+<td><code>x</code> are decimal digits. Trailing numbers can extend</td>
+</tr>
+</tbody></table><h3>Addressing Modes</h3>
+<p>These will all use <code>STA</code> but can be used with any command that uses an address.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Syntax</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Absolute</td>
+<td><code>STA $c000</code></td>
+<td>Look up the value at this full memory location</td>
+</tr>
+<tr>
+<td>Zero page</td>
+<td><code>STA $c0</code></td>
+<td>Look up the value at <code>$00c0</code>, <code>c0</code> within the zero page</td>
+</tr>
+<tr>
+<td>Absolute, X</td>
+<td><code>STA $c000,X</code></td>
+<td>Look up the value at <code>$c000</code> + the value in register X (also can be used with Y)</td>
+</tr>
+<tr>
+<td>Zero page, X</td>
+<td><code>STA $c0,X</code></td>
+<td>Look up the value at <code>$00c0</code> + the value in register X (also can be used with Y)</td>
+</tr>
+<tr>
+<td>Immediate</td>
+<td><code>#$c0</code></td>
+<td>Use value <code>$c0</code></td>
+</tr>
+<tr>
+<td>Relative</td>
+<td><code>$c0</code> or <code>label</code></td>
+<td>Go <code>$c0</code> bytes forward/backward (to get to label position)</td>
+</tr>
+<tr>
+<td>Implicit</td>
+<td><code>INX</code></td>
+<td>Do what instruction implies (no args)</td>
+</tr>
+<tr>
+<td>Indirect</td>
+<td><code>$c000</code></td>
+<td>Do instruction found at memory address <code>$c000</code> and the following byte</td>
+</tr>
+<tr>
+<td>Indexed Indirect</td>
+<td><code>STA ($c0,X)</code></td>
+<td>Store in A the value at <code>$00c0</code> + <code>X</code></td>
+</tr>
+</tbody></table><h3>Commands</h3>
+<p>A <strong>value</strong> refers to a number prefaced by a <code>#</code>, whereas an <strong>address/location</strong> refers to a hexadecimal address.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Argument(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BRK</code></td>
+<td></td>
+<td>Break out of the program</td>
+</tr>
+<tr>
+<td><code>LDA n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Load n into register A</td>
+</tr>
+<tr>
+<td><code>STA n</code></td>
+<td>n: memory address/location</td>
+<td>Store value in register A at  n</td>
+</tr>
+<tr>
+<td><code>TAX</code></td>
+<td></td>
+<td>Transfer value in A to X</td>
+</tr>
+<tr>
+<td><code>INX</code></td>
+<td></td>
+<td>Increment value in X by 1</td>
+</tr>
+<tr>
+<td><code>ADC n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Add n with carry to the A register</td>
+</tr>
+</tbody></table><h4>Flag Commands</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Argument(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CPX n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Compare value at X to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0.</td>
+</tr>
+</tbody></table><h4>Branching</h4>
+<p><strong>label</strong>: A label within 256 bytes of invocation</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Name</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BEQ label</code></td>
+<td>Branch on EQual</td>
+<td>If <code>Z</code> flag is 1 (comparison was equal), go to label</td>
+</tr>
+<tr>
+<td><code>BNE label</code></td>
+<td>Branch on Not Equal</td>
+<td>If <code>Z</code> flag is 0 (comparison was not equal), go to label</td>
+</tr>
+<tr>
+<td><code>BCC label</code></td>
+<td>Branch on Carry Clear</td>
+<td></td>
+</tr>
+<tr>
+<td><code>BCS label</code></td>
+<td>Branch on Carry Set</td>
+<td></td>
+</tr>
+</tbody></table><h2>References</h2>
 <ul>
 <li><a href="http://skilldrick.github.io/easy6502/" target="_blank">http://skilldrick.github.io/easy6502/</a></li>
 <li><a href="https://wiki.xxiivv.com/site/assembly.html" target="_blank">https://wiki.xxiivv.com/site/assembly.html</a></li>
@@ -12,4 +183,4 @@
 <li><a href="https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up" target="_blank">https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108191458</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~623kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108310108</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~632kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
