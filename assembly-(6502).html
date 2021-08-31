@@ -79,12 +79,12 @@ Insert emulation/compilation instructions here
 <tr>
 <td>Indirect</td>
 <td><code>$c000</code></td>
-<td>Do instruction found at memory address <code>$c000</code> and the following byte</td>
+<td>Do instruction found at memory address <code>$c000</code> and the following byte, with the first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if  <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
 </tr>
 <tr>
 <td>Indexed Indirect</td>
 <td><code>STA ($c0,X)</code></td>
-<td>Store in A the value at <code>$00c0</code> + <code>X</code></td>
+<td>Store in A the value at <code>$00c0</code> + <code>X</code>, with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if <code>X</code> was <code>01</code>, we would look at the address <code>$00c1</code>. If <code>$00c1</code> holds <code>01</code> and <code>$00c2</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
 </tr>
 </tbody></table><h3>Commands</h3>
 <p>A <strong>value</strong> refers to a number prefaced by a <code>#</code>, whereas an <strong>address/location</strong> refers to a hexadecimal address.</p>
@@ -183,4 +183,4 @@ Insert emulation/compilation instructions here
 <li><a href="https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up" target="_blank">https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108311440</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~632kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108311503</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~633kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

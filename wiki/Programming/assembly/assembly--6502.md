@@ -37,8 +37,8 @@ These will all use `STA` but can be used with any command that uses an address.
 | Immediate | `#$c0` | Use value `$c0` |
 | Relative | `$c0` or `label` | Go `$c0` bytes forward/backward (to get to label position) |
 | Implicit | `INX` | Do what instruction implies (no args) |
-| Indirect | `$c000` | Do instruction found at memory address `$c000` and the following byte |
-| Indexed Indirect | `STA ($c0,X)` | Store in A the value at `$00c0` + `X` |
+| Indirect | `$c000` | Do instruction found at memory address `$c000` and the following byte, with the first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if  `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01`. |
+| Indexed Indirect | `STA ($c0,X)` | Store in A the value at `$00c0` + `X`, with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if `X` was `01`, we would look at the address `$00c1`. If `$00c1` holds `01` and `$00c2` holds `0f`, it would dereference to `$0f01`. |
 
 ### Commands
 
