@@ -3803,12 +3803,12 @@ Insert emulation/compilation instructions here
 </thead>
 <tbody>
 <tr>
-<td><code>CPX n</code></td>
+<td><code>CPX n</code> / <code>CPY n</code></td>
 <td>n: value or memory address/location where value is stored</td>
-<td>Compare value at X to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0.</td>
+<td>Compare value at X/Y to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0.</td>
 </tr>
 </tbody></table><h4>Branching</h4>
-<p><strong>label</strong>: A label within 256 bytes of invocation</p>
+<p><strong>label</strong>: A label that must be within 256 bytes of invocation</p>
 <table>
 <thead>
 <tr>
@@ -3838,6 +3838,26 @@ Insert emulation/compilation instructions here
 <td>Branch on Carry Set</td>
 <td></td>
 </tr>
+</tbody></table><h4>Stack</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Name</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PHA</code></td>
+<td>PusH Accumulator</td>
+<td>Push the accumulator onto the top of the stack</td>
+</tr>
+<tr>
+<td><code>PLA</code></td>
+<td>PulL (Pop) Accumulator</td>
+<td>Pop the accumulator off the top of the stack</td>
+</tr>
 </tbody></table><h2>References</h2>
 <ul>
 <li><a href="http://skilldrick.github.io/easy6502/" target="_blank">http://skilldrick.github.io/easy6502/</a></li>
@@ -3848,7 +3868,7 @@ Insert emulation/compilation instructions here
 <li><a href="https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up" target="_blank">https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108311503</em></p></article><article>            <h1>Assembly (Amiga)</h1>
+<p class="last-modified"><em>Last modified: 202109012001</em></p></article><article>            <h1>Assembly (Amiga)</h1>
             <p>The Amiga was a personal computer from the 80's built on the Motorola 68000 chipset.</p>
 <h2>References</h2>
 <ul>
@@ -6543,4 +6563,4 @@ alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 <li><a href="https://stackoverflow.com/questions/7066325/list-git-aliases" target="_blank">https://stackoverflow.com/questions/7066325/list-git-aliases</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108260207</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~633kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108260207</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~634kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

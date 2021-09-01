@@ -55,13 +55,13 @@ A **value** refers to a number prefaced by a `#`, whereas an **address/location*
 
 #### Flag Commands
 
-| Command | Argument(s)                                               | Effect                                                       |
-| ------- | --------------------------------------------------------- | ------------------------------------------------------------ |
-| `CPX n` | n: value or memory address/location where value is stored | Compare value at X to n. If equal, set `Z` flag to 1; else, set `Z` flag to 0. |
+| Command           | Argument(s)                                               | Effect                                                       |
+| ----------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
+| `CPX n` / `CPY n` | n: value or memory address/location where value is stored | Compare value at X/Y to n. If equal, set `Z` flag to 1; else, set `Z` flag to 0. |
 
 #### Branching
 
-**label**: A label within 256 bytes of invocation
+**label**: A label that must be within 256 bytes of invocation
 
 | Command     | Name                  | Effect                                                   |
 | ----------- | --------------------- | -------------------------------------------------------- |
@@ -69,6 +69,13 @@ A **value** refers to a number prefaced by a `#`, whereas an **address/location*
 | `BNE label` | Branch on Not Equal   | If `Z` flag is 0 (comparison was not equal), go to label |
 | `BCC label` | Branch on Carry Clear |                                                          |
 | `BCS label` | Branch on Carry Set   |                                                          |
+
+#### Stack
+
+| Command     | Name                  | Effect                                                   |
+| ----------- | --------------------- | -------------------------------------------------------- |
+| `PHA` | PusH Accumulator | Push the accumulator onto the top of the stack |
+| `PLA` | PulL (Pop) Accumulator | Pop the accumulator off the top of the stack |
 
 ## References
 
