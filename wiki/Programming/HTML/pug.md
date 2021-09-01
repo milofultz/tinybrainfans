@@ -31,14 +31,14 @@ header#header.header.header__wrapper
   .header__logo
     span
       img.header__logo-img(src="..." alt="Logo")
-      |  Some text!
+      |  Some <b>text</b>!
   h1 Company Name
 
 //- outputs
 
 //- <header id="header" class="header header__wrapper">
 //-   <div class="header__logo">
-//-     <span><img src="..." alt="Logo" /> Some text!</span>
+//-     <span><img src="..." alt="Logo" /> Some &lt;b&gt;text&lt;/b&gt;!</span>
 //-   </div>
 //-   <h1>Company Name</h1>
 //- </header>
@@ -64,23 +64,27 @@ Any line that starts with a hyphen or anything that follows an equals sign in an
 - var num = 6;
 - var name = "John Smith";
 
-h1(data-name= name.replace(/\s/, '.').toLowerCase() )= `This guy is probably ${num} feet tall!`
+h1(data-name= name.replace(/\s/, '.').toLowerCase())= `This guy is probably ${num} feet tall!`
 
 //- outputs
 //- <h1 data-name="john.smith">This guy is probably 6 feet tall!</h1>
 ```
 
-#### Inserting HTML via Javascript
+#### Inserting Unescaped HTML/Javascript
+
+To insert unescaped HTML/Javascript that is located within a string, preface the string with an exclamation and enclose it with curly braces.
 
 ```
 - var num = 6;
 - var name = "John Smith";
 
 - const john = `This guy is <i>probably</i> ${num} feet tall!`;
-h1(data-name= name.replace(/\s/, '.').toLowerCase() )= !{john}
+h1(data-name= name.replace(/\s/, '.').toLowerCase()) !{john}
+p !{'this <b>is it</b>'}
 
 //- outputs
 //- <h1 data-name="john.smith">This guy is <i>probably</i> 6 feet tall!</h1>
+//- <p>this <b>is it</b></p>
 ```
 
 #### On a Text Node
