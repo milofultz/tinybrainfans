@@ -17,14 +17,14 @@ pug -w filename.pug -o ./outputfolder
   .header__logo
     span
       img.header__logo-img(src=&quot;...&quot; alt=&quot;Logo&quot;)
-      |  Some text!
+      |  Some &lt;b&gt;text&lt;/b&gt;!
   h1 Company Name
 
 //- outputs
 
 //- &lt;header id=&quot;header&quot; class=&quot;header header__wrapper&quot;&gt;
 //-   &lt;div class=&quot;header__logo&quot;&gt;
-//-     &lt;span&gt;&lt;img src=&quot;...&quot; alt=&quot;Logo&quot; /&gt; Some text!&lt;/span&gt;
+//-     &lt;span&gt;&lt;img src=&quot;...&quot; alt=&quot;Logo&quot; /&gt; Some &amp;lt;b&amp;gt;text&amp;lt;/b&amp;gt;!&lt;/span&gt;
 //-   &lt;/div&gt;
 //-   &lt;h1&gt;Company Name&lt;/h1&gt;
 //- &lt;/header&gt;
@@ -43,20 +43,23 @@ pug -w filename.pug -o ./outputfolder
 <pre><code>- var num = 6;
 - var name = &quot;John Smith&quot;;
 
-h1(data-name= name.replace(/\s/, &#x27;.&#x27;).toLowerCase() )= `This guy is probably ${num} feet tall!`
+h1(data-name= name.replace(/\s/, &#x27;.&#x27;).toLowerCase())= `This guy is probably ${num} feet tall!`
 
 //- outputs
 //- &lt;h1 data-name=&quot;john.smith&quot;&gt;This guy is probably 6 feet tall!&lt;/h1&gt;
 </code></pre>
-<h4>Inserting HTML via Javascript</h4>
+<h4>Inserting Unescaped HTML/Javascript</h4>
+<p>To insert unescaped HTML/Javascript that is located within a string, preface the string with an exclamation and enclose it with curly braces.</p>
 <pre><code>- var num = 6;
 - var name = &quot;John Smith&quot;;
 
 - const john = `This guy is &lt;i&gt;probably&lt;/i&gt; ${num} feet tall!`;
-h1(data-name= name.replace(/\s/, &#x27;.&#x27;).toLowerCase() )= !{john}
+h1(data-name= name.replace(/\s/, &#x27;.&#x27;).toLowerCase()) !{john}
+p !{&#x27;this &lt;b&gt;is it&lt;/b&gt;&#x27;}
 
 //- outputs
 //- &lt;h1 data-name=&quot;john.smith&quot;&gt;This guy is &lt;i&gt;probably&lt;/i&gt; 6 feet tall!&lt;/h1&gt;
+//- &lt;p&gt;this &lt;b&gt;is it&lt;/b&gt;&lt;/p&gt;
 </code></pre>
 <h4>On a Text Node</h4>
 <pre><code>- const test = &quot;Yeah!&quot;;
@@ -234,4 +237,4 @@ h1 This is my list!
 <li><a href="https://pugjs.org/language/mixins.html" target="_blank">https://pugjs.org/language/mixins.html</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108250037</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~634kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109012159</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~634kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
