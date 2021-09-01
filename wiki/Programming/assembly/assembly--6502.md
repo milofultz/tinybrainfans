@@ -11,7 +11,7 @@ The Motorola 6502 is a microcontroller based on their 6800 series, but simplifie
 
 ## Setup
 
-Insert emulation/compilation instructions here
+Insert emulation/compilation instructions here, test
 
 -->
 
