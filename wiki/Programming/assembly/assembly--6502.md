@@ -11,9 +11,19 @@ The Motorola 6502 is a microcontroller based on their 6800 series, but simplifie
 
 ## Setup
 
-Insert emulation/compilation instructions here, test
+Insert emulation/compilation instructions here
 
 -->
+
+## Memory Locations
+
+### `$0000 - $00ff` - Zero Page
+
+This stores commonly used game variables as they can be accessed with only two digit addresses (see [addressing modes](#addressing-modes)).
+
+### `$0200 - $05ff` - Display
+
+This stores values to be rendered on the display. Each row of the screen is represented by `$20` values stored inline, rendering left to right. e.g. the first row of the screen is held in `$0200` - `$021f`; the second row is held in `$0220` - `$023f`.
 
 ## Syntax
 
@@ -63,12 +73,16 @@ A **value** refers to a number prefaced by a `#`, whereas an **address/location*
 
 **label**: A label that must be within 256 bytes of invocation
 
-| Command     | Name                  | Effect                                                   |
-| ----------- | --------------------- | -------------------------------------------------------- |
-| `BEQ label` | Branch on EQual       | If `Z` flag is 1 (comparison was equal), go to label     |
-| `BNE label` | Branch on Not Equal   | If `Z` flag is 0 (comparison was not equal), go to label |
-| `BCC label` | Branch on Carry Clear |                                                          |
-| `BCS label` | Branch on Carry Set   |                                                          |
+Any label can be substituted for a direct memory address.
+
+| Command             | Name                                        | Effect                                                       |
+| ------------------- | ------------------------------------------- | ------------------------------------------------------------ |
+| `BEQ label`         | Branch on EQual                             | If `Z` flag is 1 (comparison was equal), go to label         |
+| `BNE label`         | Branch on Not Equal                         | If `Z` flag is 0 (comparison was not equal), go to label     |
+| `BCS label`         | Branch on Carry Set                         | If carry flag is 1 (set), go to label                        |
+| `BCC label`         | Branch on Carry Clear                       | If carry flag is 0 (not set), go to label                    |
+| `JMP label`         | Unconditional Jump                          | Jump directly to label                                       |
+| `JSR label` / `RTS` | Jump to SubRoutine / ReTurn from Subroutine | Jump directly to label and push current address - 1 to the stack. This will be retrieved via the return statement. |
 
 #### Stack
 
