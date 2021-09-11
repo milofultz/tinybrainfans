@@ -9,6 +9,8 @@ Node Version Manager allows you to use multiple diferent versions of {{node}} an
 
 ### NVM
 
+Install the newest version of NVM ([get the current version number here](https://github.com/nvm-sh/nvm#installing-and-updating))
+
 ```bash
 $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 ```
@@ -44,6 +46,20 @@ $ nvm uninstall xx.xx.x
 $ nvm alias default xx.xx
 ```
 
+### Within a Project
+
+Create a file in the root of your project called `.nvmrc` and place the version number inside, e.g.
+
+```
+14.17.6
+```
+
+To use nvm within the project, set your current directory to the root of the project where the `.nvmrc` file is and follow these steps:
+
+- `nvm use` to use the specified version
+- `nvm install` the version, if needed
+
 ## References
 
 1. https://techstacker.com/run-multiple-node-versions-node-nvm/
+2. https://github.com/nvm-sh/nvm#installing-and-updating

@@ -3,6 +3,7 @@
             <p>Node Version Manager allows you to use multiple diferent versions of <a href="node.html">node</a> and switch between them easily.</p>
 <h2>Installation</h2>
 <h3>NVM</h3>
+<p>Install the newest version of NVM (<a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank">get the current version number here</a>)</p>
 <pre><code class="language-bash">$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 </code></pre>
 <p>Be sure to completely restart your terminal before proceeding.</p>
@@ -23,9 +24,19 @@ $ nvm uninstall xx.xx.x
 <h3>Set Default Node Version</h3>
 <pre><code class="language-bash">$ nvm alias default xx.xx
 </code></pre>
+<h3>Within a Project</h3>
+<p>Create a file in the root of your project called <code>.nvmrc</code> and place the version number inside, e.g.</p>
+<pre><code>14.17.6
+</code></pre>
+<p>To use nvm within the project, set your current directory to the root of the project where the <code>.nvmrc</code> file is and follow these steps:</p>
+<ul>
+<li><code>nvm use</code> to use the specified version</li>
+<li><code>nvm install</code> the version, if needed</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li><a href="https://techstacker.com/run-multiple-node-versions-node-nvm/" target="_blank">https://techstacker.com/run-multiple-node-versions-node-nvm/</a></li>
+<li><a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank">https://github.com/nvm-sh/nvm#installing-and-updating</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107021741</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~651kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109110442</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~652kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
