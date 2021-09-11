@@ -55,7 +55,7 @@ Place the zip ties on the fork (for the front tire) or the frame (for the back) 
    / /  TIRE \ \
   / /  /```\  \ \ 
   | |  |\/\|  | |
-  |-|--|/\/|--|-| <-- ZIP TIES
+  )-(--|/\/|--)-( <-- ZIP TIES
 ```
 
 Mount your bike or flip it over onto the seat so that the tires can rotate freely during testing. 

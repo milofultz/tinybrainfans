@@ -34,21 +34,20 @@ How to manipulate the {{HTML}} {{DOM}} using {{Javascript}}.
 
 ### Insertion
 
-- `X.appendChild(Y)` will append element Y as the last child of element X
-
-- `X.prepend(Y)` will prepend element Y as the first child of element X
-- `X.parentNode.insertBefore(Y, X);` will insert element Y directly before element X
-- `X.parentNode.insertBefore(Y, X.nextSibling);` will insert element Y directly after element X
+* `X.appendChild(Y)` will append element Y as the last child of element X
+* `X.prepend(Y)` will prepend element Y as the first child of element X
+* `X.parentNode.insertBefore(Y, X);` will insert element Y directly before element X
+* `X.parentNode.insertBefore(Y, X.nextSibling);` will insert element Y directly after element X
 
 ### Duplication
 
-- `X.cloneNode(true)` will return a copy of the selected element.
+* `X.cloneNode(true)` will return a copy of the selected element.
 
 ### Search
 
-- `X.querySelector(Y)` will find the first element based on CSS element search Y within the tree of elements found at X.
-- `X.querySelector(Y)` will find all elements based on CSS element search Y within the tree of elements found at X.
-- `X.closest(Y)` will find an element based on CSS element search Y from element X up through all of the parents to the top of the DOM
+* `X.querySelector(Y)` will find the first element based on CSS element search Y within the tree of elements found at X.
+* `X.querySelector(Y)` will find all elements based on CSS element search Y within the tree of elements found at X.
+* `X.closest(Y)` will find an element based on CSS element search Y from element X up through all of the parents to the top of the DOM
 
 ## DOMParser
 

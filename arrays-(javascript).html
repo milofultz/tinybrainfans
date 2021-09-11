@@ -1,7 +1,56 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Arrays in Javascript have many specific methods for modification and analysis. Some are cunfusiong or hard to recall."><title>Arrays (Javascript)</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">Arrays (Javascript)</h1>
             <p><a href="array.html">Arrays</a> in <a href="javascript.html">Javascript</a> have many specific methods for modification and analysis. Some are cunfusiong or hard to recall.</p>
-<h2>Modification</h2>
+<h2>Methods</h2>
+<h3>reduce</h3>
+<p><code>reduce</code> will iterate through the items in the array and operate the callback function on each one, passing the previous value's result post-callback. Because of this, <code>reduce</code> can be used to build most array methods from scratch.</p>
+<p><code>reduce</code> takes up to two params: the callback function, and the initial value.</p>
+<h4>Callback</h4>
+<p>The callback function can take up to four params:</p>
+<ul>
+<li><code>previousValue</code> or<code>accumulator</code></li>
+<li><code>currentValue</code></li>
+<li><code>currentIndex</code></li>
+<li><code>array</code></li>
+</ul>
+<p>The result of this callback function will go into the <code>previousValue</code>/<code>accumulator</code> and then the currentValue will become the next item in the array. At the end of the iteration, the <code>previousValue</code> is what is returned from the <code>reduce</code> function.</p>
+<h4>Initial Value</h4>
+<p>This value is going to be passed in to the callback function for the first item in the array, where no <code>previousValue</code>/<code>accumulator</code> would otherwise exist.</p>
+<p>If no initial value is provided, the <code>previousValue</code>/<code>accumulator</code> will be set to the first item in the array, and the <code>currentValue</code> will be set to the second item in the array.</p>
+<h4>Examples</h4>
+<h5>Check Condition on All Items</h5>
+<p>By setting the callback to require that both the accumulator be true and that the value is evenly divisible by 2, this will check that all values pass the condition. Without the accumulator check, it will only return whether the last item in the list is even.</p>
+<pre><code class="language-javascript">const evenArray = [2,4,6,8];
+const mixedArray = [2,3,4,5,6];
+evenArray.reduce((acc, val) =&gt; acc &amp;&amp; val % 2 === 0, true); // returns true
+mixedArray.reduce((acc, val) =&gt; acc &amp;&amp; val % 2 === 0, true); // returns false
+</code></pre>
+<h5>Sum All Items</h5>
+<p>This works by initially setting the sum to the first value in the array, and then adding that to each successive value.</p>
+<pre><code class="language-javascript">const numbers = [1,2,3,4,5];
+numbers.reduce((sum, val) =&gt; sum + val); // returns 15
+</code></pre>
+<h5>Filter Out Odd Numbers</h5>
+<pre><code class="language-javascript">const numbers = [1,2,3,4,5];
+numbers.reduce((resultArray, val) =&gt; {
+  if (val % 2 === 0) {
+    resultArray.push(val);
+  }
+  return resultArray;
+}, []); // returns [2,4];
+</code></pre>
+<h5>Conditional Map: Return All Values Over 2 Divided By 2</h5>
+<pre><code class="language-javascript">const numbers = [1,2,3,4,5];
+numbers.reduce((resultArray, val) =&gt; {
+  if (val &gt; 2) {
+    const newNum = val / 2;
+    resultArray.push(newNum);
+  }
+  return resultArray;
+}, []); // returns [1.5, 2, 2.5];
+</code></pre>
+<h2>Destructive Methods</h2>
+<p>These methods affect the array the method is called upon.</p>
 <h3>sort</h3>
 <p>The sort function can work with or without a sorting function that sorts <strong>in place</strong>. Without, it will simply convert every value into a string and compare via Unicode point value. With, it follows this formula: <code>.sort(compareFunction)</code>. </p>
 <p>From <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank">MDN</a>:</p>
@@ -39,4 +88,4 @@ array = [1,2,3,4];
 array.splice(1,1,17); // returns [2]; array now equals [1,17,3,4]
 </code></pre>
 
-<p class="last-modified"><em>Last modified: 202107171713</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~643kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109101553</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~651kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

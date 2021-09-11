@@ -94,6 +94,23 @@ const getNameAndAge = ({ person: Person, job: string }) => {
 };
 ```
 
+### Typing {{React}}
+
+#### onChange Events
+
+For React onChange handlers, you can use the `React.ChangeEvent<>` generic, filling it in with whatever type of element is being changed.
+
+```react
+<input
+  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+    handleEmail(event);
+    handleEmailValidation();
+  }}
+  placeholder="Enter Email"
+  type='email'
+/>
+```
+
 ### Unique Typing Troubleshooting
 
 #### `Property '***' does not exist on type 'never'`
@@ -203,6 +220,9 @@ interface User {
 7. https://stackoverflow.com/questions/61851004/describe-interface-fixed-values-in-array-element-of-typescript
 8. https://stackoverflow.com/questions/23914271/typescript-interface-definition-with-an-unknown-property-key
 9. https://basarat.gitbook.io/typescript/type-system
+10. https://dev.to/mattzgg_94/get-started-with-using-typescript-and-tdd-to-solve-leetcode-problems-in-vs-code-26d
+11. https://www.udemy.com/course/understanding-typescript/
+12. https://stackoverflow.com/questions/33256274/typesafe-select-onchange-event-using-reactjs-and-typescript
 
 [generic function]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 

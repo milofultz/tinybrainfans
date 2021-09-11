@@ -88,5 +88,7 @@ tr -d "\r" < oldname.sh > newname.sh
 3. https://linuxize.com/post/how-to-create-bash-aliases/
 3. https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf
 4. https://stackoverflow.com/a/11428439
+5. https://unix.stackexchange.com/questions/19654/how-do-i-change-the-extension-of-multiple-files
+6. https://mywiki.wooledge.org/BashFAQ/030
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/
