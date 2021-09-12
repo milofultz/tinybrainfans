@@ -1241,9 +1241,10 @@ $ nvm uninstall xx.xx.x
 <ol>
 <li><a href="https://techstacker.com/run-multiple-node-versions-node-nvm/" target="_blank">https://techstacker.com/run-multiple-node-versions-node-nvm/</a></li>
 <li><a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank">https://github.com/nvm-sh/nvm#installing-and-updating</a></li>
+<li><a href="https://stackoverflow.com/questions/57110542/how-to-write-a-nvmrc-file-which-automatically-change-node-version" target="_blank">https://stackoverflow.com/questions/57110542/how-to-write-a-nvmrc-file-which-automatically-change-node-version</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202109110442</em></p></article><article>            <h1><a href="mongodb.html">MongoDB</a></h1>
+<p class="last-modified"><em>Last modified: 202109110517</em></p></article><article>            <h1><a href="mongodb.html">MongoDB</a></h1>
             <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system based on <a href="javascript.html">Javascript</a> using documents similar to <a href="json.html">JSON</a>.</p>
 <h2>Getting Started</h2>
 <p>This will start a new project using your local server and <a href="mongoose.html">mongoose</a> via <a href="node.html">node</a>.</p>
@@ -3697,7 +3698,438 @@ call [SendMessage]
 <li><a href="https://masm32.com/" target="_blank">https://masm32.com/</a> </li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107112140</em></p></article><article><h1><a href="machine-code.html">machine code</a></h1>
+<p class="last-modified"><em>Last modified: 202107112140</em></p></article><article>            <h1>Assembly (6502)</h1>
+            <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
+<p>The Motorola 6502 is a microcontroller based on their 6800 series, but simplified, less expensive, and faster.</p>
+<!--
+
+## Setup
+
+Insert emulation/compilation instructions here
+
+-->
+<h2>Memory Locations</h2>
+<h3><code>$0000 - $00ff</code> - Zero Page</h3>
+<p>This stores commonly used game variables as they can be accessed with only two digit addresses (see <a href="#addressing-modes" target="_blank">addressing modes</a>).</p>
+<h3><code>$0200 - $05ff</code> - Display</h3>
+<p>This stores values to be rendered on the display. Each row of the screen is represented by <code>$20</code> values stored inline, rendering left to right. e.g. the first row of the screen is held in <code>$0200</code> - <code>$021f</code>; the second row is held in <code>$0220</code> - <code>$023f</code>.</p>
+<h2>Syntax</h2>
+<h3>Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Syntax</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hexadecimal</td>
+<td><code>$xy</code></td>
+<td><code>x</code> are hex digits. Trailing numbers can extend.</td>
+</tr>
+<tr>
+<td>Decimal</td>
+<td><code>xy</code></td>
+<td><code>x</code> are decimal digits. Trailing numbers can extend</td>
+</tr>
+</tbody></table><h3>Flags</h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Name</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>Carry Flag</td>
+<td>The carry flag is set if the last operation caused an overflow from bit 7 of the result or an underflow from bit 0. This condition is set during arithmetic, comparison and during logical shifts (or explicitly).</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>Zero Flag</td>
+<td>The zero flag is set if the result of the last operation as was zero.</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Interrupt Disable</td>
+<td>The interrupt disable flag is set if the program has executed a <code>SEI</code> instruction. While this flag is set the processor will not respond to interrupts from devices until it is cleared by a <code>CLI</code> instruction.</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Decimal Mode Flag</td>
+<td>While the decimal mode flag is set the processor will obey the rules of Binary Coded Decimal (BCD) arithmetic during addition and subtraction. The flag can be explicitly set using <code>SED</code> and cleared with <code>CLD</code>.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Break Command</td>
+<td>The break command bit is set when a <code>BRK</code> instruction has been executed and an interrupt has been generated to process it.</td>
+</tr>
+<tr>
+<td>V</td>
+<td>Overflow Flag</td>
+<td>The overflow flag is set during arithmetic operations if the result has yielded an invalid 2's complement result (e.g. adding to positive numbers and ending up with a negative result: 64 + 64 =&gt; -128). It is determined by looking at the carry between bits 6 and 7 and between bit 7 and the carry flag.</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Negative Flag</td>
+<td>The negative flag is set if the result of the last operation had bit 7 set to a one.</td>
+</tr>
+</tbody></table><h3>Addressing Modes</h3>
+<p>These will all use <code>STA</code> but can be used with any command that uses an address.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Syntax</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Absolute</td>
+<td><code>STA $c000</code></td>
+<td>Look up the value at this full memory location</td>
+</tr>
+<tr>
+<td>Zero page</td>
+<td><code>STA $c0</code></td>
+<td>Look up the value at <code>$00c0</code>, <code>c0</code> within the zero page</td>
+</tr>
+<tr>
+<td>Absolute, X</td>
+<td><code>STA $c000,X</code></td>
+<td>Look up the value at <code>$c000</code> + the value in register X (e.g. if X is <code>$01</code>, store value of A at memory location <code>$c001</code>)</td>
+</tr>
+<tr>
+<td>Zero page, X</td>
+<td><code>STA $c0,X</code></td>
+<td>Look up the value at <code>$00c0</code> + the value in register X (e.g. if X is <code>$01</code>, store value of A at memory location <code>$c001</code>)</td>
+</tr>
+<tr>
+<td>Immediate</td>
+<td><code>#$c0</code></td>
+<td>Use value <code>$c0</code></td>
+</tr>
+<tr>
+<td>Relative</td>
+<td><code>$c0</code> or <code>label</code></td>
+<td>Go <code>$c0</code> bytes forward/backward (to get to label position)</td>
+</tr>
+<tr>
+<td>Implicit</td>
+<td><code>INX</code></td>
+<td>Do what instruction implies (no args)</td>
+</tr>
+<tr>
+<td>Indirect</td>
+<td><code>$c000</code></td>
+<td>Do instruction found at memory address <code>$c000</code> and the following byte, with the first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if  <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
+</tr>
+<tr>
+<td>Indexed Indirect</td>
+<td><code>STA ($c0,X)</code></td>
+<td>Store in A the value at address (<code>$00c0</code> + <code>X</code>), with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if <code>X</code> was <code>01</code>, we would look at the address <code>$00c1</code>. If <code>$00c1</code> holds <code>01</code> and <code>$00c2</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
+</tr>
+<tr>
+<td>Indirect Indexed</td>
+<td><code>STA ($c0),X</code></td>
+<td>Store in A the value found at <code>$00c0</code> plus the <em>value</em> of <code>X</code>, with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, lets say <code>X</code> was <code>01</code>. We would look at the address <code>$00c0</code>. If <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code> <em>plus</em> the value of <code>X</code>, resulting in <code>$0f02</code>.</td>
+</tr>
+</tbody></table><h3>Commands</h3>
+<p>A <strong>value</strong> refers to a number prefaced by a <code>#</code>, whereas an <strong>address/location</strong> refers to a hexadecimal address.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Argument(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BRK</code></td>
+<td></td>
+<td>Break out of the program</td>
+</tr>
+<tr>
+<td><code>LDA n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Load n into register A</td>
+</tr>
+<tr>
+<td><code>STA n</code></td>
+<td>n: memory address/location</td>
+<td>Store value in register A at  n</td>
+</tr>
+<tr>
+<td><code>TAX</code></td>
+<td></td>
+<td>Transfer value in A to X</td>
+</tr>
+<tr>
+<td><code>INX</code> / <code>DEX</code></td>
+<td></td>
+<td>Increment/Decrement value in X by 1</td>
+</tr>
+<tr>
+<td><code>ADC n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Add n with carry to the A register</td>
+</tr>
+</tbody></table><h4>Flag Commands</h4>
+<p>These commands are used solely for the purpose of changing and setting flags.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Argument(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CMP n</code> / <code>CPX n</code> / <code>CPY n</code></td>
+<td>n: value or memory address/location where value is stored</td>
+<td>Compare value at A/X/Y to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0.</td>
+</tr>
+<tr>
+<td><code>SEI</code> / <code>CLI</code></td>
+<td></td>
+<td>Set/Clear Interrupt Disable</td>
+</tr>
+</tbody></table><h4>Branching</h4>
+<p><strong>label</strong>: A label that must be within 256 bytes of invocation</p>
+<p>Any label can be substituted for a direct memory address.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Name</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BEQ label</code></td>
+<td>Branch on EQual</td>
+<td>If <code>Z</code> flag is 1 (comparison was equal), go to label</td>
+</tr>
+<tr>
+<td><code>BNE label</code></td>
+<td>Branch on Not Equal</td>
+<td>If <code>Z</code> flag is 0 (comparison was not equal), go to label</td>
+</tr>
+<tr>
+<td><code>BCS label</code></td>
+<td>Branch on Carry Set</td>
+<td>If carry flag is 1 (set), go to label</td>
+</tr>
+<tr>
+<td><code>BCC label</code></td>
+<td>Branch on Carry Clear</td>
+<td>If carry flag is 0 (not set), go to label</td>
+</tr>
+<tr>
+<td><code>JMP label</code></td>
+<td>Unconditional Jump</td>
+<td>Jump directly to label</td>
+</tr>
+<tr>
+<td><code>JSR label</code> / <code>RTS</code></td>
+<td>Jump to SubRoutine / ReTurn from Subroutine</td>
+<td>Jump directly to label and push current address - 1 to the stack. This will be retrieved via the return statement.</td>
+</tr>
+</tbody></table><h4>Stack</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Name</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PHA</code></td>
+<td>PusH Accumulator</td>
+<td>Push the accumulator onto the top of the stack</td>
+</tr>
+<tr>
+<td><code>PLA</code></td>
+<td>PulL (Pop) Accumulator</td>
+<td>Pop the accumulator off the top of the stack</td>
+</tr>
+</tbody></table><h4>Bitwise Operators</h4>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Parameters</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AND n</code></td>
+<td><code>n</code>: Value or address</td>
+<td>Bitwise AND of value of <code>n</code> or value at address <code>n</code> against the accumulator register</td>
+</tr>
+<tr>
+<td><code>LSR [n]</code></td>
+<td><code>n</code>: Value or address (if omitted, default to accumulator)</td>
+<td>Bitwise shift right</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ul>
+<li><a href="http://skilldrick.github.io/easy6502/" target="_blank">http://skilldrick.github.io/easy6502/</a></li>
+<li><a href="https://wiki.xxiivv.com/site/assembly.html" target="_blank">https://wiki.xxiivv.com/site/assembly.html</a></li>
+<li><a href="https://git.sr.ht/~rabbits/famicom_cookbook/tree/master/item/README.md" target="_blank">https://git.sr.ht/~rabbits/famicom_cookbook/tree/master/item/README.md</a></li>
+<li><a href="https://www.youtube.com/watch?v=lsvSZamCCBM" target="_blank">https://www.youtube.com/watch?v=lsvSZamCCBM</a></li>
+<li><a href="https://en.m.wikibooks.org/wiki/6502_Assembly" target="_blank">https://en.m.wikibooks.org/wiki/6502_Assembly</a></li>
+<li><a href="https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up" target="_blank">https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up</a></li>
+</ul>
+<p>Instructions and Flags Reference:</p>
+<ul>
+<li><a href="http://www.6502.org/tutorials/6502opcodes.html" target="_blank">http://www.6502.org/tutorials/6502opcodes.html</a></li>
+<li><a href="http://www.obelisk.me.uk/6502/reference.html" target="_blank">http://www.obelisk.me.uk/6502/reference.html</a></li>
+<li><a href="https://retroscience.net/writing-6502-assembler.html" target="_blank">https://retroscience.net/writing-6502-assembler.html</a></li>
+<li><a href="http://www.obelisk.me.uk/6502/registers.html#Z" target="_blank">http://www.obelisk.me.uk/6502/registers.html#Z</a></li>
+</ul>
+<section><h2>Backlinks:</h2><ul><li><a href="minicube64.html">Minicube64</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202109122035</em></p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
+            <p><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">Minicube64</a> is a fantasy console style emulator based on <a href="assembly-(6502).html">6502</a>, with the intention of helping people learn how games were made for older systems such as Atari 2600, NES or C64, but without many of the difficult hardware restrictions.</p>
+<h2>Annotated Introduction</h2>
+<p>The <a href="https://aeriform.gitbook.io/minicube64/" target="_blank">introduction page</a> is what I'm annotating below. Hopefully these notes will give more insight into what the assembly is doing in the console.</p>
+<h3>Writing a New ROM</h3>
+<p>On the page <a href="https://aeriform.gitbook.io/minicube64/new" target="_blank">&quot;Writing a New ROM&quot;</a>, there is a test program written in <a href="assembly-(6502).html">6502 assembly</a>. I figured a good way to learn what was going on was to annotate the whole thing and really grok it.</p>
+<p>This is the contents of <code>test.s</code>:</p>
+<pre><code class="language-assembly">include &quot;64cube.inc&quot;    ; Include the helper functinos for 64cube
+
+ENUM $0                 ; Enumerate the following vars starting at $0000
+  counter rBYTE 1        ; Set counter to type of byte with value of 1
+ENDE                     ; End enumeration
+
+  org $200              ; Specify the origin of the ROM program
+  sei                    ; Set interrupt flag to 1
+  ldx #$ff               ; Load 255 into X
+  txs                   ; Transfer the contents of x to the stack
+                        ;   pointer
+
+  lda #$0               ; Load 0 into A
+  sta VIDEO             ; Store A into VIDEO (location $100)
+
+  _setw IRQ, VBLANK_IRQ  ; Store the address of IRQ at VBLANK_IRQ (in the
+                        ;   include file)
+  cli                   ; Clear interrupt flag
+
+Infinite:                ; Set label for &#x27;Infinite&#x27; at this address
+  jmp Infinite          ; Jump to the &#x27;Infinite&#x27; label, effectively
+                        ;   creating an infinite loop
+
+IRQ:                     ; Set label for &#x27;IRQ&#x27; at this address
+  inc counter            ; Increment the value at &#x27;counter&#x27;
+  rti                    ; Return to where the interrupt occurred
+
+</code></pre>
+<p>This is the relevant contents of <code>64cube.inc</code>:</p>
+<pre><code class="language-assembly">...
+
+; NOTE NOTE
+; normal 6502 has irq vectors at $fffe
+; we have them at $010e
+NMI_IRQ  = $10c
+VBLANK_IRQ = $10e
+
+...
+
+MACRO   _setw value,dest  ; create a macro named _setw with two params:
+                          ;   &#x27;value&#x27;, and &#x27;dest&#x27;
+  lda #&lt;value             ; load the high byte of value into register &#x27;a&#x27;
+  sta dest                 ; store the value in register &#x27;a&#x27; at the address
+                          ;   of destination
+  lda #&gt;value             ; load the low byte of value into register &#x27;a&#x27;
+  sta dest+1               ; store the value in register &#x27;a&#x27; at the address
+                          ;   of destination + 1
+ENDM                      ; signify the end of the macro
+</code></pre>
+<h3>Working With Pixels</h3>
+<p>This is the changed contents of the above <code>test.s</code>:</p>
+<pre><code class="language-assembly">...
+  txs
+
+  ; This will set the video buffer page in a 4k page in memory
+  lda #$f                    ; Load high byte of page into &#x27;a&#x27;
+                            ;   register
+  sta VIDEO                 ; Store value in &#x27;a&#x27; register at &#x27;VIDEO&#x27;
+
+  ; This will create a pixel of color #64 at pixel address $f820
+  lda #$64                   ; Load decimal value 64 into &#x27;a&#x27;
+                            ;   register
+  ;sta $f820                ; Store value in &#x27;a&#x27; register at $f820
+  sta $f000 + 32 + 32 * 64  ; Same as above but with MATH
+
+  _setw IRQ, VBLANK_IRQ
+...
+</code></pre>
+<h2>Minicube 64 Syntax</h2>
+<p>This is syntax that doesn't exist in 6502 but does here.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Parameters</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>org $NNN</code></td>
+<td><code>NNN</code>: Number</td>
+<td>Set program origin to <code>$0NNN</code></td>
+</tr>
+</tbody></table><h2>Video Reference</h2>
+<h3>Video Address Locations</h3>
+<p>These are assuming the video page is being held in the 4k <code>$f000</code> page.</p>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xf000</code></td>
+<td>Top Left</td>
+</tr>
+<tr>
+<td><code>0xf03f</code></td>
+<td>Top Right</td>
+</tr>
+<tr>
+<td><code>0xf820</code></td>
+<td>Middle</td>
+</tr>
+<tr>
+<td><code>0xffc0</code></td>
+<td>Bottom Left</td>
+</tr>
+<tr>
+<td><code>0xffff</code></td>
+<td>Bottom Right</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">https://aeriform.gitbook.io/minicube64/</a></li>
+<li><a href="https://itch.io/jam/minicubejam" target="_blank">https://itch.io/jam/minicubejam</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202109122035</em></p></article><article><h1><a href="machine-code.html">machine code</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-(6502).html">Assembly (6502)</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Assembly (Unix)</h1>
@@ -3764,227 +4196,7 @@ Hello, World
 <p class="last-modified"><em>Last modified: </em></p></article><article><h1>Stack (Programming)</h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Assembly (6502)</h1>
-            <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
-<p>The Motorola 6502 is a microcontroller based on their 6800 series, but simplified, less expensive, and faster.</p>
-<!--
-
-## Setup
-
-Insert emulation/compilation instructions here
-
--->
-<h2>Memory Locations</h2>
-<h3><code>$0000 - $00ff</code> - Zero Page</h3>
-<p>This stores commonly used game variables as they can be accessed with only two digit addresses (see <a href="#addressing-modes" target="_blank">addressing modes</a>).</p>
-<h3><code>$0200 - $05ff</code> - Display</h3>
-<p>This stores values to be rendered on the display. Each row of the screen is represented by <code>$20</code> values stored inline, rendering left to right. e.g. the first row of the screen is held in <code>$0200</code> - <code>$021f</code>; the second row is held in <code>$0220</code> - <code>$023f</code>.</p>
-<h2>Syntax</h2>
-<h3>Types</h3>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Syntax</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hexadecimal</td>
-<td><code>$xy</code></td>
-<td><code>x</code> are hex digits. Trailing numbers can extend.</td>
-</tr>
-<tr>
-<td>Decimal</td>
-<td><code>xy</code></td>
-<td><code>x</code> are decimal digits. Trailing numbers can extend</td>
-</tr>
-</tbody></table><h3>Addressing Modes</h3>
-<p>These will all use <code>STA</code> but can be used with any command that uses an address.</p>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Syntax</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Absolute</td>
-<td><code>STA $c000</code></td>
-<td>Look up the value at this full memory location</td>
-</tr>
-<tr>
-<td>Zero page</td>
-<td><code>STA $c0</code></td>
-<td>Look up the value at <code>$00c0</code>, <code>c0</code> within the zero page</td>
-</tr>
-<tr>
-<td>Absolute, X</td>
-<td><code>STA $c000,X</code></td>
-<td>Look up the value at <code>$c000</code> + the value in register X (also can be used with Y)</td>
-</tr>
-<tr>
-<td>Zero page, X</td>
-<td><code>STA $c0,X</code></td>
-<td>Look up the value at <code>$00c0</code> + the value in register X (also can be used with Y)</td>
-</tr>
-<tr>
-<td>Immediate</td>
-<td><code>#$c0</code></td>
-<td>Use value <code>$c0</code></td>
-</tr>
-<tr>
-<td>Relative</td>
-<td><code>$c0</code> or <code>label</code></td>
-<td>Go <code>$c0</code> bytes forward/backward (to get to label position)</td>
-</tr>
-<tr>
-<td>Implicit</td>
-<td><code>INX</code></td>
-<td>Do what instruction implies (no args)</td>
-</tr>
-<tr>
-<td>Indirect</td>
-<td><code>$c000</code></td>
-<td>Do instruction found at memory address <code>$c000</code> and the following byte, with the first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if  <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
-</tr>
-<tr>
-<td>Indexed Indirect</td>
-<td><code>STA ($c0,X)</code></td>
-<td>Store in A the value at <code>$00c0</code> + <code>X</code>, with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if <code>X</code> was <code>01</code>, we would look at the address <code>$00c1</code>. If <code>$00c1</code> holds <code>01</code> and <code>$00c2</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
-</tr>
-</tbody></table><h3>Commands</h3>
-<p>A <strong>value</strong> refers to a number prefaced by a <code>#</code>, whereas an <strong>address/location</strong> refers to a hexadecimal address.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Argument(s)</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>BRK</code></td>
-<td></td>
-<td>Break out of the program</td>
-</tr>
-<tr>
-<td><code>LDA n</code></td>
-<td>n: value or memory address/location where value is stored</td>
-<td>Load n into register A</td>
-</tr>
-<tr>
-<td><code>STA n</code></td>
-<td>n: memory address/location</td>
-<td>Store value in register A at  n</td>
-</tr>
-<tr>
-<td><code>TAX</code></td>
-<td></td>
-<td>Transfer value in A to X</td>
-</tr>
-<tr>
-<td><code>INX</code></td>
-<td></td>
-<td>Increment value in X by 1</td>
-</tr>
-<tr>
-<td><code>ADC n</code></td>
-<td>n: value or memory address/location where value is stored</td>
-<td>Add n with carry to the A register</td>
-</tr>
-</tbody></table><h4>Flag Commands</h4>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Argument(s)</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>CPX n</code> / <code>CPY n</code></td>
-<td>n: value or memory address/location where value is stored</td>
-<td>Compare value at X/Y to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0.</td>
-</tr>
-</tbody></table><h4>Branching</h4>
-<p><strong>label</strong>: A label that must be within 256 bytes of invocation</p>
-<p>Any label can be substituted for a direct memory address.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Name</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>BEQ label</code></td>
-<td>Branch on EQual</td>
-<td>If <code>Z</code> flag is 1 (comparison was equal), go to label</td>
-</tr>
-<tr>
-<td><code>BNE label</code></td>
-<td>Branch on Not Equal</td>
-<td>If <code>Z</code> flag is 0 (comparison was not equal), go to label</td>
-</tr>
-<tr>
-<td><code>BCS label</code></td>
-<td>Branch on Carry Set</td>
-<td>If carry flag is 1 (set), go to label</td>
-</tr>
-<tr>
-<td><code>BCC label</code></td>
-<td>Branch on Carry Clear</td>
-<td>If carry flag is 0 (not set), go to label</td>
-</tr>
-<tr>
-<td><code>JMP label</code></td>
-<td>Unconditional Jump</td>
-<td>Jump directly to label</td>
-</tr>
-<tr>
-<td><code>JSR label</code> / <code>RTS</code></td>
-<td>Jump to SubRoutine / ReTurn from Subroutine</td>
-<td>Jump directly to label and push current address - 1 to the stack. This will be retrieved via the return statement.</td>
-</tr>
-</tbody></table><h4>Stack</h4>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Name</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>PHA</code></td>
-<td>PusH Accumulator</td>
-<td>Push the accumulator onto the top of the stack</td>
-</tr>
-<tr>
-<td><code>PLA</code></td>
-<td>PulL (Pop) Accumulator</td>
-<td>Pop the accumulator off the top of the stack</td>
-</tr>
-</tbody></table><h2>References</h2>
-<ul>
-<li><a href="http://skilldrick.github.io/easy6502/" target="_blank">http://skilldrick.github.io/easy6502/</a></li>
-<li><a href="https://wiki.xxiivv.com/site/assembly.html" target="_blank">https://wiki.xxiivv.com/site/assembly.html</a></li>
-<li><a href="https://git.sr.ht/~rabbits/famicom_cookbook/tree/master/item/README.md" target="_blank">https://git.sr.ht/~rabbits/famicom_cookbook/tree/master/item/README.md</a></li>
-<li><a href="https://www.youtube.com/watch?v=lsvSZamCCBM" target="_blank">https://www.youtube.com/watch?v=lsvSZamCCBM</a></li>
-<li><a href="https://en.m.wikibooks.org/wiki/6502_Assembly" target="_blank">https://en.m.wikibooks.org/wiki/6502_Assembly</a></li>
-<li><a href="https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up" target="_blank">https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up</a></li>
-</ul>
-
-<p class="last-modified"><em>Last modified: 202109050239</em></p></article><article>            <h1>Assembly (Amiga)</h1>
+<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Assembly (Amiga)</h1>
             <p>The Amiga was a personal computer from the 80's built on the Motorola 68000 chipset.</p>
 <h2>References</h2>
 <ul>
@@ -6738,4 +6950,4 @@ alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 <li><a href="https://stackoverflow.com/questions/7066325/list-git-aliases" target="_blank">https://stackoverflow.com/questions/7066325/list-git-aliases</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108260207</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~652kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108260207</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~665kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

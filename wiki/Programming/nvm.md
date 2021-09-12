@@ -63,3 +63,4 @@ To use nvm within the project, set your current directory to the root of the pro
 
 1. https://techstacker.com/run-multiple-node-versions-node-nvm/
 2. https://github.com/nvm-sh/nvm#installing-and-updating
+3. https://stackoverflow.com/questions/57110542/how-to-write-a-nvmrc-file-which-automatically-change-node-version

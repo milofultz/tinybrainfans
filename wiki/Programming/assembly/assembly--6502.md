@@ -34,6 +34,18 @@ This stores values to be rendered on the display. Each row of the screen is repr
 | Hexadecimal | `$xy`  | `x` are hex digits. Trailing numbers can extend.    |
 | Decimal     | `xy`   | `x` are decimal digits. Trailing numbers can extend |
 
+### Flags
+
+| Flag | Name | Notes                                               |
+| --- | --- | --- |
+| C | Carry Flag | The carry flag is set if the last operation caused an overflow from bit 7 of the result or an underflow from bit 0. This condition is set during arithmetic, comparison and during logical shifts (or explicitly). |
+| Z | Zero Flag | The zero flag is set if the result of the last operation as was zero. |
+| I | Interrupt Disable | The interrupt disable flag is set if the program has executed a `SEI` instruction. While this flag is set the processor will not respond to interrupts from devices until it is cleared by a `CLI` instruction. |
+| D | Decimal Mode Flag | While the decimal mode flag is set the processor will obey the rules of Binary Coded Decimal (BCD) arithmetic during addition and subtraction. The flag can be explicitly set using `SED` and cleared with `CLD`. |
+| B | Break Command | The break command bit is set when a `BRK` instruction has been executed and an interrupt has been generated to process it. |
+| V | Overflow Flag | The overflow flag is set during arithmetic operations if the result has yielded an invalid 2's complement result (e.g. adding to positive numbers and ending up with a negative result: 64 + 64 => -128). It is determined by looking at the carry between bits 6 and 7 and between bit 7 and the carry flag. |
+| N | Negative Flag | The negative flag is set if the result of the last operation had bit 7 set to a one. |
+
 ### Addressing Modes
 
 These will all use `STA` but can be used with any command that uses an address.
@@ -42,32 +54,36 @@ These will all use `STA` but can be used with any command that uses an address.
 | ------------ | ----------- | ------------------------------------------------------------ |
 | Absolute     | `STA $c000` | Look up the value at this full memory location               |
 | Zero page    | `STA $c0`   | Look up the value at `$00c0`, `c0` within the zero page      |
-| Absolute, X | `STA $c000,X` | Look up the value at `$c000` + the value in register X (also can be used with Y) |
-| Zero page, X | `STA $c0,X` | Look up the value at `$00c0` + the value in register X (also can be used with Y) |
+| Absolute, X | `STA $c000,X` | Look up the value at `$c000` + the value in register X (e.g. if X is `$01`, store value of A at memory location `$c001`) |
+| Zero page, X | `STA $c0,X` | Look up the value at `$00c0` + the value in register X (e.g. if X is `$01`, store value of A at memory location `$c001`) |
 | Immediate | `#$c0` | Use value `$c0` |
 | Relative | `$c0` or `label` | Go `$c0` bytes forward/backward (to get to label position) |
 | Implicit | `INX` | Do what instruction implies (no args) |
 | Indirect | `$c000` | Do instruction found at memory address `$c000` and the following byte, with the first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if  `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01`. |
-| Indexed Indirect | `STA ($c0,X)` | Store in A the value at `$00c0` + `X`, with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if `X` was `01`, we would look at the address `$00c1`. If `$00c1` holds `01` and `$00c2` holds `0f`, it would dereference to `$0f01`. |
+| Indexed Indirect | `STA ($c0,X)` | Store in A the value at address (`$00c0` + `X`), with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if `X` was `01`, we would look at the address `$00c1`. If `$00c1` holds `01` and `$00c2` holds `0f`, it would dereference to `$0f01`. |
+| Indirect Indexed | `STA ($c0),X` | Store in A the value found at `$00c0` plus the *value* of `X`, with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, lets say `X` was `01`. We would look at the address `$00c0`. If `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01` *plus* the value of `X`, resulting in `$0f02`. |
 
 ### Commands
 
 A **value** refers to a number prefaced by a `#`, whereas an **address/location** refers to a hexadecimal address.
 
-| Command | Argument(s)                                               | Effect                             |
-| ------- | --------------------------------------------------------- | ---------------------------------- |
-| `BRK`   |                                                           | Break out of the program           |
-| `LDA n` | n: value or memory address/location where value is stored | Load n into register A             |
-| `STA n` | n: memory address/location                                | Store value in register A at  n    |
-| `TAX`   |                                                           | Transfer value in A to X           |
-| `INX`   |                                                           | Increment value in X by 1          |
-| `ADC n` | n: value or memory address/location where value is stored | Add n with carry to the A register |
+| Command       | Argument(s)                                               | Effect                              |
+| ------------- | --------------------------------------------------------- | ----------------------------------- |
+| `BRK`         |                                                           | Break out of the program            |
+| `LDA n`       | n: value or memory address/location where value is stored | Load n into register A              |
+| `STA n`       | n: memory address/location                                | Store value in register A at  n     |
+| `TAX`         |                                                           | Transfer value in A to X            |
+| `INX` / `DEX` |                                                           | Increment/Decrement value in X by 1 |
+| `ADC n`       | n: value or memory address/location where value is stored | Add n with carry to the A register  |
 
 #### Flag Commands
 
+These commands are used solely for the purpose of changing and setting flags.
+
 | Command           | Argument(s)                                               | Effect                                                       |
 | ----------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
-| `CPX n` / `CPY n` | n: value or memory address/location where value is stored | Compare value at X/Y to n. If equal, set `Z` flag to 1; else, set `Z` flag to 0. |
+| `CMP n` / `CPX n` / `CPY n` | n: value or memory address/location where value is stored | Compare value at A/X/Y to n. If equal, set `Z` flag to 1; else, set `Z` flag to 0. |
+| `SEI` / `CLI` |  | Set/Clear Interrupt Disable |
 
 #### Branching
 
@@ -91,6 +107,13 @@ Any label can be substituted for a direct memory address.
 | `PHA` | PusH Accumulator | Push the accumulator onto the top of the stack |
 | `PLA` | PulL (Pop) Accumulator | Pop the accumulator off the top of the stack |
 
+#### Bitwise Operators
+
+| Command     | Parameters | Effect                                                   |
+| ----------- | --- | -------------------------------------------------------- |
+| `AND n` | `n`: Value or address | Bitwise AND of value of `n` or value at address `n` against the accumulator register |
+| `LSR [n]` | `n`: Value or address (if omitted, default to accumulator) | Bitwise shift right |
+
 ## References
 
 - http://skilldrick.github.io/easy6502/
@@ -99,3 +122,10 @@ Any label can be substituted for a direct memory address.
 - https://www.youtube.com/watch?v=lsvSZamCCBM
 - https://en.m.wikibooks.org/wiki/6502_Assembly
 - https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up
+
+Instructions and Flags Reference:
+
+- http://www.6502.org/tutorials/6502opcodes.html
+- http://www.obelisk.me.uk/6502/reference.html
+- https://retroscience.net/writing-6502-assembler.html
+- http://www.obelisk.me.uk/6502/registers.html#Z
