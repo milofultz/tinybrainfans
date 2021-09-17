@@ -74,23 +74,66 @@ ENDM                      ; signify the end of the macro
   _setw IRQ, VBLANK_IRQ
 ...
 </code></pre>
-<h2>Minicube 64 Syntax</h2>
-<p>This is syntax that doesn't exist in 6502 but does here.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Parameters</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>org $NNN</code></td>
-<td><code>NNN</code>: Number</td>
-<td>Set program origin to <code>$0NNN</code></td>
-</tr>
-</tbody></table><h2>Video Reference</h2>
+<h2>Video Reference</h2>
+<h3>Basic Drawing Example</h3>
+<p>This example shows how to set up a custom palette as well as drawing those colors to screen.</p>
+<pre><code class="language-assembly">include &quot;64cube.inc&quot;      ; Include the helper functions
+
+ENUM $0                    ; Enumerate values starting from $0000
+  counter rBYTE 1          ; Set &#x27;counter&#x27; as 1 byte
+ENDE                      ; End enumeration
+
+  org $200                ; Set program origin to $0200
+  sei                      ; Set interrupt disable flag
+  ldx #$ff                ; Load value $ff into X
+  txs                      ; Transfer value of X into the stack
+                          ;   pointer
+
+  ; This will set the video buffer page in the $f000 page in memory
+  lda #$f                  ; Load high byte of page into &#x27;a&#x27;
+                          ;   register
+  sta VIDEO                ; Store value in A at &#x27;VIDEO&#x27;
+
+  ; This will set the colors buffer page in the $5000 page in memory
+  lda #$5                  ; Load highbyte of page into &#x27;a&#x27;
+                          ;   register
+  sta COLORS              ; Store value in A at &#x27;COLORS&#x27;
+
+  _setw IRQ, VBLANK_IRQ    ; Set value of VBLANK_IRQ to address of
+                          ;   &#x27;IRQ&#x27; label
+  jsr Draw                ; Jump to &#x27;Draw&#x27; subroutine
+
+  cli                      ; Clear interrupt disable flag
+
+Infinite:                  ; Set &#x27;Infinite&#x27; label
+  jmp Infinite            ; Create infinite loop
+
+IRQ:                      ; Set &#x27;IRQ&#x27; label
+  inc counter              ; Increment &#x27;counter&#x27;
+  rti                      ; Return from interrupt
+
+Draw:                      ; Set &#x27;Draw&#x27; label
+  ; This will create pixels of colors from the palette below at address
+  ;   $f820. The color is found by referencing the colors page at the
+  ;   addresses listed below (#1, #2, #3).
+
+  lda #0                  ; Create counter of 0 at A
+  Loop:                    ; Create Loop label
+    adc #1                ; Increment A
+    tax                    ; Transfer value of A into X
+    sta $f000 + 32 * 64 + 31,X   ; Store X into
+                                ;   $f000 + 32 * 64 + 31 and X
+    cmp #3                ; Compare x with 3
+    bne Loop              ; If not equal go back to Loop
+  rts                      ; Else return from subroutine
+
+Palette:                          ; Set &#x27;Palette&#x27; label
+  ; This will set the palette of colors available in the COLORS page,
+  ;   enumerating from $00 upward within that page.
+  org $0500                        ; Set program origin to $0500
+  hex 000000 ff0000 00ff00 0000ff  ; Set these colors in colors page
+
+</code></pre>
 <h3>Video Address Locations</h3>
 <p>These are assuming the video page is being held in the 4k <code>$f000</code> page.</p>
 <table>
@@ -125,6 +168,7 @@ ENDM                      ; signify the end of the macro
 <ol>
 <li><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">https://aeriform.gitbook.io/minicube64/</a></li>
 <li><a href="https://itch.io/jam/minicubejam" target="_blank">https://itch.io/jam/minicubejam</a></li>
+<li><a href="https://github.com/aeriform-io/minicube64/releases" target="_blank">https://github.com/aeriform-io/minicube64/releases</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202109122035</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~665kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109130207</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~670kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

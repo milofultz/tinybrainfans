@@ -2597,7 +2597,7 @@ round(3.1415926, 3)  # 3.142
 </code></pre>
 <h3>Mixins</h3>
 <p>Mixins are a group of declarations or rules that can be reused throughout by copying their contents into a rule. They can also include parameters for dynamic value generation. The <code>mixin</code> is defined by using <code>@mixin</code> and then called with <code>@includes</code> and the name.</p>
-<p><strong>NOTE: You have to <code>@include</code> (not <code>@use</code>) the mixin partial to every file that uses it.</strong></p>
+<p><strong>NOTE: You have to <code>@import</code> (not <code>@use</code>) the mixin partial to every file that uses it.</strong></p>
 <pre><code class="language-scss">// with mixin using parameters
 @mixin box-shadow($x, $y, $blur, $c){
  -webkit-box-shadow: $x $y $blur $c;
@@ -2605,6 +2605,9 @@ round(3.1415926, 3)  # 3.142
      -ms-box-shadow: $x $y $blur $c;
          box-shadow: $x $y $blur $c;
 }
+</code></pre>
+<p>Another file:</p>
+<pre><code class="language-scss">@import &#x27;path/to/mixin&#x27;;
 
 div {
  @include box-shadow(0px, 0px, 4px, #fff);
@@ -2739,7 +2742,7 @@ $colors: (color1: blue, color2: red, color3: green);
 <li><a href="https://sass-lang.com/guide" target="_blank">https://sass-lang.com/guide</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="inverted-triangle-css.html">Inverted Triangle CSS</a></li><li><a href="organization-and-structure-(css).html">Organization and Structure (CSS)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="vendor-prefixes-(css).html">Vendor Prefixes (CSS)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108201800</em></p></article><article><h1><a href="less.html">Less</a></h1>
+<p class="last-modified"><em>Last modified: 202109161631</em></p></article><article><h1><a href="less.html">Less</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="inverted-triangle-css.html">Inverted Triangle CSS</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="css-reset.html">CSS reset</a></h1>
@@ -3827,18 +3830,18 @@ Insert emulation/compilation instructions here
 </tr>
 <tr>
 <td>Indirect</td>
-<td><code>$c000</code></td>
+<td><code>STA $c000</code></td>
 <td>Do instruction found at memory address <code>$c000</code> and the following byte, with the first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if  <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
 </tr>
 <tr>
 <td>Indexed Indirect</td>
 <td><code>STA ($c0,X)</code></td>
-<td>Store in A the value at address (<code>$00c0</code> + <code>X</code>), with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if <code>X</code> was <code>01</code>, we would look at the address <code>$00c1</code>. If <code>$00c1</code> holds <code>01</code> and <code>$00c2</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
+<td>Store A at the address (<code>$00c0</code> + <code>X</code>), with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if <code>X</code> was <code>01</code>, we would look at the address <code>$00c1</code>. If <code>$00c1</code> holds <code>01</code> and <code>$00c2</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
 </tr>
 <tr>
 <td>Indirect Indexed</td>
 <td><code>STA ($c0),X</code></td>
-<td>Store in A the value found at <code>$00c0</code> plus the <em>value</em> of <code>X</code>, with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, lets say <code>X</code> was <code>01</code>. We would look at the address <code>$00c0</code>. If <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code> <em>plus</em> the value of <code>X</code>, resulting in <code>$0f02</code>.</td>
+<td>Store A at the address found at <code>$00c0</code> plus the <em>value</em> of <code>X</code>, with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, lets say <code>X</code> was <code>01</code>. We would look at the address <code>$00c0</code>. If <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code> <em>plus</em> the value of <code>X</code>, resulting in <code>$0f02</code>.</td>
 </tr>
 </tbody></table><h3>Commands</h3>
 <p>A <strong>value</strong> refers to a number prefaced by a <code>#</code>, whereas an <strong>address/location</strong> refers to a hexadecimal address.</p>
@@ -3857,14 +3860,19 @@ Insert emulation/compilation instructions here
 <td>Break out of the program</td>
 </tr>
 <tr>
+<td><code>org $n</code></td>
+<td><code>$n</code>: Number</td>
+<td>Set program origin to <code>$n</code></td>
+</tr>
+<tr>
 <td><code>LDA n</code></td>
-<td>n: value or memory address/location where value is stored</td>
-<td>Load n into register A</td>
+<td><code>n</code>: value or memory address/location where value is stored</td>
+<td>Load <code>n</code> into register A</td>
 </tr>
 <tr>
 <td><code>STA n</code></td>
-<td>n: memory address/location</td>
-<td>Store value in register A at  n</td>
+<td><code>n</code>: memory address/location</td>
+<td>Store value in register A at <code>n</code></td>
 </tr>
 <tr>
 <td><code>TAX</code></td>
@@ -3878,8 +3886,8 @@ Insert emulation/compilation instructions here
 </tr>
 <tr>
 <td><code>ADC n</code></td>
-<td>n: value or memory address/location where value is stored</td>
-<td>Add n with carry to the A register</td>
+<td><code>n</code>: value or memory address/location where value is stored</td>
+<td>Add <code>n</code> with carry to the A register</td>
 </tr>
 </tbody></table><h4>Flag Commands</h4>
 <p>These commands are used solely for the purpose of changing and setting flags.</p>
@@ -3992,6 +4000,8 @@ Insert emulation/compilation instructions here
 <li><a href="https://www.youtube.com/watch?v=lsvSZamCCBM" target="_blank">https://www.youtube.com/watch?v=lsvSZamCCBM</a></li>
 <li><a href="https://en.m.wikibooks.org/wiki/6502_Assembly" target="_blank">https://en.m.wikibooks.org/wiki/6502_Assembly</a></li>
 <li><a href="https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up" target="_blank">https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up</a></li>
+<li><a href="https://taywee.github.io/NerdyNights/nerdynights/asmfirstapp.html" target="_blank">https://taywee.github.io/NerdyNights/nerdynights/asmfirstapp.html</a></li>
+<li><a href="https://rosettacode.org/wiki/Category:6502_Assembly" target="_blank">https://rosettacode.org/wiki/Category:6502_Assembly</a></li>
 </ul>
 <p>Instructions and Flags Reference:</p>
 <ul>
@@ -4001,7 +4011,7 @@ Insert emulation/compilation instructions here
 <li><a href="http://www.obelisk.me.uk/6502/registers.html#Z" target="_blank">http://www.obelisk.me.uk/6502/registers.html#Z</a></li>
 </ul>
 <section><h2>Backlinks:</h2><ul><li><a href="minicube64.html">Minicube64</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109122035</em></p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
+<p class="last-modified"><em>Last modified: 202109130036</em></p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
             <p><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">Minicube64</a> is a fantasy console style emulator based on <a href="assembly-(6502).html">6502</a>, with the intention of helping people learn how games were made for older systems such as Atari 2600, NES or C64, but without many of the difficult hardware restrictions.</p>
 <h2>Annotated Introduction</h2>
 <p>The <a href="https://aeriform.gitbook.io/minicube64/" target="_blank">introduction page</a> is what I'm annotating below. Hopefully these notes will give more insight into what the assembly is doing in the console.</p>
@@ -4076,23 +4086,66 @@ ENDM                      ; signify the end of the macro
   _setw IRQ, VBLANK_IRQ
 ...
 </code></pre>
-<h2>Minicube 64 Syntax</h2>
-<p>This is syntax that doesn't exist in 6502 but does here.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Parameters</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>org $NNN</code></td>
-<td><code>NNN</code>: Number</td>
-<td>Set program origin to <code>$0NNN</code></td>
-</tr>
-</tbody></table><h2>Video Reference</h2>
+<h2>Video Reference</h2>
+<h3>Basic Drawing Example</h3>
+<p>This example shows how to set up a custom palette as well as drawing those colors to screen.</p>
+<pre><code class="language-assembly">include &quot;64cube.inc&quot;      ; Include the helper functions
+
+ENUM $0                    ; Enumerate values starting from $0000
+  counter rBYTE 1          ; Set &#x27;counter&#x27; as 1 byte
+ENDE                      ; End enumeration
+
+  org $200                ; Set program origin to $0200
+  sei                      ; Set interrupt disable flag
+  ldx #$ff                ; Load value $ff into X
+  txs                      ; Transfer value of X into the stack
+                          ;   pointer
+
+  ; This will set the video buffer page in the $f000 page in memory
+  lda #$f                  ; Load high byte of page into &#x27;a&#x27;
+                          ;   register
+  sta VIDEO                ; Store value in A at &#x27;VIDEO&#x27;
+
+  ; This will set the colors buffer page in the $5000 page in memory
+  lda #$5                  ; Load highbyte of page into &#x27;a&#x27;
+                          ;   register
+  sta COLORS              ; Store value in A at &#x27;COLORS&#x27;
+
+  _setw IRQ, VBLANK_IRQ    ; Set value of VBLANK_IRQ to address of
+                          ;   &#x27;IRQ&#x27; label
+  jsr Draw                ; Jump to &#x27;Draw&#x27; subroutine
+
+  cli                      ; Clear interrupt disable flag
+
+Infinite:                  ; Set &#x27;Infinite&#x27; label
+  jmp Infinite            ; Create infinite loop
+
+IRQ:                      ; Set &#x27;IRQ&#x27; label
+  inc counter              ; Increment &#x27;counter&#x27;
+  rti                      ; Return from interrupt
+
+Draw:                      ; Set &#x27;Draw&#x27; label
+  ; This will create pixels of colors from the palette below at address
+  ;   $f820. The color is found by referencing the colors page at the
+  ;   addresses listed below (#1, #2, #3).
+
+  lda #0                  ; Create counter of 0 at A
+  Loop:                    ; Create Loop label
+    adc #1                ; Increment A
+    tax                    ; Transfer value of A into X
+    sta $f000 + 32 * 64 + 31,X   ; Store X into
+                                ;   $f000 + 32 * 64 + 31 and X
+    cmp #3                ; Compare x with 3
+    bne Loop              ; If not equal go back to Loop
+  rts                      ; Else return from subroutine
+
+Palette:                          ; Set &#x27;Palette&#x27; label
+  ; This will set the palette of colors available in the COLORS page,
+  ;   enumerating from $00 upward within that page.
+  org $0500                        ; Set program origin to $0500
+  hex 000000 ff0000 00ff00 0000ff  ; Set these colors in colors page
+
+</code></pre>
 <h3>Video Address Locations</h3>
 <p>These are assuming the video page is being held in the 4k <code>$f000</code> page.</p>
 <table>
@@ -4127,9 +4180,10 @@ ENDM                      ; signify the end of the macro
 <ol>
 <li><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">https://aeriform.gitbook.io/minicube64/</a></li>
 <li><a href="https://itch.io/jam/minicubejam" target="_blank">https://itch.io/jam/minicubejam</a></li>
+<li><a href="https://github.com/aeriform-io/minicube64/releases" target="_blank">https://github.com/aeriform-io/minicube64/releases</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202109122035</em></p></article><article><h1><a href="machine-code.html">machine code</a></h1>
+<p class="last-modified"><em>Last modified: 202109130207</em></p></article><article><h1><a href="machine-code.html">machine code</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-(6502).html">Assembly (6502)</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Assembly (Unix)</h1>
@@ -6950,4 +7004,4 @@ alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 <li><a href="https://stackoverflow.com/questions/7066325/list-git-aliases" target="_blank">https://stackoverflow.com/questions/7066325/list-git-aliases</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202108260207</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~665kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202108260207</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~670kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

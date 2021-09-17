@@ -92,15 +92,70 @@ This is the changed contents of the above `test.s`:
 ...
 ```
 
-## Minicube 64 Syntax
-
-This is syntax that doesn't exist in 6502 but does here.
-
-Command | Parameters | Description
---- | --- | ---
-`org $NNN` | `NNN`: Number | Set program origin to `$0NNN`
-
 ## Video Reference
+
+### Basic Drawing Example
+
+This example shows how to set up a custom palette as well as drawing those colors to screen.
+
+```assembly
+include "64cube.inc"			; Include the helper functions
+
+ENUM $0										; Enumerate values starting from $0000
+	counter rBYTE 1					; Set 'counter' as 1 byte
+ENDE											; End enumeration
+
+	org $200								; Set program origin to $0200
+	sei											; Set interrupt disable flag
+	ldx #$ff								; Load value $ff into X
+	txs											; Transfer value of X into the stack
+													;   pointer
+
+	; This will set the video buffer page in the $f000 page in memory
+	lda #$f									; Load high byte of page into 'a'
+													;   register
+	sta VIDEO								; Store value in A at 'VIDEO'
+
+	; This will set the colors buffer page in the $5000 page in memory
+	lda #$5									; Load highbyte of page into 'a'
+													;   register
+	sta COLORS							; Store value in A at 'COLORS'
+
+	_setw IRQ, VBLANK_IRQ		; Set value of VBLANK_IRQ to address of
+													;   'IRQ' label
+	jsr Draw								; Jump to 'Draw' subroutine
+
+	cli											; Clear interrupt disable flag
+
+Infinite:									; Set 'Infinite' label
+	jmp Infinite						; Create infinite loop
+
+IRQ:											; Set 'IRQ' label
+	inc counter							; Increment 'counter'
+	rti											; Return from interrupt
+
+Draw:											; Set 'Draw' label
+	; This will create pixels of colors from the palette below at address
+	;   $f820. The color is found by referencing the colors page at the
+	;   addresses listed below (#1, #2, #3).
+
+	lda #0									; Create counter of 0 at A
+	Loop:										; Create Loop label
+		adc #1								; Increment A
+		tax										; Transfer value of A into X
+		sta $f000 + 32 * 64 + 31,X 	; Store X into
+																;   $f000 + 32 * 64 + 31 and X
+		cmp #3								; Compare x with 3
+		bne Loop							; If not equal go back to Loop
+	rts											; Else return from subroutine
+
+Palette:													; Set 'Palette' label
+	; This will set the palette of colors available in the COLORS page,
+	;   enumerating from $00 upward within that page.
+	org $0500												; Set program origin to $0500
+	hex 000000 ff0000 00ff00 0000ff	; Set these colors in colors page
+
+```
 
 ### Video Address Locations
 
@@ -118,5 +173,6 @@ Address | Position
 
 1. https://aeriform.gitbook.io/minicube64/
 2. https://itch.io/jam/minicubejam
+3. https://github.com/aeriform-io/minicube64/releases
 
 [Minicube64]: https://aeriform.gitbook.io/minicube64/

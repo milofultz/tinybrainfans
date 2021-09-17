@@ -59,9 +59,9 @@ These will all use `STA` but can be used with any command that uses an address.
 | Immediate | `#$c0` | Use value `$c0` |
 | Relative | `$c0` or `label` | Go `$c0` bytes forward/backward (to get to label position) |
 | Implicit | `INX` | Do what instruction implies (no args) |
-| Indirect | `$c000` | Do instruction found at memory address `$c000` and the following byte, with the first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if  `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01`. |
-| Indexed Indirect | `STA ($c0,X)` | Store in A the value at address (`$00c0` + `X`), with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if `X` was `01`, we would look at the address `$00c1`. If `$00c1` holds `01` and `$00c2` holds `0f`, it would dereference to `$0f01`. |
-| Indirect Indexed | `STA ($c0),X` | Store in A the value found at `$00c0` plus the *value* of `X`, with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, lets say `X` was `01`. We would look at the address `$00c0`. If `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01` *plus* the value of `X`, resulting in `$0f02`. |
+| Indirect | `STA $c000` | Do instruction found at memory address `$c000` and the following byte, with the first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if  `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01`. |
+| Indexed Indirect | `STA ($c0,X)` | Store A at the address (`$00c0` + `X`), with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if `X` was `01`, we would look at the address `$00c1`. If `$00c1` holds `01` and `$00c2` holds `0f`, it would dereference to `$0f01`. |
+| Indirect Indexed | `STA ($c0),X` | Store A at the address found at `$00c0` plus the *value* of `X`, with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, lets say `X` was `01`. We would look at the address `$00c0`. If `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01` *plus* the value of `X`, resulting in `$0f02`. |
 
 ### Commands
 
@@ -70,11 +70,12 @@ A **value** refers to a number prefaced by a `#`, whereas an **address/location*
 | Command       | Argument(s)                                               | Effect                              |
 | ------------- | --------------------------------------------------------- | ----------------------------------- |
 | `BRK`         |                                                           | Break out of the program            |
-| `LDA n`       | n: value or memory address/location where value is stored | Load n into register A              |
-| `STA n`       | n: memory address/location                                | Store value in register A at  n     |
+| `org $n` | `$n`: Number | Set program origin to `$n`|
+| `LDA n`       | `n`: value or memory address/location where value is stored | Load `n` into register A            |
+| `STA n`       | `n`: memory address/location                              | Store value in register A at `n`   |
 | `TAX`         |                                                           | Transfer value in A to X            |
 | `INX` / `DEX` |                                                           | Increment/Decrement value in X by 1 |
-| `ADC n`       | n: value or memory address/location where value is stored | Add n with carry to the A register  |
+| `ADC n`       | `n`: value or memory address/location where value is stored | Add `n` with carry to the A register |
 
 #### Flag Commands
 
@@ -122,6 +123,8 @@ Any label can be substituted for a direct memory address.
 - https://www.youtube.com/watch?v=lsvSZamCCBM
 - https://en.m.wikibooks.org/wiki/6502_Assembly
 - https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up
+- https://taywee.github.io/NerdyNights/nerdynights/asmfirstapp.html
+- https://rosettacode.org/wiki/Category:6502_Assembly
 
 Instructions and Flags Reference:
 

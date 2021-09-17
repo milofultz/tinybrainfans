@@ -56,7 +56,7 @@
 </code></pre>
 <h3>Mixins</h3>
 <p>Mixins are a group of declarations or rules that can be reused throughout by copying their contents into a rule. They can also include parameters for dynamic value generation. The <code>mixin</code> is defined by using <code>@mixin</code> and then called with <code>@includes</code> and the name.</p>
-<p><strong>NOTE: You have to <code>@include</code> (not <code>@use</code>) the mixin partial to every file that uses it.</strong></p>
+<p><strong>NOTE: You have to <code>@import</code> (not <code>@use</code>) the mixin partial to every file that uses it.</strong></p>
 <pre><code class="language-scss">// with mixin using parameters
 @mixin box-shadow($x, $y, $blur, $c){
  -webkit-box-shadow: $x $y $blur $c;
@@ -64,6 +64,9 @@
      -ms-box-shadow: $x $y $blur $c;
          box-shadow: $x $y $blur $c;
 }
+</code></pre>
+<p>Another file:</p>
+<pre><code class="language-scss">@import &#x27;path/to/mixin&#x27;;
 
 div {
  @include box-shadow(0px, 0px, 4px, #fff);
@@ -198,4 +201,4 @@ $colors: (color1: blue, color2: red, color3: green);
 <li><a href="https://sass-lang.com/guide" target="_blank">https://sass-lang.com/guide</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="inverted-triangle-css.html">Inverted Triangle CSS</a></li><li><a href="organization-and-structure-(css).html">Organization and Structure (CSS)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="vendor-prefixes-(css).html">Vendor Prefixes (CSS)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108201800</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~665kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109161631</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~670kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
