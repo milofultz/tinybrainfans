@@ -42,7 +42,6 @@ Infinite:								; Set label for 'Infinite' at this address
 IRQ: 										; Set label for 'IRQ' at this address
 	inc counter  					; Increment the value at 'counter'
 	rti										; Return to where the interrupt occurred
-
 ```
 
 This is the relevant contents of `64cube.inc`:
@@ -154,7 +153,6 @@ Palette:													; Set 'Palette' label
 	;   enumerating from $00 upward within that page.
 	org $0500												; Set program origin to $0500
 	hex 000000 ff0000 00ff00 0000ff	; Set these colors in colors page
-
 ```
 
 ### Video Address Locations

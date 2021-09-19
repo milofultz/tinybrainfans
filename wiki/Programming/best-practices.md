@@ -39,3 +39,4 @@ description:
 
 1. https://www.reddit.com/r/webdev/comments/kzqmhb/im_in_awe_of_you_all/
 2. https://softwareengineering.stackexchange.com/questions/43151/should-you-sacrifice-code-readability-with-how-efficient-code-is
+3. https://www.infoq.com/articles/no-hotfix-deployment/

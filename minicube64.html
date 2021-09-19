@@ -32,7 +32,6 @@ Infinite:                ; Set label for &#x27;Infinite&#x27; at this address
 IRQ:                     ; Set label for &#x27;IRQ&#x27; at this address
   inc counter            ; Increment the value at &#x27;counter&#x27;
   rti                    ; Return to where the interrupt occurred
-
 </code></pre>
 <p>This is the relevant contents of <code>64cube.inc</code>:</p>
 <pre><code class="language-assembly">...
@@ -132,7 +131,6 @@ Palette:                          ; Set &#x27;Palette&#x27; label
   ;   enumerating from $00 upward within that page.
   org $0500                        ; Set program origin to $0500
   hex 000000 ff0000 00ff00 0000ff  ; Set these colors in colors page
-
 </code></pre>
 <h3>Video Address Locations</h3>
 <p>These are assuming the video page is being held in the 4k <code>$f000</code> page.</p>
@@ -171,4 +169,4 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <li><a href="https://github.com/aeriform-io/minicube64/releases" target="_blank">https://github.com/aeriform-io/minicube64/releases</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202109130207</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~670kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109190042</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~670kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
