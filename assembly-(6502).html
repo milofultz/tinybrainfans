@@ -15,7 +15,7 @@ Insert emulation/compilation instructions here
 <h3><code>$0200 - $05ff</code> - Display</h3>
 <p>This stores values to be rendered on the display. Each row of the screen is represented by <code>$20</code> values stored inline, rendering left to right. e.g. the first row of the screen is held in <code>$0200</code> - <code>$021f</code>; the second row is held in <code>$0220</code> - <code>$023f</code>.</p>
 <h2>Syntax</h2>
-<h3>Types</h3>
+<h3>Literals</h3>
 <table>
 <thead>
 <tr>
@@ -26,14 +26,19 @@ Insert emulation/compilation instructions here
 </thead>
 <tbody>
 <tr>
+<td>Binary</td>
+<td><code>%nnnnnnnn</code></td>
+<td><code>n</code> is a binary digit. Trailing numbers can extend</td>
+</tr>
+<tr>
 <td>Hexadecimal</td>
 <td><code>$xy</code></td>
-<td><code>x</code> are hex digits. Trailing numbers can extend.</td>
+<td><code>xy</code> are hex digits. Trailing numbers can extend</td>
 </tr>
 <tr>
 <td>Decimal</td>
 <td><code>xy</code></td>
-<td><code>x</code> are decimal digits. Trailing numbers can extend</td>
+<td><code>xy</code> are decimal digits. Trailing numbers can extend</td>
 </tr>
 </tbody></table><h3>Flags</h3>
 <table>
@@ -300,6 +305,8 @@ Insert emulation/compilation instructions here
 <li><a href="https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up" target="_blank">https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up</a></li>
 <li><a href="https://taywee.github.io/NerdyNights/nerdynights/asmfirstapp.html" target="_blank">https://taywee.github.io/NerdyNights/nerdynights/asmfirstapp.html</a></li>
 <li><a href="https://rosettacode.org/wiki/Category:6502_Assembly" target="_blank">https://rosettacode.org/wiki/Category:6502_Assembly</a></li>
+<li><a href="https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail" target="_blank">https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail</a></li>
+<li><a href="https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/" target="_blank">https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/</a></li>
 </ul>
 <p>Instructions and Flags Reference:</p>
 <ul>
@@ -309,4 +316,4 @@ Insert emulation/compilation instructions here
 <li><a href="http://www.obelisk.me.uk/6502/registers.html#Z" target="_blank">http://www.obelisk.me.uk/6502/registers.html#Z</a></li>
 </ul>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="minicube64.html">Minicube64</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109130036</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~670kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109191716</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~713kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

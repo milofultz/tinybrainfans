@@ -27,12 +27,13 @@ This stores values to be rendered on the display. Each row of the screen is repr
 
 ## Syntax
 
-### Types
+### Literals
 
 | Type        | Syntax | Notes                                               |
 | ----------- | ------ | --------------------------------------------------- |
-| Hexadecimal | `$xy`  | `x` are hex digits. Trailing numbers can extend.    |
-| Decimal     | `xy`   | `x` are decimal digits. Trailing numbers can extend |
+| Binary | `%nnnnnnnn` | `n` is a binary digit. Trailing numbers can extend |
+| Hexadecimal | `$xy`  | `xy` are hex digits. Trailing numbers can extend |
+| Decimal | `xy` | `xy` are decimal digits. Trailing numbers can extend |
 
 ### Flags
 
@@ -125,6 +126,8 @@ Any label can be substituted for a direct memory address.
 - https://archive.org/details/6502_Assembly_Language_Subroutines/page/n15/mode/2up
 - https://taywee.github.io/NerdyNights/nerdynights/asmfirstapp.html
 - https://rosettacode.org/wiki/Category:6502_Assembly
+- https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail
+- https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/
 
 Instructions and Flags Reference:
 

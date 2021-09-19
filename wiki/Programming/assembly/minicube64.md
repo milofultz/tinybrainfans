@@ -172,5 +172,6 @@ Address | Position
 1. https://aeriform.gitbook.io/minicube64/
 2. https://itch.io/jam/minicubejam
 3. https://github.com/aeriform-io/minicube64/releases
+4. https://github.com/aeriform-io/minicube64/blob/main/memory_map.md
 
 [Minicube64]: https://aeriform.gitbook.io/minicube64/
