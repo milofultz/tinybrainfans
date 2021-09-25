@@ -1,8 +1,12 @@
 #!/bin/bash
 
 shopt -s expand_aliases
-source ~/.zshrc
-source ~/.bashrc
+if [ -n "$BASH_VERSION"]
+then
+    source ~/.bashrc
+else
+    source ~/.zshrc
+fi
 
 swiki ./wiki ./ -d
 git add .

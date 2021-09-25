@@ -130,13 +130,13 @@ a:hover {
 }
 
 main [target="_blank"]::after {
-  content: "↗️";
+  content: "^";
   display: inline-block;
   font-size: .75rem;
   height: 1rem;
-  margin-left: .25rem;
+  margin-left: .1rem;
   vertical-align: super;
-  width: 1rem;
+  width: .5rem;
 }
 
 code,
