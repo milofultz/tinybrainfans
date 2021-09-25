@@ -1,10 +1,10 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="git is a version control system."><title>git</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">git</h1>
             <h2>Commits</h2>
+<p>Add files you want to commit: <code>git add {file or folder name}</code>. You can also add all by using <code>git add .</code>, but this is not recommended, as you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, which is rarely the case. An easy way to check what has changed in your files since last commit is to use the <code>--patch</code> flag.</p>
+<h3><code>--patch</code></h3>
+<p>Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder name}</code> (file or folder is optional). This will prompt you with options:</p>
 <ul>
-<li>Add files you want to commit: <code>git add {file or folder name}</code> or <code>git add .</code> (you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, use the <code>--patch</code> flag insteadl)</li>
-<li>
-Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder name}</code> (file or folder is optional). This will prompt you with options:<ul>
 <li>y - stage this hunk</li>
 </ul>
 <ul>
@@ -21,8 +21,6 @@ Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder
 <li>s - split the current hunk into smaller hunks</li>
 <li>e - <a href="https://rietta.com/blog/git-patch-manual-split/" target="_blank">manually edit the current hunk</a> (particularly if your code is really close together but needs to be broken down)</li>
 <li>? - print help</li>
-</ul>
-</li>
 </ul>
 <h3>Case Sensitivity</h3>
 <p>Git by default is not case sensitive when it comes to filenames and will ignore renaming of file structures that are only by case. To change this default behavior, use <code>git config core.ignorecase false</code>. <strong>Note that setting this option to false on a case-insensitive file system is generally a bad idea. Doing so will lead to weird errors. For example, renaming a file in a way that only changes letter case will cause git to report spurious conflicts or create duplicate files.</strong></p>
@@ -67,6 +65,7 @@ Merge a branch (source) into another branch (destination):<ul>
 <p>The <code>-m</code> flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1. </p>
 <pre><code class="language-bash">$ git revert [-m 1] &lt;commit-hash&gt;
 </code></pre>
+<p>For example, lets say you accidentally committed to the main branch and pushed up. You can revert this with <code>git revert HEAD</code>, creating a commit dialog and fixing your mistake through <em>adding</em> to your commit history.</p>
 <h2>Stashing</h2>
 <p><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">Stashing</a> allows you to temporarily save changes without committing anything. </p>
 <p>To stash some changes, use <code>git stash save &#x27;message about stash&#x27;</code>, or just <code>git stash</code> if you want to leave out the message.</p>
@@ -147,4 +146,4 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git" target="_blank">https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202108260209</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~720kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109251417</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~729kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -5,22 +5,25 @@ description: git is a version control system.
 
 ## Commits
 
-- Add files you want to commit: `git add {file or folder name}` or `git add .` (you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, use the `--patch` flag insteadl)
-- Add only portions of a file as 'hunks': `git add --patch/-p {file or folder name}` (file or folder is optional). This will prompt you with options:
-  - y - stage this hunk
-  * n - do not stage this hunk
-  * q - quit; do not stage this hunk or any of the remaining ones
-  * a - stage this hunk and all later hunks in the file
-  * d - do not stage this hunk or any of the later hunks in the file
-  * g - select a hunk to go to
-  * / - search for a hunk matching the given regex
-  * j - leave this hunk undecided, see next undecided hunk
-  * J - leave this hunk undecided, see next hunk
-  * k - leave this hunk undecided, see previous undecided hunk
-  * K - leave this hunk undecided, see previous hunk
-  * s - split the current hunk into smaller hunks
-  * e - [manually edit the current hunk][manually edit hunk] (particularly if your code is really close together but needs to be broken down)
-  * ? - print help
+Add files you want to commit: `git add {file or folder name}`. You can also add all by using `git add .`, but this is not recommended, as you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, which is rarely the case. An easy way to check what has changed in your files since last commit is to use the `--patch` flag.
+
+### `--patch`
+
+Add only portions of a file as 'hunks': `git add --patch/-p {file or folder name}` (file or folder is optional). This will prompt you with options:
+- y - stage this hunk
+* n - do not stage this hunk
+* q - quit; do not stage this hunk or any of the remaining ones
+* a - stage this hunk and all later hunks in the file
+* d - do not stage this hunk or any of the later hunks in the file
+* g - select a hunk to go to
+* / - search for a hunk matching the given regex
+* j - leave this hunk undecided, see next undecided hunk
+* J - leave this hunk undecided, see next hunk
+* k - leave this hunk undecided, see previous undecided hunk
+* K - leave this hunk undecided, see previous hunk
+* s - split the current hunk into smaller hunks
+* e - [manually edit the current hunk][manually edit hunk] (particularly if your code is really close together but needs to be broken down)
+* ? - print help
 
 ### Case Sensitivity
 
@@ -76,6 +79,8 @@ The `-m` flag is used to revert a merge; to set where the mainline is, which par
 ```bash
 $ git revert [-m 1] <commit-hash>
 ```
+
+For example, lets say you accidentally committed to the main branch and pushed up. You can revert this with `git revert HEAD`, creating a commit dialog and fixing your mistake through *adding* to your commit history.
 
 ## Stashing
 
