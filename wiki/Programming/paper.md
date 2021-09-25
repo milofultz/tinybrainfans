@@ -3,7 +3,7 @@ title: Paper Computing
 description: Paper computing is a way to learn about the most basic operation of Turing complete systems and programming in general.
 ---
 
-Paper computing is a way to learn about the most basic operation of Turing complete systems and {{programming}} in general. This is also a great way to get familiar with the basics of machine code and {{assembly}}.
+Paper computing is a way to learn about the most basic operation of [Turing complete][] systems and {{programming}} in general. This is also a great way to get familiar with the basics of machine code and {{assembly}}.
 
 ## Setup
 
@@ -35,14 +35,14 @@ Line | Code | Register | Value
 
 ## Instructions
 
-Before we get started, we need to learn some instructions. These are some of the most basic instructions in machine code and assembly and with these, you *technically* could compute anything.
+Before we get started, we need to learn some instructions. These are some of the most basic instructions in machine code and assembly and with these, you *technically* could compute anything as it's [Turing complete][] (as long as you have a LOT of paper and a LOT of time).
 
 Instruction | Meaning
 --- | ---
 `JMP n` | Jump to line `n`
 `INC Rn` | Increment the value in the `n` register 
 `DEC Rn` | Decrement the value in the `n` register 
-`ISZ Rn` | If the number in the `n` register is zero, skip the next instruction. Else, do nothing and continue as normal.
+`ISZ Rn` | If the number in the `n` register is zero, execute the next instruction. Else, skip the next instruction. 
 `END` | Stop the execution of code and end the program.
 
 ## Usage
@@ -100,4 +100,9 @@ Now go ahead and try this with your paper computer, again putting any number of 
 1. https://en.wikipedia.org/wiki/Turing_completeness
 2. https://www.youtube.com/watch?v=RPQD7-AOjMI
 3. https://www.youtube.com/watch?v=Z27KQiBnkJI
-4. https://wiki.xxiivv.com/site/papier.html
+4. https://www.youtube.com/watch?v=t-mOfXhgfQY
+5. https://wiki.xxiivv.com/site/papier.html
+6. https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/
+7. https://www.cs.drexel.edu/~bls96/museum/cardiac.html
+
+[Turing complete]: https://www.youtube.com/watch?v=RPQD7-AOjMI

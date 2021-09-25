@@ -5,6 +5,8 @@ description: Assembly is an extremely low-level human-readable language that has
 
 Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding {{machine code}}.
 
+If you are just getting started with assembly, I highly recommend you get started by first checking out the {{paper computing}} page to get familiar with the foundations and fundamentals of assembly language.
+
 ## Compilation and Linking
 
 For more specifics, visit the {{OSX|Assembly (Unix)}} and {{Windows|Assembly (Windows)}} assembly pages. 
