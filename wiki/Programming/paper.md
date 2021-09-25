@@ -15,6 +15,7 @@ Paper computing is a way to learn about the most basic operation of Turing compl
 
 ### Preparation
 
+- Fold your paper in half.
 - On the left half of the paper, number each line from 0 to 15. This is where your **code** will reside.
 - On the right half of the paper, create four boxes labeled `R0` through `R3`. These are your **registers** and they will hold some number represented by your enumerables (e.g. 3 coins in `R0` would mean that `R0` has a value of 3).
 
