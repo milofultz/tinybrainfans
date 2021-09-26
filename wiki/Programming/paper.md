@@ -5,15 +5,19 @@ description: Paper computing is a way to learn about the most basic operation of
 
 Paper computing is a way to learn about the most basic operation of [Turing complete][] systems and {{programming}} in general. This is also a great way to get familiar with the basics of machine code and {{assembly}}.
 
-## Setup
+## Der [Know-how Computer][]
 
-### Materials
+The [Know-how Computer][] is a simple pen-and-paper computer that was developed by Wolfgang Back and Ulrich Rohdein in the early 80's to help educate people on basic computing and {{assembly}} programming.
+
+### Setup
+
+#### Materials
 
 - Piece of paper (ruled is best, but anything works)
 - Pen
 - Coins, matches, or some kind of enumerable item
 
-### Preparation
+#### Preparation
 
 - Fold your paper in half.
 - On the left half of the paper, number each line from 0 to 15. This is where your **code** will reside.
@@ -33,7 +37,7 @@ Line | Code | Register | Value
 7 | | |
 ... | | |
 
-## Instructions
+### Instructions
 
 Before we get started, we need to learn some instructions. These are some of the most basic instructions in machine code and assembly and with these, you *technically* could compute anything as it's [Turing complete][] (as long as you have a LOT of paper and a LOT of time).
 
@@ -45,9 +49,9 @@ Instruction | Meaning
 `ISZ Rn` | If the number in the `n` register is zero, execute the next instruction. Else, skip the next instruction. 
 `END` | Stop the execution of code and end the program.
 
-## Usage
+### Usage
 
-### First Program
+#### First Program
 
 For the most basic example, lets write a program that will decrement a register (`DEC`) until it reaches zero (`ISZ`), where we will end the program (`END`). We will assume that `R0` has 3 in it, represented by 3 of whatever you are using. Lets start by writing it in plain English:
 
@@ -66,7 +70,7 @@ Line | Instruction
 
 Start with a number of enumerables in `R0` and go from line 0, using your pen as a pointer to which line you are currently on. Starting this program with any number will result in a constant decrementing until `R0` reaches zero, where the program will end. Try it!
 
-### Addition
+#### Addition
 
 This is where things will get a little trickier to conceptualize. We will start with two values in different registers (`R0` and `R1`) and add them together into a single register. This will take a little more breaking down before we can turn it into code. 
 
@@ -95,6 +99,57 @@ Line | Instruction
 
 Now go ahead and try this with your paper computer, again putting any number of enumerables in `R0` and `R1` and using your pen as a pointer for the current line.
 
+### Challenges
+
+With these challenges, you may need to extend the amount of lines and registers you have available. Don't be afraid to use as much as you need and streamline it later!
+
+1. Make a program that subtracts one number from another and completes with the difference in one register.
+2. Make a program that multiplies two numbers together and completes with the product in one register.
+3. Make a program that divides two numbers and completes with the quotient in one register and the remainder in another.
+
+### Solutions
+
+1.
+
+<spoiler>
+
+This subtracts `R0` from `R1`, so `R1` must be larger than `R0`.
+
+| Line | Instruction |
+| ---- | ----------- |
+| 0    | `ISZ R1`    |
+| 1    | `END`       |
+| 2    | `DEC R0`    |
+| 3    | `DEC R1`    |
+| 4    | `JMP 0`     |
+
+</spoiler>
+
+2.
+
+<spoiler>
+
+This multiplies the numbers in `R0` and `R1` together, placing the resulting product in `R2`.
+
+| Line | Instruction |
+| ---- | ----------- |
+| 0  | `ISZ R1`|
+| 1   | `END`|
+| 2   | `DEC R1`|
+| 3  | `ISZ R3`|
+| 4   | `JMP 8` |
+| 5   | `DEC R3`|
+| 6   | `INC R0`|
+| 7   | `JMP 3` |
+| 8  | `ISZ R0` |
+| 9   | `JMP 0` |
+| 10  | `DEC R0`|
+| 11  | `INC R2`|
+| 12  | `INC R3`|
+| 13  | `JMP 8` |
+
+</spoiler>
+
 ## References
 
 1. https://en.wikipedia.org/wiki/Turing_completeness
@@ -106,3 +161,5 @@ Now go ahead and try this with your paper computer, again putting any number of 
 7. https://www.cs.drexel.edu/~bls96/museum/cardiac.html
 
 [Turing complete]: https://www.youtube.com/watch?v=RPQD7-AOjMI
+[Know-how Computer]: https://en.wikipedia.org/wiki/WDR_paper_computer
+

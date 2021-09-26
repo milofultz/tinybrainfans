@@ -213,6 +213,31 @@ tbody tr:nth-child(2n) {
   background-color: var(--background-off);
 }
 
+/* Spoilers */
+
+spoiler {
+  display: block;
+  position: relative;
+}
+spoiler::after {
+  background-color: black;
+  border-radius: 4px;
+  bottom: -.1rem;
+  content: ' ';
+  left: -.25rem;
+  opacity: 1;
+  padding: 0.1rem 0.25rem;
+  position: absolute;
+  right: -.25rem;
+  top: -.1rem;
+  transition: all .25s ease-out;
+  visibility: visible;
+}
+spoiler:hover::after {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .last-modified {
   color: var(--text-off);
 }

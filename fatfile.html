@@ -1754,14 +1754,16 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="paper-computing.html">Paper Computing</a></li></ul></section>
 <p class="last-modified"><em>Last modified: 202109251825</em></p></article><article>            <h1><a href="paper-computing.html">Paper Computing</a></h1>
             <p>Paper computing is a way to learn about the most basic operation of <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> systems and <a href="programming.html">programming</a> in general. This is also a great way to get familiar with the basics of machine code and <a href="assembly.html">assembly</a>.</p>
-<h2>Setup</h2>
-<h3>Materials</h3>
+<h2>Der <a href="https://en.wikipedia.org/wiki/WDR_paper_computer" target="_blank">Know-how Computer</a></h2>
+<p>The <a href="https://en.wikipedia.org/wiki/WDR_paper_computer" target="_blank">Know-how Computer</a> is a simple pen-and-paper computer that was developed by Wolfgang Back and Ulrich Rohdein in the early 80's to help educate people on basic computing and <a href="assembly.html">assembly</a> programming.</p>
+<h3>Setup</h3>
+<h4>Materials</h4>
 <ul>
 <li>Piece of paper (ruled is best, but anything works)</li>
 <li>Pen</li>
 <li>Coins, matches, or some kind of enumerable item</li>
 </ul>
-<h3>Preparation</h3>
+<h4>Preparation</h4>
 <ul>
 <li>Fold your paper in half.</li>
 <li>On the left half of the paper, number each line from 0 to 15. This is where your <strong>code</strong> will reside.</li>
@@ -1832,7 +1834,7 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <td></td>
 <td></td>
 </tr>
-</tbody></table><h2>Instructions</h2>
+</tbody></table><h3>Instructions</h3>
 <p>Before we get started, we need to learn some instructions. These are some of the most basic instructions in machine code and assembly and with these, you <em>technically</em> could compute anything as it's <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> (as long as you have a LOT of paper and a LOT of time).</p>
 <table>
 <thead>
@@ -1862,8 +1864,8 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <td><code>END</code></td>
 <td>Stop the execution of code and end the program.</td>
 </tr>
-</tbody></table><h2>Usage</h2>
-<h3>First Program</h3>
+</tbody></table><h3>Usage</h3>
+<h4>First Program</h4>
 <p>For the most basic example, lets write a program that will decrement a register (<code>DEC</code>) until it reaches zero (<code>ISZ</code>), where we will end the program (<code>END</code>). We will assume that <code>R0</code> has 3 in it, represented by 3 of whatever you are using. Lets start by writing it in plain English:</p>
 <ul>
 <li>If <code>R0</code> has a value of zero, end the program. Else, continue to the next instruction.</li>
@@ -1896,7 +1898,7 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <td><code>JMP 0</code></td>
 </tr>
 </tbody></table><p>Start with a number of enumerables in <code>R0</code> and go from line 0, using your pen as a pointer to which line you are currently on. Starting this program with any number will result in a constant decrementing until <code>R0</code> reaches zero, where the program will end. Try it!</p>
-<h3>Addition</h3>
+<h4>Addition</h4>
 <p>This is where things will get a little trickier to conceptualize. We will start with two values in different registers (<code>R0</code> and <code>R1</code>) and add them together into a single register. This will take a little more breaking down before we can turn it into code. </p>
 <p>Instead of being able to just move all of our enumerables from one register to another, we actually need to convert this into multiple instructions, since we don't have an instruction like <code>ADD</code> to make things easy. What is another way we can think of taking one thing from one register and putting it into another?</p>
 <ul>
@@ -1941,6 +1943,120 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <td><code>JMP 0</code></td>
 </tr>
 </tbody></table><p>Now go ahead and try this with your paper computer, again putting any number of enumerables in <code>R0</code> and <code>R1</code> and using your pen as a pointer for the current line.</p>
+<h3>Challenges</h3>
+<p>With these challenges, you may need to extend the amount of lines and registers you have available. Don't be afraid to use as much as you need and streamline it later!</p>
+<ol>
+<li>Make a program that subtracts one number from another and completes with the difference in one register.</li>
+<li>Make a program that multiplies two numbers together and completes with the product in one register.</li>
+<li>Make a program that divides two numbers and completes with the quotient in one register and the remainder in another.</li>
+</ol>
+<h3>Solutions</h3>
+<ol>
+<li>
+</li>
+</ol>
+<spoiler>
+<p>This subtracts <code>R0</code> from <code>R1</code>, so <code>R1</code> must be larger than <code>R0</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ISZ R1</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>DEC R0</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>DEC R1</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>JMP 0</code></td>
+</tr>
+</tbody></table></spoiler>
+<ol start="2">
+<li>
+</li>
+</ol>
+<spoiler>
+<p>This multiplies the numbers in <code>R0</code> and <code>R1</code> together, placing the resulting product in <code>R2</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ISZ R1</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>DEC R1</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>ISZ R3</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>JMP 8</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>DEC R3</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>INC R0</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>JMP 3</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>ISZ R0</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>JMP 0</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>DEC R0</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>INC R2</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>INC R3</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>JMP 8</code></td>
+</tr>
+</tbody></table></spoiler>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/Turing_completeness" target="_blank">https://en.wikipedia.org/wiki/Turing_completeness</a></li>
@@ -1952,7 +2068,7 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">https://www.cs.drexel.edu/~bls96/museum/cardiac.html</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109251826</em></p></article><article><h1><a href="node.html">node</a></h1>
+<p class="last-modified"><em>Last modified: 202109260413</em></p></article><article><h1><a href="node.html">node</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="mocha-and-chai-(javascript).html">Mocha and Chai (Javascript)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="npm.html">NPM</a></li><li><a href="nvm.html">NVM</a></li><li><a href="postgres.html">Postgres</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="npm.html">NPM</a></h1>
@@ -7748,4 +7864,4 @@ Compare this offer with all others you have received. Determine which has the qu
 <li><a href="https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/" target="_blank">https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~730kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~733kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
