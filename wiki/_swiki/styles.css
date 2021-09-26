@@ -233,7 +233,8 @@ spoiler::after {
   transition: all .25s ease-out;
   visibility: visible;
 }
-spoiler:hover::after {
+spoiler:hover::after,
+spoiler:focus::after {
   opacity: 0;
   visibility: hidden;
 }

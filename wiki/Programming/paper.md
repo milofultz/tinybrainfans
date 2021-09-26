@@ -111,7 +111,7 @@ With these challenges, you may need to extend the amount of lines and registers 
 
 1.
 
-<spoiler>
+<spoiler tabindex="0">
 
 This subtracts `R0` from `R1`, so `R1` must be larger than `R0`.
 
@@ -127,7 +127,7 @@ This subtracts `R0` from `R1`, so `R1` must be larger than `R0`.
 
 2.
 
-<spoiler>
+<spoiler tabindex="0">
 
 This multiplies the numbers in `R0` and `R1` together, placing the resulting product in `R2`.
 
