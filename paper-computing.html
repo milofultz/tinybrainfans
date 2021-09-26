@@ -197,7 +197,7 @@
 <li>Make a program that multiplies two numbers together and completes with the product in one register.</li>
 <li>Make a program that divides two numbers and completes with the quotient in one register and the remainder in another.</li>
 </ol>
-<h3>Solutions</h3>
+<h4>Solutions</h4>
 <ol>
 <li>
 </li>
@@ -304,6 +304,85 @@
 <td><code>JMP 8</code></td>
 </tr>
 </tbody></table></spoiler>
+<ol start="3">
+<li>
+</li>
+</ol>
+<spoiler tabindex="0">
+<p>This divides the number in <code>R0</code> by the number in <code>R1</code>, placing the quotient in <code>R2</code> and the remainder in <code>R3</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ISZ R1</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>ISZ R0</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>ISZ R1</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>JMP 10</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>DEC R0</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>DEC R1</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>INC R3</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>JMP 2</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>INC R2</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>ISZ R3</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>JMP 2</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>DEC R3</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>INC R1</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>JMP 11</code></td>
+</tr>
+</tbody></table></spoiler>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/Turing_completeness" target="_blank">https://en.wikipedia.org/wiki/Turing_completeness</a></li>
@@ -313,6 +392,7 @@
 <li><a href="https://wiki.xxiivv.com/site/papier.html" target="_blank">https://wiki.xxiivv.com/site/papier.html</a></li>
 <li><a href="https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/" target="_blank">https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/</a></li>
 <li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">https://www.cs.drexel.edu/~bls96/museum/cardiac.html</a></li>
+<li><a href="https://archive.org/details/cardiac_201708/page/n9/mode/2up" target="_blank">https://archive.org/details/cardiac_201708/page/n9/mode/2up</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109260424</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~733kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109261509</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~734kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

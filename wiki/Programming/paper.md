@@ -107,7 +107,7 @@ With these challenges, you may need to extend the amount of lines and registers 
 2. Make a program that multiplies two numbers together and completes with the product in one register.
 3. Make a program that divides two numbers and completes with the quotient in one register and the remainder in another.
 
-### Solutions
+#### Solutions
 
 1.
 
@@ -150,6 +150,33 @@ This multiplies the numbers in `R0` and `R1` together, placing the resulting pro
 
 </spoiler>
 
+3.
+
+<spoiler tabindex="0">
+
+This divides the number in `R0` by the number in `R1`, placing the quotient in `R2` and the remainder in `R3`.
+
+| Line | Instruction |
+| ---- | ----------- | 
+| 0    | `ISZ R1` | 
+| 1    | `END`       |
+| 2    | `ISZ R0`    |
+| 3    | `END`    |
+| 4    | `ISZ R1`     |
+| 5    | `JMP 10`    |
+| 6    | `DEC R0`    |
+| 7    | `DEC R1`     |
+| 8    | `INC R3`    |
+| 9    | `JMP 2`     |
+| 10   | `INC R2`    |
+| 11   | `ISZ R3`    |
+| 12   | `JMP 2`    |
+| 13   | `DEC R3`     |
+| 14   | `INC R1`     |
+| 13   | `JMP 11`     |
+
+</spoiler>
+
 ## References
 
 1. https://en.wikipedia.org/wiki/Turing_completeness
@@ -159,6 +186,7 @@ This multiplies the numbers in `R0` and `R1` together, placing the resulting pro
 5. https://wiki.xxiivv.com/site/papier.html
 6. https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/
 7. https://www.cs.drexel.edu/~bls96/museum/cardiac.html
+8. https://archive.org/details/cardiac_201708/page/n9/mode/2up
 
 [Turing complete]: https://www.youtube.com/watch?v=RPQD7-AOjMI
 [Know-how Computer]: https://en.wikipedia.org/wiki/WDR_paper_computer
