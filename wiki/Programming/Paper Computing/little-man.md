@@ -151,7 +151,7 @@ Now we can translate this into code the Little Man can understand:
 
 Assuming we have four numbers in our inbox.
 
-| Mailbox | Instruction |
+| Mailbox | Instruction/Data |
 | ------- | ----------- |
 | 00      | `901`       |
 | 01      | `350`       |
@@ -177,18 +177,45 @@ Assuming we have four numbers in our inbox.
 
 Assuming the last number in the inbox is a zero.
 
-| Mailbox | Instruction |
-| ------- | ----------- |
-| 00      | `508`       |
-| 01      | `350`       |
-| 02      | `901`       |
-| 03      | `707`       |
-| 04      | `150`       |
-| 05      | `350`       |
-| 06      | `602`       |
-| 07      | `550`       |
-| 08      | `902`       |
-| 09      | `000`       |
+| Mailbox | Instruction/Data | Data Note |
+| ------- | ----------- | --- |
+| 00      | `901`       |
+| 01      | `705`       |
+| 02      | `108`       |
+| 03      | `308`       |
+| 04      | `600`       |
+| 05      | `508`       |
+| 06      | `902`       |
+| 07      | `000`       |
+| 08 | `000` | Total |
+
+</spoiler>
+
+3.
+
+<spoiler tabindex="0">
+
+| Mailbox | Instruction/Data | Data Note |
+| ------- | ---------------- | --- |
+| 00      | `901`            ||
+| 01      | `315`            ||
+| 02      | `317`            ||
+| 03      | `517`            ||
+| 04      | `712`            ||
+| 05      | `516`            ||
+| 06      | `150`            ||
+| 07      | `316`            ||
+| 08      | `517`            ||
+| 09      | `218`            ||
+| 10      | `317`            ||
+| 11      | `603`            ||
+| 12      | `516`            ||
+| 13      | `902`            ||
+| 14      | `000`            ||
+| 15      | `000`            | Number from inbox |
+| 16      | `000`            | Total |
+| 17      | `000`            | Times number has been added |
+| 18      | `001`            ||
 
 </spoiler>
 
