@@ -5149,7 +5149,7 @@ Hello, World
 <tr>
 <td><code>8XY</code></td>
 <td><code>BRP</code>: Branch If Positive (see note)</td>
-<td>If the calculator contains a positive value (between <code>0</code>/<code>000</code> and <code>999</code>), set the next instruction to be the one contained in mailbox <code>XY</code>. Else, continue.</td>
+<td>If the calculator contains a positive value (between <code>0</code>/<code>000</code> and <code>999</code> <strong>inclusive</strong>), set the next instruction to be the one contained in mailbox <code>XY</code>. Else, continue.</td>
 </tr>
 <tr>
 <td><code>901</code></td>
@@ -5311,7 +5311,8 @@ Fetch the instruction from the mailbox with that number. Each instruction contai
 <li>Create a program that adds all numbers in the inbox, ending with a zero, and outputs the final sum. For example, an inbox of <code>[13, 426, 301, 95, 0]</code> would result in <code>835</code>.</li>
 <li>Create a program that squares a number and outputs the product. The inbox number must be 31 or below.</li>
 <li>Create a program that divides the first number in the inbox by the second. The output will be the quotient followed by the remainder.</li>
-<li>Create a program that takes in numbers followed by operators. These operators will be <code>401</code> to add, <code>402</code> to subtract, and <code>400</code> to finish the calculation and output the result. For example, an inbox of <code>[20, 402, 15, 401, 95, 400]</code> would output <code>100</code>.</li>
+<li>Create a program that takes in numbers followed by operators and calculates the result of the sequence. These operators are <code>401</code> for add, <code>402</code> for subtract, and <code>400</code> for equals. For example, an inbox of <code>[20, 402, 15, 401, 95, 400]</code> would output <code>100</code>.</li>
+<li>Update your last program to handle multiplication and floor division (return only the quotient with no remainder).</li>
 </ol>
 <h3>Solutions</h3>
 <ol>
@@ -5560,13 +5561,264 @@ Fetch the instruction from the mailbox with that number. Each instruction contai
 <td></td>
 </tr>
 </tbody></table></spoiler>
+<ol start="4">
+<li>
+</li>
+</ol>
+<spoiler tabindex="0">
+<p>The first number in the inbox will be divided by the second.</p>
+<table>
+<thead>
+<tr>
+<th>Mailbox</th>
+<th>Instruction/Data</th>
+<th>Data Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td><code>901</code></td>
+<td></td>
+</tr>
+<tr>
+<td>01</td>
+<td><code>317</code></td>
+<td></td>
+</tr>
+<tr>
+<td>02</td>
+<td><code>901</code></td>
+<td></td>
+</tr>
+<tr>
+<td>03</td>
+<td><code>318</code></td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td><code>517</code></td>
+<td></td>
+</tr>
+<tr>
+<td>05</td>
+<td><code>218</code></td>
+<td></td>
+</tr>
+<tr>
+<td>06</td>
+<td><code>812</code></td>
+<td></td>
+</tr>
+<tr>
+<td>07</td>
+<td><code>517</code></td>
+<td></td>
+</tr>
+<tr>
+<td>08</td>
+<td><code>902</code></td>
+<td></td>
+</tr>
+<tr>
+<td>09</td>
+<td><code>519</code></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>902</code></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>000</code></td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>317</code></td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>519</code></td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>120</code></td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>319</code></td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>604</code></td>
+<td></td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>000</code></td>
+<td>Number</td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>000</code></td>
+<td>Divisor</td>
+</tr>
+<tr>
+<td>19</td>
+<td><code>000</code></td>
+<td>Quotient</td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>001</code></td>
+<td></td>
+</tr>
+</tbody></table></spoiler>
+<ol start="5">
+<li>
+</li>
+</ol>
+<spoiler tabindex="0">
+<table>
+<thead>
+<tr>
+<th>Mailbox</th>
+<th>Instruction/Data</th>
+<th>Instruction/Data Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td><code>901</code></td>
+<td></td>
+</tr>
+<tr>
+<td>01</td>
+<td><code>350</code></td>
+<td></td>
+</tr>
+<tr>
+<td>02</td>
+<td><code>901</code></td>
+<td></td>
+</tr>
+<tr>
+<td>03</td>
+<td><code>252</code></td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td><code>808</code></td>
+<td></td>
+</tr>
+<tr>
+<td>05</td>
+<td><code>550</code></td>
+<td>&quot;Equals&quot;</td>
+</tr>
+<tr>
+<td>06</td>
+<td><code>902</code></td>
+<td></td>
+</tr>
+<tr>
+<td>07</td>
+<td><code>000</code></td>
+<td></td>
+</tr>
+<tr>
+<td>08</td>
+<td><code>715</code></td>
+<td></td>
+</tr>
+<tr>
+<td>09</td>
+<td><code>901</code></td>
+<td>&quot;Subtract&quot;</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>351</code></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>550</code></td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>251</code></td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>350</code></td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>602</code></td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>901</code></td>
+<td>&quot;Add&quot;</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>150</code></td>
+<td></td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>350</code></td>
+<td></td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>602</code></td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>50</td>
+<td><code>000</code></td>
+<td>Total</td>
+</tr>
+<tr>
+<td>51</td>
+<td><code>000</code></td>
+<td>Temp</td>
+</tr>
+<tr>
+<td>52</td>
+<td><code>401</code></td>
+<td>To determine operator</td>
+</tr>
+</tbody></table></spoiler>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/Little_man_computer" target="_blank">https://en.wikipedia.org/wiki/Little_man_computer</a></li>
 <li><a href="https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6" target="_blank">https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="paper-computing.html">Paper Computing</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109270422</em></p></article><article><h1><a href="programming.html">programming</a></h1>
+<p class="last-modified"><em>Last modified: 202109271334</em></p></article><article><h1><a href="programming.html">programming</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="canvas.html">Canvas</a></h1>
@@ -8449,4 +8701,4 @@ Compare this offer with all others you have received. Determine which has the qu
 <li><a href="https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/" target="_blank">https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~760kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~765kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

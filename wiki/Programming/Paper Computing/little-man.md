@@ -37,7 +37,7 @@ These instructions will take a little more work to learn, as they don't come wit
 | `5XY` | `LDA` | Load the value of mailbox `XY` into the calculator. This replaces the current calculator value. |
 | `6XY` | `BRA`: Branch | Set the next instruction to be the one contained in mailbox `XY`. |
 | `7XY` | `BRZ`: Branch If Zero (see note) | If the calculator contains the value `0` (or `000` to be verbose), set the next instruction to be the one contained in mailbox `XY`. Else, continue. |
-| `8XY` | `BRP`: Branch If Positive (see note) | If the calculator contains a positive value (between `0`/`000` and `999`), set the next instruction to be the one contained in mailbox `XY`. Else, continue. |
+| `8XY` | `BRP`: Branch If Positive (see note) | If the calculator contains a positive value (between `0`/`000` and `999` **inclusive**), set the next instruction to be the one contained in mailbox `XY`. Else, continue. |
 | `901` | `INP` | Move the next value found in the inbox in the calculator. This removes the value from the inbox. |
 | `902` | `OUT` | Place the value found in the calculator in the outbox. |
 
@@ -143,7 +143,8 @@ Now we can translate this into code the Little Man can understand:
 2. Create a program that adds all numbers in the inbox, ending with a zero, and outputs the final sum. For example, an inbox of `[13, 426, 301, 95, 0]` would result in `835`.
 3. Create a program that squares a number and outputs the product. The inbox number must be 31 or below.
 4. Create a program that divides the first number in the inbox by the second. The output will be the quotient followed by the remainder.
-5. Create a program that takes in numbers followed by operators. These operators will be `401` to add, `402` to subtract, and `400` to finish the calculation and output the result. For example, an inbox of `[20, 402, 15, 401, 95, 400]` would output `100`.
+5. Create a program that takes in numbers followed by operators and calculates the result of the sequence. These operators are `401` for add, `402` for subtract, and `400` for equals. For example, an inbox of `[20, 402, 15, 401, 95, 400]` would output `100`.
+6. Update your last program to handle multiplication and floor division (return only the quotient with no remainder).
 
 ### Solutions
 
@@ -218,6 +219,70 @@ Assuming the last number in the inbox is a zero.
 | 16      | `000`            | Total |
 | 17      | `000`            | Times number has been added |
 | 18      | `001`            ||
+
+</spoiler>
+
+4.
+
+<spoiler tabindex="0">
+
+The first number in the inbox will be divided by the second.
+
+| Mailbox | Instruction/Data | Data Note                   |
+| ------- | ---------------- | --------------------------- |
+| 00      | `901`            |                             |
+| 01      | `317`          |                             |
+| 02      | `901`            |                             |
+| 03      | `318`          |                             |
+| 04      | `517`         |                             |
+| 05      | `218`          |                             |
+| 06      | `812`          |                             |
+| 07      | `517`         |                             |
+| 08      | `902`            |                             |
+| 09      | `519`          |                             |
+| 10      | `902`            |                             |
+| 11      | `000`            |                             |
+| 12      | `317`          |                             |
+| 13      | `519`          |                             |
+| 14      | `120`          |                             |
+| 15      | `319`          |            |
+| 16      | `604`          |                        |
+| 17      | `000`            | Number |
+| 18      | `000`            | Divisor |
+| 19      | `000`            | Quotient |
+| 20      | `001`            |                             |
+
+</spoiler>
+
+5.
+
+<spoiler tabindex="0">
+
+| Mailbox | Instruction/Data | Instruction/Data Note |
+| ------- | ---------------- | --------------------- |
+| 00      | `901`            |                       |
+| 01      | `350`            |                       |
+| 02      | `901`            |                       |
+| 03      | `252`            |                       |
+| 04      | `808`            |                       |
+| 05      | `550`            | "Equals"              |
+| 06      | `902`            |                       |
+| 07      | `000`            |                       |
+| 08      | `715`            |                       |
+| 09      | `901`            | "Subtract"            |
+| 10      | `351`            |                       |
+| 11      | `550`            |                       |
+| 12      | `251`            |                       |
+| 13      | `350`            |                       |
+| 14      | `602`            |                       |
+| 15      | `901`            | "Add"                 |
+| 16      | `150`            |                       |
+| 17      | `350`            |                 |
+| 18      | `602`            |                |
+| ...     |||
+| 50      | `000`            | Total                       |
+| 51      | `000`            | Temp                       |
+| 52      | `401`            | To determine operator |
 
 </spoiler>
 
