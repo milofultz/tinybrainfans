@@ -4614,9 +4614,10 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <li><a href="https://archive.org/details/cardiac_201708/page/n9/mode/2up" target="_blank">https://archive.org/details/cardiac_201708/page/n9/mode/2up</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Little_man_computer" target="_blank">https://en.wikipedia.org/wiki/Little_man_computer</a></li>
 <li><a href="http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm" target="_blank">http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm</a></li>
+<li><a href="http://www.pythondiary.com/blog/Oct.15,2014/building-cpu-simulator-python.html" target="_blank">http://www.pythondiary.com/blog/Oct.15,2014/building-cpu-simulator-python.html</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109262112</em></p></article><article>            <h1>Assembly (Unix)</h1>
+<p class="last-modified"><em>Last modified: 202109270417</em></p></article><article>            <h1>Assembly (Unix)</h1>
             <p><a href="assembly.html">Assembly</a> on <a href="unix.html">Unix</a> is largely the same between <a href="macos.html">MacOS</a> and <a href="linux.html">Linux</a> computers.</p>
 <h2>Compilation, Linking, and Execution</h2>
 <h3>Compiler</h3>
@@ -5163,7 +5164,8 @@ Hello, World
 </tbody></table><h3>Inbox and Outbox</h3>
 <p>The inbox and outbox can hold multiple values in what is called a 'stack', where the last number that was placed in it will be the first one out. Think of it like a deck of cards, where the cards are pulled off of the top when removed, and when new cards are added, they will be added on top of the deck. </p>
 <h3>Calculator</h3>
-<p>The calculator cannot handle numbers below <code>0</code>/<code>000</code>, nor any numbers over <code>999</code>. When executing subtraction, if the result ends up being below 0 (underflow), then this will cause the calculator to throw a negative flag, which would cause <code>7XY</code> to succeed and <code>8XY</code> to fail, assuming it is the next instruction.</p>
+<p>The calculator holds a single value between <code>0</code>/<code>000</code> and <code>999</code> inclusive and can <code>ADD</code> and <code>SUB</code>. The calculator also has three indicators that are set by the last operation it has completed: negative, if the result is below <code>0</code>; zero, if the result was exactly <code>0</code>; and positive, for if the result is between <code>0</code> and <code>999</code> .</p>
+<p>The calculator cannot handle numbers below <code>0</code>/<code>000</code>, nor any numbers over <code>999</code>. When executing subtraction, if the result ends up being below 0 (underflow), then this will cause the calculator to throw a negative flag, which would cause <code>7XY</code> to succeed and <code>8XY</code> to fail.</p>
 <h3>Mailboxes</h3>
 <p>Each mailbox can contain a number between <code>0</code>/<code>000</code> and <code>999</code>. The mailboxes can contain both data upon which we are operating, as well as instructions we are looking to execute. Keep this in mind, as it's possible for our instructions to encroach on our data, and the Little Man will get confused and just stop working if he gets instructions he can't understand.</p>
 <h2>Process</h2>
@@ -5564,7 +5566,7 @@ Fetch the instruction from the mailbox with that number. Each instruction contai
 <li><a href="https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6" target="_blank">https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="paper-computing.html">Paper Computing</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109270325</em></p></article><article><h1><a href="programming.html">programming</a></h1>
+<p class="last-modified"><em>Last modified: 202109270422</em></p></article><article><h1><a href="programming.html">programming</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="canvas.html">Canvas</a></h1>

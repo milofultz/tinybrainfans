@@ -47,7 +47,9 @@ The inbox and outbox can hold multiple values in what is called a 'stack', where
 
 ### Calculator
 
-The calculator cannot handle numbers below `0`/`000`, nor any numbers over `999`. When executing subtraction, if the result ends up being below 0 (underflow), then this will cause the calculator to throw a negative flag, which would cause `7XY` to succeed and `8XY` to fail, assuming it is the next instruction.
+The calculator holds a single value between `0`/`000` and `999` inclusive and can `ADD` and `SUB`. The calculator also has three indicators that are set by the last operation it has completed: negative, if the result is below `0`; zero, if the result was exactly `0`; and positive, for if the result is between `0` and `999` .
+
+The calculator cannot handle numbers below `0`/`000`, nor any numbers over `999`. When executing subtraction, if the result ends up being below 0 (underflow), then this will cause the calculator to throw a negative flag, which would cause `7XY` to succeed and `8XY` to fail.
 
 ### Mailboxes
 
