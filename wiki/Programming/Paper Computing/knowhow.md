@@ -1,23 +1,20 @@
 ---
-title: Paper Computing
-description: Paper computing is a way to learn about the most basic operation of Turing complete systems and programming in general.
+title: The Know-how Computer
+description: The Know-how Computer is a simple pen-and-paper computer to help educate people on basic computing and assembly programming.
+tags: activities
 ---
 
-Paper computing is a way to learn about the most basic operation of [Turing complete][] systems and {{programming}} in general. This is also a great way to get familiar with the basics of machine code and {{assembly}}.
+The [Know-how Computer][] is a simple {{pen-and-paper computer|paper computing}} that was developed by Wolfgang Back and Ulrich Rohdein in the early 80's to help educate people on basic computing and {{assembly}} programming.
 
-## Der [Know-how Computer][]
+## Setup
 
-The [Know-how Computer][] is a simple pen-and-paper computer that was developed by Wolfgang Back and Ulrich Rohdein in the early 80's to help educate people on basic computing and {{assembly}} programming.
-
-### Setup
-
-#### Materials
+### Materials
 
 - Piece of paper (ruled is best, but anything works)
 - Pen
 - Coins, matches, or some kind of enumerable item
 
-#### Preparation
+### Preparation
 
 - Fold your paper in half.
 - On the left half of the paper, number each line from 0 to 15. This is where your **code** will reside.
@@ -31,27 +28,27 @@ Line | Code | Register | Value
 1 | | R1 |
 2 | | R2 |
 3 | | R3 |
-4 | | |
-5 | | |
-6 | | |
-7 | | |
-... | | |
+4 |
+5 |
+6 |
+7 |
+... |
 
-### Instructions
+## Instructions
 
 Before we get started, we need to learn some instructions. These are some of the most basic instructions in machine code and assembly and with these, you *technically* could compute anything as it's [Turing complete][] (as long as you have a LOT of paper and a LOT of time).
 
 Instruction | Meaning
 --- | ---
 `JMP n` | Jump to line `n`
-`INC Rn` | Increment the value in the `n` register 
-`DEC Rn` | Decrement the value in the `n` register 
-`ISZ Rn` | If the number in the `n` register is zero, execute the next instruction. Else, skip the next instruction. 
+`INC Rn` | Increment the value in register `n` 
+`DEC Rn` | Decrement the value in register `n` 
+`ISZ Rn` | If the number in register `n` is zero, execute the next instruction. Else, skip the next instruction. 
 `END` | Stop the execution of code and end the program.
 
-### Usage
+## Usage
 
-#### First Program
+### First Program
 
 For the most basic example, lets write a program that will decrement a register (`DEC`) until it reaches zero (`ISZ`), where we will end the program (`END`). We will assume that `R0` has 3 in it, represented by 3 of whatever you are using. Lets start by writing it in plain English:
 
@@ -70,7 +67,7 @@ Line | Instruction
 
 Start with a number of enumerables in `R0` and go from line 0, using your pen as a pointer to which line you are currently on. Starting this program with any number will result in a constant decrementing until `R0` reaches zero, where the program will end. Try it!
 
-#### Addition
+### Addition
 
 This is where things will get a little trickier to conceptualize. We will start with two values in different registers (`R0` and `R1`) and add them together into a single register. This will take a little more breaking down before we can turn it into code. 
 
@@ -99,7 +96,7 @@ Line | Instruction
 
 Now go ahead and try this with your paper computer, again putting any number of enumerables in `R0` and `R1` and using your pen as a pointer for the current line.
 
-### Challenges
+## Challenges
 
 With these challenges, you may need to extend the amount of lines and registers you have available. Don't be afraid to use as much as you need and streamline it later!
 
@@ -107,7 +104,7 @@ With these challenges, you may need to extend the amount of lines and registers 
 2. Make a program that multiplies two numbers together and completes with the product in one register.
 3. Make a program that divides two numbers and completes with the quotient in one register and the remainder in another.
 
-#### Solutions
+### Solutions
 
 1.
 
@@ -179,15 +176,9 @@ This divides the number in `R0` by the number in `R1`, placing the quotient in `
 
 ## References
 
-1. https://en.wikipedia.org/wiki/Turing_completeness
-2. https://www.youtube.com/watch?v=RPQD7-AOjMI
-3. https://www.youtube.com/watch?v=Z27KQiBnkJI
-4. https://www.youtube.com/watch?v=t-mOfXhgfQY
-5. https://wiki.xxiivv.com/site/papier.html
-6. https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/
-7. https://www.cs.drexel.edu/~bls96/museum/cardiac.html
-8. https://archive.org/details/cardiac_201708/page/n9/mode/2up
+4. https://en.wikipedia.org/wiki/WDR_paper_computer
+2. https://www.youtube.com/watch?v=Z27KQiBnkJI
+3. https://wiki.xxiivv.com/site/papier.html
 
 [Turing complete]: https://www.youtube.com/watch?v=RPQD7-AOjMI
 [Know-how Computer]: https://en.wikipedia.org/wiki/WDR_paper_computer
-

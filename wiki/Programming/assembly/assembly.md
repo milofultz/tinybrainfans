@@ -127,6 +127,15 @@ add esp, 12	; Flush the three 4 byte values on the stack by
 			; adding 12 to the stack pointer
 ```
 
+## Games
+
+There are lots of games that have recently come out to make assembly a little more accessible. Here are the references I have found and heard about from others:
+
+- [Shenzhen IO](https://store.steampowered.com/app/504210/SHENZHEN_IO/)
+- [TIS-100](https://store.steampowered.com/app/370360/TIS100/)
+- [Human Resource Machine](https://store.steampowered.com/app/375820/Human_Resource_Machine/)
+- [7 Billion Humans](https://store.steampowered.com/app/792100/7_Billion_Humans/)
+
 ## References
 
 1. https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm

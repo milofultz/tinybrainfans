@@ -1512,643 +1512,7 @@ $ grep &#x27;THIS THAT&#x27; dir/file.name
 <li><a href="https://www.man7.org/linux/man-pages/man1/grep.1.html" target="_blank">https://www.man7.org/linux/man-pages/man1/grep.1.html</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202105310508</em></p></article><article><h1><a href="programming.html">programming</a></h1>
-<p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="assembly.html">Assembly</a></h1>
-            <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
-<p>If you are just getting started with assembly, I highly recommend you get started by first checking out the <a href="paper-computing.html">paper computing</a> page to get familiar with the foundations and fundamentals of assembly language.</p>
-<h2>Compilation and Linking</h2>
-<p>For more specifics, visit the <a href="assembly-(unix).html">OSX</a> and <a href="assembly-(windows).html">Windows</a> assembly pages. </p>
-<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a> for <a href="unix.html">Unix</a> systems and <a href="https://www.masm32.com" target="_blank">masm</a> for <a href="windows.html">Windows</a> systems.</p>
-<p>After you have written your code, you will need to assemble your code, translating it from the human readable assembly language into a file object.</p>
-<p>You will then need to <a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">link</a> your newly created output file. This will pull all the needed libraries into a single executable. </p>
-<h2>Syntax and Keywords</h2>
-<h3>Operators</h3>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>mov</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>y</em></td>
-</tr>
-<tr>
-<td><code>and</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> &amp; <em>y</em></td>
-</tr>
-<tr>
-<td><code>or</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> | <em>y</em></td>
-</tr>
-<tr>
-<td><code>xor</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> ^ <em>y</em></td>
-</tr>
-<tr>
-<td><code>add</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> + <em>y</em></td>
-</tr>
-<tr>
-<td><code>sub</code> <em>x</em>, <em>y</em></td>
-<td><em>x</em> ← <em>x</em> – <em>y</em></td>
-</tr>
-<tr>
-<td><code>mul</code> <em>x</em></td>
-<td><em>EAX</em> ← <em>EAX</em> * <em>x</em></td>
-</tr>
-<tr>
-<td><code>div</code> <em>x</em></td>
-<td><em>EAX</em> ← <em>EAX</em> ÷ <em>x</em></td>
-</tr>
-<tr>
-<td><code>inc</code> <em>x</em></td>
-<td><em>x</em> ← <em>x</em> + 1</td>
-</tr>
-<tr>
-<td><code>dec</code> <em>x</em></td>
-<td><em>x</em> ← <em>x</em> – 1</td>
-</tr>
-</tbody></table><h3>Instructions</h3>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>cmp</code> <em>x</em>, <em>y</em></td>
-<td>Set the</td>
-</tr>
-<tr>
-<td><code>jmp</code> <em>label</em></td>
-<td>When this line is reached, jump to the line labeled <em>label</em></td>
-</tr>
-<tr>
-<td><code>je</code> <em>label</em> / <code>jz</code> <em>label</em></td>
-<td>When <code>ZF</code> is 0, jump to <em>label</em></td>
-</tr>
-<tr>
-<td><code>jne</code> <em>label</em> / <code>jnz</code> <em>label</em></td>
-<td>When <code>ZF</code> is NOT 0, jump to <em>label</em></td>
-</tr>
-</tbody></table><h3><a href="http://www.nasm.us/xdoc/2.11.02/html/nasmdoc3.html#section-3.2" target="_blank">Pseudo-instructions</a></h3>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>syscall</code></td>
-<td>Invoke an operating system routine</td>
-</tr>
-<tr>
-<td><code>db</code></td>
-<td>A pseudo-instruction that declares bytes that will be in memory when the program runs</td>
-</tr>
-</tbody></table><h3><code>section</code></h3>
-<p>A section is an assembler directive that tells the assembler what kind of code follows. Generally, you put code in a section called <code>.text</code> and your constant data in a section called <code>.data</code>.</p>
-<h2>Registers</h2>
-<h3>32-Bit General Purpose</h3>
-<table>
-<thead>
-<tr>
-<th>Address</th>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>EAX</td>
-<td>Accumulator Register</td>
-<td>calculations for operations and results data</td>
-</tr>
-<tr>
-<td>EBX</td>
-<td>Base Register</td>
-<td>pointer to data in the DS segment</td>
-</tr>
-<tr>
-<td>ECX</td>
-<td>Count Register</td>
-<td>counter for string and loop operations</td>
-</tr>
-<tr>
-<td>EDX</td>
-<td>Data Register</td>
-<td>input/output pointer</td>
-</tr>
-<tr>
-<td>ESI</td>
-<td>Source Index</td>
-<td>source pointer for string operations</td>
-</tr>
-<tr>
-<td>EDI</td>
-<td>Destination Index</td>
-<td>destination pointer for string operations</td>
-</tr>
-<tr>
-<td>ESP</td>
-<td>Stack Pointer</td>
-<td>stack pointer, <strong>should not be used</strong></td>
-</tr>
-<tr>
-<td>EBP</td>
-<td>Base Pointer</td>
-<td>pointer to data on the stack</td>
-</tr>
-</tbody></table><h3>16-Bit Segment</h3>
-<table>
-<thead>
-<tr>
-<th>Address</th>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CS</td>
-<td>Code Segment</td>
-<td>where instructions being executed are stored</td>
-</tr>
-<tr>
-<td>DS, ES, FS, GS</td>
-<td>Data Segment</td>
-<td>data segment</td>
-</tr>
-<tr>
-<td>SS</td>
-<td>Stack Segment</td>
-<td>where the stack for the current program is stored</td>
-</tr>
-</tbody></table><h3>32-Bit Other</h3>
-<table>
-<thead>
-<tr>
-<th>Address</th>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>EFLAGS</td>
-<td>Code Segment</td>
-<td>status, control, and system flags</td>
-</tr>
-<tr>
-<td>EIP</td>
-<td>Instruction Pointer</td>
-<td>offset for the next instruction to be executed</td>
-</tr>
-</tbody></table><h2>Flags</h2>
-<h3>Carry Flag (<code>CF</code>)</h3>
-<p>The carry flag is set to 1 (true) when the second operand of an operation is smaller than the first. For example if you <code>cmp 2 1</code>, the result will be a <code>CF</code> of 1 (true), since 1 - 2 goes negative, meaning that the first operand is larger than the first.</p>
-<h3>Overflow Flag (<code>OF</code>)</h3>
-<p>The overflow flag will be set to 1 (true) if the operation overflows beyond the bounds of the integers and their storage. This could happen if you are dealing with numbers that go beyond the boundaries involved (e.g. adding two numbers that go above 256 with an 8-bit unsigned integer, or adding two 8-bit unsigned integers that go beyond 128).</p>
-<h3>Sign Flag (<code>SF</code>)</h3>
-<p>The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.  </p>
-<h3>Zero Flag (<code>ZF</code>)</h3>
-<p>The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.</p>
-<h2>Stack</h2>
-<p>The <a href="stack-(programming).html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
-<p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
-<pre><code class="language-assembly">push 3
-pop eax
-ret
-</code></pre>
-<p>This will push three values to the stack <strong>in reverse order of what the function expects, because LIFO</strong>, and then invokes the function, which will use those values.</p>
-<pre><code class="language-assembly">push [var] ; Push last parameter first
-push 216   ; Push the second parameter
-push eax   ; Push first parameter last
-
-call _myFunc ; Call the function (assume C naming)
-
-add esp, 12  ; Flush the three 4 byte values on the stack by 
-      ; adding 12 to the stack pointer
-</code></pre>
-<h2>References</h2>
-<ol>
-<li><a href="https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm</a></li>
-<li><a href="https://www.youtube.com/watch?v=qhkEOyK1ek0" target="_blank">https://www.youtube.com/watch?v=qhkEOyK1ek0</a></li>
-<li><a href="https://www.youtube.com/watch?v=wLXIWKUWpSs" target="_blank">https://www.youtube.com/watch?v=wLXIWKUWpSs</a></li>
-<li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
-<li><a href="https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html" target="_blank">https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html</a></li>
-<li><a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html" target="_blank">https://www.cs.virginia.edu/~evans/cs216/guides/x86.html</a></li>
-<li><a href="https://www.hellboundhackers.org/articles/read-article.php?article_id=729" target="_blank">https://www.hellboundhackers.org/articles/read-article.php?article_id=729</a></li>
-<li><a href="https://www.chibialiens.com/8086/8086CheatSheet.pdf" target="_blank">https://www.chibialiens.com/8086/8086CheatSheet.pdf</a></li>
-<li><a href="https://www.chibialiens.com/8086/" target="_blank">https://www.chibialiens.com/8086/</a></li>
-</ol>
-<section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="paper-computing.html">Paper Computing</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109251825</em></p></article><article>            <h1><a href="paper-computing.html">Paper Computing</a></h1>
-            <p>Paper computing is a way to learn about the most basic operation of <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> systems and <a href="programming.html">programming</a> in general. This is also a great way to get familiar with the basics of machine code and <a href="assembly.html">assembly</a>.</p>
-<h2>Der <a href="https://en.wikipedia.org/wiki/WDR_paper_computer" target="_blank">Know-how Computer</a></h2>
-<p>The <a href="https://en.wikipedia.org/wiki/WDR_paper_computer" target="_blank">Know-how Computer</a> is a simple pen-and-paper computer that was developed by Wolfgang Back and Ulrich Rohdein in the early 80's to help educate people on basic computing and <a href="assembly.html">assembly</a> programming.</p>
-<h3>Setup</h3>
-<h4>Materials</h4>
-<ul>
-<li>Piece of paper (ruled is best, but anything works)</li>
-<li>Pen</li>
-<li>Coins, matches, or some kind of enumerable item</li>
-</ul>
-<h4>Preparation</h4>
-<ul>
-<li>Fold your paper in half.</li>
-<li>On the left half of the paper, number each line from 0 to 15. This is where your <strong>code</strong> will reside.</li>
-<li>On the right half of the paper, create four boxes labeled <code>R0</code> through <code>R3</code>. These are your <strong>registers</strong> and they will hold some number represented by your enumerables (e.g. 3 coins in <code>R0</code> would mean that <code>R0</code> has a value of 3).</li>
-</ul>
-<p>You should now have something that looks something like this:</p>
-<table>
-<thead>
-<tr>
-<th>Line</th>
-<th>Code</th>
-<th>Register</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td></td>
-<td>R0</td>
-<td></td>
-</tr>
-<tr>
-<td>1</td>
-<td></td>
-<td>R1</td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td></td>
-<td>R2</td>
-<td></td>
-</tr>
-<tr>
-<td>3</td>
-<td></td>
-<td>R3</td>
-<td></td>
-</tr>
-<tr>
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>6</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>7</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>...</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table><h3>Instructions</h3>
-<p>Before we get started, we need to learn some instructions. These are some of the most basic instructions in machine code and assembly and with these, you <em>technically</em> could compute anything as it's <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> (as long as you have a LOT of paper and a LOT of time).</p>
-<table>
-<thead>
-<tr>
-<th>Instruction</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>JMP n</code></td>
-<td>Jump to line <code>n</code></td>
-</tr>
-<tr>
-<td><code>INC Rn</code></td>
-<td>Increment the value in the <code>n</code> register</td>
-</tr>
-<tr>
-<td><code>DEC Rn</code></td>
-<td>Decrement the value in the <code>n</code> register</td>
-</tr>
-<tr>
-<td><code>ISZ Rn</code></td>
-<td>If the number in the <code>n</code> register is zero, execute the next instruction. Else, skip the next instruction.</td>
-</tr>
-<tr>
-<td><code>END</code></td>
-<td>Stop the execution of code and end the program.</td>
-</tr>
-</tbody></table><h3>Usage</h3>
-<h4>First Program</h4>
-<p>For the most basic example, lets write a program that will decrement a register (<code>DEC</code>) until it reaches zero (<code>ISZ</code>), where we will end the program (<code>END</code>). We will assume that <code>R0</code> has 3 in it, represented by 3 of whatever you are using. Lets start by writing it in plain English:</p>
-<ul>
-<li>If <code>R0</code> has a value of zero, end the program. Else, continue to the next instruction.</li>
-<li>Decrease the value in <code>R0</code> by 1.</li>
-<li>Jump back to the beginning.</li>
-</ul>
-<p>Now that we have this and have run through this in our head to ensure it works, we can put this into our instructions for our paper computer:</p>
-<table>
-<thead>
-<tr>
-<th>Line</th>
-<th>Instruction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td><code>ISZ R0</code></td>
-</tr>
-<tr>
-<td>1</td>
-<td><code>END</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>DEC R0</code></td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>JMP 0</code></td>
-</tr>
-</tbody></table><p>Start with a number of enumerables in <code>R0</code> and go from line 0, using your pen as a pointer to which line you are currently on. Starting this program with any number will result in a constant decrementing until <code>R0</code> reaches zero, where the program will end. Try it!</p>
-<h4>Addition</h4>
-<p>This is where things will get a little trickier to conceptualize. We will start with two values in different registers (<code>R0</code> and <code>R1</code>) and add them together into a single register. This will take a little more breaking down before we can turn it into code. </p>
-<p>Instead of being able to just move all of our enumerables from one register to another, we actually need to convert this into multiple instructions, since we don't have an instruction like <code>ADD</code> to make things easy. What is another way we can think of taking one thing from one register and putting it into another?</p>
-<ul>
-<li>Remove one item from first register</li>
-<li>Add one item to the second register</li>
-<li>Repeat until first register is empty</li>
-</ul>
-<p>So now that we've translated addition into language that our code can adapt to, lets finish by putting our whole program in plain English again, assuming that we are adding <code>R0</code> and <code>R1</code> together, with the result of our addition residing in <code>R1</code>:</p>
-<ul>
-<li>If <code>R0</code> is zero, end the program. Else, do nothing and continue.</li>
-<li>Decrease the value in  <code>R0</code> by 1.</li>
-<li>Increase the value in <code>R1</code> by 1.</li>
-<li>Jump back to the beginning.</li>
-</ul>
-<p>These are now all much simpler to translate back into our instruction set:</p>
-<table>
-<thead>
-<tr>
-<th>Line</th>
-<th>Instruction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td><code>ISZ R0</code></td>
-</tr>
-<tr>
-<td>1</td>
-<td><code>END</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>DEC R0</code></td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>INC R1</code></td>
-</tr>
-<tr>
-<td>4</td>
-<td><code>JMP 0</code></td>
-</tr>
-</tbody></table><p>Now go ahead and try this with your paper computer, again putting any number of enumerables in <code>R0</code> and <code>R1</code> and using your pen as a pointer for the current line.</p>
-<h3>Challenges</h3>
-<p>With these challenges, you may need to extend the amount of lines and registers you have available. Don't be afraid to use as much as you need and streamline it later!</p>
-<ol>
-<li>Make a program that subtracts one number from another and completes with the difference in one register.</li>
-<li>Make a program that multiplies two numbers together and completes with the product in one register.</li>
-<li>Make a program that divides two numbers and completes with the quotient in one register and the remainder in another.</li>
-</ol>
-<h4>Solutions</h4>
-<ol>
-<li>
-</li>
-</ol>
-<spoiler tabindex="0">
-<p>This subtracts <code>R0</code> from <code>R1</code>, so <code>R1</code> must be larger than <code>R0</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Line</th>
-<th>Instruction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td><code>ISZ R1</code></td>
-</tr>
-<tr>
-<td>1</td>
-<td><code>END</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>DEC R0</code></td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>DEC R1</code></td>
-</tr>
-<tr>
-<td>4</td>
-<td><code>JMP 0</code></td>
-</tr>
-</tbody></table></spoiler>
-<ol start="2">
-<li>
-</li>
-</ol>
-<spoiler tabindex="0">
-<p>This multiplies the numbers in <code>R0</code> and <code>R1</code> together, placing the resulting product in <code>R2</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Line</th>
-<th>Instruction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td><code>ISZ R1</code></td>
-</tr>
-<tr>
-<td>1</td>
-<td><code>END</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>DEC R1</code></td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>ISZ R3</code></td>
-</tr>
-<tr>
-<td>4</td>
-<td><code>JMP 8</code></td>
-</tr>
-<tr>
-<td>5</td>
-<td><code>DEC R3</code></td>
-</tr>
-<tr>
-<td>6</td>
-<td><code>INC R0</code></td>
-</tr>
-<tr>
-<td>7</td>
-<td><code>JMP 3</code></td>
-</tr>
-<tr>
-<td>8</td>
-<td><code>ISZ R0</code></td>
-</tr>
-<tr>
-<td>9</td>
-<td><code>JMP 0</code></td>
-</tr>
-<tr>
-<td>10</td>
-<td><code>DEC R0</code></td>
-</tr>
-<tr>
-<td>11</td>
-<td><code>INC R2</code></td>
-</tr>
-<tr>
-<td>12</td>
-<td><code>INC R3</code></td>
-</tr>
-<tr>
-<td>13</td>
-<td><code>JMP 8</code></td>
-</tr>
-</tbody></table></spoiler>
-<ol start="3">
-<li>
-</li>
-</ol>
-<spoiler tabindex="0">
-<p>This divides the number in <code>R0</code> by the number in <code>R1</code>, placing the quotient in <code>R2</code> and the remainder in <code>R3</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Line</th>
-<th>Instruction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td><code>ISZ R1</code></td>
-</tr>
-<tr>
-<td>1</td>
-<td><code>END</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td><code>ISZ R0</code></td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>END</code></td>
-</tr>
-<tr>
-<td>4</td>
-<td><code>ISZ R1</code></td>
-</tr>
-<tr>
-<td>5</td>
-<td><code>JMP 10</code></td>
-</tr>
-<tr>
-<td>6</td>
-<td><code>DEC R0</code></td>
-</tr>
-<tr>
-<td>7</td>
-<td><code>DEC R1</code></td>
-</tr>
-<tr>
-<td>8</td>
-<td><code>INC R3</code></td>
-</tr>
-<tr>
-<td>9</td>
-<td><code>JMP 2</code></td>
-</tr>
-<tr>
-<td>10</td>
-<td><code>INC R2</code></td>
-</tr>
-<tr>
-<td>11</td>
-<td><code>ISZ R3</code></td>
-</tr>
-<tr>
-<td>12</td>
-<td><code>JMP 2</code></td>
-</tr>
-<tr>
-<td>13</td>
-<td><code>DEC R3</code></td>
-</tr>
-<tr>
-<td>14</td>
-<td><code>INC R1</code></td>
-</tr>
-<tr>
-<td>13</td>
-<td><code>JMP 11</code></td>
-</tr>
-</tbody></table></spoiler>
-<h2>References</h2>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Turing_completeness" target="_blank">https://en.wikipedia.org/wiki/Turing_completeness</a></li>
-<li><a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">https://www.youtube.com/watch?v=RPQD7-AOjMI</a></li>
-<li><a href="https://www.youtube.com/watch?v=Z27KQiBnkJI" target="_blank">https://www.youtube.com/watch?v=Z27KQiBnkJI</a></li>
-<li><a href="https://www.youtube.com/watch?v=t-mOfXhgfQY" target="_blank">https://www.youtube.com/watch?v=t-mOfXhgfQY</a></li>
-<li><a href="https://wiki.xxiivv.com/site/papier.html" target="_blank">https://wiki.xxiivv.com/site/papier.html</a></li>
-<li><a href="https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/" target="_blank">https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/</a></li>
-<li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">https://www.cs.drexel.edu/~bls96/museum/cardiac.html</a></li>
-<li><a href="https://archive.org/details/cardiac_201708/page/n9/mode/2up" target="_blank">https://archive.org/details/cardiac_201708/page/n9/mode/2up</a></li>
-</ol>
-<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109261509</em></p></article><article><h1><a href="node.html">node</a></h1>
+<p class="last-modified"><em>Last modified: 202105310508</em></p></article><article><h1><a href="node.html">node</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="mocha-and-chai-(javascript).html">Mocha and Chai (Javascript)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="npm.html">NPM</a></li><li><a href="nvm.html">NVM</a></li><li><a href="postgres.html">Postgres</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="npm.html">NPM</a></h1>
@@ -4430,7 +3794,252 @@ linear-gradient(
 <li><a href="https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/" target="_blank">https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020510</em></p></article><article><h1><a href="windows.html">Windows</a></h1>
+<p class="last-modified"><em>Last modified: 202107020510</em></p></article><article>            <h1><a href="assembly.html">Assembly</a></h1>
+            <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
+<p>If you are just getting started with assembly, I highly recommend you get started by first checking out the <a href="paper-computing.html">paper computing</a> page to get familiar with the foundations and fundamentals of assembly language.</p>
+<h2>Compilation and Linking</h2>
+<p>For more specifics, visit the <a href="assembly-(unix).html">OSX</a> and <a href="assembly-(windows).html">Windows</a> assembly pages. </p>
+<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a> for <a href="unix.html">Unix</a> systems and <a href="https://www.masm32.com" target="_blank">masm</a> for <a href="windows.html">Windows</a> systems.</p>
+<p>After you have written your code, you will need to assemble your code, translating it from the human readable assembly language into a file object.</p>
+<p>You will then need to <a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">link</a> your newly created output file. This will pull all the needed libraries into a single executable. </p>
+<h2>Syntax and Keywords</h2>
+<h3>Operators</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mov</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>y</em></td>
+</tr>
+<tr>
+<td><code>and</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> &amp; <em>y</em></td>
+</tr>
+<tr>
+<td><code>or</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> | <em>y</em></td>
+</tr>
+<tr>
+<td><code>xor</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> ^ <em>y</em></td>
+</tr>
+<tr>
+<td><code>add</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> + <em>y</em></td>
+</tr>
+<tr>
+<td><code>sub</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> – <em>y</em></td>
+</tr>
+<tr>
+<td><code>mul</code> <em>x</em></td>
+<td><em>EAX</em> ← <em>EAX</em> * <em>x</em></td>
+</tr>
+<tr>
+<td><code>div</code> <em>x</em></td>
+<td><em>EAX</em> ← <em>EAX</em> ÷ <em>x</em></td>
+</tr>
+<tr>
+<td><code>inc</code> <em>x</em></td>
+<td><em>x</em> ← <em>x</em> + 1</td>
+</tr>
+<tr>
+<td><code>dec</code> <em>x</em></td>
+<td><em>x</em> ← <em>x</em> – 1</td>
+</tr>
+</tbody></table><h3>Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cmp</code> <em>x</em>, <em>y</em></td>
+<td>Set the</td>
+</tr>
+<tr>
+<td><code>jmp</code> <em>label</em></td>
+<td>When this line is reached, jump to the line labeled <em>label</em></td>
+</tr>
+<tr>
+<td><code>je</code> <em>label</em> / <code>jz</code> <em>label</em></td>
+<td>When <code>ZF</code> is 0, jump to <em>label</em></td>
+</tr>
+<tr>
+<td><code>jne</code> <em>label</em> / <code>jnz</code> <em>label</em></td>
+<td>When <code>ZF</code> is NOT 0, jump to <em>label</em></td>
+</tr>
+</tbody></table><h3><a href="http://www.nasm.us/xdoc/2.11.02/html/nasmdoc3.html#section-3.2" target="_blank">Pseudo-instructions</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>syscall</code></td>
+<td>Invoke an operating system routine</td>
+</tr>
+<tr>
+<td><code>db</code></td>
+<td>A pseudo-instruction that declares bytes that will be in memory when the program runs</td>
+</tr>
+</tbody></table><h3><code>section</code></h3>
+<p>A section is an assembler directive that tells the assembler what kind of code follows. Generally, you put code in a section called <code>.text</code> and your constant data in a section called <code>.data</code>.</p>
+<h2>Registers</h2>
+<h3>32-Bit General Purpose</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EAX</td>
+<td>Accumulator Register</td>
+<td>calculations for operations and results data</td>
+</tr>
+<tr>
+<td>EBX</td>
+<td>Base Register</td>
+<td>pointer to data in the DS segment</td>
+</tr>
+<tr>
+<td>ECX</td>
+<td>Count Register</td>
+<td>counter for string and loop operations</td>
+</tr>
+<tr>
+<td>EDX</td>
+<td>Data Register</td>
+<td>input/output pointer</td>
+</tr>
+<tr>
+<td>ESI</td>
+<td>Source Index</td>
+<td>source pointer for string operations</td>
+</tr>
+<tr>
+<td>EDI</td>
+<td>Destination Index</td>
+<td>destination pointer for string operations</td>
+</tr>
+<tr>
+<td>ESP</td>
+<td>Stack Pointer</td>
+<td>stack pointer, <strong>should not be used</strong></td>
+</tr>
+<tr>
+<td>EBP</td>
+<td>Base Pointer</td>
+<td>pointer to data on the stack</td>
+</tr>
+</tbody></table><h3>16-Bit Segment</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS</td>
+<td>Code Segment</td>
+<td>where instructions being executed are stored</td>
+</tr>
+<tr>
+<td>DS, ES, FS, GS</td>
+<td>Data Segment</td>
+<td>data segment</td>
+</tr>
+<tr>
+<td>SS</td>
+<td>Stack Segment</td>
+<td>where the stack for the current program is stored</td>
+</tr>
+</tbody></table><h3>32-Bit Other</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EFLAGS</td>
+<td>Code Segment</td>
+<td>status, control, and system flags</td>
+</tr>
+<tr>
+<td>EIP</td>
+<td>Instruction Pointer</td>
+<td>offset for the next instruction to be executed</td>
+</tr>
+</tbody></table><h2>Flags</h2>
+<h3>Carry Flag (<code>CF</code>)</h3>
+<p>The carry flag is set to 1 (true) when the second operand of an operation is smaller than the first. For example if you <code>cmp 2 1</code>, the result will be a <code>CF</code> of 1 (true), since 1 - 2 goes negative, meaning that the first operand is larger than the first.</p>
+<h3>Overflow Flag (<code>OF</code>)</h3>
+<p>The overflow flag will be set to 1 (true) if the operation overflows beyond the bounds of the integers and their storage. This could happen if you are dealing with numbers that go beyond the boundaries involved (e.g. adding two numbers that go above 256 with an 8-bit unsigned integer, or adding two 8-bit unsigned integers that go beyond 128).</p>
+<h3>Sign Flag (<code>SF</code>)</h3>
+<p>The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.  </p>
+<h3>Zero Flag (<code>ZF</code>)</h3>
+<p>The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.</p>
+<h2>Stack</h2>
+<p>The <a href="stack-(programming).html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
+<p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
+<pre><code class="language-assembly">push 3
+pop eax
+ret
+</code></pre>
+<p>This will push three values to the stack <strong>in reverse order of what the function expects, because LIFO</strong>, and then invokes the function, which will use those values.</p>
+<pre><code class="language-assembly">push [var] ; Push last parameter first
+push 216   ; Push the second parameter
+push eax   ; Push first parameter last
+
+call _myFunc ; Call the function (assume C naming)
+
+add esp, 12  ; Flush the three 4 byte values on the stack by 
+      ; adding 12 to the stack pointer
+</code></pre>
+<h2>Games</h2>
+<p>There are lots of games that have recently come out to make assembly a little more accessible. Here are the references I have found and heard about from others:</p>
+<ul>
+<li><a href="https://store.steampowered.com/app/504210/SHENZHEN_IO/" target="_blank">Shenzhen IO</a></li>
+<li><a href="https://store.steampowered.com/app/370360/TIS100/" target="_blank">TIS-100</a></li>
+<li><a href="https://store.steampowered.com/app/375820/Human_Resource_Machine/" target="_blank">Human Resource Machine</a></li>
+<li><a href="https://store.steampowered.com/app/792100/7_Billion_Humans/" target="_blank">7 Billion Humans</a></li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm</a></li>
+<li><a href="https://www.youtube.com/watch?v=qhkEOyK1ek0" target="_blank">https://www.youtube.com/watch?v=qhkEOyK1ek0</a></li>
+<li><a href="https://www.youtube.com/watch?v=wLXIWKUWpSs" target="_blank">https://www.youtube.com/watch?v=wLXIWKUWpSs</a></li>
+<li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
+<li><a href="https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html" target="_blank">https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html</a></li>
+<li><a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html" target="_blank">https://www.cs.virginia.edu/~evans/cs216/guides/x86.html</a></li>
+<li><a href="https://www.hellboundhackers.org/articles/read-article.php?article_id=729" target="_blank">https://www.hellboundhackers.org/articles/read-article.php?article_id=729</a></li>
+<li><a href="https://www.chibialiens.com/8086/8086CheatSheet.pdf" target="_blank">https://www.chibialiens.com/8086/8086CheatSheet.pdf</a></li>
+<li><a href="https://www.chibialiens.com/8086/" target="_blank">https://www.chibialiens.com/8086/</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202109270029</em></p></article><article><h1><a href="windows.html">Windows</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Assembly (Windows)</h1>
@@ -4984,7 +4593,30 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <p class="last-modified"><em>Last modified: 202109191717</em></p></article><article><h1><a href="machine-code.html">machine code</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-(6502).html">Assembly (6502)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1>Assembly (Unix)</h1>
+<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="paper-computing.html">Paper Computing</a></h1>
+            <p>Paper computing is a way to learn about the most basic operation of <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> systems and <a href="programming.html">programming</a> in general. This is also a great way to get familiar with the basics of machine code and <a href="assembly.html">assembly</a>.</p>
+<h2>Models</h2>
+<ul>
+<li><a href="the-know-how-computer.html">The Know-how Computer</a></li>
+<li><a href="the-little-man-computer.html">The Little Man Computer</a></li>
+<li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">CARDIAC - CARDboard Illustrative Aid to Computation</a></li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Turing_completeness" target="_blank">https://en.wikipedia.org/wiki/Turing_completeness</a></li>
+<li><a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">https://www.youtube.com/watch?v=RPQD7-AOjMI</a></li>
+<li><a href="https://compudanzas.net/beans_computing.html" target="_blank">https://compudanzas.net/beans_computing.html</a></li>
+<li><a href="https://www.youtube.com/watch?v=Z27KQiBnkJI" target="_blank">https://www.youtube.com/watch?v=Z27KQiBnkJI</a></li>
+<li><a href="https://www.youtube.com/watch?v=t-mOfXhgfQY" target="_blank">https://www.youtube.com/watch?v=t-mOfXhgfQY</a></li>
+<li><a href="https://wiki.xxiivv.com/site/papier.html" target="_blank">https://wiki.xxiivv.com/site/papier.html</a></li>
+<li><a href="https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/" target="_blank">https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/</a></li>
+<li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">https://www.cs.drexel.edu/~bls96/museum/cardiac.html</a></li>
+<li><a href="https://archive.org/details/cardiac_201708/page/n9/mode/2up" target="_blank">https://archive.org/details/cardiac_201708/page/n9/mode/2up</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Little_man_computer" target="_blank">https://en.wikipedia.org/wiki/Little_man_computer</a></li>
+<li><a href="http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm" target="_blank">http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="assembly.html">Assembly</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202109262112</em></p></article><article>            <h1>Assembly (Unix)</h1>
             <p><a href="assembly.html">Assembly</a> on <a href="unix.html">Unix</a> is largely the same between <a href="macos.html">MacOS</a> and <a href="linux.html">Linux</a> computers.</p>
 <h2>Compilation, Linking, and Execution</h2>
 <h3>Compiler</h3>
@@ -5064,6 +4696,761 @@ Hello, World
 <p class="last-modified"><em>Last modified: 202108130628</em></p></article><article><h1><a href="linux.html">Linux</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li></ul></section>
+<p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="the-know-how-computer.html">The Know-how Computer</a></h1>
+            <p>The <a href="https://en.wikipedia.org/wiki/WDR_paper_computer" target="_blank">Know-how Computer</a> is a simple <a href="paper-computing.html">pen-and-paper computer</a> that was developed by Wolfgang Back and Ulrich Rohdein in the early 80's to help educate people on basic computing and <a href="assembly.html">assembly</a> programming.</p>
+<h2>Setup</h2>
+<h3>Materials</h3>
+<ul>
+<li>Piece of paper (ruled is best, but anything works)</li>
+<li>Pen</li>
+<li>Coins, matches, or some kind of enumerable item</li>
+</ul>
+<h3>Preparation</h3>
+<ul>
+<li>Fold your paper in half.</li>
+<li>On the left half of the paper, number each line from 0 to 15. This is where your <strong>code</strong> will reside.</li>
+<li>On the right half of the paper, create four boxes labeled <code>R0</code> through <code>R3</code>. These are your <strong>registers</strong> and they will hold some number represented by your enumerables (e.g. 3 coins in <code>R0</code> would mean that <code>R0</code> has a value of 3).</li>
+</ul>
+<p>You should now have something that looks something like this:</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Code</th>
+<th>Register</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td></td>
+<td>R0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td>R1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td>R2</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td>R3</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table><h2>Instructions</h2>
+<p>Before we get started, we need to learn some instructions. These are some of the most basic instructions in machine code and assembly and with these, you <em>technically</em> could compute anything as it's <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> (as long as you have a LOT of paper and a LOT of time).</p>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JMP n</code></td>
+<td>Jump to line <code>n</code></td>
+</tr>
+<tr>
+<td><code>INC Rn</code></td>
+<td>Increment the value in register <code>n</code></td>
+</tr>
+<tr>
+<td><code>DEC Rn</code></td>
+<td>Decrement the value in register <code>n</code></td>
+</tr>
+<tr>
+<td><code>ISZ Rn</code></td>
+<td>If the number in register <code>n</code> is zero, execute the next instruction. Else, skip the next instruction.</td>
+</tr>
+<tr>
+<td><code>END</code></td>
+<td>Stop the execution of code and end the program.</td>
+</tr>
+</tbody></table><h2>Usage</h2>
+<h3>First Program</h3>
+<p>For the most basic example, lets write a program that will decrement a register (<code>DEC</code>) until it reaches zero (<code>ISZ</code>), where we will end the program (<code>END</code>). We will assume that <code>R0</code> has 3 in it, represented by 3 of whatever you are using. Lets start by writing it in plain English:</p>
+<ul>
+<li>If <code>R0</code> has a value of zero, end the program. Else, continue to the next instruction.</li>
+<li>Decrease the value in <code>R0</code> by 1.</li>
+<li>Jump back to the beginning.</li>
+</ul>
+<p>Now that we have this and have run through this in our head to ensure it works, we can put this into our instructions for our paper computer:</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ISZ R0</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>DEC R0</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>JMP 0</code></td>
+</tr>
+</tbody></table><p>Start with a number of enumerables in <code>R0</code> and go from line 0, using your pen as a pointer to which line you are currently on. Starting this program with any number will result in a constant decrementing until <code>R0</code> reaches zero, where the program will end. Try it!</p>
+<h3>Addition</h3>
+<p>This is where things will get a little trickier to conceptualize. We will start with two values in different registers (<code>R0</code> and <code>R1</code>) and add them together into a single register. This will take a little more breaking down before we can turn it into code. </p>
+<p>Instead of being able to just move all of our enumerables from one register to another, we actually need to convert this into multiple instructions, since we don't have an instruction like <code>ADD</code> to make things easy. What is another way we can think of taking one thing from one register and putting it into another?</p>
+<ul>
+<li>Remove one item from first register</li>
+<li>Add one item to the second register</li>
+<li>Repeat until first register is empty</li>
+</ul>
+<p>So now that we've translated addition into language that our code can adapt to, lets finish by putting our whole program in plain English again, assuming that we are adding <code>R0</code> and <code>R1</code> together, with the result of our addition residing in <code>R1</code>:</p>
+<ul>
+<li>If <code>R0</code> is zero, end the program. Else, do nothing and continue.</li>
+<li>Decrease the value in  <code>R0</code> by 1.</li>
+<li>Increase the value in <code>R1</code> by 1.</li>
+<li>Jump back to the beginning.</li>
+</ul>
+<p>These are now all much simpler to translate back into our instruction set:</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ISZ R0</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>DEC R0</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>INC R1</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>JMP 0</code></td>
+</tr>
+</tbody></table><p>Now go ahead and try this with your paper computer, again putting any number of enumerables in <code>R0</code> and <code>R1</code> and using your pen as a pointer for the current line.</p>
+<h2>Challenges</h2>
+<p>With these challenges, you may need to extend the amount of lines and registers you have available. Don't be afraid to use as much as you need and streamline it later!</p>
+<ol>
+<li>Make a program that subtracts one number from another and completes with the difference in one register.</li>
+<li>Make a program that multiplies two numbers together and completes with the product in one register.</li>
+<li>Make a program that divides two numbers and completes with the quotient in one register and the remainder in another.</li>
+</ol>
+<h3>Solutions</h3>
+<ol>
+<li>
+</li>
+</ol>
+<spoiler tabindex="0">
+<p>This subtracts <code>R0</code> from <code>R1</code>, so <code>R1</code> must be larger than <code>R0</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ISZ R1</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>DEC R0</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>DEC R1</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>JMP 0</code></td>
+</tr>
+</tbody></table></spoiler>
+<ol start="2">
+<li>
+</li>
+</ol>
+<spoiler tabindex="0">
+<p>This multiplies the numbers in <code>R0</code> and <code>R1</code> together, placing the resulting product in <code>R2</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ISZ R1</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>DEC R1</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>ISZ R3</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>JMP 8</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>DEC R3</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>INC R0</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>JMP 3</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>ISZ R0</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>JMP 0</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>DEC R0</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>INC R2</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>INC R3</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>JMP 8</code></td>
+</tr>
+</tbody></table></spoiler>
+<ol start="3">
+<li>
+</li>
+</ol>
+<spoiler tabindex="0">
+<p>This divides the number in <code>R0</code> by the number in <code>R1</code>, placing the quotient in <code>R2</code> and the remainder in <code>R3</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>ISZ R1</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>ISZ R0</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>END</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>ISZ R1</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>JMP 10</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>DEC R0</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>DEC R1</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>INC R3</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>JMP 2</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>INC R2</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>ISZ R3</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>JMP 2</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>DEC R3</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>INC R1</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>JMP 11</code></td>
+</tr>
+</tbody></table></spoiler>
+<h2>References</h2>
+<ol start="4">
+<li><a href="https://en.wikipedia.org/wiki/WDR_paper_computer" target="_blank">https://en.wikipedia.org/wiki/WDR_paper_computer</a></li>
+<li><a href="https://www.youtube.com/watch?v=Z27KQiBnkJI" target="_blank">https://www.youtube.com/watch?v=Z27KQiBnkJI</a></li>
+<li><a href="https://wiki.xxiivv.com/site/papier.html" target="_blank">https://wiki.xxiivv.com/site/papier.html</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202109262227</em></p></article><article>            <h1><a href="the-little-man-computer.html">The Little Man Computer</a></h1>
+            <p>The <a href="https://en.wikipedia.org/wiki/Little_man_computer" target="_blank">Little Man Computer</a> is a simple <a href="paper-computing.html">pen-and-paper computer</a> that was developed by created by Dr. Stuart Madnick in 1965 to help educate people on basic computing and <a href="assembly.html">assembly</a> programming.</p>
+<p>It is recommended you complete <a href="the-know-how-computer.html">the Know-how Computer</a> and its exercises before doing this one.</p>
+<h2>Setup</h2>
+<h3>Materials</h3>
+<ul>
+<li>Piece of paper (grid paper is best, but anything works)</li>
+<li>Pen</li>
+<li>A calculator</li>
+</ul>
+<h3>Preparation</h3>
+<p><em>Note: If you don't want to make this yourself, download the PDF from Chris Staecker's <a href="https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6" target="_blank">Paper Computers #2: The Little Man Computer</a> video, which you can find in the description.</em></p>
+<p>The Little Man Computer consists of an inbox, an outbox, and a set of 100 mailboxes.</p>
+<p>Turn your paper landscape and create a grid of 10x10, taking up about two thirds of the width of the page. Each of these boxes should be numbered 00 to 99, from top bottom, left to right. Split the last third of the page in half vertically, with the top half as the inbox, and the bottom half as the outbox.</p>
+<h2>Instructions</h2>
+<p>These instructions will take a little more work to learn, as they don't come with the ease of text to help with understanding.</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Instruction</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>000</code></td>
+<td><code>END</code></td>
+<td>Stop the execution of code and end the program.</td>
+</tr>
+<tr>
+<td><code>1XY</code></td>
+<td><code>ADD</code></td>
+<td>Add the contents of mailbox <code>XY</code> to the current value of your calculator. This replaces the calculator's value with the result.</td>
+</tr>
+<tr>
+<td><code>2XY</code></td>
+<td><code>SUB</code></td>
+<td>Subtract the contents of mailbox <code>XY</code> from the current value of your calculator. This replaces the calculator's value with the result.</td>
+</tr>
+<tr>
+<td><code>3XY</code></td>
+<td><code>STA</code></td>
+<td>Store the value of your calculator in mailbox <code>XY</code>. This replaces the current value at mailbox <code>XY</code>.</td>
+</tr>
+<tr>
+<td><code>5XY</code></td>
+<td><code>LDA</code></td>
+<td>Load the value of mailbox <code>XY</code> into the calculator. This replaces the current calculator value.</td>
+</tr>
+<tr>
+<td><code>6XY</code></td>
+<td><code>BRA</code>: Branch</td>
+<td>Set the next instruction to be the one contained in mailbox <code>XY</code>.</td>
+</tr>
+<tr>
+<td><code>7XY</code></td>
+<td><code>BRZ</code>: Branch If Zero (see note)</td>
+<td>If the calculator contains the value <code>0</code> (or <code>000</code> to be verbose), set the next instruction to be the one contained in mailbox <code>XY</code>. Else, continue.</td>
+</tr>
+<tr>
+<td><code>8XY</code></td>
+<td><code>BRP</code>: Branch If Positive (see note)</td>
+<td>If the calculator contains a positive value (between <code>0</code>/<code>000</code> and <code>999</code>), set the next instruction to be the one contained in mailbox <code>XY</code>. Else, continue.</td>
+</tr>
+<tr>
+<td><code>901</code></td>
+<td><code>INP</code></td>
+<td>Move the next value found in the inbox in the calculator. This removes the value from the inbox.</td>
+</tr>
+<tr>
+<td><code>902</code></td>
+<td><code>OUT</code></td>
+<td>Place the value found in the calculator in the outbox.</td>
+</tr>
+</tbody></table><h3>Inbox and Outbox</h3>
+<p>The inbox and outbox can hold multiple values in what is called a 'stack', where the last number that was placed in it will be the first one out. Think of it like a deck of cards, where the cards are pulled off of the top when removed, and when new cards are added, they will be added on top of the deck. </p>
+<h3>Calculator</h3>
+<p>The calculator cannot handle numbers below <code>0</code>/<code>000</code>, nor any numbers over <code>999</code>. When executing subtraction, if the result ends up being below 0 (underflow), then this will cause the calculator to throw a negative flag, which would cause <code>7XY</code> to succeed and <code>8XY</code> to fail, assuming it is the next instruction.</p>
+<h3>Mailboxes</h3>
+<p>Each mailbox can contain a number between <code>0</code>/<code>000</code> and <code>999</code>. The mailboxes can contain both data upon which we are operating, as well as instructions we are looking to execute. Keep this in mind, as it's possible for our instructions to encroach on our data, and the Little Man will get confused and just stop working if he gets instructions he can't understand.</p>
+<h2>Process</h2>
+<p>The Little Man executes this process repeatedly until he runs out of stuff to do (<a href="https://en.wikipedia.org/wiki/Little_man_computer" target="_blank">taken from Wikipedia</a>):</p>
+<ol>
+<li>Check the Program Counter (your pen, in this instance) for the mailbox number that contains a program instruction (i.e. zero at the start of the program).</li>
+<li>
+Fetch the instruction from the mailbox with that number. Each instruction contains two fields: <ul>
+<li>An opcode (indicating the operation to perform) and</li>
+<li>the address field (indicating where to find the data to perform the operation on).</li>
+</ul>
+</li>
+<li>Increment the Program Counter (pen) so that it contains the mailbox number of the next instruction.</li>
+<li>Decode the instruction. If the instruction utilises data stored in another mailbox, then use the address field to find the mailbox number for the data it will work on (e.g. 'get data from mailbox 42').</li>
+<li>Fetch the data (from the input, accumulator, or mailbox with the address determined in step 4).</li>
+<li>Execute the instruction based on the opcode given.</li>
+<li>Branch or store the result (in the output, accumulator, or mailbox with the address determined in step 4).</li>
+<li>Return to the Program Counter to repeat the cycle or halt.</li>
+</ol>
+<h2>Usage</h2>
+<h3>Addition</h3>
+<p>Like in <a href="the-know-how-computer.html">the Know-how Computer</a>, we'll start with addition, but in this case it will be a little different. In this case, we just have an add command handy (<code>1XY</code>), so how hard can it be? :)</p>
+<p>First, we will add two numbers to the inbox to eventually get added together. Our result will be in the output, of course. We know that to add two things together, one of our values will need to already be in the calculator, and the other value will need to be found in a mailbox. So before we get to adding, we will need to do that:</p>
+<ol>
+<li>Move the next value from the inbox into the calculator.</li>
+<li>Store that value in mailbox 50 (this is not a significant number, any mailbox above 30 or so will be fine).</li>
+<li>Move the next value from the inbox into the calculator.</li>
+</ol>
+<p>So now we have the two numbers in place, ready to be added. Once we have this sum, we can place it into the outbox.</p>
+<ol start="4">
+<li>Add the number in mailbox 50 to the calculator, replacing the calculator's old value with the sum.</li>
+<li>Put the value in the calculator into the outbox.</li>
+</ol>
+<p>Now we can convert this into instructions that the Little Man can understand. Assuming we have our two numbers we want to add in the inbox:</p>
+<table>
+<thead>
+<tr>
+<th>Mailbox</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>01</td>
+<td><code>350</code></td>
+</tr>
+<tr>
+<td>02</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>03</td>
+<td><code>150</code></td>
+</tr>
+<tr>
+<td>04</td>
+<td><code>902</code></td>
+</tr>
+<tr>
+<td>05</td>
+<td><code>000</code></td>
+</tr>
+</tbody></table><p>Try this out with a few different numbers as inputs. Remember, the calculator can't handle numbers above 999.</p>
+<h3>Return The Largest Number</h3>
+<p>Again we'll start by putting two numbers into our inbox. The question is: how will we know which number to return? And how can we tell the Little Man to return one thing or another based on that condition? What if we reframed the question as: which of our branching tools could help us execute one sequence of code over another based on a condition?</p>
+<p>We have two conditional branches: branch if (the value in the calculator is) zero, and branch if (the value in the calculator is) positive. If we know these are our only branching options, and that they are both dependent on mathematical operations in the calculator, this leaves us with only two instructions that could help us solve this problem: <code>1XY</code> and <code>2XY</code>; <code>ADD</code> and <code>SUB</code>.</p>
+<p>If we try using <code>ADD</code>, you will see that adding two numbers in either order results in no discernable difference: <code>100</code> + <code>50</code> is the same as <code>50</code> + <code>100</code>. So if we know this, then we are only left with the <code>SUB</code> instruction. Playing with <code>SUB</code>, we can see that the order definitely <em>does</em> matter. <code>100</code> - <code>50</code> (<code>50</code>) does not equal the same as <code>50</code> - <code>100</code> (<code>-50</code>). </p>
+<p>So knowing that we will need to use <code>SUB</code> leaves us with which branch we want to use: <code>7XY</code> or <code>8XY</code>; branch if zero, and branch if positive. If we look at the last example of <code>100</code> and <code>50</code>, we can see that one of the differences is positive and the other negative. This would lead to us using the branch if positive instruction after we perform our subtraction method.</p>
+<p>Now that we know our tools, lets put this in plain English:</p>
+<ol>
+<li>Load one number from the inbox into the calculator.</li>
+<li>Store the number in our calculator into mailbox 50.</li>
+<li>Load the next number from the inbox into the calculator.</li>
+<li>Store the number in our calculator into mailbox 51.</li>
+<li>Subtract the number in mailbox 50 from the current value of the calculator (this number should be the same as is in mailbox 51).</li>
+<li>If the result is positive, return the number in mailbox 51.</li>
+<li>Else, return the number in mailbox 50.</li>
+</ol>
+<p>Now we can translate this into code the Little Man can understand:</p>
+<table>
+<thead>
+<tr>
+<th>Mailbox</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>01</td>
+<td><code>350</code></td>
+</tr>
+<tr>
+<td>02</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>03</td>
+<td><code>351</code></td>
+</tr>
+<tr>
+<td>04</td>
+<td><code>250</code></td>
+</tr>
+<tr>
+<td>05</td>
+<td><code>809</code></td>
+</tr>
+<tr>
+<td>06</td>
+<td><code>550</code></td>
+</tr>
+<tr>
+<td>07</td>
+<td><code>902</code></td>
+</tr>
+<tr>
+<td>08</td>
+<td><code>000</code></td>
+</tr>
+<tr>
+<td>09</td>
+<td><code>551</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>902</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>000</code></td>
+</tr>
+</tbody></table><h2>Challenges</h2>
+<ol>
+<li>Create a program that takes four numbers from the inbox and outputs them in reverse order.</li>
+<li>Create a program that adds all numbers in the inbox, ending with a zero, and outputs the final sum. For example, an inbox of <code>[13, 426, 301, 95, 0]</code> would result in <code>835</code>.</li>
+<li>Create a program that squares a number and outputs the product. The inbox number must be 31 or below.</li>
+<li>Create a program that divides the first number in the inbox by the second. The output will be the quotient followed by the remainder.</li>
+<li>Create a program that takes in numbers followed by operators. These operators will be <code>401</code> to add, <code>402</code> to subtract, and <code>400</code> to finish the calculation and output the result. For example, an inbox of <code>[20, 402, 15, 401, 95, 400]</code> would output <code>100</code>.</li>
+</ol>
+<h3>Solutions</h3>
+<ol>
+<li>
+</li>
+</ol>
+<spoiler tabindex="0">
+<p>Assuming we have four numbers in our inbox.</p>
+<table>
+<thead>
+<tr>
+<th>Mailbox</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>01</td>
+<td><code>350</code></td>
+</tr>
+<tr>
+<td>02</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>03</td>
+<td><code>351</code></td>
+</tr>
+<tr>
+<td>04</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>05</td>
+<td><code>352</code></td>
+</tr>
+<tr>
+<td>06</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>07</td>
+<td><code>902</code></td>
+</tr>
+<tr>
+<td>08</td>
+<td><code>552</code></td>
+</tr>
+<tr>
+<td>09</td>
+<td><code>902</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>551</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>902</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>550</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>902</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>000</code></td>
+</tr>
+</tbody></table></spoiler>
+<ol start="2">
+<li>
+</li>
+</ol>
+<spoiler tabindex="0">
+<p>Assuming the last number in the inbox is a zero.</p>
+<table>
+<thead>
+<tr>
+<th>Mailbox</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00</td>
+<td><code>508</code></td>
+</tr>
+<tr>
+<td>01</td>
+<td><code>350</code></td>
+</tr>
+<tr>
+<td>02</td>
+<td><code>901</code></td>
+</tr>
+<tr>
+<td>03</td>
+<td><code>707</code></td>
+</tr>
+<tr>
+<td>04</td>
+<td><code>150</code></td>
+</tr>
+<tr>
+<td>05</td>
+<td><code>350</code></td>
+</tr>
+<tr>
+<td>06</td>
+<td><code>602</code></td>
+</tr>
+<tr>
+<td>07</td>
+<td><code>550</code></td>
+</tr>
+<tr>
+<td>08</td>
+<td><code>902</code></td>
+</tr>
+<tr>
+<td>09</td>
+<td><code>000</code></td>
+</tr>
+</tbody></table></spoiler>
+<h2>References</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Little_man_computer" target="_blank">https://en.wikipedia.org/wiki/Little_man_computer</a></li>
+<li><a href="https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6" target="_blank">https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6</a></li>
+</ol>
+<section><h2>Backlinks:</h2><ul><li><a href="paper-computing.html">Paper Computing</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202109270248</em></p></article><article><h1><a href="programming.html">programming</a></h1>
+<p>There's currently nothing here.</p>
+<section><h2>Backlinks:</h2><ul><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="canvas.html">Canvas</a></h1>
             <p>The Canvas API provides a means for drawing graphics via <a href="javascript.html">JavaScript</a> and the <a href="html.html">HTML</a> <code>&lt;canvas&gt;</code> element.</p>
 <h2>Initialization</h2>
@@ -7944,4 +8331,4 @@ Compare this offer with all others you have received. Determine which has the qu
 <li><a href="https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/" target="_blank">https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~734kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~758kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
