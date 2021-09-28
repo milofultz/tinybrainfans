@@ -12,7 +12,7 @@
 /* || Utilities */
 </code></pre>
 <h3>Build Proficient Selectors</h3>
-<p>Don't use IDs in your <a href="selectors-(css).html">selectors</a>. This messes with the specificity and often breaks cascades. In general, in seems like it's best practice to stick with classes as your selectors.</p>
+<p>Don't use IDs in your <a href="selectors-css.html">selectors</a>. This messes with the specificity and often breaks cascades. In general, in seems like it's best practice to stick with classes as your selectors.</p>
 <p>Keep selectors short, since the longer they get, the more apt they are to break. If you create very specific selectors you will often find that you need to duplicate chunks of your <a href="css.html">CSS</a> to apply the same rules to another element. Try to reduce nesting to two or three levels deep and remove as many location-based selectors as possible. Usually, these longer selectors are overkill and unnecessary. If you do find that you need to use a really specific selector, refactor it into a new manageable class.</p>
 <h3>Use Shorthand Properties &amp; Values</h3>
 <p>Do this to increase readability. If your shorthand <code>font:</code> property is not more readable, then it is not better. Shorthand properties can also introduce undesired resetting of properties (sometimes unrelated) back to their initial value.</p>
@@ -47,7 +47,7 @@ margin: 0 10px 0 0;
 <li><code>em</code> for media queries (e.g. <code>max-width: 40em</code> is equal to 640px with a font-size of 16px, but will scale if user has it set differently)</li>
 <li><code>in</code>/<code>cm</code>/<code>mm</code> for print queries</li>
 </ul>
-<h3>Group &amp; Align <a href="vendor-prefixes-(css).html">Vendor Prefixes</a></h3>
+<h3>Group &amp; Align <a href="vendor-prefixes-css.html">Vendor Prefixes</a></h3>
 <p>Keep them together and add whitespace to make the values aligned. </p>
 <p>When using vendor prefixes we need to make sure to place an unprefixed version of our property and value last, after any prefixed versions, to ensure the most desired setting loads last if possible.</p>
 <pre><code class="language-css">div {

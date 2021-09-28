@@ -3,7 +3,7 @@
             <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
 <p>If you are just getting started with assembly, I highly recommend you get started by first checking out the <a href="paper-computing.html">paper computing</a> page to get familiar with the foundations and fundamentals of assembly language.</p>
 <h2>Compilation and Linking</h2>
-<p>For more specifics, visit the <a href="assembly-(unix).html">OSX</a> and <a href="assembly-(windows).html">Windows</a> assembly pages. </p>
+<p>For more specifics, visit the <a href="assembly-unix.html">OSX</a> and <a href="assembly-windows.html">Windows</a> assembly pages. </p>
 <p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a> for <a href="unix.html">Unix</a> systems and <a href="https://www.masm32.com" target="_blank">masm</a> for <a href="windows.html">Windows</a> systems.</p>
 <p>After you have written your code, you will need to assemble your code, translating it from the human readable assembly language into a file object.</p>
 <p>You will then need to <a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">link</a> your newly created output file. This will pull all the needed libraries into a single executable. </p>
@@ -207,7 +207,7 @@
 <h3>Zero Flag (<code>ZF</code>)</h3>
 <p>The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.</p>
 <h2>Stack</h2>
-<p>The <a href="stack-(programming).html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
+<p>The <a href="stack-programming.html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
 <p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
 <pre><code class="language-assembly">push 3
 pop eax
@@ -243,5 +243,5 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <li><a href="https://www.chibialiens.com/8086/8086CheatSheet.pdf" target="_blank">https://www.chibialiens.com/8086/8086CheatSheet.pdf</a></li>
 <li><a href="https://www.chibialiens.com/8086/" target="_blank">https://www.chibialiens.com/8086/</a></li>
 </ol>
-<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly-(unix).html">Assembly (Unix)</a></li><li><a href="assembly-(windows).html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></section>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></section>
 <p class="last-modified"><em>Last modified: 202109270029</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~765kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
