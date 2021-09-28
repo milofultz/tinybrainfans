@@ -1,5 +1,5 @@
 ---
-title: Promises and Async Await (Javascript)
+title: Promises and Async/Await (Javascript)
 description: Promises and async/await are a way to handle asynchronous actions in Javascript.
 ---
 
