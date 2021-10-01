@@ -90,5 +90,6 @@ tr -d "\r" < oldname.sh > newname.sh
 4. https://stackoverflow.com/a/11428439
 5. https://unix.stackexchange.com/questions/19654/how-do-i-change-the-extension-of-multiple-files
 6. https://mywiki.wooledge.org/BashFAQ/030
+7. https://devhints.io/bash
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/

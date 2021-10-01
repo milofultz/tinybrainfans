@@ -50,3 +50,6 @@ Delete from current column to end of line | `D` |
 - https://www.vim.org/
 - https://www.cyberciti.biz/faq/how-to-save-existing-file-to-a-new-file-save-as-in-vi-vim/
 - https://evanhahn.com/vim-colon-x-command/
+- https://github.com/amix/vimrc
+- https://danielmiessler.com/study/vim/
+- https://elijahmanor.com/blog/neovim-tmux
