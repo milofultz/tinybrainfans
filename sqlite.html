@@ -16,6 +16,28 @@
   good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
 );
 </code></pre>
+<h2>Date and Time</h2>
+<p>Dates and times can be stored three different ways:</p>
+<ul>
+<li><strong>TEXT</strong> as ISO8601 strings (<code>&quot;YYYY-MM-DD HH:MM:SS.SSS&quot;</code>).</li>
+<li><strong>REAL</strong> as Julian day numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the proleptic Gregorian calendar.</li>
+<li><strong>INTEGER</strong> as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC.</li>
+</ul>
+<h3>Date</h3>
+<p>Dates can be input as a string (formatted like <code>&quot;YYYY-MM-DD&quot;</code>) via the <code>date()</code> function.</p>
+<pre><code class="language-sqlite">CREATE TABLE IF NOT EXISTS datetimes (
+  date TEXT
+);
+
+INSERT INTO
+  dates
+VALUES
+  (date(&quot;2021-10-01&quot;)),
+  (date(&quot;2000-01-01&quot;));
+
+-- results in two rows being added as 
+-- [(&quot;2021-10-01&quot;), (&quot;2000-01-01&quot;)] 
+</code></pre>
 <h2>PRAGMA</h2>
 <p>PRAGMA commands are SQLite specific and are meta commands regarding operation or non-table data.</p>
 <h3>Get column information of a given table</h3>
@@ -24,6 +46,8 @@
 <h2>References</h2>
 <ol>
 <li><a href="https://sqlite.org/pragma.html#pragma_table_info" target="_blank">https://sqlite.org/pragma.html#pragma_table_info</a></li>
+<li><a href="https://www.sqlite.org/datatype3.html" target="_blank">https://www.sqlite.org/datatype3.html</a></li>
+<li><a href="https://www.sqlite.org/lang_datefunc.html" target="_blank">https://www.sqlite.org/lang_datefunc.html</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107020546</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~772kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202110011812</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~774kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -18,6 +18,19 @@ conn.close()
 </code></pre>
 <h2>.fetchone() and .fetchall()</h2>
 <p>After you have executed a <code>SELECT</code> command, you can use the cursor as an iterator with <code>fetchone()</code>, which will recall each returned row one by one, or <code>fetchall()</code> to return all rows at once.</p>
+<h2>Pretty Printing</h2>
+<p>You can pretty print query resullts using the <a href="pandas-python.html">Pandas</a> module.</p>
+<pre><code class="language-python">import pandas as pd
+import sqlite3
+
+# set up the database
+
+# Allow results to expand in width
+pd.options.display.max_colwidth = 200
+
+cursor.execute(&#x27;&#x27;&#x27;SELECT * FROM table&#x27;&#x27;&#x27;)
+print(pd.DataFrame(cursor.fetchall()))
+</code></pre>
 <h2>Get table names from database</h2>
 <pre><code class="language-sql">SELECT name 
 FROM sqlite_master 
@@ -30,4 +43,4 @@ WHERE type = &#x27;table&#x27;;
 <li><a href="https://sqlite.org/datatype3.html" target="_blank">https://sqlite.org/datatype3.html</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107020543</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~772kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202110011815</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~774kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

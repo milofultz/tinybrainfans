@@ -33,6 +33,23 @@ conn.close()
 
 After you have executed a `SELECT` command, you can use the cursor as an iterator with `fetchone()`, which will recall each returned row one by one, or `fetchall()` to return all rows at once.
 
+## Pretty Printing
+
+You can pretty print query resullts using the {{Pandas|Pandas (Python)}} module.
+
+```python
+import pandas as pd
+import sqlite3
+
+# set up the database
+
+# Allow results to expand in width
+pd.options.display.max_colwidth = 200
+
+cursor.execute('''SELECT * FROM table''')
+print(pd.DataFrame(cursor.fetchall()))
+```
+
 ## Get table names from database
 
 ```sql
