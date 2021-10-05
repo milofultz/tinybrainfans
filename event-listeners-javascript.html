@@ -28,7 +28,9 @@ function onClick(e){
 &lt;/div&gt;
 </code></pre>
 <pre><code class="language-javascript">// This will fire on any click that happens on it or any of its child elements (bubbling to the top component)
-document.getElementById(&#x27;outer&#x27;).addEvenetListener(&#x27;click&#x27;, () =&gt; console.log(&#x27;bubbled&#x27;));
+document.getElementById(&#x27;outer&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  console.log(&#x27;bubbled&#x27;);
+});
 
 // This will fire only when a specific child or any of its children are clicked (delegated to specific children)
 document.getElementById(&#x27;outer&#x27;).addEvenetListener(&#x27;click&#x27;, () =&gt; {
@@ -61,4 +63,4 @@ document.getElementById(&#x27;outer&#x27;).addEvenetListener(&#x27;click&#x27;, 
 <li><a href="https://www.w3schools.com/jsref/dom_obj_event.asp" target="_blank">https://www.w3schools.com/jsref/dom_obj_event.asp</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107032208</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~774kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202110021724</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~778kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

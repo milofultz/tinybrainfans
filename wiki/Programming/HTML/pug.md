@@ -304,6 +304,8 @@ Outputs:
 
 Packages in {{Sublime Text}} are interdependent on each other and many of the default packages are inferior to third-party (e.g. Babel over Javascript). When Pug's Javascript syntax is not cooperating or popping to allow Pug's syntax to take over again, you can `Disable Package > Javascript` and install `Babel` and this will cause Pug to correctly highlight conditionals and the succeeding code.
 
+If this does not work, you can switch over to `Pug (Python)` and that will do ok.
+
 ## References
 
 1. https://www.sitepoint.com/a-beginners-guide-to-pug/
@@ -314,3 +316,4 @@ Packages in {{Sublime Text}} are interdependent on each other and many of the de
 6. https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax
 7. https://stackoverflow.com/questions/27107451/how-to-insert-raw-html-in-pug-file-not-include-external-html-file
 8. https://pugjs.org/language/mixins.html
+9. https://github.com/davidrios/pug-tmbundle/issues/22

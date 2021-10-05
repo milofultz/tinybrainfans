@@ -48,7 +48,9 @@ Event delegation is a pattern where an event listener attached to an element is 
 
 ```javascript
 // This will fire on any click that happens on it or any of its child elements (bubbling to the top component)
-document.getElementById('outer').addEvenetListener('click', () => console.log('bubbled'));
+document.getElementById('outer').addEventListener('click', () => {
+  console.log('bubbled');
+});
 
 // This will fire only when a specific child or any of its children are clicked (delegated to specific children)
 document.getElementById('outer').addEvenetListener('click', () => {

@@ -33,6 +33,28 @@ conn.close()
 
 After you have executed a `SELECT` command, you can use the cursor as an iterator with `fetchone()`, which will recall each returned row one by one, or `fetchall()` to return all rows at once.
 
+## Outputting Dicts
+
+You can output dicts instead of tuples by using the following from the docs:
+
+```python
+import sqlite3
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
+con = sqlite3.connect(":memory:")
+con.row_factory = dict_factory
+cur = con.cursor()
+cur.execute("select 1 as a")
+print(cur.fetchone()["a"])
+
+con.close()
+```
+
 ## Pretty Printing
 
 You can pretty print query resullts using the {{Pandas|Pandas (Python)}} module.
@@ -63,3 +85,4 @@ WHERE type = 'table';
 1. https://docs.python.org/3/library/sqlite3.html
 2. https://sqlite.org/autoinc.html
 3. https://sqlite.org/datatype3.html
+4. https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.row_factory

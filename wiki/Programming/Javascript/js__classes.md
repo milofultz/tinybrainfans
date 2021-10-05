@@ -107,7 +107,10 @@ The two different parts of a pseudoclassical class are doing two distinct roles:
 
 ```javascript
 var Car = function (loc) {
+  // var this = Object.create(Car.prototype);
   this.loc = loc;
+  // copy all prototypes to `this`
+  // return this;
 };
 
 Car.prototype.move = function () {
@@ -124,7 +127,10 @@ The ES6 implementation is extremely similar to the pseudoclassical implementatio
 ```javascript
 class Car {
 	constructor(loc) {
+    // var this = Object.create(Car.prototype);
 		this.loc = loc;
+    // copy all prototypes to `this`
+    // return this;
 	}
 	
 	move() {
