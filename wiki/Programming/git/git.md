@@ -162,6 +162,10 @@ url=https://github.com/milofultz/tod.git/
 
 On trying to push again, you will get prompted for authentication and it will work.
 
+### Token
+
+Github deprecated standard HTTPS for SSH, so if you continue to get this error, [generate a new token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and use that token in place of your password.
+
 ## Errors
 
 CRLF => LF: https://stackoverflow.com/questions/20168639/git-commit-get-fatal-error-fatal-crlf-would-be-replaced-by-lf-in/31144141#31144141
