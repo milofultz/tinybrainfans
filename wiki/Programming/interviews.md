@@ -13,3 +13,4 @@ What are **you** trying to get from this position? What do **they** want from yo
 - What are the goals for the company? Short term and long term
 - How would performance be measured?
 - What are the company policies for learning and development?
+- Who was your best hire and why?

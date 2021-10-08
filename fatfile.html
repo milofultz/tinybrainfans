@@ -418,8 +418,9 @@ CMD [&quot;yarn&quot;, &quot;start&quot;]
             <p><a href="https://www.npr.org/sections/goatsandsoda/2019/03/13/685533353/a-playful-way-to-teach-kids-to-control-their-anger" target="_blank">https://www.npr.org/sections/goatsandsoda/2019/03/13/685533353/a-playful-way-to-teach-kids-to-control-their-anger</a></p>
 <p><a href="https://idiomdrottning.org/scheme-if-you-already-know-how-to-program-other-stuff" target="_blank">https://idiomdrottning.org/scheme-if-you-already-know-how-to-program-other-stuff</a></p>
 <p><a href="https://dev.to/codemouse92/ten-principles-of-critique-5f4p" target="_blank">https://dev.to/codemouse92/ten-principles-of-critique-5f4p</a></p>
+<p><a href="https://learnxinyminutes.com/" target="_blank">https://learnxinyminutes.com/</a></p>
 
-<p class="last-modified"><em>Last modified: 202110020013</em></p></article><article>            <h1><a href="20210626112245-aws-deployment.html">20210626112245-aws-deployment</a></h1>
+<p class="last-modified"><em>Last modified: 202110052319</em></p></article><article>            <h1><a href="20210626112245-aws-deployment.html">20210626112245-aws-deployment</a></h1>
             <p>from Eric Pearson (@nyloneric): <a href="https://gist.github.com/NylonEric/372516f2fe3c9f708d20e7e2f77007cb#file-2021-06-23-md" target="_blank">https://gist.github.com/NylonEric/372516f2fe3c9f708d20e7e2f77007cb#file-2021-06-23-md</a></p>
 <h1>June 23, 2021</h1>
 <h2></h2>
@@ -1055,9 +1056,10 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li>What are the goals for the company? Short term and long term</li>
 <li>How would performance be measured?</li>
 <li>What are the company policies for learning and development?</li>
+<li>Who was your best hire and why?</li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202107021455</em></p></article><article><h1><a href="database.html">database</a></h1>
+<p class="last-modified"><em>Last modified: 202110080420</em></p></article><article><h1><a href="database.html">database</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="sql.html">SQL</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="handlebars.html">Handlebars</a></h1>
@@ -1331,19 +1333,24 @@ return (
 };
 </code></pre>
 <p>For the element to properly rerender, you must update the state by using the <code>setState</code> method. This will cause what React calls &quot;reconciliation&quot;, which will update what needs to be updated in the <a href="dom.html">DOM</a>.</p>
-<h2>React Router</h2>
-<p>React Router is</p>
+<h3>setState</h3>
+<p>The <code>setState</code> call takes in two arguments: <code>setState(updated, [callback])</code>:</p>
+<ul>
+<li><code>updated</code>: this is an object containing the state's properties as keys and the values that will be set within the state at those keys.</li>
+<li><code>[callback]</code>: an optional argument; this function will execute once only after the state has been set. Uesful for handling API calls and other asynchronous patterns with updating.</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li><a href="https://reactjs.org/docs/introducing-jsx.html" target="_blank">https://reactjs.org/docs/introducing-jsx.html</a></li>
 <li><a href="http://jamesknelson.com/javascript-return-parenthesis/" target="_blank">http://jamesknelson.com/javascript-return-parenthesis/</a></li>
 <li><a href="https://stackfan.com/loop-through-an-array-of-objects-in-react/" target="_blank">https://stackfan.com/loop-through-an-array-of-objects-in-react/</a></li>
 <li><a href="https://css-tricks.com/understanding-react-setstate/" target="_blank">https://css-tricks.com/understanding-react-setstate/</a></li>
+<li><a href="https://reactjs.org/docs/react-component.html#setstate" target="_blank">https://reactjs.org/docs/react-component.html#setstate</a></li>
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107081810</em></p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
+<p class="last-modified"><em>Last modified: 202110081411</em></p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
             <p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
 <h2>Components</h2>
 <h3>Model</h3>
@@ -8060,37 +8067,64 @@ re.test(&#x27;me first&#x27;) // returns false
 
 <p class="last-modified"><em>Last modified: 202107020550</em></p></article><article>            <h1><a href="react-hooks.html">React Hooks</a></h1>
             <p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
-<h2>Types</h2>
 <p>These examples are using Typescript for type annotations and clarity.</p>
-<h3><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a></h3>
-<p>useState lets you use state within a functional component.</p>
-<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
+<h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
+<p>useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.</p>
+<p>In its most basic form (<a href="https://daveceddia.com/usecontext-hook/" target="_blank">taken from Dave Ceddia</a>):</p>
+<pre><code class="language-react">import React, { createContext } from &#x27;react&#x27;;
 
-interface Name {
-  first: string,
-  last: string,
-}
+// Create a Context
+const NumberContext = createContext();
+// It returns an object with 2 values:
+// { Provider, Consumer }
 
-const testComponent = () =&gt; {  
-  // this will create a getter and setter for state variable `names`
-  const [counter, setCounter] = useState&lt;number&gt;(0);
-  const [names, setNames] = useState&lt;Name[]&gt;([]);
+const App = () =&gt; {
+  // Use the Provider to make a value available to all
+  // children and grandchildren
+  return (
+    &lt;NumberContext.Provider value={42}&gt;
+      &lt;div&gt;
+        &lt;Display /&gt;
+      &lt;/div&gt;
+    &lt;/NumberContext.Provider&gt;
+  );
+};
 
-  // sets counter 
-  setCounter(counter + 1);
-
-  const newName = {
-    first: &#x27;John&#x27;,
-    last: &#x27;Smith&#x27;,
-  };
-  setNames([
-    ...names,
-    newName
-  ]);
-
-  ...
+const Display = () =&gt; {
+  // Use the Consumer to grab the value from context
+  // Notice this component didn&#x27;t get any props!
+  return (
+    &lt;NumberContext.Consumer&gt;
+      {value =&gt; &lt;div&gt;The answer is {value}.&lt;/div&gt;}
+    &lt;/NumberContext.Consumer&gt;
+  );
+};
 </code></pre>
-<h3><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h3>
+<p>However, instead of using the <code>Consumer</code> wrapper, you can use <code>useContext</code> and destructure the variables held within:</p>
+<pre><code class="language-react">import React, { createContext, useContext } from &#x27;react&#x27;;
+
+const NumberContext = createContext();
+
+const App = () =&gt; {
+  return (
+    &lt;NumberContext.Provider value={42}&gt;
+      &lt;div&gt;
+        &lt;Display /&gt;
+      &lt;/div&gt;
+    &lt;/NumberContext.Provider&gt;
+  );
+};
+
+const Display = () =&gt; {
+  const { value } =&gt; useContext(NumberContext);
+  return &lt;div&gt;The answer is {value}.&lt;/div&gt;;
+};
+</code></pre>
+<p>This becomes more and more useful when multiple contexts are used and you can end up with wrappers over wrappers over wrappers and it gets real unwieldy really quick.</p>
+<h3>Simplifying a Global Context</h3>
+<p>If one is using many different contexts over all components, these different contexts can be placed into individual files and imported into a 'main' context file that exports a higher order function which wraps any children in these different contexts.</p>
+<p>// TODO: Add example</p>
+<h2><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h2>
 <p>useEffect lets you perform side effects on <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>.</p>
 <pre><code class="language-react">import React, { useEffect } from &#x27;react&#x27;;
 
@@ -8114,9 +8148,44 @@ const testComponent = () =&gt; {
 
   ...
 </code></pre>
-<h2>References</h2>
+<h2><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a></h2>
+<p>useState lets you use state within a functional component.</p>
+<p><strong>NOTE:</strong> useState does not have a callback as second argument, like the normal <code>setState</code> invocation does. Use useEffect to handle side effects and changes on state updates.</p>
+<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
 
-<p class="last-modified"><em>Last modified: 202107301716</em></p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
+interface Name {
+  first: string,
+  last: string,
+}
+
+const testComponent = () =&gt; {  
+  // this will create a getter and setter for state variable `names`
+  const [counter, setCounter] = useState&lt;number&gt;(0);
+  const [names, setNames] = useState&lt;Name[]&gt;([]);
+
+  // sets counter 
+  const onClick = () =&gt; {
+    setCounter(counter + 1);
+  };
+
+  const onSubmit = (firstName, lastName) =&gt; {
+    setNames([
+      ...names,
+      {
+        first: firstName,
+        last: lastName
+      }
+    ]);
+  }  
+
+  ...
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://reactjs.org/docs/context.html#dynamic-context" target="_blank">https://reactjs.org/docs/context.html#dynamic-context</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202110081437</em></p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
             <p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
 <p>For React to work properly, you will need three things: </p>
 <ul>
@@ -8802,4 +8871,4 @@ Compare this offer with all others you have received. Determine which has the qu
 <li><a href="https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/" target="_blank">https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~778kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~783kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

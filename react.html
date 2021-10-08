@@ -220,16 +220,21 @@ return (
 };
 </code></pre>
 <p>For the element to properly rerender, you must update the state by using the <code>setState</code> method. This will cause what React calls &quot;reconciliation&quot;, which will update what needs to be updated in the <a href="dom.html">DOM</a>.</p>
-<h2>React Router</h2>
-<p>React Router is</p>
+<h3>setState</h3>
+<p>The <code>setState</code> call takes in two arguments: <code>setState(updated, [callback])</code>:</p>
+<ul>
+<li><code>updated</code>: this is an object containing the state's properties as keys and the values that will be set within the state at those keys.</li>
+<li><code>[callback]</code>: an optional argument; this function will execute once only after the state has been set. Uesful for handling API calls and other asynchronous patterns with updating.</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li><a href="https://reactjs.org/docs/introducing-jsx.html" target="_blank">https://reactjs.org/docs/introducing-jsx.html</a></li>
 <li><a href="http://jamesknelson.com/javascript-return-parenthesis/" target="_blank">http://jamesknelson.com/javascript-return-parenthesis/</a></li>
 <li><a href="https://stackfan.com/loop-through-an-array-of-objects-in-react/" target="_blank">https://stackfan.com/loop-through-an-array-of-objects-in-react/</a></li>
 <li><a href="https://css-tricks.com/understanding-react-setstate/" target="_blank">https://css-tricks.com/understanding-react-setstate/</a></li>
+<li><a href="https://reactjs.org/docs/react-component.html#setstate" target="_blank">https://reactjs.org/docs/react-component.html#setstate</a></li>
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202107081810</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~778kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202110081411</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~783kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

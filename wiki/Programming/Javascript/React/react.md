@@ -278,9 +278,12 @@ class GroceryListItem extends React.Component {
 
 For the element to properly rerender, you must update the state by using the `setState` method. This will cause what React calls "reconciliation", which will update what needs to be updated in the {{DOM}}.
 
-## React Router
+### setState
 
-React Router is
+The `setState` call takes in two arguments: `setState(updated, [callback])`:
+
+- `updated`: this is an object containing the state's properties as keys and the values that will be set within the state at those keys.
+- `[callback]`: an optional argument; this function will execute once only after the state has been set. Uesful for handling API calls and other asynchronous patterns with updating.
 
 ## References
 
@@ -288,8 +291,9 @@ React Router is
 2. http://jamesknelson.com/javascript-return-parenthesis/
 3. https://stackfan.com/loop-through-an-array-of-objects-in-react/
 4. https://css-tricks.com/understanding-react-setstate/
-5. https://reactjs.org/docs/typechecking-with-proptypes.html
-6. https://www.npmjs.com/package/prop-types
+5. https://reactjs.org/docs/react-component.html#setstate
+6. https://reactjs.org/docs/typechecking-with-proptypes.html
+7. https://www.npmjs.com/package/prop-types
 
 [create-react-app]: https://create-react-app.dev/
 [Higher Order Components]: https://reactjs.org/docs/higher-order-components.html

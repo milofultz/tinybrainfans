@@ -1,37 +1,64 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Hooks are functions that let you “hook into” React state and lifecycle features from function components."><title>React Hooks</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">React Hooks</h1>
             <p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
-<h2>Types</h2>
 <p>These examples are using Typescript for type annotations and clarity.</p>
-<h3><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a></h3>
-<p>useState lets you use state within a functional component.</p>
-<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
+<h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
+<p>useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.</p>
+<p>In its most basic form (<a href="https://daveceddia.com/usecontext-hook/" target="_blank">taken from Dave Ceddia</a>):</p>
+<pre><code class="language-react">import React, { createContext } from &#x27;react&#x27;;
 
-interface Name {
-  first: string,
-  last: string,
-}
+// Create a Context
+const NumberContext = createContext();
+// It returns an object with 2 values:
+// { Provider, Consumer }
 
-const testComponent = () =&gt; {  
-  // this will create a getter and setter for state variable `names`
-  const [counter, setCounter] = useState&lt;number&gt;(0);
-  const [names, setNames] = useState&lt;Name[]&gt;([]);
+const App = () =&gt; {
+  // Use the Provider to make a value available to all
+  // children and grandchildren
+  return (
+    &lt;NumberContext.Provider value={42}&gt;
+      &lt;div&gt;
+        &lt;Display /&gt;
+      &lt;/div&gt;
+    &lt;/NumberContext.Provider&gt;
+  );
+};
 
-  // sets counter 
-  setCounter(counter + 1);
-
-  const newName = {
-    first: &#x27;John&#x27;,
-    last: &#x27;Smith&#x27;,
-  };
-  setNames([
-    ...names,
-    newName
-  ]);
-
-  ...
+const Display = () =&gt; {
+  // Use the Consumer to grab the value from context
+  // Notice this component didn&#x27;t get any props!
+  return (
+    &lt;NumberContext.Consumer&gt;
+      {value =&gt; &lt;div&gt;The answer is {value}.&lt;/div&gt;}
+    &lt;/NumberContext.Consumer&gt;
+  );
+};
 </code></pre>
-<h3><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h3>
+<p>However, instead of using the <code>Consumer</code> wrapper, you can use <code>useContext</code> and destructure the variables held within:</p>
+<pre><code class="language-react">import React, { createContext, useContext } from &#x27;react&#x27;;
+
+const NumberContext = createContext();
+
+const App = () =&gt; {
+  return (
+    &lt;NumberContext.Provider value={42}&gt;
+      &lt;div&gt;
+        &lt;Display /&gt;
+      &lt;/div&gt;
+    &lt;/NumberContext.Provider&gt;
+  );
+};
+
+const Display = () =&gt; {
+  const { value } =&gt; useContext(NumberContext);
+  return &lt;div&gt;The answer is {value}.&lt;/div&gt;;
+};
+</code></pre>
+<p>This becomes more and more useful when multiple contexts are used and you can end up with wrappers over wrappers over wrappers and it gets real unwieldy really quick.</p>
+<h3>Simplifying a Global Context</h3>
+<p>If one is using many different contexts over all components, these different contexts can be placed into individual files and imported into a 'main' context file that exports a higher order function which wraps any children in these different contexts.</p>
+<p>// TODO: Add example</p>
+<h2><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h2>
 <p>useEffect lets you perform side effects on <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>.</p>
 <pre><code class="language-react">import React, { useEffect } from &#x27;react&#x27;;
 
@@ -55,6 +82,41 @@ const testComponent = () =&gt; {
 
   ...
 </code></pre>
-<h2>References</h2>
+<h2><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a></h2>
+<p>useState lets you use state within a functional component.</p>
+<p><strong>NOTE:</strong> useState does not have a callback as second argument, like the normal <code>setState</code> invocation does. Use useEffect to handle side effects and changes on state updates.</p>
+<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
 
-<p class="last-modified"><em>Last modified: 202107301716</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~778kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+interface Name {
+  first: string,
+  last: string,
+}
+
+const testComponent = () =&gt; {  
+  // this will create a getter and setter for state variable `names`
+  const [counter, setCounter] = useState&lt;number&gt;(0);
+  const [names, setNames] = useState&lt;Name[]&gt;([]);
+
+  // sets counter 
+  const onClick = () =&gt; {
+    setCounter(counter + 1);
+  };
+
+  const onSubmit = (firstName, lastName) =&gt; {
+    setNames([
+      ...names,
+      {
+        first: firstName,
+        last: lastName
+      }
+    ]);
+  }  
+
+  ...
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://reactjs.org/docs/context.html#dynamic-context" target="_blank">https://reactjs.org/docs/context.html#dynamic-context</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202110081437</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~783kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
