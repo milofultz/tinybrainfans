@@ -73,7 +73,116 @@ This becomes more and more useful when multiple contexts are used and you can en
 
 If one is using many different contexts over all components, these different contexts can be placed into individual files and imported into a 'main' context file that exports a higher order function which wraps any children in these different contexts.
 
-// TODO: Add example
+**contexts/ExampleContext.jsx** (same thing for **contexts/AnotherContext.jsx**)
+
+```react
+import { createContext } from 'react';
+import { Channel } from '../types/types';
+
+
+export interface ExampleContextInformation {
+	name: string;
+  age: number;
+  setName: Function;
+  setAge: Function;
+}
+
+// Fill this in with the default values. We will redefine the setters
+// once in the component where this is used.
+export const ExampleContext = createContext<ExampleContextInformation>({ 
+	name: '',
+  age: null,
+  setName: () => {},
+  setAge: () => {},
+});
+```
+
+**contexts/GlobalContext.jsx**
+
+```react
+import React from 'react';
+
+import { ExampleContext, ExampleContextInformation } from './ExampleContext';
+import { AnotherContext, AnotherContextInformation } from './AnotherContext';
+
+interface GlobalProps { 
+	exampleContextObject: ExampleContextInformation, 
+	anotherContextObject: AnotherContextInformation,
+}
+
+export function GlobalContext(props: any) {
+	const {
+		exampleContextObject,
+		anotherContextObject
+	}: GlobalProps = props;
+
+	return (
+    <ExampleContext.Provider value={channelContextObject}>
+      <AnotherContext.Provider value={userContextObject}>
+        {props.children}
+      </AnotherContext.Provider>
+    </ExampleContext.Provider>
+	);
+}
+```
+
+**App.jsx**
+
+```react
+import React, { useState } from 'react';
+
+import { GlobalContext } from './contexts/GlobalContext';
+import { ExampleContextInformation } from './ExampleContext';
+import { AnotherContextInformation } from './AnotherContext';
+
+export default function App() {
+  const [name, setName] = useState<string>('');
+  const [age, setAge] = useState<number | null>('');
+  const [anotherVar, setAnotherVar] = useState<number>(0);
+  
+  const exampleContextObject: ExampleContextInformation = {
+		name,
+    age,
+    setName: (name: string) => setName(name),
+    setAge: (age: number) => setAge(age),
+	};
+  
+  const anotherContextObject: AnotherContextInformation = {
+    anotherVar,
+    setAnotherVar: (anotherVar: number) => setAnotherVar(anotherVar),
+  }
+  
+  return (
+    <GlobalContext
+      exampleContextObject={exampleContextObject}
+      anotherContextObject={anotherContextObject}
+     >
+    	{/* Components in here have access to contexts via useContext */}
+      <ChildComponent />
+    </GlobalContext>
+  )
+}
+```
+
+**ChildComponent.jsx**
+
+```react
+import React, { useContext } from 'react';
+import { ExampleContext } from './ExampleContext';
+import { AnotherContext } from './AnotherContext';
+
+export default function ChildComponent() {
+  const { age, setAge } = useContext(ExampleContext);
+  const { anotherVar } = useContext(AnotherContext);
+  
+  return (
+    <div>
+      <p>Your age is {age} and this is {anotherVar}!</p>
+      <button type="button" onClick={() => setAge(Date.now())}></button>
+    </div>
+  )
+}
+```
 
 ## [useEffect][]
 
@@ -143,6 +252,7 @@ const testComponent = () => {
 ## References
 
 1. https://reactjs.org/docs/context.html#dynamic-context
+2. https://daveceddia.com/usecontext-hook/
 
 [useContext]: https://reactjs.org/docs/hooks-reference.html#usecontext
 [useEffect]: https://reactjs.org/docs/hooks-effect.html
