@@ -955,7 +955,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 
 <p class="last-modified"><em>Last modified: 202107020546</em></p></article><article><h1><a href="javascript.html">Javascript</a></h1>
 <p>There's currently nothing here.</p>
-<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="arrays-javascript.html">Arrays (Javascript)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-javascript.html">Classes (Javascript)</a></li><li><a href="date-javascript.html">Date (Javascript)</a></li><li><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-javascript.html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="k6.html">K6</a></li><li><a href="lexical-scoping-javascript.html">Lexical Scoping (Javascript)</a></li><li><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="npm.html">NPM</a></li><li><a href="object-destructuring-javascript.html">Object Destructuring (Javascript)</a></li><li><a href="operators-javascript.html">Operators (Javascript)</a></li><li><a href="promises-and-asyncawait-javascript.html">Promises and Async/Await (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-javascript.html">Switch Case (Javascript)</a></li><li><a href="testing-javascript.html">Testing (Javascript)</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-javascript.html">Variables (Javascript)</a></li></ul></section>
+<section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li><li><a href="arrays-javascript.html">Arrays (Javascript)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-javascript.html">Classes (Javascript)</a></li><li><a href="date-javascript.html">Date (Javascript)</a></li><li><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-javascript.html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="k6.html">K6</a></li><li><a href="lexical-scoping-javascript.html">Lexical Scoping (Javascript)</a></li><li><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="mutationobserver-javascript.html">MutationObserver (Javascript)</a></li><li><a href="npm.html">NPM</a></li><li><a href="object-destructuring-javascript.html">Object Destructuring (Javascript)</a></li><li><a href="operators-javascript.html">Operators (Javascript)</a></li><li><a href="promises-and-asyncawait-javascript.html">Promises and Async/Await (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-javascript.html">Switch Case (Javascript)</a></li><li><a href="testing-javascript.html">Testing (Javascript)</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-javascript.html">Variables (Javascript)</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article>            <h1><a href="regular-expressions.html">Regular Expressions</a></h1>
             <p>Regular Expressions or &quot;regex&quot; is used to describe a series of characters. If it has a pattern in its formatting, regex can be used.</p>
 <h2>Regular Expression Syntax</h2>
@@ -7348,7 +7348,42 @@ switch (number) {
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202106291341</em></p></article><article><h1><a href="dom.html">DOM</a></h1>
+<p class="last-modified"><em>Last modified: 202106291341</em></p></article><article>            <h1>MutationObserver (Javascript)</h1>
+            <p>The MutationObserver interface in <a href="javascript.html">Javascript</a> provides the ability to watch for changes being made to the DOM tree.</p>
+<p>This is an example that will watch an element (<code>targetElement</code>) on a webpage that has dynamic elements generated via React, and update another element whenever it sees the <code>targetElement</code> change.</p>
+<pre><code class="language-java">// Select the node that will be observed for mutations
+const videoPlayer = document.querySelector(&#x27;.video-main&#x27;);
+
+// Options for the observer (which mutations to observe)
+const config = {
+  attributes: false,
+  childList: true,
+  subtree: true,
+  characterData: true
+};
+
+// Callback function to execute when mutations are observed
+const copyVideo = (mutationsList, observer) =&gt; {
+  document.querySelector(&#x27;.iframe__inner-container&#x27;).innerHTML = videoPlayer.innerHTML;
+  if (!videoPlayer.innerHTML.includes(&#x27;video-placeholder&#x27;)) {
+    observer.disconnect();
+    blPlayer.querySelector(&#x27;iframe&#x27;).src = &#x27;&#x27;;
+  }
+};
+
+// Create an observer instance linked to the callback function
+const wrapperObserver = new MutationObserver(copyVideo);
+
+// Start observing the target node for configured mutations
+wrapperObserver.observe(videoPlayer, config);
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver</a></li>
+<li><a href="https://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/" target="_blank">https://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202110090009</em></p></article><article><h1><a href="dom.html">DOM</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></li><li><a href="react.html">React</a></li></ul></section>
 <p class="last-modified"><em>Last modified: </em></p></article><article><h1><a href="jquery.html">jQuery</a></h1>
@@ -8970,4 +9005,4 @@ Compare this offer with all others you have received. Determine which has the qu
 <li><a href="https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/" target="_blank">https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202107100120</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~788kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202107100120</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~792kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
