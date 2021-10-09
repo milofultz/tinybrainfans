@@ -15,14 +15,17 @@ var middle = function () {
   var content = "I'm in the middle";
   var inner = function () {
     var content = "I'm inside"; 
-    console.log(content + outermost); // "I'm inside and I'm still here."
+    console.log(content + outermost);
   };
   inner();
-  console.log(content + outermost);   // "I'm in the middle and I'm still here."
+  console.log(content + outermost);
 };
 
 middle();
-console.log(content + outermost);     // "I'm outside and I'm still here."
+// from `inner()`: "I'm inside and I'm still here."
+// from `middle()`: "I'm in the middle and I'm still here."
+console.log(content + outermost);
+// "I'm outside and I'm still here."
 ```
 
 ## `this`
@@ -34,13 +37,22 @@ console.log(content + outermost);     // "I'm outside and I'm still here."
 
 ```javascript
 var obj = {
-	greeting: function () { console.log(this.message ) },
-	message: "Hello world"
+  greeting: function () {
+    console.log(this.message);
+  },
+  message: "Hello world"
 }
-obj.greeting(); // `this` is bound to `obj`; logs "Hello world"
+
+obj.greeting(); // => "Hello world"
+// Equivalent to `window.obj.greeting()`
+// `this` is bound to `obj`
+// The `greeting` invocation defines `obj` as `this`
+
 var g = obj.greeting;
-g() // `this` is bound to the *global object*
-    // logs "undefined" because there is no variable "message" in the global scope
+g(); // => undefined
+// Equivalent to `window.g()`
+// `this` is bound to the *global object* (i.e., `window`)
+// The `greeting` invocation defines `window` as `this`
 ```
 
 ## References:
