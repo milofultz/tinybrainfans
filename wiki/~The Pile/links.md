@@ -10,3 +10,5 @@ https://idiomdrottning.org/scheme-if-you-already-know-how-to-program-other-stuff
 https://dev.to/codemouse92/ten-principles-of-critique-5f4p
 
 https://learnxinyminutes.com/
+
+https://www.simplethread.com/20-things-ive-learned-in-my-20-years-as-a-software-engineer/
