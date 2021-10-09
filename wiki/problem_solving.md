@@ -5,8 +5,6 @@ description: Solving big problems is just solving problems.
 
 ## Problem Solving Framework
 
-## PI AT PC
-
 The mnemonic I have settled on is **PI AT PC**. Plus I can imagine a a picture of a little pi symbol sitting at a computer in like 1994.
 
 * understand the **P**roblem
