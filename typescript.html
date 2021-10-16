@@ -78,6 +78,11 @@ const getNameAndAge = ({ person: Person, job: string }) =&gt; {
   return `${name}: ${age}, ${job}`;
 };
 </code></pre>
+<h3>Using <code>any</code></h3>
+<p>In general, you want to avoid using <code>any</code> as a type. <a href="eslint.html">ESLint</a> has it <a href="https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-explicit-any.md" target="_blank">disallowed by default, since it defeats the purpose of Typescript altogether</a>. But what do you do if you actually don't know what data you will be receiving?</p>
+<p>The issue is that using <code>any</code> will allow a false sense of security with TypeScript, as <code>any</code> types will allow compilation but sometimes will fail in the actual execution of the application, which is exactly what we <em>don't</em> want.</p>
+<p>The solution here is to use the <code>unknown</code> type. This will <em>not</em> allow compilation and will enforce the strict typing that makes TypeScript what it is and <strong>not</strong> <a href="javascript.html">JavaScript</a>.</p>
+<p><em>NOTE: My personal opinion is that you should always strive to find out what your data is that is going through your system, and if a type or interface does not exist for your own objects or with an external library you are using, one should be created to accommodate. Though I understand this is not always possible, it should be strived for.</em></p>
 <h3>Typing <a href="react.html">React</a></h3>
 <h4>onChange Events</h4>
 <p>For React onChange handlers, you can use the <code>React.ChangeEvent&lt;&gt;</code> generic, filling it in with whatever type of element is being changed.</p>
@@ -114,7 +119,9 @@ const [editedHashtagListeners, setEditedHashtagListeners] = useState&lt;HashtagL
 <p>Interfaces and types are two ways to define a type of object, declaring the types of the contained properties.</p>
 <h3>Differences</h3>
 <h4>Type</h4>
-<pre><code class="language-typescript">type Person = {
+<pre><code class="language-typescript">// Basic objects
+
+type Person = {
   name: string,
   age: number,
   pets: string[]
@@ -127,6 +134,17 @@ const john: Person = {
 };
 
 const household: Person[] = [john];
+
+// Using list of specific keys
+
+type AllowedKeys = &#x27;name&#x27; | &#x27;age&#x27;;
+
+type Person = Record&lt;AllowedKeys, unknown&gt;;
+
+const Human: Person = {
+  name: &#x27;Steve&#x27;,
+  age: 42,
+};
 </code></pre>
 <h4>Interface</h4>
 <pre><code class="language-typescript">interface Person {
@@ -178,6 +196,7 @@ interface User {
 <li><a href="https://dev.to/mattzgg_94/get-started-with-using-typescript-and-tdd-to-solve-leetcode-problems-in-vs-code-26d" target="_blank">https://dev.to/mattzgg_94/get-started-with-using-typescript-and-tdd-to-solve-leetcode-problems-in-vs-code-26d</a></li>
 <li><a href="https://www.udemy.com/course/understanding-typescript/" target="_blank">https://www.udemy.com/course/understanding-typescript/</a></li>
 <li><a href="https://stackoverflow.com/questions/33256274/typesafe-select-onchange-event-using-reactjs-and-typescript" target="_blank">https://stackoverflow.com/questions/33256274/typesafe-select-onchange-event-using-reactjs-and-typescript</a></li>
+<li><a href="https://www.cstrnt.dev/blog/three-typescript-tricks" target="_blank">https://www.cstrnt.dev/blog/three-typescript-tricks</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109102249</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~793kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202110122126</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~801kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

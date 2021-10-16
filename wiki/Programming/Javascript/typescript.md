@@ -94,6 +94,16 @@ const getNameAndAge = ({ person: Person, job: string }) => {
 };
 ```
 
+### Using `any`
+
+In general, you want to avoid using `any` as a type. {{ESLint}} has it [disallowed by default, since it defeats the purpose of Typescript altogether](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-explicit-any.md). But what do you do if you actually don't know what data you will be receiving?
+
+The issue is that using `any` will allow a false sense of security with TypeScript, as `any` types will allow compilation but sometimes will fail in the actual execution of the application, which is exactly what we *don't* want.
+
+The solution here is to use the `unknown` type. This will *not* allow compilation and will enforce the strict typing that makes TypeScript what it is and **not** {{JavaScript}}.
+
+*NOTE: My personal opinion is that you should always strive to find out what your data is that is going through your system, and if a type or interface does not exist for your own objects or with an external library you are using, one should be created to accommodate. Though I understand this is not always possible, it should be strived for.*
+
 ### Typing {{React}}
 
 #### onChange Events
@@ -149,6 +159,8 @@ Interfaces and types are two ways to define a type of object, declaring the type
 #### Type
 
 ```typescript
+// Basic objects
+
 type Person = {
   name: string,
   age: number,
@@ -162,6 +174,17 @@ const john: Person = {
 };
 
 const household: Person[] = [john];
+
+// Using list of specific keys
+
+type AllowedKeys = 'name' | 'age';
+
+type Person = Record<AllowedKeys, unknown>;
+
+const Human: Person = {
+  name: 'Steve',
+  age: 42,
+};
 ```
 
 #### Interface
@@ -223,6 +246,7 @@ interface User {
 10. https://dev.to/mattzgg_94/get-started-with-using-typescript-and-tdd-to-solve-leetcode-problems-in-vs-code-26d
 11. https://www.udemy.com/course/understanding-typescript/
 12. https://stackoverflow.com/questions/33256274/typesafe-select-onchange-event-using-reactjs-and-typescript
+13. https://www.cstrnt.dev/blog/three-typescript-tricks
 
 [generic function]: https://www.typescriptlang.org/docs/handbook/2/generics.html
 

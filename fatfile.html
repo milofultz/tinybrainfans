@@ -588,26 +588,59 @@ systemctl enable nginx
 <p>Git by default is not case sensitive when it comes to filenames and will ignore renaming of file structures that are only by case. To change this default behavior, use <code>git config core.ignorecase false</code>. <strong>Note that setting this option to false on a case-insensitive file system is generally a bad idea. Doing so will lead to weird errors. For example, renaming a file in a way that only changes letter case will cause git to report spurious conflicts or create duplicate files.</strong></p>
 <p>If it is a file or files, you can change their name as normal and then within git via this command: <code>git mv -f filename.txt Filename.txt</code>. This will make it show up in your commit. If it is a directory, you will need to do this with every file within the directory.</p>
 <h2>Branches</h2>
-<ul>
-<li>See all branches: <code>git branch</code></li>
-<li>See the remote branches your local repo knows: <code>git branch -a</code></li>
-<li>Checkout an existing branch: <code>git checkout {name}</code></li>
-<li>Create and name a new branch: <code>git branch {name}</code></li>
-<li>Create and checkout a new branch: <code>git checkout -b {name}</code></li>
-<li>Create an orphaned branch: <code>git checkout --orphan {branch_name}</code></li>
-<li>Push the current branch: <code>git push origin HEAD</code></li>
-<li>Rename a branch. Assuming you're currently on the branch you want to rename: <code>git branch -m {name}</code></li>
-<li>
-Merge a branch (source) into another branch (destination):<ul>
-<li>Commit all changes in source branch</li>
-<li>Checkout destination branch</li>
-<li><code>git merge {source-branch}</code></li>
-</ul>
-</li>
-<li>Delete a fully pushed and merged branch: <code>git branch -d {name}</code></li>
-<li>Force delete a local branch: <code>git branch -D {name}</code></li>
-</ul>
-<h3>Orphan Branches</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>See all branches</td>
+<td><code>git branch</code></td>
+</tr>
+<tr>
+<td>See the remote branches your local repo knows</td>
+<td><code>git branch -a</code></td>
+</tr>
+<tr>
+<td>Checkout an existing branch</td>
+<td><code>git checkout {name}</code></td>
+</tr>
+<tr>
+<td>Create and name a new branch</td>
+<td><code>git branch {name}</code></td>
+</tr>
+<tr>
+<td>Create and checkout a new branch</td>
+<td><code>git checkout -b {name}</code></td>
+</tr>
+<tr>
+<td>Create an orphaned branch</td>
+<td><code>git checkout --orphan {branch_name}</code></td>
+</tr>
+<tr>
+<td>Push the current branch</td>
+<td><code>git push origin HEAD</code></td>
+</tr>
+<tr>
+<td>Rename a branch. Assuming you're currently on the branch you want to rename</td>
+<td><code>git branch -m {name}</code></td>
+</tr>
+<tr>
+<td>Delete a fully pushed and merged branch</td>
+<td><code>git branch -d {name}</code></td>
+</tr>
+<tr>
+<td>Force delete a local branch</td>
+<td><code>git branch -D {name}</code></td>
+</tr>
+<tr>
+<td>Merge another branch into currently checked-out branch</td>
+<td><code>git merge {other-branch}</code></td>
+</tr>
+</tbody></table><h3>Orphan Branches</h3>
 <p>Commits usually have one parent, their previous iteration. The root commit (very beginning) of your repo has none, and when you merge commit a fork with another branch or the master branch.</p>
 <p>An orphan branch is a new root commit, where:</p>
 <blockquote>
@@ -621,47 +654,20 @@ Merge a branch (source) into another branch (destination):<ul>
 <blockquote>
 <p>When should I use cherry-pick? <strong>The short answer is: as rarely as possible.</strong></p>
 </blockquote>
+<p>For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects.</p>
 <h2>Revert</h2>
-<p>A revert allows you to go back to a previous commit, reversing those previous between commit X (HEAD) and commit Y(the selected commit). This will create a reversal commit for each commit to be undone between X and Y. In the case of a single commit to be undone, it will make a single reversal commit.</p>
-<p>To revert one or many commits, open your <code>git log</code> and find the commit you want to revert back to. Save this hash.</p>
-<p>The <code>-m</code> flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1. </p>
+<p>A revert allows you to go back to a previous commit, reversing those previous between commit X (HEAD) and commit Y (the selected commit). This will create a reversal commit for each commit to be undone between X and Y. In the case of a single commit to be undone, it will make a single reversal commit.</p>
+<p>To revert one or many commits, open your <code>git log</code> and find the commit you want to revert back to. Save this hash. Then enter the following:</p>
 <pre><code class="language-bash">$ git revert [-m 1] &lt;commit-hash&gt;
 </code></pre>
-<p>For example, lets say you accidentally committed to the main branch and pushed up. You can revert this with <code>git revert HEAD</code>, creating a commit dialog and fixing your mistake through <em>adding</em> to your commit history.</p>
+<p>The <code>-m</code> flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1. </p>
+<p>For example, lets say you accidentally committed to the main branch and pushed up. You can revert this with <code>git revert HEAD</code> or <code>git revert {hash}</code>, creating a commit dialog and fixing your mistake through <em>adding</em> to your commit history.</p>
 <h2>Stashing</h2>
 <p><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">Stashing</a> allows you to temporarily save changes without committing anything. </p>
 <p>To stash some changes, use <code>git stash save &#x27;message about stash&#x27;</code>, or just <code>git stash</code> if you want to leave out the message.</p>
 <p>To see what you have stashed, use <code>git stash list</code> to see all stashed code. Then see what is in each stash by using <code>git stash show {index}</code>, and you can see it diffed by using the <code>-p</code> flag.</p>
 <p>Stashes can be listed recalled via the indexes shown: <code>git stash apply {index}</code> or <code>git stash pop {index}</code> if you want to remove it from the stashes after being applied.</p>
 <p>You can <code>git stash drop {index}</code> individual stashes or <code>git stash clear</code> the entire stash.</p>
-<h2>Git Aliases</h2>
-<ul>
-<li><code>--global</code> will set the alias across your whole machine</li>
-<li><code>--unset</code> will unset the following alias</li>
-<li><code>--unset-all</code> will unset all of the aliases found at the following alias</li>
-</ul>
-<pre><code class="language-bash">shell&gt; git config --global alias.co checkout # now &#x27;git co&#x27; is aliased to &#x27;git checkout&#x27;
-shell&gt; git config alias.p &#x27;push origin HEAD&#x27;  # now &#x27;git p&#x27; is aliased to &#x27;git push origin HEAD&#x27; ONLY for current project
-shell&gt; git config --global --unset alias.p # now &#x27;git p&#x27; is no longer aliased
-</code></pre>
-<h3>List All Aliases</h3>
-<p>Running this will give you the <code>git alias</code> command, which will list all of your current git aliases.</p>
-<pre><code class="language-bash">$ git config --global alias.alias &quot;! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /&quot;
-</code></pre>
-<h2><a href="https://git-scm.com/docs/gitignore" target="_blank">Gitignore</a></h2>
-<p>Creating a <code>.gitignore</code> file in the root folder of your project will ensure every file that matches a line within the file will be ignored by git.</p>
-<ul>
-<li>Using a <code>*</code> will work as a wildcard for every file within that level of the given directory, or as a wildcard within a filename.</li>
-<li>Using two <code>**</code> in the filepath will look within every level recursively from that point forward. e.g. <code>**/.DS_Store</code> will find a file called <code>.DS_Store</code> in the root directory as well as any others in any folders within that root directory. <code>lib/**/__pycache__</code> will match any files or folders named <code>__pycache__</code> that are within the <code>lib</code> directory at any depth.</li>
-</ul>
-<h3>Global gitignore</h3>
-<p>You can ignore files globally by adding them to <code>~/.gitignore_global</code>. </p>
-<h3><a href="https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository" target="_blank">Delete previous files in gitignore</a></h3>
-<p>If you add a file to <code>.gitignore</code> after previously committing that file, you may see untracked changes on those files. You have to remove the old files from the git repository to remove that error.</p>
-<ul>
-<li>Remove the existing files: <code>find . -name {filename} -print0 | xargs -0 git rm -f --ignore-unmatch</code></li>
-<li>Add the file to the gitignore: <code>{filename}</code></li>
-</ul>
 <h2>Credentials</h2>
 <p>If you receive a message like this when trying to push up to your repo:</p>
 <pre><code>remote: HTTP Basic: Access denied
@@ -681,7 +687,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <h3>Token</h3>
 <p>Github deprecated standard HTTPS for SSH, so if you continue to get this error, <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank">generate a new token</a> and use that token in place of your password.</p>
 <h2>Errors</h2>
-<p>CRLF =&gt; LF: <a href="https://stackoverflow.com/questions/20168639/git-commit-get-fatal-error-fatal-crlf-would-be-replaced-by-lf-in/31144141#31144141" target="_blank">https://stackoverflow.com/questions/20168639/git-commit-get-fatal-error-fatal-crlf-would-be-replaced-by-lf-in/31144141#31144141</a></p>
+<p>Handle Windows newlines (CRLF =&gt; LF): <a href="https://stackoverflow.com/questions/20168639/git-commit-get-fatal-error-fatal-crlf-would-be-replaced-by-lf-in/31144141#31144141" target="_blank">https://stackoverflow.com/questions/20168639/git-commit-get-fatal-error-fatal-crlf-would-be-replaced-by-lf-in/31144141#31144141</a></p>
 <h2>Meta</h2>
 <h3>Simplify git Call</h3>
 <p>In your <a href="bash.html">Bash</a> or equivalent rc file, set an alias of <code>g</code> to <code>git</code>. Surprisingly has saved me quite a bit of mistypes and extra key typing.</p>
@@ -708,9 +714,11 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote" target="_blank">https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote</a></li>
 <li><a href="https://www.git-tower.com/learn/git/faq/cherry-pick/" target="_blank">https://www.git-tower.com/learn/git/faq/cherry-pick/</a></li>
 <li><a href="https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git" target="_blank">https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git</a></li>
+<li><a href="https://github.com/delventhalz/no-fear-git" target="_blank">https://github.com/delventhalz/no-fear-git</a></li>
+<li><a href="https://nfarina.com/post/9868516270/git-is-simpler" target="_blank">https://nfarina.com/post/9868516270/git-is-simpler</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202110051555</em></p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
+<p class="last-modified"><em>Last modified: 202110141553</em></p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
             <p>Your README file contains a high level overview for people interested in using, contributing, or perusing your code.</p>
 <h2>Structure/Content</h2>
 <ul>
@@ -7906,6 +7914,11 @@ const getNameAndAge = ({ person: Person, job: string }) =&gt; {
   return `${name}: ${age}, ${job}`;
 };
 </code></pre>
+<h3>Using <code>any</code></h3>
+<p>In general, you want to avoid using <code>any</code> as a type. <a href="eslint.html">ESLint</a> has it <a href="https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-explicit-any.md" target="_blank">disallowed by default, since it defeats the purpose of Typescript altogether</a>. But what do you do if you actually don't know what data you will be receiving?</p>
+<p>The issue is that using <code>any</code> will allow a false sense of security with TypeScript, as <code>any</code> types will allow compilation but sometimes will fail in the actual execution of the application, which is exactly what we <em>don't</em> want.</p>
+<p>The solution here is to use the <code>unknown</code> type. This will <em>not</em> allow compilation and will enforce the strict typing that makes TypeScript what it is and <strong>not</strong> <a href="javascript.html">JavaScript</a>.</p>
+<p><em>NOTE: My personal opinion is that you should always strive to find out what your data is that is going through your system, and if a type or interface does not exist for your own objects or with an external library you are using, one should be created to accommodate. Though I understand this is not always possible, it should be strived for.</em></p>
 <h3>Typing <a href="react.html">React</a></h3>
 <h4>onChange Events</h4>
 <p>For React onChange handlers, you can use the <code>React.ChangeEvent&lt;&gt;</code> generic, filling it in with whatever type of element is being changed.</p>
@@ -7942,7 +7955,9 @@ const [editedHashtagListeners, setEditedHashtagListeners] = useState&lt;HashtagL
 <p>Interfaces and types are two ways to define a type of object, declaring the types of the contained properties.</p>
 <h3>Differences</h3>
 <h4>Type</h4>
-<pre><code class="language-typescript">type Person = {
+<pre><code class="language-typescript">// Basic objects
+
+type Person = {
   name: string,
   age: number,
   pets: string[]
@@ -7955,6 +7970,17 @@ const john: Person = {
 };
 
 const household: Person[] = [john];
+
+// Using list of specific keys
+
+type AllowedKeys = &#x27;name&#x27; | &#x27;age&#x27;;
+
+type Person = Record&lt;AllowedKeys, unknown&gt;;
+
+const Human: Person = {
+  name: &#x27;Steve&#x27;,
+  age: 42,
+};
 </code></pre>
 <h4>Interface</h4>
 <pre><code class="language-typescript">interface Person {
@@ -8006,14 +8032,15 @@ interface User {
 <li><a href="https://dev.to/mattzgg_94/get-started-with-using-typescript-and-tdd-to-solve-leetcode-problems-in-vs-code-26d" target="_blank">https://dev.to/mattzgg_94/get-started-with-using-typescript-and-tdd-to-solve-leetcode-problems-in-vs-code-26d</a></li>
 <li><a href="https://www.udemy.com/course/understanding-typescript/" target="_blank">https://www.udemy.com/course/understanding-typescript/</a></li>
 <li><a href="https://stackoverflow.com/questions/33256274/typesafe-select-onchange-event-using-reactjs-and-typescript" target="_blank">https://stackoverflow.com/questions/33256274/typesafe-select-onchange-event-using-reactjs-and-typescript</a></li>
+<li><a href="https://www.cstrnt.dev/blog/three-typescript-tricks" target="_blank">https://www.cstrnt.dev/blog/three-typescript-tricks</a></li>
 </ol>
 <section><h2>Backlinks:</h2><ul><li><a href="eslint.html">ESLint</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202109102249</em></p></article><article>            <h1><a href="eslint.html">ESLint</a></h1>
+<p class="last-modified"><em>Last modified: 202110122126</em></p></article><article>            <h1><a href="eslint.html">ESLint</a></h1>
             <p>Enforce rules and raise warnings to keep your <a href="javascript.html">Javascript</a>, <a href="typescript.html">Typescript</a>, and <a href="react.html">React</a> code clean and bug free.</p>
 <h2>Ignore rule in a file</h2>
 <p>By placing this at the top of the file, it will ignore this rule throughout the entire file. <code>/* eslint-disable {rule} */</code></p>
 <p>To disable a rule for only one line, place this after the code on the offending line. <code>// eslint-disable-line {rule}</code></p>
-
+<section><h2>Backlinks:</h2><ul><li><a href="typescript.html">Typescript</a></li></ul></section>
 <p class="last-modified"><em>Last modified: 202107291557</em></p></article><article><h1><a href="http.html">HTTP</a></h1>
 <p>There's currently nothing here.</p>
 <section><h2>Backlinks:</h2><ul><li><a href="ajax.html">AJAX</a></li></ul></section>
@@ -8952,7 +8979,27 @@ char str2[] = {&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27
 <li><a href="https://en.wikipedia.org/wiki/C_string_handling" target="_blank">https://en.wikipedia.org/wiki/C_string_handling</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202107182014</em></p></article><article>            <h1><a href="my-git-aliases.html">My git Aliases</a></h1>
+<p class="last-modified"><em>Last modified: 202107182014</em></p></article><article>            <h1><a href="gitignore.html">gitignore</a></h1>
+            <p>Creating a <code>.gitignore</code> file in the root folder of your project will ensure every file that matches a line within the file will be ignored by git.</p>
+<ul>
+<li>Using a <code>*</code> will work as a wildcard for every file within that level of the given directory, or as a wildcard within a filename.</li>
+<li>Using two <code>**</code> in the filepath will look within every level recursively from that point forward. e.g. <code>**/.DS_Store</code> will find a file called <code>.DS_Store</code> in the root directory as well as any others in any folders within that root directory. <code>lib/**/__pycache__</code> will match any files or folders named <code>__pycache__</code> that are within the <code>lib</code> directory at any depth.</li>
+</ul>
+<h2>Global gitignore</h2>
+<p>You can ignore files globally by adding them to <code>~/.gitignore_global</code>. </p>
+<h2>Delete previous files in gitignore</h2>
+<p>If you add a file to <code>.gitignore</code> after previously committing that file, you may see untracked changes on those files. You have to remove the old files from the git repository to remove that error.</p>
+<ul>
+<li>Remove the existing files: <code>find . -name {filename} -print0 | xargs -0 git rm -f --ignore-unmatch</code></li>
+<li>Add the file to the gitignore: <code>{filename}</code></li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository" target="_blank">https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository</a></li>
+<li><a href="https://git-scm.com/docs/gitignore" target="_blank">https://git-scm.com/docs/gitignore</a></li>
+</ol>
+
+<p class="last-modified"><em>Last modified: 202110141545</em></p></article><article>            <h1><a href="my-git-aliases.html">My git Aliases</a></h1>
             <p>This is a list of all of my current aliases I use with <a href="git.html">git</a>. This is an output of my <code>git alias</code> command, which you will see below. Learn how to set these in the <a href="git.html">git</a> page.</p>
 <pre><code>a = add
 aa = add .
@@ -8976,8 +9023,53 @@ st = status
 <ul>
 <li><a href="https://stackoverflow.com/questions/7066325/list-git-aliases" target="_blank">https://stackoverflow.com/questions/7066325/list-git-aliases</a></li>
 </ul>
+<section><h2>Backlinks:</h2><ul><li><a href="git-alias.html">git alias</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202109251415</em></p></article><article>            <h1><a href="git-alias.html">git alias</a></h1>
+            <p>You can check out <a href="my-git-aliases.html">my personal list of git aliases here</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--global alias.{name}</code></td>
+<td>Set the alias <code>name</code> across your whole machine</td>
+</tr>
+<tr>
+<td><code>--unset alias.{name}</code></td>
+<td>Unset the following alias</td>
+</tr>
+<tr>
+<td><code>--unset-all alias.{name}</code></td>
+<td>Unset all of the aliases found at the following alias (useful if you accidentally set two aliases on the same name)</td>
+</tr>
+</tbody></table><pre><code class="language-bash">shell&gt; git config --global alias.co checkout # now &#x27;git co&#x27; is aliased to &#x27;git checkout&#x27;
+shell&gt; git config alias.p &#x27;push origin HEAD&#x27;  # now &#x27;git p&#x27; is aliased to &#x27;git push origin HEAD&#x27; ONLY for current project
+shell&gt; git config --global --unset alias.p # now &#x27;git p&#x27; is no longer aliased
+</code></pre>
+<h2>List All Aliases</h2>
+<p>Running this will give you the <code>git alias</code> command, which will list all of your current git aliases.</p>
+<pre><code class="language-bash">$ git config --global alias.alias &quot;! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /&quot;
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging" target="_blank">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging</a></li>
+<li><a href="https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323" target="_blank">https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323</a></li>
+<li><a href="https://bugfactory.io/blog/orphaned-brachnes-in-git/" target="_blank">https://bugfactory.io/blog/orphaned-brachnes-in-git/</a></li>
+<li><a href="https://git-scm.com/docs/git-add" target="_blank">https://git-scm.com/docs/git-add</a></li>
+<li><a href="https://devconnected.com/how-to-cherry-pick-git-commits/" target="_blank">https://devconnected.com/how-to-cherry-pick-git-commits/</a></li>
+<li><a href="https://phoenixnap.com/kb/git-revert-last-commit" target="_blank">https://phoenixnap.com/kb/git-revert-last-commit</a></li>
+<li><a href="https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given" target="_blank">https://stackoverflow.com/questions/41842149/error-commit-is-a-merge-but-no-m-option-was-given</a></li>
+<li><a href="https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote" target="_blank">https://superuser.com/questions/1309196/how-to-update-authentication-token-for-a-git-remote</a></li>
+<li><a href="https://www.git-tower.com/learn/git/faq/cherry-pick/" target="_blank">https://www.git-tower.com/learn/git/faq/cherry-pick/</a></li>
+<li><a href="https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git" target="_blank">https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git</a></li>
+<li><a href="https://github.com/delventhalz/no-fear-git" target="_blank">https://github.com/delventhalz/no-fear-git</a></li>
+</ol>
 
-<p class="last-modified"><em>Last modified: 202109251415</em></p></article><article>            <h1><a href="salary-negotiation.html">Salary Negotiation</a></h1>
+<p class="last-modified"><em>Last modified: 202110141548</em></p></article><article>            <h1><a href="salary-negotiation.html">Salary Negotiation</a></h1>
             <p>Like <a href="https://www.lennysnewsletter.com/p/negotiating-comp" target="_blank">the article I am summarizing from</a>, <strong>I hate this</strong>. I'm hoping that through using this information, I can better advocate for myself and be a greater force for the values and principles I believe in.</p>
 <ol>
 <li>Don't give hard numbers to recruiters; ask for a range that you can discuss later</li>
@@ -9038,4 +9130,4 @@ Compare this offer with all others you have received. Determine which has the qu
 <li><a href="https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/" target="_blank">https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/</a></li>
 </ul>
 
-<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~793kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202109190517</em></p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~801kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
