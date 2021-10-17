@@ -13,21 +13,29 @@ pug -w filename.pug -o ./outputfolder
 <h2>Syntax</h2>
 <p>Writing <a href="html.html">HTML</a> in Pug is very similar to <a href="emmet.html">Emmet</a> shorthand/selectors in <a href="css.html">CSS</a>.</p>
 <p><code>element#id.class(attr=&quot;value&quot; foo=&quot;bar&quot;) innerText</code></p>
-<pre><code>header#header.header.header__wrapper
-  .header__logo
-    span
-      img.header__logo-img(src=&quot;...&quot; alt=&quot;Logo&quot;)
-      |  Some &lt;b&gt;text&lt;/b&gt;!
-  h1 Company Name
+<pre><code>doctype html
+html(lang=&#x27;en&#x27;)
+  body
+    header#header.header.header__wrapper
+      .header__logo
+        span
+          img.header__logo-img(src=&quot;...&quot; alt=&quot;Logo&quot;)
+          |  Some &lt;b&gt;text&lt;/b&gt;!
+      h1 Company Name
 
 //- outputs
 
-//- &lt;header id=&quot;header&quot; class=&quot;header header__wrapper&quot;&gt;
-//-   &lt;div class=&quot;header__logo&quot;&gt;
-//-     &lt;span&gt;&lt;img src=&quot;...&quot; alt=&quot;Logo&quot; /&gt; Some &amp;lt;b&amp;gt;text&amp;lt;/b&amp;gt;!&lt;/span&gt;
-//-   &lt;/div&gt;
-//-   &lt;h1&gt;Company Name&lt;/h1&gt;
-//- &lt;/header&gt;
+//- &lt;!DOCTYPE html&gt;  
+//-  &lt;html&gt;
+//-   &lt;body&gt;
+//-     &lt;header id=&quot;header&quot; class=&quot;header header__wrapper&quot;&gt;
+//-       &lt;div class=&quot;header__logo&quot;&gt;
+//-         &lt;span&gt;&lt;img src=&quot;...&quot; alt=&quot;Logo&quot; /&gt; Some &amp;lt;b&amp;gt;text&amp;lt;/b&amp;gt;!&lt;/span&gt;
+//-       &lt;/div&gt;
+//-       &lt;h1&gt;Company Name&lt;/h1&gt;
+//-     &lt;/header&gt;
+//-   &lt;/body&gt;
+//- &lt;/html&gt;
 </code></pre>
 <h3>Comments</h3>
 <pre><code>// This comment will appear in the HTML
@@ -239,4 +247,4 @@ h1 This is my list!
 <li><a href="https://github.com/davidrios/pug-tmbundle/issues/22" target="_blank">https://github.com/davidrios/pug-tmbundle/issues/22</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202110031459</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~801kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202110172302</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~812kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

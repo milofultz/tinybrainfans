@@ -73,7 +73,27 @@ ENDM                      ; signify the end of the macro
   _setw IRQ, VBLANK_IRQ
 ...
 </code></pre>
-<h2>Video Reference</h2>
+<h2>Compiler Directives</h2>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Args</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include n</code></td>
+<td><code>n</code>: name of assembly file to be read</td>
+<td>Load in a remote assembly file and place the contents where include is invoked. Used for files containing assembly directives</td>
+</tr>
+<tr>
+<td><code>incbin n</code></td>
+<td><code>n</code>: name of binary file to be read</td>
+<td>Load in a remote binary file and place the contents where include is invoked. Not to be used for files containing assembly directives</td>
+</tr>
+</tbody></table><h2>Video Reference</h2>
 <h3>Basic Drawing Example</h3>
 <p>This example shows how to set up a custom palette as well as drawing those colors to screen.</p>
 <pre><code class="language-assembly">include &quot;64cube.inc&quot;      ; Include the helper functions
@@ -170,4 +190,4 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <li><a href="https://github.com/aeriform-io/minicube64/blob/main/memory_map.md" target="_blank">https://github.com/aeriform-io/minicube64/blob/main/memory_map.md</a></li>
 </ol>
 
-<p class="last-modified"><em>Last modified: 202109191717</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~801kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202110170408</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~812kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

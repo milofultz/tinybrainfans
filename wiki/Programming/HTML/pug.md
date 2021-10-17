@@ -27,21 +27,29 @@ Writing {{HTML}} in Pug is very similar to {{Emmet}} shorthand/selectors in {{CS
 `element#id.class(attr="value" foo="bar") innerText`
 
 ```
-header#header.header.header__wrapper
-  .header__logo
-    span
-      img.header__logo-img(src="..." alt="Logo")
-      |  Some <b>text</b>!
-  h1 Company Name
+doctype html
+html(lang='en')
+	body
+    header#header.header.header__wrapper
+      .header__logo
+        span
+          img.header__logo-img(src="..." alt="Logo")
+          |  Some <b>text</b>!
+      h1 Company Name
 
 //- outputs
 
-//- <header id="header" class="header header__wrapper">
-//-   <div class="header__logo">
-//-     <span><img src="..." alt="Logo" /> Some &lt;b&gt;text&lt;/b&gt;!</span>
-//-   </div>
-//-   <h1>Company Name</h1>
-//- </header>
+//- <!DOCTYPE html>  
+//-	<html>
+//-   <body>
+//-   	<header id="header" class="header header__wrapper">
+//-   	  <div class="header__logo">
+//-   	    <span><img src="..." alt="Logo" /> Some &lt;b&gt;text&lt;/b&gt;!</span>
+//-   	  </div>
+//-   	  <h1>Company Name</h1>
+//-   	</header>
+//-   </body>
+//- </html>
 ```
 
 ### Comments

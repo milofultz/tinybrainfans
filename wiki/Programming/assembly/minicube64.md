@@ -91,6 +91,13 @@ This is the changed contents of the above `test.s`:
 ...
 ```
 
+## Compiler Directives
+
+| Directive | Args | Effect |
+--- | --- | ---
+| `include n` | `n`: name of assembly file to be read | Load in a remote assembly file and place the contents where include is invoked. Used for files containing assembly directives |
+| `incbin n` | `n`: name of binary file to be read | Load in a remote binary file and place the contents where include is invoked. Not to be used for files containing assembly directives |
+
 ## Video Reference
 
 ### Basic Drawing Example
