@@ -11,6 +11,79 @@ In {{programming}}, test-driven development is when tests are developed first be
 - You can’t write more of a unit test than is sufficient to fail, and not compiling is failing.
 - You can’t write more production code than is sufficient to pass the currently failing unit test.
 
+These last two points are *very* important to fully understand, and may feel insane at first. If you were making an `add` function and you created your first test that `add(2, 2) === 4`, then your first step would be to create the `add` function and then **have it return 4**. 
+
+```javascript
+const add = (first, second) => {
+  return 4;
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error('FAILURE: 2 + 2 !== 4');
+}
+```
+
+It is important to note that of *course* this is incorrect as an adding function, but 
+
+> You can’t write more production code than is **sufficient** to pass the currently failing unit test
+
+Once you have this, you would want to create more tests. And sometimes that will result in more stupid-feeling tests:
+
+```javascript
+const add = (first, second) => {
+  if (first === 2) {
+ 	  return 4; 
+  } else {
+    return 6;
+  }
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error('FAILURE: 2 + 2 !== 4');
+}
+if (add(5, 1) !== 6) {
+  console.error('FAILURE: 5 + 1 !== 6');
+}
+```
+
+But as we write more and more, we will triangulate into what is accurate and necessary **with nothing more**. You will get to a point where refactoring the code will make you write less code than you currently have, and that is the end goal, but you don't want to get there until it is **necessary**.
+
+Remember, that you should at this point be trying really hard to find ways to BREAK your code. What are the edge cases? What is something user X or Y or Z would do, and how would my code be affected?
+
+```javascript
+const add = (first, second) => {
+  // Instead of continuing to add more if blocks, we refactored
+  if (first === undefined) {
+    return null;
+  } else if (second === undefined) {
+    return first;
+  }
+	return first + second;
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error('FAILURE: 2 + 2 !== 4');
+}
+if (add(5, 1) !== 6) {
+  console.error('FAILURE: 5 + 1 !== 6');
+}
+if (add(2, 0) !== 2) {
+  console.error('FAILURE: 2 + 0 !== 2');
+}
+if (add(2) !== 2) {
+  console.error('FAILURE: 2 !== 2');
+}
+if (add() !== null) {
+  console.error('FAILURE: Run add without args');
+}
+```
+
 ## Best Practices
 
 Write the test that forces you to write the code you already know you want to write. 
@@ -18,6 +91,77 @@ Write the test that forces you to write the code you already know you want to wr
 Avoid the central behaviors as long as possible. Don't go for the gold right away. 
 
 Decouple the production code from the test code by ensuring your tests are not 1:1 for the class methods or functions. Create and refactor as you go in production, but allow the tests to remain.
+
+### Dependency Injection
+
+Use [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) to make testing simpler. If you have an API call, inject `axios` or `fetch` as an argument so when it comes to testing, your testing framework won't be brittle in its imports. e.g. In this example, we make a call to an external API to get the tax rate of a given country using the {{Javascript}} native {{fetch API}}, with tests using {{Jest}}.
+
+**getTaxRate.js**
+
+```javascript
+// works, but brittle
+const getTaxRates = (country) => {
+  return fetch(`external.api/example/${country}`)
+  	.then(response => response.json())
+  	.then(taxRateInfo => taxRateInfo.rate)
+}
+
+// best, robust
+const getTaxRates = (fetch, country) => {
+  return fetch(`external.api/example/${country}`)
+  	.then(response => response.json())
+  	.then(taxRateInfo => taxRateInfo.rate)
+}
+```
+
+Using the brittle implementation, our tests are coupled with the implementation of the code we are testing, which will lead to problems if these global imports or functions like {{fetch|Fetch API}} ever change.
+
+**getTaxRate.test.js**
+
+```javascript
+// assuming all imports
+
+// This will properly mock the return value of the external API
+const mockFetchImplementation = () => {
+	return Promise.resolve({
+  	json: () => Promise.resolve({
+  		rate: 10
+		});
+	});
+};
+
+// brittle implementation
+// Fetch gets used invisibly, non-explicitly, and is more difficult to see what is happening.
+// Fetch as a global is also being overwritten, which may not be desired for future tests.
+
+global.fetch = jest.fn(mockFetchImplementation);
+
+describe('getTaxRates', () => {
+  it('gets a tax rate for a given country (brittle)', () => {
+    return getTaxRates('DE')
+    	.then(taxRate => {
+      	expect(taxRate).toBe(10);
+      	expect(fetch).toHaveBeenCalledTimes(1);
+      });
+  });
+});
+  
+// robust implementation
+// Fetch obviously gets used, easy to see high-level view
+// Uses a local mock and doesn't overwrite global fetch.
+
+const fakeFetch = jest.fn(mockFetchImplementation);
+
+describe('getTaxRates', () => {
+  it('gets a tax rate for a given country (brittle)', () => {
+    return getTaxRates(fakeFetch, 'DE')
+    	.then(taxRate => {
+      	expect(taxRate).toBe(10);
+      	expect(fetch).toHaveBeenCalledTimes(1);
+      });
+  });
+});
+```
 
 ## Why Use TDD
 
@@ -31,3 +175,5 @@ Decouple the production code from the test code by ensuring your tests are not 1
 2. [Clean Code](https://openlibrary.org/works/OL3526663W/Clean_code)
 3. https://qualitycoding.org/3-laws-tdd/
 4. [Examples of TDD in action](https://www.youtube.com/watch?v=58jGpV2Cg50)
+5. https://www.youtube.com/watch?v=XsFQEUP1MxI&list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&index=2
+6. https://wallabyjs.com/?referrer=funfunfunction

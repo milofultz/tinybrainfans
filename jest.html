@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Jest is a testing framework built by Facebook for Javascript applications."><title>Jest</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Jest</h1>
+            <p>Jest is a <a href="javascript.html">Javascript</a> <a href="testing-programming.html">test</a> framework built by Facebook for for use with <a href="node.html">Node</a>/<a href="javascript.html">Javascript</a> applications.</p>
+<!--
+
+## Quick Start
+
+Install Jest using `npm i --save-dev jest`.
+
+-->
+<h2>Mocking</h2>
+<p>You can mock functions like <code>fetch</code> or <code>axios</code> by using the <code>jest.fn(() =&gt; {})</code> syntax.</p>
+<pre><code class="language-javascript">const someBlackBox = jest.fn(number =&gt; 42 + number);
+forEach([0, 1], someBlackBox);
+
+// The mock function is called twice
+expect(someBlackBox.mock.calls.length).toBe(2);
+
+// The first argument of the first call to the function was 0
+expect(someBlackBox.mock.calls[0][0]).toBe(0);
+
+// The first argument of the second call to the function was 1
+expect(someBlackBox.mock.calls[1][0]).toBe(1);
+
+// The return value of the first call to the function was 42
+expect(someBlackBox.mock.results[0].value).toBe(42);
+</code></pre>
+<p>You can force certain return values, as well.</p>
+<pre><code class="language-javascript">const someOtherBlackBox = jest.fn();
+console.log(someOtherBlackBox()); // undefined
+
+someOtherBlackBox.mockReturnValueOnce(10).mockReturnValueOnce(&#x27;x&#x27;).mockReturnValue(true);
+console.log(
+  someOtherBlackBox(), // 10
+  someOtherBlackBox(), // &#x27;x&#x27;
+  someOtherBlackBox(), // true
+  someOtherBlackBox()  // true
+);
+
+expect(someOtherBlackBox.mock.calls.length).toBe(4);
+// etc. etc.
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://jestjs.io/" target="_blank">https://jestjs.io/</a></li>
+<li><a href="https://jestjs.io/docs/mock-functions" target="_blank">https://jestjs.io/docs/mock-functions</a></li>
+<li><a href="https://www.leighhalliday.com/mock-fetch-jest" target="_blank">https://www.leighhalliday.com/mock-fetch-jest</a></li>
+</ol>
+<section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></section>
+<p class="last-modified"><em>Last modified: 202110181402</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~826kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

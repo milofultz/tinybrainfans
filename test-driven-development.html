@@ -9,10 +9,135 @@
 <li>You can’t write more of a unit test than is sufficient to fail, and not compiling is failing.</li>
 <li>You can’t write more production code than is sufficient to pass the currently failing unit test.</li>
 </ul>
+<p>These last two points are <em>very</em> important to fully understand, and may feel insane at first. If you were making an <code>add</code> function and you created your first test that <code>add(2, 2) === 4</code>, then your first step would be to create the <code>add</code> function and then <strong>have it return 4</strong>. </p>
+<pre><code class="language-javascript">const add = (first, second) =&gt; {
+  return 4;
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
+}
+</code></pre>
+<p>It is important to note that of <em>course</em> this is incorrect as an adding function, but </p>
+<blockquote>
+<p>You can’t write more production code than is <strong>sufficient</strong> to pass the currently failing unit test</p>
+</blockquote>
+<p>Once you have this, you would want to create more tests. And sometimes that will result in more stupid-feeling tests:</p>
+<pre><code class="language-javascript">const add = (first, second) =&gt; {
+  if (first === 2) {
+     return 4; 
+  } else {
+    return 6;
+  }
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
+}
+if (add(5, 1) !== 6) {
+  console.error(&#x27;FAILURE: 5 + 1 !== 6&#x27;);
+}
+</code></pre>
+<p>But as we write more and more, we will triangulate into what is accurate and necessary <strong>with nothing more</strong>. You will get to a point where refactoring the code will make you write less code than you currently have, and that is the end goal, but you don't want to get there until it is <strong>necessary</strong>.</p>
+<p>Remember, that you should at this point be trying really hard to find ways to BREAK your code. What are the edge cases? What is something user X or Y or Z would do, and how would my code be affected?</p>
+<pre><code class="language-javascript">const add = (first, second) =&gt; {
+  // Instead of continuing to add more if blocks, we refactored
+  if (first === undefined) {
+    return null;
+  } else if (second === undefined) {
+    return first;
+  }
+  return first + second;
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
+}
+if (add(5, 1) !== 6) {
+  console.error(&#x27;FAILURE: 5 + 1 !== 6&#x27;);
+}
+if (add(2, 0) !== 2) {
+  console.error(&#x27;FAILURE: 2 + 0 !== 2&#x27;);
+}
+if (add(2) !== 2) {
+  console.error(&#x27;FAILURE: 2 !== 2&#x27;);
+}
+if (add() !== null) {
+  console.error(&#x27;FAILURE: Run add without args&#x27;);
+}
+</code></pre>
 <h2>Best Practices</h2>
 <p>Write the test that forces you to write the code you already know you want to write. </p>
 <p>Avoid the central behaviors as long as possible. Don't go for the gold right away. </p>
 <p>Decouple the production code from the test code by ensuring your tests are not 1:1 for the class methods or functions. Create and refactor as you go in production, but allow the tests to remain.</p>
+<h3>Dependency Injection</h3>
+<p>Use <a href="https://en.wikipedia.org/wiki/Dependency_injection" target="_blank">dependency injection</a> to make testing simpler. If you have an API call, inject <code>axios</code> or <code>fetch</code> as an argument so when it comes to testing, your testing framework won't be brittle in its imports. e.g. In this example, we make a call to an external API to get the tax rate of a given country using the <a href="javascript.html">Javascript</a> native <a href="fetch-api.html">fetch API</a>, with tests using <a href="jest.html">Jest</a>.</p>
+<p><strong>getTaxRate.js</strong></p>
+<pre><code class="language-javascript">// works, but brittle
+const getTaxRates = (country) =&gt; {
+  return fetch(`external.api/example/${country}`)
+    .then(response =&gt; response.json())
+    .then(taxRateInfo =&gt; taxRateInfo.rate)
+}
+
+// best, robust
+const getTaxRates = (fetch, country) =&gt; {
+  return fetch(`external.api/example/${country}`)
+    .then(response =&gt; response.json())
+    .then(taxRateInfo =&gt; taxRateInfo.rate)
+}
+</code></pre>
+<p>Using the brittle implementation, our tests are coupled with the implementation of the code we are testing, which will lead to problems if these global imports or functions like <a href="fetch-api.html">fetch</a> ever change.</p>
+<p><strong>getTaxRate.test.js</strong></p>
+<pre><code class="language-javascript">// assuming all imports
+
+// This will properly mock the return value of the external API
+const mockFetchImplementation = () =&gt; {
+  return Promise.resolve({
+    json: () =&gt; Promise.resolve({
+      rate: 10
+    });
+  });
+};
+
+// brittle implementation
+// Fetch gets used invisibly, non-explicitly, and is more difficult to see what is happening.
+// Fetch as a global is also being overwritten, which may not be desired for future tests.
+
+global.fetch = jest.fn(mockFetchImplementation);
+
+describe(&#x27;getTaxRates&#x27;, () =&gt; {
+  it(&#x27;gets a tax rate for a given country (brittle)&#x27;, () =&gt; {
+    return getTaxRates(&#x27;DE&#x27;)
+      .then(taxRate =&gt; {
+        expect(taxRate).toBe(10);
+        expect(fetch).toHaveBeenCalledTimes(1);
+      });
+  });
+});
+
+// robust implementation
+// Fetch obviously gets used, easy to see high-level view
+// Uses a local mock and doesn&#x27;t overwrite global fetch.
+
+const fakeFetch = jest.fn(mockFetchImplementation);
+
+describe(&#x27;getTaxRates&#x27;, () =&gt; {
+  it(&#x27;gets a tax rate for a given country (brittle)&#x27;, () =&gt; {
+    return getTaxRates(fakeFetch, &#x27;DE&#x27;)
+      .then(taxRate =&gt; {
+        expect(taxRate).toBe(10);
+        expect(fetch).toHaveBeenCalledTimes(1);
+      });
+  });
+});
+</code></pre>
 <h2>Why Use TDD</h2>
 <ul>
 <li>Your code will ALWAYS be working just a second ago when you last tested.</li>
@@ -25,6 +150,8 @@
 <li><a href="https://openlibrary.org/works/OL3526663W/Clean_code" target="_blank">Clean Code</a></li>
 <li><a href="https://qualitycoding.org/3-laws-tdd/" target="_blank">https://qualitycoding.org/3-laws-tdd/</a></li>
 <li><a href="https://www.youtube.com/watch?v=58jGpV2Cg50" target="_blank">Examples of TDD in action</a></li>
+<li><a href="https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2" target="_blank">https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2</a></li>
+<li><a href="https://wallabyjs.com/?referrer=funfunfunction" target="_blank">https://wallabyjs.com/?referrer=funfunfunction</a></li>
 </ol>
 <section id="backlinks"><h2>Backlinks:</h2><ul><li><a href="react-testing.html">React (Testing)</a></li></ul></section>
-<p class="last-modified"><em>Last modified: 202105310500</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~812kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified"><em>Last modified: 202110181410</em></p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~826kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

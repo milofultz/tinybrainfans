@@ -28,7 +28,7 @@ Writing {{HTML}} in Pug is very similar to {{Emmet}} shorthand/selectors in {{CS
 
 ```
 doctype html
-html(lang='en')
+html(lang="en")
 	body
     header#header.header.header__wrapper
       .header__logo
@@ -40,7 +40,7 @@ html(lang='en')
 //- outputs
 
 //- <!DOCTYPE html>  
-//-	<html>
+//-	<html lang="en">
 //-   <body>
 //-   	<header id="header" class="header header__wrapper">
 //-   	  <div class="header__logo">
