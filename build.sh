@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-shopt -s expand_aliases
 source ~/.zshrc
 
 swiki ./wiki ./ -d
