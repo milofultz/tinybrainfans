@@ -207,7 +207,9 @@ summary {
 
 details ul,
 details ol {
+  line-height: 1.5;
   list-style-type: none;
+  padding-left: 1em;
 }
 
 table,
