@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 shopt -s expand_aliases
 source ~/.zshrc
