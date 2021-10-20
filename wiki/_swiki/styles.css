@@ -253,6 +253,7 @@ spoiler:focus::after {
 
 .last-modified {
   color: var(--text-off);
+  font-style: italic;
 }
 
 footer {
