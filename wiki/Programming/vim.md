@@ -37,6 +37,21 @@ Go to end of file | `G` |
 Go to beginning of line | `0` |
 Go to end of line | `$` |
 
+### Copy (Yank), Cut, and Paste
+
+Copy is "yank" in Vim, so that's why they are "y".
+
+Description | Command | Notes
+--- | --- | ---
+Copy entire line or `n` lines, including newline | `nyy` |
+Copy from cursor to end of line | `y$` |
+Copy from cursor to start of line | `y^` |
+Cut entire line or `n` lines, including newline | `ndd` |
+Cut from cursor to end of line | `d$` |
+Cut from cursor to start of line | `d^` |
+Paste after the cursor | `p`|
+Paste before the cursor | `P`|
+
 ### Delete
 
 Description | Command | Notes
@@ -53,3 +68,4 @@ Delete from current column to end of line | `D` |
 - https://github.com/amix/vimrc
 - https://danielmiessler.com/study/vim/
 - https://elijahmanor.com/blog/neovim-tmux
+- https://linuxize.com/post/how-to-copy-cut-paste-in-vim/

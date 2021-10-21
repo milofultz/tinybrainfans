@@ -716,7 +716,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://github.com/delventhalz/no-fear-git" target="_blank">https://github.com/delventhalz/no-fear-git</a></li>
 <li><a href="https://nfarina.com/post/9868516270/git-is-simpler" target="_blank">https://nfarina.com/post/9868516270/git-is-simpler</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202110141553</p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
             <p>Your README file contains a high level overview for people interested in using, contributing, or perusing your code.</p>
 <h2>Structure/Content</h2>
@@ -838,6 +838,57 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <td><code>$</code></td>
 <td></td>
 </tr>
+</tbody></table><h3>Copy (Yank), Cut, and Paste</h3>
+<p>Copy is &quot;yank&quot; in Vim, so that's why they are &quot;y&quot;.</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copy entire line or <code>n</code> lines, including newline</td>
+<td><code>nyy</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Copy from cursor to end of line</td>
+<td><code>y$</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Copy from cursor to start of line</td>
+<td><code>y^</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cut entire line or <code>n</code> lines, including newline</td>
+<td><code>ndd</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cut from cursor to end of line</td>
+<td><code>d$</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cut from cursor to start of line</td>
+<td><code>d^</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Paste after the cursor</td>
+<td><code>p</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Paste before the cursor</td>
+<td><code>P</code></td>
+<td></td>
+</tr>
 </tbody></table><h3>Delete</h3>
 <table>
 <thead>
@@ -871,9 +922,10 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://github.com/amix/vimrc" target="_blank">https://github.com/amix/vimrc</a></li>
 <li><a href="https://danielmiessler.com/study/vim/" target="_blank">https://danielmiessler.com/study/vim/</a></li>
 <li><a href="https://elijahmanor.com/blog/neovim-tmux" target="_blank">https://elijahmanor.com/blog/neovim-tmux</a></li>
+<li><a href="https://linuxize.com/post/how-to-copy-cut-paste-in-vim/" target="_blank">https://linuxize.com/post/how-to-copy-cut-paste-in-vim/</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202109301657</p></article><article>            <h1><a href="glue-work.html">Glue Work</a></h1>
+<p class="last-modified">Last modified: 202110210219</p></article><article>            <h1><a href="glue-work.html">Glue Work</a></h1>
             <p>[0:10:32] Glue work is the meta work that helps keep the organization running and on track. e.g. scrum master stuff; fixing problems, increasing fluidity in between teams, creating coding standards for ease of production, etc.</p>
 <p>[0:12:12] If you are only doing glue work and not your actual job, it may be beneficial but it is hurting your own career and potentially your ability to keep your job or get promoted.</p>
 <p>[0:14:31] What do you want to get better at? Do more of that and get better at it. Find something that you will be happy and proud to do. When we start at a job, we are bad and then get better.</p>
@@ -9351,7 +9403,28 @@ shell&gt; git config --global --unset alias.p # now &#x27;git p&#x27; is no long
 <li><a href="https://github.com/delventhalz/no-fear-git" target="_blank">https://github.com/delventhalz/no-fear-git</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202110141548</p></article><article>            <h1><a href="salary-negotiation.html">Salary Negotiation</a></h1>
+<p class="last-modified">Last modified: 202110141548</p></article><article>            <h1>Rebase (git)</h1>
+            <p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
+<h2>Golden Rule</h2>
+<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
+<h2>Merge vs. Rebase</h2>
+<p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
+<h2>Interactive Rebase</h2>
+<p>To rebase one branch onto the nearest common ancestor of another, use the following command, replacing the bracketed words with the correct branch names:</p>
+<pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
+</code></pre>
+<p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
+<li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
+<li><a href="https://linuxhint.com/git-rebase-tutorial/" target="_blank">https://linuxhint.com/git-rebase-tutorial/</a></li>
+<li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
+<li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
+</ul>
+
+<p class="last-modified">Last modified: 202110210209</p></article><article>            <h1><a href="salary-negotiation.html">Salary Negotiation</a></h1>
             <p>Like <a href="https://www.lennysnewsletter.com/p/negotiating-comp" target="_blank">the article I am summarizing from</a>, <strong>I hate this</strong>. I'm hoping that through using this information, I can better advocate for myself and be a greater force for the values and principles I believe in.</p>
 <ol>
 <li>Don't give hard numbers to recruiters; ask for a range that you can discuss later</li>
@@ -9440,4 +9513,4 @@ Compare this offer with all others you have received. Determine which has the qu
 <li><a href="https://www.youtube.com/watch?v=iHPW8Z323F0" target="_blank">https://www.youtube.com/watch?v=iHPW8Z323F0</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202110162222</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~499kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110162222</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~503kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
