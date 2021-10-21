@@ -5,13 +5,23 @@ description: Rebasing in git is a way to clean up your commit history and change
 
 Rebasing in {{git}} is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.
 
+## Merge vs. Rebase
+
+Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.
+
 ## Golden Rule
 
 If your branch is being worked on by anybody else but you, **do not rebase!** Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️
 
-## Merge vs. Rebase
+## Simple Rebase
 
-Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.
+To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:
+
+```shell
+$ git rebase {other-branch}
+```
+
+This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.
 
 ## Interactive Rebase
 
@@ -44,3 +54,4 @@ Command(s) | Effect
 - https://linuxhint.com/git-rebase-tutorial/
 - https://git-scm.com/docs/git-rebase
 - https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch
+- https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336

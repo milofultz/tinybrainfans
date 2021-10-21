@@ -21,6 +21,13 @@ Save and quit | `:wq` |
 Save only if file changed and quit | `:x` |
 Save As | `:w newFileName` |
 
+### Undo/Redo
+
+Description | Command | Notes
+--- | --- | ---
+Undo | `u` | 
+Redo | `Ctrl + R` | 
+
 ### Find
 
 Description | Command | Notes
@@ -69,3 +76,4 @@ Delete from current column to end of line | `D` |
 - https://danielmiessler.com/study/vim/
 - https://elijahmanor.com/blog/neovim-tmux
 - https://linuxize.com/post/how-to-copy-cut-paste-in-vim/
+- https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/

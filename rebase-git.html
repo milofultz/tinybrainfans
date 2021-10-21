@@ -1,10 +1,15 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Rebasing in git is a way to clean up your commit history and change the history of one branch to be after the changes of another."><title>Rebase (git)</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">Rebase (git)</h1>
             <p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
-<h2>Golden Rule</h2>
-<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
 <h2>Merge vs. Rebase</h2>
 <p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
+<h2>Golden Rule</h2>
+<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
+<h2>Simple Rebase</h2>
+<p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
+<pre><code class="language-shell">$ git rebase {other-branch}
+</code></pre>
+<p>This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.</p>
 <h2>Interactive Rebase</h2>
 <p>To rebase one branch onto the nearest common ancestor of another, use the following command, replacing the bracketed words with the correct branch names:</p>
 <pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
@@ -45,6 +50,7 @@
 <li><a href="https://linuxhint.com/git-rebase-tutorial/" target="_blank">https://linuxhint.com/git-rebase-tutorial/</a></li>
 <li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
 <li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
+<li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202110210257</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~503kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110211405</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~504kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
