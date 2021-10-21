@@ -9414,7 +9414,34 @@ shell&gt; git config --global --unset alias.p # now &#x27;git p&#x27; is no long
 <pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
 </code></pre>
 <p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
-<h2>References</h2>
+<p>Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!</p>
+<h3>Interactive Rebase Commands</h3>
+<p>I only have used these so far, and they do the job for what I need.</p>
+<table>
+<thead>
+<tr>
+<th>Command(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code> / <code>pick</code></td>
+<td>Keep the commit as it currently is</td>
+</tr>
+<tr>
+<td><code>r</code> / <code>reword</code></td>
+<td>Keep the commit and edit the commit message</td>
+</tr>
+<tr>
+<td><code>s</code> / <code>squash</code></td>
+<td>Combine this commit with the previous commit, and edit commit message for newly squashed commit</td>
+</tr>
+<tr>
+<td><code>f</code> / <code>fixup</code></td>
+<td>Fold this commit into the previous commit, using the previous commit's message</td>
+</tr>
+</tbody></table><h2>References</h2>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
 <li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
@@ -9424,7 +9451,7 @@ shell&gt; git config --global --unset alias.p # now &#x27;git p&#x27; is no long
 <li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202110210209</p></article><article>            <h1><a href="salary-negotiation.html">Salary Negotiation</a></h1>
+<p class="last-modified">Last modified: 202110210257</p></article><article>            <h1><a href="salary-negotiation.html">Salary Negotiation</a></h1>
             <p>Like <a href="https://www.lennysnewsletter.com/p/negotiating-comp" target="_blank">the article I am summarizing from</a>, <strong>I hate this</strong>. I'm hoping that through using this information, I can better advocate for myself and be a greater force for the values and principles I believe in.</p>
 <ol>
 <li>Don't give hard numbers to recruiters; ask for a range that you can discuss later</li>

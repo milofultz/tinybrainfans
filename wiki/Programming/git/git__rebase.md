@@ -23,6 +23,19 @@ $ git rebase -i `git merge-base {other-branch} HEAD`
 
 For instance, if I was on a `feature` branch and wanted to interactively rebase over all commits that occurred since it branched off of `main`, it would be ```git rebase -i `git merge-base main HEAD` ```.
 
+Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!
+
+### Interactive Rebase Commands
+
+I only have used these so far, and they do the job for what I need.
+
+Command(s) | Effect
+--- | ---
+`p` / `pick`| Keep the commit as it currently is
+`r` / `reword` | Keep the commit and edit the commit message
+`s` / `squash` | Combine this commit with the previous commit, and edit commit message for newly squashed commit
+`f` / `fixup` | Fold this commit into the previous commit, using the previous commit's message
+
 ## References
 
 - https://www.youtube.com/watch?v=7Mh259hfxJg
