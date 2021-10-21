@@ -119,6 +119,7 @@ Any label can be substituted for a direct memory address.
 ## References
 
 - http://skilldrick.github.io/easy6502/
+- https://famicom.party/book/
 - https://wiki.xxiivv.com/site/assembly.html
 - https://git.sr.ht/~rabbits/famicom_cookbook/tree/master/item/README.md
 - https://www.youtube.com/watch?v=lsvSZamCCBM

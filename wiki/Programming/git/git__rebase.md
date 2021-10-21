@@ -21,11 +21,11 @@ To perform a simple rebase and put the commits of the current branch on to the t
 $ git rebase {other-branch}
 ```
 
-This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.
+For instance, if I were on a `feature` branch and I wanted to rebase on top of the `main` branch, I would use `git rebase main`. This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.
 
 ## Interactive Rebase
 
-To rebase one branch onto the nearest common ancestor of another, use the following command, replacing the bracketed words with the correct branch names:
+To rebase one branch onto the nearest common ancestor of another, use the following command:
 
 ```shell
 $ git rebase -i `git merge-base {other-branch} HEAD`
