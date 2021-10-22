@@ -11,6 +11,8 @@ Create a new {{node}} project and install Socket.IO using {{npm}} or {{yarn}} (t
 
 We're going to make the simplest possible implementation, that will allow a user to send a message via console to all other users who are on the same site.
 
+To run and test this, install the above dependencies and create these three files. Once they are created and populated, you can run `nodemon server.js` and open multiple tabs/windows at `http://locathost:3000` on your machine. With the console open, you should see messages coming in from the other tabs when sending messages on any of them.
+
 **index.html**
 
 ```html
