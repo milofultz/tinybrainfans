@@ -58,6 +58,7 @@ app.get('/products', (req, res) => {
 
 1. http://expressjs.com/en/starter/installing.html
 2. https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express
+3. https://expressjs.com/en/starter/static-files.html
 
 [nodemon]: https://www.npmjs.com/package/nodemon "Nodemon is essential for developing your own apps"
 

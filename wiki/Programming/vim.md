@@ -39,9 +39,9 @@ Find and Replace | `:1,$s/searchpattern/replacepattern` | To replace all, add `/
 
 Description | Command | Notes
 --- | --- | ---
-Go to beginning of file | `gg` | 
+Go to beginning of file | `gg` |
 Go to end of file | `G` |
-Go to beginning of line | `0` |
+Go to beginning of line | `0` / `^` |
 Go to end of line | `$` |
 
 ### Copy (Yank), Cut, and Paste
@@ -66,6 +66,17 @@ Description | Command | Notes
 Delete line | `dd` | 
 Delete `3` lines | `3dd` | 
 Delete from current column to end of line | `D` |
+
+### Misc
+
+Description | Command | Notes
+--- | --- | ---
+Toggle fold at next logical break | `za` | 
+
+## Plugins and Packages
+
+- [Ultimate vimrc](https://github.com/amix/vimrc) - This is a great starting point that includes a lot of fantastic plugins and settings
+- [Emmet](https://github.com/mattn/emmet-vim)
 
 ## References
 
