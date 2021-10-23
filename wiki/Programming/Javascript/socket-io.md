@@ -126,4 +126,5 @@ Using `.to('some room')` prior to `.emit(...)` will emit the events to only thos
 - https://www.youtube.com/watch?v=jD7FnbI76Hg
 - https://socket.io/docs/v4/
 - https://socket.io/docs/v4/listening-to-events/
+- https://socket.io/docs/v4/client-initialization/
 - https://www.youtube.com/watch?v=cS6Zzj8BSHM

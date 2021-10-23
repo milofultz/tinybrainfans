@@ -1,6 +1,7 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><title>SQLite</title><link rel="stylesheet" href="./styles.css"></head><body>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="SQLite is an open-source, zero-configuration, self-contained, stand-alone, transaction relational database."><title>SQLite</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">SQLite</h1>
-            <h2>Data Types (version 3)</h2>
+            <p>SQLite is an open-source, zero-configuration, self-contained, stand-alone, transaction relational <a href="database.html">database</a> engine designed to be embedded into an application.</p>
+<h2>Data Types (version 3)</h2>
 <ul>
 <li>NULL</li>
 <li>INTEGER</li>
@@ -11,9 +12,19 @@
 <h2>Primary Key</h2>
 <p>A column with type <code>INTEGER PRIMARY KEY</code> is an alias for the <code>ROWID</code>, which is always a 64-bit signed integer.</p>
 <pre><code class="language-sqlite">CREATE TABLE IF NOT EXISTS dogs (
-  id INTEGER PRIMARY KEY,
-  dog_name VARCHAR(10),
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  dog_name TEXT,
   good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
+);
+</code></pre>
+<h2>Foreign Keys</h2>
+<p>At the end of your schema, add the line <code>FOREIGN KEY(col_name) REFERENCES foreign_table_name(foreign_col_name)</code>.</p>
+<pre><code class="language-sqlite">-- Referencing the above table `dogs`
+CREATE TABLE IF NOT EXISTS owners (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  dog_id INTEGER,
+  FOREIGN KEY(dog_id) REFERENCES dogs(id)
 );
 </code></pre>
 <h2>Date and Time</h2>
@@ -43,11 +54,65 @@ VALUES
 <h3>Get column information of a given table</h3>
 <pre><code class="language-sqlite">PRAGMA table_info(table_name)
 </code></pre>
+<h2>Use with <a href="node.html">Node</a></h2>
+<p>First, install <code>sqlite3</code> with <a href="yarn.html">yarn</a> or <a href="npm.html">npm</a>. Bring in the package in your new file and instantiate an in-memory database:</p>
+<p><strong>server.js</strong></p>
+<pre><code class="language-javascript">const sqlite3 = require(&#x27;sqlite3&#x27;).verbose();
+
+const db = new sqlite3.Database(&#x27;:memory:&#x27;, (err) =&gt; {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log(&#x27;Connected to the in-memory SQlite database.&#x27;);
+});
+</code></pre>
+<p>Instead of <code>:memory:</code>, you can also use the path to a SQLite database file.</p>
+<h3>Queries</h3>
+<p><code>db.run</code> takes multiple arguments. First is the query itself, followed by an optional array of data to be escaped and injected, and lastly the callback which has a single <code>error</code> parameter.</p>
+<pre><code class="language-javascript">// With escaped arguments
+
+const sql = `
+  SELECT
+    *
+  FROM
+    table
+`;
+
+db.run(sql, function(err) {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log(`Row(s) updated: ${this.changes}`);
+});
+</code></pre>
+<p>With escaped arguments:</p>
+<pre><code class="language-javascript">const sql = `
+  UPDATE
+    table
+  SET
+    name = ?
+  WHERE
+    name = ?
+`;
+const data = [&#x27;Ansi C&#x27;, &#x27;C&#x27;];
+
+db.run(sql, data, function(err) {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log(`Row(s) updated: ${this.changes}`);
+});
+</code></pre>
+<h3>Serialize and Parallelize</h3>
+<p>Using the <code>db.serialize(() =&gt; {...})</code> wrapper will guarantee that the queries inside of it will complete before returning. For instance, running a table creation query and then trying to insert directly after won't work outside of a <code>serialize</code> wrapper because the <code>db.run</code> invocation returns immediately, thus not waiting for it to finish. The entire <em>wrapper</em> also waits for the inner queries to finish before returning anything, so is useful in database instantiation.</p>
+<p><code>parallelize</code> will not block and as far as I can tell, runs the same as if you put them all outside of the wrapper.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://sqlite.org/pragma.html#pragma_table_info" target="_blank">https://sqlite.org/pragma.html#pragma_table_info</a></li>
 <li><a href="https://www.sqlite.org/datatype3.html" target="_blank">https://www.sqlite.org/datatype3.html</a></li>
 <li><a href="https://www.sqlite.org/lang_datefunc.html" target="_blank">https://www.sqlite.org/lang_datefunc.html</a></li>
+<li><a href="https://www.sqlitetutorial.net/sqlite-nodejs/connect/" target="_blank">https://www.sqlitetutorial.net/sqlite-nodejs/connect/</a></li>
+<li><a href="https://stackoverflow.com/questions/41949724/how-does-db-serialize-work-in-node-sqlite3" target="_blank">https://stackoverflow.com/questions/41949724/how-does-db-serialize-work-in-node-sqlite3</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110011812</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~510kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110232254</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~517kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

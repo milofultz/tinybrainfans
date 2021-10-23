@@ -366,12 +366,69 @@ SELECT Fahrenheit, ((Temperature - 32) * 5) / 9 AS Celsius
 FROM 2000_Temp_Data;
 ```
 
+## Formatting
+
+There are many different opinions about how to format correctly (see below), but the one that I believe to be the most readable is formatted as such, with the capitalized `INSTRUCTION` on one line and lowercase `args` on the following line with indentation. Indentation is also used to define subqueries and bracketed blocks, with terminating brackets on their own line. `AND` and `OR` should start their lines and should not reside at the end.
+
+```sql
+SELECT
+	r.last_name,
+  (
+    SELECT
+      MAX(YEAR(championship_date))
+    FROM
+      champions AS c
+    WHERE
+      c.last_name = r.last_name
+      AND c.confirmed = 'Y'
+  ) AS last_championship_year
+FROM 
+	riders AS r
+WHERE 
+	r.last_name IN (
+    SELECT
+    	c.last_name
+    FROM 
+    	champions AS c
+    WHERE 
+    	YEAR(championship_date) > '2008'
+    	AND c.confirmed = 'Y'
+  );
+```
+
+There is a clearer and more dense formatting, but it seems like a pain to write. I may adopt it soon though:
+
+```sql
+SELECT r.last_name,
+		   (SELECT MAX(YEAR(championship_date))
+	        FROM champions AS c
+         WHERE c.last_name = r.last_name 
+        	 AND c.confirmed = 'Y') AS last_championship_year
+  FROM riders AS r
+ WHERE r.last_name IN (
+	      SELECT c.last_name
+          FROM champions AS c
+         WHERE YEAR(championship_date) > '2008' 
+   			   AND c.confirmed = 'Y');
+```
+
 ## References
 
-1. {{Common SQL Queries}}
-2. https://sqlbolt.com/
-3. https://www.mysqltutorial.org/mysql-primary-key/
-4. https://www.educba.com/mysql-constraints/
+- {{Common SQL Queries}}
+- https://sqlbolt.com/
+- https://www.mysqltutorial.org/mysql-primary-key/
+- https://www.educba.com/mysql-constraints/
+
+Schema Design:
+
+- https://ondras.zarovi.cz/sql/demo/
+
+Formatting:
+
+- https://www.sqlstyle.guide/
+- https://docs.telemetry.mozilla.org/concepts/sql_style.html
+- https://learnsql.com/blog/24-rules-sql-code-formatting-standard/
+- https://stackoverflow.com/questions/519876/sql-formatting-standards
 
 [if row exists]: https://www.tutorialspoint.com/best-way-to-test-if-a-row-exists-in-a-mysql-table
 

@@ -1216,7 +1216,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 
 <p class="last-modified">Last modified: 202110080420</p></article><article><h1><a href="database.html">database</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="sql.html">SQL</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section></article><article><h1><a href="handlebars.html">Handlebars</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="sql.html">SQL</a></li><li><a href="sqlite.html">SQLite</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section></article><article><h1><a href="handlebars.html">Handlebars</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="model-view-controller.html">Model View Controller</a></li></ul></details></section></article><article><h1><a href="jinja2.html">Jinja2</a></h1>
 <p>There's currently nothing here.</p>
@@ -1692,7 +1692,7 @@ source ~/.profile
 <ul>
 <li><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" target="_blank">https://docs.npmjs.com/downloading-and-installing-node-js-and-npm</a></li>
 </ul>
-<section><details><summary>Backlinks</summary><ul><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="socket.io.html">Socket.IO</a></li><li><a href="yarn.html">Yarn</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="socket.io.html">Socket.IO</a></li><li><a href="sqlite.html">SQLite</a></li><li><a href="yarn.html">Yarn</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202110172241</p></article><article>            <h1><a href="mongodb.html">MongoDB</a></h1>
             <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system based on <a href="javascript.html">Javascript</a> using documents similar to <a href="json.html">JSON</a>.</p>
 <h2>Getting Started</h2>
@@ -1898,7 +1898,7 @@ if (requests.length) {
 <section><details><summary>Backlinks</summary><ul><li><a href="mongoose.html">Mongoose</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202108230454</p></article><article><h1><a href="node.html">node</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="jest.html">Jest</a></li><li><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="npm.html">NPM</a></li><li><a href="nvm.html">NVM</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="socket.io.html">Socket.IO</a></li><li><a href="yarn.html">Yarn</a></li></ul></details></section></article><article>            <h1><a href="mongoose.html">Mongoose</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="jest.html">Jest</a></li><li><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="npm.html">NPM</a></li><li><a href="nvm.html">NVM</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="socket.io.html">Socket.IO</a></li><li><a href="sqlite.html">SQLite</a></li><li><a href="yarn.html">Yarn</a></li></ul></details></section></article><article>            <h1><a href="mongoose.html">Mongoose</a></h1>
             <p>Mongoose is an <a href="npm.html">NPM</a> package that allows a simple and schema'd <a href="javascript.html">Javascript</a> entrypoint to your <a href="mongodb.html">Mongo database</a>.</p>
 <h2>Basics</h2>
 <h3>Setup</h3>
@@ -2469,16 +2469,113 @@ WHERE ((Temperature - 32) * 5) / 9 &gt; 0;
 SELECT Fahrenheit, ((Temperature - 32) * 5) / 9 AS Celsius
 FROM 2000_Temp_Data;
 </code></pre>
+<h2>Formatting</h2>
+<p>There are many different opinions about how to format correctly (see below), but the one that I believe to be the most readable is formatted as such, with the capitalized <code>INSTRUCTION</code> on one line and lowercase <code>args</code> on the following line with indentation. Indentation is also used to define subqueries and bracketed blocks, with terminating brackets on their own line. <code>AND</code> and <code>OR</code> should start their lines and should not reside at the end.</p>
+<pre><code class="language-sql">SELECT
+  r.last_name,
+  (
+    SELECT
+      MAX(YEAR(championship_date))
+    FROM
+      champions AS c
+    WHERE
+      c.last_name = r.last_name
+      AND c.confirmed = &#x27;Y&#x27;
+  ) AS last_championship_year
+FROM 
+  riders AS r
+WHERE 
+  r.last_name IN (
+    SELECT
+      c.last_name
+    FROM 
+      champions AS c
+    WHERE 
+      YEAR(championship_date) &gt; &#x27;2008&#x27;
+      AND c.confirmed = &#x27;Y&#x27;
+  );
+</code></pre>
+<p>There is a clearer and more dense formatting, but it seems like a pain to write. I may adopt it soon though:</p>
+<pre><code class="language-sql">SELECT r.last_name,
+       (SELECT MAX(YEAR(championship_date))
+          FROM champions AS c
+         WHERE c.last_name = r.last_name 
+           AND c.confirmed = &#x27;Y&#x27;) AS last_championship_year
+  FROM riders AS r
+ WHERE r.last_name IN (
+        SELECT c.last_name
+          FROM champions AS c
+         WHERE YEAR(championship_date) &gt; &#x27;2008&#x27; 
+            AND c.confirmed = &#x27;Y&#x27;);
+</code></pre>
 <h2>References</h2>
-<ol>
+<ul>
 <li><a href="common-sql-queries.html">Common SQL Queries</a></li>
 <li><a href="https://sqlbolt.com/" target="_blank">https://sqlbolt.com/</a></li>
 <li><a href="https://www.mysqltutorial.org/mysql-primary-key/" target="_blank">https://www.mysqltutorial.org/mysql-primary-key/</a></li>
 <li><a href="https://www.educba.com/mysql-constraints/" target="_blank">https://www.educba.com/mysql-constraints/</a></li>
-</ol>
+</ul>
+<p>Schema Design:</p>
+<ul>
+<li><a href="https://ondras.zarovi.cz/sql/demo/" target="_blank">https://ondras.zarovi.cz/sql/demo/</a></li>
+</ul>
+<p>Formatting:</p>
+<ul>
+<li><a href="https://www.sqlstyle.guide/" target="_blank">https://www.sqlstyle.guide/</a></li>
+<li><a href="https://docs.telemetry.mozilla.org/concepts/sql_style.html" target="_blank">https://docs.telemetry.mozilla.org/concepts/sql_style.html</a></li>
+<li><a href="https://learnsql.com/blog/24-rules-sql-code-formatting-standard/" target="_blank">https://learnsql.com/blog/24-rules-sql-code-formatting-standard/</a></li>
+<li><a href="https://stackoverflow.com/questions/519876/sql-formatting-standards" target="_blank">https://stackoverflow.com/questions/519876/sql-formatting-standards</a></li>
+</ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202107140251</p></article><article>            <h1><a href="sqlite.html">SQLite</a></h1>
-            <h2>Data Types (version 3)</h2>
+<p class="last-modified">Last modified: 202110232222</p></article><article>            <h1><a href="yarn.html">Yarn</a></h1>
+            <p>Yarn is a hub from which you can install, manage, and maintain <a href="node.html">node</a>/<a href="javascript.html">Javascript</a> projects. </p>
+<h2>Installation</h2>
+<p>Yarn needs to be installed globally via <a href="npm.html">NPM</a>.</p>
+<pre><code class="language-shell">$ npm i --global yarn
+</code></pre>
+<h2>Basic Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Args</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add n [--dev]</code></td>
+<td><code>n</code>: Package name(s);<br /><code>--dev</code>: Add to dev dependencies</td>
+<td>Adds package(s) to project</td>
+</tr>
+<tr>
+<td><code>install</code></td>
+<td></td>
+<td>Install all packages found in project</td>
+</tr>
+<tr>
+<td><code>run n</code></td>
+<td><code>n</code>: Name of script</td>
+<td>Run the script <code>n</code> found under <code>scripts</code> in package JSON</td>
+</tr>
+<tr>
+<td><code>start</code></td>
+<td></td>
+<td>Run the script found under <code>scripts</code>/<code>start</code> in package JSON</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td></td>
+<td>Run the script found under <code>scripts</code>/<code>test</code> in package JSON</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ul>
+<li><a href="https://classic.yarnpkg.com/en/" target="_blank">https://classic.yarnpkg.com/en/</a></li>
+</ul>
+<section><details><summary>Backlinks</summary><ul><li><a href="socket.io.html">Socket.IO</a></li><li><a href="sqlite.html">SQLite</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202110172302</p></article><article>            <h1><a href="sqlite.html">SQLite</a></h1>
+            <p>SQLite is an open-source, zero-configuration, self-contained, stand-alone, transaction relational <a href="database.html">database</a> engine designed to be embedded into an application.</p>
+<h2>Data Types (version 3)</h2>
 <ul>
 <li>NULL</li>
 <li>INTEGER</li>
@@ -2489,9 +2586,19 @@ FROM 2000_Temp_Data;
 <h2>Primary Key</h2>
 <p>A column with type <code>INTEGER PRIMARY KEY</code> is an alias for the <code>ROWID</code>, which is always a 64-bit signed integer.</p>
 <pre><code class="language-sqlite">CREATE TABLE IF NOT EXISTS dogs (
-  id INTEGER PRIMARY KEY,
-  dog_name VARCHAR(10),
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  dog_name TEXT,
   good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
+);
+</code></pre>
+<h2>Foreign Keys</h2>
+<p>At the end of your schema, add the line <code>FOREIGN KEY(col_name) REFERENCES foreign_table_name(foreign_col_name)</code>.</p>
+<pre><code class="language-sqlite">-- Referencing the above table `dogs`
+CREATE TABLE IF NOT EXISTS owners (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  dog_id INTEGER,
+  FOREIGN KEY(dog_id) REFERENCES dogs(id)
 );
 </code></pre>
 <h2>Date and Time</h2>
@@ -2521,14 +2628,68 @@ VALUES
 <h3>Get column information of a given table</h3>
 <pre><code class="language-sqlite">PRAGMA table_info(table_name)
 </code></pre>
+<h2>Use with <a href="node.html">Node</a></h2>
+<p>First, install <code>sqlite3</code> with <a href="yarn.html">yarn</a> or <a href="npm.html">npm</a>. Bring in the package in your new file and instantiate an in-memory database:</p>
+<p><strong>server.js</strong></p>
+<pre><code class="language-javascript">const sqlite3 = require(&#x27;sqlite3&#x27;).verbose();
+
+const db = new sqlite3.Database(&#x27;:memory:&#x27;, (err) =&gt; {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log(&#x27;Connected to the in-memory SQlite database.&#x27;);
+});
+</code></pre>
+<p>Instead of <code>:memory:</code>, you can also use the path to a SQLite database file.</p>
+<h3>Queries</h3>
+<p><code>db.run</code> takes multiple arguments. First is the query itself, followed by an optional array of data to be escaped and injected, and lastly the callback which has a single <code>error</code> parameter.</p>
+<pre><code class="language-javascript">// With escaped arguments
+
+const sql = `
+  SELECT
+    *
+  FROM
+    table
+`;
+
+db.run(sql, function(err) {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log(`Row(s) updated: ${this.changes}`);
+});
+</code></pre>
+<p>With escaped arguments:</p>
+<pre><code class="language-javascript">const sql = `
+  UPDATE
+    table
+  SET
+    name = ?
+  WHERE
+    name = ?
+`;
+const data = [&#x27;Ansi C&#x27;, &#x27;C&#x27;];
+
+db.run(sql, data, function(err) {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log(`Row(s) updated: ${this.changes}`);
+});
+</code></pre>
+<h3>Serialize and Parallelize</h3>
+<p>Using the <code>db.serialize(() =&gt; {...})</code> wrapper will guarantee that the queries inside of it will complete before returning. For instance, running a table creation query and then trying to insert directly after won't work outside of a <code>serialize</code> wrapper because the <code>db.run</code> invocation returns immediately, thus not waiting for it to finish. The entire <em>wrapper</em> also waits for the inner queries to finish before returning anything, so is useful in database instantiation.</p>
+<p><code>parallelize</code> will not block and as far as I can tell, runs the same as if you put them all outside of the wrapper.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://sqlite.org/pragma.html#pragma_table_info" target="_blank">https://sqlite.org/pragma.html#pragma_table_info</a></li>
 <li><a href="https://www.sqlite.org/datatype3.html" target="_blank">https://www.sqlite.org/datatype3.html</a></li>
 <li><a href="https://www.sqlite.org/lang_datefunc.html" target="_blank">https://www.sqlite.org/lang_datefunc.html</a></li>
+<li><a href="https://www.sqlitetutorial.net/sqlite-nodejs/connect/" target="_blank">https://www.sqlitetutorial.net/sqlite-nodejs/connect/</a></li>
+<li><a href="https://stackoverflow.com/questions/41949724/how-does-db-serialize-work-in-node-sqlite3" target="_blank">https://stackoverflow.com/questions/41949724/how-does-db-serialize-work-in-node-sqlite3</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110011812</p></article><article><h1><a href="mysql.html">MySQL</a></h1>
+<p class="last-modified">Last modified: 202110232254</p></article><article><h1><a href="mysql.html">MySQL</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li></ul></details></section></article><article><h1><a href="python.html">Python</a></h1>
 <p>There's currently nothing here.</p>
@@ -7563,53 +7724,7 @@ var newSquare = new Square(&#x27;square&#x27;, 5);
 <li><a href="https://radialglo.github.io/blog/2014/11/24/understanding-pseudoclassical-inheritance-in-javascript/" target="_blank">https://radialglo.github.io/blog/2014/11/24/understanding-pseudoclassical-inheritance-in-javascript/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202110021709</p></article><article>            <h1><a href="yarn.html">Yarn</a></h1>
-            <p>Yarn is a hub from which you can install, manage, and maintain <a href="node.html">node</a>/<a href="javascript.html">Javascript</a> projects. </p>
-<h2>Installation</h2>
-<p>Yarn needs to be installed globally via <a href="npm.html">NPM</a>.</p>
-<pre><code class="language-shell">$ npm i --global yarn
-</code></pre>
-<h2>Basic Commands</h2>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Args</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>add n [--dev]</code></td>
-<td><code>n</code>: Package name(s);<br /><code>--dev</code>: Add to dev dependencies</td>
-<td>Adds package(s) to project</td>
-</tr>
-<tr>
-<td><code>install</code></td>
-<td></td>
-<td>Install all packages found in project</td>
-</tr>
-<tr>
-<td><code>run n</code></td>
-<td><code>n</code>: Name of script</td>
-<td>Run the script <code>n</code> found under <code>scripts</code> in package JSON</td>
-</tr>
-<tr>
-<td><code>start</code></td>
-<td></td>
-<td>Run the script found under <code>scripts</code>/<code>start</code> in package JSON</td>
-</tr>
-<tr>
-<td><code>test</code></td>
-<td></td>
-<td>Run the script found under <code>scripts</code>/<code>test</code> in package JSON</td>
-</tr>
-</tbody></table><h2>References</h2>
-<ul>
-<li><a href="https://classic.yarnpkg.com/en/" target="_blank">https://classic.yarnpkg.com/en/</a></li>
-</ul>
-<section><details><summary>Backlinks</summary><ul><li><a href="socket.io.html">Socket.IO</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110172302</p></article><article>            <h1>Promises and Async/Await (Javascript)</h1>
+<p class="last-modified">Last modified: 202110021709</p></article><article>            <h1>Promises and Async/Await (Javascript)</h1>
             <p>Promises and async/await are a way to handle asynchronous actions in <a href="javascript.html">Javascript</a>.</p>
 <h2>Promises</h2>
 <pre><code class="language-javascript">const getDataFromAPI = () =&gt; {
@@ -7799,10 +7914,11 @@ server.listen(port, () =&gt; {
 <li><a href="https://www.youtube.com/watch?v=jD7FnbI76Hg" target="_blank">https://www.youtube.com/watch?v=jD7FnbI76Hg</a></li>
 <li><a href="https://socket.io/docs/v4/" target="_blank">https://socket.io/docs/v4/</a></li>
 <li><a href="https://socket.io/docs/v4/listening-to-events/" target="_blank">https://socket.io/docs/v4/listening-to-events/</a></li>
+<li><a href="https://socket.io/docs/v4/client-initialization/" target="_blank">https://socket.io/docs/v4/client-initialization/</a></li>
 <li><a href="https://www.youtube.com/watch?v=cS6Zzj8BSHM" target="_blank">https://www.youtube.com/watch?v=cS6Zzj8BSHM</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202110221428</p></article><article><h1><a href="server.html">server</a></h1>
+<p class="last-modified">Last modified: 202110221451</p></article><article><h1><a href="server.html">server</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="express.html">Express</a></li></ul></details></section></article><article>            <h1><a href="higher-order-functions.html">Higher Order Functions</a></h1>
             <p>A higher-order function either takes in a function as an argument, or returns a function.</p>
@@ -9772,4 +9888,77 @@ Compare this offer with all others you have received. Determine which has the qu
 <li><a href="https://www.youtube.com/watch?v=iHPW8Z323F0" target="_blank">https://www.youtube.com/watch?v=iHPW8Z323F0</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202110162222</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~510kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110162222</p></article><article>            <h1><a href="rubik's-cube.html">Rubik's Cube</a></h1>
+            <p>The Rubik's Cube is a puzzle that is solved by utilizing algorithms.</p>
+<h2>Glossary</h2>
+<table>
+<thead>
+<tr>
+<th>Notation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F (Front)</td>
+<td>the side currently facing the solver</td>
+</tr>
+<tr>
+<td>B (Back)</td>
+<td>the side opposite the front</td>
+</tr>
+<tr>
+<td>U (Up)</td>
+<td>the side above or on top of the front side</td>
+</tr>
+<tr>
+<td>D (Down)</td>
+<td>the side opposite the top, underneath the Cube</td>
+</tr>
+<tr>
+<td>L (Left)</td>
+<td>the side directly to the left of the front</td>
+</tr>
+<tr>
+<td>R (Right)</td>
+<td>the side directly to the right of the front</td>
+</tr>
+<tr>
+<td>f (Front two layers)</td>
+<td>the side facing the solver and the corresponding middle layer</td>
+</tr>
+<tr>
+<td>b (Back two layers)</td>
+<td>the side opposite the front and the corresponding middle layer</td>
+</tr>
+<tr>
+<td>u (Up two layers)</td>
+<td>the top side and the corresponding middle layer</td>
+</tr>
+<tr>
+<td>d (Down two layers)</td>
+<td>the bottom layer and the corresponding middle layer</td>
+</tr>
+<tr>
+<td>l (Left two layers)</td>
+<td>the side to the left of the front and the corresponding middle layer</td>
+</tr>
+<tr>
+<td>r (Right two layers)</td>
+<td>the side to the right of the front and the corresponding middle layer</td>
+</tr>
+<tr>
+<td>x (rotate)</td>
+<td>rotate the entire Cube on R</td>
+</tr>
+<tr>
+<td>y (rotate)</td>
+<td>rotate the entire Cube on U</td>
+</tr>
+<tr>
+<td>z (rotate)</td>
+<td>rotate the entire Cube on F</td>
+</tr>
+</tbody></table><h2>Directions</h2>
+
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~517kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
