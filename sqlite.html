@@ -54,6 +54,37 @@ VALUES
 <h3>Get column information of a given table</h3>
 <pre><code class="language-sqlite">PRAGMA table_info(table_name)
 </code></pre>
+<h2>Use with shell</h2>
+<p>Open a SQLite3 database using the CLI. Install this shell using <code>brew install sqlite3</code>.</p>
+<pre><code class="language-shell">$ sqlite3 path/to/file.db
+</code></pre>
+<p>In this shell, you can make any query as normal.</p>
+<h3>Pretty Printing</h3>
+<p>You can output a ton of different types for display/output purposes using the <code>.mode</code> command:</p>
+<ul>
+<li>ascii</li>
+<li>box</li>
+<li>csv</li>
+<li>column</li>
+<li>html</li>
+<li>insert</li>
+<li>json</li>
+<li>line</li>
+<li>list</li>
+<li>markdown</li>
+<li>quote</li>
+<li>table</li>
+<li>tabs</li>
+<li>tcl</li>
+</ul>
+<h3>Output To File</h3>
+<pre><code class="language-shell"># Choose the output mode
+sqlite&gt; .mode csv
+# Set the output file
+sqlite&gt; .output output-file.csv
+# Do your query
+sqlite&gt; SELECT * FROM table;
+</code></pre>
 <h2>Use with <a href="node.html">Node</a></h2>
 <p>First, install <code>sqlite3</code> with <a href="yarn.html">yarn</a> or <a href="npm.html">npm</a>. Bring in the package in your new file and instantiate an in-memory database:</p>
 <p><strong>server.js</strong></p>
@@ -113,6 +144,8 @@ db.run(sql, data, function(err) {
 <li><a href="https://www.sqlite.org/lang_datefunc.html" target="_blank">https://www.sqlite.org/lang_datefunc.html</a></li>
 <li><a href="https://www.sqlitetutorial.net/sqlite-nodejs/connect/" target="_blank">https://www.sqlitetutorial.net/sqlite-nodejs/connect/</a></li>
 <li><a href="https://stackoverflow.com/questions/41949724/how-does-db-serialize-work-in-node-sqlite3" target="_blank">https://stackoverflow.com/questions/41949724/how-does-db-serialize-work-in-node-sqlite3</a></li>
+<li><a href="https://formulae.brew.sh/formula/sqlite" target="_blank">https://formulae.brew.sh/formula/sqlite</a></li>
+<li><a href="https://sqlite.org/cli.html" target="_blank">https://sqlite.org/cli.html</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110232254</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~517kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110241515</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~531kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

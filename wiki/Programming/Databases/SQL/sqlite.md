@@ -76,6 +76,46 @@ PRAGMA commands are SQLite specific and are meta commands regarding operation or
 PRAGMA table_info(table_name)
 ```
 
+## Use with shell
+
+Open a SQLite3 database using the CLI. Install this shell using `brew install sqlite3`.
+
+```shell
+$ sqlite3 path/to/file.db
+```
+
+In this shell, you can make any query as normal.
+
+### Pretty Printing
+
+You can output a ton of different types for display/output purposes using the `.mode` command:
+
+-  ascii
+-  box
+-  csv
+-  column
+-  html
+-  insert
+-  json
+-  line
+-  list
+-  markdown
+-  quote
+-  table
+-  tabs
+-  tcl
+
+### Output To File
+
+```shell
+# Choose the output mode
+sqlite> .mode csv
+# Set the output file
+sqlite> .output output-file.csv
+# Do your query
+sqlite> SELECT * FROM table;
+```
+
 ## Use with {{Node}}
 
 First, install `sqlite3` with {{yarn}} or {{npm}}. Bring in the package in your new file and instantiate an in-memory database:
@@ -151,3 +191,5 @@ Using the `db.serialize(() => {...})` wrapper will guarantee that the queries in
 3. https://www.sqlite.org/lang_datefunc.html
 4. https://www.sqlitetutorial.net/sqlite-nodejs/connect/
 5. https://stackoverflow.com/questions/41949724/how-does-db-serialize-work-in-node-sqlite3
+6. https://formulae.brew.sh/formula/sqlite
+7. https://sqlite.org/cli.html
