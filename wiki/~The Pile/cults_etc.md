@@ -1,0 +1,2 @@
+- https://medium.com/@zoecurzi/my-experience-with-leverage-research-17e96a8e540b
+- https://ia800108.us.archive.org/30/items/LundyWhyDoesHeDoThat/Lundy_Why-does-he-do-that.pdf
