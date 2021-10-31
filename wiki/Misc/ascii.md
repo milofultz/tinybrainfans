@@ -6,9 +6,11 @@ description: The American Standard Code for Information Interchange, but mostly 
 ## Box Drawing Characters
 
 ```
-┌────────┐  ╔════════╗
-│ SINGLE │  ║ DOUBLE ║
-└────────┘  ╚════════╝
+┌────┬────┐  ╔════╦════╗
+│ SIN│GLE │  ║ DOU║BLE ║
+├────┼────┤  ╠════╬════╣
+│    │    │  ║    ║    ║
+└────┴────┘  ╚════╩════╝
 ```
 
 ## References

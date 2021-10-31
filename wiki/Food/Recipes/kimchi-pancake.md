@@ -14,7 +14,7 @@ A kimchi pancake is quick and simple, and tastes great over rice. This recipe is
 - 74g/½ cup **all-purpose flour**
 - 120g/½ cup **water**
 - 4T **oil** (I almost always eyeball this)
-- Cooked **rice** to place cooked pancake on top
+- Cooked **{{rice}}** to place cooked pancake on top
 
 ### Substitutions
 

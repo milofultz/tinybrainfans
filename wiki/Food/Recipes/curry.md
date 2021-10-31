@@ -3,7 +3,7 @@ title: Thai Curry
 description: This Thai curry can be used as a base for a "kitchen sink" kind of meal, throwing in whatever you got in your fridge or pantry.
 ---
 
-This Thai curry can be used as a base for a "kitchen sink" kind of meal, throwing in whatever you got in your fridge or pantry. I usually double this recipe and use it as a meal prep for a few days of lunch/dinner. This recipe came from the Spilled Milk podcast ages ago, can find it [here](http://www.grubshack.com/essays/thai-curry2.html).
+This Thai curry can be used as a base for a "kitchen sink" kind of meal, throwing in whatever you got in your fridge or pantry. I usually double this recipe and use it as a meal prep for a few days of lunch/dinner. This recipe came from the [Spilled Milk podcast](https://www.spilledmilkpodcast.com/) ages ago, can find it [here](http://www.grubshack.com/essays/thai-curry2.html).
 
 ## Ingredients
 
@@ -16,13 +16,14 @@ This Thai curry can be used as a base for a "kitchen sink" kind of meal, throwin
 - 1/2 **lime**, juiced
 - **Pepper**, crushed
 - Whatever **meat substitutes**, **vegetables**, and **starches** you have sitting around, e.g.
-  - mushrooms
+  - {{mushrooms}}
   - soya chunks
   - frozen green beans
   - sweet potatoes
-  - potatoes
+  - {{potatoes}}
   - soaked lentils
 - **Fresh serrano chiles**, sliced thin
+- Cooked **{{rice}}** to place curry on top
 
 ### Substitutions
 
@@ -42,8 +43,8 @@ This Thai curry can be used as a base for a "kitchen sink" kind of meal, throwin
 3. Add the **oyster sauce**, **soy sauce**, **sugar**, **lime**, and thin **coconut milk**. Stir to mix.
 4. Taste and adjust seasonings.
 5. Reduce heat to medium. Add your **meat substitutes**, **vegetables**, and **starches**.
-6. Simmer 30 minutes or, if using **potatoes**, until **potato** is cooked through. If you don't simmer gently, the coconut milk will separate a *lot*, and the curry will look kind of weird and be harder to dish up. It will still be perfectly tasty, though.
-7. Taste and adjust seasonings. Garnish with **fresh chiles** and serve over **rice**.
+6. Simmer 30 minutes or, if using **{{potatoes}}**, until **potato** is cooked through. If you don't simmer gently, the coconut milk will separate a *lot*, and the curry will look kind of weird and be harder to dish up. It will still be perfectly tasty, though.
+7. Taste and adjust seasonings. Garnish with **fresh chiles** and serve over **{{rice}}**.
 
 ## References
 
