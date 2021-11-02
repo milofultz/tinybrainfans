@@ -9,7 +9,7 @@ The goal of this system is to externalize as many of my tasks and projects away 
 
 ## The System
 
-The system is comprised of these areas:
+The core system is comprised of these areas:
 
 1. the **inbox**,
 2. the **backlog**,
@@ -43,15 +43,21 @@ This file is a list of projects, each with its own list of tasks.
 
 The tasks are where I put tasks that are not associated with any projects. These are almost always quick and simple tasks that require nothing to prepare (as that would be more than one step and thus, a project).
 
-This file is a list of tasks.
+I also include a list of tasks that I need to do with regularity but are not rigidly scheduled (e.g. get a haircut), organized by what needs to be done next.
+
+This file is a list of recurring and non-recurring tasks.
 
 ### The Todo
 
-The todo area is where I keep my todo list for the day, as well as templates of recurring tasks. This is what I will reference throughout the day as my stuff I need to do. This doesn't hold the tasks from your projects **until I am going to do them**. For instance, if for project XYZ there are tasks A, B, and C, and today I am ready to do task A, only *then* will that task go into this document.
+The todo area is where I keep my todo list for the day, as well as templates of recurring tasks. This is what I will reference throughout the day as my stuff I need to do.
 
 At the bottom of my todo is a list that I use as a template for tasks I want/need to do every day, like feed my plants, meditate, read, etc.
 
 This file is comprised of a few separated sections with the tasks for the day at the top.
+
+### Others
+
+I also have a document where I keep things I want to read or listen to later, but I have found that I don't ever really go in there as I don't have a prompt to do so. I think if I were able to maintain *everything* within this system, it would be a win.
 
 ---
 

@@ -83,10 +83,6 @@ Property | Args | Description
 
 It seems like this is generally used in the same way as {{SVG}}: as if you had a pen and paper and deciding fill values before drawing. [It is a geometry building tool, not a drawing tool.](https://pixijs.io/guides/basics/graphics.html)
 
-Property | Args | Description
---- | --- | ---
-`.addChild(x)` | `x`: Pixi element | Add the element as a child to the stage
-
 ### `Sprite` Instance
 
 Property | Args | Description

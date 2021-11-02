@@ -10,6 +10,7 @@ Paper computing is a way to learn about the most basic operation of [Turing comp
 - {{The Know-how Computer}}
 - {{The Little Man Computer}}
 - [CARDIAC - CARDboard Illustrative Aid to Computation][]
+- [The Instructo](http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf)
 
 ## References
 
@@ -25,6 +26,7 @@ Paper computing is a way to learn about the most basic operation of [Turing comp
 10. https://en.wikipedia.org/wiki/Little_man_computer
 11. http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm
 12. http://www.pythondiary.com/blog/Oct.15,2014/building-cpu-simulator-python.html
+13. http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf
 
 [Turing complete]: https://www.youtube.com/watch?v=RPQD7-AOjMI
 [Know-how Computer]: https://en.wikipedia.org/wiki/WDR_paper_computer
