@@ -8,23 +8,22 @@ description: This is a list of all of my current aliases I use with git.
 This is a list of all of my current aliases I use with {{git}}. This is an output of my `git alias` command, which you will see below. Learn how to set these in the {{git}} page.
 
 ```
-a = add
-aa = add .
-alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
-ap = add -p
-b = branch
-bd = branch -d
-bD = branch -D
+hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 co = checkout
-cb = checkout -b
 ci = commit
 cm = commit -m
-ca = commit --amend
-hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+s = status
+ap = add -p
 pu = push origin HEAD
 pl = pull origin HEAD
-s = status
+b = branch
+cb = checkout -b
+aa = add .
+ca = commit --amend
 st = status
+a = add
+bd = branch -D
+alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 ```
 
 ## References

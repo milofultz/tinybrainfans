@@ -9,7 +9,7 @@ Rebasing in {{git}} is a way to clean up your commit history and change the hist
 
 Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.
 
-## Golden Rule
+## The Golden Rule
 
 If your branch is being worked on by anybody else but you, **do not rebase!** Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️
 
