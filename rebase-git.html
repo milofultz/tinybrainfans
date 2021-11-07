@@ -16,6 +16,10 @@
 </code></pre>
 <p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
 <p>Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!</p>
+<h3>Alias</h3>
+<p>In your <code>~/.gitconfig</code> file, you can add this in the <code>[alias]</code> section to invoke the above command using <code>git rbm {other-branch}</code>:</p>
+<pre><code class="language-sh">rbm = &quot;! f() { git rebase -i `git merge-base ${1} HEAD`; }; f&quot;
+</code></pre>
 <h3>Interactive Rebase Commands</h3>
 <p>I only have used these so far, and they do the job for what I need.</p>
 <table>
@@ -52,5 +56,5 @@
 <li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
 <li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
 </ul>
-
-<p class="last-modified">Last modified: 202111070355</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~569kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111070512</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~571kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

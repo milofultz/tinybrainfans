@@ -848,6 +848,8 @@ systemctl enable nginx
 <p>To see what you have stashed, use <code>git stash list</code> to see all stashed code. Then see what is in each stash by using <code>git stash show {index}</code>, and you can see it diffed by using the <code>-p</code> flag.</p>
 <p>Stashes can be listed recalled via the indexes shown: <code>git stash apply {index}</code> or <code>git stash pop {index}</code> if you want to remove it from the stashes after being applied.</p>
 <p>You can <code>git stash drop {index}</code> individual stashes or <code>git stash clear</code> the entire stash.</p>
+<h2>Resolving Merge Conflicts in Pull Requests</h2>
+<p>To resolve a merge conflict in a pull request, you can use <code>git merge {target-branch}</code>, where <code>{target-branch}</code> is the branch you are hoping to eventually merge your code into. This will create your merge conflicts locally, where you can create a new commit to handle them and <a href="rebase-git.html">rebase</a> if you want to clean it up.</p>
 <h2>Credentials</h2>
 <p>If you receive a message like this when trying to push up to your repo:</p>
 <pre><code>remote: HTTP Basic: Access denied
@@ -871,9 +873,9 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <h2>Meta</h2>
 <h3>Simplify git Call</h3>
 <p>In your <a href="bash.html">Bash</a> or equivalent rc file, set an alias of <code>g</code> to <code>git</code>. Surprisingly has saved me quite a bit of mistypes and extra key typing.</p>
-<h3>Use <a href="vim.html">VIM</a> as Editor</h3>
+<h3>Use <a href="vim.html">vim</a> as Editor</h3>
 <ul>
-<li>Install Vim using homebrew</li>
+<li>Install vim using homebrew</li>
 <li>Set vim to be the default editor with <code>git config --global core.editor &quot;vim&quot;</code></li>
 </ul>
 <h3>Good Commit Hygiene</h3>
@@ -898,7 +900,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://nfarina.com/post/9868516270/git-is-simpler" target="_blank">https://nfarina.com/post/9868516270/git-is-simpler</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110141553</p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
+<p class="last-modified">Last modified: 202111070526</p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
             <p>Your README file contains a high level overview for people interested in using, contributing, or perusing your code.</p>
 <h2>Structure/Content</h2>
 <ul>
@@ -1090,6 +1092,16 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <td><code>P</code></td>
 <td></td>
 </tr>
+<tr>
+<td>Move line up one line</td>
+<td><code>ddkP</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Move line down one line</td>
+<td><code>ddp</code></td>
+<td></td>
+</tr>
 </tbody></table><h3>Delete</h3>
 <table>
 <thead>
@@ -1145,9 +1157,10 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://elijahmanor.com/blog/neovim-tmux" target="_blank">https://elijahmanor.com/blog/neovim-tmux</a></li>
 <li><a href="https://linuxize.com/post/how-to-copy-cut-paste-in-vim/" target="_blank">https://linuxize.com/post/how-to-copy-cut-paste-in-vim/</a></li>
 <li><a href="https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/" target="_blank">https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/</a></li>
+<li><a href="https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim" target="_blank">https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110212237</p></article><article>            <h1><a href="glue-work.html">Glue Work</a></h1>
+<p class="last-modified">Last modified: 202111070519</p></article><article>            <h1><a href="glue-work.html">Glue Work</a></h1>
             <p>[0:10:32] Glue work is the meta work that helps keep the organization running and on track. e.g. scrum master stuff; fixing problems, increasing fluidity in between teams, creating coding standards for ease of production, etc.</p>
 <p>[0:12:12] If you are only doing glue work and not your actual job, it may be beneficial but it is hurting your own career and potentially your ability to keep your job or get promoted.</p>
 <p>[0:14:31] What do you want to get better at? Do more of that and get better at it. Find something that you will be happy and proud to do. When we start at a job, we are bad and then get better.</p>
@@ -7077,17 +7090,39 @@ getJSON().catch(function (error) {
 <section><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202107020539</p></article><article>            <h1><a href="jest.html">Jest</a></h1>
             <p>Jest is a <a href="javascript.html">Javascript</a> <a href="testing-programming.html">test</a> framework built by Facebook for for use with <a href="node.html">Node</a>/<a href="javascript.html">Javascript</a> applications.</p>
-<!--
+<h2>Getting Started</h2>
+<p>Install Jest using <code>npm i --save-dev jest</code>. Add to your <code>package.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;jest&quot;
+  }
+}
+</code></pre>
+<p>Then create a function that we can test.</p>
+<p><strong><code>example.js</code></strong></p>
+<pre><code class="language-javascript">function sum(a, b) {
+  return a + b;
+}
 
-## Quick Start
+module.exports = sum;
+</code></pre>
+<p>Next we create a test.</p>
+<p><strong><code>example.test.js</code></strong></p>
+<pre><code class="language-javascript">const sum = require(&#x27;./sum&#x27;);
 
-Install Jest using `npm i --save-dev jest`.
-
--->
+test(&#x27;adds 1 + 2 to equal 3&#x27;, () =&gt; {
+  expect(sum(1, 2)).toBe(3);
+});
+</code></pre>
+<p>Now we can run the test in the terminal with <code>npm run test</code>.</p>
+<h2>React</h2>
 <h2>Mocking</h2>
 <p>You can mock functions like <code>fetch</code> or <code>axios</code> by using the <code>jest.fn(() =&gt; {})</code> syntax.</p>
 <pre><code class="language-javascript">const someBlackBox = jest.fn(number =&gt; 42 + number);
 forEach([0, 1], someBlackBox);
+
+// The mock function has been called
+expect(someBlackBox).toHaveBeenCalled();
 
 // The mock function is called twice
 expect(someBlackBox.mock.calls.length).toBe(2);
@@ -7123,7 +7158,7 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 <li><a href="https://www.leighhalliday.com/mock-fetch-jest" target="_blank">https://www.leighhalliday.com/mock-fetch-jest</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110181402</p></article><article>            <h1><a href="test-driven-development.html">Test-Driven Development</a></h1>
+<p class="last-modified">Last modified: 202111070525</p></article><article>            <h1><a href="test-driven-development.html">Test-Driven Development</a></h1>
             <p>In <a href="programming.html">programming</a>, test-driven development is when tests are developed first before the code is written. </p>
 <blockquote>
 <p>In test-driven development the mantra has always been, red, green, refactor. Write a failing test and run it (red), make the test pass (green), then refactor it (that is look at the code and see if you can make it any better).[1]</p>
@@ -10179,7 +10214,65 @@ char str2[] = {&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27
 <li><a href="https://git-scm.com/docs/gitignore" target="_blank">https://git-scm.com/docs/gitignore</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202110141545</p></article><article>            <h1><a href="my-git-aliases.html">My git Aliases</a></h1>
+<p class="last-modified">Last modified: 202110141545</p></article><article>            <h1>Rebase (git)</h1>
+            <p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
+<h2>Merge vs. Rebase</h2>
+<p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
+<h2>The Golden Rule</h2>
+<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
+<h2>Simple Rebase</h2>
+<p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
+<pre><code class="language-shell">$ git rebase {other-branch}
+</code></pre>
+<p>For instance, if I were on a <code>feature</code> branch and I wanted to rebase on top of the <code>main</code> branch, I would use <code>git rebase main</code>. This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.</p>
+<h2>Interactive Rebase</h2>
+<p>To rebase one branch onto the nearest common ancestor of another, use the following command:</p>
+<pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
+</code></pre>
+<p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
+<p>Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!</p>
+<h3>Alias</h3>
+<p>In your <code>~/.gitconfig</code> file, you can add this in the <code>[alias]</code> section to invoke the above command using <code>git rbm {other-branch}</code>:</p>
+<pre><code class="language-sh">rbm = &quot;! f() { git rebase -i `git merge-base ${1} HEAD`; }; f&quot;
+</code></pre>
+<h3>Interactive Rebase Commands</h3>
+<p>I only have used these so far, and they do the job for what I need.</p>
+<table>
+<thead>
+<tr>
+<th>Command(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code> / <code>pick</code></td>
+<td>Keep the commit as it currently is</td>
+</tr>
+<tr>
+<td><code>r</code> / <code>reword</code></td>
+<td>Keep the commit and edit the commit message</td>
+</tr>
+<tr>
+<td><code>s</code> / <code>squash</code></td>
+<td>Combine this commit with the previous commit, and edit commit message for newly squashed commit</td>
+</tr>
+<tr>
+<td><code>f</code> / <code>fixup</code></td>
+<td>Fold this commit into the previous commit, using the previous commit's message</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
+<li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
+<li><a href="https://linuxhint.com/git-rebase-tutorial/" target="_blank">https://linuxhint.com/git-rebase-tutorial/</a></li>
+<li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
+<li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
+<li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
+</ul>
+<section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111070512</p></article><article>            <h1><a href="my-git-aliases.html">My git Aliases</a></h1>
             <p><em>UPDATE: I use <a href="zsh.html">zsh</a> now and they have built-in aliases which are much simpler. I highly recommend using <a href="zsh.html">zsh</a> anyway, let alone for the aliases.</em></p>
 <p>This is a list of all of my current aliases I use with <a href="git.html">git</a>. This is an output of my <code>git alias</code> command, which you will see below. Learn how to set these in the <a href="git.html">git</a> page.</p>
 <pre><code>hist = log --pretty=format:&#x27;%h %ad | %s%d [%an]&#x27; --graph --date=short
@@ -10198,13 +10291,15 @@ st = status
 a = add
 bd = branch -D
 alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
+rbm = ! f() { git rebase -i `git merge-base ${1} HEAD`; }; f
 </code></pre>
 <h2>References</h2>
 <ul>
 <li><a href="https://stackoverflow.com/questions/7066325/list-git-aliases" target="_blank">https://stackoverflow.com/questions/7066325/list-git-aliases</a></li>
+<li><a href="rebase-git.html">Rebase (git)</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="git-alias.html">git alias</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111070355</p></article><article>            <h1><a href="git-alias.html">git alias</a></h1>
+<p class="last-modified">Last modified: 202111070512</p></article><article>            <h1><a href="git-alias.html">git alias</a></h1>
             <p>You can check out <a href="my-git-aliases.html">my personal list of git aliases here</a>.</p>
 <table>
 <thead>
@@ -10249,61 +10344,7 @@ shell&gt; git config --global --unset alias.p # now &#x27;git p&#x27; is no long
 <li><a href="https://github.com/delventhalz/no-fear-git" target="_blank">https://github.com/delventhalz/no-fear-git</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202111070352</p></article><article>            <h1>Rebase (git)</h1>
-            <p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
-<h2>Merge vs. Rebase</h2>
-<p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
-<h2>The Golden Rule</h2>
-<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
-<h2>Simple Rebase</h2>
-<p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
-<pre><code class="language-shell">$ git rebase {other-branch}
-</code></pre>
-<p>For instance, if I were on a <code>feature</code> branch and I wanted to rebase on top of the <code>main</code> branch, I would use <code>git rebase main</code>. This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.</p>
-<h2>Interactive Rebase</h2>
-<p>To rebase one branch onto the nearest common ancestor of another, use the following command:</p>
-<pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
-</code></pre>
-<p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
-<p>Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!</p>
-<h3>Interactive Rebase Commands</h3>
-<p>I only have used these so far, and they do the job for what I need.</p>
-<table>
-<thead>
-<tr>
-<th>Command(s)</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>p</code> / <code>pick</code></td>
-<td>Keep the commit as it currently is</td>
-</tr>
-<tr>
-<td><code>r</code> / <code>reword</code></td>
-<td>Keep the commit and edit the commit message</td>
-</tr>
-<tr>
-<td><code>s</code> / <code>squash</code></td>
-<td>Combine this commit with the previous commit, and edit commit message for newly squashed commit</td>
-</tr>
-<tr>
-<td><code>f</code> / <code>fixup</code></td>
-<td>Fold this commit into the previous commit, using the previous commit's message</td>
-</tr>
-</tbody></table><h2>References</h2>
-<ul>
-<li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
-<li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
-<li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
-<li><a href="https://linuxhint.com/git-rebase-tutorial/" target="_blank">https://linuxhint.com/git-rebase-tutorial/</a></li>
-<li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
-<li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
-<li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
-</ul>
-
-<p class="last-modified">Last modified: 202111070355</p></article><article>            <h1><a href="salary-negotiation.html">Salary Negotiation</a></h1>
+<p class="last-modified">Last modified: 202111070352</p></article><article>            <h1><a href="salary-negotiation.html">Salary Negotiation</a></h1>
             <p>Like <a href="https://www.lennysnewsletter.com/p/negotiating-comp" target="_blank">the article I am summarizing from</a>, <strong>I hate this</strong>. I'm hoping that through using this information, I can better advocate for myself and be a greater force for the values and principles I believe in.</p>
 <ol>
 <li>Don't give hard numbers to recruiters; ask for a range that you can discuss later</li>
@@ -10635,4 +10676,4 @@ Whatever <strong>meat substitutes</strong>, <strong>vegetables</strong>, and <st
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~569kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~571kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

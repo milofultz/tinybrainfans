@@ -24,8 +24,10 @@ st = status
 a = add
 bd = branch -D
 alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
+rbm = ! f() { git rebase -i `git merge-base ${1} HEAD`; }; f
 ```
 
 ## References
 
 - https://stackoverflow.com/questions/7066325/list-git-aliases
+- {{Rebase (git)}}

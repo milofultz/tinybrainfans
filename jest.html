@@ -1,17 +1,39 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Jest is a testing framework built by Facebook for Javascript applications."><title>Jest</title><link rel="stylesheet" href="./styles.css"></head><body>
 <main id="main"><article id="content">            <h1 id="title">Jest</h1>
             <p>Jest is a <a href="javascript.html">Javascript</a> <a href="testing-programming.html">test</a> framework built by Facebook for for use with <a href="node.html">Node</a>/<a href="javascript.html">Javascript</a> applications.</p>
-<!--
+<h2>Getting Started</h2>
+<p>Install Jest using <code>npm i --save-dev jest</code>. Add to your <code>package.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;jest&quot;
+  }
+}
+</code></pre>
+<p>Then create a function that we can test.</p>
+<p><strong><code>example.js</code></strong></p>
+<pre><code class="language-javascript">function sum(a, b) {
+  return a + b;
+}
 
-## Quick Start
+module.exports = sum;
+</code></pre>
+<p>Next we create a test.</p>
+<p><strong><code>example.test.js</code></strong></p>
+<pre><code class="language-javascript">const sum = require(&#x27;./sum&#x27;);
 
-Install Jest using `npm i --save-dev jest`.
-
--->
+test(&#x27;adds 1 + 2 to equal 3&#x27;, () =&gt; {
+  expect(sum(1, 2)).toBe(3);
+});
+</code></pre>
+<p>Now we can run the test in the terminal with <code>npm run test</code>.</p>
+<h2>React</h2>
 <h2>Mocking</h2>
 <p>You can mock functions like <code>fetch</code> or <code>axios</code> by using the <code>jest.fn(() =&gt; {})</code> syntax.</p>
 <pre><code class="language-javascript">const someBlackBox = jest.fn(number =&gt; 42 + number);
 forEach([0, 1], someBlackBox);
+
+// The mock function has been called
+expect(someBlackBox).toHaveBeenCalled();
 
 // The mock function is called twice
 expect(someBlackBox.mock.calls.length).toBe(2);
@@ -47,4 +69,4 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 <li><a href="https://www.leighhalliday.com/mock-fetch-jest" target="_blank">https://www.leighhalliday.com/mock-fetch-jest</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110181402</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~569kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111070525</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~571kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

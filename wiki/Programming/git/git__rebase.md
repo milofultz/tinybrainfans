@@ -35,6 +35,14 @@ For instance, if I was on a `feature` branch and wanted to interactively rebase 
 
 Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!
 
+### Alias
+
+In your `~/.gitconfig` file, you can add this in the `[alias]` section to invoke the above command using `git rbm {other-branch}`:
+
+```sh
+rbm = "! f() { git rebase -i `git merge-base ${1} HEAD`; }; f"
+```
+
 ### Interactive Rebase Commands
 
 I only have used these so far, and they do the job for what I need.

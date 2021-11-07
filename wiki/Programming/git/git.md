@@ -95,6 +95,10 @@ Stashes can be listed recalled via the indexes shown: `git stash apply {index}` 
 
 You can `git stash drop {index}` individual stashes or `git stash clear` the entire stash.
 
+## Resolving Merge Conflicts in Pull Requests
+
+To resolve a merge conflict in a pull request, you can use `git merge {target-branch}`, where `{target-branch}` is the branch you are hoping to eventually merge your code into. This will create your merge conflicts locally, where you can create a new commit to handle them and {{rebase|Rebase (git)}} if you want to clean it up.
+
 ## Credentials
 
 If you receive a message like this when trying to push up to your repo:
@@ -139,9 +143,9 @@ Handle Windows newlines (CRLF => LF): https://stackoverflow.com/questions/201686
 
 In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprisingly has saved me quite a bit of mistypes and extra key typing.
 
-### Use {{VIM}} as Editor
+### Use {{vim}} as Editor
 
-- Install Vim using homebrew
+- Install vim using homebrew
 - Set vim to be the default editor with `git config --global core.editor "vim"`
 
 ### Good Commit Hygiene

@@ -106,6 +106,8 @@
 <p>To see what you have stashed, use <code>git stash list</code> to see all stashed code. Then see what is in each stash by using <code>git stash show {index}</code>, and you can see it diffed by using the <code>-p</code> flag.</p>
 <p>Stashes can be listed recalled via the indexes shown: <code>git stash apply {index}</code> or <code>git stash pop {index}</code> if you want to remove it from the stashes after being applied.</p>
 <p>You can <code>git stash drop {index}</code> individual stashes or <code>git stash clear</code> the entire stash.</p>
+<h2>Resolving Merge Conflicts in Pull Requests</h2>
+<p>To resolve a merge conflict in a pull request, you can use <code>git merge {target-branch}</code>, where <code>{target-branch}</code> is the branch you are hoping to eventually merge your code into. This will create your merge conflicts locally, where you can create a new commit to handle them and <a href="rebase-git.html">rebase</a> if you want to clean it up.</p>
 <h2>Credentials</h2>
 <p>If you receive a message like this when trying to push up to your repo:</p>
 <pre><code>remote: HTTP Basic: Access denied
@@ -129,9 +131,9 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <h2>Meta</h2>
 <h3>Simplify git Call</h3>
 <p>In your <a href="bash.html">Bash</a> or equivalent rc file, set an alias of <code>g</code> to <code>git</code>. Surprisingly has saved me quite a bit of mistypes and extra key typing.</p>
-<h3>Use <a href="vim.html">VIM</a> as Editor</h3>
+<h3>Use <a href="vim.html">vim</a> as Editor</h3>
 <ul>
-<li>Install Vim using homebrew</li>
+<li>Install vim using homebrew</li>
 <li>Set vim to be the default editor with <code>git config --global core.editor &quot;vim&quot;</code></li>
 </ul>
 <h3>Good Commit Hygiene</h3>
@@ -156,4 +158,4 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://nfarina.com/post/9868516270/git-is-simpler" target="_blank">https://nfarina.com/post/9868516270/git-is-simpler</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110141553</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~569kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111070526</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~571kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

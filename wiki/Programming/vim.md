@@ -58,6 +58,8 @@ Cut from cursor to end of line | `d$` |
 Cut from cursor to start of line | `d^` |
 Paste after the cursor | `p`|
 Paste before the cursor | `P`|
+Move line up one line | `ddkP` |
+Move line down one line | `ddp` |
 
 ### Delete
 
@@ -88,3 +90,4 @@ Toggle fold at next logical break | `za` |
 - https://elijahmanor.com/blog/neovim-tmux
 - https://linuxize.com/post/how-to-copy-cut-paste-in-vim/
 - https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/
+- https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim

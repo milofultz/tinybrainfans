@@ -5,13 +5,47 @@ description: Jest is a testing framework built by Facebook for Javascript applic
 
 Jest is a {{Javascript}} {{test|Testing (Programming)}} framework built by Facebook for for use with {{Node}}/{{Javascript}} applications.
 
-<!--
+## Getting Started
 
-## Quick Start
+Install Jest using `npm i --save-dev jest`. Add to your `package.json`:
 
-Install Jest using `npm i --save-dev jest`.
+```json
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
 
--->
+Then create a function that we can test.
+
+**`example.js`**
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;
+```
+
+Next we create a test.
+
+**`example.test.js`**
+
+```javascript
+const sum = require('./sum');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+Now we can run the test in the terminal with `npm run test`.
+
+## React
+
+
 
 ## Mocking
 
@@ -20,6 +54,9 @@ You can mock functions like `fetch` or `axios` by using the `jest.fn(() => {})` 
 ```javascript
 const someBlackBox = jest.fn(number => 42 + number);
 forEach([0, 1], someBlackBox);
+
+// The mock function has been called
+expect(someBlackBox).toHaveBeenCalled();
 
 // The mock function is called twice
 expect(someBlackBox.mock.calls.length).toBe(2);
