@@ -1665,7 +1665,7 @@ return (
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202110081411</p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
             <p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
 <h2>Components</h2>
@@ -9376,8 +9376,52 @@ $ nvm uninstall xx.xx.x
 <li><a href="https://stackoverflow.com/questions/57110542/how-to-write-a-nvmrc-file-which-automatically-change-node-version" target="_blank">https://stackoverflow.com/questions/57110542/how-to-write-a-nvmrc-file-which-automatically-change-node-version</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202109110517</p></article><article>            <h1><a href="react-hooks.html">React Hooks</a></h1>
+<p class="last-modified">Last modified: 202109110517</p></article><article>            <h1><a href="custom-react-hooks.html">Custom React Hooks</a></h1>
+            <p>Custom hooks allow you to create simple extensions of existing <a href="react.html">React</a> hooks to better suit your needs.</p>
+<p>It is highly recommended that you review what <a href="react-hooks.html">hooks</a> are first before getting into this, as we are using <code>useEffect</code> and <code>useState</code>.</p>
+<h2>Your First Hook</h2>
+<p><em>This example is taken from <a href="https://www.youtube.com/watch?v=6ThXsUwLWvc" target="_blank">Web Dev Simplified</a>.</em></p>
+<p>This custom hook will log whenever your input value changes.</p>
+<p><strong>useUpdateLogger.js</strong></p>
+<pre><code class="language-javascript">import { useEffect } from &#x27;react&#x27;;
+
+const useUpdateLogger = (value) =&gt; {
+  useEffect(() =&gt; console.log(value), [value]);
+};
+
+export default useUpdateLogger;
+</code></pre>
+<p>When we use this in our project, it will log to the console whenever there is a change to the variable that was given.</p>
+<p><strong>ExampleComponent.jsx</strong></p>
+<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
+import useUpdateLogger from &#x27;./useUpdateLogger&#x27;;
+
+const App = () =&gt; {
+  const [counter, setCounter] = useState(0);
+
+  useUpdateLogger(counter);
+
+  return (
+    &lt;div&gt;
+      &lt;button
+        type=&quot;button&quot;
+        onClick={() =&gt; setCounter(counter + 1)}
+      &gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default App;
+</code></pre>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=6ThXsUwLWvc" target="_blank">https://www.youtube.com/watch?v=6ThXsUwLWvc</a></li>
+<li><a href="https://blog.webdevsimplified.com/2019-11/how-to-write-custom-hooks/" target="_blank">https://blog.webdevsimplified.com/2019-11/how-to-write-custom-hooks/</a></li>
+</ul>
+<section><details><summary>Backlinks</summary><ul><li><a href="react-hooks.html">React Hooks</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111080632</p></article><article>            <h1><a href="react-hooks.html">React Hooks</a></h1>
             <p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
+<p>If these hooks are not exactly what you need, you can create your own <a href="custom-react-hooks.html">custom hooks</a> using the existing ones to achieve your goals.</p>
 <p>These examples are using Typescript for type annotations and clarity.</p>
 <h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
 <p>useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.</p>
@@ -9594,8 +9638,8 @@ const testComponent = () =&gt; {
 <li><a href="https://reactjs.org/docs/context.html#dynamic-context" target="_blank">https://reactjs.org/docs/context.html#dynamic-context</a></li>
 <li><a href="https://daveceddia.com/usecontext-hook/" target="_blank">https://daveceddia.com/usecontext-hook/</a></li>
 </ol>
-
-<p class="last-modified">Last modified: 202110081542</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111080609</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
             <p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
 <p>For React to work properly, you will need three things: </p>
 <ul>
@@ -10292,6 +10336,7 @@ a = add
 bd = branch -D
 alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 rbm = ! f() { git rebase -i `git merge-base ${1} HEAD`; }; f
+rh = reset --hard HEAD
 </code></pre>
 <h2>References</h2>
 <ul>
@@ -10299,7 +10344,7 @@ rbm = ! f() { git rebase -i `git merge-base ${1} HEAD`; }; f
 <li><a href="rebase-git.html">Rebase (git)</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="git-alias.html">git alias</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111070512</p></article><article>            <h1><a href="git-alias.html">git alias</a></h1>
+<p class="last-modified">Last modified: 202111080441</p></article><article>            <h1><a href="git-alias.html">git alias</a></h1>
             <p>You can check out <a href="my-git-aliases.html">my personal list of git aliases here</a>.</p>
 <table>
 <thead>
@@ -10676,4 +10721,4 @@ Whatever <strong>meat substitutes</strong>, <strong>vegetables</strong>, and <st
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~571kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~573kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

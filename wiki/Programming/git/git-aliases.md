@@ -25,6 +25,7 @@ a = add
 bd = branch -D
 alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 rbm = ! f() { git rebase -i `git merge-base ${1} HEAD`; }; f
+rh = reset --hard HEAD
 ```
 
 ## References

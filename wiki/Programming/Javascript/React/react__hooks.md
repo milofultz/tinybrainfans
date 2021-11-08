@@ -5,6 +5,8 @@ description: Hooks are functions that let you “hook into” React state and li
 
 Hooks are functions that let you “hook into” {{React}} state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.
 
+If these hooks are not exactly what you need, you can create your own {{custom hooks|Custom React Hooks}} using the existing ones to achieve your goals.
+
 These examples are using Typescript for type annotations and clarity.
 
 ## [useContext][]
