@@ -169,6 +169,21 @@ describe('getTaxRates', () => {
 - It is [double-entry bookkeeping](https://en.wikipedia.org/wiki/Double-entry_bookkeeping) for development.
 - A test suite that you don't trust is worthless. A test suite that does not allow you to make a decision when it passes is useless. There can be NO HOLES.
 
+## TDD Without A Test Suite
+
+*From [Jack Herrington's video on stress-free coding](https://www.youtube.com/watch?v=eAfUfKYcvBo)*
+
+Though orthodox TDD requires testing and a test framework, you can utilize these ideas without them (albeit on a smaller scale, as greater complexity will make this work still *work*, but not be as powerful or reliable). 
+
+When we are coding, we are usually operating within a few different risk levels that may appear or disappear based on our confidence, emotional state, etc.: 
+
+* **Safe**: running, works
+* **OK**: Trivial changes you expect to work
+* **Should Test**: Added a lot of complex changes, should probably test
+* **Must Test**: You absolutely know you need to test.
+
+So similar to TDD, where "red, green, refactor" is the rule, you code operating from "Must Test, Safe, Refactor". Combining this with committing often and {{rebasing those extra commits|Rebase (git)}} before pushing gives us great scaffolding to work with more confidence and assurance in the state of our code.
+
 ## References
 
 1. https://github.com/gregmalcolm/python_koans
@@ -177,3 +192,4 @@ describe('getTaxRates', () => {
 4. [Examples of TDD in action](https://www.youtube.com/watch?v=58jGpV2Cg50)
 5. https://www.youtube.com/watch?v=XsFQEUP1MxI&list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&index=2
 6. https://wallabyjs.com/?referrer=funfunfunction
+6. https://www.youtube.com/watch?v=eAfUfKYcvBo

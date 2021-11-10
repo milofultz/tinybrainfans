@@ -144,6 +144,17 @@ describe(&#x27;getTaxRates&#x27;, () =&gt; {
 <li>It is <a href="https://en.wikipedia.org/wiki/Double-entry_bookkeeping" target="_blank">double-entry bookkeeping</a> for development.</li>
 <li>A test suite that you don't trust is worthless. A test suite that does not allow you to make a decision when it passes is useless. There can be NO HOLES.</li>
 </ul>
+<h2>TDD Without A Test Suite</h2>
+<p><em>From <a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">Jack Herrington's video on stress-free coding</a></em></p>
+<p>Though orthodox TDD requires testing and a test framework, you can utilize these ideas without them (albeit on a smaller scale, as greater complexity will make this work still <em>work</em>, but not be as powerful or reliable). </p>
+<p>When we are coding, we are usually operating within a few different risk levels that may appear or disappear based on our confidence, emotional state, etc.: </p>
+<ul>
+<li><strong>Safe</strong>: running, works</li>
+<li><strong>OK</strong>: Trivial changes you expect to work</li>
+<li><strong>Should Test</strong>: Added a lot of complex changes, should probably test</li>
+<li><strong>Must Test</strong>: You absolutely know you need to test.</li>
+</ul>
+<p>So similar to TDD, where &quot;red, green, refactor&quot; is the rule, you code operating from &quot;Must Test, Safe, Refactor&quot;. Combining this with committing often and <a href="rebase-git.html">rebasing those extra commits</a> before pushing gives us great scaffolding to work with more confidence and assurance in the state of our code.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://github.com/gregmalcolm/python_koans" target="_blank">https://github.com/gregmalcolm/python_koans</a></li>
@@ -152,6 +163,7 @@ describe(&#x27;getTaxRates&#x27;, () =&gt; {
 <li><a href="https://www.youtube.com/watch?v=58jGpV2Cg50" target="_blank">Examples of TDD in action</a></li>
 <li><a href="https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2" target="_blank">https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2</a></li>
 <li><a href="https://wallabyjs.com/?referrer=funfunfunction" target="_blank">https://wallabyjs.com/?referrer=funfunfunction</a></li>
+<li><a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">https://www.youtube.com/watch?v=eAfUfKYcvBo</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="react-testing.html">React (Testing)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110181410</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~573kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111100344</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~578kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

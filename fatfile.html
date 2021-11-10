@@ -518,7 +518,10 @@ CMD [&quot;yarn&quot;, &quot;start&quot;]
 </code></pre>
 <p>The package should now be available on your local machine</p>
 
-<p class="last-modified">Last modified: 202108112346</p></article><article>            <h1><a href="links.html">Links</a></h1>
+<p class="last-modified">Last modified: 202108112346</p></article><article><h1><a href="functional-programming.html">functional-programming</a></h1>
+<p><a href="https://markkarpov.com/tutorial/megaparsec.html#parsect-and-parsec-monads" target="_blank">https://markkarpov.com/tutorial/megaparsec.html#parsect-and-parsec-monads</a></p>
+
+<p class="last-modified">Last modified: 202111100319</p></article><article>            <h1><a href="links.html">Links</a></h1>
             <p><a href="https://www.npr.org/sections/goatsandsoda/2019/03/13/685533353/a-playful-way-to-teach-kids-to-control-their-anger" target="_blank">https://www.npr.org/sections/goatsandsoda/2019/03/13/685533353/a-playful-way-to-teach-kids-to-control-their-anger</a></p>
 <p><a href="https://idiomdrottning.org/scheme-if-you-already-know-how-to-program-other-stuff" target="_blank">https://idiomdrottning.org/scheme-if-you-already-know-how-to-program-other-stuff</a></p>
 <p><a href="https://dev.to/codemouse92/ten-principles-of-critique-5f4p" target="_blank">https://dev.to/codemouse92/ten-principles-of-critique-5f4p</a></p>
@@ -1665,7 +1668,7 @@ return (
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="proptypes.html">PropTypes</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202110081411</p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
             <p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
 <h2>Components</h2>
@@ -4994,7 +4997,7 @@ Insert emulation/compilation instructions here
 <tr>
 <td><code>CMP n</code> / <code>CPX n</code> / <code>CPY n</code></td>
 <td>n: value or memory address/location where value is stored</td>
-<td>Compare value at A/X/Y to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0.</td>
+<td>Compare value at A/X/Y to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0. <em>Note: behind the scenes, <a href="http://www.6502.org/tutorials/compare_beyond.html#2.1" target="_blank">these instructions are doing subtraction</a></em>.</td>
 </tr>
 <tr>
 <td><code>SEI</code> / <code>CLI</code></td>
@@ -5096,6 +5099,7 @@ Insert emulation/compilation instructions here
 <li><a href="https://rosettacode.org/wiki/Category:6502_Assembly" target="_blank">https://rosettacode.org/wiki/Category:6502_Assembly</a></li>
 <li><a href="https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail" target="_blank">https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail</a></li>
 <li><a href="https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/" target="_blank">https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/</a></li>
+<li><a href="http://www.6502.org/tutorials/compare_beyond.html" target="_blank">http://www.6502.org/tutorials/compare_beyond.html</a></li>
 </ul>
 <p>Instructions and Flags Reference:</p>
 <ul>
@@ -5104,8 +5108,13 @@ Insert emulation/compilation instructions here
 <li><a href="https://retroscience.net/writing-6502-assembler.html" target="_blank">https://retroscience.net/writing-6502-assembler.html</a></li>
 <li><a href="http://www.obelisk.me.uk/6502/registers.html#Z" target="_blank">http://www.obelisk.me.uk/6502/registers.html#Z</a></li>
 </ul>
+<p>Examples:</p>
+<ul>
+<li><a href="https://milofultz.com/2021/11/09/bubble-sort-6502" target="_blank">https://milofultz.com/2021/11/09/bubble-sort-6502</a></li>
+<li><a href="https://wiki.nesdev.org/w/index.php/Random_number_generator" target="_blank">https://wiki.nesdev.org/w/index.php/Random_number_generator</a></li>
+</ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="minicube64.html">Minicube64</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110211443</p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
+<p class="last-modified">Last modified: 202111100323</p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
             <p><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">Minicube64</a> is a fantasy console style emulator based on <a href="assembly-6502.html">6502</a>, with the intention of helping people learn how games were made for older systems such as Atari 2600, NES or C64, but without many of the difficult hardware restrictions.</p>
 <h2>Annotated Introduction</h2>
 <p>The <a href="https://aeriform.gitbook.io/minicube64/" target="_blank">introduction page</a> is what I'm annotating below. Hopefully these notes will give more insight into what the assembly is doing in the console.</p>
@@ -5289,14 +5298,19 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <td>Bottom Right</td>
 </tr>
 </tbody></table><h2>References</h2>
-<ol>
+<ul>
 <li><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">https://aeriform.gitbook.io/minicube64/</a></li>
 <li><a href="https://itch.io/jam/minicubejam" target="_blank">https://itch.io/jam/minicubejam</a></li>
 <li><a href="https://github.com/aeriform-io/minicube64/releases" target="_blank">https://github.com/aeriform-io/minicube64/releases</a></li>
 <li><a href="https://github.com/aeriform-io/minicube64/blob/main/memory_map.md" target="_blank">https://github.com/aeriform-io/minicube64/blob/main/memory_map.md</a></li>
-</ol>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><a href="https://milofultz.com/2021/09/18/minicube64" target="_blank">https://milofultz.com/2021/09/18/minicube64</a></li>
+<li><a href="https://milofultz.com/2021/11/09/bubble-sort-6502" target="_blank">https://milofultz.com/2021/11/09/bubble-sort-6502</a></li>
+</ul>
 
-<p class="last-modified">Last modified: 202110170408</p></article><article><h1><a href="machine-code.html">machine code</a></h1>
+<p class="last-modified">Last modified: 202111091027</p></article><article><h1><a href="machine-code.html">machine code</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-6502.html">Assembly (6502)</a></li></ul></details></section></article><article>            <h1><a href="paper-computing.html">Paper Computing</a></h1>
             <p>Paper computing is a way to learn about the most basic operation of <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> systems and <a href="programming.html">programming</a> in general. This is also a great way to get familiar with the basics of machine code and <a href="assembly.html">assembly</a>.</p>
@@ -7158,7 +7172,65 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 <li><a href="https://www.leighhalliday.com/mock-fetch-jest" target="_blank">https://www.leighhalliday.com/mock-fetch-jest</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111070525</p></article><article>            <h1><a href="test-driven-development.html">Test-Driven Development</a></h1>
+<p class="last-modified">Last modified: 202111070525</p></article><article>            <h1>Rebase (git)</h1>
+            <p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
+<h2>Merge vs. Rebase</h2>
+<p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
+<h2>The Golden Rule</h2>
+<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
+<h2>Simple Rebase</h2>
+<p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
+<pre><code class="language-shell">$ git rebase {other-branch}
+</code></pre>
+<p>For instance, if I were on a <code>feature</code> branch and I wanted to rebase on top of the <code>main</code> branch, I would use <code>git rebase main</code>. This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.</p>
+<h2>Interactive Rebase</h2>
+<p>To rebase one branch onto the nearest common ancestor of another, use the following command:</p>
+<pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
+</code></pre>
+<p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
+<p>Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!</p>
+<h3>Alias</h3>
+<p>In your <code>~/.gitconfig</code> file, you can add this in the <code>[alias]</code> section to invoke the above command using <code>git rbm {other-branch}</code>:</p>
+<pre><code class="language-sh">rbm = &quot;! f() { git rebase -i `git merge-base ${1} HEAD`; }; f&quot;
+</code></pre>
+<h3>Interactive Rebase Commands</h3>
+<p>I only have used these so far, and they do the job for what I need.</p>
+<table>
+<thead>
+<tr>
+<th>Command(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code> / <code>pick</code></td>
+<td>Keep the commit as it currently is</td>
+</tr>
+<tr>
+<td><code>r</code> / <code>reword</code></td>
+<td>Keep the commit and edit the commit message</td>
+</tr>
+<tr>
+<td><code>s</code> / <code>squash</code></td>
+<td>Combine this commit with the previous commit, and edit commit message for newly squashed commit</td>
+</tr>
+<tr>
+<td><code>f</code> / <code>fixup</code></td>
+<td>Fold this commit into the previous commit, using the previous commit's message</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
+<li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
+<li><a href="https://linuxhint.com/git-rebase-tutorial/" target="_blank">https://linuxhint.com/git-rebase-tutorial/</a></li>
+<li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
+<li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
+<li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
+</ul>
+<section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111070512</p></article><article>            <h1><a href="test-driven-development.html">Test-Driven Development</a></h1>
             <p>In <a href="programming.html">programming</a>, test-driven development is when tests are developed first before the code is written. </p>
 <blockquote>
 <p>In test-driven development the mantra has always been, red, green, refactor. Write a failing test and run it (red), make the test pass (green), then refactor it (that is look at the code and see if you can make it any better).[1]</p>
@@ -7303,6 +7375,17 @@ describe(&#x27;getTaxRates&#x27;, () =&gt; {
 <li>It is <a href="https://en.wikipedia.org/wiki/Double-entry_bookkeeping" target="_blank">double-entry bookkeeping</a> for development.</li>
 <li>A test suite that you don't trust is worthless. A test suite that does not allow you to make a decision when it passes is useless. There can be NO HOLES.</li>
 </ul>
+<h2>TDD Without A Test Suite</h2>
+<p><em>From <a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">Jack Herrington's video on stress-free coding</a></em></p>
+<p>Though orthodox TDD requires testing and a test framework, you can utilize these ideas without them (albeit on a smaller scale, as greater complexity will make this work still <em>work</em>, but not be as powerful or reliable). </p>
+<p>When we are coding, we are usually operating within a few different risk levels that may appear or disappear based on our confidence, emotional state, etc.: </p>
+<ul>
+<li><strong>Safe</strong>: running, works</li>
+<li><strong>OK</strong>: Trivial changes you expect to work</li>
+<li><strong>Should Test</strong>: Added a lot of complex changes, should probably test</li>
+<li><strong>Must Test</strong>: You absolutely know you need to test.</li>
+</ul>
+<p>So similar to TDD, where &quot;red, green, refactor&quot; is the rule, you code operating from &quot;Must Test, Safe, Refactor&quot;. Combining this with committing often and <a href="rebase-git.html">rebasing those extra commits</a> before pushing gives us great scaffolding to work with more confidence and assurance in the state of our code.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://github.com/gregmalcolm/python_koans" target="_blank">https://github.com/gregmalcolm/python_koans</a></li>
@@ -7311,9 +7394,10 @@ describe(&#x27;getTaxRates&#x27;, () =&gt; {
 <li><a href="https://www.youtube.com/watch?v=58jGpV2Cg50" target="_blank">Examples of TDD in action</a></li>
 <li><a href="https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2" target="_blank">https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2</a></li>
 <li><a href="https://wallabyjs.com/?referrer=funfunfunction" target="_blank">https://wallabyjs.com/?referrer=funfunfunction</a></li>
+<li><a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">https://www.youtube.com/watch?v=eAfUfKYcvBo</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="react-testing.html">React (Testing)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110181410</p></article><article>            <h1><a href="k6.html">K6</a></h1>
+<p class="last-modified">Last modified: 202111100344</p></article><article>            <h1><a href="k6.html">K6</a></h1>
             <p>K6 is an open-source load testing program for API's via <a href="javascript.html">Javascript</a>.</p>
 <h2>Basics</h2>
 <pre><code class="language-bash">$ brew install k6
@@ -7714,6 +7798,7 @@ array.splice(1,1,17); // returns [2]; array now equals [1,17,3,4]
 <section><details><summary>Backlinks</summary><ul><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li></ul></details></section></article><article>            <h1>Frameworks (Javascript)</h1>
             <p><a href="javascript.html">Javascript</a> frameworks are abundant and everywhere, so I wanted to collate a list with some blurbs and first impressions.</p>
 <h2>Frameworks</h2>
+<p><a href="https://alpinejs.dev/" target="_blank">Alpine.js</a>: A really minimal framework that also allows functionality to be added to the HTML markup. Surprisingly full featured, has side-effect handling and a global store, too.</p>
 <p><a href="https://backbonejs.org/#Getting-started" target="_blank">Backbone</a>: A jQuery solution that is more of a way to model and organize the data you are going to be passing around. Uses templating from <a href="https://underscorejs.org/" target="_blank">Underscore</a> to build components. <a href="https://adrianmejia.com/backbone-dot-js-for-absolute-beginners-getting-started/" target="_blank">A tutorial is here</a>.</p>
 <p><a href="https://htmx.org/" target="_blank">htmx</a>: Super lightweight and lets you bake in your actions directly to the HTML. If your app is simple enough, means no JS is needed at all. Wild stuff.</p>
 <p><a href="https://markojs.com/" target="_blank">Marko</a>: Can write your functionality into the HTML similar to Vue. </p>
@@ -7727,7 +7812,7 @@ array.splice(1,1,17); // returns [2]; array now equals [1,17,3,4]
 <li><a href="https://backbonejs.org/#Getting-started" target="_blank">https://backbonejs.org/#Getting-started</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202111010009</p></article><article>            <h1>Testing (Javascript)</h1>
+<p class="last-modified">Last modified: 202111091426</p></article><article>            <h1>Testing (Javascript)</h1>
             <p><a href="javascript.html">Javascript</a> provides many options to test your code via timing, assertions, and frameworks.</p>
 <h2>Time</h2>
 <h3>Simplest Timer</h3>
@@ -9639,7 +9724,48 @@ const testComponent = () =&gt; {
 <li><a href="https://daveceddia.com/usecontext-hook/" target="_blank">https://daveceddia.com/usecontext-hook/</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111080609</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
+<p class="last-modified">Last modified: 202111080609</p></article><article>            <h1><a href="proptypes.html">PropTypes</a></h1>
+            <p>PropTypes are a way to add more strict typing, validation, and default values to props in <a href="react.html">React</a>.</p>
+<h2>Example</h2>
+<p>We have a Greeting component that takes in a prop called <code>name</code>:</p>
+<p><strong>Greeting.jsx</strong></p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+
+class Greeting extends React.Component {
+  render() {
+    return (
+      &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;
+    );
+  }
+}
+</code></pre>
+<p>With PropTypes, we can add typing, validation, and default values. Then during compilation, we will throw errors before moving any further.</p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+import PropTypes from &#x27;prop-types&#x27;;
+
+class Greeting extends React.Component {
+  render() {
+    return (
+      &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;
+    );
+  }
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string
+};
+
+Greeting.defaultProps = {
+  name: &#x27;Bob&#x27;
+};
+</code></pre>
+<p>PropTypes still exist for functional components, but for <code>defaultProps</code>, one should use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters" target="_blank">ES6 default parameters syntax</a>.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
+</ul>
+
+<p class="last-modified">Last modified: 202111080751</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
             <p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
 <p>For React to work properly, you will need three things: </p>
 <ul>
@@ -10258,85 +10384,29 @@ char str2[] = {&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27
 <li><a href="https://git-scm.com/docs/gitignore" target="_blank">https://git-scm.com/docs/gitignore</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202110141545</p></article><article>            <h1>Rebase (git)</h1>
-            <p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
-<h2>Merge vs. Rebase</h2>
-<p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
-<h2>The Golden Rule</h2>
-<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
-<h2>Simple Rebase</h2>
-<p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
-<pre><code class="language-shell">$ git rebase {other-branch}
-</code></pre>
-<p>For instance, if I were on a <code>feature</code> branch and I wanted to rebase on top of the <code>main</code> branch, I would use <code>git rebase main</code>. This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.</p>
-<h2>Interactive Rebase</h2>
-<p>To rebase one branch onto the nearest common ancestor of another, use the following command:</p>
-<pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
-</code></pre>
-<p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
-<p>Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!</p>
-<h3>Alias</h3>
-<p>In your <code>~/.gitconfig</code> file, you can add this in the <code>[alias]</code> section to invoke the above command using <code>git rbm {other-branch}</code>:</p>
-<pre><code class="language-sh">rbm = &quot;! f() { git rebase -i `git merge-base ${1} HEAD`; }; f&quot;
-</code></pre>
-<h3>Interactive Rebase Commands</h3>
-<p>I only have used these so far, and they do the job for what I need.</p>
-<table>
-<thead>
-<tr>
-<th>Command(s)</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>p</code> / <code>pick</code></td>
-<td>Keep the commit as it currently is</td>
-</tr>
-<tr>
-<td><code>r</code> / <code>reword</code></td>
-<td>Keep the commit and edit the commit message</td>
-</tr>
-<tr>
-<td><code>s</code> / <code>squash</code></td>
-<td>Combine this commit with the previous commit, and edit commit message for newly squashed commit</td>
-</tr>
-<tr>
-<td><code>f</code> / <code>fixup</code></td>
-<td>Fold this commit into the previous commit, using the previous commit's message</td>
-</tr>
-</tbody></table><h2>References</h2>
-<ul>
-<li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
-<li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
-<li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
-<li><a href="https://linuxhint.com/git-rebase-tutorial/" target="_blank">https://linuxhint.com/git-rebase-tutorial/</a></li>
-<li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
-<li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
-<li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
-</ul>
-<section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111070512</p></article><article>            <h1><a href="my-git-aliases.html">My git Aliases</a></h1>
+<p class="last-modified">Last modified: 202110141545</p></article><article>            <h1><a href="my-git-aliases.html">My git Aliases</a></h1>
             <p><em>UPDATE: I use <a href="zsh.html">zsh</a> now and they have built-in aliases which are much simpler. I highly recommend using <a href="zsh.html">zsh</a> anyway, let alone for the aliases.</em></p>
 <p>This is a list of all of my current aliases I use with <a href="git.html">git</a>. This is an output of my <code>git alias</code> command, which you will see below. Learn how to set these in the <a href="git.html">git</a> page.</p>
-<pre><code>hist = log --pretty=format:&#x27;%h %ad | %s%d [%an]&#x27; --graph --date=short
-co = checkout
+<pre><code>a = add
+aa = add .
+alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
+ap = add -p
+b = branch
+bd = branch -D
+bdm = ! git branch --merged | egrep -v &quot;(^\*|master|main|dev|staging)&quot; | xargs git branch -d
+ca = commit --amend
+cb = checkout -b
 ci = commit
 cm = commit -m
-s = status
-ap = add -p
-pu = push origin HEAD
+co = checkout
+gud = ! f() { echo &quot;\nYOU DIED\n&quot;; git reset --hard; }; f
+hist = log --pretty=format:&#x27;%h %ad | %s%d [%an]&#x27; --graph --date=short
 pl = pull origin HEAD
-b = branch
-cb = checkout -b
-aa = add .
-ca = commit --amend
-st = status
-a = add
-bd = branch -D
-alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
+pu = push origin HEAD
 rbm = ! f() { git rebase -i `git merge-base ${1} HEAD`; }; f
-rh = reset --hard HEAD
+rh = reset --hard
+s = status
+st = status
 </code></pre>
 <h2>References</h2>
 <ul>
@@ -10344,7 +10414,7 @@ rh = reset --hard HEAD
 <li><a href="rebase-git.html">Rebase (git)</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="git-alias.html">git alias</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111080441</p></article><article>            <h1><a href="git-alias.html">git alias</a></h1>
+<p class="last-modified">Last modified: 202111081127</p></article><article>            <h1><a href="git-alias.html">git alias</a></h1>
             <p>You can check out <a href="my-git-aliases.html">my personal list of git aliases here</a>.</p>
 <table>
 <thead>
@@ -10721,4 +10791,4 @@ Whatever <strong>meat substitutes</strong>, <strong>vegetables</strong>, and <st
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~573kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~578kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

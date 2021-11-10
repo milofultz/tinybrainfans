@@ -2,24 +2,26 @@
 <main id="main"><article id="content">            <h1 id="title">My git Aliases</h1>
             <p><em>UPDATE: I use <a href="zsh.html">zsh</a> now and they have built-in aliases which are much simpler. I highly recommend using <a href="zsh.html">zsh</a> anyway, let alone for the aliases.</em></p>
 <p>This is a list of all of my current aliases I use with <a href="git.html">git</a>. This is an output of my <code>git alias</code> command, which you will see below. Learn how to set these in the <a href="git.html">git</a> page.</p>
-<pre><code>hist = log --pretty=format:&#x27;%h %ad | %s%d [%an]&#x27; --graph --date=short
-co = checkout
+<pre><code>a = add
+aa = add .
+alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
+ap = add -p
+b = branch
+bd = branch -D
+bdm = ! git branch --merged | egrep -v &quot;(^\*|master|main|dev|staging)&quot; | xargs git branch -d
+ca = commit --amend
+cb = checkout -b
 ci = commit
 cm = commit -m
-s = status
-ap = add -p
-pu = push origin HEAD
+co = checkout
+gud = ! f() { echo &quot;\nYOU DIED\n&quot;; git reset --hard; }; f
+hist = log --pretty=format:&#x27;%h %ad | %s%d [%an]&#x27; --graph --date=short
 pl = pull origin HEAD
-b = branch
-cb = checkout -b
-aa = add .
-ca = commit --amend
-st = status
-a = add
-bd = branch -D
-alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
+pu = push origin HEAD
 rbm = ! f() { git rebase -i `git merge-base ${1} HEAD`; }; f
-rh = reset --hard HEAD
+rh = reset --hard
+s = status
+st = status
 </code></pre>
 <h2>References</h2>
 <ul>
@@ -27,4 +29,4 @@ rh = reset --hard HEAD
 <li><a href="rebase-git.html">Rebase (git)</a></li>
 </ul>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git-alias.html">git alias</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111080441</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~573kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111081127</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~578kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

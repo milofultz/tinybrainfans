@@ -206,7 +206,7 @@ Insert emulation/compilation instructions here
 <tr>
 <td><code>CMP n</code> / <code>CPX n</code> / <code>CPY n</code></td>
 <td>n: value or memory address/location where value is stored</td>
-<td>Compare value at A/X/Y to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0.</td>
+<td>Compare value at A/X/Y to n. If equal, set <code>Z</code> flag to 1; else, set <code>Z</code> flag to 0. <em>Note: behind the scenes, <a href="http://www.6502.org/tutorials/compare_beyond.html#2.1" target="_blank">these instructions are doing subtraction</a></em>.</td>
 </tr>
 <tr>
 <td><code>SEI</code> / <code>CLI</code></td>
@@ -308,6 +308,7 @@ Insert emulation/compilation instructions here
 <li><a href="https://rosettacode.org/wiki/Category:6502_Assembly" target="_blank">https://rosettacode.org/wiki/Category:6502_Assembly</a></li>
 <li><a href="https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail" target="_blank">https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail</a></li>
 <li><a href="https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/" target="_blank">https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/</a></li>
+<li><a href="http://www.6502.org/tutorials/compare_beyond.html" target="_blank">http://www.6502.org/tutorials/compare_beyond.html</a></li>
 </ul>
 <p>Instructions and Flags Reference:</p>
 <ul>
@@ -316,5 +317,10 @@ Insert emulation/compilation instructions here
 <li><a href="https://retroscience.net/writing-6502-assembler.html" target="_blank">https://retroscience.net/writing-6502-assembler.html</a></li>
 <li><a href="http://www.obelisk.me.uk/6502/registers.html#Z" target="_blank">http://www.obelisk.me.uk/6502/registers.html#Z</a></li>
 </ul>
+<p>Examples:</p>
+<ul>
+<li><a href="https://milofultz.com/2021/11/09/bubble-sort-6502" target="_blank">https://milofultz.com/2021/11/09/bubble-sort-6502</a></li>
+<li><a href="https://wiki.nesdev.org/w/index.php/Random_number_generator" target="_blank">https://wiki.nesdev.org/w/index.php/Random_number_generator</a></li>
+</ul>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="minicube64.html">Minicube64</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110211443</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~573kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111100323</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~578kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

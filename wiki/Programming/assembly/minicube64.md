@@ -176,9 +176,15 @@ Address | Position
 
 ## References
 
-1. https://aeriform.gitbook.io/minicube64/
-2. https://itch.io/jam/minicubejam
-3. https://github.com/aeriform-io/minicube64/releases
-4. https://github.com/aeriform-io/minicube64/blob/main/memory_map.md
+- https://aeriform.gitbook.io/minicube64/
+- https://itch.io/jam/minicubejam
+- https://github.com/aeriform-io/minicube64/releases
+- https://github.com/aeriform-io/minicube64/blob/main/memory_map.md
+
+Examples:
+
+- https://milofultz.com/2021/09/18/minicube64
+- https://milofultz.com/2021/11/09/bubble-sort-6502
 
 [Minicube64]: https://aeriform.gitbook.io/minicube64/
+

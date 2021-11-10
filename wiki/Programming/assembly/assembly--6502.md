@@ -84,7 +84,7 @@ These commands are used solely for the purpose of changing and setting flags.
 
 | Command           | Argument(s)                                               | Effect                                                       |
 | ----------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
-| `CMP n` / `CPX n` / `CPY n` | n: value or memory address/location where value is stored | Compare value at A/X/Y to n. If equal, set `Z` flag to 1; else, set `Z` flag to 0. |
+| `CMP n` / `CPX n` / `CPY n` | n: value or memory address/location where value is stored | Compare value at A/X/Y to n. If equal, set `Z` flag to 1; else, set `Z` flag to 0. *Note: behind the scenes, [these instructions are doing subtraction](http://www.6502.org/tutorials/compare_beyond.html#2.1)*. |
 | `SEI` / `CLI` |  | Set/Clear Interrupt Disable |
 
 #### Branching
@@ -129,6 +129,7 @@ Any label can be substituted for a direct memory address.
 - https://rosettacode.org/wiki/Category:6502_Assembly
 - https://www.middle-engine.com/blog/posts/2020/06/23/programming-the-nes-the-6502-in-detail
 - https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/
+- http://www.6502.org/tutorials/compare_beyond.html
 
 Instructions and Flags Reference:
 
@@ -136,3 +137,8 @@ Instructions and Flags Reference:
 - http://www.obelisk.me.uk/6502/reference.html
 - https://retroscience.net/writing-6502-assembler.html
 - http://www.obelisk.me.uk/6502/registers.html#Z
+
+Examples:
+
+- https://milofultz.com/2021/11/09/bubble-sort-6502
+- https://wiki.nesdev.org/w/index.php/Random_number_generator
