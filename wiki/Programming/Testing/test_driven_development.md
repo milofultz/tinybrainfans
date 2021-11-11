@@ -177,12 +177,12 @@ Though orthodox TDD requires testing and a test framework, you can utilize these
 
 When we are coding, we are usually operating within a few different risk levels that may appear or disappear based on our confidence, emotional state, etc.: 
 
-* **Safe**: running, works
-* **OK**: Trivial changes you expect to work
-* **Should Test**: Added a lot of complex changes, should probably test
-* **Must Test**: You absolutely know you need to test.
+* **Safe**: Everything is running and works as expected
+* **OK**: Trivial changes have been added that you expect to work
+* **Should Test**: A lot of complex changes have been added, should probably test now
+* **Must Test**: You absolutely should be testing your code
 
-So similar to TDD, where "red, green, refactor" is the rule, you code operating from "Must Test, Safe, Refactor". Combining this with committing often and {{rebasing those extra commits|Rebase (git)}} before pushing gives us great scaffolding to work with more confidence and assurance in the state of our code.
+So similar to TDD, where "red, green, refactor" is the rule, you code operating from "Should Test or Must Test, Safe, Refactor". Combining this with committing often and {{rebasing those extra commits|Rebase (git)}} before pushing gives us great scaffolding to work with more confidence and assurance in the state of our code.
 
 ## References
 

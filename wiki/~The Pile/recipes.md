@@ -1,0 +1,2 @@
+- https://domingoclub.com/soy-tempeh.html
+- https://domingoclub.com/sriracha.html
