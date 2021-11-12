@@ -5,7 +5,7 @@ description: Object destructuring in Javascript allows you to create constants f
 
 Object destructuring in {{Javascript}} allows you to create constants from items within an object.
 
-## How
+## Example
 
 ```javascript
 const initialObject = {
@@ -42,3 +42,4 @@ console.log(cruise[0]) // 'yeah'
 ## References
 
 - https://flaviocopes.com/how-to-rename-object-destructuring/
+- https://wesbos.com/destructuring-renaming
