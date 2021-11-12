@@ -1,6 +1,6 @@
 ---
 title: Functions (Javascript)
-description: Functions in Javascript come in three forms: Function expressions, function declarations, and anonymous functions.
+description: Functions in Javascript come in expressions, function declarations, and anonymous functions.
 ---
 
 Functions in {{Javascript}} come in three forms: Function expressions, function declarations, and anonymous functions.

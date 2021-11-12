@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="PropTypes are a way to add more strict typing, validation, and default values to props in React."><title>PropTypes</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">PropTypes</h1>
+            <p>PropTypes are a way to add more strict typing, validation, and default values to props in <a href="react.html">React</a>.</p>
+<h2>Example</h2>
+<p>We have a Greeting component that takes in a prop called <code>name</code>:</p>
+<p><strong>Greeting.jsx</strong></p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+
+const Greeting = (name = &#x27;Bob&#x27;) =&gt; {
+  return (
+    &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;
+  );
+}
+</code></pre>
+<p>With PropTypes, we can add typing and validation. Then during compilation, we will throw errors before moving any further.</p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+import PropTypes from &#x27;prop-types&#x27;;
+
+const Greeting = (name = &#x27;Bob&#x27;) =&gt; {
+  return (
+    &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;
+  );
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string
+};
+</code></pre>
+<p>Multiple types can be specified for a prop also, using <code>oneOfType</code>:</p>
+<pre><code class="language-react">name: PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number
+])
+</code></pre>
+<p>PropTypes still exist for functional components, but for <code>defaultProps</code>, one should use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters" target="_blank">ES6 default parameters syntax</a>.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
+</ul>
+
+<p class="last-modified">Last modified: 202111110307</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

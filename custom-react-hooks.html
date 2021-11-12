@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Custom hooks allow you to create simple extensions of existing React hooks to better suit your needs."><title>Custom React Hooks</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Custom React Hooks</h1>
+            <p>Custom hooks allow you to create simple extensions of existing <a href="react.html">React</a> hooks to better suit your needs.</p>
+<p>It is highly recommended that you review what <a href="react-hooks.html">hooks</a> are first before getting into this, as we are using <code>useEffect</code> and <code>useState</code>.</p>
+<h2>Your First Hook</h2>
+<p><em>This example is taken from <a href="https://www.youtube.com/watch?v=6ThXsUwLWvc" target="_blank">Web Dev Simplified</a>.</em></p>
+<p>This custom hook will log whenever your input value changes.</p>
+<p><strong>useUpdateLogger.js</strong></p>
+<pre><code class="language-javascript">import { useEffect } from &#x27;react&#x27;;
+
+const useUpdateLogger = (value) =&gt; {
+  useEffect(() =&gt; console.log(value), [value]);
+};
+
+export default useUpdateLogger;
+</code></pre>
+<p>When we use this in our project, it will log to the console whenever there is a change to the variable that was given.</p>
+<p><strong>ExampleComponent.jsx</strong></p>
+<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
+import useUpdateLogger from &#x27;./useUpdateLogger&#x27;;
+
+const App = () =&gt; {
+  const [counter, setCounter] = useState(0);
+
+  useUpdateLogger(counter);
+
+  return (
+    &lt;div&gt;
+      &lt;button
+        type=&quot;button&quot;
+        onClick={() =&gt; setCounter(counter + 1)}
+      &gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default App;
+</code></pre>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=6ThXsUwLWvc" target="_blank">https://www.youtube.com/watch?v=6ThXsUwLWvc</a></li>
+<li><a href="https://blog.webdevsimplified.com/2019-11/how-to-write-custom-hooks/" target="_blank">https://blog.webdevsimplified.com/2019-11/how-to-write-custom-hooks/</a></li>
+</ul>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="react-hooks.html">React Hooks</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111080632</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

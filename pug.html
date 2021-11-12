@@ -1,0 +1,250 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Pug is a templating engine for HTML."><title>Pug</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Pug</h1>
+            <p>Pug is a templating engine for <a href="html.html">HTML</a> that allows you to write a simpler more condense webpage, as well as integrating <a href="javascript.html">Javascript</a> to dynamically generate pages.</p>
+<h2>Getting Started</h2>
+<p>Install it using <a href="npm.html">NPM</a>: <code>npm i -g pug-cli</code>. You can compile a Pug file directly, or by watching the file and it's dependencies for changes.</p>
+<pre><code class="language-bash"># compile the single file
+pug filename.pug -o ./outputfolder
+# watch the file and its dependencies for changes and compile on change
+pug -w filename.pug -o ./outputfolder
+</code></pre>
+<h3>Iteration/Testing</h3>
+<p>You can do quick testing of code at <a href="https://pughtml.com/" target="_blank">https://pughtml.com/</a>.</p>
+<h2>Syntax</h2>
+<p>Writing <a href="html.html">HTML</a> in Pug is very similar to <a href="emmet.html">Emmet</a> shorthand/selectors in <a href="css.html">CSS</a>.</p>
+<p><code>element#id.class(attr=&quot;value&quot; foo=&quot;bar&quot;) innerText</code></p>
+<pre><code>doctype html
+html(lang=&quot;en&quot;)
+  body
+    header#header.header.header__wrapper
+      .header__logo
+        span
+          img.header__logo-img(src=&quot;...&quot; alt=&quot;Logo&quot;)
+          |  Some &lt;b&gt;text&lt;/b&gt;!
+      h1 Company Name
+
+//- outputs
+
+//- &lt;!DOCTYPE html&gt;  
+//-  &lt;html lang=&quot;en&quot;&gt;
+//-   &lt;body&gt;
+//-     &lt;header id=&quot;header&quot; class=&quot;header header__wrapper&quot;&gt;
+//-       &lt;div class=&quot;header__logo&quot;&gt;
+//-         &lt;span&gt;&lt;img src=&quot;...&quot; alt=&quot;Logo&quot; /&gt; Some &amp;lt;b&amp;gt;text&amp;lt;/b&amp;gt;!&lt;/span&gt;
+//-       &lt;/div&gt;
+//-       &lt;h1&gt;Company Name&lt;/h1&gt;
+//-     &lt;/header&gt;
+//-   &lt;/body&gt;
+//- &lt;/html&gt;
+</code></pre>
+<h3>Comments</h3>
+<pre><code>// This comment will appear in the HTML
+
+//- This is a silent comment
+
+//-
+  Nesting inside a comment creates
+  a comment block
+</code></pre>
+<h3><a href="javascript.html">Javascript</a></h3>
+<p>Any line that starts with a hyphen or anything that follows an equals sign in an attribute list can be valid Javascript.</p>
+<pre><code>- var num = 6;
+- var name = &quot;John Smith&quot;;
+
+h1(data-name= name.replace(/\s/, &#x27;.&#x27;).toLowerCase())= `This guy is probably ${num} feet tall!`
+
+//- outputs
+//- &lt;h1 data-name=&quot;john.smith&quot;&gt;This guy is probably 6 feet tall!&lt;/h1&gt;
+</code></pre>
+<h4>Inserting Unescaped HTML/Javascript</h4>
+<p>To insert unescaped HTML/Javascript that is located within a string, preface the string with an exclamation and enclose it with curly braces.</p>
+<pre><code>- var num = 6;
+- var name = &quot;John Smith&quot;;
+
+- const john = `This guy is &lt;i&gt;probably&lt;/i&gt; ${num} feet tall!`;
+h1(data-name= name.replace(/\s/, &#x27;.&#x27;).toLowerCase()) !{john}
+p !{&#x27;this &lt;b&gt;is it&lt;/b&gt;&#x27;}
+
+//- outputs
+//- &lt;h1 data-name=&quot;john.smith&quot;&gt;This guy is &lt;i&gt;probably&lt;/i&gt; 6 feet tall!&lt;/h1&gt;
+//- &lt;p&gt;this &lt;b&gt;is it&lt;/b&gt;&lt;/p&gt;
+</code></pre>
+<h4>On a Text Node</h4>
+<pre><code>- const test = &quot;Yeah!&quot;;
+
+p
+  span thing!
+  = test
+
+//- Outputs:
+//- &lt;p&gt;&lt;span&gt;thing!&lt;/span&gt;Yeah!&lt;/p&gt;
+</code></pre>
+<h3>Inline</h3>
+<pre><code>h1: span.header Yeah!
+
+//- Outputs
+//- &lt;h1&gt;&lt;span class=&quot;header&quot;&gt;Yeah!&lt;/span&gt;&lt;/h1&gt;
+</code></pre>
+<h3>Multiline</h3>
+<pre><code>p.
+  This text can be broken 
+  up on multiple lines
+
+p
+  img(src=&quot;stuff&quot;)
+  | This works, too.
+
+//- outputs
+//- &lt;p&gt;This text can be broken
+//-     up on multiple lines&lt;/p&gt;
+//- &lt;p&gt;&lt;img src=&quot;stuff&quot; /&gt;This works, too.&lt;/p&gt;
+
+script.
+  console.log(&#x27;or here&#x27;);
+  // Works for script tags, as well.
+</code></pre>
+<h3>Self-Closing Tags</h3>
+<pre><code>hr 
+//- outputs &lt;hr/&gt;
+
+foo/
+//- outputs &lt;foo/&gt;
+</code></pre>
+<h3>Imports / Include</h3>
+<p>Pug allows import of HTML directly as well as Pug files.</p>
+<pre><code>include filename.pug
+include another.html
+</code></pre>
+<h3>Variables</h3>
+<p>Variables in Pug are defined as they are in Javascript and should be preceded by a hyphen. Multiline variable definitions are done by starting a line with a hyphen, <strong>leaving no whitespace</strong>, and continuing indented on the next line. As long as the indentation remains, you will be in &quot;Javascript land&quot;.</p>
+<pre><code>- var location = &#x27;russia&#x27;;
+-
+  var obj = {
+    thing: &quot;one&quot;,
+    otherThing: &quot;two&quot;,
+  }
+
+p= location
+span(class= obj.thing) OK
+
+//- outputs 
+
+//- &lt;p&gt;russia&lt;/p&gt;
+//- &lt;span class=&quot;one&quot;&gt;OK&lt;/span&gt;
+</code></pre>
+<h3>Conditionals</h3>
+<pre><code>- var location = &#x27;russia&#x27;;
+- var cold = true;
+
+if location === &#x27;los-angeles&#x27;
+  p Party!
+else if location === &#x27;mexico&#x27;
+  p MORE Party!
+else if cold
+  p cold party
+else
+  p no party
+
+span= cold ? &quot;Brr!&quot; : &quot;*panting*&quot;
+
+//- outputs 
+//- &lt;p&gt;cold party&lt;/p&gt;
+//- &lt;span&gt;Brr!&lt;/span&gt;
+</code></pre>
+<h3>Iteration</h3>
+<h4>Arrays</h4>
+<pre><code>- var items = [&#x27;candy&#x27;, &#x27;cake&#x27;, &#x27;ice cream&#x27;];
+
+each item in items
+  p.item(id= item.replace(&#x27; &#x27;, &#x27;-&#x27;))= item.toUpperCase()
+
+//- outputs
+//- &lt;p id=&quot;candy&quot; class=&quot;item&quot;&gt;CANDY&lt;/p&gt;
+//- &lt;p id=&quot;cake&quot; class=&quot;item&quot;&gt;CAKE&lt;/p&gt;
+//- &lt;p id=&quot;ice-cream&quot; class=&quot;item&quot;&gt;ICE CREAM&lt;/p&gt;
+</code></pre>
+<h4>Objects</h4>
+<pre><code>- 
+  var people = {
+    &#x27;John&#x27;: &#x27;Johnson&#x27;,
+    &#x27;Ashley&#x27;: &#x27;Ashtown&#x27;,
+  };
+
+each last, first in people
+  p= first + &#x27; &#x27; + last
+
+//- outputs
+//- &lt;p&gt;John Johnson&lt;/p&gt;
+//- &lt;p&gt;Ashley Ashtown&lt;/p&gt;
+</code></pre>
+<h3>Mixins</h3>
+<p>Mixins allow one piece of code to be reused over and over with different variables, returning a modified version of the template within the declaration.</p>
+<p>The mixin needs to be declared and defined. It's usually easiest to do this in a separate file and include them in. Lets call this <code>_mixins.pug</code>:</p>
+<pre><code>//- Here the mixins are declared
+
+mixin makeStrong(text)
+  strong= text
+
+mixin makeList(list)
+  ul.generated-list
+    each item in list
+      li= item
+</code></pre>
+<p>Then the file that will use them needs to include that file:</p>
+<pre><code>include _mixins.pug
+
+- const faveFoods = [&#x27;pizza&#x27;, &#x27;pie&#x27;, &#x27;spaghetti&#x27;];
+
+h1 This is my list!
+.contents
+  p
+    +makeStrong(&#x27;I love these foods!&#x27;)
+  +makeList(faveFoods)
+</code></pre>
+<p>Compiling this will return this HTML:</p>
+<pre><code>&lt;h1&gt;This is my list!&lt;/h1&gt;
+&lt;div class=&quot;contents&quot;&gt;
+  &lt;p&gt;&lt;strong&gt;I love these foods!&lt;/strong&gt;&lt;/p&gt;
+  &lt;ul class=&quot;generated-list&quot;&gt;
+    &lt;li&gt;pizza&lt;/li&gt;
+    &lt;li&gt;pie&lt;/li&gt;
+    &lt;li&gt;spaghetti&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+<h4>Blocks</h4>
+<p>You can pass in a block to a mixin, where a block is some pug that is &quot;within&quot; the mixin invocation. The block is called by name within the mixin itself. In <code>_mixins.pug</code>:</p>
+<pre><code>mixin wrapper
+  section.wrapper
+    block
+</code></pre>
+<p>In the main file:</p>
+<pre><code>include _mixins.pug
+
++wrapper
+  h1 the REAL content
+  p.yeah this is some stuff
+</code></pre>
+<p>Outputs:</p>
+<pre><code>&lt;section class=&quot;wrapper&quot;&gt;
+  &lt;h1&gt;the REAL content&lt;/h1&gt;
+  &lt;p class=&quot;yeah&quot;&gt;this is some stuff&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<h2>Sublime Text Syntax</h2>
+<p>Packages in <a href="sublime-text.html">Sublime Text</a> are interdependent on each other and many of the default packages are inferior to third-party (e.g. Babel over Javascript). When Pug's Javascript syntax is not cooperating or popping to allow Pug's syntax to take over again, you can <code>Disable Package &gt; Javascript</code> and install <code>Babel</code> and this will cause Pug to correctly highlight conditionals and the succeeding code.</p>
+<p>If this does not work, you can switch over to <code>Pug (Python)</code> and that will do ok.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.sitepoint.com/a-beginners-guide-to-pug/" target="_blank">https://www.sitepoint.com/a-beginners-guide-to-pug/</a></li>
+<li><a href="https://pughtml.com/" target="_blank">https://pughtml.com/</a></li>
+<li><a href="https://devhints.io/pug" target="_blank">https://devhints.io/pug</a></li>
+<li><a href="https://pugjs.org/language/conditionals.html" target="_blank">https://pugjs.org/language/conditionals.html</a></li>
+<li><a href="https://pugjs.org/language/includes.html" target="_blank">https://pugjs.org/language/includes.html</a></li>
+<li><a href="https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax" target="_blank">https://cssdeck.com/labs/learning-the-jade-templating-engine-syntax</a></li>
+<li><a href="https://stackoverflow.com/questions/27107451/how-to-insert-raw-html-in-pug-file-not-include-external-html-file" target="_blank">https://stackoverflow.com/questions/27107451/how-to-insert-raw-html-in-pug-file-not-include-external-html-file</a></li>
+<li><a href="https://pugjs.org/language/mixins.html" target="_blank">https://pugjs.org/language/mixins.html</a></li>
+<li><a href="https://github.com/davidrios/pug-tmbundle/issues/22" target="_blank">https://github.com/davidrios/pug-tmbundle/issues/22</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202110172303</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

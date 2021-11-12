@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><title>Alignment (CSS)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Alignment (CSS)</h1>
+            <h2>Block Elements</h2>
+<p>To horizontally center a block element with a width other than 100%, use <code>margin: auto;</code>. Setting the width of the element will prevent it from stretching out to the edges of its container. The element will then take up the specified width, and the remaining space will be split equally between the two margins.</p>
+<h2>Inline and Inline-Block Elements</h2>
+<p><strong>Horizontal</strong> alignment can be done using <code>text-align: center;</code>. </p>
+<p>To align text <strong>vertically</strong>, however, the <code>vertical-align</code> property is used. The vertical-align property works only with inline and table-cell elements — it won’t work for block, inline-block, or any other element levels. The vertical-align property accepts a handful of different values; the most popular values are <strong>top, middle, and bottom</strong>. These values vertically position text in relation to the table cell, for table-cell elements, or to the closest parent element, for inline-level elements.</p>
+<h2>Image/Icon/Font Awesome Alignment</h2>
+<p>Although the text needs to be aligned with the image, it is actually the image that needs to be aligned and the text will move accordingly.</p>
+<pre><code class="language-html">&lt;style&gt;
+  .icon {
+    vertical-align: middle;
+  }
+&lt;/style&gt;
+
+&lt;span&gt;Some text &lt;img class=&quot;icon&quot; src=&quot;...&quot;&gt;&lt;/span&gt; &lt;!-- or ... --&gt;
+&lt;span&gt;Some text &lt;i class=&quot;icon fa ...&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+</code></pre>
+<h2>Using 100vh/100vw</h2>
+<p>100vh and 100vw won't work as expectedunless you set the margin and padding of the selected element to 0.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank">https://css-tricks.com/centering-css-complete-guide/</a></li>
+<li><a href="https://learn.shayhowe.com/html-css/organizing-data-with-tables/" target="_blank">https://learn.shayhowe.com/html-css/organizing-data-with-tables/</a></li>
+<li><a href="https://stackoverflow.com/questions/17309928/how-to-center-text-vertically-with-a-large-font-awesome-icon" target="_blank">https://stackoverflow.com/questions/17309928/how-to-center-text-vertically-with-a-large-font-awesome-icon</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107020504</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

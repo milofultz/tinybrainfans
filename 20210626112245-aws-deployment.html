@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><title>20210626112245-aws-deployment</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">20210626112245-aws-deployment</h1>
+            <p>from Eric Pearson (@nyloneric): <a href="https://gist.github.com/NylonEric/372516f2fe3c9f708d20e7e2f77007cb#file-2021-06-23-md" target="_blank">https://gist.github.com/NylonEric/372516f2fe3c9f708d20e7e2f77007cb#file-2021-06-23-md</a></p>
+<h1>June 23, 2021</h1>
+<h2></h2>
+<h2>Overview</h2>
+<p>Deploy all the things! <a href="http://frontendcapstone.com" target="_blank">http://frontendcapstone.com</a></p>
+<h2></h2>
+<h2>Log</h2>
+<h3></h3>
+<h3>10:00om - 2:00am</h3>
+<h4></h4>
+<h4>Challenge/Motivation</h4>
+<p>Get repo onto AWS instance and connect through a persistant IP or domain name</p>
+<h4></h4>
+<h4>Actions Taken</h4>
+<p>deploy! set up domain frontendcapstone.com w/ google domains (domains.google.com)</p>
+<h1></h1>
+<h1>AWS</h1>
+<p><a href="https://aws.amazon.com/ec2/getting-started/" target="_blank">https://aws.amazon.com/ec2/getting-started/</a></p>
+<p>set up security policy on AWS EC2 I started with everything open and then restricted to port 80 UDP/TCP  traffic for incomming. I also openned ICMP traffic for pinging purposes  as well as ssh port 22 for logging into server.</p>
+<p>set up elastic IP so it will persist after reboot/termination</p>
+<p>Linux/UNIX instance:</p>
+<ul>
+<li>AMI name: amzn2-ami-hvm-2.0.20210617.0-x86_64-gp2</li>
+</ul>
+<h1></h1>
+<h1>Logging in:</h1>
+<p>ssh from local: set permissions to pem file: <code>chmod 400 hr-nylon-eric.pem</code></p>
+<pre><code>ssh -i hr-nylon-eric.pem ec2-user@ec2-35-172-51-196.compute-1.amazonaws.com
+</code></pre>
+<p>Then navigate to and create folder for project:</p>
+<pre><code>git clone https://github.com/Idakka/Project-Atelier.git
+sudo yum install git
+</code></pre>
+<h1></h1>
+<h1>Setting up Node:</h1>
+<p><a href="https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html" target="_blank">https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html</a></p>
+<pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+nvm install node
+. ~/.nvm/nvm.sh
+node -e &quot;console.log(&#x27;Running Node.js &#x27; + process.version)&quot;
+npm install -g npx
+</code></pre>
+<h1></h1>
+<h1>router/ reverse proxy:</h1>
+<pre><code>sudo amazon-linux-extras install nginx1
+sudo service nginx start
+</code></pre>
+<ul>
+<li>message: Redirecting to /bin/systemctl start nginx.service</li>
+</ul>
+<pre><code>cat /etc/nginx/sites-available/default
+</code></pre>
+<ul>
+<li>this didn't work and I had to go find the etc/nginx/nginx.conf file and edit it with nano: <code>sudo nano /etc/nginx/nginx.conf</code></li>
+</ul>
+<pre><code> server { listen 80; server_name tutorial; location / {  proxy_set_header  X-Real-IP  $remote_addr; proxy_set_header  Host        $http_host; proxy_pass        http://127.0.0.1:3000; } }
+</code></pre>
+<ul>
+<li>Most of this config was filled out, Just needed to add the location block and change to port 1234 for our server</li>
+</ul>
+<h1></h1>
+<h1>link config files</h1>
+<pre><code>sudo service nginx restart
+</code></pre>
+<ul>
+<li>npm start in project folder, need ed to install nodemon</li>
+</ul>
+<h1></h1>
+<h1>install webpack</h1>
+<pre><code>npm install webpack
+npm start
+</code></pre>
+<ul>
+<li>IT WORKS!!!</li>
+</ul>
+<h1></h1>
+<h1>keep it running:</h1>
+<p><a href="https://medium.com/hackernoon/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea95f8a1#.mnlkymeti" target="_blank">https://medium.com/hackernoon/tutorial-creating-and-managing-a-node-js-server-on-aws-part-2-5fbdea95f8a1#.mnlkymeti</a></p>
+<pre><code>npm i -g pm2
+pm2 start tutorial/index.js
+</code></pre>
+<ul>
+<li>To make sure that your PM2 restarts when your server restarts <code>pm2 startup</code></li>
+<li>you will be given a custom string similar to this but specific to your machine, copy that: <code>sudo env PATH=$PATH:/home/ec2-user/.nvm/versions/node/v16.4.0/bin  /home/ec2-user/.nvm/versions/node/v16.4.0/lib/node_modules/pm2/bin/pm2  startup systemd -u ec2-user --hp /home/ec2-user</code></li>
+</ul>
+<p>save config with everything running (no nginx at this point) <code>pm2 save</code></p>
+<pre><code>pm2 start nodemon server/server.js
+</code></pre>
+<p>That’s it! You can log out/in to SSH, even restart your server and it will continue to run on port 80.</p>
+<ul>
+<li>To list all processes use <code>pm2 ls</code></li>
+</ul>
+<h1></h1>
+<h1>nginx persistent:</h1>
+<pre><code>systemctl start nginx
+systemctl enable nginx
+</code></pre>
+<p>having trouble restarting nginx on reboot, <code>sudo systemctl enable nginx</code></p>
+<ul>
+<li>is supposed to solve it. needed to start nginx/ make persistant and THEN redo the pm process</li>
+</ul>
+<h4></h4>
+<h4>Results Observed</h4>
+<p>I got the app deployed pretty quickly but had to troubleshoot making  the node server and nginx reverse-proxy persist after reboot.</p>
+
+<p class="last-modified">Last modified: 202108151939</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

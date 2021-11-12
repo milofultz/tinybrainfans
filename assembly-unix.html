@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Assembly on Unix is largely the same between Mac and Linux computers."><title>Assembly (Unix)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Assembly (Unix)</h1>
+            <p><a href="assembly.html">Assembly</a> on <a href="unix.html">Unix</a> is largely the same between <a href="macos.html">MacOS</a> and <a href="linux.html">Linux</a> computers.</p>
+<h2>Compilation, Linking, and Execution</h2>
+<h3>Compiler</h3>
+<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a>, which can be installed on <a href="macos.html">OSX</a> using <a href="https://brew.sh/" target="_blank">homebrew</a> with <code>brew install nasm</code>.</p>
+<h3>Your First Program</h3>
+<p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
+<pre><code class="language-assembly">; ----------------------------------------------------------------------------------------
+; Writes &quot;Hello, World&quot; to the console using only system calls. Runs on 64-bit macOS only.
+; ----------------------------------------------------------------------------------------
+
+        global    start                   ; nasm-specific way to define a location for the linker
+
+        section   .text                   ; The .text section holds all the instructions for the 
+                                          ; assembler to execute.
+start:                                ; The label that is referenced in the above global call
+        mov       rax, 0x02000004         ; system call for write (copy param Y into param X)
+        mov       rdi, 1                  ; file handle 1 is stdout
+        mov       rsi, message            ; address of string to output
+        mov       rdx, 13                 ; number of bytes (message is 13 chars long)
+        syscall                           ; invoke operating system to do the write
+        mov       rax, 0x02000001         ; system call for exit
+        xor       rdi, rdi                ; exit code 0
+        syscall                           ; invoke operating system to exit
+
+        section   .data                   ; The .data section contains constants
+message:                              ; The label referenced above
+        db        &quot;Hello, World&quot;, 10      ; note the newline at the end
+</code></pre>
+<h3>Assembling Your Code</h3>
+<p>Assembling your code will translate it from the human readable assembly language into a file object. The following bash command will run <code>nasm</code> using the Mach-O 64bit object <code>-f</code>ile notation format used by the 64-bit version of <a href="macos.html">MacOS</a> and create <code>-o</code>utput <code>hello_world.o</code>.</p>
+<pre><code class="language-bash">$ nasm -f macho64 hello_world.asm -o hello_world.o
+</code></pre>
+<h3>Linking Your File</h3>
+<p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">Linking</a> your newly created output file will pull all the needed libraries into a single executable. The following <a href="bash.html">bash</a> command will run <code>ld</code>, the GNU linker, and finish the creation of your executable.</p>
+<pre><code class="language-bash">$ ld -macosx_version_min 10.7.0 hello_world.o -o hello_world
+</code></pre>
+<p>The <code>-macosx_version_min</code> flag is added to remove the warning that is present without it. I read that it still builds fine without it, but that has not been true in my experience.</p>
+<h3>Executing Your File</h3>
+<pre><code class="language-bash">$ ./hello_world
+Hello, World
+</code></pre>
+<p>Running <code>./hello_world</code> in <a href="bash.html">bash</a> should result in the message being displayed.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://medium.com/@thisura1998/hello-world-assembly-program-on-macos-mojave-d5d65f0ce7c6" target="_blank">https://medium.com/@thisura1998/hello-world-assembly-program-on-macos-mojave-d5d65f0ce7c6</a></li>
+<li><a href="https://cs.lmu.edu/~ray/notes/nasmtutorial/" target="_blank">https://cs.lmu.edu/~ray/notes/nasmtutorial/</a></li>
+<li><a href="https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave" target="_blank">https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave</a></li>
+<li><a href="https://www.nasm.us/doc/" target="_blank">https://www.nasm.us/doc/</a></li>
+<li><a href="https://www.youtube.com/watch?v=qhkEOyK1ek0" target="_blank">https://www.youtube.com/watch?v=qhkEOyK1ek0</a></li>
+<li><a href="https://www.youtube.com/watch?v=wLXIWKUWpSs" target="_blank">https://www.youtube.com/watch?v=wLXIWKUWpSs</a></li>
+<li><a href="https://github.com/camsaul/hello_world_x86_64_asm_os_x" target="_blank">https://github.com/camsaul/hello_world_x86_64_asm_os_x</a></li>
+<li><a href="http://zathras.de/angelweb/blog-learn-nasm-on-os-x.htm" target="_blank">http://zathras.de/angelweb/blog-learn-nasm-on-os-x.htm</a></li>
+<li><a href="http://caswenson.com/2009_09_26_assembly_language_programming_under_os_x_with_nasm" target="_blank">http://caswenson.com/2009_09_26_assembly_language_programming_under_os_x_with_nasm</a></li>
+<li><a href="https://lord.io/assembly-on-osx/" target="_blank">https://lord.io/assembly-on-osx/</a></li>
+<li><a href="https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/" target="_blank">https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202107112052</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
