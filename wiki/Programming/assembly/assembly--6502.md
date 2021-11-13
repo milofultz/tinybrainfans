@@ -141,4 +141,5 @@ Instructions and Flags Reference:
 Examples:
 
 - https://milofultz.com/2021/11/09/bubble-sort-6502
+- https://milofultz.com/2021/11/13/selection-sort-6502
 - https://wiki.nesdev.org/w/index.php/Random_number_generator
