@@ -98,33 +98,33 @@ Insert emulation/compilation instructions here
 <tbody>
 <tr>
 <td>Absolute</td>
-<td><code>STA $c000</code></td>
-<td>Look up the value at this full memory location</td>
+<td><code>LDA $c000</code></td>
+<td>Load the value at this full memory location</td>
 </tr>
 <tr>
 <td>Zero page</td>
-<td><code>STA $c0</code></td>
-<td>Look up the value at <code>$00c0</code>, <code>c0</code> within the zero page</td>
+<td><code>LDA $c0</code></td>
+<td>Load the value at <code>$00c0</code>, <code>c0</code> within the zero page</td>
 </tr>
 <tr>
 <td>Absolute, X</td>
-<td><code>STA $c000,X</code></td>
-<td>Look up the value at <code>$c000</code> + the value in register X (e.g. if X is <code>$01</code>, store value of A at memory location <code>$c001</code>)</td>
+<td><code>LDA $c000,X</code></td>
+<td>Load the value at <code>$c000</code> + the value in register X (e.g. if X is <code>$01</code>, load value at memory location <code>$c001</code>)</td>
 </tr>
 <tr>
 <td>Zero page, X</td>
-<td><code>STA $c0,X</code></td>
-<td>Look up the value at <code>$00c0</code> + the value in register X (e.g. if X is <code>$01</code>, store value of A at memory location <code>$c001</code>)</td>
+<td><code>LDA $c0,X</code></td>
+<td>Load the value at <code>$00c0</code> + the value in register X (e.g. if X is <code>$01</code>, load value at memory location <code>$c001</code>)</td>
 </tr>
 <tr>
 <td>Immediate</td>
-<td><code>#$c0</code></td>
-<td>Use value <code>$c0</code></td>
+<td><code>LDA #$c0</code></td>
+<td>Load value <code>$c0</code></td>
 </tr>
 <tr>
 <td>Relative</td>
 <td><code>$c0</code> or <code>label</code></td>
-<td>Go <code>$c0</code> bytes forward/backward (to get to label position)</td>
+<td>Go <code>$c0</code> bytes forward/backward (to get to label position). Used with branching and jump commands (see below)</td>
 </tr>
 <tr>
 <td>Implicit</td>
@@ -133,18 +133,18 @@ Insert emulation/compilation instructions here
 </tr>
 <tr>
 <td>Indirect</td>
-<td><code>STA $c000</code></td>
-<td>Do instruction found at memory address <code>$c000</code> and the following byte, with the first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if  <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
+<td><code>LDA ($c000)</code></td>
+<td>Load value at memory address <code>$c000</code> and the following byte, with the first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte (e.g. in this example, if  <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>).</td>
 </tr>
 <tr>
 <td>Indexed Indirect</td>
-<td><code>STA ($c0,X)</code></td>
-<td>Store A at the address (<code>$00c0</code> + <code>X</code>), with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, if <code>X</code> was <code>01</code>, we would look at the address <code>$00c1</code>. If <code>$00c1</code> holds <code>01</code> and <code>$00c2</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>.</td>
+<td><code>LDA ($c0,X)</code></td>
+<td>Load value at the address (<code>$00c0</code> + <code>X</code>), with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte (e.g. in this example, if <code>X</code> was <code>01</code>, we would look at the address <code>$00c1</code>. If <code>$00c1</code> holds <code>01</code> and <code>$00c2</code> holds <code>0f</code>, it would dereference to <code>$0f01</code>). <em>NOTE: Can only be used with X</em></td>
 </tr>
 <tr>
 <td>Indirect Indexed</td>
-<td><code>STA ($c0),X</code></td>
-<td>Store A at the address found at <code>$00c0</code> plus the <em>value</em> of <code>X</code>, with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte. e.g. in this example, lets say <code>X</code> was <code>01</code>. We would look at the address <code>$00c0</code>. If <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code> <em>plus</em> the value of <code>X</code>, resulting in <code>$0f02</code>.</td>
+<td><code>LDA ($c0),Y</code></td>
+<td>Load value at the address found at <code>$00c0</code> plus the <em>value</em> of <code>Y</code>, with the resulting first address being the <em>least</em> significant byte, and the following address the <em>most</em> significant byte (e.g. in this example, lets say <code>Y</code> was <code>01</code>. We would look at the address <code>$00c0</code>. If <code>$00c0</code> holds <code>01</code> and <code>$00c1</code> holds <code>0f</code>, it would dereference to <code>$0f01</code> <em>plus</em> the value of <code>Y</code>, resulting in <code>$0f02</code>).</td>
 </tr>
 </tbody></table><h3>Commands</h3>
 <p>A <strong>value</strong> refers to a number prefaced by a <code>#</code>, whereas an <strong>address/location</strong> refers to a hexadecimal address.</p>
@@ -324,4 +324,4 @@ Insert emulation/compilation instructions here
 <li><a href="https://wiki.nesdev.org/w/index.php/Random_number_generator" target="_blank">https://wiki.nesdev.org/w/index.php/Random_number_generator</a></li>
 </ul>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="minicube64.html">Minicube64</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111130625</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111141251</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -53,16 +53,16 @@ These will all use `STA` but can be used with any command that uses an address.
 
 | Type         | Syntax      | Effect                                                       |
 | ------------ | ----------- | ------------------------------------------------------------ |
-| Absolute     | `STA $c000` | Look up the value at this full memory location               |
-| Zero page    | `STA $c0`   | Look up the value at `$00c0`, `c0` within the zero page      |
-| Absolute, X | `STA $c000,X` | Look up the value at `$c000` + the value in register X (e.g. if X is `$01`, store value of A at memory location `$c001`) |
-| Zero page, X | `STA $c0,X` | Look up the value at `$00c0` + the value in register X (e.g. if X is `$01`, store value of A at memory location `$c001`) |
-| Immediate | `#$c0` | Use value `$c0` |
-| Relative | `$c0` or `label` | Go `$c0` bytes forward/backward (to get to label position) |
+| Absolute     | `LDA $c000` | Load the value at this full memory location            |
+| Zero page    | `LDA $c0` | Load the value at `$00c0`, `c0` within the zero page   |
+| Absolute, X | `LDA $c000,X` | Load the value at `$c000` + the value in register X (e.g. if X is `$01`, load value at memory location `$c001`) |
+| Zero page, X | `LDA $c0,X` | Load the value at `$00c0` + the value in register X (e.g. if X is `$01`, load value at memory location `$c001`) |
+| Immediate | `LDA #$c0` | Load value `$c0` |
+| Relative | `$c0` or `label` | Go `$c0` bytes forward/backward (to get to label position). Used with branching and jump commands (see below) |
 | Implicit | `INX` | Do what instruction implies (no args) |
-| Indirect | `STA $c000` | Do instruction found at memory address `$c000` and the following byte, with the first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if  `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01`. |
-| Indexed Indirect | `STA ($c0,X)` | Store A at the address (`$00c0` + `X`), with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, if `X` was `01`, we would look at the address `$00c1`. If `$00c1` holds `01` and `$00c2` holds `0f`, it would dereference to `$0f01`. |
-| Indirect Indexed | `STA ($c0),X` | Store A at the address found at `$00c0` plus the *value* of `X`, with the resulting first address being the *least* significant byte, and the following address the *most* significant byte. e.g. in this example, lets say `X` was `01`. We would look at the address `$00c0`. If `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01` *plus* the value of `X`, resulting in `$0f02`. |
+| Indirect | `LDA ($c000)` | Load value at memory address `$c000` and the following byte, with the first address being the *least* significant byte, and the following address the *most* significant byte (e.g. in this example, if  `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01`). |
+| Indexed Indirect | `LDA ($c0,X)` | Load value at the address (`$00c0` + `X`), with the resulting first address being the *least* significant byte, and the following address the *most* significant byte (e.g. in this example, if `X` was `01`, we would look at the address `$00c1`. If `$00c1` holds `01` and `$00c2` holds `0f`, it would dereference to `$0f01`). *NOTE: Can only be used with X* |
+| Indirect Indexed | `LDA ($c0),Y` | Load value at the address found at `$00c0` plus the *value* of `Y`, with the resulting first address being the *least* significant byte, and the following address the *most* significant byte (e.g. in this example, lets say `Y` was `01`. We would look at the address `$00c0`. If `$00c0` holds `01` and `$00c1` holds `0f`, it would dereference to `$0f01` *plus* the value of `Y`, resulting in `$0f02`). |
 
 ### Commands
 
