@@ -228,7 +228,12 @@ Place the spoke wrench on that spoke nipple and tighten it a quarter turn.  Some
 <li><a href="https://bikebooboos.com/repairs/wheeltruing/" target="_blank">https://bikebooboos.com/repairs/wheeltruing/</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202110050153</p></article><article>            <h1><a href="20210811202726-deploy-on-aws.html">20210811202726-deploy-on-aws</a></h1>
+<p class="last-modified">Last modified: 202110050153</p></article><article>            <h1><a href="esolangs.html">esolangs</a></h1>
+            <ul>
+<li><a href="https://www.youtube.com/watch?v=cQ7bcCrJMHc" target="_blank">https://www.youtube.com/watch?v=cQ7bcCrJMHc</a></li>
+</ul>
+
+<p class="last-modified">Last modified: 202111160802</p></article><article>            <h1><a href="20210811202726-deploy-on-aws.html">20210811202726-deploy-on-aws</a></h1>
             <h2>MONGO</h2>
 <p><a href="https://jasonwatmore.com/post/2019/11/18/react-nodejs-on-aws-how-to-deploy-a-mern-stack-app-to-amazon-ec2" target="_blank">https://jasonwatmore.com/post/2019/11/18/react-nodejs-on-aws-how-to-deploy-a-mern-stack-app-to-amazon-ec2</a></p>
 <ul>
@@ -955,9 +960,10 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git" target="_blank">https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git</a></li>
 <li><a href="https://github.com/delventhalz/no-fear-git" target="_blank">https://github.com/delventhalz/no-fear-git</a></li>
 <li><a href="https://nfarina.com/post/9868516270/git-is-simpler" target="_blank">https://nfarina.com/post/9868516270/git-is-simpler</a></li>
+<li><a href="https://fix.code-error.com/git-merge-with-force-overwrite/" target="_blank">https://fix.code-error.com/git-merge-with-force-overwrite/</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111070526</p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
+<p class="last-modified">Last modified: 202111160757</p></article><article>            <h1><a href="making-a-good-readme.html">Making a Good README</a></h1>
             <p>Your README file contains a high level overview for people interested in using, contributing, or perusing your code.</p>
 <h2>Structure/Content</h2>
 <ul>
@@ -7284,9 +7290,10 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 <li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
 <li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
 <li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
+<li><a href="https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html" target="_blank">https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111070512</p></article><article>            <h1><a href="test-driven-development.html">Test-Driven Development</a></h1>
+<p class="last-modified">Last modified: 202111160756</p></article><article>            <h1><a href="test-driven-development.html">Test-Driven Development</a></h1>
             <p>In <a href="programming.html">programming</a>, test-driven development is when tests are developed first before the code is written. </p>
 <blockquote>
 <p>In test-driven development the mantra has always been, red, green, refactor. Write a failing test and run it (red), make the test pass (green), then refactor it (that is look at the code and see if you can make it any better).[1]</p>
@@ -9825,12 +9832,85 @@ Greeting.propTypes = {
 ])
 </code></pre>
 <p>PropTypes still exist for functional components, but for <code>defaultProps</code>, one should use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters" target="_blank">ES6 default parameters syntax</a>.</p>
+<h2>Types</h2>
+<p>You can find the fully updated list <a href="https://www.npmjs.com/package/prop-types" target="_blank">here on NPM</a>.</p>
+<pre><code class="language-javascript">// Optional/Required
+optionalString: PropTypes.string,
+requiredString: PropTypes.string.required,
+
+// Types
+optionalArray: PropTypes.array,
+optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+
+optionalObject: PropTypes.object,
+optionalObjectOf: PropTypes.objectOf(PropTypes.number),
+optionalObjectWithShape: PropTypes.shape({
+  property: PropTypes.string,
+}),
+optionalObjectWithStrictShape: PropTypes.exact({
+  property: PropTypes.string,
+}),
+
+optionalBool: PropTypes.bool,
+optionalFunc: PropTypes.func,
+optionalNumber: PropTypes.number,
+optionalString: PropTypes.string,
+optionalSymbol: PropTypes.symbol,
+
+optionalMessage: PropTypes.instanceOf(Message),
+optionalEnum: PropTypes.oneOf([&#x27;News&#x27;, &#x27;Photos&#x27;]),
+optionalUnion: PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number,
+  PropTypes.instanceOf(Message)
+]),
+
+// Anything that can be rendered: numbers, strings, elements or an array
+// (or fragment) containing these types.
+optionalNode: PropTypes.node,
+
+// A React element (ie. &lt;MyComponent /&gt;).
+optionalElement: PropTypes.element,
+
+// A React element type (ie. MyComponent).
+optionalElementType: PropTypes.elementType,
+
+// A value of any data type
+optionalAny: PropTypes.any,
+
+// You can also specify a custom validator. It should return an Error
+// object if the validation fails. Don&#x27;t `console.warn` or throw, as this
+// won&#x27;t work inside `oneOfType`.
+customProp: function(props, propName, componentName) {
+  if (!/matchme/.test(props[propName])) {
+    return new Error(
+      &#x27;Invalid prop `&#x27; + propName + &#x27;` supplied to&#x27; +
+      &#x27; `&#x27; + componentName + &#x27;`. Validation failed.&#x27;
+    );
+  }
+},
+
+// You can also supply a custom validator to `arrayOf` and `objectOf`.
+// It should return an Error object if the validation fails. The validator
+// will be called for each key in the array or object. The first two
+// arguments of the validator are the array or object itself, and the
+// current item&#x27;s key.
+customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
+  if (!/matchme/.test(propValue[key])) {
+    return new Error(
+      &#x27;Invalid prop `&#x27; + propFullName + &#x27;` supplied to&#x27; +
+      &#x27; `&#x27; + componentName + &#x27;`. Validation failed.&#x27;
+    );
+  }
+})
+</code></pre>
 <h2>References</h2>
 <ul>
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
+<li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202111110307</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
+<p class="last-modified">Last modified: 202111160646</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
             <p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
 <p>For React to work properly, you will need three things: </p>
 <ul>
@@ -10856,4 +10936,4 @@ Whatever <strong>meat substitutes</strong>, <strong>vegetables</strong>, and <st
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~585kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~589kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

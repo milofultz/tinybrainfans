@@ -168,6 +168,7 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 10. https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git
 11. https://github.com/delventhalz/no-fear-git
 12. https://nfarina.com/post/9868516270/git-is-simpler
+12. https://fix.code-error.com/git-merge-with-force-overwrite/
 
 [manually edit hunk]: https://rietta.com/blog/git-patch-manual-split/
 [stashing]: https://www.freecodecamp.org/news/git-stash-explained/

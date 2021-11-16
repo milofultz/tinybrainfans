@@ -63,3 +63,4 @@ Command(s) | Effect
 - https://git-scm.com/docs/git-rebase
 - https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch
 - https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336
+- https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html
