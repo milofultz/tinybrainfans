@@ -5,7 +5,7 @@
 <p>These examples are using Typescript for type annotations and clarity.</p>
 <h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
 <p>useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.</p>
-<p>In its most basic form (<a href="https://daveceddia.com/usecontext-hook/" target="_blank">taken from Dave Ceddia</a>):</p>
+<p>In its most basic form (taken from Dave Ceddia[2]):</p>
 <pre><code class="language-react">import React, { createContext } from &#x27;react&#x27;;
 
 // Create a Context
@@ -97,8 +97,8 @@ export function GlobalContext(props: any) {
   }: GlobalProps = props;
 
   return (
-    &lt;ExampleContext.Provider value={channelContextObject}&gt;
-      &lt;AnotherContext.Provider value={userContextObject}&gt;
+    &lt;ExampleContext.Provider value={exampleContextObject}&gt;
+      &lt;AnotherContext.Provider value={anotherContextObject}&gt;
         {props.children}
       &lt;/AnotherContext.Provider&gt;
     &lt;/ExampleContext.Provider&gt;
@@ -219,5 +219,5 @@ const testComponent = () =&gt; {
 <li><a href="https://daveceddia.com/usecontext-hook/" target="_blank">https://daveceddia.com/usecontext-hook/</a></li>
 </ol>
 <p>c</p>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111110434</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~589kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="react.html">React</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111170537</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

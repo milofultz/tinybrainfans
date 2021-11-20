@@ -13,7 +13,7 @@ These examples are using Typescript for type annotations and clarity.
 
 useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.
 
-In its most basic form ([taken from Dave Ceddia](https://daveceddia.com/usecontext-hook/)):
+In its most basic form (taken from Dave Ceddia[2]):
 
 ```react
 import React, { createContext } from 'react';
@@ -119,8 +119,8 @@ export function GlobalContext(props: any) {
 	}: GlobalProps = props;
 
 	return (
-    <ExampleContext.Provider value={channelContextObject}>
-      <AnotherContext.Provider value={userContextObject}>
+    <ExampleContext.Provider value={exampleContextObject}>
+      <AnotherContext.Provider value={anotherContextObject}>
         {props.children}
       </AnotherContext.Provider>
     </ExampleContext.Provider>

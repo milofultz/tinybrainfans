@@ -108,33 +108,9 @@ ReactDOM.render(<GroceryList />, document.getElementById('app'));
 </div>
 ```
 
-#### PropTypes
+#### {{PropTypes}}
 
-You can add type checking to your props to make your code a bit more robust. If the types you entered don't match the element's type, then it will only give a warning in the console and will still render (as long as it is able).
-
-Primitive types in PropTypes:
-
-- array
-- bool
-- func
-- number
-- object
-- string
-- symbol
-
-You can also specify `.isRequired` at the end of your propType definition.
-
-```react
-import PropTypes from 'prop-types';
-
-const GroceryListItem = (props) => (
-  <li>{props.item.toUpperCase()}</li>
-);
-
-GroceryListItem.propTypes = {
-  item: PropTypes.string.isRequired;
-};
-```
+You can add type checking to your props to make your code a bit more robust. If the types you entered don't match the element's type, then it will only give a warning in the console and will still render (as long as it is able). {{Learn more here|PropTypes}}.
 
 #### Exporting Components
 
@@ -228,7 +204,7 @@ return (
 
 ### Stateless Functional vs. Class
 
-All of the previous examples have used stateless functional components, which are declared at runtime and essentially become a static web page. If you want to have user interaction and a dynamic webpage, you will want to include **state**. State is just a dynamic memory for a given component, e.g. whether it has been clicked or has a given property. State is only included on class components and is initialized in the constructor.
+All of the previous examples have used stateless functional components, which are declared at runtime and essentially become a static web page (unless you are using {{hooks|React Hooks}}, which make them no longer stateless). If you want to have user interaction and a dynamic webpage, you will want to include **state**. State is just a dynamic memory for a given component, e.g. whether it has been clicked or has a given property. State is only included on class components and is initialized in the constructor.
 
 First you will want to convert your stateless functional component into a class component.
 
@@ -285,6 +261,50 @@ The `setState` call takes in two arguments: `setState(updated, [callback])`:
 - `updated`: this is an object containing the state's properties as keys and the values that will be set within the state at those keys.
 - `[callback]`: an optional argument; this function will execute once only after the state has been set. Uesful for handling API calls and other asynchronous patterns with updating.
 
+## Handling Application-wide Constants[8]
+
+If you have a lot of constants that need to be accessed in multiple files or components, create a constants file and bring in the file as an import (this also helps with {{magic numbers|Magic Numbers (Programming)}}).
+
+### Before
+
+**components/ExampleComponent.js** 
+
+```react
+import React from 'react';
+
+const STATE = 'CA';
+const TAXRATE = .095;
+
+const ExampleComponent = (bill) => (
+  <div>
+    <h1>Total Tax in {STATE}: {bill + bill * TAXRATE}</h1>
+  </div>
+);
+```
+
+### After
+
+**components/ExampleComponent.js** 
+
+```react
+import React from 'react';
+
+import * from '../data/constants';
+
+const ExampleComponent = (bill) => (
+  <div>
+    <h1>Total Tax in {STATE}: {bill + bill * TAXRATE}</h1>
+  </div>
+);
+```
+
+**data/constants.js**
+
+```javascript
+export const STATE = 'CA';
+export const TAXRATE = .095;
+```
+
 ## References
 
 1. https://reactjs.org/docs/introducing-jsx.html
@@ -294,6 +314,7 @@ The `setState` call takes in two arguments: `setState(updated, [callback])`:
 5. https://reactjs.org/docs/react-component.html#setstate
 6. https://reactjs.org/docs/typechecking-with-proptypes.html
 7. https://www.npmjs.com/package/prop-types
+7. https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774
 
 [create-react-app]: https://create-react-app.dev/
 [Higher Order Components]: https://reactjs.org/docs/higher-order-components.html

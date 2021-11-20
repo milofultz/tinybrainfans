@@ -1331,7 +1331,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="pixijs.html">PixiJS</a></li></ul></details></section>
+
 <p class="last-modified">Last modified: 202107020546</p></article><article>            <h1><a href="javascript.html">Javascript</a></h1>
             <h2>References</h2>
 <ul>
@@ -1573,29 +1573,8 @@ ReactDOM.render(&lt;GroceryList /&gt;, document.getElementById(&#x27;app&#x27;))
   &lt;/ul&gt;
 &lt;/div&gt;
 </code></pre>
-<h4>PropTypes</h4>
-<p>You can add type checking to your props to make your code a bit more robust. If the types you entered don't match the element's type, then it will only give a warning in the console and will still render (as long as it is able).</p>
-<p>Primitive types in PropTypes:</p>
-<ul>
-<li>array</li>
-<li>bool</li>
-<li>func</li>
-<li>number</li>
-<li>object</li>
-<li>string</li>
-<li>symbol</li>
-</ul>
-<p>You can also specify <code>.isRequired</code> at the end of your propType definition.</p>
-<pre><code class="language-react">import PropTypes from &#x27;prop-types&#x27;;
-
-const GroceryListItem = (props) =&gt; (
-  &lt;li&gt;{props.item.toUpperCase()}&lt;/li&gt;
-);
-
-GroceryListItem.propTypes = {
-  item: PropTypes.string.isRequired;
-};
-</code></pre>
+<h4><a href="proptypes.html">PropTypes</a></h4>
+<p>You can add type checking to your props to make your code a bit more robust. If the types you entered don't match the element's type, then it will only give a warning in the console and will still render (as long as it is able). <a href="proptypes.html">Learn more here</a>.</p>
 <h4>Exporting Components</h4>
 <p>You can put the component into another file and import it in by using the <code>export default componentName</code> syntax.</p>
 <pre><code class="language-react">// GroceryListItem.js
@@ -1670,7 +1649,7 @@ return (
 )
 </code></pre>
 <h3>Stateless Functional vs. Class</h3>
-<p>All of the previous examples have used stateless functional components, which are declared at runtime and essentially become a static web page. If you want to have user interaction and a dynamic webpage, you will want to include <strong>state</strong>. State is just a dynamic memory for a given component, e.g. whether it has been clicked or has a given property. State is only included on class components and is initialized in the constructor.</p>
+<p>All of the previous examples have used stateless functional components, which are declared at runtime and essentially become a static web page (unless you are using <a href="react-hooks.html">hooks</a>, which make them no longer stateless). If you want to have user interaction and a dynamic webpage, you will want to include <strong>state</strong>. State is just a dynamic memory for a given component, e.g. whether it has been clicked or has a given property. State is only included on class components and is initialized in the constructor.</p>
 <p>First you will want to convert your stateless functional component into a class component.</p>
 <pre><code class="language-react">class GroceryListItem extends React.Component {
   constructor (props) {
@@ -1718,6 +1697,37 @@ return (
 <li><code>updated</code>: this is an object containing the state's properties as keys and the values that will be set within the state at those keys.</li>
 <li><code>[callback]</code>: an optional argument; this function will execute once only after the state has been set. Uesful for handling API calls and other asynchronous patterns with updating.</li>
 </ul>
+<h2>Handling Application-wide Constants[8]</h2>
+<p>If you have a lot of constants that need to be accessed in multiple files or components, create a constants file and bring in the file as an import (this also helps with <a href="magic-numbers-programming.html">magic numbers</a>).</p>
+<h3>Before</h3>
+<p><strong>components/ExampleComponent.js</strong> </p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+
+const STATE = &#x27;CA&#x27;;
+const TAXRATE = .095;
+
+const ExampleComponent = (bill) =&gt; (
+  &lt;div&gt;
+    &lt;h1&gt;Total Tax in {STATE}: {bill + bill * TAXRATE}&lt;/h1&gt;
+  &lt;/div&gt;
+);
+</code></pre>
+<h3>After</h3>
+<p><strong>components/ExampleComponent.js</strong> </p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+
+import * from &#x27;../data/constants&#x27;;
+
+const ExampleComponent = (bill) =&gt; (
+  &lt;div&gt;
+    &lt;h1&gt;Total Tax in {STATE}: {bill + bill * TAXRATE}&lt;/h1&gt;
+  &lt;/div&gt;
+);
+</code></pre>
+<p><strong>data/constants.js</strong></p>
+<pre><code class="language-javascript">export const STATE = &#x27;CA&#x27;;
+export const TAXRATE = .095;
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://reactjs.org/docs/introducing-jsx.html" target="_blank">https://reactjs.org/docs/introducing-jsx.html</a></li>
@@ -1727,9 +1737,10 @@ return (
 <li><a href="https://reactjs.org/docs/react-component.html#setstate" target="_blank">https://reactjs.org/docs/react-component.html#setstate</a></li>
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
+<li><a href="https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774" target="_blank">https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="proptypes.html">PropTypes</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110081411</p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="pixijs.html">PixiJS</a></li><li><a href="proptypes.html">PropTypes</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="visual-studio-code.html">Visual Studio Code</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111170317</p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
             <p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
 <h2>Components</h2>
 <h3>Model</h3>
@@ -1778,7 +1789,7 @@ function calculateTotal(price) {
   return price + calculatedTax + serviceCharge;
 }
 </code></pre>
-<section><details><summary>Backlinks</summary><ul><li><a href="c.html">C</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="c.html">C</a></li><li><a href="react.html">React</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202107080231</p></article><article>            <h1><a href="accessibility.html">Accessibility</a></h1>
             <h2>Checklist</h2>
 <p>Use this <a href="https://www.a11yproject.com/checklist/" target="_blank">checklist</a> to ensure you are doing your best to meet accessibility requirements.</p>
@@ -1800,44 +1811,86 @@ function calculateTotal(price) {
 <section><details><summary>Backlinks</summary><ul><li><a href="semantic-html.html">Semantic HTML</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202107020546</p></article><article>            <h1><a href="applescript.html">Applescript</a></h1>
             <p>Applescript is a programming language used to create scripts in <a href="macos.html">Mac</a> computers.</p>
-<h2>Variables</h2>
-<pre><code class="language-applescript">set variableName to value
-</code></pre>
-<h3>Destructure a list to new variables</h3>
+<h2>Generic Syntax</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-- This is a single line comment</code><br><code># This is another single line comment</code></td>
+<td>Single line comment</td>
+</tr>
+<tr>
+<td><code>(* This is a multi line comment *)</code></td>
+<td>Multi-line comment</td>
+</tr>
+<tr>
+<td><code>open location &quot;http://www.zombo.com&quot;</code></td>
+<td>Open URL with the appropriate program[5,6]</td>
+</tr>
+<tr>
+<td><code>do shell script &quot;say \&quot;we did it\&quot;&quot;</code></td>
+<td>Run arbitrary shell script[3]</td>
+</tr>
+<tr>
+<td><code>set variableName to value</code></td>
+<td>Set a variable</td>
+</tr>
+<tr>
+<td><code>tell application &quot;iTerm&quot; to ...</code></td>
+<td>Tell application to do something (see below)</td>
+</tr>
+</tbody></table><h3>Destructure a list to new variables</h3>
 <pre><code class="language-applescript">set newList to {100, 200, 300}
 set { x, y, z } to newList # x=100, y=200, z=300
 set a to item 2 of newList # a=200
 </code></pre>
-<h2>Have Application Do Something</h2>
-<pre><code class="language-applescript">tell application &quot;iTerm&quot; to \# put actions here
+<h2>Tell Application To Do Something</h2>
+<pre><code class="language-applescript">tell application &quot;iTerm&quot; to # put actions here
 
 tell application &quot;iTerm&quot;
-  \# put actions here
+  # put actions here
 end tell
 </code></pre>
 <h3>Actions</h3>
 <ul>
-<li><code>activate</code> - Run program</li>
-<li><code>open &quot;Macintosh HD:Users:username:...&quot;</code> - Open file at filepath</li>
-<li><code>close window 1</code> - Close window</li>
-<li><code>set size of front window to {640, 400}</code> - Set window size (x, y)</li>
-<li><code>set position of front window to {0, 0}</code> - Set window position (x, y)</li>
-<li><code>set bounds of front window to {300, 30, 1200, 900}</code> - Set window size and position {X-start, Y-start, X-end, Y-end}; corresponds directly to pixels of display resolution</li>
+<li>
+<p><code>activate</code> - Run program</p>
+</li>
+<li>
+<p><code>open &quot;Macintosh HD:Users:username:...&quot;</code> - Open file at filepath[3]</p>
+<ul>
+<li>To open files using standard notation (<code>/Users/username/...</code>), preface the filename with <code>POSIX file</code>: <code>open POSIX File &quot;/Users/username/...&quot;</code></li>
 </ul>
-<h2>Comments</h2>
-<pre><code class="language-applescript">-- This is a single line comment
-\# This is another single line comment
-(* This is
-   a multi
-   line comment *)
-</code></pre>
+</li>
+<li>
+<p><code>close window 1</code> - Close window</p>
+</li>
+<li>
+<p><code>set size of front window to {640, 400}</code> - Set window size {x, y}</p>
+</li>
+<li>
+<p><code>set position of front window to {0, 0}</code> - Set window position {x, y}</p>
+</li>
+<li>
+<p><code>set bounds of front window to {300, 30, 1200, 900}</code> - Set window size and position {X-start, Y-start, X-end, Y-end}; corresponds directly to pixels of display resolution</p>
+</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li><a href="http://downloads.techbarrack.com/books/programming/AppleScript/website/files_&amp;_folders/opening_files.html" target="_blank">http://downloads.techbarrack.com/books/programming/AppleScript/website/files_&amp;_folders/opening_files.html</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_error_codes.html" target="_blank">Error Messages</a></li>
+<li><a href="https://stackoverflow.com/questions/10126661/applescript-how-to-open-a-file-with-the-default-program" target="_blank">https://stackoverflow.com/questions/10126661/applescript-how-to-open-a-file-with-the-default-program</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html" target="_blank">https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_cmds.html#//apple_ref/doc/uid/TP40000983-CH216-SW54" target="_blank">https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_cmds.html#//apple_ref/doc/uid/TP40000983-CH216-SW54</a></li>
+<li><a href="https://apple.stackexchange.com/questions/293777/how-do-i-open-a-generic-url-from-applescript" target="_blank">https://apple.stackexchange.com/questions/293777/how-do-i-open-a-generic-url-from-applescript</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020557</p></article><article>            <h1><a href="documentation.html">Documentation</a></h1>
+<p class="last-modified">Last modified: 202111170305</p></article><article>            <h1><a href="documentation.html">Documentation</a></h1>
             <h2>Software</h2>
 <ul>
 <li><a href="https://readthedocs.org/" target="_blank">https://readthedocs.org/</a></li>
@@ -5170,15 +5223,16 @@ Insert emulation/compilation instructions here
 <li><a href="http://www.obelisk.me.uk/6502/reference.html" target="_blank">http://www.obelisk.me.uk/6502/reference.html</a></li>
 <li><a href="https://retroscience.net/writing-6502-assembler.html" target="_blank">https://retroscience.net/writing-6502-assembler.html</a></li>
 <li><a href="http://www.obelisk.me.uk/6502/registers.html#Z" target="_blank">http://www.obelisk.me.uk/6502/registers.html#Z</a></li>
+<li><a href="https://csh.rit.edu/~moffitt/docs/6502.html" target="_blank">https://csh.rit.edu/~moffitt/docs/6502.html</a></li>
 </ul>
 <p>Examples:</p>
 <ul>
-<li><a href="https://milofultz.com/2021/11/09/bubble-sort-6502" target="_blank">https://milofultz.com/2021/11/09/bubble-sort-6502</a></li>
-<li><a href="https://milofultz.com/2021/11/13/selection-sort-6502" target="_blank">https://milofultz.com/2021/11/13/selection-sort-6502</a></li>
+<li><a href="https://github.com/milofultz/adventofcode2015/" target="_blank">https://github.com/milofultz/adventofcode2015/</a></li>
+<li><a href="https://milofultz.com/2021/11/14/sorting-in-6502" target="_blank">https://milofultz.com/2021/11/14/sorting-in-6502</a></li>
 <li><a href="https://wiki.nesdev.org/w/index.php/Random_number_generator" target="_blank">https://wiki.nesdev.org/w/index.php/Random_number_generator</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="minicube64.html">Minicube64</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111141251</p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
+<p class="last-modified">Last modified: 202111201243</p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
             <p><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">Minicube64</a> is a fantasy console style emulator based on <a href="assembly-6502.html">6502</a>, with the intention of helping people learn how games were made for older systems such as Atari 2600, NES or C64, but without many of the difficult hardware restrictions.</p>
 <h2>Annotated Introduction</h2>
 <p>The <a href="https://aeriform.gitbook.io/minicube64/" target="_blank">introduction page</a> is what I'm annotating below. Hopefully these notes will give more insight into what the assembly is doing in the console.</p>
@@ -7754,6 +7808,26 @@ app.use(&quot;/&quot;, expressStaticGzip(&quot;/my/rootFolder/&quot;));
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="visual-studio-code.html">Visual Studio Code</a></li></ul></details></section></article><article>            <h1><a href="visual-studio-code.html">Visual Studio Code</a></h1>
             <p>Visual Studio Code/Codium is an <a href="open-source.html">open-source</a> application developed by Microsoft for software and code development.</p>
+<h2>Snippets</h2>
+<p>Creating snippets is a simple way to make your life easier. To create your own, go to Preferences &gt; User Snippets and create a new one. Here is an example of a <a href="react.html">React</a> snippet for arrow function components:</p>
+<pre><code class="language-json">{
+  &quot;Arrow Function Component&quot;: {
+    &quot;scope&quot;: &quot;javascript,javascriptreact,typescript,typescriptreact&quot;,
+    &quot;prefix&quot;: &quot;afc&quot;,
+    &quot;body&quot;: [
+      &quot;const $1 = () =&gt; {&quot;,
+      &quot;&quot;,
+      &quot;};&quot;,
+      &quot;&quot;,
+      &quot;export default $1;&quot;,
+      &quot;&quot;
+    ],
+    &quot;description&quot;: &quot;Create arrow function React component&quot;
+  }
+}
+</code></pre>
+<p>The <strong>prefix</strong> is the shortcut you will type in.</p>
+<p>The <strong>body</strong> is what it will expand to. Note that each newline needs to be in its own set of quotes. You can use <code>$1</code>, <code>$2</code>, etc. to note each successive input to be carried out by the user after expansion.</p>
 <h2>Extensions Missing</h2>
 <p>If an extension is found on VS Code but not on VS Codium, it can still be installed by sideloading it as a VSIX.  &quot;You'll have to sideload that extension since the marketplace that VS Codium uses is OpenVSX which hosts only open source extensions&quot;[1]. </p>
 <p>You can download it on the website and in the &quot;Extensions&quot; pane of VS Codium, click the dots up top and choose &quot;Install VSIX&quot;.</p>
@@ -7763,7 +7837,7 @@ app.use(&quot;/&quot;, expressStaticGzip(&quot;/my/rootFolder/&quot;));
 <li><a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare" target="_blank">Live Share</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202107020502</p></article><article><h1><a href="babel.html">Babel</a></h1>
+<p class="last-modified">Last modified: 202111170341</p></article><article><h1><a href="babel.html">Babel</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section></article><article><h1><a href="array.html">Array</a></h1>
 <p>There's currently nothing here.</p>
@@ -8648,91 +8722,65 @@ const htmlDoc = parser.parseFromString(input, &#x27;text/html&#x27;);
 <p>Substitute <code>sample.png</code> with whatever image you want. Know that if the intrinsic size is larger than the canvas, you may not see it.</p>
 <h2>Syntax</h2>
 <p>The major components can be found and explained <a href="https://pixijs.io/guides/basics/architecture-overview.html" target="_blank">here</a> and in the <a href="https://pixijs.download/release/docs/index.html" target="_blank">API docs</a></p>
-<h3><code>Application</code> Instance</h3>
-<blockquote>
-<p>The Application is a simple helper that wraps a Loader, Ticker and Renderer into a single, convenient easy-to-use object.</p>
-</blockquote>
-<h4><code>stage</code></h4>
-<p><a href="https://pixijs.download/release/docs/PIXI.Application.html#stage" target="_blank"><code>stage</code> is an instance of the <code>Container</code>.</a></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Args</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://pixijs.download/release/docs/PIXI.Application.html#view" target="_blank"><code>.view</code></a></td>
-<td></td>
-<td>References the renderer's canvas element</td>
-</tr>
-</tbody></table><h4><code>ticker</code></h4>
-<blockquote>
-<p>A ticker is a PixiJS object that runs one or more callbacks each frame.</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Args</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>.add(cb: (deltaTime: number) =&gt; any)</code></td>
-<td><code>cb</code>: Callback function</td>
-<td>Run the callback function on every frame. The <a href="https://pixijs.download/release/docs/PIXI.Ticker.html#deltaTime" target="_blank"><code>deltaTime</code></a> is the &quot;scalar time value from last frame to this frame&quot;.</td>
-</tr>
-</tbody></table><h3><code>Container</code> Instance</h3>
-<blockquote>
-<p>Almost every type of display object is also derived from Container.</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Args</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>.addChild(x)</code></td>
-<td><code>x</code>: Pixi element</td>
-<td>Add the element as a child to the stage</td>
-</tr>
-</tbody></table><h3><code>Graphics</code> Instance</h3>
-<blockquote>
-<p>The Graphics class is primarily used to render primitive shapes such as lines, circles and rectangles to the display, and to color and fill them.</p>
-</blockquote>
-<p>It seems like this is generally used in the same way as <a href="svg.html">SVG</a>: as if you had a pen and paper and deciding fill values before drawing. <a href="https://pixijs.io/guides/basics/graphics.html" target="_blank">It is a geometry building tool, not a drawing tool.</a></p>
-<h3><code>Sprite</code> Instance</h3>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Args</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>.anchor.set(x[, y])</code></td>
-<td><code>x</code>, <code>y</code>: Position in pixels</td>
-<td>Set the anchor of the sprite to the point. Only one arg sets both to the same value.</td>
-</tr>
-</tbody></table><h2>References</h2>
-<ul>
+<h2>React-Pixi</h2>
+<p><a href="https://reactpixi.org/" target="_blank">React-Pixi</a> adds declarative styling for use with <a href="react.html">React</a>. Using the above example:</p>
+<p><strong>Normal PixiJS</strong></p>
+<pre><code class="language-javascript">// Create the application helper
+let app = new PIXI.Application({ width: 640, height: 360 });
+// Add the Application&#x27;s `view` to the body
+document.body.appendChild(app.view);
+
+// Create the sprite
+let sprite = PIXI.Sprite.from(&#x27;sample.png&#x27;);
+// Add the sprite instance to the `stage` (a Container instance)
+app.stage.addChild(sprite);
+
+// Add a ticker callback to move the sprite back and forth
+let elapsed = 0.0;
+app.ticker.add((delta) =&gt; {
+  elapsed += delta;
+  // X start + (X offset) * X range
+  sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
+});
+</code></pre>
+<p><strong>With React-Pixi</strong></p>
+<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
+import { Sprite, Stage, useTick } from &#x27;@inlet/react-pixi&#x27;;
+
+const Example = () =&gt; {
+  const [x, setX] = useState(0);
+  const [elapsed, setElapsed] = useState(0.0);
+
+  useTick(delta =&gt; {
+    setElapsed(elapsed + delta);
+    // X start + (X offset) * X range
+    setX(100.0 + Math.cos(elapsed/50.0) * 100.0);
+  });
+
+  return (
+    {/* Create the application helper */}
+    &lt;Stage width={ 640 } height={ 360 }&gt;
+      {/* Create the sprite and add to stage */}
+      &lt;Sprite image={ &#x27;sample.png&#x27; } x={ x } y={ y } /&gt;
+    &lt;/Stage&gt;
+  );
+};
+
+export default Example;
+</code></pre>
+<h3>Application and <a href="https://reactpixi.org/stage" target="_blank">Stage</a></h3>
+<p>Options for the PixiJS <code>Application</code> can be passed in as <code>options={ {...} }</code>.</p>
+<h2>References</h2>
+<ol>
 <li><a href="https://www.pixijselementals.com/" target="_blank">https://www.pixijselementals.com/</a></li>
 <li><a href="https://pixijs.io/guides/basics/getting-started.html" target="_blank">https://pixijs.io/guides/basics/getting-started.html</a></li>
 <li><a href="https://www.npmjs.com/package/pixi.js" target="_blank">https://www.npmjs.com/package/pixi.js</a></li>
 <li><a href="https://pixijs.download/release/docs/index.html" target="_blank">https://pixijs.download/release/docs/index.html</a></li>
-</ul>
+<li><a href="https://reactpixi.org/" target="_blank">https://reactpixi.org/</a></li>
+<li><a href="https://codewithstein.com/how-to-handle-mouse-events-with-pixijs/" target="_blank">https://codewithstein.com/how-to-handle-mouse-events-with-pixijs/</a></li>
+</ol>
 
-<p class="last-modified">Last modified: 202110311539</p></article><article>            <h1>Object Destructuring (Javascript)</h1>
+<p class="last-modified">Last modified: 202111180407</p></article><article>            <h1>Object Destructuring (Javascript)</h1>
             <p>Object destructuring in <a href="javascript.html">Javascript</a> allows you to create constants from items within an object.</p>
 <h2>Example</h2>
 <pre><code class="language-javascript">const initialObject = {
@@ -9583,7 +9631,7 @@ export default App;
 <p>These examples are using Typescript for type annotations and clarity.</p>
 <h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
 <p>useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.</p>
-<p>In its most basic form (<a href="https://daveceddia.com/usecontext-hook/" target="_blank">taken from Dave Ceddia</a>):</p>
+<p>In its most basic form (taken from Dave Ceddia[2]):</p>
 <pre><code class="language-react">import React, { createContext } from &#x27;react&#x27;;
 
 // Create a Context
@@ -9675,8 +9723,8 @@ export function GlobalContext(props: any) {
   }: GlobalProps = props;
 
   return (
-    &lt;ExampleContext.Provider value={channelContextObject}&gt;
-      &lt;AnotherContext.Provider value={userContextObject}&gt;
+    &lt;ExampleContext.Provider value={exampleContextObject}&gt;
+      &lt;AnotherContext.Provider value={anotherContextObject}&gt;
         {props.children}
       &lt;/AnotherContext.Provider&gt;
     &lt;/ExampleContext.Provider&gt;
@@ -9797,8 +9845,8 @@ const testComponent = () =&gt; {
 <li><a href="https://daveceddia.com/usecontext-hook/" target="_blank">https://daveceddia.com/usecontext-hook/</a></li>
 </ol>
 <p>c</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111110434</p></article><article>            <h1><a href="proptypes.html">PropTypes</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="react.html">React</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111170537</p></article><article>            <h1><a href="proptypes.html">PropTypes</a></h1>
             <p>PropTypes are a way to add more strict typing, validation, and default values to props in <a href="react.html">React</a>.</p>
 <h2>Example</h2>
 <p>We have a Greeting component that takes in a prop called <code>name</code>:</p>
@@ -9909,7 +9957,7 @@ customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, locat
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ul>
-
+<section><details><summary>Backlinks</summary><ul><li><a href="react.html">React</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202111160646</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
             <p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
 <p>For React to work properly, you will need three things: </p>
@@ -10936,4 +10984,4 @@ Whatever <strong>meat substitutes</strong>, <strong>vegetables</strong>, and <st
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~589kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

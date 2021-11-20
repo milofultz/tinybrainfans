@@ -137,9 +137,10 @@ Instructions and Flags Reference:
 - http://www.obelisk.me.uk/6502/reference.html
 - https://retroscience.net/writing-6502-assembler.html
 - http://www.obelisk.me.uk/6502/registers.html#Z
+- https://csh.rit.edu/~moffitt/docs/6502.html
 
 Examples:
 
-- https://milofultz.com/2021/11/09/bubble-sort-6502
-- https://milofultz.com/2021/11/13/selection-sort-6502
+- https://github.com/milofultz/adventofcode2015/
+- https://milofultz.com/2021/11/14/sorting-in-6502
 - https://wiki.nesdev.org/w/index.php/Random_number_generator
