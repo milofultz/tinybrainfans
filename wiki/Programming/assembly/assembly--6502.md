@@ -137,7 +137,7 @@ Instructions and Flags Reference:
 - http://www.obelisk.me.uk/6502/reference.html
 - https://retroscience.net/writing-6502-assembler.html
 - http://www.obelisk.me.uk/6502/registers.html#Z
-- https://csh.rit.edu/~moffitt/docs/6502.html
+- https://cyborgsystems.loadcode.co.uk/cpu/6502/
 
 Examples:
 
