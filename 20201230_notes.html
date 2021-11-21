@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><title>20201230_notes</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">20201230_notes</h1>
+            <h1>Debugging</h1>
+<p>Programming is writing out a set of instructions for an interpreter to follow such that following those instructions will lead to solving a computational challenge.</p>
+<h2>Two sides of a bug</h2>
+<ol>
+<li>The <strong>cause</strong>: some line or lines where your code is written in a way that leads to problemns</li>
+<li>The <strong>symptoms</strong>: program state, output - An undesired program state or output that you expected to be different than what you see the computer producing. Could be a function manipulating data wrong or a variable holding unexpected values.</li>
+</ol>
+<h2>Different kinds of bugs</h2>
+<ul>
+<li>
+<strong>Syntactic error</strong>: Whether or not your plan was good, a typo makes code unreadable to your interpreter.<ul>
+<li>Symptom: Syntax error, program won't start</li>
+<li>Solution: go to line mentioned and fix typo</li>
+</ul>
+</li>
+<li>
+<strong>Semantic error</strong>: what you wrote did not do what you think it did. The interpreter used what you put, but  what you gave was not what you, or maybe what the interpreter, expected.<ul>
+<li>Symptom: usually an error thrown later in the program, usually not where you wrote the error</li>
+<li>Solution: Find the misstatement in your code</li>
+</ul>
+</li>
+<li>
+<strong>Logical error</strong>: The step by step plan you developed for solving the problem is somewhat misconceptualized or vague.<ul>
+<li>Symptom: the program throws an exception or produces undeired output</li>
+<li>Solution: find the misconception in your plan</li>
+</ul>
+</li>
+</ul>
+<h2>Goalposting</h2>
+<p>This is a variant on Divide and Conquer. When experiencing a bug, the first step is to set goal posts around the code that could possibly be a problem. From whichever direction you believe is most beneficial, test if an area is acting as expected using logging or a debugger or whatever. If it is, the goal post may be moved to that area, as we know it is doing what we expect. You should not move the goal post past anything you have not yet tested.</p>
+
+<p class="last-modified">Last modified: 202107151447</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

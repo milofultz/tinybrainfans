@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="How to best test your React software, including components, API calls, etc."><title>React (Testing)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">React (Testing)</h1>
+            <h2>Testing Software</h2>
+<h3>Suites</h3>
+<p>The suite of choice is definitely <a href="https://jestjs.io/" target="_blank">Jest</a>, as Jest was built almost 100% specifically for the purpose of testing <a href="react.html">React</a> by Facebook who developed it). </p>
+<p>Next best would be <a href="https://mochajs.org/" target="_blank">Mocha</a>/<a href="https://www.chaijs.com/" target="_blank">Chai</a>, as these play nicer with <a href="mongoose.html">Mongoose</a> servers, as Mongoose doesn't play nice with the concurrency of <a href="https://jestjs.io/" target="_blank">Jest</a>.</p>
+<h3>Helper Libraries</h3>
+<p>I've found <a href="https://testing-library.com/docs/react-testing-library/intro/" target="_blank">React Testing Library</a> to handle most of my use cases, as it gives you a way to handle front-end testing like a user would, with mouse clicks, input entry, and searching for elements in the DOM. </p>
+<p><a href="https://enzymejs.github.io/enzyme/" target="_blank">Enzyme</a> is another alternative, but I have yet to try it out in a project.</p>
+<h2>Unit/Component Tests</h2>
+<h3>Rendering With No Props</h3>
+<p>To test components, an easy test to put in place before even getting started, in the spirit of <a href="test-driven-development.html">Test-Driven Development</a>, is a &quot;default&quot; rendering. This is a rendering of the component passing in no props whatsoever, which will give you a good idea of what will happen in the non-happy paths. </p>
+<p>This example is largely based off of <a href="https://rangle.io/blog/component-test-coverage/" target="_blank">this article</a>.</p>
+<p><code>Component.jsx</code></p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+
+export default function Component({ content, list }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Test&lt;/h1&gt;
+      &lt;p&gt;{content}&lt;/p&gt;
+      &lt;ul&gt;
+        {list.map(item =&gt; &lt;li&gt;{item}&lt;/li&gt;)}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<p>First we start off with our component, which without adding defaults would throw explicitly, as you can't map over <code>list</code> when <code>list</code> is <code>undefined</code>. There would also be an empty <code>&lt;p&gt;</code> element as an  <code>undefined</code> variable will render empty.</p>
+<p>So when we write our test, we should check for that unwanted text and ensure it won't show up in our output, as well as bypass that list error by using defaults. So when we write our test, lets write it as if those things are in place.</p>
+<p><code>Component.test.jsx</code></p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+import &#x27;@testing-library/jest-dom&#x27;;
+import {render, screen} from &#x27;@testing-library/react&#x27;;
+import Component from &#x27;../Component.jsx&#x27;;
+
+describe(&#x27;Testing Component&#x27;, () =&gt; {
+  it(&#x27;should render without any props passed in&#x27;, () =&gt; {
+    // Render component with nothing passed in.
+    // This will throw if any outright JS errors crop up.
+    render(&lt;Component /&gt;);
+    // Check for elements rendering empty from no content
+    // (Must use `queryBy` or else it will throw)
+    const undefinedContent = screen.queryByTestId(&#x27;content&#x27;);
+    expect(undefinedContent).toBeNull();
+    // Check that the list is empty
+    const emptyList = screen.getByRole(&#x27;list&#x27;);
+    expect(emptyList).toBeInTheDocument();
+    expect(emptyList.children.length).toBe(0);
+  });
+});
+
+</code></pre>
+<p>With these tests in place, the tests will error out until the defaults are put in place. So with these additions, we can make our component a little more robust right off of the bat:</p>
+<p><code>Component.jsx</code></p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+
+export default function Component({ content, list }) {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Test&lt;/h1&gt;
+      {content &amp;&amp; &lt;p data-testid=&quot;content&quot;&gt;{content}&lt;/p&gt;}
+      &lt;ul&gt;
+        {list.map((item, index) =&gt; &lt;li key={index}&gt;{item}&lt;/li&gt;)}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  )
+}
+
+Component.defaultProps = {
+  list: [],
+};
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://rangle.io/blog/component-test-coverage/" target="_blank">https://rangle.io/blog/component-test-coverage/</a></li>
+<li><a href="https://www.chaijs.com/" target="_blank">https://www.chaijs.com/</a></li>
+<li><a href="https://mochajs.org/" target="_blank">https://mochajs.org/</a></li>
+<li><a href="https://jestjs.io/" target="_blank">https://jestjs.io/</a></li>
+<li><a href="https://testing-library.com/docs/react-testing-library/intro/" target="_blank">https://testing-library.com/docs/react-testing-library/intro/</a></li>
+<li><a href="https://enzymejs.github.io/enzyme/" target="_blank">https://enzymejs.github.io/enzyme/</a> </li>
+<li><a href="https://stackoverflow.com/questions/52783144/how-do-you-test-for-the-non-existence-of-an-element-using-jest-and-react-testing" target="_blank">https://stackoverflow.com/questions/52783144/how-do-you-test-for-the-non-existence-of-an-element-using-jest-and-react-testing</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202110181350</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

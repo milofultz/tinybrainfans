@@ -1,0 +1,99 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="PixiJS is an HTML5 graphical engine built in Javascript."><title>PixiJS</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">PixiJS</h1>
+            <p>PixiJS is an <a href="html.html">HTML5</a> graphical engine built in <a href="javascript.html">Javascript</a>. </p>
+<h2>Getting Started</h2>
+<p>Create an <code>index.html</code> file and populate it with the following:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Import the most recent PixiJS --&gt;
+  &lt;script src=&quot;https://pixijs.download/release/pixi.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // Create the application helper
+    let app = new PIXI.Application({ width: 640, height: 360 });
+    // Add the Application&#x27;s `view` to the body
+    document.body.appendChild(app.view);
+
+    // Create the sprite
+    let sprite = PIXI.Sprite.from(&#x27;sample.png&#x27;);
+    // Add the sprite instance to the `stage` (a Container instance)
+    app.stage.addChild(sprite);
+
+    // Add a ticker callback to move the sprite back and forth
+    let elapsed = 0.0;
+    app.ticker.add((delta) =&gt; {
+      elapsed += delta;
+      // X start + (X offset) * X range
+      sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Substitute <code>sample.png</code> with whatever image you want. Know that if the intrinsic size is larger than the canvas, you may not see it.</p>
+<h2>Syntax</h2>
+<p>The major components can be found and explained <a href="https://pixijs.io/guides/basics/architecture-overview.html" target="_blank">here</a> and in the <a href="https://pixijs.download/release/docs/index.html" target="_blank">API docs</a></p>
+<h2>React-Pixi</h2>
+<p><a href="https://reactpixi.org/" target="_blank">React-Pixi</a> adds declarative styling for use with <a href="react.html">React</a>. Using the above example:</p>
+<p><strong>Normal PixiJS</strong></p>
+<pre><code class="language-javascript">// Create the application helper
+let app = new PIXI.Application({ width: 640, height: 360 });
+// Add the Application&#x27;s `view` to the body
+document.body.appendChild(app.view);
+
+// Create the sprite
+let sprite = PIXI.Sprite.from(&#x27;sample.png&#x27;);
+// Add the sprite instance to the `stage` (a Container instance)
+app.stage.addChild(sprite);
+
+// Add a ticker callback to move the sprite back and forth
+let elapsed = 0.0;
+app.ticker.add((delta) =&gt; {
+  elapsed += delta;
+  // X start + (X offset) * X range
+  sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
+});
+</code></pre>
+<p><strong>With React-Pixi</strong></p>
+<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
+import { Sprite, Stage, useTick } from &#x27;@inlet/react-pixi&#x27;;
+
+const Example = () =&gt; {
+  const [x, setX] = useState(0);
+  const [elapsed, setElapsed] = useState(0.0);
+
+  useTick(delta =&gt; {
+    setElapsed(elapsed + delta);
+    // X start + (X offset) * X range
+    setX(100.0 + Math.cos(elapsed/50.0) * 100.0);
+  });
+
+  return (
+    {/* Create the application helper */}
+    &lt;Stage width={ 640 } height={ 360 }&gt;
+      {/* Create the sprite and add to stage */}
+      &lt;Sprite image={ &#x27;sample.png&#x27; } x={ x } y={ y } /&gt;
+    &lt;/Stage&gt;
+  );
+};
+
+export default Example;
+</code></pre>
+<h3>Application and <a href="https://reactpixi.org/stage" target="_blank">Stage</a></h3>
+<p>Options for the PixiJS <code>Application</code> can be passed in as <code>options={ {...} }</code>.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.pixijselementals.com/" target="_blank">https://www.pixijselementals.com/</a></li>
+<li><a href="https://pixijs.io/guides/basics/getting-started.html" target="_blank">https://pixijs.io/guides/basics/getting-started.html</a></li>
+<li><a href="https://www.npmjs.com/package/pixi.js" target="_blank">https://www.npmjs.com/package/pixi.js</a></li>
+<li><a href="https://pixijs.download/release/docs/index.html" target="_blank">https://pixijs.download/release/docs/index.html</a></li>
+<li><a href="https://reactpixi.org/" target="_blank">https://reactpixi.org/</a></li>
+<li><a href="https://codewithstein.com/how-to-handle-mouse-events-with-pixijs/" target="_blank">https://codewithstein.com/how-to-handle-mouse-events-with-pixijs/</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202111180407</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

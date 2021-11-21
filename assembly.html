@@ -1,0 +1,247 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding machine code."><title>Assembly</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Assembly</h1>
+            <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
+<p>If you are just getting started with assembly, I highly recommend you get started by first checking out the <a href="paper-computing.html">paper computing</a> page to get familiar with the foundations and fundamentals of assembly language.</p>
+<h2>Compilation and Linking</h2>
+<p>For more specifics, visit the <a href="assembly-unix.html">OSX</a> and <a href="assembly-windows.html">Windows</a> assembly pages. </p>
+<p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a> for <a href="unix.html">Unix</a> systems and <a href="https://www.masm32.com" target="_blank">masm</a> for <a href="windows.html">Windows</a> systems.</p>
+<p>After you have written your code, you will need to assemble your code, translating it from the human readable assembly language into a file object.</p>
+<p>You will then need to <a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">link</a> your newly created output file. This will pull all the needed libraries into a single executable. </p>
+<h2>Syntax and Keywords</h2>
+<h3>Operators</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mov</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>y</em></td>
+</tr>
+<tr>
+<td><code>and</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> &amp; <em>y</em></td>
+</tr>
+<tr>
+<td><code>or</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> | <em>y</em></td>
+</tr>
+<tr>
+<td><code>xor</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> ^ <em>y</em></td>
+</tr>
+<tr>
+<td><code>add</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> + <em>y</em></td>
+</tr>
+<tr>
+<td><code>sub</code> <em>x</em>, <em>y</em></td>
+<td><em>x</em> ← <em>x</em> – <em>y</em></td>
+</tr>
+<tr>
+<td><code>mul</code> <em>x</em></td>
+<td><em>EAX</em> ← <em>EAX</em> * <em>x</em></td>
+</tr>
+<tr>
+<td><code>div</code> <em>x</em></td>
+<td><em>EAX</em> ← <em>EAX</em> ÷ <em>x</em></td>
+</tr>
+<tr>
+<td><code>inc</code> <em>x</em></td>
+<td><em>x</em> ← <em>x</em> + 1</td>
+</tr>
+<tr>
+<td><code>dec</code> <em>x</em></td>
+<td><em>x</em> ← <em>x</em> – 1</td>
+</tr>
+</tbody></table><h3>Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cmp</code> <em>x</em>, <em>y</em></td>
+<td>Set the</td>
+</tr>
+<tr>
+<td><code>jmp</code> <em>label</em></td>
+<td>When this line is reached, jump to the line labeled <em>label</em></td>
+</tr>
+<tr>
+<td><code>je</code> <em>label</em> / <code>jz</code> <em>label</em></td>
+<td>When <code>ZF</code> is 0, jump to <em>label</em></td>
+</tr>
+<tr>
+<td><code>jne</code> <em>label</em> / <code>jnz</code> <em>label</em></td>
+<td>When <code>ZF</code> is NOT 0, jump to <em>label</em></td>
+</tr>
+</tbody></table><h3><a href="http://www.nasm.us/xdoc/2.11.02/html/nasmdoc3.html#section-3.2" target="_blank">Pseudo-instructions</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>syscall</code></td>
+<td>Invoke an operating system routine</td>
+</tr>
+<tr>
+<td><code>db</code></td>
+<td>A pseudo-instruction that declares bytes that will be in memory when the program runs</td>
+</tr>
+</tbody></table><h3><code>section</code></h3>
+<p>A section is an assembler directive that tells the assembler what kind of code follows. Generally, you put code in a section called <code>.text</code> and your constant data in a section called <code>.data</code>.</p>
+<h2>Registers</h2>
+<h3>32-Bit General Purpose</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EAX</td>
+<td>Accumulator Register</td>
+<td>calculations for operations and results data</td>
+</tr>
+<tr>
+<td>EBX</td>
+<td>Base Register</td>
+<td>pointer to data in the DS segment</td>
+</tr>
+<tr>
+<td>ECX</td>
+<td>Count Register</td>
+<td>counter for string and loop operations</td>
+</tr>
+<tr>
+<td>EDX</td>
+<td>Data Register</td>
+<td>input/output pointer</td>
+</tr>
+<tr>
+<td>ESI</td>
+<td>Source Index</td>
+<td>source pointer for string operations</td>
+</tr>
+<tr>
+<td>EDI</td>
+<td>Destination Index</td>
+<td>destination pointer for string operations</td>
+</tr>
+<tr>
+<td>ESP</td>
+<td>Stack Pointer</td>
+<td>stack pointer, <strong>should not be used</strong></td>
+</tr>
+<tr>
+<td>EBP</td>
+<td>Base Pointer</td>
+<td>pointer to data on the stack</td>
+</tr>
+</tbody></table><h3>16-Bit Segment</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS</td>
+<td>Code Segment</td>
+<td>where instructions being executed are stored</td>
+</tr>
+<tr>
+<td>DS, ES, FS, GS</td>
+<td>Data Segment</td>
+<td>data segment</td>
+</tr>
+<tr>
+<td>SS</td>
+<td>Stack Segment</td>
+<td>where the stack for the current program is stored</td>
+</tr>
+</tbody></table><h3>32-Bit Other</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EFLAGS</td>
+<td>Code Segment</td>
+<td>status, control, and system flags</td>
+</tr>
+<tr>
+<td>EIP</td>
+<td>Instruction Pointer</td>
+<td>offset for the next instruction to be executed</td>
+</tr>
+</tbody></table><h2>Flags</h2>
+<h3>Carry Flag (<code>CF</code>)</h3>
+<p>The carry flag is set to 1 (true) when the second operand of an operation is smaller than the first. For example if you <code>cmp 2 1</code>, the result will be a <code>CF</code> of 1 (true), since 1 - 2 goes negative, meaning that the first operand is larger than the first.</p>
+<h3>Overflow Flag (<code>OF</code>)</h3>
+<p>The overflow flag will be set to 1 (true) if the operation overflows beyond the bounds of the integers and their storage. This could happen if you are dealing with numbers that go beyond the boundaries involved (e.g. adding two numbers that go above 256 with an 8-bit unsigned integer, or adding two 8-bit unsigned integers that go beyond 128).</p>
+<h3>Sign Flag (<code>SF</code>)</h3>
+<p>The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.  </p>
+<h3>Zero Flag (<code>ZF</code>)</h3>
+<p>The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.</p>
+<h2>Stack</h2>
+<p>The <a href="stack-programming.html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
+<p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
+<pre><code class="language-assembly">push 3
+pop eax
+ret
+</code></pre>
+<p>This will push three values to the stack <strong>in reverse order of what the function expects, because LIFO</strong>, and then invokes the function, which will use those values.</p>
+<pre><code class="language-assembly">push [var] ; Push last parameter first
+push 216   ; Push the second parameter
+push eax   ; Push first parameter last
+
+call _myFunc ; Call the function (assume C naming)
+
+add esp, 12  ; Flush the three 4 byte values on the stack by 
+      ; adding 12 to the stack pointer
+</code></pre>
+<h2>Games</h2>
+<p>There are lots of games that have recently come out to make assembly a little more accessible. Here are the references I have found and heard about from others:</p>
+<ul>
+<li><a href="https://store.steampowered.com/app/504210/SHENZHEN_IO/" target="_blank">Shenzhen IO</a></li>
+<li><a href="https://store.steampowered.com/app/370360/TIS100/" target="_blank">TIS-100</a></li>
+<li><a href="https://store.steampowered.com/app/375820/Human_Resource_Machine/" target="_blank">Human Resource Machine</a></li>
+<li><a href="https://store.steampowered.com/app/792100/7_Billion_Humans/" target="_blank">7 Billion Humans</a></li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm</a></li>
+<li><a href="https://www.youtube.com/watch?v=qhkEOyK1ek0" target="_blank">https://www.youtube.com/watch?v=qhkEOyK1ek0</a></li>
+<li><a href="https://www.youtube.com/watch?v=wLXIWKUWpSs" target="_blank">https://www.youtube.com/watch?v=wLXIWKUWpSs</a></li>
+<li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
+<li><a href="https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html" target="_blank">https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html</a></li>
+<li><a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html" target="_blank">https://www.cs.virginia.edu/~evans/cs216/guides/x86.html</a></li>
+<li><a href="https://www.hellboundhackers.org/articles/read-article.php?article_id=729" target="_blank">https://www.hellboundhackers.org/articles/read-article.php?article_id=729</a></li>
+<li><a href="https://www.chibialiens.com/8086/8086CheatSheet.pdf" target="_blank">https://www.chibialiens.com/8086/8086CheatSheet.pdf</a></li>
+<li><a href="https://www.chibialiens.com/8086/" target="_blank">https://www.chibialiens.com/8086/</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202109270029</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

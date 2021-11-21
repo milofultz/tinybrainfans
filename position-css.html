@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="The `position` property in CSS gives the developer control over the x-, y-, and z-axis in aligning elements."><title>Position (CSS)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Position (CSS)</h1>
+            <p>The <code>position</code> property in <a href="css.html">CSS</a> gives the developer control over the x-, y-, and z-axis in aligning elements.</p>
+<ul>
+<li><code>static</code> - This is the default position that a property will have if left unset. The equivalent of being unpositioned. This element will be in the standard flow of the document. This value is the only value that will not create a new stacking context (z-axis).</li>
+<li><code>relative</code> - A relatively positioned element will be in the standard flow of the document, but can be positioned <em>relative to</em> its current position (e.g. <code>top</code>, <code>left</code>, <code>bottom</code>, <code>right</code>). This offset doesn't affect other elements in flow. Space will still exist in flow for this element in it's original position, even if it is moved. <code>relative</code> can create a new stacking context if the <code>z-index</code> is not set to <code>auto</code>.</li>
+<li><code>absolute</code> - An absolutely positioned element will be out of the regular flow of the document and can be positioned according to the closest positioned (not static) parent element. No space will be made for it in the document. This can create a new stacking context if the <code>z-index</code> is not set to <code>auto</code>.</li>
+<li><code>fixed</code> - Like <code>absolute</code>, a fixed element will be removed from the standard flow and no space will be made. This will be positioned according to the box created by the browser's viewport. This will <strong>always</strong> create a new stacking context and will print on every document when printed.</li>
+<li><code>sticky</code> - This is positioned in a normal flow of a document, like <code>relative</code>, and then offset to it's nearest scrolling relative (i.e. has an <code>overflow</code> property set to a scrolling value). This will also always create a new stacking context.</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/position</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107020513</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

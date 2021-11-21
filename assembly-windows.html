@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Assembly on Windows utilizes masm, Microsoft's proprietary assembler and linker."><title>Assembly (Windows)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Assembly (Windows)</h1>
+            <p><a href="assembly.html">Assembly</a> on <a href="windows.html">Windows</a> utilizes <a href="https://masm32.com/" target="_blank">masm</a>, Microsoft's proprietary assembler and linker.</p>
+<h2>Compilation, Linking, and Execution</h2>
+<h3>Compiler</h3>
+<p>You will first need <a href="https://masm32.com/" target="_blank">masm</a> to compile your assembly into machine code. masm can be installed via the <a href="https://www.masm32.com/install.htm" target="_blank">MASM32 SDK</a>.</p>
+<h3>Your First Program</h3>
+<p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
+<pre><code class="language-assembly">.386                  ; Tell assembler to use the 386 instruction set
+.model flat, stdcall            ; Specify the flat memory model and use stdcall to pass parameters RtoL
+option casemap :none          ; Force case sensitivity
+
+include \masm32\include\windows.inc    ; Include Win32 API constants and defs
+include \masm32\include\kernel32.inc   ; Include ExitProcess
+include \masm32\include\masm32.inc     ; Include StdOut
+
+includelib \masm32\lib\kernel32.lib   ; The libraries necessary for the above includes to function
+includelib \masm32\lib\masm32.lib
+
+.data                   ; The section for all initialized data
+  HelloWorld db &quot;Hello World!&quot;, 0    ; definebyte HelloWorld to equal Hello World! plus a NUL char
+
+.code                    ; Starting point for program code
+start:                   ; All code must live between this and end start
+  invoke StdOut, addr HelloWorld    ; Run function StdOut with address of HelloWorld as the param 
+  invoke ExitProcess, 0         ; Invoke ExitProcess with 0 (success) as the parameter
+
+end start 
+</code></pre>
+<h3>Assembling Your Code</h3>
+<p>Assembling your code will translate it from the human readable assembly language into a file object. The following command will run masm and create output <code>hello_world.obj</code>.</p>
+<pre><code class="language-shell">\masm32\bin\ml /c /Zd /coff hello_world.asm
+</code></pre>
+<h3>Linking Your File</h3>
+<p><a href="https://en.wikipedia.org/wiki/Linker_%28computing%29" target="_blank">Linking</a> your newly created output file will pull all the needed libraries into a single executable. The following command will run Link, the masmlinker, and finish the creation of your executable.</p>
+<pre><code class="language-shell">\masm32\bin\Link /SUBSYSTEM:CONSOLE hello_world.obj
+</code></pre>
+<h3>Executing Your File</h3>
+<pre><code class="language-shell">hello_world.exe
+Hello, World!
+</code></pre>
+<p>Running <code>hello_world.exe</code>  in the command line should result in the message being displayed.</p>
+<h2>masm-specific Syntax</h2>
+<h3><code>invoke</code></h3>
+<p><code>invoke</code> is a special function in <a href="https://masm32.com/" target="_blank">masm</a> to call functions without having to push parameters beforehand.</p>
+<pre><code class="language-masm">invoke SendMessage, [hWnd], WM_CLOSE, 0, 0
+
+; equivalent to
+
+push 0
+push 0
+push WM_CLOSE
+push [hWnd]
+call [SendMessage]
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
+<li><a href="https://masm32.com/" target="_blank">https://masm32.com/</a> </li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202107112140</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

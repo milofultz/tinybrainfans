@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="ITCSS is a way to structure your CSS projects to minimize specificty issues and organizational problems."><title>Inverted Triangle CSS</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Inverted Triangle CSS</h1>
+            <p><a href="https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/" target="_blank">ITCSS</a> is a way to structure your <a href="css.html">CSS</a> projects to minimize specificty issues and organizational problems. ITCSS is not a naming convention.</p>
+<p>ITCSS is most effective when used with a preprocessor like <a href="sass.html">Sass</a>, <a href="less.html">Less</a>, etc.</p>
+<h2>Principles</h2>
+<p>The inverted triangle refers to how your <a href="css.html">CSS</a> project should be put together. At the beginning, we have the most far-reaching, least specific, and most generic styles possible. This includes variables, sitewide styles like font-settings, and <a href="css-reset.html">CSS resets</a>. As we go farther in the file, we get more localized, more specific, and more explicit styles. This includes component-specific styles and rules.</p>
+<h2>Layers</h2>
+<p>The inverted triangle has layers from top to bottom, representing the amount of reach each layer should have; the first layers have the most, decreasing their reach the farther down you go.</p>
+<p><strong>The first two layers should not generate any CSS on their own if being used with a preprocessor.</strong></p>
+<ol>
+<li>Settings - Variables</li>
+<li>Tools - Any mixins or functions that need to be globally available. If they don''t need to be globally available, they should go somewhere else.</li>
+<li>Generic - Includes Normalize, <a href="css-reset.html">resets</a>, box-sizing rules, etc.</li>
+<li>Elements - These are the styles that refer to unclassed HTML elements. Changing the font-size of headings, the focus styles on inputs, or default anchor and link behavior.</li>
+<li>Objects - Undecorated design patterns, like wrappers, containers, rows, grids, etc.</li>
+<li>Components - Specific UI components. Most of our styling should go here, as most UI components should be composed of objects and components.</li>
+<li>Utilities (Trumps) - Anything that should be able to override the previous styles.</li>
+</ol>
+<h2>BEMIT</h2>
+<p>This framework can be combined with <a href="bem.html">BEM</a> to make the <a href="html.html">HTML</a> more readable for the developer. Using the standard Block, Element (<code>__</code>), Modifier (<code>--</code>) syntax, we can also use prefixes and suffixes to make their functionality more clear.</p>
+<h3>Prefixes</h3>
+<ul>
+<li><code>o-</code> - Object</li>
+<li><code>c-</code> - Component</li>
+<li><code>u-</code> - Utility/Trump</li>
+<li><code>is-</code>/<code>has-</code> - State</li>
+<li><code>js-</code> - Javascript hook</li>
+<li><code>_</code> - Outright hacks</li>
+</ul>
+<h3>Suffixes</h3>
+<ul>
+<li><code>@</code> - Responsive media or print queries (need to escape @ in CSS with <code>\@</code>)</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.freecodecamp.org/news/managing-large-s-css-projects-using-the-inverted-triangle-architecture-3c03e4b1e6df/" target="_blank">https://www.freecodecamp.org/news/managing-large-s-css-projects-using-the-inverted-triangle-architecture-3c03e4b1e6df/</a></li>
+<li><a href="https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/" target="_blank">https://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/</a></li>
+<li><a href="http://www.jamesturneronline.net/blog/bemit-naming-convention.html" target="_blank">http://www.jamesturneronline.net/blog/bemit-naming-convention.html</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107020524</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

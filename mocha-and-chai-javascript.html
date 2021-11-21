@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Mocha is a Javascript test framework for use with Node, and Chai is an assertion library."><title>Mocha and Chai (Javascript)</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Mocha and Chai (Javascript)</h1>
+            <p>Mocha is a <a href="javascript.html">Javascript</a> <a href="testing-programming.html">test</a> framework for use with <a href="node.html">Node</a>, and Chai is an assertion library.</p>
+<p>Another common library to use with Mocha is <a href="https://github.com/istanbuljs/nyc" target="_blank">nyc</a>, which allows you to get a code coverage readout. You can use this by <code>npm i nyc</code> and then adding it to your <code>package.json</code> as a script: <code>&quot;coverage&quot;: &quot;nyc npm run test&quot;</code>.</p>
+<h2>Quick Start</h2>
+<p>Install Mocha and Chai using <code>npm i --save-dev mocha chai</code>.</p>
+<p>In your <code>package.json</code>, replace the value of the <code>&quot;test&quot;</code> property within <code>&quot;scripts&quot;</code> with <code>&quot;mocha ./path/to/tests&quot;</code>, inserting the path to your tests. </p>
+<p>Create a file called <code>example.js</code> within your test folder. Place this inside:</p>
+<pre><code class="language-javascript">const assert = require(&#x27;chai&#x27;).assert;
+
+describe(&#x27;Sum&#x27;, () =&gt; {
+  it(&#x27;should add 2 and 2 to equal 4&#x27;, () =&gt; {
+    assert.equal(2 + 2, 4);
+  });
+});
+</code></pre>
+<p>Save this file and in your terminal, run <code>npm run test</code>. This should render a screen showing a test, &quot;should add 2 and 2 to equal 4&quot;, passing within the &quot;Sum&quot; section.</p>
+<h2>Assert</h2>
+<p>All are assumed to start with <code>assert</code>.</p>
+<h3>Comparison</h3>
+<p>Invoked with <code>(actual, expected)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Chain</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.equal</code>, <code>.notEqual</code></td>
+<td>Non-strict equality (<code>==</code>)</td>
+</tr>
+<tr>
+<td><code>.deepEqual</code>, <code>.notDeepEqual</code></td>
+<td>Strict equality (<code>===</code>), also used for objects</td>
+</tr>
+</tbody></table><h3>Simple</h3>
+<p>All are accompanied with a negative assertion, e.g. <code>.isX</code>/ <code>.isNotX</code>.</p>
+<ul>
+<li><code>.exists(x)</code></li>
+<li><code>.include([x,y,z], x)</code> </li>
+<li><code>.deepInclude([obj1, obj2], obj1)</code></li>
+<li>Every primitive (<code>.isNumber</code>, <code>.isBoolean</code>, <code>isTrue</code>, etc.)</li>
+</ul>
+<h2>Asynchronous Tests</h2>
+<h2>References</h2>
+<ol>
+<li><a href="https://mochajs.org/" target="_blank">https://mochajs.org/</a></li>
+<li><a href="https://www.chaijs.com/" target="_blank">https://www.chaijs.com/</a></li>
+<li><a href="https://www.chaijs.com/api/assert/" target="_blank">https://www.chaijs.com/api/assert/</a></li>
+<li><a href="https://gist.github.com/yoavniran/1e3b0162e1545055429e#jest" target="_blank">https://gist.github.com/yoavniran/1e3b0162e1545055429e#jest</a></li>
+<li><a href="https://www.testim.io/blog/testing-promises-using-mocha/" target="_blank">https://www.testim.io/blog/testing-promises-using-mocha/</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107230513</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

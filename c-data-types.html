@@ -1,0 +1,93 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="The different data types in C all have their own characteristics."><title>C Data Types</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">C Data Types</h1>
+            <p>The different data types in <a href="c.html">C</a> all have their own characteristics.</p>
+<p>Since C is strongly typed, certain actions that are intuitive in <a href="javascript.html">Javascript</a> or <a href="python.html">Python</a> may not yield the results you wanted. For instance, if you have variable <code>int x</code> and you try and initialize it with a fractional number, the fractional part will be discarded since <code>x</code> stores an <code>int</code>.</p>
+<p><a href="arrays-c.html">Arrays</a> are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>.</p>
+<p><em>The following list is only what I've used most and by no means a complete list. <a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">Look at the Wikipedia page for more info</a>.</em></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Bits</th>
+<th>Limits</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>char</code></td>
+<td>8</td>
+<td>-127, +127</td>
+<td><code>%c</code></td>
+<td>Used for characters within strings (array of chars)</td>
+</tr>
+<tr>
+<td>signed short <code>int</code></td>
+<td>16</td>
+<td>-32,767, +32,767</td>
+<td><code>%i</code></td>
+<td>Used for numbers and traversing data from stdin</td>
+</tr>
+<tr>
+<td>unsigned short <code>int</code></td>
+<td>16</td>
+<td>0, +65,535</td>
+<td><code>%u</code></td>
+<td></td>
+</tr>
+<tr>
+<td>signed <code>int</code></td>
+<td>16</td>
+<td>-2,147,483,648, +2,147,483,647</td>
+<td><code>%i</code></td>
+<td></td>
+</tr>
+<tr>
+<td>unsigned <code>int</code></td>
+<td>32</td>
+<td>0, +4,294,967,295</td>
+<td><code>%i</code></td>
+<td></td>
+</tr>
+<tr>
+<td>signed long <code>int</code></td>
+<td>64</td>
+<td>-9,223,372,036,854,775,808, +9,223,372,036,854,775,807</td>
+<td><code>%li</code></td>
+<td></td>
+</tr>
+<tr>
+<td>unsigned long <code>int</code></td>
+<td>64</td>
+<td>0, +18,446,744,073,709,551,615</td>
+<td><code>%lu</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>32</td>
+<td>n/a</td>
+<td><code>%f</code></td>
+<td>Use for floating point numbers</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>64</td>
+<td>n/a</td>
+<td><code>%lf</code></td>
+<td>Use for really long floating point numbers</td>
+</tr>
+</tbody></table><h2>Signed/Unsigned</h2>
+<p>Unsigned numbers are always zero or higher and will have a range of 0 to (2^n) - 1. Signed numbers are negative or positive and have a range of -(2^n-1) to (2^n-1) - 1.</p>
+<h2>Int</h2>
+<p><code>int</code>'s can be <code>short</code> or <code>long</code>. Each processor has their own limitations they will choose, but <code>short</code> is always smaller than <code>long</code>, <code>short</code> must be at least 16 bits, and <code>long</code> must be at least 32 bits. It is usually the case that <code>short</code> is 16 bits and <code>long</code> is 32 bits, but the real value on your processor can be found as symbolic constants within the <code>&lt;limits.h&gt;</code> header.</p>
+<p><code>int</code> values can be represented as standard decimal (<code>123</code>), octal (<code>0173</code>), or as hexadecimal (<code>0x7B</code>).</p>
+<h2>Float</h2>
+<p>The type <code>long double</code> represents extended-precision floating point. The processor decides the final size of floats and the real values can be found as symbolic constants within the <code>&lt;float.h&gt;</code> header.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">https://en.wikipedia.org/wiki/C_data_types</a></li>
+</ul>
+
+<p class="last-modified">Last modified: 202108011853</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

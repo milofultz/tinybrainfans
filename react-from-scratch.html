@@ -1,0 +1,123 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Learn how React works by building it without the create-react-app framework."><title>React from Scratch</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">React from Scratch</h1>
+            <p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
+<p>For React to work properly, you will need three things: </p>
+<ul>
+<li><a href="babel.html">Babel</a> - This is a transpiler that will allow you to use JSX within your components and make your site usable to clients that do not have ES6 functionality available.</li>
+<li><a href="webpack.html">Webpack</a> - This is a compiler that will take all of your modules, styles, etc. and put them together.</li>
+<li><a href="react.html">React</a> - This is the meat and potatoes that will render your page, let you use state, hooks, etc.</li>
+</ul>
+<p>The easiest way to do this is with <a href="https://create-react-app.dev/" target="_blank">create-react-app</a>. But if you want to know how it works:</p>
+<h2>Get all your parts</h2>
+<ul>
+<li>
+<p>Initialize a new <a href="npm.html">npm</a> project with <code>npm init</code>. You can skip all the questions with the <code>-y</code> flag.</p>
+</li>
+<li>
+<p>Install <code>babel</code> in your development dependencies:
+<code>npm install --save-dev @babel/core @babel/preset-env @babel/preset-react</code>. </p>
+<ul>
+<li><em>@babel/core —</em> This contains the babel core configuration, </li>
+<li><em>@babel/preset-env —</em> This contains different plugins, the most important of which transforms all  ES2015-ES2020 code to be ES5 compatible (the one JavaScript version where almost all browsers implement)</li>
+<li><em>@babel/preset-react —</em> This contains different plugins to enable React syntax parsing and transformation.</li>
+</ul>
+</li>
+<li>
+<p>Install <code>babel-loader</code> for webpack to use:
+<code>npm install --save-dev babel-loader</code></p>
+<ul>
+<li>To transform our code, we will use a package called <code>babel-loader</code>. <code>babel-loader</code> will allow us to transpile our JavaScript file using babel and webpack.</li>
+</ul>
+</li>
+<li>
+<p>Install <code>webpack</code> in your development dependencies:
+<code>npm install --save-dev webpack webpack-cli webpack-dev-server</code></p>
+<ul>
+<li><em>webpack —</em> the core webpack functionality package. </li>
+<li><em>webpack-cli —</em> this package is necessary to use the CLI.</li>
+<li><em>webpack-dev-server —</em> this is for the dev server that allows live reloading</li>
+</ul>
+</li>
+<li>
+<p>Install <code>react</code> in your project.
+<code>npm install react react-dom</code></p>
+</li>
+<li>
+<p>Create the <code>public</code>-facing folder for the client, and an <code>app.js</code> within a sibling <code>src</code> folder</p>
+</li>
+</ul>
+<h2>Make your webpack config and babel config</h2>
+<p>In the root folder, create a <code>webpack.config.js</code> file that pulls in the node <code>path</code> module. This is where you will be putting your entry and output points in your webpack builders. (TA: Search 'webpack configuration' and you should be reminded of all the things you need.)</p>
+<pre><code class="language-javascript">const path = require(&#x27;path&#x27;);
+
+module.exports = {
+  entry: &#x27;.src/app.js&#x27;,     // which file your app will be pulling the data from for it&#x27;s dependency graph
+  output: {
+    filename: &#x27;bundle.js&#x27;,  // the name of the file it will output the bundle to
+    path: path.join(__dirname, &#x27;public&#x27;),  // the output folder fo your bundles
+  },
+  module: {  // determines which loader to use
+    rules: [{
+      loader: &#x27;babel-loader&#x27;,
+      test: /\.jsx?$/,            // transform js files
+      exclude: /node_modules/,  // but not node_modules
+    }]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, &#x27;public&#x27;), // where to serve from when running the webpack dev server
+  }
+}
+</code></pre>
+<p>In the root folder, create a file called <code>babel.config.json</code>. (TA: Search for 'babel config' and you should be able to find everything you need.)</p>
+<pre><code class="language-json">{
+  &quot;presets&quot;: [
+    &quot;@babel/preset-env&quot;,
+    &quot;@babel/preset-react&quot;
+  ]
+}
+</code></pre>
+<p><code>babel-loader</code> will try to find the babel configuration file —this <code>babel.config.json</code>. The code in this file instructs <code>babel-loader</code> to use <code>@babel/preset-env</code> and <code>@babel/preset-react</code> presets that we have installed earlier when transpiling our code.</p>
+<p>Add scripts in package.json for running webpack</p>
+<pre><code class="language-json">&quot;scripts&quot;: {
+  &quot;build&quot;: &quot;webpack&quot;,
+  &quot;start&quot;: &quot;webpack serve&quot;, 
+  &quot;watch&quot;: &quot;webpack --watch&quot;
+}
+</code></pre>
+<h2>Create your documents</h2>
+<p>In <code>public</code>, make the html page you will inject into. This needs to have the injection point as well as the webpack bundle.</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Test&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+    &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>In <code>src</code>, create the React JS page that will inject your app into the <code>root</code> div.</p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+import ReactDOM from &#x27;react-dom&#x27;;
+
+const App = () =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Wow! This is some stuff.&lt;/h1&gt;
+    &lt;/div&gt;
+  )
+}
+
+ReactDOM.render(
+  &lt;App /&gt;, 
+  document.getElementById(&#x27;root&#x27;)
+);
+</code></pre>
+<p>Test it out by running <code>npm run start</code> and checking it in a browser.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490" target="_blank">https://medium.com/swlh/back-to-basics-how-to-set-up-a-react-app-from-scratch-2020-134908e17490</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="react.html">React</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202107081809</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

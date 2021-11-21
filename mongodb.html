@@ -1,0 +1,205 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="MongoDB is a NoSQL database management system based on Javascript using documents similar to JSON."><title>MongoDB</title><link rel="stylesheet" href="./styles.css"></head><body>
+<main id="main"><article id="content">            <h1 id="title">MongoDB</h1>
+            <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system based on <a href="javascript.html">Javascript</a> using documents similar to <a href="json.html">JSON</a>.</p>
+<h2>Getting Started</h2>
+<p>This will start a new project using your local server and <a href="mongoose.html">mongoose</a> via <a href="node.html">node</a>.</p>
+<h3>Local Machine</h3>
+<p>Install MongoDB using <code>brew services install mongodb-community</code>. Once installed, you can start your local server using <code>brew services start mongodb-community</code> (Be sure to stop the server when completed with your work using <code>brew services stop mongodb-community</code>).</p>
+<p>In the terminal, start the mongo shell: <code>mongo</code>.</p>
+<h3>Database</h3>
+<p>Creating a new database is done when a query is made.</p>
+<h3>Node</h3>
+<p>Create a new folder and initialize a new node project using <a href="npm.html">npm</a>: <code>npm init -y</code>. Then install <code>npm i mongoose</code>.</p>
+<p>Create a new file called <code>server.js</code> and copy this into the contents:</p>
+<pre><code class="language-javascript">  const mongoose = require(&#x27;mongoose&#x27;);                // import Mongoose
+mongoose.connect(&#x27;mongodb://localhost:27017/test&#x27;, { // create connection to localhost
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+db.on(&#x27;error&#x27;, console.error.bind(console, &#x27;connection error:&#x27;));
+db.once(&#x27;open&#x27;, function() {                            // Inside here is where the action happens
+  // Create schema for collection
+  const kittySchema = new mongoose.Schema({
+    name: String,
+    color: {
+      type: String,
+      enum: [&#x27;brown&#x27;, &#x27;orange&#x27;],
+    },
+  });
+  const Cat = mongoose.model(&#x27;Cat&#x27;, { name: String }); 
+
+  const kitty = new Cat({ 
+    name: &#x27;Zildjian&#x27;,
+    color: &#x27;orange&#x27;
+  });         // Create a new document of Cat
+  console.log(kitty.name);                             // &#x27;Zildjian&#x27;
+  kitty.save()
+    .then(() =&gt; console.log(&#x27;meow&#x27;));                   // Save the new document in the Cat collection
+});
+</code></pre>
+<p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
+<h2>Indexes</h2>
+<p>If your collection does not have an index, your query could take a very long time, as it will have to scan every single document within your collection and analyze it to see if it matches your query.</p>
+<pre><code class="language-mongosh">// create an index in collectionName from highest score to lowest
+db.collectionName.createIndex( { score: -1 } )
+</code></pre>
+<h2>Import and Export</h2>
+<h3><a href="https://docs.mongodb.com/database-tools/mongoexport" target="_blank"><code>mongoexport</code></a>: Export <a href="json.html">JSON</a> or <a href="csv.html">CSV</a></h3>
+<pre><code class="language-bash">$ mongoexport --db=dbName --collection=collectionName --out=filename.json
+</code></pre>
+<p>When you export in CSV format, you must specify the fields in the documents to export.</p>
+<pre><code class="language-bash"># for CSV etc.
+$ mongoexport --db=dbName --collection=collectionName --fields=name,address --out=filename.json
+</code></pre>
+<h3><a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a>: Import <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a></h3>
+<p>Use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> to bring in Extended <a href="json.html">JSON</a>, <a href="csv.html">CSV</a>, or <a href="tsv.html">TSV</a> files to your Mongo database. First, start up your database, and then use <a href="https://docs.mongodb.com/database-tools/mongoimport/" target="_blank"><code>mongoimport</code></a> in the command line:</p>
+<pre><code class="language-bash">#             use the PetHotel db      use header line as field names
+$ mongoimport --db=PetHotel --type=csv --headerline --file=pets.csv
+
+# If no header line is availabe:       list them out after the --fields option
+$ mongoimport --db=PetHotel --type=csv --fields=_id,name,type --file=pets.csv
+</code></pre>
+<h4>Types</h4>
+<p>You can specify the <a href="https://docs.mongodb.com/database-tools/mongoimport/#std-option-mongoimport.--columnsHaveTypes" target="_blank">types</a> of the columns within the header line of your CSV.</p>
+<pre><code class="language-csv">id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+1,&quot;This product was great!&quot;,true,8
+</code></pre>
+<pre><code class="language-bash">$ mongoimport --db=PetHotel --type=csv --headerline --columnsHaveTypes --file=pets.csv
+</code></pre>
+<h4>Null Values</h4>
+<p>If you have null values in your CSV, you can remove these <code>null</code> values between two commas (or after one if at the end of a line) and tell mongoimport to <code>--ignoreBlanks</code>. This won't import null values, but when interacting with your database, you can use the <a href="https://docs.mongodb.com/manual/reference/operator/query/exists/#mongodb-query-op.-exists" target="_blank"><code>$exists</code></a> query operator to query for them and <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/#mongodb-expression-exp.-ifNull" target="_blank"><code>$ifNull</code> </a> to cast missing fields as <code>null</code> in an aggregation pipeline.</p>
+<p>In the below example, the summary is null, but we still want it to accept strings.</p>
+<pre><code class="language-csv">id.int32(),summary.string(),recommend.boolean(),helpfulness.int32()
+1,null,true,8
+</code></pre>
+<p>If we were to import this as is, we would end up with a summary field containing an empty string. After replacing the <code>,null,</code> with <code>,,</code> and using <code>--ignoreBlanks</code> on import, this field ends up missing, which is the desired behavior. </p>
+<p>To query for fields that have a missing of <code>null</code> field:</p>
+<pre><code class="language-mongosh">&gt; db.collection_name.find({ summary: { $exists: false }})
+</code></pre>
+<p>And to get the field back with a <code>null</code> value in the place of that missing field:</p>
+<pre><code class="language-mongosh">&gt; db.collection_name.aggregate([
+... // match document with id of 1
+... { $match: { id: 1 }},
+... // show all fields and cast summary to null if missing
+... { $project: {
+...   _id: 0,
+...   id: 1,
+...   summary: { $ifNull: [ &#x27;$summary&#x27;, null ]},
+...   recommend: 1,
+...   helpfulness: 1
+... }}
+... ]);
+</code></pre>
+<h3><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>: Export BSON (native format)</h3>
+<p>To export a collection or database from a mongo database, use <a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank"><code>mongodump</code></a>.</p>
+<pre><code class="language-bash">$ mongodump --db=dbName --collection=collectionName --out=path/for/output
+</code></pre>
+<h3><a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>: Import BSON (native format)</h3>
+<p>To import a collection or database from a dumped mongo database, use <a href="https://docs.mongodb.com/database-tools/mongorestore/" target="_blank"><code>mongorestore</code></a>.</p>
+<pre><code class="language-bash">$ mongorestore -d dbName ./dump/path
+</code></pre>
+<h2>Clone Database</h2>
+<p>You can clone a database on the same server using the following command:</p>
+<pre><code class="language-bash">$ mongodump --archive --db=dbName | mongorestore --archive  --nsFrom=&#x27;dbName.*&#x27; --nsTo=&#x27;newDbName.*&#x27;
+</code></pre>
+<h2>Data Modification</h2>
+<p>If you need to modify data that already exists in a document due to a bad import or whatever, you can run a command like this in the mongo shell to change the values in place.</p>
+<p>Let's assume a collection of dogs:</p>
+<pre><code class="language-javascript">[
+  {
+    &quot;_id&quot;: ...,
+    &quot;name&quot;: &quot;Doggo&quot;,
+    &quot;goodBoy&quot;: &quot;true&quot;, // should be a boolean
+    &quot;enemy&quot;: &quot;null&quot;,   // or could be &quot;mailman&quot; or other string
+  },
+  ...
+]
+</code></pre>
+<p>When completed, this will change all <code>goodboy</code> properties to a boolean and if <code>enemy</code> was imported with <code>null</code> as the string, it will convert it into an actual null value. The <code>bulkWrite</code> is done as it is <strong>much</strong> faster than sending individual requests.</p>
+<pre><code class="language-mongosh">var requests = [];
+var cursor = db.dogs.find({});
+
+cursor.forEach(item =&gt; {
+  requests.push({ 
+    &quot;updateOne&quot;: {
+      &quot;filter&quot;: { &quot;_id&quot;: item._id },
+      &quot;update&quot;: { 
+        &quot;$set&quot;: { 
+          &quot;goodBoy&quot;: Boolean(item.goodboy),
+          &quot;enemy&quot;: item.enemy === &#x27;null&#x27; ? null : item.enemy
+        }
+      }
+    }
+  });
+
+  if (requests.length === 1000) {
+    // Execute per 1000 operations and re-init
+    db.dogs.bulkWrite(requests);
+    requests = [];
+  }
+});
+
+if (requests.length) {
+  db.dogs.bulkWrite(requests);
+  requests = [];
+}
+</code></pre>
+<h2>Syntax</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show dbs</code></td>
+<td>List all databases on the given server</td>
+</tr>
+<tr>
+<td><code>use database_name</code></td>
+<td>Enter into <code>database_name</code>, preparing to query.</td>
+</tr>
+<tr>
+<td><code>db.dropDatabase()</code></td>
+<td>Delete the selected database</td>
+</tr>
+<tr>
+<td><code>show collections</code> / <code>show tables</code></td>
+<td>List all collections/tables in the selected database.</td>
+</tr>
+<tr>
+<td><code>db.collection_name.find()</code></td>
+<td>Return all documents in collection <code>collection_name</code>.</td>
+</tr>
+<tr>
+<td><code>db.collection_name.find({name: &#x27;John&#x27;})</code></td>
+<td>Return all documents in <code>collection_name</code> whose name is John.</td>
+</tr>
+<tr>
+<td><code>db.collection_name.insert({name: &#x27;John&#x27;, age: 40})</code></td>
+<td>Create a document in <code>collection_name</code> (note: if a new collection is selected via <code>use</code>, this will create the new collection)</td>
+</tr>
+<tr>
+<td><code>db.collection_name.renameCollection(&#x27;newName&#x27;, dropOld)</code></td>
+<td>Rename <code>collection_name</code> to <code>newName</code> and if drop old table if <code>dropOld</code> is true.</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ul>
+<li><a href="https://www.mongodb.com/basics/examples" target="_blank">https://www.mongodb.com/basics/examples</a></li>
+<li><a href="https://www.mongodb.com/basics/create-database" target="_blank">https://www.mongodb.com/basics/create-database</a></li>
+<li><a href="https://docs.mongodb.com/manual/core/databases-and-collections/" target="_blank">https://docs.mongodb.com/manual/core/databases-and-collections/</a></li>
+<li><a href="https://docs.mongodb.com/manual/core/aggregation-pipeline/" target="_blank">https://docs.mongodb.com/manual/core/aggregation-pipeline/</a></li>
+<li><a href="https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/" target="_blank">https://database.guide/import-a-csv-file-into-mongodb-with-mongoimport/</a></li>
+<li><a href="https://docs.mongodb.com/manual/indexes/" target="_blank">https://docs.mongodb.com/manual/indexes/</a></li>
+<li><a href="https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query" target="_blank">https://stackoverflow.com/questions/37718005/change-document-value-from-string-to-objectid-using-update-query</a></li>
+<li><a href="https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/" target="_blank">https://www.mongodb.com/developer/how-to/SQL-to-Aggregation-Pipeline/</a></li>
+<li><a href="https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types" target="_blank">https://docs.mongodb.com/database-tools/mongoimport/#std-label-example-csv-import-types</a></li>
+<li><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank">https://docs.mongodb.com/database-tools/mongodump/</a></li>
+<li><a href="https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file" target="_blank">https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file</a></li>
+</ul>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="mongoose.html">Mongoose</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202108230454</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
