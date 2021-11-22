@@ -26,6 +26,92 @@ echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSuppo
     }
 }
 </code></pre>
+<h2>Syntax</h2>
+<p>Here are some examples of syntaxes made for homemade langs, from simple to less simple:</p>
+<ul>
+<li><a href="https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax" target="_blank">Kaku</a></li>
+<li><a href="Tablatal.sublime-syntax" target="_blank">Tablatal</a></li>
+</ul>
+<h3>How To Make Your Own!</h3>
+<p>Lets start with a basic example. <a href="fractran.html">FRACTRAN</a> is an esoteric language with only a few types of symbols (and many of these are not necessary, but good for learning):</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Example</th>
+<th>Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Numbers</td>
+<td><code>123</code></td>
+<td>Comprises numerators and denominators</td>
+</tr>
+<tr>
+<td>Comma</td>
+<td><code>,</code></td>
+<td>For between fractions OR numbers within a numerator or denominator</td>
+</tr>
+<tr>
+<td>Parentheses</td>
+<td><code>(</code> and <code>)</code></td>
+<td>Surrounds a program</td>
+</tr>
+<tr>
+<td>Operators</td>
+<td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></td>
+<td>Separates primes</td>
+</tr>
+<tr>
+<td>Double forward slashes</td>
+<td><code>//</code></td>
+<td>Begins an inline comment that lasts until the end of the line</td>
+</tr>
+<tr>
+<td>Forward slash and an asterisk, and vice versa</td>
+<td><code>/* */</code></td>
+<td>Begins and ends a multi-line comment</td>
+</tr>
+</tbody></table><p>We will start with only <strong>numbers</strong>, <strong>commas</strong>, and <strong>parentheses</strong>.</p>
+<h4>Making a New Syntax</h4>
+<p>First, we will want to create our <code>FRACTRAN.sublime-syntax</code> file.</p>
+<ul>
+<li>In the menubar, go to <code>Preferences &gt; Browse Packages...</code>.</li>
+<li>If there is not a <code>User</code> folder, create it.</li>
+<li>Create a new empty file and save it within that new folder, calling it <code>FRACTRAN.sublime-syntax</code>.</li>
+</ul>
+<p>This new file needs to be populated with some key fields for Sublime Text to recognize it properly. Note that this type of file uses <a href="https://yaml.org/spec/1.2.2/" target="_blank">YAML syntax</a>.</p>
+<pre><code class="language-yaml">%YAML 1.2
+---
+name: FRACTRAN
+file_extensions:
+  - fractran
+scope: source.fractran
+</code></pre>
+<ul>
+<li>The header <code>%YAML 1.2</code> and the following three hyphens define the type. </li>
+<li><code>name</code> is how it will be displayed in the <code>User</code> subfolder of the syntaxes. </li>
+<li><code>file_extensions</code> defines what file extensions this syntax will apply to. </li>
+<li><code>scope</code> defines the scope of your syntax. Because we are creating a new one, we will call it <code>source.fractran</code>, but extensions to other languages may use something already established, like <code>source.c</code>, <code>source.python</code>, etc.</li>
+</ul>
+<h4>Contexts</h4>
+<p>Now we are in the meat and potatoes, where we start defining <code>contexts</code>. These <code>contexts</code> are how the syntax parser knows what to parse and when. In its simplest form, it does a basic <a href="regular-expressions.html">regex</a> on a set of characters and applies a specific formatting. As it gets more complex, it complements this behavior with a <a href="stack-programming.html">stack</a>, pushing and popping contexts as it encounters matches.</p>
+<p>Lets make our first context. Append this to our <code>sublime-syntax</code> file:</p>
+<pre><code class="language-yaml">contexts:
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - match: &#x27;\d&#x27;
+      scope: constant.numeric
+</code></pre>
+<p>We've now added a check for our &quot;Numbers&quot; group. If you open a new file and apply this syntax to it, you should be able to type something like <code>1/11</code> and see the numbers highlighted in a different color. Success!</p>
+<p>We can now append this match group for our forward slash:</p>
+<pre><code class="language-yaml">    - match: &#x27;\/&#x27;
+      scope: keyword.operator
+</code></pre>
+<p>You should now see some coloring on your forward slash as well!</p>
+<!-- Pushing and popping contexts in the context of a function -->
 <h2>Troubleshooting Errors</h2>
 <h3>Autocompletion/Snippets</h3>
 <ol>
@@ -43,6 +129,8 @@ echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSuppo
 <li><a href="https://milofultz.com/2021/03/06/sublime-keymap" target="_blank">https://milofultz.com/2021/03/06/sublime-keymap</a></li>
 <li><a href="https://stackoverflow.com/questions/59635627/how-to-override-sublime-text-3-packages-css3-completion-syntax" target="_blank">https://stackoverflow.com/questions/59635627/how-to-override-sublime-text-3-packages-css3-completion-syntax</a></li>
 <li><a href="https://www.sublimetext.com/docs/command_line.html#mac" target="_blank">https://www.sublimetext.com/docs/command_line.html#mac</a></li>
+<li><a href="https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax" target="_blank">https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax</a></li>
+<li><a href="https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions" target="_blank">https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="pug.html">Pug</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202108230316</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111221519</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~602kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

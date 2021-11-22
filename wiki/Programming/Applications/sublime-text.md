@@ -40,6 +40,80 @@ Sublime Text 4 provided the ability to `chain` multiple commands and args togeth
 }
 ```
 
+## Syntax
+
+Here are some examples of syntaxes made for homemade langs, from simple to less simple:
+
+- [Kaku](https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax)
+- [Tablatal](Tablatal.sublime-syntax)
+
+### How To Make Your Own!
+
+Lets start with a basic example. {{FRACTRAN}} is an esoteric language with only a few types of symbols (and many of these are not necessary, but good for learning):
+
+Group | Example | Significance
+--- | --- | ---
+Numbers | `123` | Comprises numerators and denominators
+Comma | `,` | For between fractions OR numbers within a numerator or denominator
+Parentheses | `(` and `)` | Surrounds a program
+Operators | `+`, `-`, `*`, `/` | Separates primes
+Double forward slashes | `//` | Begins an inline comment that lasts until the end of the line
+Forward slash and an asterisk, and vice versa | `/* */` | Begins and ends a multi-line comment
+
+We will start with only **numbers**, **commas**, and **parentheses**.
+
+#### Making a New Syntax
+
+First, we will want to create our `FRACTRAN.sublime-syntax` file.
+
+- In the menubar, go to `Preferences > Browse Packages...`.
+- If there is not a `User` folder, create it.
+- Create a new empty file and save it within that new folder, calling it `FRACTRAN.sublime-syntax`.
+
+This new file needs to be populated with some key fields for Sublime Text to recognize it properly. Note that this type of file uses [YAML syntax](https://yaml.org/spec/1.2.2/).
+
+```yaml
+%YAML 1.2
+---
+name: FRACTRAN
+file_extensions:
+  - fractran
+scope: source.fractran
+```
+
+- The header `%YAML 1.2` and the following three hyphens define the type. 
+-  `name` is how it will be displayed in the `User` subfolder of the syntaxes. 
+- `file_extensions` defines what file extensions this syntax will apply to. 
+- `scope` defines the scope of your syntax. Because we are creating a new one, we will call it `source.fractran`, but extensions to other languages may use something already established, like `source.c`, `source.python`, etc.
+
+#### Contexts
+
+Now we are in the meat and potatoes, where we start defining `contexts`. These `contexts` are how the syntax parser knows what to parse and when. In its simplest form, it does a basic {{regex|Regular Expressions}} on a set of characters and applies a specific formatting. As it gets more complex, it complements this behavior with a {{stack|Stack (Programming)}}, pushing and popping contexts as it encounters matches.
+
+Lets make our first context. Append this to our `sublime-syntax` file:
+
+```yaml
+contexts:
+	main:
+		# The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - match: '\d'
+      scope: constant.numeric
+```
+
+We've now added a check for our "Numbers" group. If you open a new file and apply this syntax to it, you should be able to type something like `1/11` and see the numbers highlighted in a different color. Success!
+
+We can now append this match group for our forward slash:
+
+```yaml
+    - match: '\/'
+      scope: keyword.operator
+```
+
+You should now see some coloring on your forward slash as well!
+
+<!-- Pushing and popping contexts in the context of a function -->
+
 ## Troubleshooting Errors
 
 ### Autocompletion/Snippets
@@ -60,3 +134,5 @@ Packages in Sublime Text are interdependent on each other and many of the defaul
 1. https://milofultz.com/2021/03/06/sublime-keymap
 2. https://stackoverflow.com/questions/59635627/how-to-override-sublime-text-3-packages-css3-completion-syntax
 3. https://www.sublimetext.com/docs/command_line.html#mac
+3. https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax
+3. https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions

@@ -136,13 +136,37 @@ server.listen(port, () =&gt; {
 </tbody></table><h3>Rooms</h3>
 <p>A user joins a room using <code>socket.join(&#x27;some room&#x27;)</code>. A user leaves a room using <code>socket.leave(&#x27;some room&#x27;)</code>.</p>
 <p>Using <code>.to(&#x27;some room&#x27;)</code> prior to <code>.emit(...)</code> will emit the events to only those who are in that room.</p>
+<h2>Troubleshooting</h2>
+<h3>Express</h3>
+<p>When using Socket.IO with <a href="express.html">Express</a>, you will still need to use the Node <code>http</code> package to work with both your Express server <em>and</em> your Socket.IO server[6]. If you try and wrap Socket.IO directly with Express, it will not work. For example:</p>
+<p><strong>server.js</strong></p>
+<pre><code class="language-javascript">const express = require(&#x27;express&#x27;);
+const http = require(&#x27;http&#x27;);
+const socketio = require(&#x27;socket.io&#x27;);
+
+const app = express();                 // Instantiate the Express app
+const server = http.createServer(app); // Connect Express to the http server
+const io = socketio(http);             // Connect Socket.IO to the http server
+
+app.use(express.static(__dirname));
+
+io.on(&#x27;connection&#x27;, () =&gt; {
+  console.log(&#x27;a user connected&#x27;);
+});
+
+server.listen(3000, () =&gt; {
+  const { port } = server.address();
+  console.log(`Listening on port ${port}`);
+});
+</code></pre>
 <h2>References</h2>
-<ul>
+<ol>
 <li><a href="https://www.youtube.com/watch?v=jD7FnbI76Hg" target="_blank">https://www.youtube.com/watch?v=jD7FnbI76Hg</a></li>
 <li><a href="https://socket.io/docs/v4/" target="_blank">https://socket.io/docs/v4/</a></li>
 <li><a href="https://socket.io/docs/v4/listening-to-events/" target="_blank">https://socket.io/docs/v4/listening-to-events/</a></li>
 <li><a href="https://socket.io/docs/v4/client-initialization/" target="_blank">https://socket.io/docs/v4/client-initialization/</a></li>
 <li><a href="https://www.youtube.com/watch?v=cS6Zzj8BSHM" target="_blank">https://www.youtube.com/watch?v=cS6Zzj8BSHM</a></li>
-</ul>
+<li><a href="https://scribe.rip/geekculture/chat-app-with-socket-io-and-express-using-node-js-2293b87f47c3" target="_blank">https://scribe.rip/geekculture/chat-app-with-socket-io-and-express-using-node-js-2293b87f47c3</a></li>
+</ol>
 
-<p class="last-modified">Last modified: 202110221451</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~591kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111220737</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~602kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -121,10 +121,42 @@ A user joins a room using `socket.join('some room')`. A user leaves a room using
 
 Using `.to('some room')` prior to `.emit(...)` will emit the events to only those who are in that room.
 
+## Troubleshooting
+
+### Express
+
+When using Socket.IO with {{Express}}, you will still need to use the Node `http` package to work with both your Express server *and* your Socket.IO server[6]. If you try and wrap Socket.IO directly with Express, it will not work. For example:
+
+**server.js**
+
+```javascript
+const express = require('express');
+const http = require('http');
+const socketio = require('socket.io');
+
+const app = express();                 // Instantiate the Express app
+const server = http.createServer(app); // Connect Express to the http server
+const io = socketio(http);             // Connect Socket.IO to the http server
+
+app.use(express.static(__dirname));
+
+io.on('connection', () => {
+  console.log('a user connected');
+});
+
+server.listen(3000, () => {
+  const { port } = server.address();
+  console.log(`Listening on port ${port}`);
+});
+```
+
+
+
 ## References
 
-- https://www.youtube.com/watch?v=jD7FnbI76Hg
-- https://socket.io/docs/v4/
-- https://socket.io/docs/v4/listening-to-events/
-- https://socket.io/docs/v4/client-initialization/
-- https://www.youtube.com/watch?v=cS6Zzj8BSHM
+1. https://www.youtube.com/watch?v=jD7FnbI76Hg
+2. https://socket.io/docs/v4/
+3. https://socket.io/docs/v4/listening-to-events/
+4. https://socket.io/docs/v4/client-initialization/
+5. https://www.youtube.com/watch?v=cS6Zzj8BSHM
+6. https://scribe.rip/geekculture/chat-app-with-socket-io-and-express-using-node-js-2293b87f47c3
