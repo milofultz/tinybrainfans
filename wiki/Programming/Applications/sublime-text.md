@@ -47,7 +47,7 @@ Here are some examples of syntaxes made for homemade langs, from simple to less 
 - [Kaku](https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax)
 - [Tablatal](Tablatal.sublime-syntax)
 
-### How To Make Your Own!
+### Make Your Own Sublime Syntax!
 
 Lets start with a basic example. {{FRACTRAN}} is an esoteric language with only a few types of symbols (and many of these are not necessary, but good for learning):
 
@@ -55,12 +55,12 @@ Group | Example | Significance
 --- | --- | ---
 Numbers | `123` | Comprises numerators and denominators
 Comma | `,` | For between fractions OR numbers within a numerator or denominator
-Parentheses | `(` and `)` | Surrounds a program
+Parentheses | `(`, `)` | Surrounds a program
 Operators | `+`, `-`, `*`, `/` | Separates primes
 Double forward slashes | `//` | Begins an inline comment that lasts until the end of the line
-Forward slash and an asterisk, and vice versa | `/* */` | Begins and ends a multi-line comment
+Forward slash and an asterisk, and vice versa | `/*`, `*/` | Begins and ends a multi-line comment
 
-We will start with only **numbers**, **commas**, and **parentheses**.
+We will start with only **numbers**, **division operators**, **commas**, and **parentheses**.
 
 #### Making a New Syntax
 
@@ -88,7 +88,7 @@ scope: source.fractran
 
 #### Contexts
 
-Now we are in the meat and potatoes, where we start defining `contexts`. These `contexts` are how the syntax parser knows what to parse and when. In its simplest form, it does a basic {{regex|Regular Expressions}} on a set of characters and applies a specific formatting. As it gets more complex, it complements this behavior with a {{stack|Stack (Programming)}}, pushing and popping contexts as it encounters matches.
+Now we are in the meat and potatoes, where we start defining `contexts`. These `contexts` are how the syntax parser knows what to parse and when. In its simplest form, it does a basic {{regex|Regular Expressions}} on a set of characters, goes through the different `match` statements, and applies a specific formatting on the first match. As it gets more complex, it complements this behavior with a {{stack|Stack (Programming)}}, pushing and popping contexts as it encounters matches.
 
 Lets make our first context. Append this to our `sublime-syntax` file:
 
@@ -110,9 +110,71 @@ We can now append this match group for our forward slash:
       scope: keyword.operator
 ```
 
-You should now see some coloring on your forward slash as well!
+You should now see some coloring on your forward slash as well! Last but not least, we can add our comma.
 
-<!-- Pushing and popping contexts in the context of a function -->
+```yaml
+    - match: ','
+      scope: punctuation
+```
+
+#### Pushing and Popping
+
+We have these rules, and they *work*, but they are not very robust. We are wanting to only trigger these when inside of a FRACTRAN function, which is signified by parentheses. To do this, we will start by making another match group for the start of a fraction. This time, we will have it push a new context onto our stack.
+
+```yaml
+    - match: '\('
+      scope: variable.function
+      push: function
+```
+
+That last line, `push: function`, will now move us out of the default context of `main` and into the `function` context, which we will need to define below all of our other match groups. When we reach our end parentheses, we will pop this `function` context off the stack, returning to our default `main` context.
+
+```yaml
+    - match: '\('
+      scope: variable.function
+      push: function
+      
+  function:
+		- match: '\)'
+      scope: variable.function
+      pop: true
+```
+
+At the moment, only numbers that are outside of our parentheses will be highlighted correctly. So we want to move all of our `match` groups (except our new open parentheses match group) within this function context. Our contexts should look like this:
+
+```yaml
+contexts:
+	main:
+		# The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - match: '\('
+      scope: variable.function
+      push: function
+      
+  function:
+		- match: '\)'
+      scope: variable.function
+      pop: true
+    
+    - match: '\d'
+      scope: constant.numeric
+      
+    - match: '\/'
+      scope: keyword.operator
+    
+    - match: ','
+      scope: punctuation
+```
+
+Now we should have the basics of highlighting a FRACTRAN function complete. Put the following into your file to see how you did!
+
+```fractran
+(455/33, 11/13, 1/11, 3/7, 11/2, 1/3)
+```
+
+### Variables
+
+You can add variables to your syntax's top level scope (the same level as `name`, `file_extensions`, `contexts`, etc.). These variables will allow you to be able to define a match group one time and reuse it throughout your syntax file by referencing the name surrounded by double curly braces[6].
 
 ## Troubleshooting Errors
 
@@ -136,3 +198,4 @@ Packages in Sublime Text are interdependent on each other and many of the defaul
 3. https://www.sublimetext.com/docs/command_line.html#mac
 3. https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax
 3. https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions
+3. http://www.sublimetext.com/docs/syntax.html#variables

@@ -32,7 +32,7 @@ echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSuppo
 <li><a href="https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax" target="_blank">Kaku</a></li>
 <li><a href="Tablatal.sublime-syntax" target="_blank">Tablatal</a></li>
 </ul>
-<h3>How To Make Your Own!</h3>
+<h3>Make Your Own Sublime Syntax!</h3>
 <p>Lets start with a basic example. <a href="fractran.html">FRACTRAN</a> is an esoteric language with only a few types of symbols (and many of these are not necessary, but good for learning):</p>
 <table>
 <thead>
@@ -55,7 +55,7 @@ echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSuppo
 </tr>
 <tr>
 <td>Parentheses</td>
-<td><code>(</code> and <code>)</code></td>
+<td><code>(</code>, <code>)</code></td>
 <td>Surrounds a program</td>
 </tr>
 <tr>
@@ -70,10 +70,10 @@ echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSuppo
 </tr>
 <tr>
 <td>Forward slash and an asterisk, and vice versa</td>
-<td><code>/* */</code></td>
+<td><code>/*</code>, <code>*/</code></td>
 <td>Begins and ends a multi-line comment</td>
 </tr>
-</tbody></table><p>We will start with only <strong>numbers</strong>, <strong>commas</strong>, and <strong>parentheses</strong>.</p>
+</tbody></table><p>We will start with only <strong>numbers</strong>, <strong>division operators</strong>, <strong>commas</strong>, and <strong>parentheses</strong>.</p>
 <h4>Making a New Syntax</h4>
 <p>First, we will want to create our <code>FRACTRAN.sublime-syntax</code> file.</p>
 <ul>
@@ -96,7 +96,7 @@ scope: source.fractran
 <li><code>scope</code> defines the scope of your syntax. Because we are creating a new one, we will call it <code>source.fractran</code>, but extensions to other languages may use something already established, like <code>source.c</code>, <code>source.python</code>, etc.</li>
 </ul>
 <h4>Contexts</h4>
-<p>Now we are in the meat and potatoes, where we start defining <code>contexts</code>. These <code>contexts</code> are how the syntax parser knows what to parse and when. In its simplest form, it does a basic <a href="regular-expressions.html">regex</a> on a set of characters and applies a specific formatting. As it gets more complex, it complements this behavior with a <a href="stack-programming.html">stack</a>, pushing and popping contexts as it encounters matches.</p>
+<p>Now we are in the meat and potatoes, where we start defining <code>contexts</code>. These <code>contexts</code> are how the syntax parser knows what to parse and when. In its simplest form, it does a basic <a href="regular-expressions.html">regex</a> on a set of characters, goes through the different <code>match</code> statements, and applies a specific formatting on the first match. As it gets more complex, it complements this behavior with a <a href="stack-programming.html">stack</a>, pushing and popping contexts as it encounters matches.</p>
 <p>Lets make our first context. Append this to our <code>sublime-syntax</code> file:</p>
 <pre><code class="language-yaml">contexts:
   main:
@@ -110,8 +110,54 @@ scope: source.fractran
 <pre><code class="language-yaml">    - match: &#x27;\/&#x27;
       scope: keyword.operator
 </code></pre>
-<p>You should now see some coloring on your forward slash as well!</p>
-<!-- Pushing and popping contexts in the context of a function -->
+<p>You should now see some coloring on your forward slash as well! Last but not least, we can add our comma.</p>
+<pre><code class="language-yaml">    - match: &#x27;,&#x27;
+      scope: punctuation
+</code></pre>
+<h4>Pushing and Popping</h4>
+<p>We have these rules, and they <em>work</em>, but they are not very robust. We are wanting to only trigger these when inside of a FRACTRAN function, which is signified by parentheses. To do this, we will start by making another match group for the start of a fraction. This time, we will have it push a new context onto our stack.</p>
+<pre><code class="language-yaml">    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+</code></pre>
+<p>That last line, <code>push: function</code>, will now move us out of the default context of <code>main</code> and into the <code>function</code> context, which we will need to define below all of our other match groups. When we reach our end parentheses, we will pop this <code>function</code> context off the stack, returning to our default <code>main</code> context.</p>
+<pre><code class="language-yaml">    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+
+  function:
+    - match: &#x27;\)&#x27;
+      scope: variable.function
+      pop: true
+</code></pre>
+<p>At the moment, only numbers that are outside of our parentheses will be highlighted correctly. So we want to move all of our <code>match</code> groups (except our new open parentheses match group) within this function context. Our contexts should look like this:</p>
+<pre><code class="language-yaml">contexts:
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+
+  function:
+    - match: &#x27;\)&#x27;
+      scope: variable.function
+      pop: true
+
+    - match: &#x27;\d&#x27;
+      scope: constant.numeric
+
+    - match: &#x27;\/&#x27;
+      scope: keyword.operator
+
+    - match: &#x27;,&#x27;
+      scope: punctuation
+</code></pre>
+<p>Now we should have the basics of highlighting a FRACTRAN function complete. Put the following into your file to see how you did!</p>
+<pre><code class="language-fractran">(455/33, 11/13, 1/11, 3/7, 11/2, 1/3)
+</code></pre>
+<h3>Variables</h3>
+<p>You can add variables to your syntax's top level scope (the same level as <code>name</code>, <code>file_extensions</code>, <code>contexts</code>, etc.). These variables will allow you to be able to define a match group one time and reuse it throughout your syntax file by referencing the name surrounded by double curly braces[6].</p>
 <h2>Troubleshooting Errors</h2>
 <h3>Autocompletion/Snippets</h3>
 <ol>
@@ -131,6 +177,7 @@ scope: source.fractran
 <li><a href="https://www.sublimetext.com/docs/command_line.html#mac" target="_blank">https://www.sublimetext.com/docs/command_line.html#mac</a></li>
 <li><a href="https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax" target="_blank">https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax</a></li>
 <li><a href="https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions" target="_blank">https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions</a></li>
+<li><a href="http://www.sublimetext.com/docs/syntax.html#variables" target="_blank">http://www.sublimetext.com/docs/syntax.html#variables</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="pug.html">Pug</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111221519</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~602kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111231036</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~606kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

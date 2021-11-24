@@ -49,6 +49,8 @@ So instead of having named variables like `X`, `Y`, or `counter` and altering th
 
 ### Instructions
 
+There are only two types of instructions: incrementing or decrementing a register.
+
 In our list of fractions, we can view each numerator/denominator pair as follows:
 
 ```
@@ -96,6 +98,36 @@ if (r2 >= 1 && r11 >= 2) {
 }
 ```
 
+## Axioms
+
+These are some things I've deduced after messing with this and seeing some programs.
+
+- Numerators increment the primes that are present there.
+
+- Denominators act as an if/elseif statement and decrement the primes that are present there.
+
+- Functions can be thought of as a giant while loop with a single if/elseif chain inside. e.g. the pointless program `(2/3, 5/4)` would look like:
+
+  ```pseudocode
+  while true {
+  	if (r3 >= 1) {
+  		r3 -= 1;
+  		r2 += 1;
+  	} else if (r2 >= 2) {
+  		r2 -= 2;
+  		r5 += 1;
+  	} else {
+  		break;
+  	}
+  }
+  ```
+
+- A fraction with a denominator of 1 means the program will not ever go beyond it, as it will always be true. For example, the final fraction in PRIMEGAME[6] is `55/1`, as it should repeatedly put out prime numbers forever.
+
+- A fraction with a numerator of 1 means that the number in the denominator's register(s) will need to be zero before it ever reaches a fraction beyond it. For instance, in the multiplication program[7], the fraction `1/11` defines the end of a certain state; to get past that fraction and to the other state, the `11` register needs to be depleted to `11^0`.
+
+- It is not possible for a FRACTRAN instruction to directly test if a variable is 0 (However, an indirect test can be implemented by creating a default instruction that is placed after other instructions that test a particular variable.).[1]
+
 ## References
 
 1. https://en.wikipedia.org/wiki/FRACTRAN
@@ -103,3 +135,5 @@ if (r2 >= 1 && r11 >= 2) {
 3. https://www.youtube.com/watch?v=548BH-YFT1E
 4. [John Conway's original paper](https://www.gwern.net/docs/cs/1987-conway.pdf)
 5. https://esolangs.org/wiki/Fractran
+5. https://link.springer.com/chapter/10.1007%2F978-1-4612-4808-8_2
+5. https://en.wikipedia.org/wiki/FRACTRAN#Multiplication

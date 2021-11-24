@@ -53,6 +53,7 @@
 </tr>
 </tbody></table><p>So instead of having named variables like <code>X</code>, <code>Y</code>, or <code>counter</code> and altering them directly, we store our mutable data in these registers and operate on them using instructions.</p>
 <h3>Instructions</h3>
+<p>There are only two types of instructions: incrementing or decrementing a register.</p>
 <p>In our list of fractions, we can view each numerator/denominator pair as follows:</p>
 <pre><code>                         if condition in denominator is met, 
   numerator       then increment {numerator primes at their powers} 
@@ -85,6 +86,40 @@
   r13 += 1;
 }
 </code></pre>
+<h2>Axioms</h2>
+<p>These are some things I've deduced after messing with this and seeing some programs.</p>
+<ul>
+<li>
+<p>Numerators increment the primes that are present there.</p>
+</li>
+<li>
+<p>Denominators act as an if/elseif statement and decrement the primes that are present there.</p>
+</li>
+<li>
+<p>Functions can be thought of as a giant while loop with a single if/elseif chain inside. e.g. the pointless program <code>(2/3, 5/4)</code> would look like:</p>
+<pre><code class="language-pseudocode">while true {
+  if (r3 &gt;= 1) {
+    r3 -= 1;
+    r2 += 1;
+  } else if (r2 &gt;= 2) {
+    r2 -= 2;
+    r5 += 1;
+  } else {
+    break;
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>A fraction with a denominator of 1 means the program will not ever go beyond it, as it will always be true. For example, the final fraction in PRIMEGAME[6] is <code>55/1</code>, as it should repeatedly put out prime numbers forever.</p>
+</li>
+<li>
+<p>A fraction with a numerator of 1 means that the number in the denominator's register(s) will need to be zero before it ever reaches a fraction beyond it. For instance, in the multiplication program[7], the fraction <code>1/11</code> defines the end of a certain state; to get past that fraction and to the other state, the <code>11</code> register needs to be depleted to <code>11^0</code>.</p>
+</li>
+<li>
+<p>It is not possible for a FRACTRAN instruction to directly test if a variable is 0 (However, an indirect test can be implemented by creating a default instruction that is placed after other instructions that test a particular variable.).[1]</p>
+</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/FRACTRAN" target="_blank">https://en.wikipedia.org/wiki/FRACTRAN</a></li>
@@ -92,6 +127,8 @@
 <li><a href="https://www.youtube.com/watch?v=548BH-YFT1E" target="_blank">https://www.youtube.com/watch?v=548BH-YFT1E</a></li>
 <li><a href="https://www.gwern.net/docs/cs/1987-conway.pdf" target="_blank">John Conway's original paper</a></li>
 <li><a href="https://esolangs.org/wiki/Fractran" target="_blank">https://esolangs.org/wiki/Fractran</a></li>
+<li><a href="https://link.springer.com/chapter/10.1007%2F978-1-4612-4808-8_2" target="_blank">https://link.springer.com/chapter/10.1007%2F978-1-4612-4808-8_2</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FRACTRAN#Multiplication" target="_blank">https://en.wikipedia.org/wiki/FRACTRAN#Multiplication</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111211513</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~602kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111241441</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~606kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -559,8 +559,10 @@ CMD [&quot;yarn&quot;, &quot;start&quot;]
 <p><a href="https://learnxinyminutes.com/" target="_blank">https://learnxinyminutes.com/</a></p>
 <p><a href="https://www.simplethread.com/20-things-ive-learned-in-my-20-years-as-a-software-engineer/" target="_blank">https://www.simplethread.com/20-things-ive-learned-in-my-20-years-as-a-software-engineer/</a></p>
 <p><a href="https://www.youtube.com/watch?v=5kj5ApnhPAE&amp;t=2913s" target="_blank">https://www.youtube.com/watch?v=5kj5ApnhPAE&amp;t=2913s</a></p>
+<p><a href="https://12ft.io/" target="_blank">https://12ft.io/</a></p>
+<p><a href="scribe.rip" target="_blank">scribe.rip</a></p>
 
-<p class="last-modified">Last modified: 202110161354</p></article><article>            <h1><a href="parsers.html">parsers</a></h1>
+<p class="last-modified">Last modified: 202111240645</p></article><article>            <h1><a href="parsers.html">parsers</a></h1>
             <ul>
 <li><a href="https://www.youtube.com/watch?v=dDtZLm7HIJs" target="_blank">https://www.youtube.com/watch?v=dDtZLm7HIJs</a></li>
 <li><a href="https://www.youtube.com/watch?v=bxpc9Pp5pZM" target="_blank">https://www.youtube.com/watch?v=bxpc9Pp5pZM</a></li>
@@ -4856,6 +4858,7 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 </tr>
 </tbody></table><p>So instead of having named variables like <code>X</code>, <code>Y</code>, or <code>counter</code> and altering them directly, we store our mutable data in these registers and operate on them using instructions.</p>
 <h3>Instructions</h3>
+<p>There are only two types of instructions: incrementing or decrementing a register.</p>
 <p>In our list of fractions, we can view each numerator/denominator pair as follows:</p>
 <pre><code>                         if condition in denominator is met, 
   numerator       then increment {numerator primes at their powers} 
@@ -4888,6 +4891,40 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
   r13 += 1;
 }
 </code></pre>
+<h2>Axioms</h2>
+<p>These are some things I've deduced after messing with this and seeing some programs.</p>
+<ul>
+<li>
+<p>Numerators increment the primes that are present there.</p>
+</li>
+<li>
+<p>Denominators act as an if/elseif statement and decrement the primes that are present there.</p>
+</li>
+<li>
+<p>Functions can be thought of as a giant while loop with a single if/elseif chain inside. e.g. the pointless program <code>(2/3, 5/4)</code> would look like:</p>
+<pre><code class="language-pseudocode">while true {
+  if (r3 &gt;= 1) {
+    r3 -= 1;
+    r2 += 1;
+  } else if (r2 &gt;= 2) {
+    r2 -= 2;
+    r5 += 1;
+  } else {
+    break;
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>A fraction with a denominator of 1 means the program will not ever go beyond it, as it will always be true. For example, the final fraction in PRIMEGAME[6] is <code>55/1</code>, as it should repeatedly put out prime numbers forever.</p>
+</li>
+<li>
+<p>A fraction with a numerator of 1 means that the number in the denominator's register(s) will need to be zero before it ever reaches a fraction beyond it. For instance, in the multiplication program[7], the fraction <code>1/11</code> defines the end of a certain state; to get past that fraction and to the other state, the <code>11</code> register needs to be depleted to <code>11^0</code>.</p>
+</li>
+<li>
+<p>It is not possible for a FRACTRAN instruction to directly test if a variable is 0 (However, an indirect test can be implemented by creating a default instruction that is placed after other instructions that test a particular variable.).[1]</p>
+</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/FRACTRAN" target="_blank">https://en.wikipedia.org/wiki/FRACTRAN</a></li>
@@ -4895,9 +4932,11 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <li><a href="https://www.youtube.com/watch?v=548BH-YFT1E" target="_blank">https://www.youtube.com/watch?v=548BH-YFT1E</a></li>
 <li><a href="https://www.gwern.net/docs/cs/1987-conway.pdf" target="_blank">John Conway's original paper</a></li>
 <li><a href="https://esolangs.org/wiki/Fractran" target="_blank">https://esolangs.org/wiki/Fractran</a></li>
+<li><a href="https://link.springer.com/chapter/10.1007%2F978-1-4612-4808-8_2" target="_blank">https://link.springer.com/chapter/10.1007%2F978-1-4612-4808-8_2</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FRACTRAN#Multiplication" target="_blank">https://en.wikipedia.org/wiki/FRACTRAN#Multiplication</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111211513</p></article><article>            <h1><a href="zsh.html">zsh</a></h1>
+<p class="last-modified">Last modified: 202111241441</p></article><article>            <h1><a href="zsh.html">zsh</a></h1>
             <p>Zsh is a Unix shell based on the Bourne shell, like <a href="bash.html">bash</a>.</p>
 <h2>Installation</h2>
 <p>Use <a href="homebrew.html">homebrew</a> to install Zsh:</p>
@@ -6925,7 +6964,7 @@ echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSuppo
 <li><a href="https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax" target="_blank">Kaku</a></li>
 <li><a href="Tablatal.sublime-syntax" target="_blank">Tablatal</a></li>
 </ul>
-<h3>How To Make Your Own!</h3>
+<h3>Make Your Own Sublime Syntax!</h3>
 <p>Lets start with a basic example. <a href="fractran.html">FRACTRAN</a> is an esoteric language with only a few types of symbols (and many of these are not necessary, but good for learning):</p>
 <table>
 <thead>
@@ -6948,7 +6987,7 @@ echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSuppo
 </tr>
 <tr>
 <td>Parentheses</td>
-<td><code>(</code> and <code>)</code></td>
+<td><code>(</code>, <code>)</code></td>
 <td>Surrounds a program</td>
 </tr>
 <tr>
@@ -6963,10 +7002,10 @@ echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSuppo
 </tr>
 <tr>
 <td>Forward slash and an asterisk, and vice versa</td>
-<td><code>/* */</code></td>
+<td><code>/*</code>, <code>*/</code></td>
 <td>Begins and ends a multi-line comment</td>
 </tr>
-</tbody></table><p>We will start with only <strong>numbers</strong>, <strong>commas</strong>, and <strong>parentheses</strong>.</p>
+</tbody></table><p>We will start with only <strong>numbers</strong>, <strong>division operators</strong>, <strong>commas</strong>, and <strong>parentheses</strong>.</p>
 <h4>Making a New Syntax</h4>
 <p>First, we will want to create our <code>FRACTRAN.sublime-syntax</code> file.</p>
 <ul>
@@ -6989,7 +7028,7 @@ scope: source.fractran
 <li><code>scope</code> defines the scope of your syntax. Because we are creating a new one, we will call it <code>source.fractran</code>, but extensions to other languages may use something already established, like <code>source.c</code>, <code>source.python</code>, etc.</li>
 </ul>
 <h4>Contexts</h4>
-<p>Now we are in the meat and potatoes, where we start defining <code>contexts</code>. These <code>contexts</code> are how the syntax parser knows what to parse and when. In its simplest form, it does a basic <a href="regular-expressions.html">regex</a> on a set of characters and applies a specific formatting. As it gets more complex, it complements this behavior with a <a href="stack-programming.html">stack</a>, pushing and popping contexts as it encounters matches.</p>
+<p>Now we are in the meat and potatoes, where we start defining <code>contexts</code>. These <code>contexts</code> are how the syntax parser knows what to parse and when. In its simplest form, it does a basic <a href="regular-expressions.html">regex</a> on a set of characters, goes through the different <code>match</code> statements, and applies a specific formatting on the first match. As it gets more complex, it complements this behavior with a <a href="stack-programming.html">stack</a>, pushing and popping contexts as it encounters matches.</p>
 <p>Lets make our first context. Append this to our <code>sublime-syntax</code> file:</p>
 <pre><code class="language-yaml">contexts:
   main:
@@ -7003,8 +7042,54 @@ scope: source.fractran
 <pre><code class="language-yaml">    - match: &#x27;\/&#x27;
       scope: keyword.operator
 </code></pre>
-<p>You should now see some coloring on your forward slash as well!</p>
-<!-- Pushing and popping contexts in the context of a function -->
+<p>You should now see some coloring on your forward slash as well! Last but not least, we can add our comma.</p>
+<pre><code class="language-yaml">    - match: &#x27;,&#x27;
+      scope: punctuation
+</code></pre>
+<h4>Pushing and Popping</h4>
+<p>We have these rules, and they <em>work</em>, but they are not very robust. We are wanting to only trigger these when inside of a FRACTRAN function, which is signified by parentheses. To do this, we will start by making another match group for the start of a fraction. This time, we will have it push a new context onto our stack.</p>
+<pre><code class="language-yaml">    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+</code></pre>
+<p>That last line, <code>push: function</code>, will now move us out of the default context of <code>main</code> and into the <code>function</code> context, which we will need to define below all of our other match groups. When we reach our end parentheses, we will pop this <code>function</code> context off the stack, returning to our default <code>main</code> context.</p>
+<pre><code class="language-yaml">    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+
+  function:
+    - match: &#x27;\)&#x27;
+      scope: variable.function
+      pop: true
+</code></pre>
+<p>At the moment, only numbers that are outside of our parentheses will be highlighted correctly. So we want to move all of our <code>match</code> groups (except our new open parentheses match group) within this function context. Our contexts should look like this:</p>
+<pre><code class="language-yaml">contexts:
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+
+  function:
+    - match: &#x27;\)&#x27;
+      scope: variable.function
+      pop: true
+
+    - match: &#x27;\d&#x27;
+      scope: constant.numeric
+
+    - match: &#x27;\/&#x27;
+      scope: keyword.operator
+
+    - match: &#x27;,&#x27;
+      scope: punctuation
+</code></pre>
+<p>Now we should have the basics of highlighting a FRACTRAN function complete. Put the following into your file to see how you did!</p>
+<pre><code class="language-fractran">(455/33, 11/13, 1/11, 3/7, 11/2, 1/3)
+</code></pre>
+<h3>Variables</h3>
+<p>You can add variables to your syntax's top level scope (the same level as <code>name</code>, <code>file_extensions</code>, <code>contexts</code>, etc.). These variables will allow you to be able to define a match group one time and reuse it throughout your syntax file by referencing the name surrounded by double curly braces[6].</p>
 <h2>Troubleshooting Errors</h2>
 <h3>Autocompletion/Snippets</h3>
 <ol>
@@ -7024,9 +7109,10 @@ scope: source.fractran
 <li><a href="https://www.sublimetext.com/docs/command_line.html#mac" target="_blank">https://www.sublimetext.com/docs/command_line.html#mac</a></li>
 <li><a href="https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax" target="_blank">https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax</a></li>
 <li><a href="https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions" target="_blank">https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions</a></li>
+<li><a href="http://www.sublimetext.com/docs/syntax.html#variables" target="_blank">http://www.sublimetext.com/docs/syntax.html#variables</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="pug.html">Pug</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111221519</p></article><article>            <h1><a href="pug.html">Pug</a></h1>
+<p class="last-modified">Last modified: 202111231036</p></article><article>            <h1><a href="pug.html">Pug</a></h1>
             <p>Pug is a templating engine for <a href="html.html">HTML</a> that allows you to write a simpler more condense webpage, as well as integrating <a href="javascript.html">Javascript</a> to dynamically generate pages.</p>
 <h2>Getting Started</h2>
 <p>Install it using <a href="npm.html">NPM</a>: <code>npm i -g pug-cli</code>. You can compile a Pug file directly, or by watching the file and it's dependencies for changes.</p>
@@ -10169,7 +10255,7 @@ customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, locat
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="react.html">React</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111160646</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
+<p class="last-modified">Last modified: 202111240616</p></article><article>            <h1><a href="react-from-scratch.html">React from Scratch</a></h1>
             <p>Learn how <a href="react.html">React</a> works by building it without the <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> framework.</p>
 <p>For React to work properly, you will need three things: </p>
 <ul>
@@ -11195,4 +11281,4 @@ Whatever <strong>meat substitutes</strong>, <strong>vegetables</strong>, and <st
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~602kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~606kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

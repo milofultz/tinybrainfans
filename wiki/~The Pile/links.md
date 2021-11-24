@@ -14,3 +14,7 @@ https://learnxinyminutes.com/
 https://www.simplethread.com/20-things-ive-learned-in-my-20-years-as-a-software-engineer/
 
 https://www.youtube.com/watch?v=5kj5ApnhPAE&t=2913s
+
+https://12ft.io/
+
+[scribe.rip](scribe.rip)
