@@ -126,7 +126,7 @@ These are some things I've deduced after messing with this and seeing some progr
 
 - A fraction with a numerator of 1 means that the number in the denominator's register(s) will need to be zero before it ever reaches a fraction beyond it. For instance, in the multiplication program[7], the fraction `1/11` defines the end of a certain state; to get past that fraction and to the other state, the `11` register needs to be depleted to `11^0`.
 
-- It is not possible for a FRACTRAN instruction to directly test if a variable is 0 (However, an indirect test can be implemented by creating a default instruction that is placed after other instructions that test a particular variable.).[1]
+- It is not possible for a FRACTRAN denominator to directly test if a variable is 0 (However, an indirect test can be implemented by creating a default fraction that is placed after other fractions that test a particular variable.).[1]
 
 ## References
 

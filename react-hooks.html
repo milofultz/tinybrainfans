@@ -158,7 +158,7 @@ export default function ChildComponent() {
 }
 </code></pre>
 <h2><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h2>
-<p>useEffect lets you perform side effects on <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>.</p>
+<p>useEffect lets you perform side effects on <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>. <code>componentDidUnmount</code> is effectively replaced by returning a &quot;cleanup&quot; function in the useEffect callback.</p>
 <pre><code class="language-react">import React, { useEffect } from &#x27;react&#x27;;
 
 const testComponent = () =&gt; {
@@ -177,6 +177,15 @@ const testComponent = () =&gt; {
   // this will run anytime that variable `names` is changed
   useEffect(() =&gt; {
     // do stuff
+  }, [names]);
+
+    // this will run anytime that variable `names` is changed and will 
+    // run the returned &quot;cleanup&quot; function when the component is unmounted
+  useEffect(() =&gt; {
+    // do stuff
+    return function cleanup() {
+      // cleanup stuff
+    }
   }, [names]);
 
   ...
@@ -218,6 +227,5 @@ const testComponent = () =&gt; {
 <li><a href="https://reactjs.org/docs/context.html#dynamic-context" target="_blank">https://reactjs.org/docs/context.html#dynamic-context</a></li>
 <li><a href="https://daveceddia.com/usecontext-hook/" target="_blank">https://daveceddia.com/usecontext-hook/</a></li>
 </ol>
-<p>c</p>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="react.html">React</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111170537</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~606kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111250451</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~611kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

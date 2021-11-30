@@ -29,11 +29,36 @@ import my_program
                          &#x27;wrong size after resize&#x27;)
 </code></pre>
 <p>You can run your test suite by running <code>python3 -m unittest</code> in the root directory of the program. This will search for files using <code>unittest</code> within the current directory.</p>
+<h2>Mocking Input</h2>
+<p>To mock a call to <code>input</code>, you can utilize <code>mock</code> in the <code>unittest</code> library. The <code>patch</code> decorator allows you to specify a default return.[4]</p>
+<pre><code class="language-python">import unittest
+from unittest.mock import patch
+
+
+def answer(input=input):
+    ans = input(&#x27;enter yes or no&#x27;)
+    if ans == &#x27;yes&#x27;:
+        return &#x27;you entered yes&#x27;
+    if ans == &#x27;no&#x27;:
+        return &#x27;you entered no&#x27;
+
+
+class Test(unittest.TestCase):
+    # get_input will return &#x27;yes&#x27; during this test
+    @patch(&#x27;builtins.input&#x27;, return_value=&#x27;yes&#x27;)
+    def test_answer_yes(self, input):
+        self.assertEqual(answer(input=input), &#x27;you entered yes&#x27;)
+
+    @patch(&#x27;builtins.input&#x27;, return_value=&#x27;no&#x27;)
+    def test_answer_no(self, input):
+        self.assertEqual(answer(input=input), &#x27;you entered no&#x27;)
+</code></pre>
 <h2>References</h2>
-<ul>
+<ol>
 <li><a href="https://docs.python.org/3/library/unittest.html" target="_blank">https://docs.python.org/3/library/unittest.html</a></li>
 <li><a href="https://docs.python.org/3/library/unittest.html#skipping-tests-and-expected-failures" target="_blank">https://docs.python.org/3/library/unittest.html#skipping-tests-and-expected-failures</a></li>
 <li><a href="https://stackoverflow.com/questions/2066508/disable-individual-python-unit-tests-temporarily" target="_blank">https://stackoverflow.com/questions/2066508/disable-individual-python-unit-tests-temporarily</a></li>
-</ul>
+<li><a href="https://stackoverflow.com/questions/21046717/python-mocking-raw-input-in-unittests" target="_blank">https://stackoverflow.com/questions/21046717/python-mocking-raw-input-in-unittests</a></li>
+</ol>
 
-<p class="last-modified">Last modified: 202110202006</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~606kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111281101</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~611kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

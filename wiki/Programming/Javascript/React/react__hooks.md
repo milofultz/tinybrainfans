@@ -188,7 +188,7 @@ export default function ChildComponent() {
 
 ## [useEffect][]
 
-useEffect lets you perform side effects on [useState][] changes, effectively replacing `componentDidMount` and `componentDidUpdate`.
+useEffect lets you perform side effects on [useState][] changes, effectively replacing `componentDidMount` and `componentDidUpdate`. `componentDidUnmount` is effectively replaced by returning a "cleanup" function in the useEffect callback.
 
 ```react
 import React, { useEffect } from 'react';
@@ -210,7 +210,16 @@ const testComponent = () => {
   useEffect(() => {
     // do stuff
   }, [names]);
-
+  
+    // this will run anytime that variable `names` is changed and will 
+    // run the returned "cleanup" function when the component is unmounted
+  useEffect(() => {
+    // do stuff
+    return function cleanup() {
+      // cleanup stuff
+    }
+  }, [names]);
+  
   ...
 ```
 
@@ -259,5 +268,3 @@ const testComponent = () => {
 [useContext]: https://reactjs.org/docs/hooks-reference.html#usecontext
 [useEffect]: https://reactjs.org/docs/hooks-effect.html
 [useState]: https://reactjs.org/docs/hooks-state.html
-
-c

@@ -42,8 +42,37 @@ class WidgetTestCase(unittest.TestCase):
 
 You can run your test suite by running `python3 -m unittest` in the root directory of the program. This will search for files using `unittest` within the current directory.
 
+## Mocking Input
+
+To mock a call to `input`, you can utilize `mock` in the `unittest` library. The `patch` decorator allows you to specify a default return.[4]
+
+```python
+import unittest
+from unittest.mock import patch
+
+
+def answer(input=input):
+    ans = input('enter yes or no')
+    if ans == 'yes':
+        return 'you entered yes'
+    if ans == 'no':
+        return 'you entered no'
+
+
+class Test(unittest.TestCase):
+    # get_input will return 'yes' during this test
+    @patch('builtins.input', return_value='yes')
+    def test_answer_yes(self, input):
+        self.assertEqual(answer(input=input), 'you entered yes')
+
+    @patch('builtins.input', return_value='no')
+    def test_answer_no(self, input):
+        self.assertEqual(answer(input=input), 'you entered no')
+```
+
 ## References
 
-- https://docs.python.org/3/library/unittest.html
-- https://docs.python.org/3/library/unittest.html#skipping-tests-and-expected-failures
-- https://stackoverflow.com/questions/2066508/disable-individual-python-unit-tests-temporarily
+1. https://docs.python.org/3/library/unittest.html
+1. https://docs.python.org/3/library/unittest.html#skipping-tests-and-expected-failures
+1. https://stackoverflow.com/questions/2066508/disable-individual-python-unit-tests-temporarily
+1. https://stackoverflow.com/questions/21046717/python-mocking-raw-input-in-unittests
