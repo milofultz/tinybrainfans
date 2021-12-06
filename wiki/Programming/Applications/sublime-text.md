@@ -88,7 +88,7 @@ scope: source.fractran
 
 #### Contexts
 
-Now we are in the meat and potatoes, where we start defining `contexts`. These `contexts` are how the syntax parser knows what to parse and when. In its simplest form, it does a basic {{regex|Regular Expressions}} on a set of characters, goes through the different `match` statements, and applies a specific formatting on the first match. As it gets more complex, it complements this behavior with a {{stack|Stack (Programming)}}, pushing and popping contexts as it encounters matches.
+Now we are in the meat and potatoes, where we start defining `contexts`. These `contexts` are how the syntax parser knows what to parse and when. In its simplest form, it does a basic {{regex|Regular Expressions}} on a set of characters, goes through the different `match` statements, and applies a specific formatting on the first match. As it gets more complex, it complements this behavior with a {{stack}}, pushing and popping contexts as it encounters matches.
 
 Lets make our first context. Append this to our `sublime-syntax` file:
 

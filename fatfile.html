@@ -786,6 +786,15 @@ systemctl enable nginx
 <li><a href="https://omniglot.com/writing/thai.htm" target="_blank">https://omniglot.com/writing/thai.htm</a></li>
 <li><a href="https://slice-of-thai.com/tones/" target="_blank">https://slice-of-thai.com/tones/</a></li>
 <li><a href="https://www.expatden.com/thai/resources/learning-thai/" target="_blank">https://www.expatden.com/thai/resources/learning-thai/</a></li>
+<li><a href="http://www.seasite.niu.edu/Thai/QuickThai/Intro.htm" target="_blank">http://www.seasite.niu.edu/Thai/QuickThai/Intro.htm</a></li>
+<li><a href="https://www.youtube.com/watch?v=qSh8kITz8eI" target="_blank">https://www.youtube.com/watch?v=qSh8kITz8eI</a></li>
+<li><a href="https://mythailand.blog/2016/03/03/kao-jai-mai-understand/" target="_blank">https://mythailand.blog/2016/03/03/kao-jai-mai-understand/</a></li>
+</ul>
+<h3>Letters/Tones</h3>
+<ul>
+<li><a href="https://www.activethai.com/study-thai/reading-and-writing/learning-the-thai-vowels/" target="_blank">https://www.activethai.com/study-thai/reading-and-writing/learning-the-thai-vowels/</a></li>
+<li><a href="http://thai-language.com/ref/tone-rules" target="_blank">http://thai-language.com/ref/tone-rules</a></li>
+<li><a href="https://www.youtube.com/watch?v=zaO-aXuxzEI" target="_blank">https://www.youtube.com/watch?v=zaO-aXuxzEI</a></li>
 </ul>
 <h3>Kráp/Kâ</h3>
 <ul>
@@ -798,7 +807,63 @@ systemctl enable nginx
 <li><a href="https://www.youtube.com/watch?v=J6zpns1A08c" target="_blank">https://www.youtube.com/watch?v=J6zpns1A08c</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202111120454</p></article><article><h1><a href="kebab-case.html">kebab-case</a></h1>
+<p class="last-modified">Last modified: 202112030459</p></article><article><h1><a href="unix.html">UNIX</a></h1>
+<p>There's currently nothing here.</p>
+<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="the-carmack-plan.html">The Carmack Plan</a></li></ul></details></section></article><article>            <h1><a href="the-carmack-plan.html">The Carmack Plan</a></h1>
+            <p>Game designer John Carmack took extensive notes during the development of the game Quake. He used <code>.plan</code> files with a fairly straightforward system.</p>
+<h2>The System</h2>
+<p>Throughout the development of the game, he needed to manage the various different bugs, features, and tasks that came up throughout the days. Here's an example of a <code>.plan</code> file from August 12, 1997:</p>
+<pre><code>* qe4 project on command line
+* qe4 rshcmd replacement
+* qe4 select face
+* qe4 avoid multiple autosaves
+* qe4 region selected brushes
+* bindlist command
+* imagelist command in ref_soft
+
++ leaktest
++ load game.dll from gamedir
+
+pendulum motion
+no jump on lava floor?
+-game
+16 bit wall textures
+</code></pre>
+<p>He used a few basic symbols to do this:</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>Completed that day</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Completed on a later day</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Decided against on a later day</td>
+</tr>
+<tr>
+<td>No symbol</td>
+<td>Mentioned but not completed that day</td>
+</tr>
+</tbody></table><p>This system is nice because it allows a clean slate every day as well as a log of what happened over previous days for careful review over time. I love how simple it is, yet that it allows for allocating todo's and thorough logging using <a href="unix.html">UNIX</a> CLI tools.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://garbagecollected.org/2017/10/24/the-carmack-plan/" target="_blank">https://garbagecollected.org/2017/10/24/the-carmack-plan/</a></li>
+<li><a href="https://github.com/floodyberry/carmack/tree/fc09ed3e7dde67b296a6840524a7c9ec8c36511a/plan_files" target="_blank">https://github.com/floodyberry/carmack/tree/fc09ed3e7dde67b296a6840524a7c9ec8c36511a/plan_files</a></li>
+<li><a href="https://github.com/floodyberry/carmack/blob/fc09ed3e7dde67b296a6840524a7c9ec8c36511a/page_tools/template/plan.html#L26-L41" target="_blank">https://github.com/floodyberry/carmack/blob/fc09ed3e7dde67b296a6840524a7c9ec8c36511a/page_tools/template/plan.html#L26-L41</a></li>
+<li><a href="http://web.archive.org/web/20050309230054/http://doom-ed.com/blog/category/doom-ed/john-carmack/" target="_blank">http://web.archive.org/web/20050309230054/http://doom-ed.com/blog/category/doom-ed/john-carmack/</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202112010215</p></article><article><h1><a href="kebab-case.html">kebab-case</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li></ul></details></section></article><article>            <h1><a href="scrum.html">Scrum</a></h1>
             <p>Scrum is a framework of managing projects that aims for quick execution, regular evaluation, and staying nimble over developing a fully fleshed out plan first.</p>
@@ -1229,7 +1294,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202111070519</p></article><article><h1><a href="stack.html">stack</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="forth.html">Forth</a></li></ul></details></section></article><article>            <h1><a href="forth.html">Forth</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-6502.html">Assembly (6502)</a></li><li><a href="forth.html">Forth</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></details></section></article><article>            <h1><a href="forth.html">Forth</a></h1>
             <p>Forth is a procedural, <a href="stack.html">stack</a>-oriented programming language and interactive environment.</p>
 <p>I'm using gFORTH installed with <code>brew install gforth</code> on OSX to learn.</p>
 <h2>References</h2>
@@ -1358,7 +1423,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <ul>
 <li><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" target="_blank">https://addyosmani.com/resources/essentialjsdesignpatterns/book/</a></li>
 </ul>
-<section><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="arrays-javascript.html">Arrays (Javascript)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-javascript.html">Classes (Javascript)</a></li><li><a href="date-javascript.html">Date (Javascript)</a></li><li><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-javascript.html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="functions-javascript.html">Functions (Javascript)</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="jest.html">Jest</a></li><li><a href="jsdoc.html">JSDoc</a></li><li><a href="k6.html">K6</a></li><li><a href="lexical-scoping-javascript.html">Lexical Scoping (Javascript)</a></li><li><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="mutationobserver-javascript.html">MutationObserver (Javascript)</a></li><li><a href="npm.html">NPM</a></li><li><a href="object-destructuring-javascript.html">Object Destructuring (Javascript)</a></li><li><a href="operators-javascript.html">Operators (Javascript)</a></li><li><a href="pixijs.html">PixiJS</a></li><li><a href="promises-and-asyncawait-javascript.html">Promises and Async/Await (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="socketio.html">Socket.IO</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-javascript.html">Switch Case (Javascript)</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li><li><a href="testing-javascript.html">Testing (Javascript)</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-javascript.html">Variables (Javascript)</a></li><li><a href="yarn.html">Yarn</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="arrays-javascript.html">Arrays (Javascript)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="canvas.html">Canvas</a></li><li><a href="classes-javascript.html">Classes (Javascript)</a></li><li><a href="date-javascript.html">Date (Javascript)</a></li><li><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="event-listeners-javascript.html">Event Listeners (Javascript)</a></li><li><a href="express.html">Express</a></li><li><a href="fetch-api.html">Fetch API</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="functions-javascript.html">Functions (Javascript)</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="immer.html">Immer</a></li><li><a href="jest.html">Jest</a></li><li><a href="jsdoc.html">JSDoc</a></li><li><a href="k6.html">K6</a></li><li><a href="lexical-scoping-javascript.html">Lexical Scoping (Javascript)</a></li><li><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="mutationobserver-javascript.html">MutationObserver (Javascript)</a></li><li><a href="npm.html">NPM</a></li><li><a href="object-destructuring-javascript.html">Object Destructuring (Javascript)</a></li><li><a href="operators-javascript.html">Operators (Javascript)</a></li><li><a href="pixijs.html">PixiJS</a></li><li><a href="promises-and-asyncawait-javascript.html">Promises and Async/Await (Javascript)</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="regular-expressions.html">Regular Expressions</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="socketio.html">Socket.IO</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="switch-case-javascript.html">Switch Case (Javascript)</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li><li><a href="testing-javascript.html">Testing (Javascript)</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="variables-javascript.html">Variables (Javascript)</a></li><li><a href="yarn.html">Yarn</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202111010011</p></article><article>            <h1><a href="regular-expressions.html">Regular Expressions</a></h1>
             <p>Regular Expressions or &quot;regex&quot; is used to describe a series of characters. If it has a pattern in its formatting, regex can be used.</p>
 <h2>Regular Expression Syntax</h2>
@@ -1760,7 +1825,7 @@ export const TAXRATE = .095;
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 <li><a href="https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774" target="_blank">https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="pixijs.html">PixiJS</a></li><li><a href="proptypes.html">PropTypes</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="visual-studio-code.html">Visual Studio Code</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="immer.html">Immer</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="pixijs.html">PixiJS</a></li><li><a href="proptypes.html">PropTypes</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="visual-studio-code.html">Visual Studio Code</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202111170317</p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
             <p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
 <h2>Components</h2>
@@ -1996,7 +2061,7 @@ source ~/.profile
 <ul>
 <li><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" target="_blank">https://docs.npmjs.com/downloading-and-installing-node-js-and-npm</a></li>
 </ul>
-<section><details><summary>Backlinks</summary><ul><li><a href="eslint.html">ESLint</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="socketio.html">Socket.IO</a></li><li><a href="sqlite.html">SQLite</a></li><li><a href="yarn.html">Yarn</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="eslint.html">ESLint</a></li><li><a href="immer.html">Immer</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="mongoose.html">Mongoose</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="pug.html">Pug</a></li><li><a href="react.html">React</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="socketio.html">Socket.IO</a></li><li><a href="sqlite.html">SQLite</a></li><li><a href="yarn.html">Yarn</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202110172241</p></article><article>            <h1><a href="mongodb.html">MongoDB</a></h1>
             <p>MongoDB is a <a href="nosql.html">NoSQL</a> <a href="database.html">database</a> management system based on <a href="javascript.html">Javascript</a> using documents similar to <a href="json.html">JSON</a>.</p>
 <h2>Getting Started</h2>
@@ -4746,13 +4811,13 @@ linear-gradient(
 </tr>
 <tr>
 <td>ESP</td>
-<td>Stack Pointer</td>
+<td><a href="stack.html">Stack</a> Pointer</td>
 <td>stack pointer, <strong>should not be used</strong></td>
 </tr>
 <tr>
 <td>EBP</td>
 <td>Base Pointer</td>
-<td>pointer to data on the stack</td>
+<td>pointer to data on the <a href="stack.html">stack</a></td>
 </tr>
 </tbody></table><h3>16-Bit Segment</h3>
 <table>
@@ -4808,8 +4873,8 @@ linear-gradient(
 <p>The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.  </p>
 <h3>Zero Flag (<code>ZF</code>)</h3>
 <p>The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.</p>
-<h2>Stack</h2>
-<p>The <a href="stack-programming.html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
+<h2><a href="stack.html">Stack</a></h2>
+<p>The <a href="stack.html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
 <p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
 <pre><code class="language-assembly">push 3
 pop eax
@@ -4845,8 +4910,13 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <li><a href="https://www.chibialiens.com/8086/8086CheatSheet.pdf" target="_blank">https://www.chibialiens.com/8086/8086CheatSheet.pdf</a></li>
 <li><a href="https://www.chibialiens.com/8086/" target="_blank">https://www.chibialiens.com/8086/</a></li>
 </ol>
+<p>Game Boy:</p>
+<ol>
+<li><a href="https://github.com/pret/pokered" target="_blank">https://github.com/pret/pokered</a></li>
+<li><a href="https://eldred.fr/gb-asm-tutorial/index.html" target="_blank">https://eldred.fr/gb-asm-tutorial/index.html</a></li>
+</ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="fractran.html">FRACTRAN</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202109270029</p></article><article>            <h1><a href="fractran.html">FRACTRAN</a></h1>
+<p class="last-modified">Last modified: 202111301144</p></article><article>            <h1><a href="fractran.html">FRACTRAN</a></h1>
             <p>FRACTRAN is an <a href="esolang.html">esoteric programming language</a> developed by John Conway that is based solely on fractions and prime numbers.</p>
 <p>Each program consists of a starting number as input (<em>n</em>), acting as an accumulator does in low-level <a href="assembly.html">assembly</a> languages, as it persists and changes throughout the program. The instructions consist of a series of fractions (each fraction being represented as <em>f</em>) that are cycled through using the following rules[1,4]:</p>
 <ol>
@@ -5340,9 +5410,29 @@ Insert emulation/compilation instructions here
 <tr>
 <td><code>JSR label</code> / <code>RTS</code></td>
 <td>Jump to SubRoutine / ReTurn from Subroutine</td>
-<td>Jump directly to label and push current address - 1 to the stack. This will be retrieved via the return statement.</td>
+<td>Jump directly to label and push current address - 1 to the <a href="stack.html">stack</a>. This will be retrieved via the return statement.</td>
 </tr>
-</tbody></table><h4>Stack</h4>
+<tr>
+<td><code>BVS label</code></td>
+<td>Branch on oVerflow Set</td>
+<td>If <code>V</code> flag is set, or bit 6 is set when using <code>BIT</code>, go to label</td>
+</tr>
+<tr>
+<td><code>BVC label</code></td>
+<td>Branch on oVerflow Clear</td>
+<td>If <code>V</code> flag is not set, or bit 6 is not set when using <code>BIT</code>, go to label</td>
+</tr>
+<tr>
+<td><code>BMI label</code></td>
+<td>Branch on MInus</td>
+<td>If <code>N</code> flag is set, or bit 7 is set when using <code>BIT</code>, go to label</td>
+</tr>
+<tr>
+<td><code>BPL label</code></td>
+<td>Branch on PLus</td>
+<td>If <code>N</code> flag is not set, or bit 7 is not set when using <code>BIT</code>, go to label</td>
+</tr>
+</tbody></table><h4><a href="stack.html">Stack</a></h4>
 <table>
 <thead>
 <tr>
@@ -5400,10 +5490,11 @@ Insert emulation/compilation instructions here
 <p>Instructions and Flags Reference:</p>
 <ul>
 <li><a href="http://www.6502.org/tutorials/6502opcodes.html" target="_blank">http://www.6502.org/tutorials/6502opcodes.html</a></li>
-<li><a href="http://www.obelisk.me.uk/6502/reference.html" target="_blank">http://www.obelisk.me.uk/6502/reference.html</a></li>
 <li><a href="https://retroscience.net/writing-6502-assembler.html" target="_blank">https://retroscience.net/writing-6502-assembler.html</a></li>
 <li><a href="http://www.obelisk.me.uk/6502/registers.html#Z" target="_blank">http://www.obelisk.me.uk/6502/registers.html#Z</a></li>
 <li><a href="https://cyborgsystems.loadcode.co.uk/cpu/6502/" target="_blank">https://cyborgsystems.loadcode.co.uk/cpu/6502/</a></li>
+<li><a href="https://masswerk.at/6502/6502_instruction_set.html" target="_blank">https://masswerk.at/6502/6502_instruction_set.html</a></li>
+<li><a href="https://wiki.cdot.senecacollege.ca/wiki/6502_Jumps,_Branches,_and_Procedures" target="_blank">https://wiki.cdot.senecacollege.ca/wiki/6502_Jumps,_Branches,_and_Procedures</a></li>
 </ul>
 <p>Examples:</p>
 <ul>
@@ -5412,7 +5503,7 @@ Insert emulation/compilation instructions here
 <li><a href="https://wiki.nesdev.org/w/index.php/Random_number_generator" target="_blank">https://wiki.nesdev.org/w/index.php/Random_number_generator</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="minicube64.html">Minicube64</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111201324</p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
+<p class="last-modified">Last modified: 202112051507</p></article><article>            <h1><a href="minicube64.html">Minicube64</a></h1>
             <p><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">Minicube64</a> is a fantasy console style emulator based on <a href="assembly-6502.html">6502</a>, with the intention of helping people learn how games were made for older systems such as Atari 2600, NES or C64, but without many of the difficult hardware restrictions.</p>
 <h2>Annotated Introduction</h2>
 <p>The <a href="https://aeriform.gitbook.io/minicube64/" target="_blank">introduction page</a> is what I'm annotating below. Hopefully these notes will give more insight into what the assembly is doing in the console.</p>
@@ -5608,7 +5699,7 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <li><a href="https://milofultz.com/2021/11/09/bubble-sort-6502" target="_blank">https://milofultz.com/2021/11/09/bubble-sort-6502</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202111091027</p></article><article><h1><a href="machine-code.html">machine code</a></h1>
+<p class="last-modified">Last modified: 202111301021</p></article><article><h1><a href="machine-code.html">machine code</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-6502.html">Assembly (6502)</a></li></ul></details></section></article><article>            <h1><a href="paper-computing.html">Paper Computing</a></h1>
             <p>Paper computing is a way to learn about the most basic operation of <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> systems and <a href="programming.html">programming</a> in general. This is also a great way to get familiar with the basics of machine code and <a href="assembly.html">assembly</a>.</p>
@@ -5694,11 +5785,7 @@ Hello, World
 <li><a href="https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/" target="_blank">https://orangejuiceliberationfront.com/intel-assembler-on-mac-os-x/</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202107112052</p></article><article><h1><a href="unix.html">Unix</a></h1>
-<p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-unix.html">Assembly (Unix)</a></li></ul></details></section></article><article><h1>Stack (Programming)</h1>
-<p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section></article><article>            <h1>Assembly (Amiga)</h1>
+<p class="last-modified">Last modified: 202107112052</p></article><article>            <h1>Assembly (Amiga)</h1>
             <p>The Amiga was a personal computer from the 80's built on the Motorola 68000 chipset.</p>
 <h2>References</h2>
 <ul>
@@ -6178,7 +6265,7 @@ Hello, World
 <td>Place the value found in the calculator in the outbox.</td>
 </tr>
 </tbody></table><h3>Inbox and Outbox</h3>
-<p>The inbox and outbox can hold multiple values in what is called a 'stack', where the last number that was placed in it will be the first one out. Think of it like a deck of cards, where the cards are pulled off of the top when removed, and when new cards are added, they will be added on top of the deck. </p>
+<p>The inbox and outbox can hold multiple values in what is called a <a href="stack.html">stack</a>, where the last number that was placed in it will be the first one out. Think of it like a deck of cards, where the cards are pulled off of the top when removed, and when new cards are added, they will be added on top of the deck. </p>
 <h3>Calculator</h3>
 <p>The calculator holds a single value between <code>0</code>/<code>000</code> and <code>999</code> inclusive and can <code>ADD</code> and <code>SUB</code>. The calculator also has three indicators that are set by the last operation it has completed: negative, if the result is below <code>0</code>; zero, if the result was exactly <code>0</code>; and positive, for if the result is between <code>0</code> and <code>999</code> .</p>
 <p>The calculator cannot handle numbers below <code>0</code>/<code>000</code>, nor any numbers over <code>999</code>. When executing subtraction, if the result ends up being below 0 (underflow), then this will cause the calculator to throw a negative flag, which would cause <code>7XY</code> to succeed and <code>8XY</code> to fail.</p>
@@ -6834,7 +6921,7 @@ Fetch the instruction from the mailbox with that number. Each instruction contai
 <li><a href="https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6" target="_blank">https://www.youtube.com/watch?v=t-mOfXhgfQY&amp;lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="paper-computing.html">Paper Computing</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202109271334</p></article><article>            <h1><a href="canvas.html">Canvas</a></h1>
+<p class="last-modified">Last modified: 202111301021</p></article><article>            <h1><a href="canvas.html">Canvas</a></h1>
             <p>The Canvas API provides a means for drawing graphics via <a href="javascript.html">JavaScript</a> and the <a href="html.html">HTML</a> <code>&lt;canvas&gt;</code> element.</p>
 <h2>Initialization</h2>
 <p>To start using the canvas, put the canvas element in your webpage HTML, along with a width or height in pixels. Fallback content goes in between the opening and closing tag.</p>
@@ -7070,7 +7157,7 @@ scope: source.fractran
 <li><code>scope</code> defines the scope of your syntax. Because we are creating a new one, we will call it <code>source.fractran</code>, but extensions to other languages may use something already established, like <code>source.c</code>, <code>source.python</code>, etc.</li>
 </ul>
 <h4>Contexts</h4>
-<p>Now we are in the meat and potatoes, where we start defining <code>contexts</code>. These <code>contexts</code> are how the syntax parser knows what to parse and when. In its simplest form, it does a basic <a href="regular-expressions.html">regex</a> on a set of characters, goes through the different <code>match</code> statements, and applies a specific formatting on the first match. As it gets more complex, it complements this behavior with a <a href="stack-programming.html">stack</a>, pushing and popping contexts as it encounters matches.</p>
+<p>Now we are in the meat and potatoes, where we start defining <code>contexts</code>. These <code>contexts</code> are how the syntax parser knows what to parse and when. In its simplest form, it does a basic <a href="regular-expressions.html">regex</a> on a set of characters, goes through the different <code>match</code> statements, and applies a specific formatting on the first match. As it gets more complex, it complements this behavior with a <a href="stack.html">stack</a>, pushing and popping contexts as it encounters matches.</p>
 <p>Lets make our first context. Append this to our <code>sublime-syntax</code> file:</p>
 <pre><code class="language-yaml">contexts:
   main:
@@ -7154,7 +7241,7 @@ scope: source.fractran
 <li><a href="http://www.sublimetext.com/docs/syntax.html#variables" target="_blank">http://www.sublimetext.com/docs/syntax.html#variables</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="pug.html">Pug</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111231036</p></article><article>            <h1><a href="pug.html">Pug</a></h1>
+<p class="last-modified">Last modified: 202111301021</p></article><article>            <h1><a href="pug.html">Pug</a></h1>
             <p>Pug is a templating engine for <a href="html.html">HTML</a> that allows you to write a simpler more condense webpage, as well as integrating <a href="javascript.html">Javascript</a> to dynamically generate pages.</p>
 <h2>Getting Started</h2>
 <p>Install it using <a href="npm.html">NPM</a>: <code>npm i -g pug-cli</code>. You can compile a Pug file directly, or by watching the file and it's dependencies for changes.</p>
@@ -8289,7 +8376,285 @@ var t = new Timer(&#x27;Description&#x27;);
 t.stop();
 </code></pre>
 
-<p class="last-modified">Last modified: 202107020540</p></article><article>            <h1><a href="jsdoc.html">JSDoc</a></h1>
+<p class="last-modified">Last modified: 202107020540</p></article><article>            <h1><a href="react-hooks.html">React Hooks</a></h1>
+            <p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
+<p>If these hooks are not exactly what you need, you can create your own <a href="custom-react-hooks.html">custom hooks</a> using the existing ones to achieve your goals.</p>
+<p>These examples are using Typescript for type annotations and clarity.</p>
+<h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
+<p>useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.</p>
+<p>In its most basic form (taken from Dave Ceddia[2]):</p>
+<pre><code class="language-react">import React, { createContext } from &#x27;react&#x27;;
+
+// Create a Context
+const NumberContext = createContext();
+// It returns an object with 2 values:
+// { Provider, Consumer }
+
+const App = () =&gt; {
+  // Use the Provider to make a value available to all
+  // children and grandchildren
+  return (
+    &lt;NumberContext.Provider value={42}&gt;
+      &lt;div&gt;
+        &lt;Display /&gt;
+      &lt;/div&gt;
+    &lt;/NumberContext.Provider&gt;
+  );
+};
+
+const Display = () =&gt; {
+  // Use the Consumer to grab the value from context
+  // Notice this component didn&#x27;t get any props!
+  return (
+    &lt;NumberContext.Consumer&gt;
+      {value =&gt; &lt;div&gt;The answer is {value}.&lt;/div&gt;}
+    &lt;/NumberContext.Consumer&gt;
+  );
+};
+</code></pre>
+<p>However, instead of using the <code>Consumer</code> wrapper, you can use <code>useContext</code> and destructure the variables held within:</p>
+<pre><code class="language-react">import React, { createContext, useContext } from &#x27;react&#x27;;
+
+const NumberContext = createContext();
+
+const App = () =&gt; {
+  return (
+    &lt;NumberContext.Provider value={42}&gt;
+      &lt;div&gt;
+        &lt;Display /&gt;
+      &lt;/div&gt;
+    &lt;/NumberContext.Provider&gt;
+  );
+};
+
+const Display = () =&gt; {
+  const { value } =&gt; useContext(NumberContext);
+  return &lt;div&gt;The answer is {value}.&lt;/div&gt;;
+};
+</code></pre>
+<p>This becomes more and more useful when multiple contexts are used and you can end up with wrappers over wrappers over wrappers and it gets real unwieldy really quick.</p>
+<h3>Simplifying a Global Context</h3>
+<p>If one is using many different contexts over all components, these different contexts can be placed into individual files and imported into a 'main' context file that exports a higher order function which wraps any children in these different contexts.</p>
+<p><strong>contexts/ExampleContext.jsx</strong> (same thing for <strong>contexts/AnotherContext.jsx</strong>)</p>
+<pre><code class="language-react">import { createContext } from &#x27;react&#x27;;
+import { Channel } from &#x27;../types/types&#x27;;
+
+
+export interface ExampleContextInformation {
+  name: string;
+  age: number;
+  setName: Function;
+  setAge: Function;
+}
+
+// Fill this in with the default values. We will redefine the setters
+// once in the component where this is used.
+export const ExampleContext = createContext&lt;ExampleContextInformation&gt;({ 
+  name: &#x27;&#x27;,
+  age: null,
+  setName: () =&gt; {},
+  setAge: () =&gt; {},
+});
+</code></pre>
+<p><strong>contexts/GlobalContext.jsx</strong></p>
+<pre><code class="language-react">import React from &#x27;react&#x27;;
+
+import { ExampleContext, ExampleContextInformation } from &#x27;./ExampleContext&#x27;;
+import { AnotherContext, AnotherContextInformation } from &#x27;./AnotherContext&#x27;;
+
+interface GlobalProps { 
+  exampleContextObject: ExampleContextInformation, 
+  anotherContextObject: AnotherContextInformation,
+}
+
+export function GlobalContext(props: any) {
+  const {
+    exampleContextObject,
+    anotherContextObject
+  }: GlobalProps = props;
+
+  return (
+    &lt;ExampleContext.Provider value={exampleContextObject}&gt;
+      &lt;AnotherContext.Provider value={anotherContextObject}&gt;
+        {props.children}
+      &lt;/AnotherContext.Provider&gt;
+    &lt;/ExampleContext.Provider&gt;
+  );
+}
+</code></pre>
+<p><strong>App.jsx</strong></p>
+<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
+
+import { GlobalContext } from &#x27;./contexts/GlobalContext&#x27;;
+import { ExampleContextInformation } from &#x27;./ExampleContext&#x27;;
+import { AnotherContextInformation } from &#x27;./AnotherContext&#x27;;
+
+export default function App() {
+  const [name, setName] = useState&lt;string&gt;(&#x27;&#x27;);
+  const [age, setAge] = useState&lt;number | null&gt;(&#x27;&#x27;);
+  const [anotherVar, setAnotherVar] = useState&lt;number&gt;(0);
+
+  const exampleContextObject: ExampleContextInformation = {
+    name,
+    age,
+    setName: (name: string) =&gt; setName(name),
+    setAge: (age: number) =&gt; setAge(age),
+  };
+
+  const anotherContextObject: AnotherContextInformation = {
+    anotherVar,
+    setAnotherVar: (anotherVar: number) =&gt; setAnotherVar(anotherVar),
+  }
+
+  return (
+    &lt;GlobalContext
+      exampleContextObject={exampleContextObject}
+      anotherContextObject={anotherContextObject}
+     &gt;
+      {/* Components in here have access to contexts via useContext */}
+      &lt;ChildComponent /&gt;
+    &lt;/GlobalContext&gt;
+  )
+}
+</code></pre>
+<p><strong>ChildComponent.jsx</strong></p>
+<pre><code class="language-react">import React, { useContext } from &#x27;react&#x27;;
+import { ExampleContext } from &#x27;./ExampleContext&#x27;;
+import { AnotherContext } from &#x27;./AnotherContext&#x27;;
+
+export default function ChildComponent() {
+  const { age, setAge } = useContext(ExampleContext);
+  const { anotherVar } = useContext(AnotherContext);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Your age is {age} and this is {anotherVar}!&lt;/p&gt;
+      &lt;button type=&quot;button&quot; onClick={() =&gt; setAge(Date.now())}&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<h2><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h2>
+<p>useEffect lets you perform side effects on <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>. <code>componentDidUnmount</code> is effectively replaced by returning a &quot;cleanup&quot; function in the useEffect callback.</p>
+<pre><code class="language-react">import React, { useEffect } from &#x27;react&#x27;;
+
+const testComponent = () =&gt; {
+  ...
+
+  // this will run on every rerender (generally don&#x27;t want this)
+  useEffect(() =&gt; {
+    // do stuff
+  });
+
+  // this will run the function once on mount
+  useEffect(() =&gt; {
+    // do stuff
+  }, []);
+
+  // this will run anytime that variable `names` is changed
+  useEffect(() =&gt; {
+    // do stuff
+  }, [names]);
+
+    // this will run anytime that variable `names` is changed and will 
+    // run the returned &quot;cleanup&quot; function when the component is unmounted
+  useEffect(() =&gt; {
+    // do stuff
+    return function cleanup() {
+      // cleanup stuff
+    }
+  }, [names]);
+
+  ...
+</code></pre>
+<h2><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a></h2>
+<p>useState lets you use state within a functional component.</p>
+<p><strong>NOTE:</strong> useState does not have a callback as second argument, like the normal <code>setState</code> invocation does. Use useEffect to handle side effects and changes on state updates.</p>
+<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
+
+interface Name {
+  first: string,
+  last: string,
+}
+
+const testComponent = () =&gt; {  
+  // this will create a getter and setter for state variable `names`
+  const [counter, setCounter] = useState&lt;number&gt;(0);
+  const [names, setNames] = useState&lt;Name[]&gt;([]);
+
+  // sets counter 
+  const onClick = () =&gt; {
+    setCounter(counter + 1);
+  };
+
+  const onSubmit = (firstName, lastName) =&gt; {
+    setNames([
+      ...names,
+      {
+        first: firstName,
+        last: lastName
+      }
+    ]);
+  }  
+
+  ...
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://reactjs.org/docs/context.html#dynamic-context" target="_blank">https://reactjs.org/docs/context.html#dynamic-context</a></li>
+<li><a href="https://daveceddia.com/usecontext-hook/" target="_blank">https://daveceddia.com/usecontext-hook/</a></li>
+</ol>
+<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111250451</p></article><article>            <h1><a href="immer.html">Immer</a></h1>
+            <p>Immer is an <a href="npm.html">NPM</a> package that allows modification of complex <a href="javascript.html">Javascript</a> objects and maintains immutability with your application.</p>
+<h2>Why?</h2>
+<p>When dealing with objects in Javascript, you are often dealing with references to points in memory. </p>
+<p>When you need to make a copy of that object, it's easy enough to use <code>const copy = JSON.stringify(JSON.parse(obj))</code>, which makes a <strong>deep</strong> copy. But it kind of sucks and doesn't handle anything outside of strings, numbers, and booleans and will null everything else aside from Date objects, or have weird behavior like serializing keys of Maps or Sets.</p>
+<p>Another alternative is using the spread operator: <code>const copy = { ...obj };</code>. Unfortunately, this only performs a <strong>shallow</strong> copy, meaning it's still pointing to the same memory references and modifying something in <code>copy</code> may modify the values in <code>obj</code>.</p>
+<p>Immer gives the best of both. It allows you to manage this by using a <code>produce</code> function that lets you modify a <code>draft</code> and will return a new object that:</p>
+<ul>
+<li>Only allows further modifications using Immer</li>
+<li>Maintains references to the same memory if values didn't change</li>
+<li>Leaves old references alone when modifying values by creating new values on modification</li>
+</ul>
+<p>This behavior is particularly useful with <a href="react.html">React</a>, where modifying state without using the proper <a href="react-hooks.html">hooks</a> or <code>setState</code> call can result in missed updates or faulty recording of the data you want to modify.</p>
+<h2>Example[1]</h2>
+<h3>Bad</h3>
+<pre><code class="language-javascript">const nextState = baseState.slice() // shallow clone the array
+nextState[1] = {
+    // replace element 1...
+    ...nextState[1], // with a shallow clone of element 1
+    done: true // ...combined with the desired update
+}
+// since nextState was freshly cloned, using push is safe here,
+// but doing the same thing at any arbitrary time in the future would
+// violate the immutability principles and introduce a bug!
+nextState.push({title: &quot;Tweet about it&quot;})
+</code></pre>
+<h3>Good</h3>
+<pre><code class="language-javascript">import produce from &quot;immer&quot;
+
+const nextState = produce(baseState, draft =&gt; {
+    draft[1].done = true
+    draft.push({title: &quot;Tweet about it&quot;})
+})
+</code></pre>
+<h2>Troubleshooting</h2>
+<p>If you want to log something to the console, it is recommended to use the <code>current</code> method from the <code>immer</code> package. Without this, you may end up with a <code>Proxy</code> object, which is not helpful.</p>
+<pre><code class="language-javascript">import { current, produce } from &#x27;immer&#x27;;
+
+const updated_ds = produce(ds, working_ds =&gt; {
+  working_ds.property = &#x27;new value&#x27;;
+  console.log(working_ds); // returns a `Proxy` object, which gives no useful info
+  console.log(current(working_ds)); // returns the actual data
+};
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://immerjs.github.io/immer/" target="_blank">https://immerjs.github.io/immer/</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202112060311</p></article><article>            <h1><a href="jsdoc.html">JSDoc</a></h1>
             <p>JSDoc is a markup language used to annotate <a href="javascript.html">JavaScript</a> source code files with comment blocks.</p>
 <h2>Syntax</h2>
 <pre><code class="language-javascript">/**
@@ -10006,236 +10371,7 @@ export default App;
 <li><a href="https://blog.webdevsimplified.com/2019-11/how-to-write-custom-hooks/" target="_blank">https://blog.webdevsimplified.com/2019-11/how-to-write-custom-hooks/</a></li>
 </ul>
 <section><details><summary>Backlinks</summary><ul><li><a href="react-hooks.html">React Hooks</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111080632</p></article><article>            <h1><a href="react-hooks.html">React Hooks</a></h1>
-            <p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
-<p>If these hooks are not exactly what you need, you can create your own <a href="custom-react-hooks.html">custom hooks</a> using the existing ones to achieve your goals.</p>
-<p>These examples are using Typescript for type annotations and clarity.</p>
-<h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
-<p>useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.</p>
-<p>In its most basic form (taken from Dave Ceddia[2]):</p>
-<pre><code class="language-react">import React, { createContext } from &#x27;react&#x27;;
-
-// Create a Context
-const NumberContext = createContext();
-// It returns an object with 2 values:
-// { Provider, Consumer }
-
-const App = () =&gt; {
-  // Use the Provider to make a value available to all
-  // children and grandchildren
-  return (
-    &lt;NumberContext.Provider value={42}&gt;
-      &lt;div&gt;
-        &lt;Display /&gt;
-      &lt;/div&gt;
-    &lt;/NumberContext.Provider&gt;
-  );
-};
-
-const Display = () =&gt; {
-  // Use the Consumer to grab the value from context
-  // Notice this component didn&#x27;t get any props!
-  return (
-    &lt;NumberContext.Consumer&gt;
-      {value =&gt; &lt;div&gt;The answer is {value}.&lt;/div&gt;}
-    &lt;/NumberContext.Consumer&gt;
-  );
-};
-</code></pre>
-<p>However, instead of using the <code>Consumer</code> wrapper, you can use <code>useContext</code> and destructure the variables held within:</p>
-<pre><code class="language-react">import React, { createContext, useContext } from &#x27;react&#x27;;
-
-const NumberContext = createContext();
-
-const App = () =&gt; {
-  return (
-    &lt;NumberContext.Provider value={42}&gt;
-      &lt;div&gt;
-        &lt;Display /&gt;
-      &lt;/div&gt;
-    &lt;/NumberContext.Provider&gt;
-  );
-};
-
-const Display = () =&gt; {
-  const { value } =&gt; useContext(NumberContext);
-  return &lt;div&gt;The answer is {value}.&lt;/div&gt;;
-};
-</code></pre>
-<p>This becomes more and more useful when multiple contexts are used and you can end up with wrappers over wrappers over wrappers and it gets real unwieldy really quick.</p>
-<h3>Simplifying a Global Context</h3>
-<p>If one is using many different contexts over all components, these different contexts can be placed into individual files and imported into a 'main' context file that exports a higher order function which wraps any children in these different contexts.</p>
-<p><strong>contexts/ExampleContext.jsx</strong> (same thing for <strong>contexts/AnotherContext.jsx</strong>)</p>
-<pre><code class="language-react">import { createContext } from &#x27;react&#x27;;
-import { Channel } from &#x27;../types/types&#x27;;
-
-
-export interface ExampleContextInformation {
-  name: string;
-  age: number;
-  setName: Function;
-  setAge: Function;
-}
-
-// Fill this in with the default values. We will redefine the setters
-// once in the component where this is used.
-export const ExampleContext = createContext&lt;ExampleContextInformation&gt;({ 
-  name: &#x27;&#x27;,
-  age: null,
-  setName: () =&gt; {},
-  setAge: () =&gt; {},
-});
-</code></pre>
-<p><strong>contexts/GlobalContext.jsx</strong></p>
-<pre><code class="language-react">import React from &#x27;react&#x27;;
-
-import { ExampleContext, ExampleContextInformation } from &#x27;./ExampleContext&#x27;;
-import { AnotherContext, AnotherContextInformation } from &#x27;./AnotherContext&#x27;;
-
-interface GlobalProps { 
-  exampleContextObject: ExampleContextInformation, 
-  anotherContextObject: AnotherContextInformation,
-}
-
-export function GlobalContext(props: any) {
-  const {
-    exampleContextObject,
-    anotherContextObject
-  }: GlobalProps = props;
-
-  return (
-    &lt;ExampleContext.Provider value={exampleContextObject}&gt;
-      &lt;AnotherContext.Provider value={anotherContextObject}&gt;
-        {props.children}
-      &lt;/AnotherContext.Provider&gt;
-    &lt;/ExampleContext.Provider&gt;
-  );
-}
-</code></pre>
-<p><strong>App.jsx</strong></p>
-<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
-
-import { GlobalContext } from &#x27;./contexts/GlobalContext&#x27;;
-import { ExampleContextInformation } from &#x27;./ExampleContext&#x27;;
-import { AnotherContextInformation } from &#x27;./AnotherContext&#x27;;
-
-export default function App() {
-  const [name, setName] = useState&lt;string&gt;(&#x27;&#x27;);
-  const [age, setAge] = useState&lt;number | null&gt;(&#x27;&#x27;);
-  const [anotherVar, setAnotherVar] = useState&lt;number&gt;(0);
-
-  const exampleContextObject: ExampleContextInformation = {
-    name,
-    age,
-    setName: (name: string) =&gt; setName(name),
-    setAge: (age: number) =&gt; setAge(age),
-  };
-
-  const anotherContextObject: AnotherContextInformation = {
-    anotherVar,
-    setAnotherVar: (anotherVar: number) =&gt; setAnotherVar(anotherVar),
-  }
-
-  return (
-    &lt;GlobalContext
-      exampleContextObject={exampleContextObject}
-      anotherContextObject={anotherContextObject}
-     &gt;
-      {/* Components in here have access to contexts via useContext */}
-      &lt;ChildComponent /&gt;
-    &lt;/GlobalContext&gt;
-  )
-}
-</code></pre>
-<p><strong>ChildComponent.jsx</strong></p>
-<pre><code class="language-react">import React, { useContext } from &#x27;react&#x27;;
-import { ExampleContext } from &#x27;./ExampleContext&#x27;;
-import { AnotherContext } from &#x27;./AnotherContext&#x27;;
-
-export default function ChildComponent() {
-  const { age, setAge } = useContext(ExampleContext);
-  const { anotherVar } = useContext(AnotherContext);
-
-  return (
-    &lt;div&gt;
-      &lt;p&gt;Your age is {age} and this is {anotherVar}!&lt;/p&gt;
-      &lt;button type=&quot;button&quot; onClick={() =&gt; setAge(Date.now())}&gt;&lt;/button&gt;
-    &lt;/div&gt;
-  )
-}
-</code></pre>
-<h2><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h2>
-<p>useEffect lets you perform side effects on <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>. <code>componentDidUnmount</code> is effectively replaced by returning a &quot;cleanup&quot; function in the useEffect callback.</p>
-<pre><code class="language-react">import React, { useEffect } from &#x27;react&#x27;;
-
-const testComponent = () =&gt; {
-  ...
-
-  // this will run on every rerender (generally don&#x27;t want this)
-  useEffect(() =&gt; {
-    // do stuff
-  });
-
-  // this will run the function once on mount
-  useEffect(() =&gt; {
-    // do stuff
-  }, []);
-
-  // this will run anytime that variable `names` is changed
-  useEffect(() =&gt; {
-    // do stuff
-  }, [names]);
-
-    // this will run anytime that variable `names` is changed and will 
-    // run the returned &quot;cleanup&quot; function when the component is unmounted
-  useEffect(() =&gt; {
-    // do stuff
-    return function cleanup() {
-      // cleanup stuff
-    }
-  }, [names]);
-
-  ...
-</code></pre>
-<h2><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a></h2>
-<p>useState lets you use state within a functional component.</p>
-<p><strong>NOTE:</strong> useState does not have a callback as second argument, like the normal <code>setState</code> invocation does. Use useEffect to handle side effects and changes on state updates.</p>
-<pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
-
-interface Name {
-  first: string,
-  last: string,
-}
-
-const testComponent = () =&gt; {  
-  // this will create a getter and setter for state variable `names`
-  const [counter, setCounter] = useState&lt;number&gt;(0);
-  const [names, setNames] = useState&lt;Name[]&gt;([]);
-
-  // sets counter 
-  const onClick = () =&gt; {
-    setCounter(counter + 1);
-  };
-
-  const onSubmit = (firstName, lastName) =&gt; {
-    setNames([
-      ...names,
-      {
-        first: firstName,
-        last: lastName
-      }
-    ]);
-  }  
-
-  ...
-</code></pre>
-<h2>References</h2>
-<ol>
-<li><a href="https://reactjs.org/docs/context.html#dynamic-context" target="_blank">https://reactjs.org/docs/context.html#dynamic-context</a></li>
-<li><a href="https://daveceddia.com/usecontext-hook/" target="_blank">https://daveceddia.com/usecontext-hook/</a></li>
-</ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="react.html">React</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111250451</p></article><article>            <h1><a href="proptypes.html">PropTypes</a></h1>
+<p class="last-modified">Last modified: 202111080632</p></article><article>            <h1><a href="proptypes.html">PropTypes</a></h1>
             <p>PropTypes are a way to add more strict typing, validation, and default values to props in <a href="react.html">React</a>.</p>
 <h2>Example</h2>
 <p>We have a Greeting component that takes in a prop called <code>name</code>:</p>
@@ -11373,4 +11509,4 @@ Whatever <strong>meat substitutes</strong>, <strong>vegetables</strong>, and <st
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~611kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~619kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -64,6 +64,15 @@ I'm fine | [Sá-baai-dee](http://thai-language.com/id/197447) |สบายด�
 - https://omniglot.com/writing/thai.htm
 - https://slice-of-thai.com/tones/
 - https://www.expatden.com/thai/resources/learning-thai/
+- http://www.seasite.niu.edu/Thai/QuickThai/Intro.htm
+- https://www.youtube.com/watch?v=qSh8kITz8eI
+- https://mythailand.blog/2016/03/03/kao-jai-mai-understand/
+
+### Letters/Tones
+
+- https://www.activethai.com/study-thai/reading-and-writing/learning-the-thai-vowels/
+- http://thai-language.com/ref/tone-rules
+- https://www.youtube.com/watch?v=zaO-aXuxzEI
 
 ### Kráp/Kâ
 

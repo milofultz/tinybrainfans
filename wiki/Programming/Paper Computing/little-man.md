@@ -43,7 +43,7 @@ These instructions will take a little more work to learn, as they don't come wit
 
 ### Inbox and Outbox
 
-The inbox and outbox can hold multiple values in what is called a 'stack', where the last number that was placed in it will be the first one out. Think of it like a deck of cards, where the cards are pulled off of the top when removed, and when new cards are added, they will be added on top of the deck. 
+The inbox and outbox can hold multiple values in what is called a {{stack}}, where the last number that was placed in it will be the first one out. Think of it like a deck of cards, where the cards are pulled off of the top when removed, and when new cards are added, they will be added on top of the deck. 
 
 ### Calculator
 

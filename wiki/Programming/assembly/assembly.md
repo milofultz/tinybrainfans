@@ -66,8 +66,8 @@ ECX | Count Register | counter for string and loop operations
 EDX | Data Register | input/output pointer 
 ESI | Source Index | source pointer for string operations 
 EDI | Destination Index | destination pointer for string operations 
-ESP | Stack Pointer | stack pointer, **should not be used** 
-EBP | Base Pointer | pointer to data on the stack 
+ESP | {{Stack}} Pointer | stack pointer, **should not be used** 
+EBP | Base Pointer | pointer to data on the {{stack}} 
 
 ### 16-Bit Segment
 
@@ -102,9 +102,9 @@ The sign flag will be set to 1 (true) after an arithmetic operation when the res
 
 The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.
 
-## Stack
+## {{Stack}}
 
-The {{stack|Stack (Programming)}} is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.
+The {{stack}} is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.
 
 This will push the number 3 onto the stack and then write it to the EAX register.
 
@@ -147,6 +147,11 @@ There are lots of games that have recently come out to make assembly a little mo
 7. https://www.hellboundhackers.org/articles/read-article.php?article_id=729
 8. https://www.chibialiens.com/8086/8086CheatSheet.pdf
 9. https://www.chibialiens.com/8086/
+
+Game Boy:
+
+1. https://github.com/pret/pokered
+1. https://eldred.fr/gb-asm-tutorial/index.html
 
 [masm]: https://www.masm32.com
 [nasm]: https://nasm.us/

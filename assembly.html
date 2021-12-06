@@ -144,13 +144,13 @@
 </tr>
 <tr>
 <td>ESP</td>
-<td>Stack Pointer</td>
+<td><a href="stack.html">Stack</a> Pointer</td>
 <td>stack pointer, <strong>should not be used</strong></td>
 </tr>
 <tr>
 <td>EBP</td>
 <td>Base Pointer</td>
-<td>pointer to data on the stack</td>
+<td>pointer to data on the <a href="stack.html">stack</a></td>
 </tr>
 </tbody></table><h3>16-Bit Segment</h3>
 <table>
@@ -206,8 +206,8 @@
 <p>The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.  </p>
 <h3>Zero Flag (<code>ZF</code>)</h3>
 <p>The zero flag is set after an arithmetic operation and will have a value of 1 (true) when the result is zero, and 0 (false) when the result is not zero.</p>
-<h2>Stack</h2>
-<p>The <a href="stack-programming.html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
+<h2><a href="stack.html">Stack</a></h2>
+<p>The <a href="stack.html">stack</a> is used to invoke a function or as temporary storage by pushing parameters in last in first out to be utilized by the function.</p>
 <p>This will push the number 3 onto the stack and then write it to the EAX register.</p>
 <pre><code class="language-assembly">push 3
 pop eax
@@ -243,5 +243,10 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <li><a href="https://www.chibialiens.com/8086/8086CheatSheet.pdf" target="_blank">https://www.chibialiens.com/8086/8086CheatSheet.pdf</a></li>
 <li><a href="https://www.chibialiens.com/8086/" target="_blank">https://www.chibialiens.com/8086/</a></li>
 </ol>
+<p>Game Boy:</p>
+<ol>
+<li><a href="https://github.com/pret/pokered" target="_blank">https://github.com/pret/pokered</a></li>
+<li><a href="https://eldred.fr/gb-asm-tutorial/index.html" target="_blank">https://eldred.fr/gb-asm-tutorial/index.html</a></li>
+</ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="fractran.html">FRACTRAN</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202109270029</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~611kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202111301144</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~619kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

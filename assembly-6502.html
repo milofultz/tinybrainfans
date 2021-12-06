@@ -253,9 +253,29 @@ Insert emulation/compilation instructions here
 <tr>
 <td><code>JSR label</code> / <code>RTS</code></td>
 <td>Jump to SubRoutine / ReTurn from Subroutine</td>
-<td>Jump directly to label and push current address - 1 to the stack. This will be retrieved via the return statement.</td>
+<td>Jump directly to label and push current address - 1 to the <a href="stack.html">stack</a>. This will be retrieved via the return statement.</td>
 </tr>
-</tbody></table><h4>Stack</h4>
+<tr>
+<td><code>BVS label</code></td>
+<td>Branch on oVerflow Set</td>
+<td>If <code>V</code> flag is set, or bit 6 is set when using <code>BIT</code>, go to label</td>
+</tr>
+<tr>
+<td><code>BVC label</code></td>
+<td>Branch on oVerflow Clear</td>
+<td>If <code>V</code> flag is not set, or bit 6 is not set when using <code>BIT</code>, go to label</td>
+</tr>
+<tr>
+<td><code>BMI label</code></td>
+<td>Branch on MInus</td>
+<td>If <code>N</code> flag is set, or bit 7 is set when using <code>BIT</code>, go to label</td>
+</tr>
+<tr>
+<td><code>BPL label</code></td>
+<td>Branch on PLus</td>
+<td>If <code>N</code> flag is not set, or bit 7 is not set when using <code>BIT</code>, go to label</td>
+</tr>
+</tbody></table><h4><a href="stack.html">Stack</a></h4>
 <table>
 <thead>
 <tr>
@@ -313,10 +333,11 @@ Insert emulation/compilation instructions here
 <p>Instructions and Flags Reference:</p>
 <ul>
 <li><a href="http://www.6502.org/tutorials/6502opcodes.html" target="_blank">http://www.6502.org/tutorials/6502opcodes.html</a></li>
-<li><a href="http://www.obelisk.me.uk/6502/reference.html" target="_blank">http://www.obelisk.me.uk/6502/reference.html</a></li>
 <li><a href="https://retroscience.net/writing-6502-assembler.html" target="_blank">https://retroscience.net/writing-6502-assembler.html</a></li>
 <li><a href="http://www.obelisk.me.uk/6502/registers.html#Z" target="_blank">http://www.obelisk.me.uk/6502/registers.html#Z</a></li>
 <li><a href="https://cyborgsystems.loadcode.co.uk/cpu/6502/" target="_blank">https://cyborgsystems.loadcode.co.uk/cpu/6502/</a></li>
+<li><a href="https://masswerk.at/6502/6502_instruction_set.html" target="_blank">https://masswerk.at/6502/6502_instruction_set.html</a></li>
+<li><a href="https://wiki.cdot.senecacollege.ca/wiki/6502_Jumps,_Branches,_and_Procedures" target="_blank">https://wiki.cdot.senecacollege.ca/wiki/6502_Jumps,_Branches,_and_Procedures</a></li>
 </ul>
 <p>Examples:</p>
 <ul>
@@ -325,4 +346,4 @@ Insert emulation/compilation instructions here
 <li><a href="https://wiki.nesdev.org/w/index.php/Random_number_generator" target="_blank">https://wiki.nesdev.org/w/index.php/Random_number_generator</a></li>
 </ul>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="minicube64.html">Minicube64</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111201324</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~611kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202112051507</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~619kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
