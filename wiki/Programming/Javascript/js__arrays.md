@@ -9,7 +9,7 @@ description: Arrays in Javascript have many specific methods for modification an
 
 ### reduce
 
-`reduce` will iterate through the items in the array and operate the callback function on each one, passing the previous value's result post-callback. Because of this, `reduce` can be used to build most array methods from scratch.
+`reduce` will iterate through the items in the array and operate the callback function on each one, passing the previous value's result post-callback. Because of this, `reduce` can be used to build most array methods from scratch. That being said, usually using the more specific methods and currying them results in more readable code[1].
 
 `reduce` takes up to two params: the callback function, and the initial value.
 
@@ -77,6 +77,55 @@ numbers.reduce((resultArray, val) => {
 }, []); // returns [1.5, 2, 2.5];
 ```
 
+#### When NOT to use `reduce`[1]
+
+While `reduce` can do everything, it's not the best except for fairly straightforward applications, as it is a bit obtuse. `filter` filters, `map` maps, `reduce` does everything. Hard to grok semantically. 
+
+For instance, if you had an array that holds properties that you need to decrement, as well as conditionally remove items when that property reaches zero, this *could* all be done in `reduce`:
+
+```javascript
+let numbers = [
+  { ticker: 1 },
+  { ticker: 3 },
+  { ticker: 0 },
+  { ticker: 10 },
+];
+
+numbers = numbers.reduce((allNumbers, number) => {
+  // Remove tickers at 0
+  if (number.ticker === 0) {
+    return allNumbers;
+  }
+  
+  // Decrement ticker
+  number.ticker--;
+  allNumbers.push(number);
+  return allNumbers;
+}, []);
+```
+
+This same thing could be done using `filter` followed by `map` in a much more compartmentalized way:
+
+```javascript
+let numbers = [
+  { ticker: 1 },
+  { ticker: 3 },
+  { ticker: 0 },
+  { ticker: 10 },
+];
+
+numbers = numbers
+  // Remove tickers at 0
+  .filter(number => number.ticker !== 0)
+  // Decrement ticker
+  .map(number => {
+  	number.ticker--;
+    return number;
+  });
+```
+
+Each method does a particular thing and *only* that thing.
+
 ## Destructive Methods
 
 These methods affect the array the method is called upon.
@@ -127,3 +176,6 @@ array = [1,2,3,4];
 array.splice(1,1,17); // returns [2]; array now equals [1,17,3,4]
 ```
 
+## References
+
+1. https://stackoverflow.com/a/36557522/14857724

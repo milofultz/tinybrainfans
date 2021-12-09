@@ -16,4 +16,3 @@ I'm using gFORTH installed with `brew install gforth` on OSX to learn.
 1. https://www.complang.tuwien.ac.at/forth/gforth/Docs-html/Files-Tutorial.html
 1. https://www.forth.com/wp-content/uploads/2018/01/Starting-FORTH.pdf
 1. http://www.forth.org/OffeteStore/1003_InsideF83.pdf
-1. 

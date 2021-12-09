@@ -56,6 +56,11 @@ pool.connect(function (err, client, done) { // Connect to the DB
 <pre><code>listening on 3000
 { age: 732 }
 </code></pre>
+<h3>Troubleshooting</h3>
+<p>If you use the types <code>bigserial</code> or <code>bigint</code>, you'll notice they return as strings. This is because Javascript can't natively handle 64-bit integers, so it will stringify these types instead. Javascript <em>can</em> do 2^53 before losing precision, so as long as you don't have numbers over 9 quadrillion, you can use the native <code>Number</code> type in Javascript (there is the Javascript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt" target="_blank"><code>BigInt</code></a> type, but it has it's drawbacks, including the inability to interact with other numbers directly). To do this, you can set a custom parser for that type[9,10]:</p>
+<pre><code class="language-javascript">var types = require(&#x27;pg&#x27;).types
+types.setTypeParser(20, Number);
+</code></pre>
 <h2>Schemas</h2>
 <p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
 <p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
@@ -112,6 +117,8 @@ FROM
 <li><a href="https://www.postgresqltutorial.com/postgresql-cheat-sheet/" target="_blank">https://www.postgresqltutorial.com/postgresql-cheat-sheet/</a></li>
 <li><a href="https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433" target="_blank">https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433</a></li>
 <li><a href="https://www.postgresql.org/docs/12/functions-json.html" target="_blank">https://www.postgresql.org/docs/12/functions-json.html</a></li>
+<li><a href="https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings" target="_blank">https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings</a></li>
+<li><a href="https://github.com/brianc/node-pg-types" target="_blank">https://github.com/brianc/node-pg-types</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202108102041</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~619kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202112080724</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~621kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

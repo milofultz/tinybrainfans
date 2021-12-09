@@ -78,6 +78,15 @@ listening on 3000
 { age: 732 }
 ```
 
+### Troubleshooting
+
+If you use the types `bigserial` or `bigint`, you'll notice they return as strings. This is because Javascript can't natively handle 64-bit integers, so it will stringify these types instead. Javascript *can* do 2^53 before losing precision, so as long as you don't have numbers over 9 quadrillion, you can use the native `Number` type in Javascript (there is the Javascript [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) type, but it has it's drawbacks, including the inability to interact with other numbers directly). To do this, you can set a custom parser for that type[9,10]:
+
+```javascript
+var types = require('pg').types
+types.setTypeParser(20, Number);
+```
+
 ## Schemas
 
 Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.
@@ -130,3 +139,5 @@ FROM
 6. https://www.postgresqltutorial.com/postgresql-cheat-sheet/
 7. https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433
 8. https://www.postgresql.org/docs/12/functions-json.html
+8. https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings
+8. https://github.com/brianc/node-pg-types

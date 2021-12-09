@@ -74,6 +74,11 @@ I'm fine | [Sá-baai-dee](http://thai-language.com/id/197447) |สบายด�
 - http://thai-language.com/ref/tone-rules
 - https://www.youtube.com/watch?v=zaO-aXuxzEI
 
+### Numbers
+
+- https://www.youtube.com/watch?v=8UvP1TXz4s8
+- https://www.youtube.com/watch?v=VY3T4ZC91iY
+
 ### Kráp/Kâ
 
 - https://www.thethailandlife.com/krap-ka
@@ -83,3 +88,4 @@ I'm fine | [Sá-baai-dee](http://thai-language.com/id/197447) |สบายด�
 - https://www.youtube.com/watch?v=Gkj5AlcxmUE
 - https://www.youtube.com/watch?v=ZbnpsnBBczM
 - https://www.youtube.com/watch?v=J6zpns1A08c
+- https://omniglot.com/language/phrases/thai.php

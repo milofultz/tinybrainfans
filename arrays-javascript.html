@@ -3,7 +3,7 @@
             <p><a href="array.html">Arrays</a> in <a href="javascript.html">Javascript</a> have many specific methods for modification and analysis. Some are cunfusiong or hard to recall.</p>
 <h2>Methods</h2>
 <h3>reduce</h3>
-<p><code>reduce</code> will iterate through the items in the array and operate the callback function on each one, passing the previous value's result post-callback. Because of this, <code>reduce</code> can be used to build most array methods from scratch.</p>
+<p><code>reduce</code> will iterate through the items in the array and operate the callback function on each one, passing the previous value's result post-callback. Because of this, <code>reduce</code> can be used to build most array methods from scratch. That being said, usually using the more specific methods and currying them results in more readable code[1].</p>
 <p><code>reduce</code> takes up to two params: the callback function, and the initial value.</p>
 <h4>Callback</h4>
 <p>The callback function can take up to four params:</p>
@@ -49,6 +49,46 @@ numbers.reduce((resultArray, val) =&gt; {
   return resultArray;
 }, []); // returns [1.5, 2, 2.5];
 </code></pre>
+<h4>When NOT to use <code>reduce</code>[1]</h4>
+<p>While <code>reduce</code> can do everything, it's not the best except for fairly straightforward applications, as it is a bit obtuse. <code>filter</code> filters, <code>map</code> maps, <code>reduce</code> does everything. Hard to grok semantically. </p>
+<p>For instance, if you had an array that holds properties that you need to decrement, as well as conditionally remove items when that property reaches zero, this <em>could</em> all be done in <code>reduce</code>:</p>
+<pre><code class="language-javascript">let numbers = [
+  { ticker: 1 },
+  { ticker: 3 },
+  { ticker: 0 },
+  { ticker: 10 },
+];
+
+numbers = numbers.reduce((allNumbers, number) =&gt; {
+  // Remove tickers at 0
+  if (number.ticker === 0) {
+    return allNumbers;
+  }
+
+  // Decrement ticker
+  number.ticker--;
+  allNumbers.push(number);
+  return allNumbers;
+}, []);
+</code></pre>
+<p>This same thing could be done using <code>filter</code> followed by <code>map</code> in a much more compartmentalized way:</p>
+<pre><code class="language-javascript">let numbers = [
+  { ticker: 1 },
+  { ticker: 3 },
+  { ticker: 0 },
+  { ticker: 10 },
+];
+
+numbers = numbers
+  // Remove tickers at 0
+  .filter(number =&gt; number.ticker !== 0)
+  // Decrement ticker
+  .map(number =&gt; {
+    number.ticker--;
+    return number;
+  });
+</code></pre>
+<p>Each method does a particular thing and <em>only</em> that thing.</p>
 <h2>Destructive Methods</h2>
 <p>These methods affect the array the method is called upon.</p>
 <h3>sort</h3>
@@ -87,5 +127,9 @@ array.splice(1,1); // returns [2]; array now equals [1,3,4]
 array = [1,2,3,4];
 array.splice(1,1,17); // returns [2]; array now equals [1,17,3,4]
 </code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://stackoverflow.com/a/36557522/14857724" target="_blank">https://stackoverflow.com/a/36557522/14857724</a></li>
+</ol>
 
-<p class="last-modified">Last modified: 202109101553</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~619kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202112090515</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~621kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
