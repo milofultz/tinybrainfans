@@ -4,13 +4,22 @@
   --light-blue-1: #5EA3EC;
   --light-blue-2: #7EC3FF;
 
-  --dark-black: #000d0e;
+  /* --dark-black: #000d0e;
   --black: #222d2e;
   --light-black: #444d4e;
   --dark-gray: #666d6e;
   --light-gray: #888e8e;
   --dark-white: #aaaeae;
   --white: #cccece;
+  --light-white: #ffffff; */
+
+  --dark-black: #000714;
+  --black: #111723;
+  --light-black: #444952;
+  --dark-gray: #666a72;
+  --light-gray: #888b91;
+  --dark-white: #aaacb0;
+  --white: #eeeeef;
   --light-white: #ffffff;
 }
 
@@ -131,9 +140,9 @@ main [target="_blank"]::after {
   display: inline-block;
   font-size: .75rem;
   height: 1rem;
-  margin-left: .1rem;
+  margin-left: .2rem;
   vertical-align: super;
-  width: .5rem;
+  width: .8rem;
 }
 
 code,
