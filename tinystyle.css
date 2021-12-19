@@ -40,7 +40,7 @@ pre {
 }
 
 table { border-collapse: collapse; }
-tr { border-bottom: .125rem solid #ccc; }
+tr { border-bottom: .125rem solid var(--text); }
 th, td {
   padding: .5rem;
   text-align: left;
