@@ -3,7 +3,7 @@ title: Switch Case (Javascript)
 description: Switch cases allow if/else style branching but with different side effects.
 ---
 
-Switch cases in {{Javascript}} act very similar to `if`/``else` statements, but have some very important differences.
+Switch cases in {{Javascript}} act very similar to `if`/`else` statements, but have some very important differences.
 
 ## Good Differences
 
