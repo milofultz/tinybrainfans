@@ -39,6 +39,13 @@ pre {
   padding: 0.5rem;
 }
 
+table { border-collapse: collapse; }
+tr { border-bottom: .125rem solid #ccc; }
+th, td {
+  padding: .5rem;
+  text-align: left;
+}
+
 footer {
   border-top: .125rem solid var(--text);
   margin-top: 1rem;
