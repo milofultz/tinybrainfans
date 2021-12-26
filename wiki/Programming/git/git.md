@@ -7,6 +7,12 @@ description: git is a version control system.
 
 Add files you want to commit: `git add {file or folder name}`. You can also add all by using `git add .`, but this is not recommended, as you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, which is rarely the case. An easy way to check what has changed in your files since last commit is to use the `--patch` flag.
 
+### `--intent-to-add`
+
+Using this flag will let you track files without adding their contents to staging. This is useful especially with using the `--patch` flag below on new or currently untracked files. This flag can also be shortened to `-N`.
+
+For example, if you were already tracking `file1` and refactoring part of `file1` into `file2`, you would normally not be able to commit only *part* of `file2`. By first using `git add --intent-to-add/-N file2`, the file would now be *tracked* but not yet *staged*. From here, you could use `--patch` and continue by adding portions at a time.[14]
+
 ### `--patch`
 
 Add only portions of a file as 'hunks': `git add --patch/-p {file or folder name}` (file or folder is optional). This will prompt you with options:
@@ -24,6 +30,18 @@ Add only portions of a file as 'hunks': `git add --patch/-p {file or folder name
 * s - split the current hunk into smaller hunks
 * e - [manually edit the current hunk][manually edit hunk] (particularly if your code is really close together but needs to be broken down)
 * ? - print help
+
+### Split Up Previous Commits Into Smaller Commits[15]
+
+To split up your most recent commit, you can use `git reset HEAD~`. This will retain the changes you made in the last commit, but remove the actual commit of those changes from your history. From here you can use `--patch` and select which portions you want to commit.
+
+To split up an older commit, you will want to use an {{interactive `rebase`|Rebase (git)}}. **Don't rebase if you don't know what you are doing.**
+
+1. Start by specifying how many commits you want to go back within this command: `git rebase -i HEAD~N`, replacing N with the number of commits you want to go back.
+1. In the interactive rebase screen, replace the word `pick` with `edit` to stop git at that commit before proceeding with the rebase. Once done, save and exit the editor. This will activate the git rebase process.
+1. Git should have stopped at your specified hash, which you can see with a `git status`. It should say something like `You are currently editing a commit while rebasing branch 'branch_name' on 'f05d5ce'`.
+1. From there, you can continue as if you were splitting your most recent commit: `git reset HEAD~`. 
+1. Commit each change as desired and when complete, use `git rebase --continue` to finish the rebasing process.
 
 ### Case Sensitivity
 
@@ -169,6 +187,8 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 11. https://github.com/delventhalz/no-fear-git
 12. https://nfarina.com/post/9868516270/git-is-simpler
 12. https://fix.code-error.com/git-merge-with-force-overwrite/
+12. https://stackoverflow.com/questions/58273462/is-there-a-way-to-add-untracked-files-in-git-when-adding-via-patch
+12. https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits
 
 [manually edit hunk]: https://rietta.com/blog/git-patch-manual-split/
 [stashing]: https://www.freecodecamp.org/news/git-stash-explained/

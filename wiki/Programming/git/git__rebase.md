@@ -53,14 +53,16 @@ Command(s) | Effect
 `r` / `reword` | Keep the commit and edit the commit message
 `s` / `squash` | Combine this commit with the previous commit, and edit commit message for newly squashed commit
 `f` / `fixup` | Fold this commit into the previous commit, using the previous commit's message
+`e` / `edit` | Stop at this commit and give user control until `rebase --continue`[9] 
 
 ## References
 
-- https://www.youtube.com/watch?v=7Mh259hfxJg
-- https://www.youtube.com/watch?v=u5ywa435MbI
-- https://www.atlassian.com/git/tutorials/merging-vs-rebasing
-- https://linuxhint.com/git-rebase-tutorial/
-- https://git-scm.com/docs/git-rebase
-- https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch
-- https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336
-- https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html
+1. https://www.youtube.com/watch?v=7Mh259hfxJg
+1. https://www.youtube.com/watch?v=u5ywa435MbI
+1. https://www.atlassian.com/git/tutorials/merging-vs-rebasing
+1. https://linuxhint.com/git-rebase-tutorial/
+1. https://git-scm.com/docs/git-rebase
+1. https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch
+1. https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336
+1. https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html
+1. https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits

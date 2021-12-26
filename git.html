@@ -2,6 +2,9 @@
 <main id="main"><article id="content">            <h1 id="title">git</h1>
             <h2>Commits</h2>
 <p>Add files you want to commit: <code>git add {file or folder name}</code>. You can also add all by using <code>git add .</code>, but this is not recommended, as you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, which is rarely the case. An easy way to check what has changed in your files since last commit is to use the <code>--patch</code> flag.</p>
+<h3><code>--intent-to-add</code></h3>
+<p>Using this flag will let you track files without adding their contents to staging. This is useful especially with using the <code>--patch</code> flag below on new or currently untracked files. This flag can also be shortened to <code>-N</code>.</p>
+<p>For example, if you were already tracking <code>file1</code> and refactoring part of <code>file1</code> into <code>file2</code>, you would normally not be able to commit only <em>part</em> of <code>file2</code>. By first using <code>git add --intent-to-add/-N file2</code>, the file would now be <em>tracked</em> but not yet <em>staged</em>. From here, you could use <code>--patch</code> and continue by adding portions at a time.[14]</p>
 <h3><code>--patch</code></h3>
 <p>Add only portions of a file as 'hunks': <code>git add --patch/-p {file or folder name}</code> (file or folder is optional). This will prompt you with options:</p>
 <ul>
@@ -22,6 +25,16 @@
 <li>e - <a href="https://rietta.com/blog/git-patch-manual-split/" target="_blank">manually edit the current hunk</a> (particularly if your code is really close together but needs to be broken down)</li>
 <li>? - print help</li>
 </ul>
+<h3>Split Up Previous Commits Into Smaller Commits[15]</h3>
+<p>To split up your most recent commit, you can use <code>git reset HEAD~</code>. This will retain the changes you made in the last commit, but remove the actual commit of those changes from your history. From here you can use <code>--patch</code> and select which portions you want to commit.</p>
+<p>To split up an older commit, you will want to use an <a href="rebase-git.html">interactive <code>rebase</code></a>. <strong>Don't rebase if you don't know what you are doing.</strong></p>
+<ol>
+<li>Start by specifying how many commits you want to go back within this command: <code>git rebase -i HEAD~N</code>, replacing N with the number of commits you want to go back.</li>
+<li>In the interactive rebase screen, replace the word <code>pick</code> with <code>edit</code> to stop git at that commit before proceeding with the rebase. Once done, save and exit the editor. This will activate the git rebase process.</li>
+<li>Git should have stopped at your specified hash, which you can see with a <code>git status</code>. It should say something like <code>You are currently editing a commit while rebasing branch &#x27;branch_name&#x27; on &#x27;f05d5ce&#x27;</code>.</li>
+<li>From there, you can continue as if you were splitting your most recent commit: <code>git reset HEAD~</code>. </li>
+<li>Commit each change as desired and when complete, use <code>git rebase --continue</code> to finish the rebasing process.</li>
+</ol>
 <h3>Case Sensitivity</h3>
 <p>Git by default is not case sensitive when it comes to filenames and will ignore renaming of file structures that are only by case. To change this default behavior, use <code>git config core.ignorecase false</code>. <strong>Note that setting this option to false on a case-insensitive file system is generally a bad idea. Doing so will lead to weird errors. For example, renaming a file in a way that only changes letter case will cause git to report spurious conflicts or create duplicate files.</strong></p>
 <p>If it is a file or files, you can change their name as normal and then within git via this command: <code>git mv -f filename.txt Filename.txt</code>. This will make it show up in your commit. If it is a directory, you will need to do this with every file within the directory.</p>
@@ -157,6 +170,8 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://github.com/delventhalz/no-fear-git" target="_blank">https://github.com/delventhalz/no-fear-git</a></li>
 <li><a href="https://nfarina.com/post/9868516270/git-is-simpler" target="_blank">https://nfarina.com/post/9868516270/git-is-simpler</a></li>
 <li><a href="https://fix.code-error.com/git-merge-with-force-overwrite/" target="_blank">https://fix.code-error.com/git-merge-with-force-overwrite/</a></li>
+<li><a href="https://stackoverflow.com/questions/58273462/is-there-a-way-to-add-untracked-files-in-git-when-adding-via-patch" target="_blank">https://stackoverflow.com/questions/58273462/is-there-a-way-to-add-untracked-files-in-git-when-adding-via-patch</a></li>
+<li><a href="https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits" target="_blank">https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111160757</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~640kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202112230852</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~645kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
