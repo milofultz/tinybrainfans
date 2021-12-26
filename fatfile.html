@@ -1208,7 +1208,7 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://www.youtube.com/watch?v=KClAPipnKqw" target="_blank">https://www.youtube.com/watch?v=KClAPipnKqw</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="best-practices-programming.html">Best Practices (Programming)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202107021505</p></article><article>            <h1>Best Practices (Programming)</h1>
+<p class="last-modified">Last modified: 202107021505</p></article><article>            <h1><a href="best-practices-programming.html">Best Practices (Programming)</a></h1>
             <h2>Writing Code</h2>
 <ul>
 <li><strong>Programming isn't about the stack</strong> or the systems architecture; the arch meta will change faster than you can learn it.</li>
@@ -1397,7 +1397,71 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://regexcrossword.com/" target="_blank">https://regexcrossword.com/</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="html-forms.html">HTML Forms</a></li><li><a href="my-task-management-system.html">My Task Management System</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202107020457</p></article><article>            <h1><a href="job-interviews.html">Job Interviews</a></h1>
+<p class="last-modified">Last modified: 202107020457</p></article><article><h1><a href="c++.html">C++</a></h1>
+<p>There's currently nothing here.</p>
+<section><details><summary>Backlinks</summary><ul><li><a href="raytracing.html">Raytracing</a></li></ul></details></section></article><article>            <h1><a href="raytracing.html">Raytracing</a></h1>
+            <p>Raytracing is a way of generating and rendering 3D graphics for digital images.</p>
+<h2>PGM</h2>
+<p>A <strong>portable grayscale map</strong> that is often how raytracing images are rendered. These are usually simple ASCII files containing rows of pixels and their corresponding grayscale values.</p>
+<h3>Specification</h3>
+<p>There are multiple types of PGM files, but for this we are sticking with <code>P2</code> types, as they are raw ASCII and not binary files, which makes them easy to create.</p>
+<p>Every value in the file is separated by a space delimiter of some kind (e.g. space, CR, LF, tab). Comments can be made with a <code>#</code>, with everything following it up to the next newline character being considered part of the comment.</p>
+<p>Each file consists of two parts: headers, and the image itself. The header consists of a set of values in order at the beginning of the file. The image consists of a series of values between 0 and your maximum grayscale value. For convenience, it is usually shown with each row being separated by a newline. It is good practice to end your file with a newline.</p>
+<pre><code class="language-pgm">P2    # PGM file type (&quot;Magic Identifier&quot;)
+10 10 # Width and Height of the image
+10    # Maximum grayscale value from 1 - 65535
+
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
+0 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 0
+0 1 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 1 0
+0 1 2 3 4 4 4 4 4 4 4 4 4 4 4 4 3 2 1 0
+0 1 2 3 4 5 5 5 5 5 5 5 5 5 5 4 3 2 1 0
+0 1 2 3 4 5 6 6 6 6 6 6 6 6 5 4 3 2 1 0
+0 1 2 3 4 5 6 7 7 7 7 7 7 6 5 4 3 2 1 0
+0 1 2 3 4 5 6 7 8 8 8 8 7 6 5 4 3 2 1 0
+0 1 2 3 4 5 6 7 8 9 9 8 7 6 5 4 3 2 1 0
+
+</code></pre>
+<h3>Variations</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PBM (Bit Map)</td>
+<td>Monochrome using image values 0 and 1. Uses <code>P1</code> as the type and lacks the third header value re: grayscale value.</td>
+</tr>
+<tr>
+<td>PPM (Pixel Map)</td>
+<td>Color using image value groups of <code>R G B</code>. (e.g. a single pixel can be represented by <code>80 80 40</code>). Uses <code>P3</code> as the type.</td>
+</tr>
+</tbody></table><h2>Examples</h2>
+<p><a href="https://fabiensanglard.net/rayTracing_back_of_business_card/" target="_blank">Business Card Raytracer</a> - This raytracer was built in <a href="c++.html">C++</a> and fits on the back of a business card as it was all minified. Worth checking out, as it has a lot of impressive ideas and coding feats, along with being a good raytracer in itself.</p>
+<p><a href="https://hackaday.com/2018/11/21/tiny-ray-tracer-fits-in-64-bytes/" target="_blank">64b Raycaster</a> - I still don't really know the difference between a raycaster and a raytracer, but either way, this is crazy impressive. <a href="http://twt86.co/#" target="_blank">You can see some raw assembly for a related project here under Wolf64</a>. <a href="https://www.pouet.net/prod.php?which=78044" target="_blank">Here it is on Pouet</a>.</p>
+<p><a href="https://zserge.com/posts/raytracer/" target="_blank">Ray tracer for those who skipped the math class</a> - Built with learning how it works in mind. Very helpful going through this to understand what does what.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://raytracing.github.io/books/RayTracingInOneWeekend.html" target="_blank">https://raytracing.github.io/books/RayTracingInOneWeekend.html</a></li>
+<li><a href="https://zserge.com/posts/raytracer/" target="_blank">https://zserge.com/posts/raytracer/</a></li>
+<li><a href="https://github.com/milofultz/zserge-raytracer-py" target="_blank">https://github.com/milofultz/zserge-raytracer-py</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/A_basic_ray-caster" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/A_basic_ray-caster</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)" target="_blank">https://en.wikipedia.org/wiki/Ray_tracing_(graphics)</a></li>
+<li><a href="https://www.youtube.com/watch?v=gBPNO6ruevk" target="_blank">https://www.youtube.com/watch?v=gBPNO6ruevk</a></li>
+<li><a href="https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html" target="_blank">https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html</a></li>
+</ol>
+<p><strong>PGM Format</strong></p>
+<ol>
+<li><a href="https://courses.cs.washington.edu/courses/cse373/00au/pgm.html" target="_blank">https://courses.cs.washington.edu/courses/cse373/00au/pgm.html</a></li>
+<li><a href="http://netpbm.sourceforge.net/doc/pgm.html" target="_blank">http://netpbm.sourceforge.net/doc/pgm.html</a></li>
+<li><a href="http://www.paulbourke.net/dataformats/ppm/" target="_blank">http://www.paulbourke.net/dataformats/ppm/</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202112260820</p></article><article>            <h1><a href="job-interviews.html">Job Interviews</a></h1>
             <p>What are <strong>you</strong> trying to get from this position? What do <strong>they</strong> want from you in taking this position?</p>
 <h2>Questions to Ask</h2>
 <ul>
@@ -1742,7 +1806,7 @@ export const TAXRATE = .095;
 <li><a href="https://www.youtube.com/watch?v=DUg2SWWK18I" target="_blank">https://www.youtube.com/watch?v=DUg2SWWK18I</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202111210912</p></article><article>            <h1>Magic Numbers (Programming)</h1>
+<p class="last-modified">Last modified: 202111210912</p></article><article>            <h1><a href="magic-numbers-programming.html">Magic Numbers (Programming)</a></h1>
             <p>Magic numbers are numbers that have no semantic meaning within the program. These are problematic for maintenance and bug fixing since somebody reading the code later could have no idea what exactly the numbers represent.</p>
 <pre><code class="language-javascript">/* BAD: Magic Numbers */
 function calculateTotal(price) {
@@ -2985,7 +3049,7 @@ db.run(sql, data, function(err) {
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li></ul></details></section></article><article><h1><a href="python.html">Python</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="argparse-python.html">argparse (Python)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="collections-python.html">Collections (Python)</a></li><li><a href="datetime-python.html">Datetime (Python)</a></li><li><a href="debounce-python.html">Debounce (Python)</a></li><li><a href="itertools-python.html">Itertools (Python)</a></li><li><a href="json-python.html">JSON (Python)</a></li><li><a href="math-python.html">Math (Python)</a></li><li><a href="numpy.html">Numpy</a></li><li><a href="python-with-bash.html">Python with Bash</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li><li><a href="unittest.html">Unittest</a></li><li><a href="virtual-environments-python.html">Virtual Environments (Python)</a></li></ul></details></section></article><article>            <h1>argparse (Python)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="argparse-python.html">argparse (Python)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="collections-python.html">Collections (Python)</a></li><li><a href="datetime-python.html">Datetime (Python)</a></li><li><a href="debounce-python.html">Debounce (Python)</a></li><li><a href="itertools-python.html">Itertools (Python)</a></li><li><a href="json-python.html">JSON (Python)</a></li><li><a href="math-python.html">Math (Python)</a></li><li><a href="numpy.html">Numpy</a></li><li><a href="python-with-bash.html">Python with Bash</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li><li><a href="unittest.html">Unittest</a></li><li><a href="virtual-environments-python.html">Virtual Environments (Python)</a></li></ul></details></section></article><article>            <h1><a href="argparse-python.html">argparse (Python)</a></h1>
             <p><code>argparse</code> is a way to handle command line arguments in <a href="python.html">Python</a> applications.</p>
 <h2>Getting Started</h2>
 <p>A simple application using <code>argparse</code>:</p>
@@ -3015,7 +3079,7 @@ if __name__ == &quot;__main__&quot;:
 <li><a href="https://docs.python.org/3.9/library/argparse.html" target="_blank">https://docs.python.org/3.9/library/argparse.html</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202110241513</p></article><article>            <h1>Collections (Python)</h1>
+<p class="last-modified">Last modified: 202110241513</p></article><article>            <h1><a href="collections-python.html">Collections (Python)</a></h1>
             <p>These are some resources on how to use the collections <a href="python.html">Python</a> package.</p>
 <h2>defaultdict(type)</h2>
 <pre><code class="language-python">from collections import defaultdict
@@ -3044,7 +3108,7 @@ deck.append(top_card)
 <li><a href="https://docs.python.org/3/library/collections.html" target="_blank">https://docs.python.org/3/library/collections.html</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107181935</p></article><article>            <h1>Itertools (Python)</h1>
+<p class="last-modified">Last modified: 202107181935</p></article><article>            <h1><a href="itertools-python.html">Itertools (Python)</a></h1>
             <p>Resources on how to use the itertools <a href="python.html">Python</a> package.</p>
 <h2>itertools.product()</h2>
 <p>Avoid using nested for loops to iterate through multiple different lists or numbers</p>
@@ -3070,7 +3134,7 @@ for v1, v2, v3, v4, v5, v6 in itertools.product(x1, x2, x3, x4, x5, x6):
 <li><a href="https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops" target="_blank">https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020541</p></article><article>            <h1>Virtual Environments (Python)</h1>
+<p class="last-modified">Last modified: 202107020541</p></article><article>            <h1><a href="virtual-environments-python.html">Virtual Environments (Python)</a></h1>
             <p>Virtual environments allow you to develop in a clean slate, leaving nothing to global packages and allowing easy installation by others.</p>
 <p>You are in a virtual environment for your <a href="python.html">Python</a> project when you see the env name (in this case, literally <code>env</code>) to the left of the bash prompt.</p>
 <h2>Create</h2>
@@ -3085,7 +3149,7 @@ for v1, v2, v3, v4, v5, v6 in itertools.product(x1, x2, x3, x4, x5, x6):
 <pre><code class="language-bash">deactivate
 </code></pre>
 
-<p class="last-modified">Last modified: 202107020544</p></article><article>            <h1>Datetime (Python)</h1>
+<p class="last-modified">Last modified: 202107020544</p></article><article>            <h1><a href="datetime-python.html">Datetime (Python)</a></h1>
             <p>These are some resources on how to use the <a href="https://docs.python.org/3/library/datetime.html" target="_blank">datetime</a> <a href="python.html">Python</a> package.</p>
 <h2>Using datetime</h2>
 <p><code>datetime.datetime.now().isoformat()</code> - to get a string of the current date and time</p>
@@ -3093,7 +3157,7 @@ for v1, v2, v3, v4, v5, v6 in itertools.product(x1, x2, x3, x4, x5, x6):
 
 <p class="last-modified">Last modified: 202107020541</p></article><article><h1><a href="debounce.html">Debounce</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="debounce-python.html">Debounce (Python)</a></li></ul></details></section></article><article>            <h1>Debounce (Python)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="debounce-python.html">Debounce (Python)</a></li></ul></details></section></article><article>            <h1><a href="debounce-python.html">Debounce (Python)</a></h1>
             <p>How to create and use a <a href="debounce.html">debouncer</a> in <a href="python.html">Python</a>.</p>
 <p>In both of these examples, the inner function won't run until at least DEBOUNCE_TIME seconds has passed.</p>
 <h2>Standalone</h2>
@@ -3168,9 +3232,9 @@ if __name__ == &quot;__main__&quot;:
 <li><a href="https://gist.github.com/walkermatt/2871026" target="_blank">https://gist.github.com/walkermatt/2871026</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107212151</p></article><article><h1>Pandas (Python)</h1>
+<p class="last-modified">Last modified: 202107212151</p></article><article><h1><a href="pandas-python.html">Pandas (Python)</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section></article><article>            <h1>SQLite3 (Python)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section></article><article>            <h1><a href="sqlite3-python.html">SQLite3 (Python)</a></h1>
             <p>How to use <a href="sqlite.html">SQLite</a> with <a href="python.html">Python</a>.</p>
 <h2>Opening/Closing Connections and Command Execution</h2>
 <p>After importing the built-in <code>sqlite3</code> module, you need to establish a connection with your <a href="database.html">database</a>. </p>
@@ -3463,7 +3527,7 @@ DEBUG: got line: test.sh
 <li><a href="https://stackoverflow.com/questions/4429966/how-to-make-a-python-script-pipeable-in-bash" target="_blank">https://stackoverflow.com/questions/4429966/how-to-make-a-python-script-pipeable-in-bash</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202110010327</p></article><article>            <h1>Math (Python)</h1>
+<p class="last-modified">Last modified: 202110010327</p></article><article>            <h1><a href="math-python.html">Math (Python)</a></h1>
             <h2>Get Quotient and Remainder</h2>
 <p><code>divmod</code> returns a tuple of the quotient and the remainder/modulo.</p>
 <pre><code class="language-python">divmod(20, 3) # (6, 2)
@@ -3478,7 +3542,7 @@ round(3.1415926, 3)  # 3.142
 <li><a href="https://tutorialdeep.com/knowhow/round-float-to-2-decimal-places-python/" target="_blank">https://tutorialdeep.com/knowhow/round-float-to-2-decimal-places-python/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020542</p></article><article>            <h1>JSON (Python)</h1>
+<p class="last-modified">Last modified: 202107020542</p></article><article>            <h1><a href="json-python.html">JSON (Python)</a></h1>
             <h2>Load <a href="json.html">JSON</a> from file</h2>
 <pre><code class="language-python">def load_json(fp):
     with open(fp, &#x27;r&#x27;) as f:
@@ -3515,14 +3579,14 @@ round(3.1415926, 3)  # 3.142
 <li><a href="https://github.com/hankchizljaw/modern-css-reset" target="_blank">https://github.com/hankchizljaw/modern-css-reset</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020522</p></article><article>            <h1>Print Queries (CSS)</h1>
+<p class="last-modified">Last modified: 202107020522</p></article><article>            <h1><a href="print-queries-css.html">Print Queries (CSS)</a></h1>
             <h2>References</h2>
 <ol>
 <li><a href="https://www.jotform.com/blog/css-perfect-print-stylesheet-98272/" target="_blank">https://www.jotform.com/blog/css-perfect-print-stylesheet-98272/</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Printing" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Guide/Printing</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202110021635</p></article><article>            <h1>Selectors (CSS)</h1>
+<p class="last-modified">Last modified: 202110021635</p></article><article>            <h1><a href="selectors-css.html">Selectors (CSS)</a></h1>
             <p>Selectors are the backbone of <a href="css.html">CSS</a>, allowing the developer to create stylesheets that apply and cascade to many elements at a time.</p>
 <h2>Selectors</h2>
 <ul>
@@ -3631,7 +3695,7 @@ round(3.1415926, 3)  # 3.142
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="organization-and-structure-css.html">Organization and Structure (CSS)</a></li><li><a href="transitions-css.html">Transitions (CSS)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202107020516</p></article><article>            <h1>Transitions (CSS)</h1>
+<p class="last-modified">Last modified: 202107020516</p></article><article>            <h1><a href="transitions-css.html">Transitions (CSS)</a></h1>
             <p>Transitions allow you to transform a <a href="css.html">CSS</a> rule from one set of values to another, and can be triggered either by a pseudoclass <a href="selectors-css.html">selector</a>, on a regular cycle, or just once when loaded.</p>
 <p>This example I modified from <a href="http://mdn.io" target="_blank">MDN</a> shows how you would transform the background color of a button on hover:</p>
 <pre><code class="language-css">#button {
@@ -3664,14 +3728,14 @@ round(3.1415926, 3)  # 3.142
 <li><a href="https://jrl.ninja/etc/1/" target="_blank">https://jrl.ninja/etc/1/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020511</p></article><article>            <h1>Patterns (CSS)</h1>
+<p class="last-modified">Last modified: 202107020511</p></article><article>            <h1><a href="patterns-css.html">Patterns (CSS)</a></h1>
             <p><a href="https://projects.verou.me/css3patterns/" target="_blank">https://projects.verou.me/css3patterns/</a></p>
 <h2>References</h2>
 <ol>
 <li><a href="css.html">CSS</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020512</p></article><article>            <h1>Fonts (CSS)</h1>
+<p class="last-modified">Last modified: 202107020512</p></article><article>            <h1><a href="fonts-css.html">Fonts (CSS)</a></h1>
             <p>Importing and using external fonts properly in <a href="css.html">CSS</a>.</p>
 <h2>Using <code>@font-face</code></h2>
 <pre><code class="language-css">@font-face {
@@ -3980,7 +4044,7 @@ $colors: (color1: blue, color2: red, color3: green);
 <li><a href="https://www.slideshare.net/stubbornella/our-best-practices-are-killing-us" target="_blank">https://www.slideshare.net/stubbornella/our-best-practices-are-killing-us</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020525</p></article><article>            <h1>Vendor Prefixes (CSS)</h1>
+<p class="last-modified">Last modified: 202107020525</p></article><article>            <h1><a href="vendor-prefixes-css.html">Vendor Prefixes (CSS)</a></h1>
             <p>Vendor prefixes are used to ensure that older or unsupported browsers have every possibility of implementing the desired rule. Vendor prefixes are before the declarations and denote which tech/browser/setup it is intended for.</p>
 <pre><code class="language-css">div {
   -webkit-box-shadow: 0px 0px 4px #fff;
@@ -4004,7 +4068,7 @@ $colors: (color1: blue, color2: red, color3: green);
 <li><a href="https://css-tricks.com/snippets/sass/mixin-prefix-properties/" target="_blank">https://css-tricks.com/snippets/sass/mixin-prefix-properties/</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="organization-and-structure-css.html">Organization and Structure (CSS)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202107020520</p></article><article>            <h1>Typography (CSS)</h1>
+<p class="last-modified">Last modified: 202107020520</p></article><article>            <h1><a href="typography-css.html">Typography (CSS)</a></h1>
             <p>How to properly define and apply typography rules in <a href="css.html">CSS</a>.</p>
 <h2>Line Height</h2>
 <p>The <code>normal</code> value on a <code>line-height</code> property in <a href="css.html">CSS</a> is calculated as 1.2x the font size; e.g. a font size of 16px will have a <code>normal</code> line height of (1.2 * 16)px = 19.2px.</p>
@@ -4026,7 +4090,7 @@ $colors: (color1: blue, color2: red, color3: green);
 <li><a href="https://blog.typekit.com/2016/08/17/flexible-typography-with-css-locks/" target="_blank">https://blog.typekit.com/2016/08/17/flexible-typography-with-css-locks/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020519</p></article><article>            <h1>Alignment (CSS)</h1>
+<p class="last-modified">Last modified: 202107020519</p></article><article>            <h1><a href="alignment-css.html">Alignment (CSS)</a></h1>
             <h2>Block Elements</h2>
 <p>To horizontally center a block element with a width other than 100%, use <code>margin: auto;</code>. Setting the width of the element will prevent it from stretching out to the edges of its container. The element will then take up the specified width, and the remaining space will be split equally between the two margins.</p>
 <h2>Inline and Inline-Block Elements</h2>
@@ -4052,7 +4116,7 @@ $colors: (color1: blue, color2: red, color3: green);
 <li><a href="https://stackoverflow.com/questions/17309928/how-to-center-text-vertically-with-a-large-font-awesome-icon" target="_blank">https://stackoverflow.com/questions/17309928/how-to-center-text-vertically-with-a-large-font-awesome-icon</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020504</p></article><article>            <h1>Position (CSS)</h1>
+<p class="last-modified">Last modified: 202107020504</p></article><article>            <h1><a href="position-css.html">Position (CSS)</a></h1>
             <p>The <code>position</code> property in <a href="css.html">CSS</a> gives the developer control over the x-, y-, and z-axis in aligning elements.</p>
 <ul>
 <li><code>static</code> - This is the default position that a property will have if left unset. The equivalent of being unpositioned. This element will be in the standard flow of the document. This value is the only value that will not create a new stacking context (z-axis).</li>
@@ -4066,7 +4130,7 @@ $colors: (color1: blue, color2: red, color3: green);
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/position</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020513</p></article><article>            <h1>Color Palettes (CSS)</h1>
+<p class="last-modified">Last modified: 202107020513</p></article><article>            <h1><a href="color-palettes-css.html">Color Palettes (CSS)</a></h1>
             <h2><a href="https://monokai.pro/" target="_blank">https://monokai.pro/</a></h2>
 <pre><code class="language-css">:root {
   --red:    #ff6188;
@@ -4247,7 +4311,7 @@ $colors: (color1: blue, color2: red, color3: green);
   --white:     #e0f8d0;
 </code></pre>
 
-<p class="last-modified">Last modified: 202107020505</p></article><article>            <h1>Text Selections (CSS)</h1>
+<p class="last-modified">Last modified: 202107020505</p></article><article>            <h1><a href="text-selections-css.html">Text Selections (CSS)</a></h1>
             <p>How to use <a href="css.html">CSS</a> to give or take away the user's ability to select text on a page.</p>
 <h2>Disable</h2>
 <p>Particularly with <code>span</code> or <code>div</code> style buttons that can be clicked a bunch and end up with their text selected.</p>
@@ -4277,7 +4341,7 @@ $colors: (color1: blue, color2: red, color3: green);
 
 <p class="last-modified">Last modified: 202107020517</p></article><article><h1><a href="dont-repeat-yourself.html">Don't Repeat Yourself</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="organization-and-structure-css.html">Organization and Structure (CSS)</a></li></ul></details></section></article><article>            <h1>Organization and Structure (CSS)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="organization-and-structure-css.html">Organization and Structure (CSS)</a></li></ul></details></section></article><article>            <h1><a href="organization-and-structure-css.html">Organization and Structure (CSS)</a></h1>
             <p>Miscellaneous notes and best practices on organization and structure in <a href="css.html">CSS</a>.</p>
 <h2>Best Practices</h2>
 <h3>Keep it consistent</h3>
@@ -4500,7 +4564,7 @@ a {
 <li><a href="https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/" target="_blank">https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020528</p></article><article>            <h1>Gradients (CSS)</h1>
+<p class="last-modified">Last modified: 202107020528</p></article><article>            <h1><a href="gradients-css.html">Gradients (CSS)</a></h1>
             <p>How to create and use linear gradients in <a href="css.html">CSS</a>.</p>
 <h2>Background or Image</h2>
 <pre><code class="language-css">/*
@@ -4540,7 +4604,7 @@ linear-gradient(
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient()" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient()</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020508</p></article><article>            <h1>Common Breakpoints (CSS)</h1>
+<p class="last-modified">Last modified: 202107020508</p></article><article>            <h1><a href="common-breakpoints-css.html">Common Breakpoints (CSS)</a></h1>
             <p>These are common breakpoints for all devices in web development. These are to be used in <a href="css.html">CSS</a> media queries.</p>
 <ul>
 <li>320px — 480px: Mobile devices</li>
@@ -4986,7 +5050,7 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="bash.html">bash</a></li></ul></details></section></article><article><h1><a href="windows.html">Windows</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li></ul></details></section></article><article>            <h1>Assembly (Windows)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li></ul></details></section></article><article>            <h1><a href="assembly-windows.html">Assembly (Windows)</a></h1>
             <p><a href="assembly.html">Assembly</a> on <a href="windows.html">Windows</a> utilizes <a href="https://masm32.com/" target="_blank">masm</a>, Microsoft's proprietary assembler and linker.</p>
 <h2>Compilation, Linking, and Execution</h2>
 <h3>Compiler</h3>
@@ -5046,7 +5110,7 @@ call [SendMessage]
 <li><a href="https://masm32.com/" target="_blank">https://masm32.com/</a> </li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202107112140</p></article><article>            <h1>Assembly (6502)</h1>
+<p class="last-modified">Last modified: 202107112140</p></article><article>            <h1><a href="assembly-6502.html">Assembly (6502)</a></h1>
             <p>Assembly is an extremely low-level human-readable language that has a strong relation between the code and the corresponding <a href="machine-code.html">machine code</a>.</p>
 <p>The Motorola 6502 is a microcontroller based on their 6800 series, but simplified, less expensive, and faster.</p>
 <!--
@@ -5617,7 +5681,7 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <li><a href="http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf" target="_blank">http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110311628</p></article><article>            <h1>Assembly (Unix)</h1>
+<p class="last-modified">Last modified: 202110311628</p></article><article>            <h1><a href="assembly-unix.html">Assembly (Unix)</a></h1>
             <p><a href="assembly.html">Assembly</a> on <a href="unix.html">Unix</a> is largely the same between <a href="macos.html">MacOS</a> and <a href="linux.html">Linux</a> computers.</p>
 <h2>Compilation, Linking, and Execution</h2>
 <h3>Compiler</h3>
@@ -5677,7 +5741,7 @@ Hello, World
 <section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202107112052</p></article><article><h1><a href="unix.html">Unix</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="the-carmack-plan.html">The Carmack Plan</a></li></ul></details></section></article><article>            <h1>Assembly (Amiga)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="the-carmack-plan.html">The Carmack Plan</a></li></ul></details></section></article><article>            <h1><a href="assembly-amiga.html">Assembly (Amiga)</a></h1>
             <p>The Amiga was a personal computer from the 80's built on the Motorola 68000 chipset.</p>
 <h2>References</h2>
 <ul>
@@ -6854,7 +6918,7 @@ ctx.fill()      // Draws a solid shape by filling the path&#x27;s content area.
 <li><a href="https://webglfundamentals.org/webgl/lessons/webgl-anti-patterns.html" target="_blank">https://webglfundamentals.org/webgl/lessons/webgl-anti-patterns.html</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202108151812</p></article><article>            <h1>Web Fonts (HTML)</h1>
+<p class="last-modified">Last modified: 202108151812</p></article><article>            <h1><a href="web-fonts-html.html">Web Fonts (HTML)</a></h1>
             <p>To import a font from Google Fonts, you can copy the font(s) URL from the Google Fonts library and then paste it in your <a href="html.html">HTML</a>. For this challenge, we'll import the Lobster font. To do this, copy the following code snippet and paste it into the top of your code editor (before the opening style element):</p>
 <pre><code class="language-html">&lt;link href=&quot;https://fonts.googleapis.com/css?family=Lobster&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
 </code></pre>
@@ -6867,7 +6931,7 @@ ctx.fill()      // Draws a solid shape by filling the path&#x27;s content area.
 <li><a href="https://www.freecodecamp.org/learn/responsive-web-design/basic-css/import-a-google-font" target="_blank">https://www.freecodecamp.org/learn/responsive-web-design/basic-css/import-a-google-font</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020536</p></article><article>            <h1>Anchor Tags (HTML)</h1>
+<p class="last-modified">Last modified: 202107020536</p></article><article>            <h1><a href="anchor-tags-html.html">Anchor Tags (HTML)</a></h1>
             <h2>In-page Navigation</h2>
 <p>Using an <code>#id</code> as your <code>href</code> and either setting the  <code>name</code> attribute of an anchor tag or the <code>id</code> of an element, you can navigate immediately within a document via a normal anchor link.</p>
 <pre><code class="language-html">&lt;a href=&quot;#bob&quot;&gt;Click here to go to bob!&lt;/a&gt;
@@ -7582,7 +7646,7 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 <li><a href="https://www.leighhalliday.com/mock-fetch-jest" target="_blank">https://www.leighhalliday.com/mock-fetch-jest</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="test-driven-development.html">Test-Driven Development</a></li><li><a href="testing-vanilla-javascript.html">Testing Vanilla Javascript</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111070525</p></article><article>            <h1>Rebase (git)</h1>
+<p class="last-modified">Last modified: 202111070525</p></article><article>            <h1><a href="rebase-git.html">Rebase (git)</a></h1>
             <p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
 <h2>Merge vs. Rebase</h2>
 <p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
@@ -7925,7 +7989,7 @@ export default function() {
 <li><a href="https://k6.io/docs/getting-started/running-k6/" target="_blank">https://k6.io/docs/getting-started/running-k6/</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202108060551</p></article><article>            <h1>React (Testing)</h1>
+<p class="last-modified">Last modified: 202108060551</p></article><article>            <h1><a href="react-testing.html">React (Testing)</a></h1>
             <h2>Testing Software</h2>
 <h3>Suites</h3>
 <p>The suite of choice is definitely <a href="https://jestjs.io/" target="_blank">Jest</a>, as Jest was built almost 100% specifically for the purpose of testing <a href="react.html">React</a> by Facebook who developed it). </p>
@@ -8008,7 +8072,7 @@ Component.defaultProps = {
 <li><a href="https://stackoverflow.com/questions/52783144/how-do-you-test-for-the-non-existence-of-an-element-using-jest-and-react-testing" target="_blank">https://stackoverflow.com/questions/52783144/how-do-you-test-for-the-non-existence-of-an-element-using-jest-and-react-testing</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202110181350</p></article><article>            <h1>Frameworks (Javascript)</h1>
+<p class="last-modified">Last modified: 202110181350</p></article><article>            <h1><a href="frameworks-javascript.html">Frameworks (Javascript)</a></h1>
             <p><a href="javascript.html">Javascript</a> frameworks are abundant and everywhere, so I wanted to collate a list with some blurbs and first impressions.</p>
 <h2>Frameworks</h2>
 <p><a href="https://alpinejs.dev/" target="_blank">Alpine.js</a>: A really minimal framework that also allows functionality to be added to the HTML markup. Surprisingly full featured, has side-effect handling and a global store, too.</p>
@@ -8089,7 +8153,7 @@ Component.defaultProps = {
 
 <p class="last-modified">Last modified: 202108141949</p></article><article><h1><a href="webpack.html">Webpack</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li></ul></details></section></article><article>            <h1>Text Compression (Server)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li></ul></details></section></article><article>            <h1><a href="text-compression-server.html">Text Compression (Server)</a></h1>
             <p>Text compression minifies and zips files on build or on client side rendering of your web page. Using this on your deployed webpage can save significant time in page downloads and lead to better user retention.</p>
 <h2>Implementation</h2>
 <p>To accomplish client-side rendering, you will need to implement the compression on the building of your pages (in this case, using <a href="webpack.html">Webpack</a>) as well as on your server (<a href="express.html">Express</a>). This example is for a <a href="react.html">React</a> project using <a href="webpack.html">Webpack</a> and <a href="express.html">Express</a>.</p>
@@ -8164,7 +8228,7 @@ app.use(&quot;/&quot;, expressStaticGzip(&quot;/my/rootFolder/&quot;));
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section></article><article><h1><a href="array.html">Array</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="arrays-javascript.html">Arrays (Javascript)</a></li></ul></details></section></article><article>            <h1>Arrays (Javascript)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="arrays-javascript.html">Arrays (Javascript)</a></li></ul></details></section></article><article>            <h1><a href="arrays-javascript.html">Arrays (Javascript)</a></h1>
             <p><a href="array.html">Arrays</a> in <a href="javascript.html">Javascript</a> have many specific methods for modification and analysis. Some are cunfusiong or hard to recall.</p>
 <h2>Methods</h2>
 <h3>reduce</h3>
@@ -8299,7 +8363,7 @@ array.splice(1,1,17); // returns [2]; array now equals [1,17,3,4]
 
 <p class="last-modified">Last modified: 202112090515</p></article><article><h1><a href="vue.html">Vue</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li></ul></details></section></article><article>            <h1>Testing (Javascript)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li></ul></details></section></article><article>            <h1><a href="testing-javascript.html">Testing (Javascript)</a></h1>
             <p><a href="javascript.html">Javascript</a> provides many options to test your code via timing, assertions, and frameworks.</p>
 <h2>Time</h2>
 <h3>Simplest Timer</h3>
@@ -8644,7 +8708,7 @@ export const get_all_animation_deltas = (start, end, seconds, fps = PIXI_FPS) =&
 <li><a href="https://stackoverflow.com/questions/6460604/how-to-describe-object-arguments-in-jsdoc" target="_blank">https://stackoverflow.com/questions/6460604/how-to-describe-object-arguments-in-jsdoc</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202111250353</p></article><article>            <h1>Operators (Javascript)</h1>
+<p class="last-modified">Last modified: 202111250353</p></article><article>            <h1><a href="operators-javascript.html">Operators (Javascript)</a></h1>
             <h2>Logical Operators</h2>
 <p>In <a href="javascript.html">Javascript</a>, all of these operators on <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy" target="_blank">truthy</a> and <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy" target="_blank">falsy</a> values, meaning that all values will be converted to boolean before comparison.</p>
 <h3>Used with Non-Boolean Types</h3>
@@ -8696,7 +8760,7 @@ y ??= true; // y === true
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202106291353</p></article><article>            <h1>Classes (Javascript)</h1>
+<p class="last-modified">Last modified: 202106291353</p></article><article>            <h1><a href="classes-javascript.html">Classes (Javascript)</a></h1>
             <p>Classes in <a href="javascript.html">Javascript</a> generally are created with two different sections:</p>
 <ol>
 <li>The <code>prototypes</code> or <code>methods</code> will be how all the instances of the class should be <strong>similar</strong> (things like <code>addYear</code> for a person class). This is commonly done in the <code>prototype</code> object.</li>
@@ -8958,7 +9022,7 @@ var newSquare = new Square(&#x27;square&#x27;, 5);
 <li><a href="https://radialglo.github.io/blog/2014/11/24/understanding-pseudoclassical-inheritance-in-javascript/" target="_blank">https://radialglo.github.io/blog/2014/11/24/understanding-pseudoclassical-inheritance-in-javascript/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202112101809</p></article><article>            <h1>Promises and Async/Await (Javascript)</h1>
+<p class="last-modified">Last modified: 202112101809</p></article><article>            <h1><a href="promises-and-asyncawait-javascript.html">Promises and Async/Await (Javascript)</a></h1>
             <p>Promises and async/await are a way to handle asynchronous actions in <a href="javascript.html">Javascript</a>.</p>
 <h2>Promises</h2>
 <pre><code class="language-javascript">const getDataFromAPI = () =&gt; {
@@ -9245,7 +9309,7 @@ addTwoToX(); // returns 8 since this.num = 6
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="react.html">React</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202106291328</p></article><article>            <h1>Switch Case (Javascript)</h1>
+<p class="last-modified">Last modified: 202106291328</p></article><article>            <h1><a href="switch-case-javascript.html">Switch Case (Javascript)</a></h1>
             <p>Switch cases in <a href="javascript.html">Javascript</a> act very similar to <code>if</code>/<code>else</code> statements, but have some very important differences.</p>
 <h2>Good Differences</h2>
 <h3>Semantics</h3>
@@ -9306,7 +9370,7 @@ switch (number) {
 <li><a href="https://mortoray.com/2019/06/29/why-switch-is-better-than-if-else/" target="_blank">https://mortoray.com/2019/06/29/why-switch-is-better-than-if-else/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202112190308</p></article><article>            <h1>MutationObserver (Javascript)</h1>
+<p class="last-modified">Last modified: 202112190308</p></article><article>            <h1><a href="mutationobserver-javascript.html">MutationObserver (Javascript)</a></h1>
             <p>The MutationObserver interface in <a href="javascript.html">Javascript</a> provides the ability to watch for changes being made to the DOM tree.</p>
 <p>This is an example that will watch an element (<code>targetElement</code>) on a webpage that has dynamic elements generated via React, and update another element whenever it sees the <code>targetElement</code> change.</p>
 <pre><code class="language-java">// Select the node that will be observed for mutations
@@ -9345,7 +9409,7 @@ wrapperObserver.observe(videoPlayer, config);
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></li><li><a href="react.html">React</a></li></ul></details></section></article><article><h1><a href="jquery.html">jQuery</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></li></ul></details></section></article><article>            <h1>DOM Manipulation (Javascript)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></li></ul></details></section></article><article>            <h1><a href="dom-manipulation-javascript.html">DOM Manipulation (Javascript)</a></h1>
             <p>How to manipulate the <a href="html.html">HTML</a> <a href="dom.html">DOM</a> using <a href="javascript.html">Javascript</a>.</p>
 <h2>Elements</h2>
 <ul>
@@ -9508,7 +9572,7 @@ export default Example;
 <li><a href="https://codewithstein.com/how-to-handle-mouse-events-with-pixijs/" target="_blank">https://codewithstein.com/how-to-handle-mouse-events-with-pixijs/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202111180407</p></article><article>            <h1>Object Destructuring (Javascript)</h1>
+<p class="last-modified">Last modified: 202111180407</p></article><article>            <h1><a href="object-destructuring-javascript.html">Object Destructuring (Javascript)</a></h1>
             <p>Object destructuring in <a href="javascript.html">Javascript</a> allows you to create constants from items within an object.</p>
 <h2>Example</h2>
 <pre><code class="language-javascript">const initialObject = {
@@ -9545,9 +9609,9 @@ console.log(cruise[0]) // &#x27;yeah&#x27;
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="fetch-api.html">Fetch API</a></li></ul></details></section></article><article><h1><a href="promises.html">promises</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="fetch-api.html">Fetch API</a></li></ul></details></section></article><article><h1>Testing (Programming)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="fetch-api.html">Fetch API</a></li></ul></details></section></article><article><h1><a href="testing-programming.html">Testing (Programming)</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="jest.html">Jest</a></li><li><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></li></ul></details></section></article><article>            <h1>Lexical Scoping (Javascript)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="jest.html">Jest</a></li><li><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></li></ul></details></section></article><article>            <h1><a href="lexical-scoping-javascript.html">Lexical Scoping (Javascript)</a></h1>
             <p><strong>Lexical Scoping</strong> defines how variable names are resolved in nested functions: inner functions contain the scope of parent functions even if the parent function has returned.</p>
 <p>With <a href="javascript.html">Javascript</a>, a new scope is created <strong>only</strong> through function definitions. Every time a new function scope is created, it will contain the scope of the parent functions, along with its own. This does not go both ways, however: the outer scope does not have access to those in the inner scope.</p>
 <pre><code class="language-javascript">var content = &quot;I&#x27;m outside&quot;;
@@ -9602,7 +9666,7 @@ g(); // =&gt; undefined
 
 <p class="last-modified">Last modified: 202110091808</p></article><article><h1><a href="lexical-scoping.html">Lexical Scoping</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="variables-javascript.html">Variables (Javascript)</a></li></ul></details></section></article><article>            <h1>Variables (Javascript)</h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="variables-javascript.html">Variables (Javascript)</a></li></ul></details></section></article><article>            <h1><a href="variables-javascript.html">Variables (Javascript)</a></h1>
             <p>All variables in <a href="javascript.html">Javascript</a> are <code>undefined</code> by default after declaration.</p>
 <h2>Difference Between Var, Let, and Const</h2>
 <p>Use <code>const</code> over <code>let</code> and <code>let</code> over <code>var</code> unless:</p>
@@ -9724,7 +9788,7 @@ var definitionNotHoisted = function () {
 <li><a href="http://adripofjavascript.com/blog/drips/variable-and-function-hoisting.html" target="_blank">http://adripofjavascript.com/blog/drips/variable-and-function-hoisting.html</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202106291355</p></article><article>            <h1>Event Listeners (Javascript)</h1>
+<p class="last-modified">Last modified: 202106291355</p></article><article>            <h1><a href="event-listeners-javascript.html">Event Listeners (Javascript)</a></h1>
             <p>Event listeners in <a href="javascript.html">Javascript</a> run a function on the emitting of an event, including <code>click</code>, <code>keyup</code>, <code>resize</code>, and more.</p>
 <pre><code class="language-javascript">element.addEventListener(&#x27;eventType&#x27;, function(e) {
   // do something
@@ -9788,7 +9852,7 @@ document.getElementById(&#x27;outer&#x27;).addEvenetListener(&#x27;click&#x27;, 
 <li><a href="https://www.w3schools.com/jsref/dom_obj_event.asp" target="_blank">https://www.w3schools.com/jsref/dom_obj_event.asp</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202110021724</p></article><article>            <h1>Date (Javascript)</h1>
+<p class="last-modified">Last modified: 202110021724</p></article><article>            <h1><a href="date-javascript.html">Date (Javascript)</a></h1>
             <p><a href="javascript.html">Javascript</a> Date objects have some weird intricacies that need attention.</p>
 <h2>Time Zones</h2>
 <p>JavaScript's Date object tracks time in UTC internally, but typically accepts input and <strong>produces output in the local time of the computer it's running on</strong>. The way to mitigate this (IMO undesired) opinion is two options.</p>
@@ -9808,7 +9872,7 @@ var myBirthday = (&#x27;January 1, 1990&#x27;);
 <li><a href="https://stackoverflow.com/questions/15141762/how-to-initialize-a-javascript-date-to-a-particular-time-zone" target="_blank">https://stackoverflow.com/questions/15141762/how-to-initialize-a-javascript-date-to-a-particular-time-zone</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202108191820</p></article><article>            <h1>Mocha and Chai (Javascript)</h1>
+<p class="last-modified">Last modified: 202108191820</p></article><article>            <h1><a href="mocha-and-chai-javascript.html">Mocha and Chai (Javascript)</a></h1>
             <p>Mocha is a <a href="javascript.html">Javascript</a> <a href="testing-programming.html">test</a> framework for use with <a href="node.html">Node</a>, and Chai is an assertion library.</p>
 <p>Another common library to use with Mocha is <a href="https://github.com/istanbuljs/nyc" target="_blank">nyc</a>, which allows you to get a code coverage readout. You can use this by <code>npm i nyc</code> and then adding it to your <code>package.json</code> as a script: <code>&quot;coverage&quot;: &quot;nyc npm run test&quot;</code>.</p>
 <h2>Quick Start</h2>
@@ -10226,7 +10290,7 @@ xhr.onerror = function () {
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202107020539</p></article><article>            <h1>Regular Expressions (Javascript)</h1>
+<p class="last-modified">Last modified: 202107020539</p></article><article>            <h1><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></h1>
             <p>In <a href="javascript.html">Javascript</a>, <a href="regular-expressions.html">regular expressions</a> are enclosed within two forward slashes and flags are placed oustide.</p>
 <pre><code class="language-javascript">let re = /hello/m;  // or
 let re = new RegExp(&#x27;hello&#x27;, &#x27;m&#x27;);
@@ -10301,7 +10365,7 @@ $ nvm uninstall xx.xx.x
 <li><a href="https://stackoverflow.com/questions/57110542/how-to-write-a-nvmrc-file-which-automatically-change-node-version" target="_blank">https://stackoverflow.com/questions/57110542/how-to-write-a-nvmrc-file-which-automatically-change-node-version</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202109110517</p></article><article>            <h1>Functions (Javascript)</h1>
+<p class="last-modified">Last modified: 202109110517</p></article><article>            <h1><a href="functions-javascript.html">Functions (Javascript)</a></h1>
             <p>Functions in <a href="javascript.html">Javascript</a> come in three forms: Function expressions, function declarations, and anonymous functions.</p>
 <h2>Types</h2>
 <h2>ES6 Default Parameters</h2>
@@ -10835,7 +10899,7 @@ printf(&quot;%2d F = %2d C&quot;, fahr, celsius); /* prints &quot;100 F = 37 C&q
 <li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="arrays-c.html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="functions-c.html">Functions (C)</a></li><li><a href="strings-c.html">Strings (C)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202108011853</p></article><article>            <h1>Functions (C)</h1>
+<p class="last-modified">Last modified: 202108011853</p></article><article>            <h1><a href="functions-c.html">Functions (C)</a></h1>
             <h2>Basics</h2>
 <p>Here is the structure of a function definition in <a href="c.html">C</a>.</p>
 <pre><code class="language-c">/*
@@ -10886,7 +10950,7 @@ int hooray()
 }
 </code></pre>
 
-<p class="last-modified">Last modified: 202107211457</p></article><article>            <h1>Arrays (C)</h1>
+<p class="last-modified">Last modified: 202107211457</p></article><article>            <h1><a href="arrays-c.html">Arrays (C)</a></h1>
             <p>Arrays in <a href="c.html">C</a>, like all things in C, require a lot more care than higher level languages.</p>
 <h2>Initialization</h2>
 <p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>. </p>
@@ -11046,7 +11110,7 @@ void reverse(char str[], int len)
 <li><a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">https://en.wikipedia.org/wiki/C_data_types</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202108011853</p></article><article>            <h1>Strings (C)</h1>
+<p class="last-modified">Last modified: 202108011853</p></article><article>            <h1><a href="strings-c.html">Strings (C)</a></h1>
             <p>Strings in <a href="c.html">C</a> are <a href="arrays-c.html">arrays</a> of characters.</p>
 <h2>Basics</h2>
 <p>Both of these strings are arrays of 6 characters in length. These two are the same:</p>
@@ -11682,4 +11746,4 @@ x
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~641kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~645kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
