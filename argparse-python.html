@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="argparse is a way to handle command line arguments in Python applications."><title>argparse (Python)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">argparse (Python)</h1>
+            <p><code>argparse</code> is a way to handle command line arguments in <a href="python.html">Python</a> applications.</p>
+<h2>Getting Started</h2>
+<p>A simple application using <code>argparse</code>:</p>
+<pre><code class="language-python">import argparse
+
+if __name__ == &quot;__main__&quot;:
+    # What will show up using the built-in help
+    argparser = argparse.ArgumentParser(description=&#x27;Create wiki at output dir from input dir.&#x27;)
+    # Positional arguments
+    # In `args` dict, var found at `input_dir`
+    argparser.add_argument(&#x27;input_dir&#x27;, metavar=&#x27;input&#x27;, type=str, help=&#x27;the path to the input directory&#x27;)
+    argparser.add_argument(&#x27;output_dir&#x27;, metavar=&#x27;output&#x27;, type=str, help=&#x27;the path to the output directory&#x27;)
+    # Optional arguments with multiple flags
+    # `action` defines what occurs if flag is set
+    argparser.add_argument(&#x27;--delete-current-html&#x27;, &#x27;-d&#x27;, action=&#x27;store_true&#x27;, help=&#x27;delete all HTML in output directory before building&#x27;)
+    # `default` is the default value if not set
+    # `dest` is the variable name set in `args` dict
+    argparser.add_argument(&#x27;--no-fatfile&#x27;, &#x27;-nf&#x27;, action=&#x27;store_false&#x27;, default=True, dest=&quot;build_fatfile&quot;, help=&#x27;do not create fatfile on build&#x27;)
+    args = argparser.parse_args()
+
+    # Use the args like so
+    print(args.input_dir, args.output_dir)
+</code></pre>
+<p><code>argparse</code> should not be used in the setup (i.e. not before the <code>if __name__ == &quot;__main__&quot;</code>), as this makes importing and testing impossible to do without a <em>lot</em> of extra work.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://docs.python.org/3.9/library/argparse.html" target="_blank">https://docs.python.org/3.9/library/argparse.html</a></li>
+</ul>
+
+<p class="last-modified">Last modified: 202110241513</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~641kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

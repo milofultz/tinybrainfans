@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Rebasing in git is a way to clean up your commit history and change the history of one branch to be after the changes of another."><title>Rebase (git)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Rebase (git)</h1>
+            <p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
+<h2>Merge vs. Rebase</h2>
+<p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
+<h2>The Golden Rule</h2>
+<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
+<h2>Simple Rebase</h2>
+<p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
+<pre><code class="language-shell">$ git rebase {other-branch}
+</code></pre>
+<p>For instance, if I were on a <code>feature</code> branch and I wanted to rebase on top of the <code>main</code> branch, I would use <code>git rebase main</code>. This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.</p>
+<h2>Interactive Rebase</h2>
+<p>To rebase one branch onto the nearest common ancestor of another, use the following command:</p>
+<pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
+</code></pre>
+<p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
+<p>Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!</p>
+<h3>Alias</h3>
+<p>In your <code>~/.gitconfig</code> file, you can add this in the <code>[alias]</code> section to invoke the above command using <code>git rbm {other-branch}</code>:</p>
+<pre><code class="language-sh">rbm = &quot;! f() { git rebase -i `git merge-base ${1} HEAD`; }; f&quot;
+</code></pre>
+<h3>Interactive Rebase Commands</h3>
+<p>I only have used these so far, and they do the job for what I need.</p>
+<table>
+<thead>
+<tr>
+<th>Command(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code> / <code>pick</code></td>
+<td>Keep the commit as it currently is</td>
+</tr>
+<tr>
+<td><code>r</code> / <code>reword</code></td>
+<td>Keep the commit and edit the commit message</td>
+</tr>
+<tr>
+<td><code>s</code> / <code>squash</code></td>
+<td>Combine this commit with the previous commit, and edit commit message for newly squashed commit</td>
+</tr>
+<tr>
+<td><code>f</code> / <code>fixup</code></td>
+<td>Fold this commit into the previous commit, using the previous commit's message</td>
+</tr>
+<tr>
+<td><code>e</code> / <code>edit</code></td>
+<td>Stop at this commit and give user control until <code>rebase --continue</code>[9]</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
+<li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
+<li><a href="https://linuxhint.com/git-rebase-tutorial/" target="_blank">https://linuxhint.com/git-rebase-tutorial/</a></li>
+<li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
+<li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
+<li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
+<li><a href="https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html" target="_blank">https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html</a></li>
+<li><a href="https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits" target="_blank">https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202112230843</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~641kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

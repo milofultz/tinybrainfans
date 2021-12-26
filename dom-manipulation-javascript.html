@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="How to manipulate the HTML DOM using Javascript."><title>DOM Manipulation (Javascript)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">DOM Manipulation (Javascript)</h1>
+            <p>How to manipulate the <a href="html.html">HTML</a> <a href="dom.html">DOM</a> using <a href="javascript.html">Javascript</a>.</p>
+<h2>Elements</h2>
+<ul>
+<li><code>X = document.createTextNode(&#x27;text&#x27;)</code></li>
+<li><code>X = document.createElement(&#x27;li&#x27;)</code></li>
+</ul>
+<h3>Alteration</h3>
+<ul>
+<li><code>X.className = &#x27;class&#x27;</code></li>
+<li><code>X.id = &#x27;id&#x27;</code></li>
+<li><code>X.setAttribute(&#x27;name&#x27;, &#x27;value&#x27;)</code></li>
+<li><code>X.innerHTML = &#x27;&lt;i&gt;italics&lt;/i&gt;</code></li>
+<li><code>X.insertAdjacentHTML(position, Y)</code> will insert <a href="html.html">HTML</a> string Y at position of element X. <a href="https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/" target="_blank">(This method is much better than an <code>innerHTML +=</code>)</a> The positions are as follows:</li>
+</ul>
+<pre><code class="language-html">&lt;!-- beforebegin --&gt;
+&lt;p&gt;
+  &lt;!-- afterbegin --&gt;
+  foo
+  &lt;!-- beforeend --&gt;
+&lt;/p&gt;
+&lt;!-- afterend --&gt;
+</code></pre>
+<ul>
+<li><code>X.textContent = &#x27;text&#x27;</code></li>
+<li><code>X.innerText = &#x27;text&#x27;</code></li>
+<li><code>X.childNodes[n].nodeValue = &#x27;...&#x27;</code> will allow you to change the inner text of an element, even when it includes another element (e.g. changing <code>some more text</code> in <code>&lt;span&gt;&lt;em&gt;yeah&lt;/em&gt;some more text&lt;/span&gt;</code>)</li>
+</ul>
+<h3>Insertion</h3>
+<ul>
+<li><code>X.appendChild(Y)</code> will append element Y as the last child of element X</li>
+<li><code>X.prepend(Y)</code> will prepend element Y as the first child of element X</li>
+<li><code>X.parentNode.insertBefore(Y, X);</code> will insert element Y directly before element X</li>
+<li><code>X.parentNode.insertBefore(Y, X.nextSibling);</code> will insert element Y directly after element X</li>
+</ul>
+<h3>Duplication</h3>
+<ul>
+<li><code>X.cloneNode(true)</code> will return a copy of the selected element.</li>
+</ul>
+<h3>Search</h3>
+<ul>
+<li><code>X.querySelector(Y)</code> will find the first element based on CSS element search Y within the tree of elements found at X.</li>
+<li><code>X.querySelector(Y)</code> will find all elements based on CSS element search Y within the tree of elements found at X.</li>
+<li><code>X.closest(Y)</code> will find an element based on CSS element search Y from element X up through all of the parents to the top of the DOM</li>
+</ul>
+<h2>DOMParser</h2>
+<p>The <code>DOMParser</code> allows you to parse <a href="html.html">HTML</a> in as a string, returning an <code>HTMLDocument</code> object. This allows you to interact with the DOM elements and alter them much more simply and easily than using regex or find/replace in a text-editor.</p>
+<p>The DOMParser operates very similarly to <a href="jquery.html">jQuery</a>'s ability to parse HTML in as a string within <code>$(&#x27;&lt;input&gt;&#x27;)</code>. The difference is that DOMParser returns an HTMLDocument instead of a <a href="jquery.html">jQuery</a> object.</p>
+<h3>Importing Plain Text</h3>
+<pre><code class="language-javascript">const parser = new DOMParser();
+const htmlDoc = parser.parseFromString(input, &#x27;text/html&#x27;);
+</code></pre>
+<h3>Exporting Plain Text</h3>
+<p>You can return each of the top level elements (<code>head</code>, <code>body</code>) as plain text using <code>innerHTML</code>.  </p>
+<pre><code class="language-javascript">return htmlDoc.body.innerHTML;
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/DOMParser</a></li>
+<li><a href="https://api.jquery.com/jQuery/" target="_blank">https://api.jquery.com/jQuery/</a></li>
+<li><a href="https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757274" target="_blank">https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757274</a></li>
+<li><a href="https://gomakethings.com/how-to-copy-or-clone-an-element-with-vanilla-js/" target="_blank">https://gomakethings.com/how-to-copy-or-clone-an-element-with-vanilla-js/</a></li>
+<li><a href="https://stackoverflow.com/questions/4106809/how-can-i-change-an-elements-text-without-changing-its-child-elements" target="_blank">https://stackoverflow.com/questions/4106809/how-can-i-change-an-elements-text-without-changing-its-child-elements</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202109110002</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~641kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

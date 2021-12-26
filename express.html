@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Express is a Javascript-based server application that will help route requests from the client."><title>Express</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Express</h1>
+            <p>Express is a <a href="javascript.html">Javascript</a>-based <a href="server.html">server</a> application that will help route requests from the client.</p>
+<h2>Getting Started</h2>
+<p>First, start your project with <code>npm init</code> in the project folder. Then <code>npm i express</code>. Now you can start implementing the barebones in your project.</p>
+<pre><code class="language-javascript">// app.js
+const express = require(&#x27;express&#x27;);
+const app = express();
+const port = 3000;
+
+app.listen(port, () =&gt; console.log(`Listening on port ${port}`));
+</code></pre>
+<p>To get it running, set up your <code>package.json</code> with a script to run. You can also use <a href="https://www.npmjs.com/package/nodemon" target="_blank" title="Nodemon is essential for developing your own apps">nodemon</a> to run and restart upon file changes.</p>
+<pre><code class="language-json">&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;node app.js&quot;,
+  &quot;dev&quot;: &quot;nodemon app.js&quot;
+}
+</code></pre>
+<p>Upon running one of these scripts (<code>npm run start/dev</code>), you should see a message in your terminal that your app is listening on port 3000.</p>
+<h2>Routes</h2>
+<pre><code class="language-javascript">// Parameters: `route`, and `callback` when request and response objects are received and created 
+app.get(&#x27;/&#x27;, (req, res) =&gt; {
+  data = &#x27;We did it!&#x27;;
+  res.send(data);
+});
+</code></pre>
+<p>Upon completing this and restarting your server, you should be able to go to <code>localhost:3000</code> and see &quot;We did it!&quot; in your browser window.</p>
+<h3>Query Parameters</h3>
+<p>You can access the query parameters via the <code>req.query</code> object.</p>
+<pre><code class="language-javascript">// .../products?example=1?another=five
+app.get(&#x27;/products&#x27;, (req, res) =&gt; {
+  const example = req.query.example;
+  const another = req.query.another;
+  res.send(JSON.stringify([example, another]));
+});
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="http://expressjs.com/en/starter/installing.html" target="_blank">http://expressjs.com/en/starter/installing.html</a></li>
+<li><a href="https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express" target="_blank">https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express</a></li>
+<li><a href="https://expressjs.com/en/starter/static-files.html" target="_blank">https://expressjs.com/en/starter/static-files.html</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="socketio.html">Socket.IO</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202110211522</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~641kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

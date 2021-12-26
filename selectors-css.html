@@ -1,0 +1,111 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Selectors are the backbone of CSS, allowing the developer to create stylesheets that apply and cascade to many elements at a time."><title>Selectors (CSS)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Selectors (CSS)</h1>
+            <p>Selectors are the backbone of <a href="css.html">CSS</a>, allowing the developer to create stylesheets that apply and cascade to many elements at a time.</p>
+<h2>Selectors</h2>
+<ul>
+<li><code>type</code></li>
+<li><code>#id</code></li>
+<li><code>.class</code></li>
+<li>
+<code>[attribute]</code> - Select all elements with attribute<ul>
+<li><code>[attribute=&quot;X&quot;]</code> - Select elements with attribute of value 'X' (e.g. <code>attribute=&quot;X&quot;</code>)</li>
+<li><code>[attribute~=&quot;X&quot;]</code> - Select elements with an attribute that contains value 'X' (e.g. <code>attribute=&quot;W X Y Z&quot;</code>)</li>
+<li><code>[attribute*=&quot;X&quot;]</code> - Select elements with an attribute that contains substring 'X' (e.g. <code>attribute=&quot;WXYZ&quot;</code>)</li>
+<li><code>[attribute^=&quot;X&quot;]</code> - Select elements with attribute that starts with 'X' (e.g. <code>attribute=&quot;XYZ ABC&quot;</code> but not <code>&quot;ABC XYZ&quot;</code>)</li>
+<li><code>[attribute|=&quot;X&quot;]</code> - Select elements with attribute that has value 'X' or begins with 'X-' (e.g. <code>attribute=&quot;X-YZ&quot;</code>)</li>
+<li><code>[attribute$=&quot;X&quot;]</code> - Select elements with attribute that ends with 'X' (e.g. <code>attribute=&quot;VWX&quot;</code>)</li>
+<li><code>[... i]</code> - Make selection of the quoted value case insensitive</li>
+</ul>
+</li>
+<li><code>A B</code> - Select all elements B that are inside of A</li>
+<li><code>A + B</code> - Select all elements B that are adjacent to and come <strong>directly</strong> after A</li>
+<li><code>A ~ B</code> - Select all elements B that are adjacent to and come after A <strong>at some pont</strong></li>
+<li><code>A &gt; B</code> - Select all elements B that are direct children of A</li>
+</ul>
+<h2>Pseudoclasses</h2>
+<p>Pseudoclasses are prefaced by a single colon.</p>
+<h3>Parent</h3>
+<ul>
+<li><code>A:empty</code> - Select element A if they have no child elements</li>
+</ul>
+<h3>Child</h3>
+<ul>
+<li><code>A:first-child</code></li>
+<li><code>A:last-child</code></li>
+<li><code>A:nth-child(n)</code></li>
+<li><code>A:nth-last-child(n)</code> - Select every nth element of A counting from the last element to the first</li>
+<li><code>A:only-child</code> - Select element A if they are the only child element of their parent element</li>
+<li><code>B A:only-child</code> - Select element A if they are the only child element of parent element B</li>
+</ul>
+<h3>Type</h3>
+<ul>
+<li><code>A:first-of-type</code> - Select the first element of type A</li>
+<li><code>A:nth-of-type(n/even/odd)</code> - Select the nth element of type A or every even or odd numbered instance of element of type A</li>
+<li><code>A:nth-of-type(Nn+X)</code> - Select every Nth element of A starting on and including offset X (e.g. A:nth-of-type(2n+3) will select every odd element starting on element 3)</li>
+<li><code>A:only-of-type</code> - Select A if it is the only child of that type</li>
+<li><code>A:last-of-type</code> - Select the last of element type A</li>
+</ul>
+<h3>State</h3>
+<h4>Links</h4>
+<ul>
+<li><code>A:link</code> - Select A if it is an anchor element</li>
+<li><code>A:visited</code></li>
+<li><code>A:hover</code></li>
+<li><code>A:active</code> - Select A if it has been selected</li>
+</ul>
+<p><code>a:hover</code> MUST come after <code>a:link</code> and <code>a:visited</code> in the CSS definition in order to be effective. <code>a:active</code> MUST come after <code>a:hover</code> in the CSS definition in order to be effective. <strong>&quot;LoVe, HAte&quot;</strong></p>
+<p>If you want to select an element when hovering over an element:</p>
+<pre><code class="language-css">.parent-selector:hover .child-selector { ... } /* Child */
+.parent-selector:hover + .sibling-selector { ... } /* Sibling */
+/* etc. */
+</code></pre>
+<h4>Forms and Inputs</h4>
+<ul>
+<li><code>A:focus</code> - Select A if it currently has focus (e.g. text input when selected)</li>
+<li><code>A:invalid</code> - Select A if it currently has an invalid entry (e.g. not matching the pattern)</li>
+<li><code>A:focus:invalid</code> - Select A if it has focus and has an invalid entry</li>
+<li><code>A:placeholder-shown</code> - Select A if the placeholder is being shown</li>
+</ul>
+<h4>Anchor/URL Hash</h4>
+<ul>
+<li><code>A:target</code> - Select A if the <code>#id</code> of A is the suffix of the URL.</li>
+</ul>
+<pre><code class="language-css">/* &lt;div id=&quot;cool-thing&quot; class=&quot;thing&quot;&gt;&lt;/div&gt; */
+/* if URL is index.html#cool-thing, put border around the div with id &quot;cool-thing&quot; */
+
+.thing:target {
+  border: 10px solid red;
+}
+</code></pre>
+<h3>Meta</h3>
+<ul>
+<li><code>A:not(&#x27;X&#x27;)</code> - Select all A elements if they do not match selector or pseudoclass X (e.g. <code>#id</code>, <code>.class</code>, <code>:last-child</code>, etc.)</li>
+</ul>
+<h2>Pseudoelements</h2>
+<p>Pseudoelements are prefaced by two colons.</p>
+<ul>
+<li><code>A::placeholder</code> - Select the placeholder within element A (e.g. placeholder text of a text input box)</li>
+<li><code>A::first-line</code> - Select the first line of a block element.</li>
+<li><code>A::first-letter</code> - Select the first letter of an element.</li>
+</ul>
+<h3>Content</h3>
+<p>The <code>::before</code> and <code>::after</code> pseudoclasses allow you to place content before or after the selection. They require a <code>content</code> property and a <code>display</code> property. These pseudoclasses are treated like children of the selected element. e.g. 100% width is 100% width of the selected element.</p>
+<pre><code class="language-css">.selector::after {
+  content: &quot;&quot;;
+  display: inline-block;
+  height: 100%;          /* same width/height as parent */
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;                /* same position as parent */
+  left: 0;
+  z-index: -1;
+}
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.w3schools.com/cssref/css_selectors.asp" target="_blank">https://www.w3schools.com/cssref/css_selectors.asp</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="organization-and-structure-css.html">Organization and Structure (CSS)</a></li><li><a href="transitions-css.html">Transitions (CSS)</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202107020516</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~641kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

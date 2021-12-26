@@ -1,0 +1,83 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Applescript is a programming language used to create scripts in Mac computers."><title>Applescript</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Applescript</h1>
+            <p>Applescript is a programming language used to create scripts in <a href="macos.html">Mac</a> computers.</p>
+<h2>Generic Syntax</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-- This is a single line comment</code><br><code># This is another single line comment</code></td>
+<td>Single line comment</td>
+</tr>
+<tr>
+<td><code>(* This is a multi line comment *)</code></td>
+<td>Multi-line comment</td>
+</tr>
+<tr>
+<td><code>open location &quot;http://www.zombo.com&quot;</code></td>
+<td>Open URL with the appropriate program[5,6]</td>
+</tr>
+<tr>
+<td><code>do shell script &quot;say \&quot;we did it\&quot;&quot;</code></td>
+<td>Run arbitrary shell script[3]</td>
+</tr>
+<tr>
+<td><code>set variableName to value</code></td>
+<td>Set a variable</td>
+</tr>
+<tr>
+<td><code>tell application &quot;iTerm&quot; to ...</code></td>
+<td>Tell application to do something (see below)</td>
+</tr>
+</tbody></table><h3>Destructure a list to new variables</h3>
+<pre><code class="language-applescript">set newList to {100, 200, 300}
+set { x, y, z } to newList # x=100, y=200, z=300
+set a to item 2 of newList # a=200
+</code></pre>
+<h2>Tell Application To Do Something</h2>
+<pre><code class="language-applescript">tell application &quot;iTerm&quot; to # put actions here
+
+tell application &quot;iTerm&quot;
+  # put actions here
+end tell
+</code></pre>
+<h3>Actions</h3>
+<ul>
+<li>
+<p><code>activate</code> - Run program</p>
+</li>
+<li>
+<p><code>open &quot;Macintosh HD:Users:username:...&quot;</code> - Open file at filepath[3]</p>
+<ul>
+<li>To open files using standard notation (<code>/Users/username/...</code>), preface the filename with <code>POSIX file</code>: <code>open POSIX File &quot;/Users/username/...&quot;</code></li>
+</ul>
+</li>
+<li>
+<p><code>close window 1</code> - Close window</p>
+</li>
+<li>
+<p><code>set size of front window to {640, 400}</code> - Set window size {x, y}</p>
+</li>
+<li>
+<p><code>set position of front window to {0, 0}</code> - Set window position {x, y}</p>
+</li>
+<li>
+<p><code>set bounds of front window to {300, 30, 1200, 900}</code> - Set window size and position {X-start, Y-start, X-end, Y-end}; corresponds directly to pixels of display resolution</p>
+</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="http://downloads.techbarrack.com/books/programming/AppleScript/website/files_&amp;_folders/opening_files.html" target="_blank">http://downloads.techbarrack.com/books/programming/AppleScript/website/files_&amp;_folders/opening_files.html</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_error_codes.html" target="_blank">Error Messages</a></li>
+<li><a href="https://stackoverflow.com/questions/10126661/applescript-how-to-open-a-file-with-the-default-program" target="_blank">https://stackoverflow.com/questions/10126661/applescript-how-to-open-a-file-with-the-default-program</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html" target="_blank">https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_cmds.html#//apple_ref/doc/uid/TP40000983-CH216-SW54" target="_blank">https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/reference/ASLR_cmds.html#//apple_ref/doc/uid/TP40000983-CH216-SW54</a></li>
+<li><a href="https://apple.stackexchange.com/questions/293777/how-do-i-open-a-generic-url-from-applescript" target="_blank">https://apple.stackexchange.com/questions/293777/how-do-i-open-a-generic-url-from-applescript</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202111170305</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~641kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

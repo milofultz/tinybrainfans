@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Postgres is a relational database management system."><title>Postgres</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Postgres</h1>
+            <p>Postgres is a relational <a href="database.html">database</a> management system.</p>
+<h2>Getting Started</h2>
+<p>This tutorial will be for getting started with Postgres using <a href="node.html">node</a> on a <a href="macos.html">Mac</a>.</p>
+<h3>Local Machine</h3>
+<h4>Installation</h4>
+<p>Install Postgres using <a href="homebrew.html">homebrew</a>: <code>brew install postgres</code></p>
+<p>In a new terminal window, start up the local database: <code>postgres -U username -d database_name</code>, filling in the blanks as needed. If this does not work, <a href="https://stackoverflow.com/questions/17633422/psql-fatal-database-user-does-not-exist" target="_blank">ensure you have the local database installed at your username</a>. The DB can be also started using <code>brew services start postgres</code> (Be sure to stop the server when completed with your work using <code>brew services stop postgres</code>).</p>
+<p>To enter into interactive mode, in your terminal, enter <code>psql</code>. From here, you can enter in any queries you'd like. Ensure they all end with a semicolon, or else you will not get any return back and it will throw.</p>
+<h4>Initialization</h4>
+<p>Create a new table in your database: <code>CREATE TABLE numbers( age integer );</code></p>
+<p>Insert a value into the new table: <code>INSERT INTO numbers VALUES (732);</code></p>
+<h3>Javascript</h3>
+<p>Initialize a new <a href="npm.html">npm</a> project, and then install <code>pg</code>, <code>pg-format</code>, and <a href="express.html"><code>express</code></a>.</p>
+<p>Create a new file in your project called <code>server.js</code> and copy this into it's contents:</p>
+<pre><code class="language-javascript">const express = require(&#x27;express&#x27;); // Server
+var pg = require(&#x27;pg&#x27;);             // Postgres 
+var format = require(&#x27;pg-format&#x27;);  // For dynamic SQL queries (a la MySQL ?)
+
+const app = express();              // Start your server
+
+var PGUSER = &#x27;&lt;your username&gt;&#x27;;     // Definte the username and database
+var PGDATABASE = &#x27;&lt;your username&gt;&#x27;; // previously set up in Postgres.
+
+var age = 732;                      // Used so we can reference our earlier insertion.
+
+var config = {
+  user: PGUSER,
+  database: PGDATABASE,
+  max: 10,                          // max number of clients in the pool
+  idleTimeoutMillis: 30000          // how long a client is allowed to remain idle before being closed
+};
+
+var pool = new pg.Pool(config);     // Create a new connection instance
+
+pool.connect(function (err, client, done) { // Connect to the DB
+  if (err) {
+    console.log(err);
+  }
+  app.listen(3000, function () {     // Connect to the Express server
+    console.log(&#x27;listening on 3000&#x27;)
+  });
+  // Build a dynamic query using `age`
+  var ageQuery = format(&#x27;SELECT * from numbers WHERE age = %L&#x27;, age);
+  // Query the DB for all rows from the numbers table where age is = 732
+  client.query(ageQuery, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(result.rows[0]);
+  });
+});
+</code></pre>
+<p>Now in your terminal, run <code>node server.js</code> and assuming the database is still running, if should return:</p>
+<pre><code>listening on 3000
+{ age: 732 }
+</code></pre>
+<h3>Troubleshooting</h3>
+<p>If you use the types <code>bigserial</code> or <code>bigint</code>, you'll notice they return as strings. This is because Javascript can't natively handle 64-bit integers, so it will stringify these types instead. Javascript <em>can</em> do 2^53 before losing precision, so as long as you don't have numbers over 9 quadrillion, you can use the native <code>Number</code> type in Javascript (there is the Javascript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt" target="_blank"><code>BigInt</code></a> type, but it has it's drawbacks, including the inability to interact with other numbers directly). To do this, you can set a custom parser for that type[9,10]:</p>
+<pre><code class="language-javascript">var types = require(&#x27;pg&#x27;).types
+types.setTypeParser(20, Number);
+</code></pre>
+<h2>Schemas</h2>
+<p>Schemas are within a database but are ways of organizing tables, objects, functions, etc. within the database. In a database with table1, table2, and table3, a schema could hold table1 and table2, with another schema holding table2 and table3.</p>
+<p>To create a schema, use  <code>CREATE SCHEMA name</code>, followed by the other components.</p>
+<pre><code class="language-sql">CREATE SCHEMA schema_example
+  CREATE TABLE people(
+    id INT PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INT,
+    birthday DATE
+  )
+  CREATE VIEW john_club AS
+    SELECT 
+      *
+    FROM
+      people
+    WHERE
+      name = &#x27;John&#x27;;
+</code></pre>
+<h2>Querying JSONB Columns</h2>
+<p>The way to retrieve the values found at given columns in a JSONB column is by using the single or double arrow, <code>-&gt;</code> and <code>-&gt;&gt;</code> respectively. The former will retrieve the value in its original type, while the latter will return the value as a string.</p>
+<pre><code class="language-postgres">SELECT
+  column_name -&gt; &#x27;property_name&#x27; AS display_name
+FROM
+  table_name;
+</code></pre>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\dt</code></td>
+<td>Display all tables in the database</td>
+</tr>
+<tr>
+<td><code>TABLE x</code></td>
+<td>Show the contents of table x.</td>
+</tr>
+<tr>
+<td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
+<td>Show all schema in a given database</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://hub.packtpub.com/how-setup-postgresql-nodejs/" target="_blank">https://hub.packtpub.com/how-setup-postgresql-nodejs/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-show-tables/" target="_blank">https://www.postgresqltutorial.com/postgresql-show-tables/</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-create-schema/" target="_blank">https://www.postgresqltutorial.com/postgresql-create-schema/</a></li>
+<li><a href="https://www.guru99.com/postgresql-view.html" target="_blank">https://www.guru99.com/postgresql-view.html</a></li>
+<li><a href="https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546" target="_blank">https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-cheat-sheet/" target="_blank">https://www.postgresqltutorial.com/postgresql-cheat-sheet/</a></li>
+<li><a href="https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433" target="_blank">https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433</a></li>
+<li><a href="https://www.postgresql.org/docs/12/functions-json.html" target="_blank">https://www.postgresql.org/docs/12/functions-json.html</a></li>
+<li><a href="https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings" target="_blank">https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings</a></li>
+<li><a href="https://github.com/brianc/node-pg-types" target="_blank">https://github.com/brianc/node-pg-types</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202112080724</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~641kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
