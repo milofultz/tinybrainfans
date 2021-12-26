@@ -33,6 +33,11 @@ body {
 h1 { font-size: 2rem; }
 
 a { color: var(--link); }
+a[target="_blank"]::after {
+  content: ' \2197';
+  font-size: 0.66em;
+  vertical-align: super;
+}
 
 pre {
   border: .125rem solid var(--text);
