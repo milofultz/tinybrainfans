@@ -1,7 +1,44 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Raytracing is a way of generating and rendering 3D graphics for digital images."><title>Raytracing</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
 <main id="main"><article id="content">            <h1 id="title">Raytracing</h1>
-            <p>Raytracing is a way of generating and rendering 3D graphics for digital images.</p>
-<h2>PGM</h2>
+            <p>Raytracing is a way of generating and rendering 3D graphics for digital images. </p>
+<h2>In Layman's Terms</h2>
+<p>From <a href="https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html" target="_blank">Gabriel Gambetta</a>[7]:</p>
+<blockquote>
+<p>[Y]ou get an insect net. You cut a rectangular piece, frame it, and fix it to a stick. Now you can look at the landscape through a netted window. Next, you choose the best point of view to appreciate this landscape and plant another stick to mark the exact position where your eye should be.</p>
+<p>You haven’t started the painting yet, but now you have a fixed point of view and a fixed frame through which you can see the landscape. Moreover, this fixed frame is divided into small squares by the insect net. Now comes the methodical part. You draw a grid on the canvas, giving it the same number of squares as the insect net. Then you look at the top-left square of the net. What’s the predominant color you can see through it? Sky blue. So you paint the top-left square of the canvas sky blue. You do this for every square, and soon enough the canvas contains a pretty good painting of the landscape, as seen through the frame. </p>
+</blockquote>
+<pre><code>Place the eye and the frame as desired
+For each square on the canvas:
+    Determine which square on the frame&#x27;s grid corresponds to this square on the canvas
+    Determine the color seen through that grid square
+    Paint the square on the canvas with that color
+</code></pre>
+<h3>Glossary</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Camera/Eye</td>
+<td>The position from which rays are cast.</td>
+<td><code>(X, Y, Z)</code></td>
+</tr>
+<tr>
+<td>Viewport/Frame</td>
+<td>The constraints of what we can see from the origin point.</td>
+<td><code>(width, height, distance from origin)</code></td>
+</tr>
+<tr>
+<td>Canvas</td>
+<td>The destination of all painting instructions.</td>
+<td><code>(width, height)</code></td>
+</tr>
+</tbody></table><h2>PGM</h2>
 <p>A <strong>portable grayscale map</strong> that is often how raytracing images are rendered. These are usually simple ASCII files containing rows of pixels and their corresponding grayscale values.</p>
 <h3>Specification</h3>
 <p>There are multiple types of PGM files, but for this we are sticking with <code>P2</code> types, as they are raw ASCII and not binary files, which makes them easy to create.</p>
@@ -53,6 +90,8 @@
 <li><a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)" target="_blank">https://en.wikipedia.org/wiki/Ray_tracing_(graphics)</a></li>
 <li><a href="https://www.youtube.com/watch?v=gBPNO6ruevk" target="_blank">https://www.youtube.com/watch?v=gBPNO6ruevk</a></li>
 <li><a href="https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html" target="_blank">https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html</a></li>
+<li><a href="http://www.playfuljs.com/a-first-person-engine-in-265-lines/" target="_blank">http://www.playfuljs.com/a-first-person-engine-in-265-lines/</a></li>
+<li><a href="https://www.youtube.com/watch?v=xW8skO7MFYw" target="_blank">https://www.youtube.com/watch?v=xW8skO7MFYw</a></li>
 </ol>
 <p><strong>PGM Format</strong></p>
 <ol>
@@ -61,4 +100,4 @@
 <li><a href="http://www.paulbourke.net/dataformats/ppm/" target="_blank">http://www.paulbourke.net/dataformats/ppm/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202112260820</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~645kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202112281419</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~665kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

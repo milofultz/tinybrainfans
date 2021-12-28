@@ -3,7 +3,32 @@ title: Raytracing
 description: Raytracing is a way of generating and rendering 3D graphics for digital images.
 ---
 
-Raytracing is a way of generating and rendering 3D graphics for digital images.
+Raytracing is a way of generating and rendering 3D graphics for digital images. 
+
+## In Layman's Terms
+
+From [Gabriel Gambetta](https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html)[7]:
+
+> [Y]ou get an insect net. You cut a rectangular piece, frame it, and fix it to a stick. Now you can look at the landscape through a netted window. Next, you choose the best point of view to appreciate this landscape and plant another stick to mark the exact position where your eye should be.
+>
+> You haven’t started the painting yet, but now you have a fixed point of view and a fixed frame through which you can see the landscape. Moreover, this fixed frame is divided into small squares by the insect net. Now comes the methodical part. You draw a grid on the canvas, giving it the same number of squares as the insect net. Then you look at the top-left square of the net. What’s the predominant color you can see through it? Sky blue. So you paint the top-left square of the canvas sky blue. You do this for every square, and soon enough the canvas contains a pretty good painting of the landscape, as seen through the frame. 
+
+```
+Place the eye and the frame as desired
+For each square on the canvas:
+    Determine which square on the frame's grid corresponds to this square on the canvas
+    Determine the color seen through that grid square
+    Paint the square on the canvas with that color
+```
+
+### Glossary
+
+Name | Description | Representation
+--- | --- | ---
+Camera/Eye | The position from which rays are cast. | `(X, Y, Z)` 
+Viewport/Frame | The constraints of what we can see from the origin point. | `(width, height, distance from origin)` 
+Canvas | The destination of all painting instructions. | `(width, height)` 
+
 
 ## PGM
 
@@ -59,6 +84,8 @@ PPM (Pixel Map) | Color using image value groups of `R G B`. (e.g. a single pixe
 1. https://en.wikipedia.org/wiki/Ray_tracing_(graphics)
 1. https://www.youtube.com/watch?v=gBPNO6ruevk
 1. https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html
+1. http://www.playfuljs.com/a-first-person-engine-in-265-lines/
+1. https://www.youtube.com/watch?v=xW8skO7MFYw
 
 **PGM Format**
 

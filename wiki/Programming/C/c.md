@@ -136,3 +136,4 @@ You can also use an online REPL, like [replit.com](https://replit.com/languages/
 
 1. https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf
 2. https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement
+2. https://github.com/agavrel/42_CheatSheet
