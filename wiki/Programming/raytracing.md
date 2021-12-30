@@ -44,7 +44,7 @@ Each file consists of two parts: headers, and the image itself. The header consi
 
 ```pgm
 P2    # PGM file type ("Magic Identifier")
-10 10 # Width and Height of the image
+20 10 # Width and Height of the image
 10    # Maximum grayscale value from 1 - 65535
 
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0

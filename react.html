@@ -102,36 +102,89 @@ ReactDOM.render(
 );
 </code></pre>
 <h4><a href="https://reactjs.org/docs/higher-order-components.html" target="_blank">Higher Order Components</a></h4>
-<p>Higher order components are just <a href="higher-order-functions.html">higher order functions</a> in React, in that they are functions that spit out another function based on what is input. One example is a React HOC that takes in a component and adds logging capabilities to it. Since it is wrapping the entire element</p>
+<p>Higher order components are just <a href="higher-order-functions.html">higher order functions</a> in React, in that they are functions that spit out another function based on what is input. One example is a React HOC that takes in a component and adds logging capabilities to it. </p>
+<p><strong>TrackingWrapper.jsx</strong></p>
 <pre><code class="language-react">import ...
 
-const TrackingWrapper = ({ WrappedComponent }) =&gt; {
-  return class extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-
-    logInteraction(event) =&gt; {
-      const logObject = {
-        timstamp: Date.now(), 
-        element: event.target
-      };
-      console.log(logObject);
-      // POST to server
-    }
-
-  render() {
-    return (
-      &lt;div className=&quot;tracking-wrapper&quot; onClick={this.logInteraction}&gt;
-        {/* This will pass in all props passed to the WrappedComponent in their given namespace */}
-        {/* Equivalent to the spread operator on a function definition */}
-        &lt;WrappedComponent {...this.props} /&gt;
-      &lt;/div&gt;
-    )
+const TrackingWrapper = ({ WrappedComponent, props }) =&gt; {
+  const logInteraction = (event) =&gt; {
+    const logObject = {
+      timstamp: Date.now(), 
+      element: event.target,
+    };
+    console.log(logObject);
+    // POST to server
   }
+
+  return (
+    &lt;div className=&quot;tracking-wrapper&quot; onClick={this.logInteraction}&gt;
+      {/* This will pass in all props passed to the WrappedComponent in their given namespace */}
+      &lt;WrappedComponent {...props} /&gt;
+    &lt;/div&gt;
+  );
 };
 
 export default TrackingWrapper;
+</code></pre>
+<p><strong>App.jsx</strong></p>
+<pre><code class="language-react">import ...
+import TrackingWrapper from &#x27;./TrackingWrapper&#x27;;
+import { ClickMe } from &#x27;./Buttons&#x27;;
+
+const App = () =&gt; {
+  return (
+    &lt;TrackingWrapper
+      WrappedComponent={ClickMe}
+      {/* The following props will get passed to the ClickMe component */}
+      message=&quot;Click here!&quot;
+      link=&quot;http://www.zombo.com&quot;
+    /&gt;
+  );
+};
+
+export default App;
+</code></pre>
+<p>Another common use of higher order components is a wrapper that will enclose multiple child components, called <code>children</code>[9]. You could do this with the above example like so:</p>
+<p><strong>TrackingWrapper.jsx</strong></p>
+<pre><code class="language-react">import ...
+
+const TrackingWrapper = ({ children }) =&gt; {
+  const logInteraction = (event) =&gt; {
+    const logObject = {
+      timstamp: Date.now(), 
+      element: event.target,
+    };
+    console.log(logObject);
+    // POST to server
+  }
+
+  return (
+    &lt;div className=&quot;tracking-wrapper&quot; onClick={this.logInteraction}&gt;
+      {/* This will pass in all children components that this component encloses */}
+      { children }
+    &lt;/div&gt;
+  )
+};
+
+export default TrackingWrapper;
+</code></pre>
+<p><strong>App.jsx</strong></p>
+<pre><code class="language-react">import ...
+import TrackingWrapper from &#x27;./TrackingWrapper&#x27;;
+import { ClickMe } from &#x27;./Buttons&#x27;;
+
+const App = () =&gt; {
+  return (
+    &lt;TrackingWrapper&gt;
+      &lt;ClickMe
+        message=&quot;Click here!&quot;
+        link=&quot;http://www.zombo.com&quot;
+      /&gt;
+    &lt;/TrackingWrapper&gt;
+  );
+};
+
+export default App;
 </code></pre>
 <h3>User Interaction/Event Listeners</h3>
 <p>Components can have local event listeners assigned directly to themselves.</p>
@@ -246,6 +299,7 @@ export const TAXRATE = .095;
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 <li><a href="https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774" target="_blank">https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774</a></li>
+<li><a href="https://dev.to/franca/react-children-2k4e" target="_blank">https://dev.to/franca/react-children-2k4e</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="immer.html">Immer</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="pixijs.html">PixiJS</a></li><li><a href="proptypes.html">PropTypes</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="testing-vanilla-javascript.html">Testing Vanilla Javascript</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="visual-studio-code.html">Visual Studio Code</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111170317</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~665kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202112290826</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~674kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

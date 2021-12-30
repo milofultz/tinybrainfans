@@ -3,6 +3,8 @@ title: Problem Solving
 description: Solving big problems is just solving problems.
 ---
 
+Solving big problems is just solving problems.
+
 ## Problem Solving Framework
 
 The mnemonic I have settled on is **PI AT PC**. Plus I can imagine a a picture of a little pi symbol sitting at a computer in like 1994.

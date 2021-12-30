@@ -138,39 +138,104 @@ ReactDOM.render(
 
 #### [Higher Order Components][]
 
-Higher order components are just {{higher order functions}} in React, in that they are functions that spit out another function based on what is input. One example is a React HOC that takes in a component and adds logging capabilities to it. Since it is wrapping the entire element
+Higher order components are just {{higher order functions}} in React, in that they are functions that spit out another function based on what is input. One example is a React HOC that takes in a component and adds logging capabilities to it. 
+
+**TrackingWrapper.jsx**
 
 ```react
 import ...
 
-const TrackingWrapper = ({ WrappedComponent }) => {
-  return class extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-    
-    logInteraction(event) => {
-      const logObject = {
-        timstamp: Date.now(), 
-        element: event.target
-      };
-      console.log(logObject);
-      // POST to server
-    }
-  
-  render() {
-    return (
-      <div className="tracking-wrapper" onClick={this.logInteraction}>
-        {/* This will pass in all props passed to the WrappedComponent in their given namespace */}
-        {/* Equivalent to the spread operator on a function definition */}
-        <WrappedComponent {...this.props} />
-      </div>
-    )
+const TrackingWrapper = ({ WrappedComponent, props }) => {
+  const logInteraction = (event) => {
+    const logObject = {
+      timstamp: Date.now(), 
+      element: event.target,
+    };
+    console.log(logObject);
+    // POST to server
   }
+  
+  return (
+    <div className="tracking-wrapper" onClick={this.logInteraction}>
+      {/* This will pass in all props passed to the WrappedComponent in their given namespace */}
+      <WrappedComponent {...props} />
+    </div>
+  );
 };
 
 export default TrackingWrapper;
 ```
+
+**App.jsx**
+
+```react
+import ...
+import TrackingWrapper from './TrackingWrapper';
+import { ClickMe } from './Buttons';
+
+const App = () => {
+  return (
+    <TrackingWrapper
+      WrappedComponent={ClickMe}
+      {/* The following props will get passed to the ClickMe component */}
+      message="Click here!"
+      link="http://www.zombo.com"
+    />
+  );
+};
+
+export default App;
+```
+
+Another common use of higher order components is a wrapper that will enclose multiple child components, called `children`[9]. You could do this with the above example like so:
+
+**TrackingWrapper.jsx**
+
+```react
+import ...
+
+const TrackingWrapper = ({ children }) => {
+  const logInteraction = (event) => {
+    const logObject = {
+      timstamp: Date.now(), 
+      element: event.target,
+    };
+    console.log(logObject);
+    // POST to server
+  }
+
+  return (
+    <div className="tracking-wrapper" onClick={this.logInteraction}>
+      {/* This will pass in all children components that this component encloses */}
+			{ children }
+    </div>
+  )
+};
+
+export default TrackingWrapper;
+```
+
+**App.jsx**
+
+```react
+import ...
+import TrackingWrapper from './TrackingWrapper';
+import { ClickMe } from './Buttons';
+
+const App = () => {
+  return (
+    <TrackingWrapper>
+      <ClickMe
+        message="Click here!"
+        link="http://www.zombo.com"
+      />
+    </TrackingWrapper>
+  );
+};
+
+export default App;
+```
+
 
 ### User Interaction/Event Listeners
 
@@ -315,6 +380,7 @@ export const TAXRATE = .095;
 6. https://reactjs.org/docs/typechecking-with-proptypes.html
 7. https://www.npmjs.com/package/prop-types
 7. https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774
+7. https://dev.to/franca/react-children-2k4e
 
 [create-react-app]: https://create-react-app.dev/
 [Higher Order Components]: https://reactjs.org/docs/higher-order-components.html

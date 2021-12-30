@@ -20,7 +20,8 @@
 <p class="last-modified">Last modified: 202111120504</p></article><article><h1><a href="css.html">CSS</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="common-breakpoints-css.html">Common Breakpoints (CSS)</a></li><li><a href="cube-css.html">Cube CSS</a></li><li><a href="fonts-css.html">Fonts (CSS)</a></li><li><a href="gradients-css.html">Gradients (CSS)</a></li><li><a href="html-tables.html">HTML Tables</a></li><li><a href="inverted-triangle-css.html">Inverted Triangle CSS</a></li><li><a href="minimalist-css.html">Minimalist CSS</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="object-oriented-css.html">Object Oriented CSS</a></li><li><a href="organization-and-structure-css.html">Organization and Structure (CSS)</a></li><li><a href="patterns-css.html">Patterns (CSS)</a></li><li><a href="position-css.html">Position (CSS)</a></li><li><a href="problem-solving.html">Problem Solving</a></li><li><a href="pug.html">Pug</a></li><li><a href="sass.html">Sass</a></li><li><a href="selectors-css.html">Selectors (CSS)</a></li><li><a href="semantic-html.html">Semantic HTML</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="text-selections-css.html">Text Selections (CSS)</a></li><li><a href="transitions-css.html">Transitions (CSS)</a></li><li><a href="typography-css.html">Typography (CSS)</a></li><li><a href="vendor-prefixes-css.html">Vendor Prefixes (CSS)</a></li><li><a href="web-fonts-html.html">Web Fonts (HTML)</a></li></ul></details></section></article><article>            <h1><a href="problem-solving.html">Problem Solving</a></h1>
-            <h2>Problem Solving Framework</h2>
+            <p>Solving big problems is just solving problems.</p>
+<h2>Problem Solving Framework</h2>
 <p>The mnemonic I have settled on is <strong>PI AT PC</strong>. Plus I can imagine a a picture of a little pi symbol sitting at a computer in like 1994.</p>
 <ul>
 <li>
@@ -62,8 +63,8 @@ create <strong>P</strong>seudocode/use <strong>P</strong>lain english<ul>
 <ol>
 <li><a href="https://www.reddit.com/r/adventofcode/comments/7kd8jt/what_would_you_say_are_the_minimal_skills_for/dre0uu3/" target="_blank">https://www.reddit.com/r/adventofcode/comments/7kd8jt/what_would_you_say_are_the_minimal_skills_for/dre0uu3/</a></li>
 </ol>
-
-<p class="last-modified">Last modified: 202110091810</p></article><article>            <h1><a href="essays.html">Essays</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="pseudocode.html">Pseudocode</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202112291210</p></article><article>            <h1><a href="essays.html">Essays</a></h1>
             <p><a href="https://web.mit.edu/jmorzins/www/C-H-speech.html" target="_blank">Bill Watterson's &quot;SOME THOUGHTS ON THE REAL WORLD BY ONE WHO GLIMPSED IT AND FLED&quot;</a></p>
 <blockquote>
 <p>When it seemed I would be writing about &quot;Midnite Madness Sale-abrations&quot; for the rest of my life, a friend used to console me that cream always rises to the top. I used to think, so do people who throw themselves into the sea.</p>
@@ -1538,7 +1539,7 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <li><a href="https://github.com/pret/pokered" target="_blank">https://github.com/pret/pokered</a></li>
 <li><a href="https://eldred.fr/gb-asm-tutorial/index.html" target="_blank">https://eldred.fr/gb-asm-tutorial/index.html</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="fractran.html">FRACTRAN</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li><li><a href="uxn.html">uxn</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="fractran.html">FRACTRAN</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="pseudocode.html">Pseudocode</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li><li><a href="uxn.html">uxn</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202111301144</p></article><article>            <h1><a href="uxn.html">uxn</a></h1>
             <p>uxn is a virtual machine based on <a href="forth.html">Forth</a> and <a href="assembly.html">assembly</a>, built to be a slim wrapper for any system.</p>
 <h2>References</h2>
@@ -1836,7 +1837,7 @@ For each square on the canvas:
 <p>Every value in the file is separated by a space delimiter of some kind (e.g. space, CR, LF, tab). Comments can be made with a <code>#</code>, with everything following it up to the next newline character being considered part of the comment.</p>
 <p>Each file consists of two parts: headers, and the image itself. The header consists of a set of values in order at the beginning of the file. The image consists of a series of values between 0 and your maximum grayscale value. For convenience, it is usually shown with each row being separated by a newline. It is good practice to end your file with a newline.</p>
 <pre><code class="language-pgm">P2    # PGM file type (&quot;Magic Identifier&quot;)
-10 10 # Width and Height of the image
+20 10 # Width and Height of the image
 10    # Maximum grayscale value from 1 - 65535
 
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -1891,7 +1892,7 @@ For each square on the canvas:
 <li><a href="http://www.paulbourke.net/dataformats/ppm/" target="_blank">http://www.paulbourke.net/dataformats/ppm/</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202112281419</p></article><article>            <h1><a href="job-interviews.html">Job Interviews</a></h1>
+<p class="last-modified">Last modified: 202112290130</p></article><article>            <h1><a href="job-interviews.html">Job Interviews</a></h1>
             <p>What are <strong>you</strong> trying to get from this position? What do <strong>they</strong> want from you in taking this position?</p>
 <h2>Questions to Ask</h2>
 <ul>
@@ -2057,36 +2058,89 @@ ReactDOM.render(
 );
 </code></pre>
 <h4><a href="https://reactjs.org/docs/higher-order-components.html" target="_blank">Higher Order Components</a></h4>
-<p>Higher order components are just <a href="higher-order-functions.html">higher order functions</a> in React, in that they are functions that spit out another function based on what is input. One example is a React HOC that takes in a component and adds logging capabilities to it. Since it is wrapping the entire element</p>
+<p>Higher order components are just <a href="higher-order-functions.html">higher order functions</a> in React, in that they are functions that spit out another function based on what is input. One example is a React HOC that takes in a component and adds logging capabilities to it. </p>
+<p><strong>TrackingWrapper.jsx</strong></p>
 <pre><code class="language-react">import ...
 
-const TrackingWrapper = ({ WrappedComponent }) =&gt; {
-  return class extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-
-    logInteraction(event) =&gt; {
-      const logObject = {
-        timstamp: Date.now(), 
-        element: event.target
-      };
-      console.log(logObject);
-      // POST to server
-    }
-
-  render() {
-    return (
-      &lt;div className=&quot;tracking-wrapper&quot; onClick={this.logInteraction}&gt;
-        {/* This will pass in all props passed to the WrappedComponent in their given namespace */}
-        {/* Equivalent to the spread operator on a function definition */}
-        &lt;WrappedComponent {...this.props} /&gt;
-      &lt;/div&gt;
-    )
+const TrackingWrapper = ({ WrappedComponent, props }) =&gt; {
+  const logInteraction = (event) =&gt; {
+    const logObject = {
+      timstamp: Date.now(), 
+      element: event.target,
+    };
+    console.log(logObject);
+    // POST to server
   }
+
+  return (
+    &lt;div className=&quot;tracking-wrapper&quot; onClick={this.logInteraction}&gt;
+      {/* This will pass in all props passed to the WrappedComponent in their given namespace */}
+      &lt;WrappedComponent {...props} /&gt;
+    &lt;/div&gt;
+  );
 };
 
 export default TrackingWrapper;
+</code></pre>
+<p><strong>App.jsx</strong></p>
+<pre><code class="language-react">import ...
+import TrackingWrapper from &#x27;./TrackingWrapper&#x27;;
+import { ClickMe } from &#x27;./Buttons&#x27;;
+
+const App = () =&gt; {
+  return (
+    &lt;TrackingWrapper
+      WrappedComponent={ClickMe}
+      {/* The following props will get passed to the ClickMe component */}
+      message=&quot;Click here!&quot;
+      link=&quot;http://www.zombo.com&quot;
+    /&gt;
+  );
+};
+
+export default App;
+</code></pre>
+<p>Another common use of higher order components is a wrapper that will enclose multiple child components, called <code>children</code>[9]. You could do this with the above example like so:</p>
+<p><strong>TrackingWrapper.jsx</strong></p>
+<pre><code class="language-react">import ...
+
+const TrackingWrapper = ({ children }) =&gt; {
+  const logInteraction = (event) =&gt; {
+    const logObject = {
+      timstamp: Date.now(), 
+      element: event.target,
+    };
+    console.log(logObject);
+    // POST to server
+  }
+
+  return (
+    &lt;div className=&quot;tracking-wrapper&quot; onClick={this.logInteraction}&gt;
+      {/* This will pass in all children components that this component encloses */}
+      { children }
+    &lt;/div&gt;
+  )
+};
+
+export default TrackingWrapper;
+</code></pre>
+<p><strong>App.jsx</strong></p>
+<pre><code class="language-react">import ...
+import TrackingWrapper from &#x27;./TrackingWrapper&#x27;;
+import { ClickMe } from &#x27;./Buttons&#x27;;
+
+const App = () =&gt; {
+  return (
+    &lt;TrackingWrapper&gt;
+      &lt;ClickMe
+        message=&quot;Click here!&quot;
+        link=&quot;http://www.zombo.com&quot;
+      /&gt;
+    &lt;/TrackingWrapper&gt;
+  );
+};
+
+export default App;
 </code></pre>
 <h3>User Interaction/Event Listeners</h3>
 <p>Components can have local event listeners assigned directly to themselves.</p>
@@ -2201,9 +2255,10 @@ export const TAXRATE = .095;
 <li><a href="https://reactjs.org/docs/typechecking-with-proptypes.html" target="_blank">https://reactjs.org/docs/typechecking-with-proptypes.html</a></li>
 <li><a href="https://www.npmjs.com/package/prop-types" target="_blank">https://www.npmjs.com/package/prop-types</a></li>
 <li><a href="https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774" target="_blank">https://medium.com/@austinpaley32/how-to-add-a-constants-file-to-your-react-project-6ce31c015774</a></li>
+<li><a href="https://dev.to/franca/react-children-2k4e" target="_blank">https://dev.to/franca/react-children-2k4e</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="eslint.html">ESLint</a></li><li><a href="frameworks-javascript.html">Frameworks (Javascript)</a></li><li><a href="immer.html">Immer</a></li><li><a href="model-view-controller.html">Model View Controller</a></li><li><a href="pixijs.html">PixiJS</a></li><li><a href="proptypes.html">PropTypes</a></li><li><a href="react-testing.html">React (Testing)</a></li><li><a href="react-from-scratch.html">React from Scratch</a></li><li><a href="react-hooks.html">React Hooks</a></li><li><a href="testing-vanilla-javascript.html">Testing Vanilla Javascript</a></li><li><a href="text-compression-server.html">Text Compression (Server)</a></li><li><a href="typescript.html">Typescript</a></li><li><a href="visual-studio-code.html">Visual Studio Code</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111170317</p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
+<p class="last-modified">Last modified: 202112290826</p></article><article>            <h1><a href="model-view-controller.html">Model View Controller</a></h1>
             <p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
 <h2>Components</h2>
 <h3>Model</h3>
@@ -2353,7 +2408,295 @@ end tell
 <li><a href="https://apple.stackexchange.com/questions/293777/how-do-i-open-a-generic-url-from-applescript" target="_blank">https://apple.stackexchange.com/questions/293777/how-do-i-open-a-generic-url-from-applescript</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202111170305</p></article><article>            <h1><a href="documentation.html">Documentation</a></h1>
+<p class="last-modified">Last modified: 202111170305</p></article><article>            <h1><a href="test-driven-development.html">Test-Driven Development</a></h1>
+            <p>In <a href="programming.html">programming</a>, test-driven development is when tests are developed first before the code is written. </p>
+<blockquote>
+<p>In test-driven development the mantra has always been, red, green, refactor. Write a failing test and run it (red), make the test pass (green), then refactor it (that is look at the code and see if you can make it any better).[1]</p>
+</blockquote>
+<ul>
+<li>You can’t write any production code until you have first written a failing unit test.</li>
+<li>You can’t write more of a unit test than is sufficient to fail, and not compiling is failing.</li>
+<li>You can’t write more production code than is sufficient to pass the currently failing unit test.</li>
+</ul>
+<p>These last two points are <em>very</em> important to fully understand, and may feel insane at first. If you were making an <code>add</code> function and you created your first test that <code>add(2, 2) === 4</code>, then your first step would be to create the <code>add</code> function and then <strong>have it return 4</strong>. </p>
+<pre><code class="language-javascript">const add = (first, second) =&gt; {
+  return 4;
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
+}
+</code></pre>
+<p>It is important to note that of <em>course</em> this is incorrect as an adding function, but </p>
+<blockquote>
+<p>You can’t write more production code than is <strong>sufficient</strong> to pass the currently failing unit test</p>
+</blockquote>
+<p>Once you have this, you would want to create more tests. And sometimes that will result in more stupid-feeling tests:</p>
+<pre><code class="language-javascript">const add = (first, second) =&gt; {
+  if (first === 2) {
+     return 4; 
+  } else {
+    return 6;
+  }
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
+}
+if (add(5, 1) !== 6) {
+  console.error(&#x27;FAILURE: 5 + 1 !== 6&#x27;);
+}
+</code></pre>
+<p>But as we write more and more, we will triangulate into what is accurate and necessary <strong>with nothing more</strong>. You will get to a point where refactoring the code will make you write less code than you currently have, and that is the end goal, but you don't want to get there until it is <strong>necessary</strong>.</p>
+<p>Remember, that you should at this point be trying really hard to find ways to BREAK your code. What are the edge cases? What is something user X or Y or Z would do, and how would my code be affected?</p>
+<pre><code class="language-javascript">const add = (first, second) =&gt; {
+  // Instead of continuing to add more if blocks, we refactored
+  if (first === undefined) {
+    return null;
+  } else if (second === undefined) {
+    return first;
+  }
+  return first + second;
+}
+
+// tests
+
+if (add(2, 2) !== 4) {
+  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
+}
+if (add(5, 1) !== 6) {
+  console.error(&#x27;FAILURE: 5 + 1 !== 6&#x27;);
+}
+if (add(2, 0) !== 2) {
+  console.error(&#x27;FAILURE: 2 + 0 !== 2&#x27;);
+}
+if (add(2) !== 2) {
+  console.error(&#x27;FAILURE: 2 !== 2&#x27;);
+}
+if (add() !== null) {
+  console.error(&#x27;FAILURE: Run add without args&#x27;);
+}
+</code></pre>
+<h2>Best Practices</h2>
+<p>Write the test that forces you to write the code you already know you want to write. </p>
+<p>Avoid the central behaviors as long as possible. Don't go for the gold right away. </p>
+<p>Decouple the production code from the test code by ensuring your tests are not 1:1 for the class methods or functions. Create and refactor as you go in production, but allow the tests to remain.</p>
+<h3>Dependency Injection</h3>
+<p>Use <a href="https://en.wikipedia.org/wiki/Dependency_injection" target="_blank">dependency injection</a> to make testing simpler. If you have an API call, inject <code>axios</code> or <code>fetch</code> as an argument so when it comes to testing, your testing framework won't be brittle in its imports. e.g. In this example, we make a call to an external API to get the tax rate of a given country using the <a href="javascript.html">Javascript</a> native <a href="fetch-api.html">fetch API</a>, with tests using <a href="jest.html">Jest</a>.</p>
+<p><strong>getTaxRate.js</strong></p>
+<pre><code class="language-javascript">// works, but brittle
+const getTaxRates = (country) =&gt; {
+  return fetch(`external.api/example/${country}`)
+    .then(response =&gt; response.json())
+    .then(taxRateInfo =&gt; taxRateInfo.rate)
+}
+
+// best, robust
+const getTaxRates = (fetch, country) =&gt; {
+  return fetch(`external.api/example/${country}`)
+    .then(response =&gt; response.json())
+    .then(taxRateInfo =&gt; taxRateInfo.rate)
+}
+</code></pre>
+<p>Using the brittle implementation, our tests are coupled with the implementation of the code we are testing, which will lead to problems if these global imports or functions like <a href="fetch-api.html">fetch</a> ever change.</p>
+<p><strong>getTaxRate.test.js</strong></p>
+<pre><code class="language-javascript">// assuming all imports
+
+// This will properly mock the return value of the external API
+const mockFetchImplementation = () =&gt; {
+  return Promise.resolve({
+    json: () =&gt; Promise.resolve({
+      rate: 10
+    });
+  });
+};
+
+// brittle implementation
+// Fetch gets used invisibly, non-explicitly, and is more difficult to see what is happening.
+// Fetch as a global is also being overwritten, which may not be desired for future tests.
+
+global.fetch = jest.fn(mockFetchImplementation);
+
+describe(&#x27;getTaxRates&#x27;, () =&gt; {
+  it(&#x27;gets a tax rate for a given country (brittle)&#x27;, () =&gt; {
+    return getTaxRates(&#x27;DE&#x27;)
+      .then(taxRate =&gt; {
+        expect(taxRate).toBe(10);
+        expect(fetch).toHaveBeenCalledTimes(1);
+      });
+  });
+});
+
+// robust implementation
+// Fetch obviously gets used, easy to see high-level view
+// Uses a local mock and doesn&#x27;t overwrite global fetch.
+
+const fakeFetch = jest.fn(mockFetchImplementation);
+
+describe(&#x27;getTaxRates&#x27;, () =&gt; {
+  it(&#x27;gets a tax rate for a given country (brittle)&#x27;, () =&gt; {
+    return getTaxRates(fakeFetch, &#x27;DE&#x27;)
+      .then(taxRate =&gt; {
+        expect(taxRate).toBe(10);
+        expect(fetch).toHaveBeenCalledTimes(1);
+      });
+  });
+});
+</code></pre>
+<h2>Why Use TDD</h2>
+<ul>
+<li>Your code will ALWAYS be working just a second ago when you last tested.</li>
+<li>It is <a href="https://en.wikipedia.org/wiki/Double-entry_bookkeeping" target="_blank">double-entry bookkeeping</a> for development.</li>
+<li>A test suite that you don't trust is worthless. A test suite that does not allow you to make a decision when it passes is useless. There can be NO HOLES.</li>
+</ul>
+<h2>TDD Without A Test Suite</h2>
+<p><em>From <a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">Jack Herrington's video on stress-free coding</a></em></p>
+<p>Though orthodox TDD requires testing and a test framework, you can utilize these ideas without them (albeit on a smaller scale, as greater complexity will make this work still <em>work</em>, but not be as powerful or reliable). </p>
+<p>When we are coding, we are usually operating within a few different risk levels that may appear or disappear based on our confidence, emotional state, etc.: </p>
+<ul>
+<li><strong>Safe</strong>: Everything is running and works as expected</li>
+<li><strong>OK</strong>: Trivial changes have been added that you expect to work</li>
+<li><strong>Should Test</strong>: A lot of complex changes have been added, should probably test now</li>
+<li><strong>Must Test</strong>: You absolutely should be testing your code</li>
+</ul>
+<p>So similar to TDD, where &quot;red, green, refactor&quot; is the rule, you code operating from &quot;Should Test or Must Test, Safe, Refactor&quot;. Combining this with committing often and <a href="rebase-git.html">rebasing those extra commits</a> before pushing gives us great scaffolding to work with more confidence and assurance in the state of our code.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://github.com/gregmalcolm/python_koans" target="_blank">https://github.com/gregmalcolm/python_koans</a></li>
+<li><a href="https://openlibrary.org/works/OL3526663W/Clean_code" target="_blank">Clean Code</a></li>
+<li><a href="https://qualitycoding.org/3-laws-tdd/" target="_blank">https://qualitycoding.org/3-laws-tdd/</a></li>
+<li><a href="https://www.youtube.com/watch?v=58jGpV2Cg50" target="_blank">Examples of TDD in action</a></li>
+<li><a href="https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2" target="_blank">https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2</a></li>
+<li><a href="https://wallabyjs.com/?referrer=funfunfunction" target="_blank">https://wallabyjs.com/?referrer=funfunfunction</a></li>
+<li><a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">https://www.youtube.com/watch?v=eAfUfKYcvBo</a></li>
+</ol>
+<section><details><summary>Backlinks</summary><ul><li><a href="pseudocode.html">Pseudocode</a></li><li><a href="react-testing.html">React (Testing)</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111110017</p></article><article>            <h1><a href="paper-computing.html">Paper Computing</a></h1>
+            <p>Paper computing is a way to learn about the most basic operation of <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> systems and <a href="programming.html">programming</a> in general. This is also a great way to get familiar with the basics of machine code and <a href="assembly.html">assembly</a>.</p>
+<h2>Models</h2>
+<ul>
+<li><a href="the-know-how-computer.html">The Know-how Computer</a></li>
+<li><a href="the-little-man-computer.html">The Little Man Computer</a></li>
+<li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">CARDIAC - CARDboard Illustrative Aid to Computation</a></li>
+<li><a href="http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf" target="_blank">The Instructo</a></li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Turing_completeness" target="_blank">https://en.wikipedia.org/wiki/Turing_completeness</a></li>
+<li><a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">https://www.youtube.com/watch?v=RPQD7-AOjMI</a></li>
+<li><a href="https://compudanzas.net/beans_computing.html" target="_blank">https://compudanzas.net/beans_computing.html</a></li>
+<li><a href="https://www.youtube.com/watch?v=Z27KQiBnkJI" target="_blank">https://www.youtube.com/watch?v=Z27KQiBnkJI</a></li>
+<li><a href="https://www.youtube.com/watch?v=t-mOfXhgfQY" target="_blank">https://www.youtube.com/watch?v=t-mOfXhgfQY</a></li>
+<li><a href="https://wiki.xxiivv.com/site/papier.html" target="_blank">https://wiki.xxiivv.com/site/papier.html</a></li>
+<li><a href="https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/" target="_blank">https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/</a></li>
+<li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">https://www.cs.drexel.edu/~bls96/museum/cardiac.html</a></li>
+<li><a href="https://archive.org/details/cardiac_201708/page/n9/mode/2up" target="_blank">https://archive.org/details/cardiac_201708/page/n9/mode/2up</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Little_man_computer" target="_blank">https://en.wikipedia.org/wiki/Little_man_computer</a></li>
+<li><a href="http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm" target="_blank">http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm</a></li>
+<li><a href="http://www.pythondiary.com/blog/Oct.15,2014/building-cpu-simulator-python.html" target="_blank">http://www.pythondiary.com/blog/Oct.15,2014/building-cpu-simulator-python.html</a></li>
+<li><a href="http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf" target="_blank">http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf</a></li>
+</ol>
+<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="pseudocode.html">Pseudocode</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202110311628</p></article><article>            <h1><a href="pseudocode.html">Pseudocode</a></h1>
+            <p>Pseudocode is a way to devise and organize <a href="problem-solving.html">solutions to problems</a> without worrying about implementation details. The goal of using pseudocode to solve a problem is to create a code- or language-agnostic solution that can be understood within the problem domain. From John Dalbey[1]:</p>
+<blockquote>
+<p>In general the vocabulary used in the pseudocode should be the vocabulary of the problem domain, not of the implementation domain. The pseudocode is a narrative for someone who knows the requirements (problem domain) and is trying to learn how the solution is organized.</p>
+</blockquote>
+<p>Eventually, you will be able to put this pseudocode into a project and essentially paint by numbers, filling in each line slowly and deliberately, <a href="test-driven-development.html">testing your code</a> along the way.</p>
+<h2>Types</h2>
+<p>There are only a few basic types of instructions or structures that need to be known or used to make effective pseudocode. These types are meant to be composed together and nested within each other when and if necessary.</p>
+<p>Many of these types have explicit end statements for easier understanding at a glance where an instance of one type starts and ends. Notice also the use of indentation to aid in this understanding.</p>
+<h3>Sequence</h3>
+<p>The sequence is the most basic building block of your pseudocode, made up of a series of instructions to be executed in order. These include most of your basic self-contained or self-descriptive functionality: <code>input</code>, <code>output</code>, <code>compute</code>, <code>initialize</code>, and <code>increment</code>/<code>decrement</code>. For example, the start of some pseudocode for making bread at a restaurant could be:</p>
+<pre><code class="language-pseudocode">GET next order from customer  # an &#x27;input&#x27; instruction
+CALCULATE materials needed    # a `compute` instruction
+CREATE dough from ingredients # an `initialize` instruction
+SET oven to 500 degrees       # another `initialize` instruction
+</code></pre>
+<h3>If/Then/Else</h3>
+<p>A series of discrete paths that can be taken based on whether each condition is true or not. Once a path matches, you skip to the end of the if block. If none match, you take the else path.</p>
+<pre><code class="language-pseudocode">IF the yeast is bubbling THEN
+  Add the yeast to the dough mixture
+ELSE IF the yeast is not bubbling AND you don&#x27;t have time to go to the store THEN
+  Make flatbread instead
+ELSE 
+  Go to the store and get more yeast
+END IF
+</code></pre>
+<h3>Case</h3>
+<p>The case is akin to if/then/else. The difference between the two is that a case evaluates a single expression and executes the matching sequence.</p>
+<pre><code class="language-pseudocode">CASE yeast type OF
+  instant   : SET yeast amount to 1.5 tsp
+  active dry: SET yeast amount to 2 tsp
+  sourdough : SET yeast amount to 0 tsp
+END CASE  
+</code></pre>
+<h3>While</h3>
+<p>If the condition is met, do the enclosed instructions and return to the beginning when finished to check the condition again. Repeat this process until the condition is no longer met.</p>
+<pre><code class="language-pseudocode">WHILE dough is sticky to the touch
+  Knead and fold dough three times
+  Rotate 90 degrees
+END WHILE
+</code></pre>
+<h3>Repeat Until</h3>
+<p>This is akin to while, except the condition, which is placed at the bottom, is tested <em>after</em> going through the instructions a single time. If you are doing any <a href="paper-computing.html">paper computing</a> or <a href="assembly.html">assembly</a>, this is what you will most likely use in place of a while loop.</p>
+<pre><code class="language-pseudocode">REPEAT
+  Knead and fold dough three times
+  Rotate 90 degrees
+UNTIL dough is not sticky to the touch
+</code></pre>
+<h3>For</h3>
+<p>A for loop will execute a set of instructions for each item within a group.</p>
+<pre><code class="language-pseudocode">SET number of loaves to 0
+FOR each loaf of bread
+  Slice each one inch segment from one end to the other
+  Put sliced bread into paper bags
+  Place on shelf for sale
+  INCREMENT number of loaves by 1
+END FOR
+</code></pre>
+<h3>Call</h3>
+<p>This is shorthand for calling another algorithm, subroutine, or set of instructions within the current set. In this example, we took the contents of the above for loop and placed them into another subroutine called <code>PackageBreadLoaf</code>.</p>
+<pre><code class="language-pseudocode">SET number of loaves to 0
+FOR each loaf of bread
+  CALL PackageBreadLoaf with this loaf of bread
+  INCREMENT number of loaves by 1
+END FOR
+</code></pre>
+<h3>Begin/Exception</h3>
+<p>If you want to handle something not going as expected, you can put those instructions inside of an exception block. If an exception (or error) occurs, you can add a set of instructions that will then execute. You want to use this if necessary items don't exist, or implicit expectations are not met.</p>
+<p>If no exceptions are found, the exception block will be skipped. If an exception is found, we go <strong>immediately</strong> to that set of instructions, skipping all in between, and then halting the program.</p>
+<pre><code class="language-pseudocode">BEGIN
+  IF the yeast is bubbling THEN
+    Add the yeast to the dough mixture
+  ELSE IF the yeast is not bubbling AND you don&#x27;t have time to go to the store THEN
+    Make flatbread instead
+  ELSE 
+    Go to the store and get more yeast
+  END IF
+EXCEPTION
+  WHEN there is no yeast
+    Go to the store and buy yeast
+  WHEN there is no dough mixture
+    Make the dough mixture first
+  WHEN there is no store
+    Make sourdough starter
+END EXCEPTION
+</code></pre>
+<h2>Best Practices</h2>
+<p>Assume you are always writing instructions for an alien who knows very little to nothing about computers, your profession, the domain your work resides in, etc. (my personal go-to is imagining how to explain it to my mom). You want to be precise but not overly verbose. One good example is this guy trying to get his kids to give him instructions about how to make a sandwich[2]. As expected, the instructions aren't very precise and he does things &quot;wrong&quot;, but he playing the role of the computer, a very dumb but very capable being, will have no intuition and needs extreme precision to produce desired results.</p>
+<p>Avoid mathematical operators, equal signs, literal methods, data types, etc. Make it in plain language! We usually think we know what we're talking about, but we don't. Leaving us the wiggle room of implementation allows our brain to postpone these hard details until the end, which is 100% what we want to do. This also gives the added bonus of making our pseudocode available for non-tech people on the team, as their input and thoughts are still valuable and shouldn't be blocked out by something unnecessary.</p>
+<h2>References</h2>
+<ol>
+<li><a href="http://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html" target="_blank">http://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html</a></li>
+<li><a href="https://www.youtube.com/watch?v=Ct-lOOUqmyY" target="_blank">https://www.youtube.com/watch?v=Ct-lOOUqmyY</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202112300152</p></article><article>            <h1><a href="documentation.html">Documentation</a></h1>
             <h2>Software</h2>
 <ul>
 <li><a href="https://readthedocs.org/" target="_blank">https://readthedocs.org/</a></li>
@@ -5832,33 +6175,7 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 
 <p class="last-modified">Last modified: 202111301021</p></article><article><h1><a href="machine-code.html">machine code</a></h1>
 <p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-6502.html">Assembly (6502)</a></li></ul></details></section></article><article>            <h1><a href="paper-computing.html">Paper Computing</a></h1>
-            <p>Paper computing is a way to learn about the most basic operation of <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> systems and <a href="programming.html">programming</a> in general. This is also a great way to get familiar with the basics of machine code and <a href="assembly.html">assembly</a>.</p>
-<h2>Models</h2>
-<ul>
-<li><a href="the-know-how-computer.html">The Know-how Computer</a></li>
-<li><a href="the-little-man-computer.html">The Little Man Computer</a></li>
-<li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">CARDIAC - CARDboard Illustrative Aid to Computation</a></li>
-<li><a href="http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf" target="_blank">The Instructo</a></li>
-</ul>
-<h2>References</h2>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Turing_completeness" target="_blank">https://en.wikipedia.org/wiki/Turing_completeness</a></li>
-<li><a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">https://www.youtube.com/watch?v=RPQD7-AOjMI</a></li>
-<li><a href="https://compudanzas.net/beans_computing.html" target="_blank">https://compudanzas.net/beans_computing.html</a></li>
-<li><a href="https://www.youtube.com/watch?v=Z27KQiBnkJI" target="_blank">https://www.youtube.com/watch?v=Z27KQiBnkJI</a></li>
-<li><a href="https://www.youtube.com/watch?v=t-mOfXhgfQY" target="_blank">https://www.youtube.com/watch?v=t-mOfXhgfQY</a></li>
-<li><a href="https://wiki.xxiivv.com/site/papier.html" target="_blank">https://wiki.xxiivv.com/site/papier.html</a></li>
-<li><a href="https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/" target="_blank">https://www.instructables.com/CARDIAC-CARDboard-Illustrative-Aid-to-Computation-/</a></li>
-<li><a href="https://www.cs.drexel.edu/~bls96/museum/cardiac.html" target="_blank">https://www.cs.drexel.edu/~bls96/museum/cardiac.html</a></li>
-<li><a href="https://archive.org/details/cardiac_201708/page/n9/mode/2up" target="_blank">https://archive.org/details/cardiac_201708/page/n9/mode/2up</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Little_man_computer" target="_blank">https://en.wikipedia.org/wiki/Little_man_computer</a></li>
-<li><a href="http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm" target="_blank">http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm</a></li>
-<li><a href="http://www.pythondiary.com/blog/Oct.15,2014/building-cpu-simulator-python.html" target="_blank">http://www.pythondiary.com/blog/Oct.15,2014/building-cpu-simulator-python.html</a></li>
-<li><a href="http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf" target="_blank">http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf</a></li>
-</ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202110311628</p></article><article>            <h1><a href="assembly-unix.html">Assembly (Unix)</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-6502.html">Assembly (6502)</a></li></ul></details></section></article><article>            <h1><a href="assembly-unix.html">Assembly (Unix)</a></h1>
             <p><a href="assembly.html">Assembly</a> on <a href="unix.html">Unix</a> is largely the same between <a href="macos.html">MacOS</a> and <a href="linux.html">Linux</a> computers.</p>
 <h2>Compilation, Linking, and Execution</h2>
 <h3>Compiler</h3>
@@ -7887,174 +8204,7 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 <li><a href="https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits" target="_blank">https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202112230843</p></article><article>            <h1><a href="test-driven-development.html">Test-Driven Development</a></h1>
-            <p>In <a href="programming.html">programming</a>, test-driven development is when tests are developed first before the code is written. </p>
-<blockquote>
-<p>In test-driven development the mantra has always been, red, green, refactor. Write a failing test and run it (red), make the test pass (green), then refactor it (that is look at the code and see if you can make it any better).[1]</p>
-</blockquote>
-<ul>
-<li>You can’t write any production code until you have first written a failing unit test.</li>
-<li>You can’t write more of a unit test than is sufficient to fail, and not compiling is failing.</li>
-<li>You can’t write more production code than is sufficient to pass the currently failing unit test.</li>
-</ul>
-<p>These last two points are <em>very</em> important to fully understand, and may feel insane at first. If you were making an <code>add</code> function and you created your first test that <code>add(2, 2) === 4</code>, then your first step would be to create the <code>add</code> function and then <strong>have it return 4</strong>. </p>
-<pre><code class="language-javascript">const add = (first, second) =&gt; {
-  return 4;
-}
-
-// tests
-
-if (add(2, 2) !== 4) {
-  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
-}
-</code></pre>
-<p>It is important to note that of <em>course</em> this is incorrect as an adding function, but </p>
-<blockquote>
-<p>You can’t write more production code than is <strong>sufficient</strong> to pass the currently failing unit test</p>
-</blockquote>
-<p>Once you have this, you would want to create more tests. And sometimes that will result in more stupid-feeling tests:</p>
-<pre><code class="language-javascript">const add = (first, second) =&gt; {
-  if (first === 2) {
-     return 4; 
-  } else {
-    return 6;
-  }
-}
-
-// tests
-
-if (add(2, 2) !== 4) {
-  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
-}
-if (add(5, 1) !== 6) {
-  console.error(&#x27;FAILURE: 5 + 1 !== 6&#x27;);
-}
-</code></pre>
-<p>But as we write more and more, we will triangulate into what is accurate and necessary <strong>with nothing more</strong>. You will get to a point where refactoring the code will make you write less code than you currently have, and that is the end goal, but you don't want to get there until it is <strong>necessary</strong>.</p>
-<p>Remember, that you should at this point be trying really hard to find ways to BREAK your code. What are the edge cases? What is something user X or Y or Z would do, and how would my code be affected?</p>
-<pre><code class="language-javascript">const add = (first, second) =&gt; {
-  // Instead of continuing to add more if blocks, we refactored
-  if (first === undefined) {
-    return null;
-  } else if (second === undefined) {
-    return first;
-  }
-  return first + second;
-}
-
-// tests
-
-if (add(2, 2) !== 4) {
-  console.error(&#x27;FAILURE: 2 + 2 !== 4&#x27;);
-}
-if (add(5, 1) !== 6) {
-  console.error(&#x27;FAILURE: 5 + 1 !== 6&#x27;);
-}
-if (add(2, 0) !== 2) {
-  console.error(&#x27;FAILURE: 2 + 0 !== 2&#x27;);
-}
-if (add(2) !== 2) {
-  console.error(&#x27;FAILURE: 2 !== 2&#x27;);
-}
-if (add() !== null) {
-  console.error(&#x27;FAILURE: Run add without args&#x27;);
-}
-</code></pre>
-<h2>Best Practices</h2>
-<p>Write the test that forces you to write the code you already know you want to write. </p>
-<p>Avoid the central behaviors as long as possible. Don't go for the gold right away. </p>
-<p>Decouple the production code from the test code by ensuring your tests are not 1:1 for the class methods or functions. Create and refactor as you go in production, but allow the tests to remain.</p>
-<h3>Dependency Injection</h3>
-<p>Use <a href="https://en.wikipedia.org/wiki/Dependency_injection" target="_blank">dependency injection</a> to make testing simpler. If you have an API call, inject <code>axios</code> or <code>fetch</code> as an argument so when it comes to testing, your testing framework won't be brittle in its imports. e.g. In this example, we make a call to an external API to get the tax rate of a given country using the <a href="javascript.html">Javascript</a> native <a href="fetch-api.html">fetch API</a>, with tests using <a href="jest.html">Jest</a>.</p>
-<p><strong>getTaxRate.js</strong></p>
-<pre><code class="language-javascript">// works, but brittle
-const getTaxRates = (country) =&gt; {
-  return fetch(`external.api/example/${country}`)
-    .then(response =&gt; response.json())
-    .then(taxRateInfo =&gt; taxRateInfo.rate)
-}
-
-// best, robust
-const getTaxRates = (fetch, country) =&gt; {
-  return fetch(`external.api/example/${country}`)
-    .then(response =&gt; response.json())
-    .then(taxRateInfo =&gt; taxRateInfo.rate)
-}
-</code></pre>
-<p>Using the brittle implementation, our tests are coupled with the implementation of the code we are testing, which will lead to problems if these global imports or functions like <a href="fetch-api.html">fetch</a> ever change.</p>
-<p><strong>getTaxRate.test.js</strong></p>
-<pre><code class="language-javascript">// assuming all imports
-
-// This will properly mock the return value of the external API
-const mockFetchImplementation = () =&gt; {
-  return Promise.resolve({
-    json: () =&gt; Promise.resolve({
-      rate: 10
-    });
-  });
-};
-
-// brittle implementation
-// Fetch gets used invisibly, non-explicitly, and is more difficult to see what is happening.
-// Fetch as a global is also being overwritten, which may not be desired for future tests.
-
-global.fetch = jest.fn(mockFetchImplementation);
-
-describe(&#x27;getTaxRates&#x27;, () =&gt; {
-  it(&#x27;gets a tax rate for a given country (brittle)&#x27;, () =&gt; {
-    return getTaxRates(&#x27;DE&#x27;)
-      .then(taxRate =&gt; {
-        expect(taxRate).toBe(10);
-        expect(fetch).toHaveBeenCalledTimes(1);
-      });
-  });
-});
-
-// robust implementation
-// Fetch obviously gets used, easy to see high-level view
-// Uses a local mock and doesn&#x27;t overwrite global fetch.
-
-const fakeFetch = jest.fn(mockFetchImplementation);
-
-describe(&#x27;getTaxRates&#x27;, () =&gt; {
-  it(&#x27;gets a tax rate for a given country (brittle)&#x27;, () =&gt; {
-    return getTaxRates(fakeFetch, &#x27;DE&#x27;)
-      .then(taxRate =&gt; {
-        expect(taxRate).toBe(10);
-        expect(fetch).toHaveBeenCalledTimes(1);
-      });
-  });
-});
-</code></pre>
-<h2>Why Use TDD</h2>
-<ul>
-<li>Your code will ALWAYS be working just a second ago when you last tested.</li>
-<li>It is <a href="https://en.wikipedia.org/wiki/Double-entry_bookkeeping" target="_blank">double-entry bookkeeping</a> for development.</li>
-<li>A test suite that you don't trust is worthless. A test suite that does not allow you to make a decision when it passes is useless. There can be NO HOLES.</li>
-</ul>
-<h2>TDD Without A Test Suite</h2>
-<p><em>From <a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">Jack Herrington's video on stress-free coding</a></em></p>
-<p>Though orthodox TDD requires testing and a test framework, you can utilize these ideas without them (albeit on a smaller scale, as greater complexity will make this work still <em>work</em>, but not be as powerful or reliable). </p>
-<p>When we are coding, we are usually operating within a few different risk levels that may appear or disappear based on our confidence, emotional state, etc.: </p>
-<ul>
-<li><strong>Safe</strong>: Everything is running and works as expected</li>
-<li><strong>OK</strong>: Trivial changes have been added that you expect to work</li>
-<li><strong>Should Test</strong>: A lot of complex changes have been added, should probably test now</li>
-<li><strong>Must Test</strong>: You absolutely should be testing your code</li>
-</ul>
-<p>So similar to TDD, where &quot;red, green, refactor&quot; is the rule, you code operating from &quot;Should Test or Must Test, Safe, Refactor&quot;. Combining this with committing often and <a href="rebase-git.html">rebasing those extra commits</a> before pushing gives us great scaffolding to work with more confidence and assurance in the state of our code.</p>
-<h2>References</h2>
-<ol>
-<li><a href="https://github.com/gregmalcolm/python_koans" target="_blank">https://github.com/gregmalcolm/python_koans</a></li>
-<li><a href="https://openlibrary.org/works/OL3526663W/Clean_code" target="_blank">Clean Code</a></li>
-<li><a href="https://qualitycoding.org/3-laws-tdd/" target="_blank">https://qualitycoding.org/3-laws-tdd/</a></li>
-<li><a href="https://www.youtube.com/watch?v=58jGpV2Cg50" target="_blank">Examples of TDD in action</a></li>
-<li><a href="https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2" target="_blank">https://www.youtube.com/watch?v=XsFQEUP1MxI&amp;list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&amp;index=2</a></li>
-<li><a href="https://wallabyjs.com/?referrer=funfunfunction" target="_blank">https://wallabyjs.com/?referrer=funfunfunction</a></li>
-<li><a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">https://www.youtube.com/watch?v=eAfUfKYcvBo</a></li>
-</ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="react-testing.html">React (Testing)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111110017</p></article><article>            <h1><a href="k6.html">K6</a></h1>
+<p class="last-modified">Last modified: 202112230843</p></article><article>            <h1><a href="k6.html">K6</a></h1>
             <p>K6 is an open-source load testing program for API's via <a href="javascript.html">Javascript</a>.</p>
 <h2>Basics</h2>
 <pre><code class="language-bash">$ brew install k6
@@ -11944,4 +12094,4 @@ x
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~665kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202110221727</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~674kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
