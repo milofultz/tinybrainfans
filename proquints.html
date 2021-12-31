@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Proquints are a way to encode numbers in pronounceable consonant/vowel combinations."><title>Proquints</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Proquints</h1>
+            <p>Proquints are a way to encode numbers in pronounceable consonant/vowel combinations.</p>
+<h2>The Letters</h2>
+<p>The consonants and vowels have their own significance, represented as a 4-bit and 2-bit number, respectively.</p>
+<h3>Consonants</h3>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Hex</th>
+<th>Binary</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>0</code></td>
+<td><code>0000</code></td>
+<td>b</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>1</code></td>
+<td><code>0001</code></td>
+<td>d</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>2</code></td>
+<td><code>0010</code></td>
+<td>f</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>3</code></td>
+<td><code>0011</code></td>
+<td>g</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>4</code></td>
+<td><code>0100</code></td>
+<td>h</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>5</code></td>
+<td><code>0101</code></td>
+<td>j</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>6</code></td>
+<td><code>0110</code></td>
+<td>k</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>7</code></td>
+<td><code>0111</code></td>
+<td>l</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>8</code></td>
+<td><code>1000</code></td>
+<td>m</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>9</code></td>
+<td><code>1001</code></td>
+<td>n</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>a</code></td>
+<td><code>1010</code></td>
+<td>p</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>b</code></td>
+<td><code>1011</code></td>
+<td>r</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>c</code></td>
+<td><code>1100</code></td>
+<td>s</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>d</code></td>
+<td><code>1101</code></td>
+<td>t</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>e</code></td>
+<td><code>1110</code></td>
+<td>v</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>f</code></td>
+<td><code>1111</code></td>
+<td>z</td>
+</tr>
+</tbody></table><h3>Vowels</h3>
+<table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Hex</th>
+<th>Binary</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>0</code></td>
+<td><code>00</code></td>
+<td>a</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>1</code></td>
+<td><code>01</code></td>
+<td>i</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>2</code></td>
+<td><code>10</code></td>
+<td>o</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>3</code></td>
+<td><code>11</code></td>
+<td>u</td>
+</tr>
+</tbody></table><h2>Using Proquints</h2>
+<p>A 16-bit chunk of data can be represented as a proquint. To do this, we first have to change the number into its binary representation and then calculate the corresponding consonant (<code>co</code>) or vowel (<code>vo</code>):</p>
+<pre><code>  0 1 2 3 4 5 6 7 8 9 A B C D E F
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |con    |vo |con    |vo |con    |
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre>
+<p>We then go bit by bit through the binary number, creating these 4-bit consonants and 2-bit vowels as we traverse the whole 16-bit number, putting them together into a single word.</p>
+<p>To decode this, we just reverse this process, going letter by letter and putting those bits into their proper slots.</p>
+<p>If your number is above 16-bits, this process can be extended, with the proquints combined with a hyphen, e.g. <code>boron-mapin</code>.</p>
+<h3>Number to Proquint</h3>
+<p>Let's start with a 16-bit number (0-65,535), like <code>50,416</code>.</p>
+<p>First step is to convert it into binary: <code>1100010011110000</code>, with every four bits broken up for readability. </p>
+<p>Now we will break up the binary number into meaningful chunks for the proquint conversion: <code>1100</code>, <code>01</code>, <code>0011</code>, <code>11</code>, <code>0000</code>. If we go through the above table, we end up with the proquint <code>cigub</code>.</p>
+<h3>Proquint to Number</h3>
+<p>Let's start with a five letter combination from the tables above: <code>potus</code>. </p>
+<p>We go through each character in the table and place their binary representations into a new number: <code>1010</code>, <code>10</code>, <code>1101</code>, <code>11</code>, <code>1100</code>. Putting it all together, it makes the binary number: <code>1010101101111100</code>.</p>
+<p>Decoding this into decimal, we end up with <code>43,900</code>.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://arxiv.org/html/0901.4016" target="_blank">https://arxiv.org/html/0901.4016</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202112310901</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~682kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
