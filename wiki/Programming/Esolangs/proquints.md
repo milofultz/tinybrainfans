@@ -75,3 +75,4 @@ Decoding this into decimal, we end up with `43,900`.
 ## References
 
 1. https://arxiv.org/html/0901.4016
+1. https://github.com/milofultz/proquabet

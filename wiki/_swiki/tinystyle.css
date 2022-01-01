@@ -42,6 +42,7 @@ a[target="_blank"]::after {
 pre {
   border: .125rem solid var(--text);
   padding: 0.5rem;
+  white-space: pre-wrap;
 }
 
 table { border-collapse: collapse; }
