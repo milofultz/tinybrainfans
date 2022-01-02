@@ -1,0 +1,3 @@
+- https://www.stephendiehl.com/blog/against-crypto.html
+- https://networked.substack.com/p/web3-i-have-my-daots
+- https://blog.wesleyac.com/posts/web3-centralized

@@ -171,6 +171,7 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 - https://chris.beams.io/posts/git-commit/
 - https://dhwthompson.com/2019/my-favourite-git-commit
 - https://mtlynch.io/code-review-love/
+- https://sergeyzhuk.me/2018/12/29/code_review/
 
 ## References
 
