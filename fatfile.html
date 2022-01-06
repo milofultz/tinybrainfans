@@ -12266,10 +12266,43 @@ x
 </tr>
 </tbody></table><h2>Directions</h2>
 
-<p class="last-modified">Last modified: 202110221727</p></article><article><h1><a href="pi-at-pc.html">PI AT PC</a></h1>
-<p>There's currently nothing here.</p>
-<section><details><summary>Backlinks</summary><ul><li><a href="hammock-driven-development.html">Hammock Driven Development</a></li></ul></details></section></article><article>            <h1><a href="hammock-driven-development.html">Hammock Driven Development</a></h1>
-            <p>Hammock Driven Development was a talk from Rich Hickey[1] on how to practice solving problems. A lot of this ties into the values I got from the <a href="pi-at-pc.html">PI AT PC</a> method, but brings in more programming-specific ideas and values.</p>
+<p class="last-modified">Last modified: 202110221727</p></article><article>            <h1><a href="pi-at-pc-framework.html">PI AT PC Framework</a></h1>
+            <p>The PI AT PC framework is my extrapolation of what I learned from <a href="https://github.com/anthonypecchillo" target="_blank">Anthony Pecchillo</a> at <a href="https://www.hackreactor.com/" target="_blank">Hack Reactor</a>. </p>
+<h2>What is PI AT PC</h2>
+<p>PI AT PC is a mnemonic I have settled on that is slightly easier to remember than SJEVAVI or whatever they do at HR. I can imagine a a picture of a little pi symbol sitting at a computer in like 1994.</p>
+<p>Don't be surprised if you end up having to go back multiple times to past steps to refine your idea. In fact, that is the very point of this exercise, to discover the things we didn't know about the problem we were trying to solve.</p>
+<h2>The Steps</h2>
+<h3>P - understand the Problem</h3>
+<p>Ensure you fully understand and grasp the problem. Try and replace any and all gooshy elements (e.g. pronouns, not-specific-enough words, anything vague) with a more clear revision. Can you express your problem clearly to somebody else? Can you write down the problem that is <em>precise</em>? Can you state your problem in a way that removes all unnecessary work when you are searching for a solution?</p>
+<h3>I - IOCE the problem</h3>
+<p>IOCE is big thing at Hack Reactor, standing for Inputs, Outputs, Constraints, and Edge cases. This is simpler for coding problems, but is still useful outside of it in bounding the problem and reducing the complexity of your desired solution.</p>
+<ul>
+<li>Inputs - identify what dynamic elements will exist at the start of a problem.</li>
+<li>Outputs - what is expected (finished, completed, output) when the problem is solved.</li>
+<li>Constraints - what constraints and boundaries exist within the problem space, or what can't be done/must be done.</li>
+<li>Edge Cases - if there is a happy path where all inputs and dynamic elements are as expected, then the edge cases encompass the unhappy paths. If you are making an adding machine, getting an input that is not a number would be an edge case, and you might handle it by sending an error to the user. If you are making pizzas, getting an order for a sub sandwich would be an edge case, and you might handle it by saying &quot;we don't do that&quot;. I find it's most useful to just brainstorm every possible idea, even if it ends up not being true later.</li>
+</ul>
+<h3>A - figure out the Assumptions within the problem</h3>
+<p>What can be assumed as true about this problem or within the problem space? About the input, output, constraints, or edge cases? This is where you can further probe for the bounds of the problem so you don't have to solve more problems or cases than necessary, similar to the edge cases above.</p>
+<h3>T - create Tests</h3>
+<p>How can you test that you have a solution and that it works? How can you test that the cases you know <em>won't</em> work <em>didn't</em> work? How can you test the edge cases? Be thorough, as <a href="test-driven-development.html">a test that is not definitive is useless</a>.</p>
+<h3>P - create <a href="pseudocode.html">Pseudocode</a>/use Plain language</h3>
+<p>How would you describe a possible solution to someone without using jargon? Without knowing any technical knowledge, how would you describe how to solve this problem to another person?</p>
+<p>This is also the step where you are brainstorming possible ways to solve the problem. But the big picture is that you <strong>must</strong> be able to speak about your problem simply. If you can't, there is a chance that you don't actually understand how the thing you are proposing would work, and knowing how your solution works is paramount in actually being able to implement it later.</p>
+<p>An example of this would be creating an adding machine. The pseudocode for something like this should be written that someone without almost any prior knowledge of how it would be implemented could still do it.</p>
+<pre><code>Get first number from user
+Get second number from user
+While the second number is greater than zero
+  Subtract one from the second number
+  Add one to the first number
+Return the first number to the user as the final sum
+</code></pre>
+<p>The above pseudocode could be implemented in <a href="assembly.html">assembly</a>, <a href="javascript.html">Javascript</a>, a <a href="paper-computing.html">paper computer</a>, an abacus, or paper and pencil or just two hands.</p>
+<h3>C - Code/Create your solution</h3>
+<p>This is when you use your <a href="pseudocode.html">pseudocode</a> or plain language solution you created above. Go step by step, solving each step as simply and easily as you can. If you discover you can't make something work, you may need to do the PI AT PC process all over again for one of these sub steps.</p>
+<section><details><summary>Backlinks</summary><ul><li><a href="hammock-driven-development.html">Hammock Driven Development</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202201060216</p></article><article>            <h1><a href="hammock-driven-development.html">Hammock Driven Development</a></h1>
+            <p>Hammock Driven Development was a talk from Rich Hickey[1] on how to practice solving problems. A lot of this ties into the values I got from the <a href="pi-at-pc-framework.html">PI AT PC framework</a>, but brings in more programming-specific ideas and values.</p>
 <p>He specifically references the book &quot;How To Solve It&quot;[4], which you can find a summary of below[5]. You can also find it on Google if you try a bit.</p>
 <p>Most of this I'll be pulling from the talk itself[2]/the transcript[3].</p>
 <h2>The Process</h2>
@@ -12437,39 +12470,4 @@ x
 <li><a href="https://math.berkeley.edu/~gmelvin/polya.pdf" target="_blank">https://math.berkeley.edu/~gmelvin/polya.pdf</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202201060338</p></article><article>            <h1><a href="pi-at-pc-framework.html">PI AT PC Framework</a></h1>
-            <p>The PI AT PC framework is my extrapolation of what I learned from <a href="https://github.com/anthonypecchillo" target="_blank">Anthony Pecchillo</a> at <a href="https://www.hackreactor.com/" target="_blank">Hack Reactor</a>. </p>
-<h2>What is PI AT PC</h2>
-<p>PI AT PC is a mnemonic I have settled on that is slightly easier to remember than SJEVAVI or whatever they do at HR. I can imagine a a picture of a little pi symbol sitting at a computer in like 1994.</p>
-<p>Don't be surprised if you end up having to go back multiple times to past steps to refine your idea. In fact, that is the very point of this exercise, to discover the things we didn't know about the problem we were trying to solve.</p>
-<h2>The Steps</h2>
-<h3>P - understand the Problem</h3>
-<p>Ensure you fully understand and grasp the problem. Try and replace any and all gooshy elements (e.g. pronouns, not-specific-enough words, anything vague) with a more clear revision. Can you express your problem clearly to somebody else? Can you write down the problem that is <em>precise</em>? Can you state your problem in a way that removes all unnecessary work when you are searching for a solution?</p>
-<h3>I - IOCE the problem</h3>
-<p>IOCE is big thing at Hack Reactor, standing for Inputs, Outputs, Constraints, and Edge cases. This is simpler for coding problems, but is still useful outside of it in bounding the problem and reducing the complexity of your desired solution.</p>
-<ul>
-<li>Inputs - identify what dynamic elements will exist at the start of a problem.</li>
-<li>Outputs - what is expected (finished, completed, output) when the problem is solved.</li>
-<li>Constraints - what constraints and boundaries exist within the problem space, or what can't be done/must be done.</li>
-<li>Edge Cases - if there is a happy path where all inputs and dynamic elements are as expected, then the edge cases encompass the unhappy paths. If you are making an adding machine, getting an input that is not a number would be an edge case, and you might handle it by sending an error to the user. If you are making pizzas, getting an order for a sub sandwich would be an edge case, and you might handle it by saying &quot;we don't do that&quot;. I find it's most useful to just brainstorm every possible idea, even if it ends up not being true later.</li>
-</ul>
-<h3>A - figure out the Assumptions within the problem</h3>
-<p>What can be assumed as true about this problem or within the problem space? About the input, output, constraints, or edge cases? This is where you can further probe for the bounds of the problem so you don't have to solve more problems or cases than necessary, similar to the edge cases above.</p>
-<h3>T - create Tests</h3>
-<p>How can you test that you have a solution and that it works? How can you test that the cases you know <em>won't</em> work <em>didn't</em> work? How can you test the edge cases? Be thorough, as <a href="test-driven-development.html">a test that is not definitive is useless</a>.</p>
-<h3>P - create <a href="pseudocode.html">Pseudocode</a>/use Plain language</h3>
-<p>How would you describe a possible solution to someone without using jargon? Without knowing any technical knowledge, how would you describe how to solve this problem to another person?</p>
-<p>This is also the step where you are brainstorming possible ways to solve the problem. But the big picture is that you <strong>must</strong> be able to speak about your problem simply. If you can't, there is a chance that you don't actually understand how the thing you are proposing would work, and knowing how your solution works is paramount in actually being able to implement it later.</p>
-<p>An example of this would be creating an adding machine. The pseudocode for something like this should be written that someone without almost any prior knowledge of how it would be implemented could still do it.</p>
-<pre><code>Get first number from user
-Get second number from user
-While the second number is greater than zero
-  Subtract one from the second number
-  Add one to the first number
-Return the first number to the user as the final sum
-</code></pre>
-<p>The above pseudocode could be implemented in <a href="assembly.html">assembly</a>, <a href="javascript.html">Javascript</a>, a <a href="paper-computing.html">paper computer</a>, an abacus, or paper and pencil or just two hands.</p>
-<h3>C - Code/Create your solution</h3>
-<p>This is when you use your <a href="pseudocode.html">pseudocode</a> or plain language solution you created above. Go step by step, solving each step as simply and easily as you can. If you discover you can't make something work, you may need to do the PI AT PC process all over again for one of these sub steps.</p>
-
-<p class="last-modified">Last modified: 202201060216</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~707kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202201060356</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~707kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

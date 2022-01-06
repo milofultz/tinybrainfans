@@ -3,7 +3,7 @@ title: Hammock Driven Development
 description: Hammock Driven Development was a talk from Rich Hickey on how to practice solving problems.
 ---
 
-Hammock Driven Development was a talk from Rich Hickey[1] on how to practice solving problems. A lot of this ties into the values I got from the {{PI AT PC}} method, but brings in more programming-specific ideas and values.
+Hammock Driven Development was a talk from Rich Hickey[1] on how to practice solving problems. A lot of this ties into the values I got from the {{PI AT PC framework}}, but brings in more programming-specific ideas and values.
 
 He specifically references the book "How To Solve It"[4], which you can find a summary of below[5]. You can also find it on Google if you try a bit.
 
