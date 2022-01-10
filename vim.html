@@ -1,6 +1,8 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Vim is a command-line editor that is included with most *nix machines and OSX."><title>Vim</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
 <main id="main"><article id="content">            <h1 id="title">Vim</h1>
             <p>Vim is a command-line editor that is included with most *nix machines and <a href="macos.html">OSX</a>.</p>
+<h2>VimTutor</h2>
+<p>Use it! It guides you through the basics of Vim by <em>doing things</em> instead of reading random wikis on the web and trying to cobble together how to do stuff. You can access it by typing <code>vimtutor</code> at the CLI.</p>
 <h2>Commands</h2>
 <p>All commands must be done in &quot;Normal&quot; mode, accessed by pressing <code>esc</code> if in write mode. Commands are case sensitive and must be confirmed with <code>Enter</code> unless otherwise noted.</p>
 <h3>Meta/File</h3>
@@ -64,6 +66,11 @@
 <td></td>
 </tr>
 <tr>
+<td>Undo all changes to a line</td>
+<td><code>U</code></td>
+<td></td>
+</tr>
+<tr>
 <td>Redo</td>
 <td><code>Ctrl + R</code></td>
 <td></td>
@@ -79,14 +86,19 @@
 </thead>
 <tbody>
 <tr>
-<td>Find</td>
-<td><code>/searchpattern</code></td>
+<td>Find next or previous <code>pattern</code></td>
+<td><code>/pattern</code> or <code>?pattern</code></td>
 <td>Go to next occurrence with <code>n</code> and previous with <code>N</code></td>
 </tr>
 <tr>
-<td>Find and Replace</td>
-<td><code>:1,$s/searchpattern/replacepattern</code></td>
-<td>To replace all, add <code>/g</code> to the end of the command</td>
+<td>Find and replace from line <code>m</code> to line <code>n</code></td>
+<td><code>:[m],[n]s/pattern/repl[/options]</code></td>
+<td>To replace all, add <code>g</code> option; for confirmation, use <code>c</code> option</td>
+</tr>
+<tr>
+<td>Find and replace in whole file</td>
+<td><code>:%s/pattern/repl</code></td>
+<td>Same options apply as above</td>
 </tr>
 </tbody></table><h3>Navigation</h3>
 <table>
@@ -98,6 +110,31 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Move cursor (Left, Down, Up, Right)</td>
+<td><code>h</code>, <code>j</code>, <code>k</code>, <code>l</code></td>
+<td></td>
+</tr>
+<tr>
+<td>See current cursor location and information</td>
+<td><code>Ctrl + g</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to start/end of next word</td>
+<td><code>w</code>/<code>e</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to start/end of line</td>
+<td><code>0</code>/<code>$</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to line<code>n</code></td>
+<td><code>[n]G</code></td>
+<td></td>
+</tr>
 <tr>
 <td>Go to beginning of file</td>
 <td><code>gg</code></td>
@@ -118,6 +155,11 @@
 <td><code>$</code></td>
 <td></td>
 </tr>
+<tr>
+<td>Go to matching bracket under cursor; e.g. <code>(</code> goes to <code>)</code> and vice versa; includes <code>[]{}</code></td>
+<td><code>%</code></td>
+<td></td>
+</tr>
 </tbody></table><h3>Copy (Yank), Cut, and Paste</h3>
 <p>Copy is &quot;yank&quot; in Vim, so that's why they are &quot;y&quot;.</p>
 <table>
@@ -131,7 +173,7 @@
 <tbody>
 <tr>
 <td>Copy entire line or <code>n</code> lines, including newline</td>
-<td><code>nyy</code></td>
+<td><code>[n]yy</code></td>
 <td></td>
 </tr>
 <tr>
@@ -146,7 +188,7 @@
 </tr>
 <tr>
 <td>Cut entire line or <code>n</code> lines, including newline</td>
-<td><code>ndd</code></td>
+<td><code>[n]dd</code></td>
 <td></td>
 </tr>
 <tr>
@@ -190,19 +232,99 @@
 </thead>
 <tbody>
 <tr>
-<td>Delete line</td>
-<td><code>dd</code></td>
+<td>Replace letter under cursor with letter <code>l</code></td>
+<td><code>r[l]</code></td>
 <td></td>
 </tr>
 <tr>
-<td>Delete <code>3</code> lines</td>
-<td><code>3dd</code></td>
+<td>Enter replace mode (like overwrite)</td>
+<td><code>R</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete contents from cursor to end of <code>n</code> words and enter Insert mode</td>
+<td><code>c[n]e</code> or <code>c[n]w</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete contents from cursor to end of <code>n</code> lines and enter Insert mode</td>
+<td><code>c[n]$</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete contents of <code>n</code> lines and enter Insert mode</td>
+<td><code>c[n]c</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Text Manipulation</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert mode</td>
+<td><code>i</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Append after current character/at end of line</td>
+<td><code>a</code>/<code>A</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Make a new line above/below current line and enter insert mode</td>
+<td><code>o</code>/<code>O</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete entire line or <code>n</code> lines, including newline</td>
+<td><code>[n]dd</code></td>
 <td></td>
 </tr>
 <tr>
 <td>Delete from current column to end of line</td>
 <td><code>D</code></td>
 <td></td>
+</tr>
+<tr>
+<td>Insert (or retrieve) contents of <code>FILENAME</code> at cursor</td>
+<td><code>:r FILENAME</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Insert (or retrieve) return of shell <code>command</code> at cursor</td>
+<td><code>:r !command</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Modes</h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td><code>i</code></td>
+</tr>
+<tr>
+<td>Replace (overwrite)</td>
+<td><code>R</code></td>
+</tr>
+<tr>
+<td>Visual (selection using the cursor)</td>
+<td><code>v</code></td>
+</tr>
+<tr>
+<td>Exit current mode</td>
+<td><code>ESC</code></td>
 </tr>
 </tbody></table><h3>Misc</h3>
 <table>
@@ -217,6 +339,11 @@
 <tr>
 <td>Toggle fold at next logical break</td>
 <td><code>za</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Execute shell command <code>x</code></td>
+<td><code>:![x]</code></td>
 <td></td>
 </tr>
 </tbody></table><h2>Plugins and Packages</h2>
@@ -237,4 +364,4 @@
 <li><a href="https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim" target="_blank">https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim</a></li>
 </ul>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202111070519</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~707kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202201090903</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~710kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

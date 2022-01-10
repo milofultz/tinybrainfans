@@ -3,6 +3,7 @@
             <p><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">Minicube64</a> is a fantasy console style emulator based on <a href="assembly-6502.html">6502</a>, with the intention of helping people learn how games were made for older systems such as Atari 2600, NES or C64, but without many of the difficult hardware restrictions.</p>
 <h2>Annotated Introduction</h2>
 <p>The <a href="https://aeriform.gitbook.io/minicube64/" target="_blank">introduction page</a> is what I'm annotating below. Hopefully these notes will give more insight into what the assembly is doing in the console.</p>
+<p>You can find more about the compiler directives being used at the asm6f Github page[5], which is what Minicube64 uses.</p>
 <h3>Writing a New ROM</h3>
 <p>On the page <a href="https://aeriform.gitbook.io/minicube64/new" target="_blank">&quot;Writing a New ROM&quot;</a>, there is a test program written in <a href="assembly-6502.html">6502 assembly</a>. I figured a good way to learn what was going on was to annotate the whole thing and really grok it.</p>
 <p>This is the contents of <code>test.s</code>:</p>
@@ -39,20 +40,21 @@ IRQ:                     ; Set label for &#x27;IRQ&#x27; at this address
 ; NOTE NOTE
 ; normal 6502 has irq vectors at $fffe
 ; we have them at $010e
-NMI_IRQ  = $10c
+NMI_IRQ = $10c
 VBLANK_IRQ = $10e
 
 ...
 
-MACRO   _setw value,dest  ; create a macro named _setw with two params:
-                          ;   &#x27;value&#x27;, and &#x27;dest&#x27;
-  lda #&lt;value             ; load the high byte of value into register &#x27;a&#x27;
-  sta dest                 ; store the value in register &#x27;a&#x27; at the address
-                          ;   of destination
-  lda #&gt;value             ; load the low byte of value into register &#x27;a&#x27;
-  sta dest+1               ; store the value in register &#x27;a&#x27; at the address
-                          ;   of destination + 1
-ENDM                      ; signify the end of the macro
+MACRO   _setw value,dest    ; Create a macro named _setw with two params:
+                            ;   &#x27;value&#x27;, and &#x27;dest&#x27;. Value is a 16-bit word,
+                            ;   meaning it has a high and low byte.
+  lda #&lt;value               ; Load the low byte of value into accumulator
+  sta dest                  ; Store the value in accumulator at the address
+                            ;   of destination
+  lda #&gt;value               ; Load the high byte of value into accumulator
+  sta dest+1                ; Store the value in accumulator at the address
+                            ;   of destination + 1
+ENDM                        ; Signify the end of the macro
 </code></pre>
 <h3>Working With Pixels</h3>
 <p>This is the changed contents of the above <code>test.s</code>:</p>
@@ -183,16 +185,17 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <td>Bottom Right</td>
 </tr>
 </tbody></table><h2>References</h2>
-<ul>
+<ol>
 <li><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">https://aeriform.gitbook.io/minicube64/</a></li>
 <li><a href="https://itch.io/jam/minicubejam" target="_blank">https://itch.io/jam/minicubejam</a></li>
 <li><a href="https://github.com/aeriform-io/minicube64/releases" target="_blank">https://github.com/aeriform-io/minicube64/releases</a></li>
 <li><a href="https://github.com/aeriform-io/minicube64/blob/main/memory_map.md" target="_blank">https://github.com/aeriform-io/minicube64/blob/main/memory_map.md</a></li>
-</ul>
+<li><a href="https://github.com/freem/asm6f/blob/master/readme-original.txt" target="_blank">https://github.com/freem/asm6f/blob/master/readme-original.txt</a></li>
+</ol>
 <p>Examples:</p>
-<ul>
+<ol>
 <li><a href="https://milofultz.com/2021/09/18/minicube64" target="_blank">https://milofultz.com/2021/09/18/minicube64</a></li>
 <li><a href="https://milofultz.com/2021/11/09/bubble-sort-6502" target="_blank">https://milofultz.com/2021/11/09/bubble-sort-6502</a></li>
-</ul>
+</ol>
 
-<p class="last-modified">Last modified: 202111301021</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~707kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202201090814</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~710kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

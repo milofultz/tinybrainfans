@@ -9,6 +9,8 @@ description: Minicube64 is a fantasy console style emulator based on 6502, with 
 
 The [introduction page](https://aeriform.gitbook.io/minicube64/) is what I'm annotating below. Hopefully these notes will give more insight into what the assembly is doing in the console.
 
+You can find more about the compiler directives being used at the asm6f Github page[5], which is what Minicube64 uses.
+
 ### Writing a New ROM
 
 On the page ["Writing a New ROM"](https://aeriform.gitbook.io/minicube64/new), there is a test program written in {{6502 assembly|Assembly (6502)}}. I figured a good way to learn what was going on was to annotate the whole thing and really grok it.
@@ -52,20 +54,21 @@ This is the relevant contents of `64cube.inc`:
 ; NOTE NOTE
 ; normal 6502 has irq vectors at $fffe
 ; we have them at $010e
-NMI_IRQ	= $10c
+NMI_IRQ = $10c
 VBLANK_IRQ = $10e
 
 ...
 
-MACRO 	_setw value,dest	; create a macro named _setw with two params:
-													; 	'value', and 'dest'
-	lda #<value 						; load the high byte of value into register 'a'
-	sta dest 								; store the value in register 'a' at the address
-													; 	of destination
-	lda #>value 						; load the low byte of value into register 'a'
-	sta dest+1 							; store the value in register 'a' at the address
-													; 	of destination + 1
-ENDM											; signify the end of the macro
+MACRO   _setw value,dest    ; Create a macro named _setw with two params:
+                            ;   'value', and 'dest'. Value is a 16-bit word,
+                            ;   meaning it has a high and low byte.
+  lda #<value               ; Load the low byte of value into accumulator
+  sta dest                  ; Store the value in accumulator at the address
+                            ;   of destination
+  lda #>value               ; Load the high byte of value into accumulator
+  sta dest+1                ; Store the value in accumulator at the address
+                            ;   of destination + 1
+ENDM                        ; Signify the end of the macro
 ```
 
 ### Working With Pixels
@@ -176,15 +179,16 @@ Address | Position
 
 ## References
 
-- https://aeriform.gitbook.io/minicube64/
-- https://itch.io/jam/minicubejam
-- https://github.com/aeriform-io/minicube64/releases
-- https://github.com/aeriform-io/minicube64/blob/main/memory_map.md
+1. https://aeriform.gitbook.io/minicube64/
+1. https://itch.io/jam/minicubejam
+1. https://github.com/aeriform-io/minicube64/releases
+1. https://github.com/aeriform-io/minicube64/blob/main/memory_map.md
+1. https://github.com/freem/asm6f/blob/master/readme-original.txt
 
 Examples:
 
-- https://milofultz.com/2021/09/18/minicube64
-- https://milofultz.com/2021/11/09/bubble-sort-6502
+1. https://milofultz.com/2021/09/18/minicube64
+1. https://milofultz.com/2021/11/09/bubble-sort-6502
 
 [Minicube64]: https://aeriform.gitbook.io/minicube64/
 
