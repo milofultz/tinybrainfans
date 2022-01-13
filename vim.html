@@ -323,6 +323,14 @@
 <td><code>v</code></td>
 </tr>
 <tr>
+<td>Visual line (selection of lines)</td>
+<td><code>V</code></td>
+</tr>
+<tr>
+<td>Visual block (selection of columns/lines)</td>
+<td><code>Ctrl+v</code></td>
+</tr>
+<tr>
 <td>Exit current mode</td>
 <td><code>ESC</code></td>
 </tr>
@@ -346,13 +354,18 @@
 <td><code>:![x]</code></td>
 <td></td>
 </tr>
-</tbody></table><h2>Plugins and Packages</h2>
+</tbody></table><h2>Clipboard</h2>
+<p>Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with <code>&quot;+</code>.[10]</p>
+<p>To make Vim always use the system clipboard, you can add this to your <code>~/.vimrc</code> file[10]:</p>
+<pre><code>set clipboard=unnamedplus
+</code></pre>
+<h2>Plugins and Packages</h2>
 <ul>
 <li><a href="https://github.com/amix/vimrc" target="_blank">Ultimate vimrc</a> - This is a great starting point that includes a lot of fantastic plugins and settings</li>
 <li><a href="https://github.com/mattn/emmet-vim" target="_blank">Emmet</a></li>
 </ul>
 <h2>References</h2>
-<ul>
+<ol>
 <li><a href="https://www.vim.org/" target="_blank">https://www.vim.org/</a></li>
 <li><a href="https://www.cyberciti.biz/faq/how-to-save-existing-file-to-a-new-file-save-as-in-vi-vim/" target="_blank">https://www.cyberciti.biz/faq/how-to-save-existing-file-to-a-new-file-save-as-in-vi-vim/</a></li>
 <li><a href="https://evanhahn.com/vim-colon-x-command/" target="_blank">https://evanhahn.com/vim-colon-x-command/</a></li>
@@ -362,6 +375,7 @@
 <li><a href="https://linuxize.com/post/how-to-copy-cut-paste-in-vim/" target="_blank">https://linuxize.com/post/how-to-copy-cut-paste-in-vim/</a></li>
 <li><a href="https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/" target="_blank">https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/</a></li>
 <li><a href="https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim" target="_blank">https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim</a></li>
-</ul>
+<li><a href="https://vim.fandom.com/wiki/Accessing_the_system_clipboard" target="_blank">https://vim.fandom.com/wiki/Accessing_the_system_clipboard</a></li>
+</ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202201090903</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~710kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202201131523</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~718kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

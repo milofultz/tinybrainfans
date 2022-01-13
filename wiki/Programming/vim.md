@@ -102,6 +102,8 @@ Mode | Command
 Insert | `i`
 Replace (overwrite) | `R`
 Visual (selection using the cursor) | `v`
+Visual line (selection of lines) | `V`
+Visual block (selection of columns/lines) | `Ctrl+v`
 Exit current mode | `ESC`
 
 ### Misc
@@ -111,6 +113,18 @@ Description | Command | Notes
 Toggle fold at next logical break | `za` | 
 Execute shell command `x` | `:![x]` |
 
+## Clipboard
+
+Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with `"+`.[10]
+
+To make Vim always use the system clipboard, you can add this to your `~/.vimrc` file[10]:
+
+```
+set clipboard=unnamedplus
+```
+
+
+
 ## Plugins and Packages
 
 - [Ultimate vimrc](https://github.com/amix/vimrc) - This is a great starting point that includes a lot of fantastic plugins and settings
@@ -118,12 +132,13 @@ Execute shell command `x` | `:![x]` |
 
 ## References
 
-- https://www.vim.org/
-- https://www.cyberciti.biz/faq/how-to-save-existing-file-to-a-new-file-save-as-in-vi-vim/
-- https://evanhahn.com/vim-colon-x-command/
-- https://github.com/amix/vimrc
-- https://danielmiessler.com/study/vim/
-- https://elijahmanor.com/blog/neovim-tmux
-- https://linuxize.com/post/how-to-copy-cut-paste-in-vim/
-- https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/
-- https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim
+1. https://www.vim.org/
+1. https://www.cyberciti.biz/faq/how-to-save-existing-file-to-a-new-file-save-as-in-vi-vim/
+1. https://evanhahn.com/vim-colon-x-command/
+1. https://github.com/amix/vimrc
+1. https://danielmiessler.com/study/vim/
+1. https://elijahmanor.com/blog/neovim-tmux
+1. https://linuxize.com/post/how-to-copy-cut-paste-in-vim/
+1. https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/
+1. https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim
+1. https://vim.fandom.com/wiki/Accessing_the_system_clipboard

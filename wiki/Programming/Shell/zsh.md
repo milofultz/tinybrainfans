@@ -39,9 +39,9 @@ Plugins are installed using Oh My Zsh and the `~/.zshrc` file.
 
 ### Preinstalled
 
-- Git shortcuts: `{{git}}` is aliased to `g` and many of the most used commands are aliased as well, like `gaa` is `git add .` and `gcmsg` is `git commit -m `, etc. [You can find a list of the shortcuts here](https://gist.github.com/ryanlindsey/fabfa0245beccdf7d138).
+- Git shortcuts: `{{git}}` is aliased to `g` and many of the most used commands are aliased as well, like `gaa` is `git add .` and `gcmsg` is `git commit -m `, etc. You can find a list of the shortcuts in the oh-my-zsh repo[2].
 
 ## References
 
-- https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e#file-mac-md
-- https://gist.github.com/ryanlindsey/fabfa0245beccdf7d138
+1. https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e#file-mac-md
+1. https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
