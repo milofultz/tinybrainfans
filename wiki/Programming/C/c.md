@@ -99,6 +99,19 @@ If multiple source files are used, for instance defining X in one file and wanti
 
 Common practice is to define all external variables in a header file with a `.h` extension and then `#include` it in your source files.
 
+### Pointers
+
+Pointers are how the CPU knows where to find a given piece of memory. Pointers are represented as integers and can be passed to functions as arguments. Since they are just numbers, you can use them also to point at elements in an array or string.
+
+To declare a pointer, you preface the variable with an **asterisk**. You can get the address to a variable by prefacing an existing variable with an **ampersand**.
+
+```c
+int n;  // a number
+int *p; // a pointer
+
+p = &n; // point p to the address of n
+```
+
 ## Libraries
 
 ### stdio.h
@@ -137,3 +150,4 @@ You can also use an online REPL, like [replit.com](https://replit.com/languages/
 1. https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf
 2. https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement
 2. https://github.com/agavrel/42_CheatSheet
+2. https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html

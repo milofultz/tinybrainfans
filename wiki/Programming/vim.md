@@ -87,13 +87,13 @@ Delete contents of `n` lines and enter Insert mode | `c[n]c` |
 
 Description | Command | Notes
 --- | --- | ---
-Insert mode | `i`
-Append after current character/at end of line | `a`/`A`
-Make a new line above/below current line and enter insert mode | `o`/`O`
+Insert mode | `i`|
+Append after current character/at end of line | `a`/`A`|
+Make a new line above/below current line and enter insert mode | `O`/`o` |
 Delete entire line or `n` lines, including newline | `[n]dd` |
 Delete from current column to end of line | `D` |
-Insert (or retrieve) contents of `FILENAME` at cursor | `:r FILENAME`
-Insert (or retrieve) return of shell `command` at cursor | `:r !command`
+Insert (or retrieve) contents of `FILENAME` at cursor | `:r FILENAME`|
+Insert (or retrieve) return of shell `command` at cursor | `:r !command`|
 
 ### Modes
 
@@ -117,13 +117,14 @@ Execute shell command `x` | `:![x]` |
 
 Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with `"+`.[10]
 
-To make Vim always use the system clipboard, you can add this to your `~/.vimrc` file[10]:
+To make Vim always use the system clipboard, you can add this to your `~/.vimrc` file[10,11]:
 
 ```
+# Non-Mac
 set clipboard=unnamedplus
+# Mac
+set clipboard=unnamed
 ```
-
-
 
 ## Plugins and Packages
 
@@ -142,3 +143,4 @@ set clipboard=unnamedplus
 1. https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/
 1. https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim
 1. https://vim.fandom.com/wiki/Accessing_the_system_clipboard
+1. https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work

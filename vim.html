@@ -278,7 +278,7 @@
 </tr>
 <tr>
 <td>Make a new line above/below current line and enter insert mode</td>
-<td><code>o</code>/<code>O</code></td>
+<td><code>O</code>/<code>o</code></td>
 <td></td>
 </tr>
 <tr>
@@ -356,8 +356,11 @@
 </tr>
 </tbody></table><h2>Clipboard</h2>
 <p>Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with <code>&quot;+</code>.[10]</p>
-<p>To make Vim always use the system clipboard, you can add this to your <code>~/.vimrc</code> file[10]:</p>
-<pre><code>set clipboard=unnamedplus
+<p>To make Vim always use the system clipboard, you can add this to your <code>~/.vimrc</code> file[10,11]:</p>
+<pre><code># Non-Mac
+set clipboard=unnamedplus
+# Mac
+set clipboard=unnamed
 </code></pre>
 <h2>Plugins and Packages</h2>
 <ul>
@@ -376,6 +379,7 @@
 <li><a href="https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/" target="_blank">https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/</a></li>
 <li><a href="https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim" target="_blank">https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim</a></li>
 <li><a href="https://vim.fandom.com/wiki/Accessing_the_system_clipboard" target="_blank">https://vim.fandom.com/wiki/Accessing_the_system_clipboard</a></li>
+<li><a href="https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work" target="_blank">https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202201131523</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~718kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202201141523</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~726kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
