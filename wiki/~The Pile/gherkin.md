@@ -3,7 +3,7 @@ title: Gherkin
 description: Gherkin is a business readable language which helps you to describe business behavior without going into details of implementation.
 ---
 
-Gherkin is a business readable language which helps you to describe business behavior without going into details of implementation. Built out of Behavior Driven Development, the goal is to create a document that can act as a test, the criteria, and the requirements of a feature. 
+Gherkin is a business readable language which helps you to describe business behavior without going into details of implementation. Built out of Behavior Driven Development[5], the goal is to create a document that can act as a test, the criteria, and the requirements of a feature. 
 
 > Remember, behavior scenarios are more than tests – they also represent requirements and acceptance criteria. Good Gherkin comes from good behavior.
 >
@@ -73,11 +73,9 @@ Each scenario is a self-contained set of tests or requirements that has no beari
     Then links related to "panda" are shown on the results page
 ```
 
-### Given
+### Given/When/Then
 
-This sets the stage for the rest of the scenario. It should ensure that a user will incur the same behavior repeatedly.
-
-### When/Then/And/But
+**Given** sets the stage for the rest of the scenario. It should ensure that a user will incur the same behavior repeatedly.
 
 **When** a certain interaction or behavior occurs, **then** a specific outcome is expected (**and** another, **but** not this outcome).
 
@@ -87,3 +85,4 @@ This sets the stage for the rest of the scenario. It should ensure that a user w
 1. https://www.guru99.com/gherkin-test-cucumber.html#2
 1. https://automationpanda.com/2017/01/27/bdd-101-gherkin-by-example/
 1. https://automationpanda.com/2017/01/30/bdd-101-writing-good-gherkin/
+1. https://en.wikipedia.org/wiki/Behavior-driven_development

@@ -42,7 +42,7 @@ Run this by typing `./a.out` in your shell. You should see `hello, world` in you
 
 ### Constants
 
-#### Symbolic Constants
+#### Symbolic Constants / `#define`
 
 Symbolic constants allow the developer to avoid {{magic numbers|Magic Numbers (Programming)}} and add semantically useful labels to values. This is done using he syntax `#define NAME value`.
 
@@ -64,6 +64,63 @@ These statements don't actually *do* anything in the code. They are handled by t
 ```c
 printf("The tax rate is %1.2f and the service charge is %d", 0.09, 2);
 ```
+
+These `#define` statements are also often used for macros[11,12], so functions or subfunctions can be added in place. For example:
+
+```c
+#include <stdio.h>
+
+#define mu_assert(message, test) do { if (!(test)) return message; } while (0)
+#define mu_run_test(test) do { char *message = test(); tests_run++; if (message) return message; } while (0)
+
+int tests_run = 0;
+
+int foo = 7;
+
+static char * test_foo() {
+  mu_assert("error, foo != 7", foo == 7);
+  return 0;
+}
+
+static char * all_tests() {
+  mu_run_test(test_foo);
+  return 0;
+}
+```
+
+Becomes effectively this after the macros are inserted:
+
+```c
+#include <stdio.h>
+
+int tests_run = 0;
+
+int foo = 7;
+
+static char * test_foo() {
+  // mu_assert("error, foo != 7", foo == 7);
+  do {
+    if (!(foo == 7)) {
+      return "error, foo != 7";
+    }
+  } while (0);
+  return 0;
+}
+
+static char * all_tests() {
+  //# mu_assert("error, bar != 5", bar == 5);
+  do {
+    char *message = test_foo();
+    tests_run++;
+    if (message) {
+      return message; 
+    }
+  } while (0);
+  return 0;
+}
+```
+
+If you want to know about the seemingly pointless loops, check it out here[11].
 
 #### Enumeration Constants
 
@@ -145,9 +202,20 @@ You can send text via stdin using `printf "123xyz" | ./program.out`, with progra
 
 You can also use an online REPL, like [replit.com](https://replit.com/languages/c).
 
+## Testing
+
+There are many different options to do {{test-driven development}} in C. One I have seen recommended is MinUnit[6], as it is essentially as small as possible. Others I have seen are Minctest[8,9,10], 
+
 ## References
 
 1. https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf
 2. https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement
 2. https://github.com/agavrel/42_CheatSheet
 2. https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html
+2. https://stackoverflow.com/questions/65820/unit-testing-c-code
+2. https://jera.com/techinfo/jtns/jtn002
+2. https://eradman.com/posts/tdd-in-c.html
+2. https://github.com/codeplea/minctest
+2. https://codeplea.com/minctest
+2. https://github.com/codeplea/tinyexpr/blob/master/smoke.c
+2. https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros

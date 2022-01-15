@@ -90,6 +90,10 @@ Attribute | Effect
 - `int getch()` - Waits for user input and returns the inputted character.
 - `getnstr(str, int n)` - Get user input up to `n` characters. On newline, stores input character buffer in `str`.
 
+### Display
+
+- `clrtoeol()` - Clears everything that is on the current line under the cursor[7].
+
 ## References
 
 1. https://en.wikipedia.org/wiki/Curses_%28programming_library%29
@@ -98,3 +102,4 @@ Attribute | Effect
 1. https://www.sbarjatiya.com/notes_wiki/index.php/Using_ncurses_library_with_C
 1. https://linux.die.net/man/3/endwin
 1. https://manpages.debian.org/testing/ncurses-doc/start_color.3ncurses.en.html
+1. https://stackoverflow.com/questions/5072881/how-to-clear-a-specific-line-with-ncurses

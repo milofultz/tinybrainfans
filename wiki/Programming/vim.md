@@ -144,3 +144,4 @@ set clipboard=unnamed
 1. https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim
 1. https://vim.fandom.com/wiki/Accessing_the_system_clipboard
 1. https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work
+1. https://thevaluable.dev/vim-search-find-replace/

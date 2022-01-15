@@ -600,7 +600,7 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="gherkin.html">Gherkin</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li><li><a href="testing-vanilla-javascript.html">Testing Vanilla Javascript</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202111070525</p></article><article>            <h1><a href="gherkin.html">Gherkin</a></h1>
-            <p>Gherkin is a business readable language which helps you to describe business behavior without going into details of implementation. Built out of Behavior Driven Development, the goal is to create a document that can act as a test, the criteria, and the requirements of a feature. </p>
+            <p>Gherkin is a business readable language which helps you to describe business behavior without going into details of implementation. Built out of Behavior Driven Development[5], the goal is to create a document that can act as a test, the criteria, and the requirements of a feature. </p>
 <blockquote>
 <p>Remember, behavior scenarios are more than tests – they also represent requirements and acceptance criteria. Good Gherkin comes from good behavior.</p>
 <p>The Golden Gherkin Rule: Treat other readers as you would want to be treated. <strong>Write Gherkin so that people who don’t know the feature will understand it.</strong></p>
@@ -651,9 +651,8 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
     When the user enters &quot;panda&quot; into the search bar
     Then links related to &quot;panda&quot; are shown on the results page
 </code></pre>
-<h3>Given</h3>
-<p>This sets the stage for the rest of the scenario. It should ensure that a user will incur the same behavior repeatedly.</p>
-<h3>When/Then/And/But</h3>
+<h3>Given/When/Then</h3>
+<p><strong>Given</strong> sets the stage for the rest of the scenario. It should ensure that a user will incur the same behavior repeatedly.</p>
 <p><strong>When</strong> a certain interaction or behavior occurs, <strong>then</strong> a specific outcome is expected (<strong>and</strong> another, <strong>but</strong> not this outcome).</p>
 <h2>References</h2>
 <ol>
@@ -661,9 +660,10 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 <li><a href="https://www.guru99.com/gherkin-test-cucumber.html#2" target="_blank">https://www.guru99.com/gherkin-test-cucumber.html#2</a></li>
 <li><a href="https://automationpanda.com/2017/01/27/bdd-101-gherkin-by-example/" target="_blank">https://automationpanda.com/2017/01/27/bdd-101-gherkin-by-example/</a></li>
 <li><a href="https://automationpanda.com/2017/01/30/bdd-101-writing-good-gherkin/" target="_blank">https://automationpanda.com/2017/01/30/bdd-101-writing-good-gherkin/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Behavior-driven_development" target="_blank">https://en.wikipedia.org/wiki/Behavior-driven_development</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202201141548</p></article><article>            <h1><a href="links.html">Links</a></h1>
+<p class="last-modified">Last modified: 202201151520</p></article><article>            <h1><a href="links.html">Links</a></h1>
             <p><a href="https://www.npr.org/sections/goatsandsoda/2019/03/13/685533353/a-playful-way-to-teach-kids-to-control-their-anger" target="_blank">https://www.npr.org/sections/goatsandsoda/2019/03/13/685533353/a-playful-way-to-teach-kids-to-control-their-anger</a></p>
 <p><a href="https://idiomdrottning.org/scheme-if-you-already-know-how-to-program-other-stuff" target="_blank">https://idiomdrottning.org/scheme-if-you-already-know-how-to-program-other-stuff</a></p>
 <p><a href="https://dev.to/codemouse92/ten-principles-of-critique-5f4p" target="_blank">https://dev.to/codemouse92/ten-principles-of-critique-5f4p</a></p>
@@ -1143,7 +1143,67 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><strong>License</strong> - If open source, state how the project is licensed.</li>
 </ul>
 
-<p class="last-modified">Last modified: 202107020455</p></article><article><h1><a href="macos.html">MacOS</a></h1>
+<p class="last-modified">Last modified: 202107020455</p></article><article>            <h1><a href="make.html">Make</a></h1>
+            <p>Make is a tool which controls the generation of executables and other non-source files of a program from the program's source files.</p>
+<p>When a file named <code>Makefile</code> exists in a directory, it can be invoked by running <code>make</code> in the command line.</p>
+<h2>Makefile</h2>
+<blockquote>
+<p>Makefiles are used to help decide which parts of a large program need to be recompiled.[2]</p>
+</blockquote>
+<p>A makefile allows the running of multiple processes in a systematic way, establishing dependency structures and commands needed to complete specific tasks. The makefile is always named <code>Makefile</code>.</p>
+<p>An example makefile could be as follows (from [2]):</p>
+<pre><code class="language-makefile">blah: blah.o
+  cc blah.o -o blah # Runs third
+
+blah.o: blah.c
+  cc -c blah.c -o blah.o # Runs second
+
+blah.c:
+  echo &quot;int main() { return 0; }&quot; &gt; blah.c # Runs first
+</code></pre>
+<blockquote>
+<p>[This] Makefile has three separate <em>rules</em>. When you run <code>make blah</code> in the terminal, it will build a program called <code>blah</code> in a series of steps:</p>
+<ul>
+<li>Make is given <code>blah</code> as the target, so it first searches for this target</li>
+<li><code>blah</code> requires <code>blah.o</code>, so make searches for the <code>blah.o</code> target</li>
+<li><code>blah.o</code> requires <code>blah.c</code>, so make searches for the <code>blah.c</code> target</li>
+<li><code>blah.c</code> has no dependencies, so the <code>echo</code> command is run</li>
+<li>The <code>cc -c</code> command is then run, because all of the <code>blah.o</code> dependencies are finished</li>
+<li>The top <code>cc</code> command is run, because all the <code>blah</code> dependencies are finished</li>
+<li>That's it: <code>blah</code> is a compiled c program</li>
+</ul>
+</blockquote>
+<h2>Rules</h2>
+<p>A rule is a <strong>target</strong> with an optional set of <strong>dependencies</strong>, and a set of <strong>commands</strong> to run. The first line of a Makefile is the &quot;default goal&quot;[3], but any specific rules can be specified as arguments following the <code>make</code> invocation.</p>
+<p>The <strong>target</strong> is the destination file to be created or updated when the rule's commands finish running.</p>
+<p>The <strong>dependencies</strong> are a list of files to be checked if they exist before running the rule.</p>
+<p>The <strong>commands</strong> are the commands to be run if the rule is executed.</p>
+<p>So from the above example's first rule, <code>blah</code> is the target, <code>blah.o</code> is the single dependency, and the <code>cc</code> line is the only command. </p>
+<h3><code>all</code></h3>
+<p>The <code>all</code> target will specify all the rules you want to run inplace of a single rule.</p>
+<pre><code class="language-makefile">all: one two three
+
+one:
+  # commands
+two:
+  # commands
+three:
+  # commands
+</code></pre>
+<h3><code>clean</code></h3>
+<p>The <code>clean</code> rule is a standard for cleaning up the directory of compiled executables or whatever[3]. Usually looks something like this:</p>
+<pre><code class="language-makefile">clean:
+  rm blah.o
+</code></pre>
+<p>Assuming this rule is not the default rule and the word <code>clean</code> is not referenced as a dependency in any other rule, this can only be invoked by running <code>make clean</code>.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.gnu.org/software/make/" target="_blank">https://www.gnu.org/software/make/</a></li>
+<li><a href="https://makefiletutorial.com/" target="_blank">https://makefiletutorial.com/</a></li>
+<li><a href="http://web.mit.edu/gnu/doc/html/make_2.html" target="_blank">http://web.mit.edu/gnu/doc/html/make_2.html</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202201151149</p></article><article><h1><a href="macos.html">MacOS</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="applescript.html">Applescript</a></li><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="postgres.html">Postgres</a></li><li><a href="sass.html">Sass</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="vim.html">Vim</a></li></ul></details></section></article><article>            <h1><a href="vim.html">Vim</a></h1>
             <p>Vim is a command-line editor that is included with most *nix machines and <a href="macos.html">OSX</a>.</p>
@@ -1526,9 +1586,10 @@ set clipboard=unnamed
 <li><a href="https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim" target="_blank">https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim</a></li>
 <li><a href="https://vim.fandom.com/wiki/Accessing_the_system_clipboard" target="_blank">https://vim.fandom.com/wiki/Accessing_the_system_clipboard</a></li>
 <li><a href="https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work" target="_blank">https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work</a></li>
+<li><a href="https://thevaluable.dev/vim-search-find-replace/" target="_blank">https://thevaluable.dev/vim-search-find-replace/</a></li>
 </ol>
 <section><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202201141523</p></article><article><h1><a href="stack.html">stack</a></h1>
+<p class="last-modified">Last modified: 202201151149</p></article><article><h1><a href="stack.html">stack</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li><li><a href="assembly-6502.html">Assembly (6502)</a></li><li><a href="forth.html">Forth</a></li><li><a href="sublime-text.html">Sublime Text</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li></ul></details></section></article><article>            <h1><a href="forth.html">Forth</a></h1>
             <p>Forth is a procedural, <a href="stack.html">stack</a>-oriented programming language and interactive environment.</p>
@@ -2841,7 +2902,7 @@ describe(&#x27;getTaxRates&#x27;, () =&gt; {
 <li><a href="https://wallabyjs.com/?referrer=funfunfunction" target="_blank">https://wallabyjs.com/?referrer=funfunfunction</a></li>
 <li><a href="https://www.youtube.com/watch?v=eAfUfKYcvBo" target="_blank">https://www.youtube.com/watch?v=eAfUfKYcvBo</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="pi-at-pc-framework.html">PI AT PC Framework</a></li><li><a href="pseudocode.html">Pseudocode</a></li><li><a href="react-testing.html">React (Testing)</a></li></ul></details></section>
+<section><details><summary>Backlinks</summary><ul><li><a href="c.html">C</a></li><li><a href="pi-at-pc-framework.html">PI AT PC Framework</a></li><li><a href="pseudocode.html">Pseudocode</a></li><li><a href="react-testing.html">React (Testing)</a></li></ul></details></section>
 <p class="last-modified">Last modified: 202111110017</p></article><article>            <h1><a href="paper-computing.html">Paper Computing</a></h1>
             <p>Paper computing is a way to learn about the most basic operation of <a href="https://www.youtube.com/watch?v=RPQD7-AOjMI" target="_blank">Turing complete</a> systems and <a href="programming.html">programming</a> in general. This is also a great way to get familiar with the basics of machine code and <a href="assembly.html">assembly</a>.</p>
 <h2>Models</h2>
@@ -4109,7 +4170,7 @@ main()  /* defines the function main containing no parameters */
    comment */
 </code></pre>
 <h3>Constants</h3>
-<h4>Symbolic Constants</h4>
+<h4>Symbolic Constants / <code>#define</code></h4>
 <p>Symbolic constants allow the developer to avoid <a href="magic-numbers-programming.html">magic numbers</a> and add semantically useful labels to values. This is done using he syntax <code>#define NAME value</code>.</p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 #define TAXRATE 0.09
@@ -4125,6 +4186,56 @@ main()
 <p>These statements don't actually <em>do</em> anything in the code. They are handled by the preprocessor and the references to the <code>NAME</code> are simply replaced by the corrseponding <code>value</code> when found. So the above <code>printf</code> line, when eventually seen by the compiler, will be:</p>
 <pre><code class="language-c">printf(&quot;The tax rate is %1.2f and the service charge is %d&quot;, 0.09, 2);
 </code></pre>
+<p>These <code>#define</code> statements are also often used for macros[11,12], so functions or subfunctions can be added in place. For example:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+#define mu_assert(message, test) do { if (!(test)) return message; } while (0)
+#define mu_run_test(test) do { char *message = test(); tests_run++; if (message) return message; } while (0)
+
+int tests_run = 0;
+
+int foo = 7;
+
+static char * test_foo() {
+  mu_assert(&quot;error, foo != 7&quot;, foo == 7);
+  return 0;
+}
+
+static char * all_tests() {
+  mu_run_test(test_foo);
+  return 0;
+}
+</code></pre>
+<p>Becomes effectively this after the macros are inserted:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int tests_run = 0;
+
+int foo = 7;
+
+static char * test_foo() {
+  // mu_assert(&quot;error, foo != 7&quot;, foo == 7);
+  do {
+    if (!(foo == 7)) {
+      return &quot;error, foo != 7&quot;;
+    }
+  } while (0);
+  return 0;
+}
+
+static char * all_tests() {
+  //# mu_assert(&quot;error, bar != 5&quot;, bar == 5);
+  do {
+    char *message = test_foo();
+    tests_run++;
+    if (message) {
+      return message; 
+    }
+  } while (0);
+  return 0;
+}
+</code></pre>
+<p>If you want to know about the seemingly pointless loops, check it out here[11].</p>
 <h4>Enumeration Constants</h4>
 <p>An enumeration constant is a list of constant integer values. They will start at 0, incrementing on each new constant, unless otherwise defined.</p>
 <pre><code class="language-c">enum boolean { FALSE, TRUE }; // FALSE == 0, TRUE == 1
@@ -4171,15 +4282,24 @@ printf(&quot;%2d F = %2d C&quot;, fahr, celsius); /* prints &quot;100 F = 37 C&q
 <h2>Sandboxing</h2>
 <p>You can send text via stdin using <code>printf &quot;123xyz&quot; | ./program.out</code>, with program.out being the name of the compiled program.</p>
 <p>You can also use an online REPL, like <a href="https://replit.com/languages/c" target="_blank">replit.com</a>.</p>
+<h2>Testing</h2>
+<p>There are many different options to do <a href="test-driven-development.html">test-driven development</a> in C. One I have seen recommended is MinUnit[6], as it is essentially as small as possible. Others I have seen are Minctest[8,9,10], </p>
 <h2>References</h2>
 <ol>
 <li><a href="https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf" target="_blank">https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf</a></li>
 <li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
 <li><a href="https://github.com/agavrel/42_CheatSheet" target="_blank">https://github.com/agavrel/42_CheatSheet</a></li>
 <li><a href="https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html" target="_blank">https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html</a></li>
+<li><a href="https://stackoverflow.com/questions/65820/unit-testing-c-code" target="_blank">https://stackoverflow.com/questions/65820/unit-testing-c-code</a></li>
+<li><a href="https://jera.com/techinfo/jtns/jtn002" target="_blank">https://jera.com/techinfo/jtns/jtn002</a></li>
+<li><a href="https://eradman.com/posts/tdd-in-c.html" target="_blank">https://eradman.com/posts/tdd-in-c.html</a></li>
+<li><a href="https://github.com/codeplea/minctest" target="_blank">https://github.com/codeplea/minctest</a></li>
+<li><a href="https://codeplea.com/minctest" target="_blank">https://codeplea.com/minctest</a></li>
+<li><a href="https://github.com/codeplea/tinyexpr/blob/master/smoke.c" target="_blank">https://github.com/codeplea/tinyexpr/blob/master/smoke.c</a></li>
+<li><a href="https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros" target="_blank">https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros</a></li>
 </ol>
-<section><details><summary>Backlinks</summary><ul><li><a href="arrays-c.html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="curses.html">Curses</a></li><li><a href="functions-c.html">Functions (C)</a></li><li><a href="strings-c.html">Strings (C)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202201140747</p></article><article>            <h1><a href="curses.html">Curses</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="arrays-c.html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="command-line-arguments-in-c.html">Command Line Arguments in C</a></li><li><a href="curses.html">Curses</a></li><li><a href="functions-c.html">Functions (C)</a></li><li><a href="strings-c.html">Strings (C)</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202201151520</p></article><article>            <h1><a href="curses.html">Curses</a></h1>
             <p>Curses is a way to manipulate terminals mainly for text user interfaces in applications.</p>
 <h2><code>ncurses.h</code></h2>
 <p>The <code>ncurses.h</code> helper file in <a href="c.html">C</a> includes a lot of other libraries, as well, which means you don't need to include them, as they may bloat your final compiled program[2]:</p>
@@ -4275,6 +4395,10 @@ int main(void)
 <li><code>int getch()</code> - Waits for user input and returns the inputted character.</li>
 <li><code>getnstr(str, int n)</code> - Get user input up to <code>n</code> characters. On newline, stores input character buffer in <code>str</code>.</li>
 </ul>
+<h3>Display</h3>
+<ul>
+<li><code>clrtoeol()</code> - Clears everything that is on the current line under the cursor[7].</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/Curses_%28programming_library%29" target="_blank">https://en.wikipedia.org/wiki/Curses_%28programming_library%29</a></li>
@@ -4283,9 +4407,10 @@ int main(void)
 <li><a href="https://www.sbarjatiya.com/notes_wiki/index.php/Using_ncurses_library_with_C" target="_blank">https://www.sbarjatiya.com/notes_wiki/index.php/Using_ncurses_library_with_C</a></li>
 <li><a href="https://linux.die.net/man/3/endwin" target="_blank">https://linux.die.net/man/3/endwin</a></li>
 <li><a href="https://manpages.debian.org/testing/ncurses-doc/start_color.3ncurses.en.html" target="_blank">https://manpages.debian.org/testing/ncurses-doc/start_color.3ncurses.en.html</a></li>
+<li><a href="https://stackoverflow.com/questions/5072881/how-to-clear-a-specific-line-with-ncurses" target="_blank">https://stackoverflow.com/questions/5072881/how-to-clear-a-specific-line-with-ncurses</a></li>
 </ol>
-
-<p class="last-modified">Last modified: 202201140918</p></article><article><h1><a href="python.html">Python</a></h1>
+<section><details><summary>Backlinks</summary><ul><li><a href="command-line-arguments-in-c.html">Command Line Arguments in C</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202201151308</p></article><article><h1><a href="python.html">Python</a></h1>
 <p>There's currently nothing here.</p>
 <section><details><summary>Backlinks</summary><ul><li><a href="argparse-python.html">argparse (Python)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="collections-python.html">Collections (Python)</a></li><li><a href="datetime-python.html">Datetime (Python)</a></li><li><a href="debounce-python.html">Debounce (Python)</a></li><li><a href="itertools-python.html">Itertools (Python)</a></li><li><a href="json-python.html">JSON (Python)</a></li><li><a href="math-python.html">Math (Python)</a></li><li><a href="numpy.html">Numpy</a></li><li><a href="python-with-bash.html">Python with Bash</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li><li><a href="unittest.html">Unittest</a></li><li><a href="virtual-environments-python.html">Virtual Environments (Python)</a></li></ul></details></section></article><article>            <h1><a href="argparse-python.html">argparse (Python)</a></h1>
             <p><code>argparse</code> is a way to handle command line arguments in <a href="python.html">Python</a> applications.</p>
@@ -11981,7 +12106,95 @@ void reverse(char str[], int len)
 <li><a href="https://en.wikipedia.org/wiki/C_data_types" target="_blank">https://en.wikipedia.org/wiki/C_data_types</a></li>
 </ul>
 
-<p class="last-modified">Last modified: 202108011853</p></article><article>            <h1><a href="strings-c.html">Strings (C)</a></h1>
+<p class="last-modified">Last modified: 202108011853</p></article><article>            <h1><a href="command-line-arguments-in-c.html">Command Line Arguments in C</a></h1>
+            <p>Creating terminal applications in <a href="c.html">C</a> often relies on command line arguments.</p>
+<h2>Arguments</h2>
+<p>The main function of a C program takes in two arguments to handle command line arguments:</p>
+<pre><code class="language-c">int main (int argc, char *argv[])
+{
+  ...
+}
+</code></pre>
+<p><code>argc</code> is the number (<strong>c</strong>ount) of arguments provided, including the executable name. <code>argv</code> is the array of arguments, with item 0 being the name of the executable.</p>
+<h2>Example</h2>
+<p>This example uses <a href="curses.html">ncurses</a>. It should print out all arguments you provide beyond the executable and wait for user entry before exiting.</p>
+<p><strong>showargs.c</strong></p>
+<pre><code class="language-c">#include &lt;string.h&gt;
+#include &lt;ncurses.h&gt;
+
+int main (int argc, char *argv[])
+{
+    char task[255];
+
+    initscr();
+
+    if (argc == 1)
+    {
+        addstr(&quot;No arguments provided.&quot;);
+        getch();
+
+        endwin();
+        return 0;
+    }
+    else
+    {
+        strcpy(task, argv[1]);
+
+        for (int i = 2; i &lt; argc; i++)
+        {
+          strcat(task, &quot; &quot;);
+          strcat(task, argv[i]);
+        }
+        printw(&quot;%s&quot;, task);
+        getch();
+
+        endwin();
+        return 0;
+    }
+}
+</code></pre>
+<p><strong>Compilation</strong></p>
+<pre><code class="language-bash">$ gcc -lncurses showargs.c -o showargs
+</code></pre>
+<p><strong>Executing</strong></p>
+<pre><code class="language-bash">$ ./showargs You can print all of these out
+# Will display &quot;You can print all of these out&quot;
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://duckduckgo.com/?t=ffab&amp;q=argc+argv+c&amp;ia=web" target="_blank">https://duckduckgo.com/?t=ffab&amp;q=argc+argv+c&amp;ia=web</a></li>
+<li><a href="https://stackoverflow.com/questions/7174216/how-can-i-concatenate-arguments-in-to-a-string-in-c" target="_blank">https://stackoverflow.com/questions/7174216/how-can-i-concatenate-arguments-in-to-a-string-in-c</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202201151252</p></article><article>            <h1><a href="c-helper-functions.html">C Helper Functions</a></h1>
+            <p>C has a large amount of helper libraries and functions.</p>
+<h2><code>stdlib.h</code></h2>
+<ul>
+<li>
+<p><code>long strtol(char* str, char** endPtr, int base)</code> - Converts a string into a long integer</p>
+<ul>
+<li>
+<p><code>str</code> - String to be read</p>
+</li>
+<li>
+<p><code>endPtr</code> - On success, points to first char after number; on failure,  <code>NULL</code></p>
+</li>
+<li>
+<p><code>base</code> - Base for number conversion</p>
+</li>
+<li>
+<p>Returns converted number as  <code>long</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://linux.die.net/man/3/strtol" target="_blank">https://linux.die.net/man/3/strtol</a></li>
+<li><a href="https://codeforwin.org/2018/01/convert-string-to-long-using-strtol-c.html" target="_blank">https://codeforwin.org/2018/01/convert-string-to-long-using-strtol-c.html</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202201151224</p></article><article>            <h1><a href="strings-c.html">Strings (C)</a></h1>
             <p>Strings in <a href="c.html">C</a> are <a href="arrays-c.html">arrays</a> of characters.</p>
 <h2>Basics</h2>
 <p>Both of these strings are arrays of 6 characters in length. These two are the same:</p>
@@ -12852,4 +13065,4 @@ Return the first number to the user as the final sum
 <li><a href="https://math.berkeley.edu/~gmelvin/polya.pdf" target="_blank">https://math.berkeley.edu/~gmelvin/polya.pdf</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202201060356</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~726kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202201060356</p></article></section></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~737kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -24,7 +24,7 @@ main()  /* defines the function main containing no parameters */
    comment */
 </code></pre>
 <h3>Constants</h3>
-<h4>Symbolic Constants</h4>
+<h4>Symbolic Constants / <code>#define</code></h4>
 <p>Symbolic constants allow the developer to avoid <a href="magic-numbers-programming.html">magic numbers</a> and add semantically useful labels to values. This is done using he syntax <code>#define NAME value</code>.</p>
 <pre><code class="language-c">#include &lt;stdio.h&gt;
 #define TAXRATE 0.09
@@ -40,6 +40,56 @@ main()
 <p>These statements don't actually <em>do</em> anything in the code. They are handled by the preprocessor and the references to the <code>NAME</code> are simply replaced by the corrseponding <code>value</code> when found. So the above <code>printf</code> line, when eventually seen by the compiler, will be:</p>
 <pre><code class="language-c">printf(&quot;The tax rate is %1.2f and the service charge is %d&quot;, 0.09, 2);
 </code></pre>
+<p>These <code>#define</code> statements are also often used for macros[11,12], so functions or subfunctions can be added in place. For example:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+#define mu_assert(message, test) do { if (!(test)) return message; } while (0)
+#define mu_run_test(test) do { char *message = test(); tests_run++; if (message) return message; } while (0)
+
+int tests_run = 0;
+
+int foo = 7;
+
+static char * test_foo() {
+  mu_assert(&quot;error, foo != 7&quot;, foo == 7);
+  return 0;
+}
+
+static char * all_tests() {
+  mu_run_test(test_foo);
+  return 0;
+}
+</code></pre>
+<p>Becomes effectively this after the macros are inserted:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int tests_run = 0;
+
+int foo = 7;
+
+static char * test_foo() {
+  // mu_assert(&quot;error, foo != 7&quot;, foo == 7);
+  do {
+    if (!(foo == 7)) {
+      return &quot;error, foo != 7&quot;;
+    }
+  } while (0);
+  return 0;
+}
+
+static char * all_tests() {
+  //# mu_assert(&quot;error, bar != 5&quot;, bar == 5);
+  do {
+    char *message = test_foo();
+    tests_run++;
+    if (message) {
+      return message; 
+    }
+  } while (0);
+  return 0;
+}
+</code></pre>
+<p>If you want to know about the seemingly pointless loops, check it out here[11].</p>
 <h4>Enumeration Constants</h4>
 <p>An enumeration constant is a list of constant integer values. They will start at 0, incrementing on each new constant, unless otherwise defined.</p>
 <pre><code class="language-c">enum boolean { FALSE, TRUE }; // FALSE == 0, TRUE == 1
@@ -86,12 +136,21 @@ printf(&quot;%2d F = %2d C&quot;, fahr, celsius); /* prints &quot;100 F = 37 C&q
 <h2>Sandboxing</h2>
 <p>You can send text via stdin using <code>printf &quot;123xyz&quot; | ./program.out</code>, with program.out being the name of the compiled program.</p>
 <p>You can also use an online REPL, like <a href="https://replit.com/languages/c" target="_blank">replit.com</a>.</p>
+<h2>Testing</h2>
+<p>There are many different options to do <a href="test-driven-development.html">test-driven development</a> in C. One I have seen recommended is MinUnit[6], as it is essentially as small as possible. Others I have seen are Minctest[8,9,10], </p>
 <h2>References</h2>
 <ol>
 <li><a href="https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf" target="_blank">https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf</a></li>
 <li><a href="https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement" target="_blank">https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement</a></li>
 <li><a href="https://github.com/agavrel/42_CheatSheet" target="_blank">https://github.com/agavrel/42_CheatSheet</a></li>
 <li><a href="https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html" target="_blank">https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html</a></li>
+<li><a href="https://stackoverflow.com/questions/65820/unit-testing-c-code" target="_blank">https://stackoverflow.com/questions/65820/unit-testing-c-code</a></li>
+<li><a href="https://jera.com/techinfo/jtns/jtn002" target="_blank">https://jera.com/techinfo/jtns/jtn002</a></li>
+<li><a href="https://eradman.com/posts/tdd-in-c.html" target="_blank">https://eradman.com/posts/tdd-in-c.html</a></li>
+<li><a href="https://github.com/codeplea/minctest" target="_blank">https://github.com/codeplea/minctest</a></li>
+<li><a href="https://codeplea.com/minctest" target="_blank">https://codeplea.com/minctest</a></li>
+<li><a href="https://github.com/codeplea/tinyexpr/blob/master/smoke.c" target="_blank">https://github.com/codeplea/tinyexpr/blob/master/smoke.c</a></li>
+<li><a href="https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros" target="_blank">https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="arrays-c.html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="curses.html">Curses</a></li><li><a href="functions-c.html">Functions (C)</a></li><li><a href="strings-c.html">Strings (C)</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202201140747</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~726kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="arrays-c.html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="command-line-arguments-in-c.html">Command Line Arguments in C</a></li><li><a href="curses.html">Curses</a></li><li><a href="functions-c.html">Functions (C)</a></li><li><a href="strings-c.html">Strings (C)</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202201151520</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~737kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
