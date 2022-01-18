@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Event listeners run a function on the emitting of an event, including 'click', 'keyup', resize', and more."><title>Event Listeners (Javascript)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Event Listeners (Javascript)</h1>
+            <p>Event listeners in <a href="javascript.html">Javascript</a> run a function on the emitting of an event, including <code>click</code>, <code>keyup</code>, <code>resize</code>, and more.</p>
+<pre><code class="language-javascript">element.addEventListener(&#x27;eventType&#x27;, function(e) {
+  // do something
+});
+</code></pre>
+<p>This adds a listener to whatever element it is attached to. It waits for the 'event' to occur, and once it does, it calls the callback function. The <code>e</code> (short for <code>event</code>)is the callback object, which can give you information on the event and its related elements.</p>
+<p>One can also pass in a named function instead of use an anonymous one. This can lead to cleaner code, as it is more declarative than imperative</p>
+<pre><code class="language-javascript">element.addEventListener(&#x27;event&#x27;, onClick);
+
+function onClick(e){
+  // do something
+};
+</code></pre>
+<p>There is a third Boolean parameter of addEventListener that specifies if you want the handler to fire on capture or bubble. It defaults to false, which is bubble. But if you set it to true, it will fire on capture.</p>
+<h2>The Event Object</h2>
+<p>The <code>e</code> that is in the functions pertaining to <code>eventListener</code>'s in <a href="javascript.html">Javascript</a> is the object that is returned by a specific event with many parameters like the coordinates of the click, the element clicked, etc. If you have an <code>eventListener</code> attached to a certain element that will trigger on a <code>click</code>, then when the user clicks, it will return an event object. This event object is what gets passed as <code>e</code> into the function.</p>
+<p><code>e.target</code> is used to specify the element on which you clicked.</p>
+<h2>Event Bubbling and Delegation</h2>
+<p>Event bubbling is where an event listener attached to a certain element will be triggered by a child element. This is because of the elements being nested within each other. If <code>div2</code> is nested within <code>div1</code>, a trigger on <code>div2</code>, will also trigger <code>div1</code>, since <code>div2</code> is nested within <code>div1</code>.</p>
+<p>Event delegation is a pattern where an event listener attached to an element is not triggered unless a specified child element is the trigger. This is useful if there are many elements that have the same class name or ID and you want an action done to a specific one. It is done through if statements on the callback specifying attributes like class name or id.</p>
+<pre><code class="language-html">&lt;div id=&quot;outer&quot;&gt;
+  &lt;div id=&quot;inner-1&quot;&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;inner-2&quot;&gt;No&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">// This will fire on any click that happens on it or any of its child elements (bubbling to the top component)
+document.getElementById(&#x27;outer&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  console.log(&#x27;bubbled&#x27;);
+});
+
+// This will fire only when a specific child or any of its children are clicked (delegated to specific children)
+document.getElementById(&#x27;outer&#x27;).addEvenetListener(&#x27;click&#x27;, () =&gt; {
+  const innerOne = event.target.closest(&#x27;#inner-1&#x27;);
+  if (innerOne) {
+    console.log(&#x27;delegated&#x27;);
+  }
+});
+</code></pre>
+<h2>Most Common Event Types</h2>
+<ul>
+<li>blur - The event occurs when an element loses focus</li>
+<li>change - The event occurs when the content of a form element, the selection, or the checked state have changed (for <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>, and <code>&lt;textarea&gt;</code>)</li>
+<li>click</li>
+<li>DOMContentLoaded - The event occurs when the <a href="html.html">HTML</a> has been fully parsed and loaded.</li>
+<li>focus</li>
+<li>keydown/keyup</li>
+<li>keypress</li>
+<li>mousedown/mouseup</li>
+<li>mouseenter/mouseleave/mousemove/mouseover/mouseout/mouseup</li>
+<li>submit - The event occurs when a form is submitted</li>
+</ul>
+<h2>References:</h2>
+<ol>
+<li><a href="https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757278#content" target="_blank">https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757278#content</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener</a></li>
+<li><a href="https://stackoverflow.com/questions/35936365/what-exactly-is-the-parameter-e-event-and-why-pass-it-to-javascript-functions" target="_blank">https://stackoverflow.com/questions/35936365/what-exactly-is-the-parameter-e-event-and-why-pass-it-to-javascript-functions</a></li>
+<li><a href="https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8762202#content" target="_blank">https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8762202#content</a></li>
+<li><a href="https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757286#content" target="_blank">https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757286#content</a></li>
+<li><a href="https://www.w3schools.com/jsref/dom_obj_event.asp" target="_blank">https://www.w3schools.com/jsref/dom_obj_event.asp</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202110021724</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

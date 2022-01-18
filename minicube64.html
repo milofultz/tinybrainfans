@@ -1,0 +1,201 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Minicube64 is a fantasy console style emulator based on 6502, with the intention of helping people learn how games were made for older systems."><title>Minicube64</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Minicube64</h1>
+            <p><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">Minicube64</a> is a fantasy console style emulator based on <a href="assembly-6502.html">6502</a>, with the intention of helping people learn how games were made for older systems such as Atari 2600, NES or C64, but without many of the difficult hardware restrictions.</p>
+<h2>Annotated Introduction</h2>
+<p>The <a href="https://aeriform.gitbook.io/minicube64/" target="_blank">introduction page</a> is what I'm annotating below. Hopefully these notes will give more insight into what the assembly is doing in the console.</p>
+<p>You can find more about the compiler directives being used at the asm6f Github page[5], which is what Minicube64 uses.</p>
+<h3>Writing a New ROM</h3>
+<p>On the page <a href="https://aeriform.gitbook.io/minicube64/new" target="_blank">&quot;Writing a New ROM&quot;</a>, there is a test program written in <a href="assembly-6502.html">6502 assembly</a>. I figured a good way to learn what was going on was to annotate the whole thing and really grok it.</p>
+<p>This is the contents of <code>test.s</code>:</p>
+<pre><code class="language-assembly">include &quot;64cube.inc&quot;    ; Include the helper functinos for 64cube
+
+ENUM $0                 ; Enumerate the following vars starting at $0000
+  counter rBYTE 1        ; Set counter to type of byte with value of 1
+ENDE                     ; End enumeration
+
+  org $200              ; Specify the origin of the ROM program
+  sei                    ; Set interrupt flag to 1
+  ldx #$ff               ; Load 255 into X
+  txs                   ; Transfer the contents of x to the stack
+                        ;   pointer
+
+  lda #$0               ; Load 0 into A
+  sta VIDEO             ; Store A into VIDEO (location $100)
+
+  _setw IRQ, VBLANK_IRQ  ; Store the address of IRQ at VBLANK_IRQ (in the
+                        ;   include file)
+  cli                   ; Clear interrupt flag
+
+Infinite:                ; Set label for &#x27;Infinite&#x27; at this address
+  jmp Infinite          ; Jump to the &#x27;Infinite&#x27; label, effectively
+                        ;   creating an infinite loop
+
+IRQ:                     ; Set label for &#x27;IRQ&#x27; at this address
+  inc counter            ; Increment the value at &#x27;counter&#x27;
+  rti                    ; Return to where the interrupt occurred
+</code></pre>
+<p>This is the relevant contents of <code>64cube.inc</code>:</p>
+<pre><code class="language-assembly">...
+
+; NOTE NOTE
+; normal 6502 has irq vectors at $fffe
+; we have them at $010e
+NMI_IRQ = $10c
+VBLANK_IRQ = $10e
+
+...
+
+MACRO   _setw value,dest    ; Create a macro named _setw with two params:
+                            ;   &#x27;value&#x27;, and &#x27;dest&#x27;. Value is a 16-bit word,
+                            ;   meaning it has a high and low byte.
+  lda #&lt;value               ; Load the low byte of value into accumulator
+  sta dest                  ; Store the value in accumulator at the address
+                            ;   of destination
+  lda #&gt;value               ; Load the high byte of value into accumulator
+  sta dest+1                ; Store the value in accumulator at the address
+                            ;   of destination + 1
+ENDM                        ; Signify the end of the macro
+</code></pre>
+<h3>Working With Pixels</h3>
+<p>This is the changed contents of the above <code>test.s</code>:</p>
+<pre><code class="language-assembly">...
+  txs
+
+  ; This will set the video buffer page in a 4k page in memory
+  lda #$f                    ; Load high byte of page into &#x27;a&#x27;
+                            ;   register
+  sta VIDEO                 ; Store value in &#x27;a&#x27; register at &#x27;VIDEO&#x27;
+
+  ; This will create a pixel of color #64 at pixel address $f820
+  lda #$64                   ; Load decimal value 64 into &#x27;a&#x27;
+                            ;   register
+  ;sta $f820                ; Store value in &#x27;a&#x27; register at $f820
+  sta $f000 + 32 + 32 * 64  ; Same as above but with MATH
+
+  _setw IRQ, VBLANK_IRQ
+...
+</code></pre>
+<h2>Compiler Directives</h2>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Args</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include n</code></td>
+<td><code>n</code>: name of assembly file to be read</td>
+<td>Load in a remote assembly file and place the contents where include is invoked. Used for files containing assembly directives</td>
+</tr>
+<tr>
+<td><code>incbin n</code></td>
+<td><code>n</code>: name of binary file to be read</td>
+<td>Load in a remote binary file and place the contents where include is invoked. Not to be used for files containing assembly directives</td>
+</tr>
+</tbody></table><h2>Video Reference</h2>
+<h3>Basic Drawing Example</h3>
+<p>This example shows how to set up a custom palette as well as drawing those colors to screen.</p>
+<pre><code class="language-assembly">include &quot;64cube.inc&quot;      ; Include the helper functions
+
+ENUM $0                    ; Enumerate values starting from $0000
+  counter rBYTE 1          ; Set &#x27;counter&#x27; as 1 byte
+ENDE                      ; End enumeration
+
+  org $200                ; Set program origin to $0200
+  sei                      ; Set interrupt disable flag
+  ldx #$ff                ; Load value $ff into X
+  txs                      ; Transfer value of X into the stack
+                          ;   pointer
+
+  ; This will set the video buffer page in the $f000 page in memory
+  lda #$f                  ; Load high byte of page into &#x27;a&#x27;
+                          ;   register
+  sta VIDEO                ; Store value in A at &#x27;VIDEO&#x27;
+
+  ; This will set the colors buffer page in the $5000 page in memory
+  lda #$5                  ; Load highbyte of page into &#x27;a&#x27;
+                          ;   register
+  sta COLORS              ; Store value in A at &#x27;COLORS&#x27;
+
+  _setw IRQ, VBLANK_IRQ    ; Set value of VBLANK_IRQ to address of
+                          ;   &#x27;IRQ&#x27; label
+  jsr Draw                ; Jump to &#x27;Draw&#x27; subroutine
+
+  cli                      ; Clear interrupt disable flag
+
+Infinite:                  ; Set &#x27;Infinite&#x27; label
+  jmp Infinite            ; Create infinite loop
+
+IRQ:                      ; Set &#x27;IRQ&#x27; label
+  inc counter              ; Increment &#x27;counter&#x27;
+  rti                      ; Return from interrupt
+
+Draw:                      ; Set &#x27;Draw&#x27; label
+  ; This will create pixels of colors from the palette below at address
+  ;   $f820. The color is found by referencing the colors page at the
+  ;   addresses listed below (#1, #2, #3).
+
+  lda #0                  ; Create counter of 0 at A
+  Loop:                    ; Create Loop label
+    adc #1                ; Increment A
+    tax                    ; Transfer value of A into X
+    sta $f000 + 32 * 64 + 31,X   ; Store X into
+                                ;   $f000 + 32 * 64 + 31 and X
+    cmp #3                ; Compare x with 3
+    bne Loop              ; If not equal go back to Loop
+  rts                      ; Else return from subroutine
+
+Palette:                          ; Set &#x27;Palette&#x27; label
+  ; This will set the palette of colors available in the COLORS page,
+  ;   enumerating from $00 upward within that page.
+  org $0500                        ; Set program origin to $0500
+  hex 000000 ff0000 00ff00 0000ff  ; Set these colors in colors page
+</code></pre>
+<h3>Video Address Locations</h3>
+<p>These are assuming the video page is being held in the 4k <code>$f000</code> page.</p>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xf000</code></td>
+<td>Top Left</td>
+</tr>
+<tr>
+<td><code>0xf03f</code></td>
+<td>Top Right</td>
+</tr>
+<tr>
+<td><code>0xf820</code></td>
+<td>Middle</td>
+</tr>
+<tr>
+<td><code>0xffc0</code></td>
+<td>Bottom Left</td>
+</tr>
+<tr>
+<td><code>0xffff</code></td>
+<td>Bottom Right</td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://aeriform.gitbook.io/minicube64/" target="_blank">https://aeriform.gitbook.io/minicube64/</a></li>
+<li><a href="https://itch.io/jam/minicubejam" target="_blank">https://itch.io/jam/minicubejam</a></li>
+<li><a href="https://github.com/aeriform-io/minicube64/releases" target="_blank">https://github.com/aeriform-io/minicube64/releases</a></li>
+<li><a href="https://github.com/aeriform-io/minicube64/blob/main/memory_map.md" target="_blank">https://github.com/aeriform-io/minicube64/blob/main/memory_map.md</a></li>
+<li><a href="https://github.com/freem/asm6f/blob/master/readme-original.txt" target="_blank">https://github.com/freem/asm6f/blob/master/readme-original.txt</a></li>
+</ol>
+<p>Examples:</p>
+<ol>
+<li><a href="https://milofultz.com/2021/09/18/minicube64" target="_blank">https://milofultz.com/2021/09/18/minicube64</a></li>
+<li><a href="https://milofultz.com/2021/11/09/bubble-sort-6502" target="_blank">https://milofultz.com/2021/11/09/bubble-sort-6502</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202201090814</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

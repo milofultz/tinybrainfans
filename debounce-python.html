@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="How to create and use a debouncer in Python."><title>Debounce (Python)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Debounce (Python)</h1>
+            <p>How to create and use a <a href="debounce.html">debouncer</a> in <a href="python.html">Python</a>.</p>
+<p>In both of these examples, the inner function won't run until at least DEBOUNCE_TIME seconds has passed.</p>
+<h2>Standalone</h2>
+<pre><code class="language-python">from threading import Timer
+import time
+
+DEBOUNCE_TIME = 1  # 1 second
+debounced_action = None
+
+
+def debounce_action(message: str) -&gt; None:
+    &quot;&quot;&quot; Print the last message to be invoked within a certain amount of time &quot;&quot;&quot;
+    global debounced_action
+
+    def print_message():
+        print(message)
+
+    if debounced_action:
+        debounced_action.cancel()
+    debounced_action = Timer(DEBOUNCE_TIME, print_message)
+    debounced_action.start()
+
+
+if __name__ == &quot;__main__&quot;:
+    debounce_action(&quot;Won&#x27;t print this one&quot;)
+    time.sleep(.5)
+    debounce_action(&quot;Or this one&quot;)
+    time.sleep(.99)
+    debounce_action(&quot;This one will though!&quot;)
+</code></pre>
+<p>The benefit of using this standalone is that you can have multiple items debouncing with the same inner function and different parameters by using a dict to store the different <code>debounced_action</code>s instead of using a singular global.</p>
+<h2>Decorator</h2>
+<pre><code class="language-python">from threading import Timer
+import time
+
+DEBOUNCE_TIME = 1
+
+
+def debounce(wait):
+    &quot;&quot;&quot; Decorator that will postpone a functions
+        execution until after wait seconds
+        have elapsed since the last time it was invoked. &quot;&quot;&quot;
+    def decorator(fn):
+        def debounced(*args, **kwargs):
+            def call_it():
+                fn(*args, **kwargs)
+            try:
+                debounced.t.cancel()
+            except(AttributeError):
+                pass
+            debounced.t = Timer(wait, call_it)
+            debounced.t.start()
+        return debounced
+    return decorator
+
+
+@debounce(DEBOUNCE_TIME)
+def print_message(message: str):
+    print(message)
+
+
+if __name__ == &quot;__main__&quot;:
+    print_message(&quot;Won&#x27;t print this one&quot;)
+    time.sleep(.5)
+    print_message(&quot;Or this one&quot;)
+    time.sleep(.99)
+    print_message(&quot;This one will though!&quot;)
+</code></pre>
+<p>The benefit of using a decorator is you can throw it on any function that needs debouncing at it saves you the reuse of the debouncing code in multiple places.</p>
+<h2>References:</h2>
+<ol>
+<li><a href="https://gist.github.com/walkermatt/2871026" target="_blank">https://gist.github.com/walkermatt/2871026</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107212151</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

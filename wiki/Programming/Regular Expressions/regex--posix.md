@@ -60,8 +60,6 @@ Pulled from regular-expressions.info[6]:
 | `[:word:]`   | Word characters (letters, numbers and underscores)           | `[A-Za-z0-9_]`  |
 | `[:xdigit:]` | Hexadecimal digits                                           | `[A-Fa-f0-9]`        |
 
-
-
 ## References
 
 1. https://en.wikipedia.org/wiki/Regular_expression#POSIX_basic_and_extended

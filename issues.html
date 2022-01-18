@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Issues on open source projects should be clear and concise."><title>Issues</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Issues</h1>
+            <p>Issues on open source projects should be clear and concise.</p>
+<h2>How To Ask a Good Question[2]</h2>
+<h3>Search, and research</h3>
+<p>...and keep track of what you find. Even if you don't find a useful answer elsewhere on the site, including links to related questions that <em>haven't</em> helped can help others in understanding how your question is different from the rest.</p>
+<h3>Write a title that summarizes the specific problem</h3>
+<p>The title is the first thing potential answerers will see, and if your title isn't interesting, they won't read the rest. So <em>make it count:</em></p>
+<ul>
+<li><strong>Pretend you're talking to a busy colleague</strong> and have to sum up your entire question in one sentence: what details can you include that will help someone identify and solve your problem? Include any error messages, key APIs, or unusual circumstances that make your question different from similar questions already on the site.</li>
+<li><strong>Spelling, grammar and punctuation are important!</strong> Remember, this is the first part of your question others will see - you want to make a good impression. If you're not comfortable writing in English, ask a friend to proof-read it for you.</li>
+<li>If you're having trouble summarizing the problem, <strong>write the title *last*</strong> - sometimes writing the rest of the question first can make it easier to describe the problem.</li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<ul>
+<li><strong>Bad:</strong> C# Math Confusion</li>
+<li><strong>Good:</strong> Why does using float instead of int give me different results when all of my inputs are integers?</li>
+<li><strong>Bad:</strong> [php] session doubt</li>
+<li><strong>Good:</strong> How can I redirect users to different pages based on session data in PHP?</li>
+<li><strong>Bad:</strong> android if else problems</li>
+<li><strong>Good:</strong> Why does str == &quot;value&quot; evaluate to false when str is set to &quot;value&quot;?</li>
+</ul>
+<h3>Introduce the problem before you post any code</h3>
+<p>In the body of your question, start by expanding on the summary you put in the title. Explain how you encountered the problem you're trying to solve, and any difficulties that have prevented you from solving it yourself. The first paragraph in your question is the second thing most readers will see, so make it as engaging and informative as possible.</p>
+<h3>Help others reproduce the problem</h3>
+<p>Not all questions benefit from including code, but if your problem is <em>with</em> code you've written, you should include some. But <strong>don't just copy in your entire program!</strong> Not only is this likely to get you in trouble if you're posting your employer's code, it likely includes a lot of irrelevant details that readers will need to ignore when trying to reproduce the problem. Here are some guidelines:</p>
+<ul>
+<li>Include just enough code to allow others to reproduce the problem. For help with this, read <a href="https://stackoverflow.com/help/mcve" target="_blank">How to create a Minimal, Complete, and Verifiable example</a>.</li>
+<li>If it is possible to create a live example of the problem that you can <em>link</em> to (for example, on <a href="http://sqlfiddle.com/" target="_blank">http://sqlfiddle.com/</a> or <a href="http://jsbin.com/" target="_blank">http://jsbin.com/</a>) then do so - but <strong>also copy the code into the question itself.</strong> Not everyone can access external sites, and the links may break over time. Use <a href="https://meta.stackoverflow.com/questions/358992/ive-been-told-to-create-a-runnable-example-with-stack-snippets-how-do-i-do" target="_blank">Stack Snippets</a> to make a live demo of inline JavaScript / HTML / CSS.</li>
+<li><strong>DO NOT post images of code, data, error messages, etc.</strong> - copy or type the text into the question. Please reserve the use of images for diagrams or demonstrating rendering bugs, things that are impossible to describe accurately via text. For more information please see the Meta FAQ entry <a href="https://meta.stackoverflow.com/a/285557" target="_blank">Why not upload images of code/errors when asking a question?</a></li>
+</ul>
+<h3>Include all relevant tags</h3>
+<p>Try to include a tag for the language, library, and specific API your question relates to. If you start typing in the tags field, the system will suggest tags that match what you've typed - be sure and read the descriptions given for them to make sure they're relevant to the question you're asking! See also: <a href="https://stackoverflow.com/help/tagging" target="_blank">What are tags, and how should I use them?</a></p>
+<h3>Proof-read before posting!</h3>
+<p>Now that you're ready to ask your question, take a deep breath and read through it from start to finish. Pretend you're seeing it for the first time: <em>does it make sense?</em> Try reproducing the problem yourself, in a fresh environment and make sure you can do so using only the information included in your question. Add any details you missed and read through it again. Now is a good time to make sure that your title still describes the problem!</p>
+<h3>Post the question and respond to feedback</h3>
+<p>After you post, leave the question open in your browser for a bit, and see if anyone comments. If you missed an obvious piece of information, be ready to respond by editing your question to include it. If someone posts an answer, be ready to try it out and provide feedback!</p>
+<h3>Look for help asking for help</h3>
+<p>In spite of all your efforts, you may find your questions poorly-received. Don't despair! Learning to ask a good question is a worthy pursuit, and not one you'll master overnight. Here are some additional resources that you may find useful:</p>
+<h2>Example Issue Format[1]</h2>
+<h3>Describe the bug</h3>
+<p>Include a clear and concise description of what the problem is, including what you expected to happen, and what actually happened.</p>
+<h3>Steps to reproduce the bug</h3>
+<p>It's important that we are able to reproduce the problem that you are experiencing. Please provide all code and relevant steps to reproduce the problem, including your <code>BUILD</code>/<code>CMakeLists.txt</code> file and build commands. Links to a GitHub branch or <a href="https://godbolt.org/" target="_blank">godbolt.org</a> that demonstrate the problem are also helpful.</p>
+<h3>Does the bug persist in the most recent commit?</h3>
+<p>We recommend using the latest commit in the master branch in your projects.</p>
+<h3>What operating system and version are you using?</h3>
+<p>If you are using a Linux distribution please include the name and version of the distribution as well.</p>
+<h3>What compiler and version are you using?</h3>
+<p>Please include the output of <code>gcc -v</code> or <code>clang -v</code>, or the equivalent for your compiler.</p>
+<h3>What build system are you using?</h3>
+<p>Please include the output of <code>bazel --version</code> or <code>cmake --version</code>, or the equivalent for your build system.</p>
+<h3>Additional context</h3>
+<p>Add any other context about the problem here.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://github.com/google/googletest/issues/new?assignees=&amp;labels=bug&amp;template=00-bug_report.md&amp;title=" target="_blank">https://github.com/google/googletest/issues/new?assignees=&amp;labels=bug&amp;template=00-bug_report.md&amp;title=</a></li>
+<li><a href="https://stackoverflow.com/help/how-to-ask" target="_blank">https://stackoverflow.com/help/how-to-ask</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202201121317</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

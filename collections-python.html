@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="These are some resources on how to use the collections Python package."><title>Collections (Python)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Collections (Python)</h1>
+            <p>These are some resources on how to use the collections <a href="python.html">Python</a> package.</p>
+<h2>defaultdict(type)</h2>
+<pre><code class="language-python">from collections import defaultdict
+
+counter = defaultdict(int)
+counter[&quot;sheep&quot;] += 1
+print(counter[&quot;sheep&quot;])  # 1
+print(counter[&quot;dog&quot;])  # 0
+</code></pre>
+<p>Will allow builtin methods based on the default type. <code>defaultdict(int)</code> will allow a <code>+= 1</code> on any key and it will be defined immediately if doesn't exist; <code>(set)</code> will allow <code>.add(value)</code> to a set and will create it if none exists, etc.</p>
+<h2>deque</h2>
+<pre><code class="language-python">from collections import deque
+
+cards = [1,2,3,4]
+deck = deque(cards)
+
+top_card = deck.popleft()
+deck.append(top_card)
+
+# cards == [2,3,4,1]
+</code></pre>
+<p>If you need a copy of the deque, you will need to import the <code>copy.deepcopy</code> method, as slices don't work. If you need to slice, you can use <code>itertools.islice</code>.</p>
+<p>Note that if you are looking for a queue, you can use a standard list as a queue by using <code>list.pop(0)</code> and <code>list.append(item)</code>. It is much faster and requires no imports.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://docs.python.org/3/library/collections.html" target="_blank">https://docs.python.org/3/library/collections.html</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107181935</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

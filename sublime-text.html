@@ -1,0 +1,183 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Sublime Text is an application made for software development."><title>Sublime Text</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Sublime Text</h1>
+            <p>Sublime Text is an application made for software development.</p>
+<h2>Command Line Shortcut</h2>
+<p>To create a symlink in <a href="bash.html">bash</a> that will allow you to open any folder in Sublime Text:</p>
+<pre><code class="language-bash">echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bash_profile
+// or
+echo &#x27;export PATH=&quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH&quot;&#x27; &gt;&gt; ~/.zprofile
+</code></pre>
+<p>Now you can just type <code>subl .</code> in a given folder, a la <code>code .</code> in <a href="visual-studio-code.html">Visual Studio Code</a></p>
+<h2>Key Bindings</h2>
+<h3>Multiple Commands</h3>
+<p>Sublime Text 4 provided the ability to <code>chain</code> multiple commands and args together, while Sublime Text 2 and 3 required the use of the <a href="https://github.com/jisaacks/ChainOfCommand" target="_blank">Chain Of Command plugin</a>. Both use the same syntax:</p>
+<pre><code class="language-json">{
+    // Link Opener
+    // This example uses https://github.com/NoxArt/SublimeText2-LinkOpener
+    {
+        &quot;keys&quot;: [&quot;super+shift+u&quot;],
+        &quot;command&quot;: &quot;chain&quot;,
+        &quot;args&quot;: {
+            &quot;commands&quot;: [
+                [&quot;expand_selection&quot;, {&quot;to&quot;: &quot;smart&quot;}],
+                [&quot;link_opener_open_url&quot;]
+            ],
+        }
+    }
+}
+</code></pre>
+<h2>Syntax</h2>
+<p>Here are some examples of syntaxes made for homemade langs, from simple to less simple:</p>
+<ul>
+<li><a href="https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax" target="_blank">Kaku</a></li>
+<li><a href="Tablatal.sublime-syntax" target="_blank">Tablatal</a></li>
+</ul>
+<h3>Make Your Own Sublime Syntax!</h3>
+<p>Lets start with a basic example. <a href="fractran.html">FRACTRAN</a> is an esoteric language with only a few types of symbols (and many of these are not necessary, but good for learning):</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Example</th>
+<th>Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Numbers</td>
+<td><code>123</code></td>
+<td>Comprises numerators and denominators</td>
+</tr>
+<tr>
+<td>Comma</td>
+<td><code>,</code></td>
+<td>For between fractions OR numbers within a numerator or denominator</td>
+</tr>
+<tr>
+<td>Parentheses</td>
+<td><code>(</code>, <code>)</code></td>
+<td>Surrounds a program</td>
+</tr>
+<tr>
+<td>Operators</td>
+<td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></td>
+<td>Separates primes</td>
+</tr>
+<tr>
+<td>Double forward slashes</td>
+<td><code>//</code></td>
+<td>Begins an inline comment that lasts until the end of the line</td>
+</tr>
+<tr>
+<td>Forward slash and an asterisk, and vice versa</td>
+<td><code>/*</code>, <code>*/</code></td>
+<td>Begins and ends a multi-line comment</td>
+</tr>
+</tbody></table><p>We will start with only <strong>numbers</strong>, <strong>division operators</strong>, <strong>commas</strong>, and <strong>parentheses</strong>.</p>
+<h4>Making a New Syntax</h4>
+<p>First, we will want to create our <code>FRACTRAN.sublime-syntax</code> file.</p>
+<ul>
+<li>In the menubar, go to <code>Preferences &gt; Browse Packages...</code>.</li>
+<li>If there is not a <code>User</code> folder, create it.</li>
+<li>Create a new empty file and save it within that new folder, calling it <code>FRACTRAN.sublime-syntax</code>.</li>
+</ul>
+<p>This new file needs to be populated with some key fields for Sublime Text to recognize it properly. Note that this type of file uses <a href="https://yaml.org/spec/1.2.2/" target="_blank">YAML syntax</a>.</p>
+<pre><code class="language-yaml">%YAML 1.2
+---
+name: FRACTRAN
+file_extensions:
+  - fractran
+scope: source.fractran
+</code></pre>
+<ul>
+<li>The header <code>%YAML 1.2</code> and the following three hyphens define the type. </li>
+<li><code>name</code> is how it will be displayed in the <code>User</code> subfolder of the syntaxes. </li>
+<li><code>file_extensions</code> defines what file extensions this syntax will apply to. </li>
+<li><code>scope</code> defines the scope of your syntax. Because we are creating a new one, we will call it <code>source.fractran</code>, but extensions to other languages may use something already established, like <code>source.c</code>, <code>source.python</code>, etc.</li>
+</ul>
+<h4>Contexts</h4>
+<p>Now we are in the meat and potatoes, where we start defining <code>contexts</code>. These <code>contexts</code> are how the syntax parser knows what to parse and when. In its simplest form, it does a basic <a href="regular-expressions.html">regex</a> on a set of characters, goes through the different <code>match</code> statements, and applies a specific formatting on the first match. As it gets more complex, it complements this behavior with a <a href="stack.html">stack</a>, pushing and popping contexts as it encounters matches.</p>
+<p>Lets make our first context. Append this to our <code>sublime-syntax</code> file:</p>
+<pre><code class="language-yaml">contexts:
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - match: &#x27;\d&#x27;
+      scope: constant.numeric
+</code></pre>
+<p>We've now added a check for our &quot;Numbers&quot; group. If you open a new file and apply this syntax to it, you should be able to type something like <code>1/11</code> and see the numbers highlighted in a different color. Success!</p>
+<p>We can now append this match group for our forward slash:</p>
+<pre><code class="language-yaml">    - match: &#x27;\/&#x27;
+      scope: keyword.operator
+</code></pre>
+<p>You should now see some coloring on your forward slash as well! Last but not least, we can add our comma.</p>
+<pre><code class="language-yaml">    - match: &#x27;,&#x27;
+      scope: punctuation
+</code></pre>
+<h4>Pushing and Popping</h4>
+<p>We have these rules, and they <em>work</em>, but they are not very robust. We are wanting to only trigger these when inside of a FRACTRAN function, which is signified by parentheses. To do this, we will start by making another match group for the start of a fraction. This time, we will have it push a new context onto our stack.</p>
+<pre><code class="language-yaml">    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+</code></pre>
+<p>That last line, <code>push: function</code>, will now move us out of the default context of <code>main</code> and into the <code>function</code> context, which we will need to define below all of our other match groups. When we reach our end parentheses, we will pop this <code>function</code> context off the stack, returning to our default <code>main</code> context.</p>
+<pre><code class="language-yaml">    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+
+  function:
+    - match: &#x27;\)&#x27;
+      scope: variable.function
+      pop: true
+</code></pre>
+<p>At the moment, only numbers that are outside of our parentheses will be highlighted correctly. So we want to move all of our <code>match</code> groups (except our new open parentheses match group) within this function context. Our contexts should look like this:</p>
+<pre><code class="language-yaml">contexts:
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - match: &#x27;\(&#x27;
+      scope: variable.function
+      push: function
+
+  function:
+    - match: &#x27;\)&#x27;
+      scope: variable.function
+      pop: true
+
+    - match: &#x27;\d&#x27;
+      scope: constant.numeric
+
+    - match: &#x27;\/&#x27;
+      scope: keyword.operator
+
+    - match: &#x27;,&#x27;
+      scope: punctuation
+</code></pre>
+<p>Now we should have the basics of highlighting a FRACTRAN function complete. Put the following into your file to see how you did!</p>
+<pre><code class="language-fractran">(455/33, 11/13, 1/11, 3/7, 11/2, 1/3)
+</code></pre>
+<h3>Variables</h3>
+<p>You can add variables to your syntax's top level scope (the same level as <code>name</code>, <code>file_extensions</code>, <code>contexts</code>, etc.). These variables will allow you to be able to define a match group one time and reuse it throughout your syntax file by referencing the name surrounded by double curly braces[6].</p>
+<h2>Troubleshooting Errors</h2>
+<h3>Autocompletion/Snippets</h3>
+<ol>
+<li>Open the console (<code>View &gt; Show Console</code> or <code>ctrl + `</code> on <a href="macos.html">OSX</a>).</li>
+<li>In the console, enter in <code>sublime.log_commands(True)</code>.</li>
+<li>Do what you need to recreate the issue. Immediately after triggering the unwanted behavior, document what you think is causing it that is in the console. In my case it was <code>command: insert_snippet {&quot;contents&quot;: &quot;:$0;&quot;}</code>.</li>
+<li>Depending on which syntax you are in, or which plugin is listed/suspected, use the command palette to <code>View Package File</code> and type in the syntax/plugin. This will show files that are hidden, as well, which makes diagnosing issues with default plugins/syntaxes much  easier. In my case this was in the <code>keymap</code> file.</li>
+<li>Once you find a possible file, open it. <code>Save As</code> in the <code>Packages</code> directory under a new folder called the name of the plugin or syntax. e.g. for the <a href="sass.html">Sass</a> plugin/syntax, I created a folder in <code>Packages</code> called <code>Sass</code> and saved a copy of the <code>Default.sublime-keymap</code> file there, which included my additions. <a href="https://www.sublimetext.com/docs/3/packages.html" target="_blank">You can find more on overriding packages here</a>.</li>
+<li>In my case, I copied the old rule over and changed the <code>{&quot;contents&quot;: &quot;:$0;&quot;}</code> object to <code>{&quot;contents&quot;: &quot;:$0&quot;}</code>, which allowed the colon to be typed without adding any additional characters.</li>
+</ol>
+<h3>Syntax Highlighting</h3>
+<p>Packages in Sublime Text are interdependent on each other and many of the default packages are inferior to third-party (e.g. <a href="babel.html">Babel</a> over <a href="javascript.html">Javascript</a>). When nested syntaxes are not cooperating, in this example <a href="pug.html">Pug</a>'s Javascript syntax, you can <code>Disable Package &gt; Javascript</code> and install <code>Babel</code> and this will cause Pug to correctly highlight conditionals and the succeeding code.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://milofultz.com/2021/03/06/sublime-keymap" target="_blank">https://milofultz.com/2021/03/06/sublime-keymap</a></li>
+<li><a href="https://stackoverflow.com/questions/59635627/how-to-override-sublime-text-3-packages-css3-completion-syntax" target="_blank">https://stackoverflow.com/questions/59635627/how-to-override-sublime-text-3-packages-css3-completion-syntax</a></li>
+<li><a href="https://www.sublimetext.com/docs/command_line.html#mac" target="_blank">https://www.sublimetext.com/docs/command_line.html#mac</a></li>
+<li><a href="https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax" target="_blank">https://github.com/Thomasorus/Kaku/blob/master/kaku.sublime-syntax</a></li>
+<li><a href="https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions" target="_blank">https://www.sublimetext.com/docs/scope_naming.html#syntax_definitions</a></li>
+<li><a href="http://www.sublimetext.com/docs/syntax.html#variables" target="_blank">http://www.sublimetext.com/docs/syntax.html#variables</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="pug.html">Pug</a></li></ul></details></section>
+<p class="last-modified">Last modified: 202111301021</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

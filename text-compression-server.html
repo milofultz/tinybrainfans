@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Text compression minifies and zips files on build or on client side render of your web page."><title>Text Compression (Server)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Text Compression (Server)</h1>
+            <p>Text compression minifies and zips files on build or on client side rendering of your web page. Using this on your deployed webpage can save significant time in page downloads and lead to better user retention.</p>
+<h2>Implementation</h2>
+<p>To accomplish client-side rendering, you will need to implement the compression on the building of your pages (in this case, using <a href="webpack.html">Webpack</a>) as well as on your server (<a href="express.html">Express</a>). This example is for a <a href="react.html">React</a> project using <a href="webpack.html">Webpack</a> and <a href="express.html">Express</a>.</p>
+<h3><a href="webpack.html">Webpack</a></h3>
+<p>First, install <a href="https://github.com/webpack-contrib/compression-webpack-plugin" target="_blank"><code>compression-webpack-plugin</code></a> and add it to your <code>webpack.config.js</code> file:</p>
+<pre><code class="language-json">module.exports = {
+  ...
+  plugins: [
+    new CompressionPlugin({
+      algorithm: &#x27;gzip&#x27;,
+      test: /\.(js|css)$/i,
+    }),
+  ],
+  ...
+};
+</code></pre>
+<p>This will use <a href="http://www.gzip.org/" target="_blank">GZIP</a> to compress all <a href="javascript.html">JS</a> and <a href="css.html">CSS</a> files in your project.</p>
+<h3><a href="express.html">Express</a></h3>
+<p>Similar to Express's <code>app.use(express.static(...))</code>, this will allow Express to serve the GZIP files to the user. You need to install <a href="https://github.com/tkoenig89/express-static-gzip" target="_blank"><code>express-static-gzip</code></a> and then add this to your server JS file:</p>
+<pre><code class="language-javascript">var express = require(&quot;express&quot;);
+var expressStaticGzip = require(&quot;express-static-gzip&quot;);
+var app = express();
+
+app.use(&quot;/&quot;, expressStaticGzip(&quot;/my/rootFolder/&quot;));
+</code></pre>
+<h3>On Your Server</h3>
+<p>On your server, add/merge your new code, <code>npm i</code> all the new dependencies, restart any PM2 instances and NGINX, and away you go!</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">https://developers.google.com/speed/pagespeed/insights/</a></li>
+<li><a href="https://stackoverflow.com/questions/57504666/enable-text-compression-using-react-webpack-and-apache" target="_blank">https://stackoverflow.com/questions/57504666/enable-text-compression-using-react-webpack-and-apache</a></li>
+<li><a href="https://stackoverflow.com/questions/50442039/compression-webpack-plugin" target="_blank">https://stackoverflow.com/questions/50442039/compression-webpack-plugin</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107010334</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

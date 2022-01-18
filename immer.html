@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Immer is a package that allows modification of complex objects and maintains immutability with your application."><title>Immer</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Immer</h1>
+            <p>Immer is an <a href="npm.html">NPM</a> package that allows modification of complex <a href="javascript.html">Javascript</a> objects and maintains immutability with your application.</p>
+<h2>Why?</h2>
+<p>When dealing with objects in Javascript, you are often dealing with references to points in memory. </p>
+<p>When you need to make a copy of that object, it's easy enough to use <code>const copy = JSON.stringify(JSON.parse(obj))</code>, which makes a <strong>deep</strong> copy. But it kind of sucks and doesn't handle anything outside of strings, numbers, and booleans and will null everything else aside from Date objects, or have weird behavior like serializing keys of Maps or Sets.</p>
+<p>Another alternative is using the spread operator: <code>const copy = { ...obj };</code>. Unfortunately, this only performs a <strong>shallow</strong> copy, meaning it's still pointing to the same memory references and modifying something in <code>copy</code> may modify the values in <code>obj</code>.</p>
+<p>Immer gives the best of both. It allows you to manage this by using a <code>produce</code> function that lets you modify a <code>draft</code> and will return a new object that:</p>
+<ul>
+<li>Only allows further modifications using Immer</li>
+<li>Maintains references to the same memory if values didn't change</li>
+<li>Leaves old references alone when modifying values by creating new values on modification</li>
+</ul>
+<p>This behavior is particularly useful with <a href="react.html">React</a>, where modifying state without using the proper <a href="react-hooks.html">hooks</a> or <code>setState</code> call can result in missed updates or faulty recording of the data you want to modify.</p>
+<h2>Example[1]</h2>
+<h3>Bad</h3>
+<pre><code class="language-javascript">const nextState = baseState.slice() // shallow clone the array
+nextState[1] = {
+    // replace element 1...
+    ...nextState[1], // with a shallow clone of element 1
+    done: true // ...combined with the desired update
+}
+// since nextState was freshly cloned, using push is safe here,
+// but doing the same thing at any arbitrary time in the future would
+// violate the immutability principles and introduce a bug!
+nextState.push({title: &quot;Tweet about it&quot;})
+</code></pre>
+<h3>Good</h3>
+<pre><code class="language-javascript">import produce from &quot;immer&quot;
+
+const nextState = produce(baseState, draft =&gt; {
+    draft[1].done = true
+    draft.push({title: &quot;Tweet about it&quot;})
+})
+</code></pre>
+<h2>Troubleshooting</h2>
+<p>If you want to log something to the console, it is recommended to use the <code>current</code> method from the <code>immer</code> package. Without this, you may end up with a <code>Proxy</code> object, which is not helpful.</p>
+<pre><code class="language-javascript">import { current, produce } from &#x27;immer&#x27;;
+
+const updated_ds = produce(ds, working_ds =&gt; {
+  working_ds.property = &#x27;new value&#x27;;
+  console.log(working_ds); // returns a `Proxy` object, which gives no useful info
+  console.log(current(working_ds)); // returns the actual data
+};
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://immerjs.github.io/immer/" target="_blank">https://immerjs.github.io/immer/</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202112060311</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Regular Expressions in C use POSIX syntax and are a little weird."><title>Regular Expressions (C)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Regular Expressions (C)</h1>
+            <p>Regular Expressions in <a href="c.html">C</a> use <a href="regular-expressions-posix.html">POSIX</a> syntax and are a little weird.</p>
+<h2>How It Works</h2>
+<h3>Compile Pattern</h3>
+<p>To compile the regex pattern, use <code>int regcomp(regex_t *preg, const char *regex, int cflags)</code>.</p>
+<ul>
+<li><code>preg</code> - Destination for your compiled regex pattern.</li>
+<li><code>regex</code> - The string representing your regex pattern.</li>
+<li>
+<code>cflags</code> - Which flags you want to enable[3].<ul>
+<li><code>REG_EXTENDED</code> - Treat the pattern as an extended regular expression, rather than as a basic regular expression.</li>
+<li><code>REG_ICASE</code> - Ignore case when matching letters.</li>
+<li><code>REG_NOSUB</code> - Don’t bother storing the contents of the matchptr array.</li>
+<li><code>REG_NEWLINE</code> - Treat a newline in string as dividing string into multiple lines, so that <code>$</code> can match before the newline and <code>^</code> can match after.  Also, don’t permit <code>.</code> to match a newline, and don’t permit <code>[^…]</code> to match a newline. Otherwise, newline acts like any other ordinary character.</li>
+</ul>
+</li>
+</ul>
+<h3>Match It To String</h3>
+<p>To match, use <code>int regexec(const regex_t *preg, const char *string, size_t nmatch, regmatch_t pmatch[], int eflags)</code>.</p>
+<ul>
+<li><code>preg</code> - Compiled regex pattern</li>
+<li><code>string</code> - String to match against</li>
+<li><code>nmatch</code> - Maximum number of matches to save</li>
+<li><code>pmatch</code> - The offsets of the subexpression starting at the <em>i</em>th open parenthesis. Each <code>regmatch_t</code> within <code>pmatch</code> has an <code>rm_so</code> and an <code>rm_eo</code> (regex match start/end offset from the start of the string).</li>
+<li>
+<code>eflags</code> - <em>eflags</em> may be the bitwise-<strong>or</strong> of one or both of<ul>
+<li><code>REG_NOTBOL</code> - The match-beginning-of-line operator always fails to match. This flag may be used when different portions of a string are passed to <code>regexec</code> and the beginning of the string should not be interpreted as the beginning of the line.</li>
+<li><code>REG_NOTEOL</code> - The match-end-of-line operator always fails to match.</li>
+</ul>
+</li>
+</ul>
+<h3>Catch Any Errors</h3>
+<p>Use <code>size_t regerror(int errcode, const regex_t *preg, char *errbuf, size_t errbuf_size)</code>[4].</p>
+<h3>Free Up Memory When Finished</h3>
+<p>Use <code>void regfree(regex_t *preg)</code>.</p>
+<h2>Example</h2>
+<p>Check out the thorough example from Ben Bullock[1] using the link below, or if the page doesn't work, you can find it locally <a href="regex_test.c" target="_blank">here</a>. A more basic example can be found below, from Per-Olof Pettersson[5]:</p>
+<pre><code class="language-c">#include &lt;sys/types.h&gt;
+#include &lt;regex.h&gt;
+#include &lt;stdio.h&gt;
+
+int main (int argc, char *argv[]) {
+  regex_t regex;
+  int reti;
+  char msgbuf[100];
+
+  /* Compile regular expression */
+  reti = regcomp(&amp;regex, &quot;^a[[:alnum:]]&quot;, 0);
+  if (reti) {
+    fprintf(stderr, &quot;Could not compile regex\n&quot;);
+    exit(1); 
+  }
+
+  /* Execute regular expression */
+  reti = regexec(&amp;regex, &quot;abc&quot;, 0, NULL, 0);
+  if (!reti) {
+    puts(&quot;Match&quot;);
+  } else if (reti == REG_NOMATCH) {
+    puts(&quot;No match&quot;);
+  } else {
+    regerror(reti, &amp;regex, msgbuf, sizeof(msgbuf));
+    fprintf(stderr, &quot;Regex match failed: %s\n&quot;, msgbuf);
+    exit(1);
+  }
+
+  /* Free compiled regular expression if you want to use the regex_t again */
+  regfree(&amp;regex);
+
+  return 0;
+}
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.lemoda.net/c/unix-regex/" target="_blank">https://www.lemoda.net/c/unix-regex/</a></li>
+<li><a href="http://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/Regular-Expressions.html" target="_blank">http://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/Regular-Expressions.html</a></li>
+<li><a href="http://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/Flags-for-POSIX-Regexps.html" target="_blank">http://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/Flags-for-POSIX-Regexps.html</a></li>
+<li><a href="https://linux.die.net/man/3/regexec" target="_blank">https://linux.die.net/man/3/regexec</a></li>
+<li><a href="http://web.archive.org/web/20160308115653/http://peope.net/old/regex.html" target="_blank">http://web.archive.org/web/20160308115653/http://peope.net/old/regex.html</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202201161108</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

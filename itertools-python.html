@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Resources on how to use the itertools Python package."><title>Itertools (Python)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Itertools (Python)</h1>
+            <p>Resources on how to use the itertools <a href="python.html">Python</a> package.</p>
+<h2>itertools.product()</h2>
+<p>Avoid using nested for loops to iterate through multiple different lists or numbers</p>
+<pre><code class="language-python">for var1 in xrange(min1,max1,step1):
+  for var2 in xrange(min2,max2,step2):
+    ...
+      ...
+        ...
+          for var6 in xrange(min6,max6,step6):
+            &#x27;&#x27;&#x27;
+            Do something and be icky in the process due
+            to being in the middle of six nested for loops
+            &#x27;&#x27;&#x27;
+x1 = xrange(min1,max1,step1)
+x2 = xrange(min2,max2,step2)
+x3 = xrange(min3,max3,step3)
+...
+for v1, v2, v3, v4, v5, v6 in itertools.product(x1, x2, x3, x4, x5, x6):
+  icky_thing(....)
+</code></pre>
+<h2>References:</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops" target="_blank">https://stackoverflow.com/questions/11174745/avoiding-nested-for-loops</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107020541</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -94,8 +94,6 @@ $ make f='timer'
 # gcc -lncurses timer.c
 ```
 
-
-
 ## References
 
 1. https://www.gnu.org/software/make/

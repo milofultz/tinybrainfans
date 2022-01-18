@@ -1,0 +1,225 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Miscellaneous notes and best practices on organization and structure in CSS."><title>Organization and Structure (CSS)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content">            <h1 id="title">Organization and Structure (CSS)</h1>
+            <p>Miscellaneous notes and best practices on organization and structure in <a href="css.html">CSS</a>.</p>
+<h2>Best Practices</h2>
+<h3>Keep it consistent</h3>
+<p>If you get to set the rules for the project or are working alone, then the most important thing to do is to keep things consistent. Consistency can be applied in all sorts of ways, such as using the same naming conventions for classes, choosing one method of describing color, or maintaining consistent formatting (for example will you use tabs or spaces to indent your code? If spaces, how many spaces?)</p>
+<p>If you are working with a team on an existing project, the first thing to check is whether the project has an existing style guide for CSS. <strong>The team style guide should always win over your own personal preferences</strong>. There often isn't a right or wrong way to do things, but consistency is important.</p>
+<h3>Organize Code with Comments</h3>
+<p>Adding comments to your CSS will help any future developer work with your CSS file, but will also help you when you come back to the project after a break. A good tip is to <strong>add a block of comments between logical sections in your stylesheet</strong> too, to help locate different sections quickly when scanning through, or even give you something to search for to jump right into that part of the CSS. <strong>If you use a string which won't appear in the code you can jump from section to section</strong> by searching for it.</p>
+<pre><code class="language-css">/* || General Styles */
+...
+/* || Utilities */
+</code></pre>
+<h3>Build Proficient Selectors</h3>
+<p>Don't use IDs in your <a href="selectors-css.html">selectors</a>. This messes with the specificity and often breaks cascades. In general, in seems like it's best practice to stick with classes as your selectors.</p>
+<p>Keep selectors short, since the longer they get, the more apt they are to break. If you create very specific selectors you will often find that you need to duplicate chunks of your <a href="css.html">CSS</a> to apply the same rules to another element. Try to reduce nesting to two or three levels deep and remove as many location-based selectors as possible. Usually, these longer selectors are overkill and unnecessary. If you do find that you need to use a really specific selector, refactor it into a new manageable class.</p>
+<h3>Use Shorthand Properties &amp; Values</h3>
+<p>Do this to increase readability. If your shorthand <code>font:</code> property is not more readable, then it is not better. Shorthand properties can also introduce undesired resetting of properties (sometimes unrelated) back to their initial value.</p>
+<pre><code class="language-css">/* bulky, but clear */
+p {
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* cleaner, but not necessarily clearer */
+p {
+  font: sans-serif 1.6rem italic 400 1.5;
+}
+</code></pre>
+<h3>Drop Units from Zero Values</h3>
+<pre><code class="language-css">/* BAD */
+margin: 0px 10px 0px 0px;
+/* GOOD */
+margin: 0 10px 0 0;
+</code></pre>
+<h3>Use The Right Measurement For The Right Job</h3>
+<p>I have read many different pieces of advice on this. Use <code>rem</code> for everything, use <code>em</code> for everything, don't use <code>px</code> ever, use <code>60ch</code> as the width of a page, etc. I do believe that using <code>rem</code> for everything may cause blowout of a page when zooming in a lot for accessibility, due to enormous borders, margin, etc. This is some advice I found online that seems to make sense:</p>
+<ul>
+<li><code>px</code> for border widths, box shadows, etc. (decoration)</li>
+<li><code>rem</code> or <code>em</code> for font sizes (<code>rem</code> for modular component-based layouts)</li>
+<li><code>vw</code>/<code>vh</code>/<code>%</code> for layout and display specific rules, since they change with the browser size</li>
+<li><code>rem</code> for font sizes and for margins and padding</li>
+<li><code>ch</code> for things like paragraph text widths or sizing containers that will hold monospace fonts (50-70 chars wide is a common human-readable width, so aim for <code>60ch</code> in this case)</li>
+<li><code>em</code> for media queries (e.g. <code>max-width: 40em</code> is equal to 640px with a font-size of 16px, but will scale if user has it set differently)</li>
+<li><code>in</code>/<code>cm</code>/<code>mm</code> for print queries</li>
+</ul>
+<h3>Group &amp; Align <a href="vendor-prefixes-css.html">Vendor Prefixes</a></h3>
+<p>Keep them together and add whitespace to make the values aligned. </p>
+<p>When using vendor prefixes we need to make sure to place an unprefixed version of our property and value last, after any prefixed versions, to ensure the most desired setting loads last if possible.</p>
+<pre><code class="language-css">div {
+  background: -webkit-linear-gradient(#a1d3b0, #f6f1d3);
+  background:    -moz-linear-gradient(#a1d3b0, #f6f1d3);
+  background:         linear-gradient(#a1d3b0, #f6f1d3);
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+</code></pre>
+<h3>Modularize Styles for Reuse</h3>
+<p>Refactor names to fit their purpose and reduce hacky &quot;fixes&quot; to shoehorn stuff in to other class rules. Keep your code <a href="dont-repeat-yourself.html">DRY</a>!</p>
+<h3>Break large stylesheets into multiple smaller ones</h3>
+<p>In particular in cases where you have very different styles for distinct parts of the site, you might want to have a stylesheet that includes all the global rules and then smaller ones that include the specific rules needed for those sections. You can link to multiple stylesheets from one page, and the normal rules of the cascade apply, with rules in stylesheets linked later coming after rules in stylesheets linked earlier.</p>
+<h2>Structure / Formatting</h2>
+<h3>Create logical sections in your stylesheet</h3>
+<p>Using the ideas from 7-1 <a href="sass.html">Sass</a> architecture, we can create an organization that will allow us to organize our styles in a way that allows for a logical hierarchical cascade and easy management. The 7 sections are abstracts, vendors, base, layout, components, pages, and themes.</p>
+<h4>Media Queries</h4>
+<p>Note: media queries don't have an exact space so far as I have found, but there are a couple approaches:</p>
+<ul>
+<li>for maintenance and modularity's sake, keeping them with the rest of the relevant rules feels logical.</li>
+<li>for the cascade, putting them at the end of their respective file before the utilities allows them to take priority over rules with similar specificity.</li>
+</ul>
+<pre><code class="language-css">.grid { 
+  ...
+}
+
+@media (screen) and (max-width: 800px) {
+  .grid {
+    ...
+  }
+}
+</code></pre>
+<h4>Abstracts</h4>
+<p>Abstracts are code that does not output <a href="css.html">CSS</a> (variables, and in <a href="sass.html">Sass</a>, functions and mixins).</p>
+<pre><code class="language-css">/* || VARIABLES */
+
+:root {
+  --bg-color: #FFF;
+  --text-color-primary: #000;
+  --text-color-secondary: #888;
+  --link-color: #F00;
+
+  --font-sans: Helvetica, sans-serif;
+  --font-serif: Times, sans-serif;
+
+  --text-spacing-wide: .5px;
+}
+</code></pre>
+<h4>Vendors</h4>
+<p>This includes any third party stylesheets, like Bootstrap, or font imports like Google Fonts.</p>
+<pre><code class="language-css">/* || VENDORS */
+
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap&#x27;);
+</code></pre>
+<h4>Base</h4>
+<p>Basic definitions like animations, default styles, typography, resets/normalizers and utilities like classes for center text, margin bottom, etc. It is a good idea to have all of the common styling early in the stylesheet so that all of these styles will generally apply unless you do something special with that element.</p>
+<pre><code class="language-css">/* || BASE STYLES */
+
+/* | RESETS */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* | ANIMATIONS */
+
+@keyframes animationName {
+  ...
+}
+
+/* | TYPOGRAPHY */
+
+html {
+  color: var(--text-color-primary);
+  font-family: Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4 { 
+  ... 
+}
+
+a {
+  ...
+}
+
+/* | UTILITIES */
+
+.nobullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+</code></pre>
+<h4>Layout</h4>
+<p>This could have styles for the main parts of the site (header, footer, navigation, sidebar, etc.), the grid system, or even <a href="css.html">CSS</a> styles for all the forms. These are the &quot;macro&quot; components.</p>
+<pre><code class="language-css">/* || LAYOUT */
+
+/* | HEADER */
+
+.header {
+  ...
+}
+
+/* | FOOTER */
+
+.footer {
+  ...
+}
+
+/* | GRID */
+
+.grid {
+  ...
+}
+</code></pre>
+<h4>Components</h4>
+<p>Modules that will be reused often throughout the project (buttons, forms, media boxes, etc.). These are the &quot;micro&quot; components in comparison to the layout.</p>
+<pre><code class="language-css">/* || COMPONENTS */
+
+/* | BUTTON */
+
+.button {
+  ...
+}
+
+  .button--white {
+    ...
+  }
+
+  .button--magenta {
+    ...
+  }
+</code></pre>
+<h4>Page</h4>
+<p>These are styles specific only to the specific page you are on. Many times a home page will have different layouts than the blog or the about page. This is where you would put the styles for that specific page.</p>
+<p>For a single stylesheet, this will likely be just another section as opposed to another file.</p>
+<h4>Theme</h4>
+<p>For large projects, this allows a plug-and-play way to change the theme of your site. Usually this is not used on smaller applications.</p>
+<h2>Example CSS Skeleton / Template</h2>
+<pre><code class="language-css">/* || ABSTRACTS */
+
+/* || VENDORS */
+
+/* || BASE */
+
+/* || LAYOUT */
+
+/* || COMPONENTS */
+
+/* || PAGES */
+
+/* || THEMES */
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://learn.shayhowe.com/html-css/writing-your-best-code/" target="_blank">https://learn.shayhowe.com/html-css/writing-your-best-code/</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing" target="_blank">https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing</a></li>
+<li><a href="https://www.reddit.com/r/css/comments/kzkthl/what_units_do_you_use_px_vw_and_vh_em_rem/" target="_blank">https://www.reddit.com/r/css/comments/kzkthl/what_units_do_you_use_px_vw_and_vh_em_rem/</a></li>
+<li><a href="https://meyerweb.com/eric/thoughts/2018/06/28/what-is-the-css-ch-unit/" target="_blank">https://meyerweb.com/eric/thoughts/2018/06/28/what-is-the-css-ch-unit/</a></li>
+<li><a href="https://github.com/HugoGiraudel/sass-boilerplate/tree/master/stylesheets" target="_blank">https://github.com/HugoGiraudel/sass-boilerplate/tree/master/stylesheets</a></li>
+<li><a href="https://www.learnhowtoprogram.com/user-interfaces/building-layouts-preprocessors/7-1-sass-architecture" target="_blank">https://www.learnhowtoprogram.com/user-interfaces/building-layouts-preprocessors/7-1-sass-architecture</a></li>
+<li><a href="https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/" target="_blank">https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202107020528</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
