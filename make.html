@@ -52,6 +52,18 @@ three:
   rm blah.o
 </code></pre>
 <p>Assuming this rule is not the default rule and the word <code>clean</code> is not referenced as a dependency in any other rule, this can only be invoked by running <code>make clean</code>.</p>
+<h2>Variables</h2>
+<p>Command line arguments can be brought in using a <code>key=value</code> structure, referring to the <code>key</code> within the Makefile as <code>$(key)</code>.</p>
+<p><strong>Makefile</strong></p>
+<pre><code class="language-makefile">default:
+  gcc -lncurses $(f).c
+</code></pre>
+<p><strong>Command line</strong></p>
+<pre><code class="language-bash">$ make f=pomodoro
+# gcc -lncurses pomodoro.c
+$ make f=&#x27;timer&#x27;
+# gcc -lncurses timer.c
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.gnu.org/software/make/" target="_blank">https://www.gnu.org/software/make/</a></li>
@@ -59,4 +71,4 @@ three:
 <li><a href="http://web.mit.edu/gnu/doc/html/make_2.html" target="_blank">http://web.mit.edu/gnu/doc/html/make_2.html</a></li>
 </ol>
 
-<p class="last-modified">Last modified: 202201151149</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~737kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202201160317</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

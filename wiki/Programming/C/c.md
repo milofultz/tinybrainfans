@@ -192,6 +192,8 @@ printf("%3d F = %3d C", fahr, celsius); /* prints "100 F = 37  C" */
 printf("%2d F = %2d C", fahr, celsius); /* prints "100 F = 37 C" */
 ```
 
+You can also use `%.*s` to consume two arguments: the number of chars, and the string pointer to target[12].
+
 #### getchar(), putchar(x)
 
 `getchar` will resolve to a character from stdin, and `putchar(x)` will put the value of `x` in stdout.
@@ -219,3 +221,4 @@ There are many different options to do {{test-driven development}} in C. One I h
 2. https://codeplea.com/minctest
 2. https://github.com/codeplea/tinyexpr/blob/master/smoke.c
 2. https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros
+2. https://stackoverflow.com/questions/7899119/what-does-s-mean-in-printf

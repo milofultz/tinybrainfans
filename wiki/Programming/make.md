@@ -74,6 +74,28 @@ clean:
 
 Assuming this rule is not the default rule and the word `clean` is not referenced as a dependency in any other rule, this can only be invoked by running `make clean`.
 
+## Variables
+
+Command line arguments can be brought in using a `key=value` structure, referring to the `key` within the Makefile as `$(key)`.
+
+**Makefile**
+
+```makefile
+default:
+  gcc -lncurses $(f).c
+```
+
+**Command line**
+
+```bash
+$ make f=pomodoro
+# gcc -lncurses pomodoro.c
+$ make f='timer'
+# gcc -lncurses timer.c
+```
+
+
+
 ## References
 
 1. https://www.gnu.org/software/make/

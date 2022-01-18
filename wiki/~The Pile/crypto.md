@@ -2,3 +2,5 @@
 - https://networked.substack.com/p/web3-i-have-my-daots
 - https://blog.wesleyac.com/posts/web3-centralized
 - https://twitter.com/davetroy/status/1478017698676228099
+- https://blog.mollywhite.net/its-not-still-the-early-days/
+- https://moxie.org/2022/01/07/web3-first-impressions.html
