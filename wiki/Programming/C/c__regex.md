@@ -80,8 +80,6 @@ int main (int argc, char *argv[]) {
 }
 ```
 
-
-
 ## References
 
 1. https://www.lemoda.net/c/unix-regex/

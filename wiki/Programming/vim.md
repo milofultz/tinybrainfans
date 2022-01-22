@@ -113,7 +113,11 @@ Description | Command | Notes
 Toggle fold at next logical break | `za` | 
 Execute shell command `x` | `:![x]` |
 
-## Clipboard
+## `~/.vimrc`
+
+Customizations in the config file to make using Vim a little nicer.
+
+### Clipboard
 
 Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with `"+`.[10]
 
@@ -124,6 +128,15 @@ To make Vim always use the system clipboard, you can add this to your `~/.vimrc`
 set clipboard=unnamedplus
 # Mac
 set clipboard=unnamed
+```
+
+### Trim Trailing Whitespace on Save[13]
+
+Before writing the buffer to file on any file (`*`), search and replace all whitespace characters (`\s`) at the end of a given line with nothing. Do not show any error messages if no matches exist (`e` flag).
+
+```
+" Trim trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
 ```
 
 ## Plugins and Packages
@@ -145,3 +158,4 @@ set clipboard=unnamed
 1. https://vim.fandom.com/wiki/Accessing_the_system_clipboard
 1. https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work
 1. https://thevaluable.dev/vim-search-find-replace/
+1. https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save

@@ -354,13 +354,20 @@
 <td><code>:![x]</code></td>
 <td></td>
 </tr>
-</tbody></table><h2>Clipboard</h2>
+</tbody></table><h2><code>~/.vimrc</code></h2>
+<p>Customizations in the config file to make using Vim a little nicer.</p>
+<h3>Clipboard</h3>
 <p>Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with <code>&quot;+</code>.[10]</p>
 <p>To make Vim always use the system clipboard, you can add this to your <code>~/.vimrc</code> file[10,11]:</p>
 <pre><code># Non-Mac
 set clipboard=unnamedplus
 # Mac
 set clipboard=unnamed
+</code></pre>
+<h3>Trim Trailing Whitespace on Save[13]</h3>
+<p>Before writing the buffer to file on any file (<code>*</code>), search and replace all whitespace characters (<code>\s</code>) at the end of a given line with nothing. Do not show any error messages if no matches exist (<code>e</code> flag).</p>
+<pre><code>&quot; Trim trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
 </code></pre>
 <h2>Plugins and Packages</h2>
 <ul>
@@ -381,6 +388,7 @@ set clipboard=unnamed
 <li><a href="https://vim.fandom.com/wiki/Accessing_the_system_clipboard" target="_blank">https://vim.fandom.com/wiki/Accessing_the_system_clipboard</a></li>
 <li><a href="https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work" target="_blank">https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work</a></li>
 <li><a href="https://thevaluable.dev/vim-search-find-replace/" target="_blank">https://thevaluable.dev/vim-search-find-replace/</a></li>
+<li><a href="https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save" target="_blank">https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save</a></li>
 </ol>
 <section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section>
-<p class="last-modified">Last modified: 202201151149</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p><p><a href="fatfile.html">Fatfile (~752kb)</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202201220726</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -278,23 +278,11 @@ footer .social {
   font-size: 0.8rem;
 }
 
-/* Fatfile */
-
-#fatfile h1 {
-  margin: 0;
-}
-
-#fatfile article h1 {
-  text-align: left;
-}
-
-#main>div,
-#fatfile article {
+#main>div {
   padding: 1rem 1.5rem;
 }
 
-#main>div:nth-child(2n+1),
-#fatfile article:nth-child(2n+1) {
+#main>div:nth-child(2n+1) {
   background-color: var(--background-alt);
   border-radius: 1rem;
 }
