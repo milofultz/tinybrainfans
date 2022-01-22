@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="React is a Javascript framework for implementing dynamic single page applications into your site."><title>React</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">React</h1>
-            <p>React is a <a href="javascript.html">Javascript</a> framework for implementing dynamic single page applications into your site.</p>
+<main id="main"><article id="content"><h1 id="title">React</h1><p>React is a <a href="javascript.html">Javascript</a> framework for implementing dynamic single page applications into your site.</p>
 <h2>Setting Up</h2>
 <p>Use <a href="https://create-react-app.dev/" target="_blank">create-react-app</a> with <a href="npm.html">npm</a> or <a href="react-from-scratch.html">build it from scratch</a>.</p>
 <h2>Components</h2>
@@ -115,7 +114,7 @@ const TrackingWrapper = ({ WrappedComponent, props }) =&gt; {
     console.log(logObject);
     // POST to server
   }
-
+  
   return (
     &lt;div className=&quot;tracking-wrapper&quot; onClick={this.logInteraction}&gt;
       {/* This will pass in all props passed to the WrappedComponent in their given namespace */}
@@ -192,7 +191,7 @@ export default App;
   const onListItemClick = function (e) {
     console.log(&quot;Yum!&quot;);
   };
-
+  
   return (
     &lt;li onClick={onListItemClick}&gt;{props.item}&lt;/li&gt;
   )

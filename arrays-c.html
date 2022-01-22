@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Arrays in C, like all things in C, require a lot more care than higher level languages."><title>Arrays (C)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">Arrays (C)</h1>
-            <p>Arrays in <a href="c.html">C</a>, like all things in C, require a lot more care than higher level languages.</p>
+<main id="main"><article id="content"><h1 id="title">Arrays (C)</h1><p>Arrays in <a href="c.html">C</a>, like all things in C, require a lot more care than higher level languages.</p>
 <h2>Initialization</h2>
 <p>Arrays are intialized as normal, but followed by <code>n</code> items that should reside in the array: <code>int numbers[n]</code>. </p>
 <p>You can set the values of each of these items with curly braces. </p>
@@ -24,7 +23,7 @@ int main()
 {
     int total, single, len;
     int array[10];
-
+  
     total = sizeof(array);
     single = sizeof(array[0]);
     len = total / single;
@@ -44,12 +43,12 @@ int main()
 {
     int total, single, len;
     char array[] = &quot;hello&quot;;
-
+  
     total = sizeof(array);
     single = sizeof(array[0]);
     len = total / single;
     printf(&quot;%d, %d, %d\n&quot;, total, single, len);
-
+  
     reverse(array, len);
 
     return 0;
@@ -58,7 +57,7 @@ int main()
 void reverse(char str[], int len)
 {
   int i;
-
+  
   for (i = len - 1; i &gt;= 0; i--)
     printf(&quot;%c&quot;, str[i]);
 }

@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="argparse is a way to handle command line arguments in Python applications."><title>argparse (Python)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">argparse (Python)</h1>
-            <p><code>argparse</code> is a way to handle command line arguments in <a href="python.html">Python</a> applications.</p>
+<main id="main"><article id="content"><h1 id="title">argparse (Python)</h1><p><code>argparse</code> is a way to handle command line arguments in <a href="python.html">Python</a> applications.</p>
 <h2>Getting Started</h2>
 <p>A simple application using <code>argparse</code>:</p>
 <pre><code class="language-python">import argparse
@@ -19,7 +18,7 @@ if __name__ == &quot;__main__&quot;:
     # `dest` is the variable name set in `args` dict
     argparser.add_argument(&#x27;--no-fatfile&#x27;, &#x27;-nf&#x27;, action=&#x27;store_false&#x27;, default=True, dest=&quot;build_fatfile&quot;, help=&#x27;do not create fatfile on build&#x27;)
     args = argparser.parse_args()
-
+    
     # Use the args like so
     print(args.input_dir, args.output_dir)
 </code></pre>

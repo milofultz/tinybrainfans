@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="PixiJS is an HTML5 graphical engine built in Javascript."><title>PixiJS</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">PixiJS</h1>
-            <p>PixiJS is an <a href="html.html">HTML5</a> graphical engine built in <a href="javascript.html">Javascript</a>. </p>
+<main id="main"><article id="content"><h1 id="title">PixiJS</h1><p>PixiJS is an <a href="html.html">HTML5</a> graphical engine built in <a href="javascript.html">Javascript</a>. </p>
 <h2>Getting Started</h2>
 <p>Create an <code>index.html</code> file and populate it with the following:</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
@@ -66,13 +65,13 @@ import { Sprite, Stage, useTick } from &#x27;@inlet/react-pixi&#x27;;
 const Example = () =&gt; {
   const [x, setX] = useState(0);
   const [elapsed, setElapsed] = useState(0.0);
-
+  
   useTick(delta =&gt; {
     setElapsed(elapsed + delta);
     // X start + (X offset) * X range
     setX(100.0 + Math.cos(elapsed/50.0) * 100.0);
   });
-
+  
   return (
     {/* Create the application helper */}
     &lt;Stage width={ 640 } height={ 360 }&gt;

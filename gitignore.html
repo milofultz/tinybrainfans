@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="gitignore is way to clean up what will or won't be searched for when committing to a git repo."><title>gitignore</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">gitignore</h1>
-            <p>Creating a <code>.gitignore</code> file in the root folder of your project will ensure every file that matches a line within the file will be ignored by git.</p>
+<main id="main"><article id="content"><h1 id="title">gitignore</h1><p>Creating a <code>.gitignore</code> file in the root folder of your project will ensure every file that matches a line within the file will be ignored by git.</p>
 <ul>
 <li>Using a <code>*</code> will work as a wildcard for every file within that level of the given directory, or as a wildcard within a filename.</li>
 <li>Using two <code>**</code> in the filepath will look within every level recursively from that point forward. e.g. <code>**/.DS_Store</code> will find a file called <code>.DS_Store</code> in the root directory as well as any others in any folders within that root directory. <code>lib/**/__pycache__</code> will match any files or folders named <code>__pycache__</code> that are within the <code>lib</code> directory at any depth.</li>

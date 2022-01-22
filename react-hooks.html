@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Hooks are functions that let you “hook into” React state and lifecycle features from function components."><title>React Hooks</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">React Hooks</h1>
-            <p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
+<main id="main"><article id="content"><h1 id="title">React Hooks</h1><p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
 <p>If these hooks are not exactly what you need, you can create your own <a href="custom-react-hooks.html">custom hooks</a> using the existing ones to achieve your goals.</p>
 <p>These examples are using Typescript for type annotations and clarity.</p>
 <h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
@@ -116,19 +115,19 @@ export default function App() {
   const [name, setName] = useState&lt;string&gt;(&#x27;&#x27;);
   const [age, setAge] = useState&lt;number | null&gt;(&#x27;&#x27;);
   const [anotherVar, setAnotherVar] = useState&lt;number&gt;(0);
-
+  
   const exampleContextObject: ExampleContextInformation = {
     name,
     age,
     setName: (name: string) =&gt; setName(name),
     setAge: (age: number) =&gt; setAge(age),
   };
-
+  
   const anotherContextObject: AnotherContextInformation = {
     anotherVar,
     setAnotherVar: (anotherVar: number) =&gt; setAnotherVar(anotherVar),
   }
-
+  
   return (
     &lt;GlobalContext
       exampleContextObject={exampleContextObject}
@@ -148,7 +147,7 @@ import { AnotherContext } from &#x27;./AnotherContext&#x27;;
 export default function ChildComponent() {
   const { age, setAge } = useContext(ExampleContext);
   const { anotherVar } = useContext(AnotherContext);
-
+  
   return (
     &lt;div&gt;
       &lt;p&gt;Your age is {age} and this is {anotherVar}!&lt;/p&gt;
@@ -163,22 +162,22 @@ export default function ChildComponent() {
 
 const testComponent = () =&gt; {
   ...
-
+  
   // this will run on every rerender (generally don&#x27;t want this)
   useEffect(() =&gt; {
     // do stuff
   });
-
+  
   // this will run the function once on mount
   useEffect(() =&gt; {
     // do stuff
   }, []);
-
+  
   // this will run anytime that variable `names` is changed
   useEffect(() =&gt; {
     // do stuff
   }, [names]);
-
+  
     // this will run anytime that variable `names` is changed and will 
     // run the returned &quot;cleanup&quot; function when the component is unmounted
   useEffect(() =&gt; {
@@ -187,7 +186,7 @@ const testComponent = () =&gt; {
       // cleanup stuff
     }
   }, [names]);
-
+  
   ...
 </code></pre>
 <h2><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a></h2>
@@ -204,12 +203,12 @@ const testComponent = () =&gt; {
   // this will create a getter and setter for state variable `names`
   const [counter, setCounter] = useState&lt;number&gt;(0);
   const [names, setNames] = useState&lt;Name[]&gt;([]);
-
+  
   // sets counter 
   const onClick = () =&gt; {
     setCounter(counter + 1);
   };
-
+  
   const onSubmit = (firstName, lastName) =&gt; {
     setNames([
       ...names,
@@ -219,7 +218,7 @@ const testComponent = () =&gt; {
       }
     ]);
   }  
-
+  
   ...
 </code></pre>
 <h2>References</h2>

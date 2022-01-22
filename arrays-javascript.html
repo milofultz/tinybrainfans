@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Arrays in Javascript have many specific methods for modification and analysis. Some are cunfusiong or hard to recall."><title>Arrays (Javascript)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">Arrays (Javascript)</h1>
-            <p><a href="array.html">Arrays</a> in <a href="javascript.html">Javascript</a> have many specific methods for modification and analysis. Some are cunfusiong or hard to recall.</p>
+<main id="main"><article id="content"><h1 id="title">Arrays (Javascript)</h1><p><a href="array.html">Arrays</a> in <a href="javascript.html">Javascript</a> have many specific methods for modification and analysis. Some are cunfusiong or hard to recall.</p>
 <h2>Methods</h2>
 <h3>reduce</h3>
 <p><code>reduce</code> will iterate through the items in the array and operate the callback function on each one, passing the previous value's result post-callback. Because of this, <code>reduce</code> can be used to build most array methods from scratch. That being said, usually using the more specific methods and currying them results in more readable code[1].</p>
@@ -64,7 +63,7 @@ numbers = numbers.reduce((allNumbers, number) =&gt; {
   if (number.ticker === 0) {
     return allNumbers;
   }
-
+  
   // Decrement ticker
   number.ticker--;
   allNumbers.push(number);

@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Javascript Date objects have some weird intricacies that need attention."><title>Date (Javascript)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">Date (Javascript)</h1>
-            <p><a href="javascript.html">Javascript</a> Date objects have some weird intricacies that need attention.</p>
+<main id="main"><article id="content"><h1 id="title">Date (Javascript)</h1><p><a href="javascript.html">Javascript</a> Date objects have some weird intricacies that need attention.</p>
 <h2>Time Zones</h2>
 <p>JavaScript's Date object tracks time in UTC internally, but typically accepts input and <strong>produces output in the local time of the computer it's running on</strong>. The way to mitigate this (IMO undesired) opinion is two options.</p>
 <pre><code class="language-javascript">// will change time based on computer&#x27;s time zone

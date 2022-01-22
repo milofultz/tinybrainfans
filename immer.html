@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Immer is a package that allows modification of complex objects and maintains immutability with your application."><title>Immer</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">Immer</h1>
-            <p>Immer is an <a href="npm.html">NPM</a> package that allows modification of complex <a href="javascript.html">Javascript</a> objects and maintains immutability with your application.</p>
+<main id="main"><article id="content"><h1 id="title">Immer</h1><p>Immer is an <a href="npm.html">NPM</a> package that allows modification of complex <a href="javascript.html">Javascript</a> objects and maintains immutability with your application.</p>
 <h2>Why?</h2>
 <p>When dealing with objects in Javascript, you are often dealing with references to points in memory. </p>
 <p>When you need to make a copy of that object, it's easy enough to use <code>const copy = JSON.stringify(JSON.parse(obj))</code>, which makes a <strong>deep</strong> copy. But it kind of sucks and doesn't handle anything outside of strings, numbers, and booleans and will null everything else aside from Date objects, or have weird behavior like serializing keys of Maps or Sets.</p>

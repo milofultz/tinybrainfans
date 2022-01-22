@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Assembly on Unix is largely the same between Mac and Linux computers."><title>Assembly (Unix)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">Assembly (Unix)</h1>
-            <p><a href="assembly.html">Assembly</a> on <a href="unix.html">Unix</a> is largely the same between <a href="macos.html">MacOS</a> and <a href="linux.html">Linux</a> computers.</p>
+<main id="main"><article id="content"><h1 id="title">Assembly (Unix)</h1><p><a href="assembly.html">Assembly</a> on <a href="unix.html">Unix</a> is largely the same between <a href="macos.html">MacOS</a> and <a href="linux.html">Linux</a> computers.</p>
 <h2>Compilation, Linking, and Execution</h2>
 <h3>Compiler</h3>
 <p>You will first need a program to compile your assembly into machine code. Most common is the program <a href="https://nasm.us/" target="_blank">nasm</a>, which can be installed on <a href="macos.html">OSX</a> using <a href="https://brew.sh/" target="_blank">homebrew</a> with <code>brew install nasm</code>.</p>
@@ -9,9 +8,9 @@
 <pre><code class="language-assembly">; ----------------------------------------------------------------------------------------
 ; Writes &quot;Hello, World&quot; to the console using only system calls. Runs on 64-bit macOS only.
 ; ----------------------------------------------------------------------------------------
-
+ 
         global    start                   ; nasm-specific way to define a location for the linker
-
+ 
         section   .text                   ; The .text section holds all the instructions for the 
                                           ; assembler to execute.
 start:                                ; The label that is referenced in the above global call
@@ -23,7 +22,7 @@ start:                                ; The label that is referenced in the abov
         mov       rax, 0x02000001         ; system call for exit
         xor       rdi, rdi                ; exit code 0
         syscall                           ; invoke operating system to exit
-
+ 
         section   .data                   ; The .data section contains constants
 message:                              ; The label referenced above
         db        &quot;Hello, World&quot;, 10      ; note the newline at the end

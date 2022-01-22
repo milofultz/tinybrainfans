@@ -1,6 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="How to create and use a debouncer in Python."><title>Debounce (Python)</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
-<main id="main"><article id="content">            <h1 id="title">Debounce (Python)</h1>
-            <p>How to create and use a <a href="debounce.html">debouncer</a> in <a href="python.html">Python</a>.</p>
+<main id="main"><article id="content"><h1 id="title">Debounce (Python)</h1><p>How to create and use a <a href="debounce.html">debouncer</a> in <a href="python.html">Python</a>.</p>
 <p>In both of these examples, the inner function won't run until at least DEBOUNCE_TIME seconds has passed.</p>
 <h2>Standalone</h2>
 <pre><code class="language-python">from threading import Timer
@@ -16,7 +15,7 @@ def debounce_action(message: str) -&gt; None:
 
     def print_message():
         print(message)
-
+    
     if debounced_action:
         debounced_action.cancel()
     debounced_action = Timer(DEBOUNCE_TIME, print_message)
@@ -55,12 +54,12 @@ def debounce(wait):
         return debounced
     return decorator
 
-
+  
 @debounce(DEBOUNCE_TIME)
 def print_message(message: str):
     print(message)
 
-
+    
 if __name__ == &quot;__main__&quot;:
     print_message(&quot;Won&#x27;t print this one&quot;)
     time.sleep(.5)
