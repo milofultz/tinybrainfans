@@ -1,7 +1,9 @@
 ---
-title: bash
-description: bash is a shell that shipped with MacOSX.
+title: Shell
+description: The shell is the terminal of your operating system. This is the *nix shell.
 ---
+
+The shell is the terminal of your operating system. This is the *nix shell.
 
 ## Basic Functions
 
@@ -91,5 +93,7 @@ tr -d "\r" < oldname.sh > newname.sh
 5. https://unix.stackexchange.com/questions/19654/how-do-i-change-the-extension-of-multiple-files
 6. https://mywiki.wooledge.org/BashFAQ/030
 7. https://devhints.io/bash
+7. https://github.com/dylanaraps/pure-bash-bible
+7. https://linoxide.com/make-bash-script-executable-using-chmod/
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/

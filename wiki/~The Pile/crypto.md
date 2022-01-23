@@ -4,3 +4,4 @@
 - https://twitter.com/davetroy/status/1478017698676228099
 - https://blog.mollywhite.net/its-not-still-the-early-days/
 - https://moxie.org/2022/01/07/web3-first-impressions.html
+- https://www.youtube.com/watch?v=YQ_xWvX1n9g
