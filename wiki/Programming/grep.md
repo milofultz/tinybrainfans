@@ -10,11 +10,9 @@ $ grep PATTERN dir/file.name
 $ grep 'THIS THAT' dir/file.name
 ```
 
-## Regular Expressions
+## {{Regular Expressions}}
 
-**Square brackets** do the same as normal, and also includes special POSIX groups, that do what you assume: `[:alnum:]`, `[:alpha:]`, `[:blank:]`, `[:cntrl:]`, `[:digit:]`, `[:graph:]`, `[:lower:]`, `[:print:]`, `[:punct:]`, `[:space:]`, `[:upper:]`, and `[:xdigit:]`.
-
-## Search with OR, AND, NOT
+**Square brackets** do the same as normal, and also includes special {{POSIX|Regular Expressions (POSIX)}} groups, that do what you assume: `[:alnum:]`, `[:alpha:]`, `[:blank:]`, `[:cntrl:]`, `[:digit:]`, `[:graph:]`, `[:lower:]`, `[:print:]`, `[:punct:]`, `[:space:]`, `[:upper:]`, and `[:xdigit:]`.
 
 ### OR
 
@@ -34,7 +32,7 @@ $ grep PATTERN1 dir/file.name | grep PATTERN2
 $ grep -v 'NOTPATTERN' dir/file.name
 ```
 
-### Chain together a NOT with a regular search
+### Chain a NOT with a regular search
 
 ```bash
 $ grep 'THIS' dir/file.name | grep -v "NOT THIS'
@@ -58,7 +56,7 @@ $ grep -rin PATTERN file.diz
 
 ## Output Formatting
 
-You can use `awk` to print out a formatted output. `-F` and the following char is where in the string `awk` will split. Each split section can be called using $NF, with NF being the number of the field we want. $0 is everything.
+You can use `{{awk}}` to print out a formatted output. `-F` and the following char is where in the string `awk` will split. Each split section can be called using `$NF`, with `NF` being the number of the field we want. `$0` is everything.
 
 ```bash
 grep IDEA | awk -F: '{print $1}'
