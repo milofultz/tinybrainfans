@@ -1,6 +1,6 @@
 ---
 title: Canvas
-description: The Canvas API provides a means for drawing graphics via JavaScript and the HTML <canvas> element.
+description: The Canvas API provides a means for drawing graphics via JavaScript and the HTML `<canvas>` element.
 ---
 
 The Canvas API provides a means for drawing graphics via {{JavaScript}} and the {{HTML}} `<canvas>` element.
