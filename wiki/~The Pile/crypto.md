@@ -5,3 +5,6 @@
 - https://blog.mollywhite.net/its-not-still-the-early-days/
 - https://moxie.org/2022/01/07/web3-first-impressions.html
 - https://www.youtube.com/watch?v=YQ_xWvX1n9g
+- https://web.archive.org/web/20181229090358/https://breakermag.com/trapped-at-sea-with-cryptos-nouveau-riche/
+- https://shkspr.mobi/blog/2021/12/an-nft-without-a-blockchain-no-gas-fees-no-eth/
+- https://the-crypto-syllabus.com/yanis-varoufakis-on-techno-feudalism/

@@ -139,7 +139,7 @@ async function main (urls) {
 main(mockUrls);
 ```
 
-### Multiple with specific order[2]
+### Multiple with specific order[3]
 
 ```javascript
 const getDataFromAPI = (url) => {
@@ -170,3 +170,4 @@ main(mockOrderedUrls);
 
 - https://www.youtube.com/watch?v=V_Kr9OSfDeU
 - https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html
+- https://stackoverflow.com/questions/70816638/learning-promises-async-await-to-control-execution-order

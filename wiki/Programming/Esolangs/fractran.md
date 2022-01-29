@@ -137,3 +137,5 @@ These are some things I've deduced after messing with this and seeing some progr
 5. https://esolangs.org/wiki/Fractran
 5. https://link.springer.com/chapter/10.1007%2F978-1-4612-4808-8_2
 5. https://en.wikipedia.org/wiki/FRACTRAN#Multiplication
+5. http://raganwald.com/2020/05/03/fractran.html
+5. https://github.com/raganwald/FRACTRAN

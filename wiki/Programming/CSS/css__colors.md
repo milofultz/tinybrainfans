@@ -3,7 +3,7 @@ title: Color Palettes (CSS)
 description: These are color sets that I think are pleasant.
 ---
 
-## https://monokai.pro/
+## [Monokai](https://monokai.pro/)
 
 ```css
 :root {
@@ -20,7 +20,31 @@ description: These are color sets that I think are pleasant.
 }
 ```
 
-## https://github.com/mrmrs/colors
+## [PICO-8](https://en.wikipedia.org/wiki/PICO-8)
+
+```css
+:root {
+  --black: #000000;
+  --dark-gray: #5f574f;
+  --light-gray: #c2c3c7;
+  --white: #fff1e8;
+  
+  --pink: #ff77a8;
+  --peach: #ffccaa;
+  --red: #ff004d;
+  --yellow-orange: #ffa300;
+  --yellow: #ffec27;
+  --green: #00e436;
+  --dark-green: #008751;
+  --cyan: #29adff;
+  --dark-blue: #1d2b53;
+  --dark-magenta: #7e2553;
+  --indigo: #83769c;
+  --brown: #ab5236;
+}
+```
+
+## [MRMRS](https://github.com/mrmrs/colors)
 
 ```css
 /* 
@@ -117,9 +141,7 @@ description: These are color sets that I think are pleasant.
 }
 ```
 
-## Colorblindness Colors
-
-https://jfly.uni-koeln.de/color/#pallet
+## Colorblindness Colors[1]
 
 From their page:
 
@@ -166,7 +188,7 @@ From their page:
 
 ## Misc Colorsets
 
-https://lospec.com/palette-list/1bit-monitor-glow
+### 1-bit Monitor Glow[2]
 
 ```css
   --black: #222323;
@@ -197,3 +219,8 @@ https://lospec.com/palette-list/1bit-monitor-glow
   --gray:      #88c070;
   --white:     #e0f8d0;
 ```
+
+## References
+
+1. https://jfly.uni-koeln.de/color/#pallet
+1. https://lospec.com/palette-list/1bit-monitor-glow

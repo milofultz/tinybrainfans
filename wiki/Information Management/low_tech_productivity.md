@@ -27,6 +27,16 @@ I used Pocketmods as a ledger for all my debits and credits when I had my own sp
 
 You can find [a PocketMod SVG template here](pmtemplt.svg).
 
+### Noguchi Filing System[13]
+
+The short version of this is just use a LRU cache with your files or folders. But more verbosely:
+
+1. Get manila folders and cut off the top end with the flap, so that any papers inside stick out of the top.
+1. Write a one to two word description on the long edge, with the papers sticking out the right hand side.
+1. Put all your folders in the file cabinet.
+
+You are done. When you need a folder, search for it. When you are done, put it at the very front. The folders you need the most often will always be easily accessible, where the ones you need least will take longer.
+
 ## Low-Tech
 
 Low-tech meaning eschewing complicated, fragile, or problematic systems (e.g. Adobe, Evernote) for something simpler[7].
@@ -61,3 +71,4 @@ This is more of a method, but I think it should get a mention here. Big point of
 1. https://github.com/milofultz/sub2pub
 1. https://github.com/alebcay/awesome-shell#command-line-productivity
 1. https://merveilles.town/@exquisitecorp/107359264170996361
+1. https://fernandogros.com/the-noguchi-filing-system/

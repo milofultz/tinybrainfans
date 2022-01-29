@@ -1,0 +1,147 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Bytebeat is the method of piping mathematical equations to an audio device make lo-fidelity gritty sounds."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Bytebeat</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content"><h1 id="title">Bytebeat</h1><p>Bytebeat is the method of piping mathematical equations to an audio device make lo-fidelity gritty sounds. They often sound pretty musical due to the mathematical nature of the equations and bitwise operations. But that does not mean that it has to be &quot;musical&quot; to be good either, as you will discover when messing around with it.</p>
+<p>Learn more about the history[6-8] and hear examples[9-11] below.</p>
+<h2>Make Bytebeat</h2>
+<p>A fantastic how-to of the basics including the math operations and how to use them can be found below[1]. I would highly recommend starting here if you don't get binary or bitwise operations.</p>
+<p>The super simplest way to implement and test (hear) Bytebeat code is through the many online HTML5/JS apps online[2,3].</p>
+<h3>Using Javascript</h3>
+<p>Claude Heiland-Allen made a fully Javascript version, making a blob and rendering it as an HTML <code>audio</code> element[15]. I'll break down his implementation here (some formatting edits by me):</p>
+<p><strong>bytebeat.html</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;bytebeat&lt;/title&gt;
+    &lt;style&gt;
+      audio { width: 100%; }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;audio id=&quot;a&quot; controls autoplay loop style=&quot;width:100%&quot;&gt;&lt;/audio&gt;
+    &lt;script&gt;
+      // length (l) in bytes
+      // All l[n] vars must have 0 &lt;= l[n] &lt;= 0xFF, and l0 + 0x24 &lt;= 0xFF
+      var l0  = 0;
+      var l8  = 0;
+      var l16 = 0;
+      var l24 = 1;
+      // Final length of bytebeat in bytes
+      var n = l0 + (l8 &lt;&lt; 8) + (l16 &lt;&lt; 16) + (l24 &lt;&lt; 24);
+      // Create a new Uint8Array that is the length of the header + bytebeat size
+      var WAV = new Uint8Array(44 + n);
+      // Set the header of the WAV file as u8 8000Hz stereo
+      WAV.set(new Uint8Array(
+        [ 0x52, 0x49, 0x46, 0x46, 0x24+l0, l8, l16,  l24
+        , 0x57, 0x41, 0x56, 0x45,  0x66, 0x6d, 0x74, 0x20
+        , 0x10, 0x00, 0x00, 0x00,  0x01, 0x00, 0x02, 0x00
+        , 0x40, 0x1f, 0x00, 0x00,  0x40, 0x1f, 0x00, 0x00
+        , 0x02, 0x00, 0x08, 0x00,  0x64, 0x61, 0x74, 0x61
+        ,  l0,   l8,   l16,  l24 ]
+      ));
+      // For each byte within n / 2 (divided in half for stereo)
+      for (var t = 0; t &lt; n / 2; t++) {
+        // For each channel
+        for (var c = 0; c &lt; 2; c++) {
+          // Make bytebeat
+          var k = 2 * c - 1;
+          var o = t &amp; ((k * t) &gt;&gt; ((-k * t) &gt;&gt; ((t &gt;&gt; 8) &amp; (t &gt;&gt; 16))));
+          // Write output of bytebeat to end of WAV file
+          // (Not fully grokking the right side of this yet)
+          WAV[44 + 2 * t + c] = ((o &amp; 0xFF) + 0x80) &amp; 0xFF;
+        }
+      }
+      // Convert the WAV into a Blob of data and set it as the audio element source
+      const bytebeatOutput = new Blob([WAV], { type: &quot;audio/wav&quot; });
+      document.getElementById(&quot;a&quot;).src = URL.createObjectURL(bytebeatOutput);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+<h3>Using OSX</h3>
+<p>My desire when starting to mess with this stuff was trying to figure out how I could do it in the command line, as that was how I had seen it laid out in many examples in Linux. The problem was that the built in tools to pipe data into your audio device was not built in to OSX the way it is built in to Linux, so I had to do some sleuthing. With a lot of help from the Merveilles community[4], I was able to finally figure out the process and I wanted to document it here.</p>
+<ol>
+<li>Install SoX with homebrew[5]: <code>brew install sox</code></li>
+<li><strong>Turn down your volume!</strong></li>
+<li>Create a bash script to automate the build, compile, and piping of your Bytebeat formulas[12]</li>
+</ol>
+<p><strong>bytebeat.sh</strong></p>
+<pre><code class="language-shell">#!/bin/bash
+
+# This script creates and plays a simple ByteBeat
+
+# $1: a string with the ByteBeat algorithm; e.g. &quot;((t * 3) &amp; (t &gt;&gt; 5))&quot;
+# $2: the name of the file to be created (without an extension)
+
+# Create the C program
+PROGRAM=&quot;#include &lt;math.h&gt;
+
+// These are `sin` and `cos` functions for your equation
+// e.g. &quot;(s(t) &gt;&gt; 5) | c(t)&quot;
+
+int s(double num){
+    return 256 * sin(num);
+};
+
+int c(double num){
+    return 256 * cos(num);
+};
+
+main(t) {
+    for (t = 0; ; t++) {
+        putchar( $1 );
+    }
+};&quot;
+
+echo -e &quot;$PROGRAM&quot; &gt; &quot;$2.c&quot;
+
+# Compile the source
+gcc &quot;$2.c&quot; -o &quot;$2&quot;
+
+# Play it with standard Bytebeat settings
+./&quot;$2&quot; | sox -t u8 -r 8k -c 1 - -d
+</code></pre>
+<ol start="4">
+<li>Set the permissions to be executed by the user: <code>chmod u+x bytebeat.sh </code></li>
+<li>Try it out with a bytebeat equation. The script takes two arguments: the equation, and the name of the file to generate and play. e.g. <code>./bytebeat.sh &quot;(t/4)*(t&gt;&gt;8|((14 &amp; t)^3))&quot; test</code></li>
+</ol>
+<p>If you want to record the noise you've created, one is fairly user friendly and the other one is a bit clunky. </p>
+<ol>
+<li>The easiest way is to download and install Rogue Amoeba's <a href="https://rogueamoeba.com/loopback/" target="_blank">Loopback</a> to record your system audio. This is very simple and highly recommend it.</li>
+<li>
+Create a raw audio file on your computer and use <a href="https://www.audacityteam.org/" target="_blank">Audacity</a> to open it. This has mixed results for me.<ol>
+<li>Run your script to create the compiled Bytebeat script</li>
+<li><a href="shell.html">Pipe</a> the output of this newly compiled script to a file instead of piped to SoX, using <code>Ctrl + C</code> to end it after about a half second: <code>./test &gt; output.raw</code> </li>
+<li>
+Open the file in Audacity, using <code>File</code> &gt; <code>Import</code> &gt; <code>Raw Data...</code> with the following settings:<ul>
+<li>Encoding: Unsigned 8-bit PCM</li>
+<li>Byte Order: No endianness</li>
+<li>Channels: 1 (Mono)</li>
+<li>Start Offset: 0</li>
+<li>Amount to Import: 100</li>
+<li>Sample Rate: 8000</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2>References</h2>
+<ol>
+<li><a href="https://github.com/TuesdayNightMachines/Bytebeats" target="_blank">TuesdayNightMachine's Github page</a></li>
+<li><a href="https://greggman.com/downloads/examples/html5bytebeat/html5bytebeat.html#t=0&amp;e=0&amp;s=8000&amp;bb=5d00000100180000000000000000141d0150043e1f062919296ab90380807628655b351388d1ffe7d4a000" target="_blank">Gregg Tavares</a></li>
+<li><a href="http://wurstcaptures.untergrund.net/music/" target="_blank">Bemmu and rarefluid (in stereo!)</a></li>
+<li><a href="https://merveilles.town/web/statuses/105096777143471978" target="_blank">https://merveilles.town/web/statuses/105096777143471978</a></li>
+<li><a href="https://chrisrosser.net/posts/2020/04/06/using-sox-on-macos/" target="_blank">https://chrisrosser.net/posts/2020/04/06/using-sox-on-macos/</a></li>
+<li><a href="http://canonical.org/~kragen/bytebeat/" target="_blank">Kragen's Writeup</a></li>
+<li><a href="https://countercomplex.blogspot.com/2011/10/algorithmic-symphonies-from-one-line-of.html" target="_blank">The original post from Ville-Matias Heikkilä</a> and <a href="https://countercomplex.blogspot.com/2011/10/some-deep-analysis-of-one-line-music.html" target="_blank">his follow up post</a></li>
+<li><a href="https://zserge.com/posts/etude-in-c/" target="_blank">ZSerge's article where I first heard about it</a></li>
+<li><a href="https://www.youtube.com/watch?v=GtQdIYUtAHg" target="_blank">Bytebeat: Experimental music from very short C programs</a></li>
+<li><a href="https://www.youtube.com/watch?v=qlrs2Vorw2Y" target="_blank">Bytebeat: Experimental one-line algorithmic music - the 2nd iteration</a></li>
+<li><a href="https://www.youtube.com/watch?v=tCRPUv8V22o" target="_blank">Bytebeat: Music from very short programs - the 3rd iteration</a></li>
+<li><a href="https://web.archive.org/web/20160610140821/http://coleingraham.com/2013/04/28/bytebeat-shell-script/" target="_blank">https://web.archive.org/web/20160610140821/http://coleingraham.com/2013/04/28/bytebeat-shell-script/</a></li>
+<li><a href="http://royal-paw.com/2012/01/bytebeats-in-c-and-python-generative-symphonies-from-extremely-small-programs/" target="_blank">http://royal-paw.com/2012/01/bytebeats-in-c-and-python-generative-symphonies-from-extremely-small-programs/</a></li>
+<li><a href="https://gist.github.com/bzamecnik/a2d45dc0addb8d602d70b1d8df0f9fd0" target="_blank">https://gist.github.com/bzamecnik/a2d45dc0addb8d602d70b1d8df0f9fd0</a></li>
+<li><a href="https://mathr.co.uk/misc/2021-12-23_bytebeat.html" target="_blank">https://mathr.co.uk/misc/2021-12-23_bytebeat.html</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202201270916</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
