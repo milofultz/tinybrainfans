@@ -8,3 +8,8 @@
 - https://web.archive.org/web/20181229090358/https://breakermag.com/trapped-at-sea-with-cryptos-nouveau-riche/
 - https://shkspr.mobi/blog/2021/12/an-nft-without-a-blockchain-no-gas-fees-no-eth/
 - https://the-crypto-syllabus.com/yanis-varoufakis-on-techno-feudalism/
+- https://decrypt.co/91510/looksrare-has-reportedly-generated-8b-ethereum-nft-wash-trading
+- https://twitter.com/smlundberg/status/1486447254420566020
+- https://web3isgoinggreat.com/
+- https://web3isgoinggreat.com?id=2022-01-30-0
+- https://www.youtube.com/watch?v=kbYutOsrpvs
