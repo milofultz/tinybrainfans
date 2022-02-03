@@ -60,12 +60,31 @@ P2    # PGM file type ("Magic Identifier")
 
 ```
 
+### PPM
+
+A Portable Pixel Map is the same as above, except that it uses RGB triplets for the pixels instead.
+
+```
+P3  # "P3" means this is a RGB color image in ASCII
+3 2
+255 # "255" is the maximum value for each color
+
+# Each of the below is one pixel
+
+# R   G   B
+255   0   0  # red
+  0 255   0  # green
+  0   0 255  # blue
+255 255   0  # yellow
+255 255 255  # white
+  0   0   0  # black
+```
+
 ### Variations
 
 Name | Difference
 --- |  ---
 PBM (Bit Map) | Monochrome using image values 0 and 1. Uses `P1` as the type and lacks the third header value re: grayscale value. 
-PPM (Pixel Map) | Color using image value groups of `R G B`. (e.g. a single pixel can be represented by `80 80 40`). Uses `P3` as the type. 
 
 ## Examples
 
@@ -92,3 +111,4 @@ PPM (Pixel Map) | Color using image value groups of `R G B`. (e.g. a single pixe
 1. https://courses.cs.washington.edu/courses/cse373/00au/pgm.html
 1. http://netpbm.sourceforge.net/doc/pgm.html
 1. http://www.paulbourke.net/dataformats/ppm/
+1. https://eli.li/2022/01/19/a-quick-and-dirty-intro-to-the-pbm-file-format

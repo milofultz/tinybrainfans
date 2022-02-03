@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Big-O notation shows the speed of an algorithm at a large scale in the worst-case scenario using fuzzy estimates."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Big-O Notation</title><link rel="stylesheet" href="./tinystyle.css"><link rel="stylesheet alternate" href="./styles.css" title="Modern"></head><body>
+<main id="main"><article id="content"><h1 id="title">Big-O Notation</h1><p>Big-O notation shows the speed of an algorithm at a large scale in the worst-case scenario using fuzzy estimates. If you are looking for an item in a list and the item is the last element in the list, then the Big-O notation will be how long it takes to find that.</p>
+<h2>Common Notations</h2>
+<p>Big-O notation is usually represented as O(n), with mathematical formulas affecting the n inside. O represents the algorithm, n represents the number of elements.</p>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Notation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constant</td>
+<td><code>O(1)</code></td>
+<td>This always takes the same length of time, regardless of size. The code does not depend on the size of the problem.</td>
+</tr>
+<tr>
+<td>Logarithmic</td>
+<td><code>O(log(n))</code></td>
+<td>log(n) being the inverse of exponentiation. Reduces the problem in half each time through process</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td><code>O(n)</code></td>
+<td>This takes the same amount of time as there are elements in the list. Simple iterative or recursive programs.</td>
+</tr>
+<tr>
+<td>Log-linear</td>
+<td><code>O(n\*log(n))</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Quadric</td>
+<td><code>O(n^2)</code></td>
+<td>Time goes up exponentially with the amount of elements.</td>
+</tr>
+<tr>
+<td>Cubic</td>
+<td><code>O(n^3)</code></td>
+<td>Time goes up even more exponentially.</td>
+</tr>
+<tr>
+<td>Exponential</td>
+<td><code>O(b^n)</code></td>
+<td>Time goes up an exponent per element. Nested loops or recursive calls.</td>
+</tr>
+<tr>
+<td>Factorial</td>
+<td><code>O(n!)</code></td>
+<td>Time goes up by factorial.</td>
+</tr>
+</tbody></table><h2>Rules of Thumb</h2>
+<h3>Constants can always be removed from a Big-O notation</h3>
+<p>Since Big-O only cares about the really biggest cases, as the numbers of elements in a list go up, even if there is a constant that is being added or multiplied, it won't affect the speed enough to matter. Exception being if the constant is of a very very large size, but even then, if the number of elements grows large enough.</p>
+<h3>Use the largest exponent</h3>
+<p>If there is a formula that determines the length of time an algorithm will take, like <code>log(n)^3 + 15n^2 + 2n^3</code>, then Big-O will see the largest possible number or exponent (<code>n^3</code>) and use that: <code>O(n^3)</code>.</p>
+<p>Big-O is 'rounding' to the nearest and simplest notation that is closest to the real outcome.</p>
+<h3>Discerning the time taken per loop</h3>
+<p>In a program, if you have a loop over your list that will operate n times, you would write this as <code>f(n) = n = O(n)</code> If within that loop, you find another loop that will operate n*2 times: <code>f(n) = n * 2n = 2n^2 = O(n^2)</code>.</p>
+<h2>References:</h2>
+<ol>
+<li><a href="https://www.youtube.com/watch?v=zUUkiEllHG0&amp;list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu&amp;index=3" target="_blank">https://www.youtube.com/watch?v=zUUkiEllHG0&amp;list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu&amp;index=3</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logarithm" target="_blank">https://en.wikipedia.org/wiki/Logarithm</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Natural_logarithm" target="_blank">https://en.wikipedia.org/wiki/Natural_logarithm</a></li>
+<li>Intro to Programming and Computation: Chapters 9.1–9.3.1, 9.3.3, and 9.3.5</li>
+<li><a href="https://www.youtube.com/watch?v=7lQXYl_L28w&amp;list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA&amp;index=38&amp;t=0s" target="_blank">https://www.youtube.com/watch?v=7lQXYl_L28w&amp;list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA&amp;index=38&amp;t=0s</a></li>
+<li><a href="https://eli.li/2022/01/26/notes-on-big-o-notation" target="_blank">https://eli.li/2022/01/26/notes-on-big-o-notation</a></li>
+</ol>
+
+<p class="last-modified">Last modified: 202201312136</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

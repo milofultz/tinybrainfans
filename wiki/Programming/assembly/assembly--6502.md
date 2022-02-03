@@ -135,7 +135,8 @@ Any label can be substituted for a direct memory address.
 - https://irkenkitties.com/blog/2015/03/29/creating-sound-on-the-nes/
 - http://www.6502.org/tutorials/compare_beyond.html
 - http://visual6502.org/JSSim/index.html
-- http://retro.hansotten.nl/6502-sbc/lee-davison-web-site/some-code-bits/
+- PRNG and others: http://retro.hansotten.nl/6502-sbc/lee-davison-web-site/some-code-bits/
+- https://eli.li/2022/01/27/notes-on-6502-assembly
 
 Instructions and Flags Reference:
 
