@@ -42,6 +42,14 @@ class WidgetTestCase(unittest.TestCase):
 
 You can run your test suite by running `python3 -m unittest` in the root directory of the program. This will search for files using `unittest` within the current directory.
 
+### Run Part Of Test Suite
+
+To run only certain classes, you can pass them at the end of the `python3` call:
+
+```
+python3 -m unittest filename.WidgetTestCase
+```
+
 ## Mocking Input
 
 To mock a call to `input`, you can utilize `mock` in the `unittest` library. The `patch` decorator allows you to specify a default return.[4]
@@ -76,3 +84,4 @@ class Test(unittest.TestCase):
 1. https://docs.python.org/3/library/unittest.html#skipping-tests-and-expected-failures
 1. https://stackoverflow.com/questions/2066508/disable-individual-python-unit-tests-temporarily
 1. https://stackoverflow.com/questions/21046717/python-mocking-raw-input-in-unittests
+1. https://stackoverflow.com/questions/1068246/python-unittest-how-to-run-only-part-of-a-test-file
