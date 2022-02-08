@@ -24,6 +24,8 @@ Save | `:w` |
 Save and quit | `:wq` |
 Save only if file changed and quit | `:x` |
 Save As | `:w newFileName` |
+Open for editing | `:e path/to/file`
+Open for reading/viewing | `:v path/to/file`
 
 ### Undo/Redo
 
@@ -49,6 +51,10 @@ Move cursor (Left, Down, Up, Right) | `h`, `j`, `k`, `l` |
 See current cursor location and information | `Ctrl + g` |
 Go to start/end of next word | `w`/`e`
 Go to start/end of line | `0`/`$`
+Go to next page | `Ctrl + f`
+Go to next half page | `Ctrl + d`
+Go to previous page | `Ctrl + b`
+Go to previous half page | `Ctrl + u`
 Go to line`n` | `[n]G` |
 Go to beginning of file | `gg` |
 Go to end of file | `G` |
