@@ -1,0 +1,126 @@
+# Project Euler 001 in FRACTRAN
+
+## [The Problem](https://projecteuler.net/problem=1)
+
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+[below 20: 3, 5, 6, 9, 10, 12, 15, 18] 15 is in both
+
+Find the sum of all the multiples of 3 or 5 below 1000.
+
+## The Program
+
+r2:          total
+r3:          three
+r5:          five
+r7:          sum
+r11:         temp
+r13,r17:     State Alpha One and Two
+r19,r23,r29: State Beta Three, Five, and ThreeAndFive
+r31,r37:     State Gamma One and Two
+r41,r43:     State Delta One and Two
+r47:         end
+
+### Pseudocode
+
+while true {
+    if (total >= 1000 && State Alpha One >= 1) {
+        decrement total by 1000
+        decrement alphaA
+        increment end
+    // State Alpha
+    } else if (five >= 1 and three >= 1 and State Alpha One >= 1) {
+        decrement three, five, and State Alpha One
+        increment total and State Alpha Two
+    } else if (State Alpha Two >= 1) {
+        decrement State Alpha Two
+        increment State Alpha One
+    } else if (three >= 1 && State Alpha One >= 1) {
+        decrement three and State Alpha One
+        increment State Beta Three
+    } else if (five >= 1 && State Alpha One >= 1) {
+        decrement five and State Alpha One
+        increment State Beta Five
+    } else if (State Alpha One >= 1) {
+        decrement State Alpha One
+        State Beta ThreeAndFive
+    // State Beta Three
+    } else if (State Beta Three >= 1) {
+        decrement State Beta Three
+        increment five by 5
+        increment three and State Gamma One
+    // State Beta Five
+    } else if (State Beta Five >= 1) {
+        decrement State Beta Five
+        increment three by 3
+        increment five and State Gamma One
+    // State Beta ThreeAndFive
+    } else if (State Beta ThreeAndFive >= 1) {
+        decrement State Beta ThreeAndFive
+        increment three by 3
+        increment five by 5
+        increment State Gamma One
+    // State Gamma
+    } else if (total >= 1 && State Gamma One >= 1) {
+        decrement total and State Gamma One
+        increment sum, temp, and State Gamma Two
+    } else if (State Gamma Two >= 1) {
+        decrement State Gamma Two
+        increment State Gamma One
+    } else if (State Gamma One >= 1) {
+        decrement State Gamma One
+        increment State Delta One
+    // State Delta
+    } else if (temp >= 1 && State Delta One >= 1) {
+        decrement temp and State Delta One
+        increment total and State Delta Two++
+    } else if (State Delta Two >= 1) {
+        decrement State Delta Two
+        increment State Delta One
+    } else if (State Delta One >= 1) {
+        decrement State Delta One
+        increment State Alpha One
+    } else {
+        break
+    }
+}
+
+## FRACTRAN Pseudocode
+
+(
+    47 / 2^1000 * 13,
+    17 / 3 * 5 * 13,
+    13 / 17,
+    19 / 3 * 13,
+    23 / 5 * 13,
+    29 / 13,
+    3 * 5^5 * 31 / 19,
+    3^3 * 5 * 31 / 23,
+    3^3 * 5^5 * 31 / 29,
+    7 * 11 * 37 / 2 * 31,
+    31 / 37,
+    41 / 31,
+    2 * 43 / 11 * 41,
+    41 / 43,
+    13 / 41
+)
+
+// Expanded
+
+(
+    47 / 2^1000 * 13,
+    17 / 195,
+    13 / 17,
+    19 / 39,
+    23 / 65,
+    29 / 13,
+    290,625 / 19,
+    4185 / 23,
+    2,615,625 / 29,
+    2849 / 62,
+    31 / 37,
+    41 / 31,
+    86 / 451,
+    41 / 43,
+    13 / 41
+)

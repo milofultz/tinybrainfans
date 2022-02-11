@@ -119,6 +119,144 @@
 <p>It is not possible for a FRACTRAN denominator to directly test if a variable is 0 (However, an indirect test can be implemented by creating a default fraction that is placed after other fractions that test a particular variable.).[1]</p>
 </li>
 </ul>
+<h2>Examples[10]</h2>
+<p>You can find a lot more details on each of these in the references below.</p>
+<h3>Comparators</h3>
+<pre><code>Greater Than
+
+INPUT (n): 2^a * 3^b * 5^isGreater
+OUTPUT:    5^isGreater
+
+r2: a // first number
+r3: b // second number
+r5: isGreater // boolean; starts off at 1
+
+(
+    1 / 6,
+    1 / 15,
+    1 / 2,
+    1 / 3
+)
+</code></pre>
+<pre><code>Less Than
+
+INPUT (n): 2^a * 3^b * 5^isLess
+OUTPUT:    5^isLess
+
+r2: a // first number
+r3: b // second number
+r5: isLess // boolean; starts off at 1
+
+(
+    1 / 6,
+    1 / 10,
+    1 / 2,
+    1 / 3
+)
+</code></pre>
+<pre><code>Equal To
+
+INPUT (n): 2^a * 3^b + 5^isEqual
+OUTPUT:    5^isEqual
+
+r2: a // first number
+r3: b // second number
+r5: isEqual // boolean; starts off at 1
+
+(
+    1 / 2 * 3,
+    1 / 2 * 5,
+    1 / 3 * 5,
+    1 / 2,
+    1 / 3
+)
+</code></pre>
+<h3>Subtraction</h3>
+<pre><code>INPUT (n): 2^a * 3^b
+OUTPUT:    2^a - b (or) 3^b - a
+
+r2: a // first number
+r3: b // second number
+
+(
+    1 / 2 * 3
+)
+</code></pre>
+<h3>Multiplication</h3>
+<pre><code>INPUT (n): 2^a * 3^b
+OUTPUT:    5^a * b
+
+r2: a // first number
+r3: b // second number
+r5: Product // resulting product
+r7: Temp // aids in the repeated addition
+r11,r13: State Beta One and Two // changes to restart addition process
+
+(
+    5 * 7 * 13 / 3 * 11,
+    11 / 13,
+    1 / 11,
+    3 / 7,
+    11 / 2,
+    1 / 3,
+)
+</code></pre>
+<h3>Division</h3>
+<pre><code>INPUT (n): 2^a * 3^b
+OUTPUT:    5^a / b, 7^a % b
+
+r2: Dividend
+r3: Divisor
+r5: Quotient
+r7: Remainder
+r11-r13: State Alpha One and Two // starts with Alpha One at 1
+r17-r19: State Beta One and Two
+
+(
+    7 * 13 / 2 * 3 * 11,
+    11 / 13,
+    1 / 3 * 11,
+    5 * 17 / 11,
+    3 * 19 / 7 * 17,
+    17 / 19,
+    11 / 17,
+    1 / 3
+)
+</code></pre>
+<h3><a href="https://projecteuler.net/problem=1" target="_blank">Euler Problem 001</a></h3>
+<p><em>Honestly, this is terrible, but it does work. The answer comes out to 7^233,168, which is about 10^(10^5.29)</em></p>
+<pre><code>INPUT (n): 13^State Alpha One
+OUTPUT:    7^sum
+
+r2:          total
+r3:          three
+r5:          five
+r7:          sum
+r11:         temp
+r13,r17:     State Alpha One and Two
+r19,r23,r29: State Beta Three, Five, and ThreeAndFive
+r31,r37:     State Gamma One and Two
+r41,r43:     State Delta One and Two
+r47:         end
+
+(
+    47 / 2^1000 * 13,
+    17 / 3 * 5 * 13,
+    13 / 17,
+    19 / 3 * 13,
+    23 / 5 * 13,
+    29 / 13,
+    3 * 5^5 * 31 / 19,
+    3^3 * 5 * 31 / 23,
+    3^3 * 5^5 * 31 / 29,
+    7 * 11 * 37 / 2 * 31,
+    31 / 37,
+    41 / 31,
+    2 * 43 / 11 * 41,
+    41 / 43,
+    13 / 41
+)
+</code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/FRACTRAN" target="_blank">https://en.wikipedia.org/wiki/FRACTRAN</a></li>
@@ -130,5 +268,14 @@
 <li><a href="https://en.wikipedia.org/wiki/FRACTRAN#Multiplication" target="_blank">https://en.wikipedia.org/wiki/FRACTRAN#Multiplication</a></li>
 <li><a href="http://raganwald.com/2020/05/03/fractran.html" target="_blank">http://raganwald.com/2020/05/03/fractran.html</a></li>
 <li><a href="https://github.com/raganwald/FRACTRAN" target="_blank">https://github.com/raganwald/FRACTRAN</a></li>
+<li>
+Example Programs<ul>
+<li><a href="./Comparators.fractran" target="_blank">Comparators</a></li>
+<li><a href="./Subtraction.fractran" target="_blank">Subtraction</a></li>
+<li><a href="./Multiplication.fractran" target="_blank">Multiplication</a></li>
+<li><a href="./Division.fractran" target="_blank">Division</a></li>
+<li><a href="./Euler001.fractran" target="_blank">Euler Problem 001</a></li>
+</ul>
+</li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section><p class="last-modified">Last modified: 202201271012</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="finite-state-machines.html">Finite State Machines</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section><p class="last-modified">Last modified: 202202110647</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

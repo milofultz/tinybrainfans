@@ -1,6 +1,9 @@
 :root {
-  --black: #222;
-  --white: #eee;
+  --dark-black: #000;
+  --bright-white: #fff;
+
+  --black: #202227;
+  --white: #dde0e7;
 
   --link-light: #00e;
   --link-dark: #0ae;
@@ -8,6 +11,7 @@
 
 :root {
   --background: var(--white);
+  --header: var(--dark-black);
   --text: var(--black);
   --link: var(--link-light);
 }
@@ -15,6 +19,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--black);
+    --header: var(--bright-white);
     --text: var(--white);
     --link: var(--link-dark);
   }
@@ -24,13 +29,20 @@ body {
   background-color: var(--background);
   color: var(--text);
   font-family: sans-serif;
-  line-height: 1.5;
-  margin: auto;
+  line-height: 1.25;
   max-width: 50rem;
   padding: 1rem;
 }
 
-h1 { font-size: 2rem; }
+h1, h2, h3, h4, h5, h6 {
+  color: var(--header);
+  margin: 2em 0 1em;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-top: 1em;
+}
 
 a { color: var(--link); }
 a[target="_blank"]::after {
@@ -46,7 +58,7 @@ pre {
 }
 
 table { border-collapse: collapse; }
-tr { border-bottom: .125rem solid var(--text); }
+tr, th, td { border: 1px solid var(--text); }
 th, td {
   padding: .5rem;
   text-align: left;

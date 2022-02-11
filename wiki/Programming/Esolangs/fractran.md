@@ -128,6 +128,166 @@ These are some things I've deduced after messing with this and seeing some progr
 
 - It is not possible for a FRACTRAN denominator to directly test if a variable is 0 (However, an indirect test can be implemented by creating a default fraction that is placed after other fractions that test a particular variable.).[1]
 
+## Examples[10]
+
+You can find a lot more details on each of these in the references below.
+
+### Comparators
+
+```
+Greater Than
+
+INPUT (n): 2^a * 3^b * 5^isGreater
+OUTPUT:    5^isGreater
+
+r2: a // first number
+r3: b // second number
+r5: isGreater // boolean; starts off at 1
+
+(
+    1 / 6,
+    1 / 15,
+    1 / 2,
+    1 / 3
+)
+```
+
+```
+Less Than
+
+INPUT (n): 2^a * 3^b * 5^isLess
+OUTPUT:    5^isLess
+
+r2: a // first number
+r3: b // second number
+r5: isLess // boolean; starts off at 1
+
+(
+    1 / 6,
+    1 / 10,
+    1 / 2,
+    1 / 3
+)
+```
+
+```
+Equal To
+
+INPUT (n): 2^a * 3^b + 5^isEqual
+OUTPUT:    5^isEqual
+
+r2: a // first number
+r3: b // second number
+r5: isEqual // boolean; starts off at 1
+
+(
+    1 / 2 * 3,
+    1 / 2 * 5,
+    1 / 3 * 5,
+    1 / 2,
+    1 / 3
+)
+```
+
+### Subtraction
+
+```
+INPUT (n): 2^a * 3^b
+OUTPUT:    2^a - b (or) 3^b - a
+
+r2: a // first number
+r3: b // second number
+
+(
+    1 / 2 * 3
+)
+```
+
+### Multiplication
+
+```
+INPUT (n): 2^a * 3^b
+OUTPUT:    5^a * b
+
+r2: a // first number
+r3: b // second number
+r5: Product // resulting product
+r7: Temp // aids in the repeated addition
+r11,r13: State Beta One and Two // changes to restart addition process
+
+(
+    5 * 7 * 13 / 3 * 11,
+    11 / 13,
+    1 / 11,
+    3 / 7,
+    11 / 2,
+    1 / 3,
+)
+```
+
+### Division
+
+```
+INPUT (n): 2^a * 3^b
+OUTPUT:    5^a / b, 7^a % b
+
+r2: Dividend
+r3: Divisor
+r5: Quotient
+r7: Remainder
+r11-r13: State Alpha One and Two // starts with Alpha One at 1
+r17-r19: State Beta One and Two
+
+(
+    7 * 13 / 2 * 3 * 11,
+    11 / 13,
+    1 / 3 * 11,
+    5 * 17 / 11,
+    3 * 19 / 7 * 17,
+    17 / 19,
+    11 / 17,
+    1 / 3
+)
+```
+
+### [Euler Problem 001](https://projecteuler.net/problem=1)
+
+*Honestly, this is terrible, but it does work. The answer comes out to 7^233,168, which is about 10^(10^5.29)*
+
+```
+INPUT (n): 13^State Alpha One
+OUTPUT:    7^sum
+
+r2:          total
+r3:          three
+r5:          five
+r7:          sum
+r11:         temp
+r13,r17:     State Alpha One and Two
+r19,r23,r29: State Beta Three, Five, and ThreeAndFive
+r31,r37:     State Gamma One and Two
+r41,r43:     State Delta One and Two
+r47:         end
+
+(
+    47 / 2^1000 * 13,
+    17 / 3 * 5 * 13,
+    13 / 17,
+    19 / 3 * 13,
+    23 / 5 * 13,
+    29 / 13,
+    3 * 5^5 * 31 / 19,
+    3^3 * 5 * 31 / 23,
+    3^3 * 5^5 * 31 / 29,
+    7 * 11 * 37 / 2 * 31,
+    31 / 37,
+    41 / 31,
+    2 * 43 / 11 * 41,
+    41 / 43,
+    13 / 41
+)
+```
+
 ## References
 
 1. https://en.wikipedia.org/wiki/FRACTRAN
@@ -135,7 +295,13 @@ These are some things I've deduced after messing with this and seeing some progr
 3. https://www.youtube.com/watch?v=548BH-YFT1E
 4. [John Conway's original paper](https://www.gwern.net/docs/cs/1987-conway.pdf)
 5. https://esolangs.org/wiki/Fractran
-5. https://link.springer.com/chapter/10.1007%2F978-1-4612-4808-8_2
-5. https://en.wikipedia.org/wiki/FRACTRAN#Multiplication
-5. http://raganwald.com/2020/05/03/fractran.html
-5. https://github.com/raganwald/FRACTRAN
+6. https://link.springer.com/chapter/10.1007%2F978-1-4612-4808-8_2
+7. https://en.wikipedia.org/wiki/FRACTRAN#Multiplication
+8. http://raganwald.com/2020/05/03/fractran.html
+9. https://github.com/raganwald/FRACTRAN
+10. Example Programs
+    - [Comparators](./Comparators.fractran)
+    - [Subtraction](./Subtraction.fractran)
+    - [Multiplication](./Multiplication.fractran)
+    - [Division](./Division.fractran)
+    - [Euler Problem 001](./Euler001.fractran)

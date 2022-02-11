@@ -1,0 +1,193 @@
+# Multiplication in FRACTRAN
+
+## The Program
+
+INPUT (n): 2^a * 3^b
+OUTPUT:    5^a * b
+
+r2: a // first number
+r3: b // second number
+r5: Product // resulting product
+r7: Temp // aids in the repeated addition
+r11,r13: State Beta One and Two // changes to restart addition process
+
+
+### Pseudocode
+
+while true {
+    // Fraction A
+    if (b >= 1 && State Beta One >= 1) {
+        decrement a and State Beta One
+        increment Product, Temp, and State Beta Two
+    // Fraction B
+    } else if (State Beta Two >= 1) {
+        decrement State Beta Two
+        increment State Beta One
+    // Fraction C
+    } else if (State Beta One >= 1) {
+        decrement State Beta One
+    // Fraction D
+    } else if (Temp >= 1) {
+        decrement Temp
+        increment b
+    // Fraction E
+    } else if (a >= 1) {
+        decrement a
+        increment State Beta One
+    // Fraction F
+    } else if (b >= 1) {
+        decrement b
+    } else {
+        break
+    }
+}
+
+
+### FRACTRAN
+
+(
+    5 * 7 * 13 / 3 * 11,
+    11 / 13,
+    1 / 11,
+    3 / 7,
+    11 / 2,
+    1 / 3,
+)
+
+
+## Analysis
+
+### States
+
+There are two states: State Alpha and State Beta.
+
+- State Alpha: the default starting state, composed of fractions D, E, and F.
+    This prepares for the adding state, transferring the contents of r7
+    (Temp) => r3 (b).
+- State Beta: the adding state, composed of fractions A, B, and C. This state
+    transfers the contents of r3 (b) => r5 (Total) and r7 (Temp).
+
+(State Alpha is represented here as a *lack* of the State Beta flags being set.
+You'll notice that the first three fractions contain a State Beta flag in the
+denominator, flip-flopping in a way so that they will occur in order, even
+with us resetting back to the beginning of the program with a new *n* each
+step.)
+
+After decrementing r2, we enter State Beta. Once r3 is empty, it switches back
+to State Alpha.
+
+
+## Examples
+
+### Example 1
+
+We will test that 2 * 2 == 4. Our initial value (n) should be 2^2 * 3^2. Our
+result should be r5 == 4.
+
+r2: 2
+r3: 2
+r5-r13: 0
+n: 2^2 * 3^2
+
+Decrement register a and enter State Beta.
+E: (2^2 * 3^2) * (11 / 2)
+n: 2^1 * 3^2 * 11
+
+Decrement register b and increment Product and Temp.
+A: (2^1 * 3^2 * 11^1) * (5 * 7 * 13 / 3 * 11)
+n: 2^1 * 3^1 * 5^1 * 7^1 * 13^1
+
+Ensure that we repeat the last step until register b is zero.
+B: (2^1 * 3^1 * 5 * 7 * 13) * (11 / 13)
+n: 2^1 * 3^1 * 5^1 * 7^1 * 11^1
+
+Decrement register b and increment Product and Temp.
+A: (2^1 * 3^1 * 5^1 * 7^1 * 11^1) * (5 * 7 * 13 / 3 * 11)
+n: 2^1 * 5^2 * 7^2 * 13^1
+
+Ensure that we repeat the last step until register b is zero.
+B: (2 * 5^2 * 7^2 * 13^1) * (11 / 13)
+n: 2^1 * 5^2 * 7^2 * 11^1
+
+Exit State Beta, and enter State Alpha.
+C: (2 * 5^2 * 7^2 * 11^1) * (1 / 11)
+n: 2^1 * 5^2 * 7^2
+
+Decrement Temp and increment register b.
+D: (2 * 5^2 * 7^2) * (3 / 7)
+n: 2^1 * 3^1 * 5^2 * 7^1
+
+Decrement Temp and increment register b. Temp is now zero.
+D: (2^1 * 3^1 * 5^2 * 7^1) * (3 / 7)
+n: 2^1 * 3^2 * 5^2
+
+Decrement register a and enter State Beta.
+E: (2^1 * 3^2 * 5^2) * (11 / 2)
+n: 3^2 * 5^2 * 11
+
+Decrement register b and increment Product and Temp.
+A: (3^2 * 5^2 * 11^1) * (5 * 7 * 13 / 3 * 11)
+n: 3^1 * 5^3 * 7^1 * 13^1
+
+Ensure that we repeat the last step until register b is zero.
+B: (3^1 * 5^3 * 7^1 * 13^1) * (11 / 13)
+n: 3^1 * 5^3 * 7^1 * 11^1
+
+Decrement register b and increment Product and Temp.
+A: (3^1 * 5^3 * 7^1 * 11^1) * (5 * 7 * 13 / 3 * 11)
+n: 5^4 * 7^2 * 13^1
+
+Ensure that we repeat the last step until register b is zero.
+B: (5^4 * 7^2 * 13^1) * (11 / 13)
+n: 5^4 * 7^2 * 11^1
+
+Exit State Beta, and enter State Alpha.
+C: (5^4 * 7^2 * 11^1) * (1 / 11)
+n: 5^4 * 7^2
+
+Decrement Temp and increment register b.
+D: (5^4 * 7^2) * (3 / 7)
+n: 3^1 * 5^4 * 7^1
+
+Decrement Temp and increment register b.
+D: (3 * 5^4 * 7^1) * (3 / 7)
+n: 3^2 * 5^4
+
+Decrement register b.
+F: (3^2 * 5^4) * (1 / 3)
+n: 3^1 * 5^4
+
+Decrement register b. b is now zero.
+F: (3^1 * 5^4) * (1 / 3)
+n: 5^4
+
+HALT
+
+
+### Example 2
+
+We will test that 2 * 0 == 0. Our initial value (n) should be 2^2 * 3^0. Our
+result should be r5 == 0.
+
+r2: 2
+r3: 0
+r5-r13: 0
+n: 2^2 * 3^0
+
+Decrement register a and enter State Beta.
+E: (2^2) * (11 / 2)
+n: 2^1 * 11^1
+
+Exit State Beta, and enter State Alpha.
+C: (2^1 * 11^1) * (1 / 11)
+n: 2^1
+
+Decrement register a and enter State Beta.
+E: (2^1) * (11 / 2)
+n: 11^1
+
+Exit State Beta, and enter State Alpha.
+C: (11^1) * (1 / 11)
+n: 1 or 5^0
+
+HALT

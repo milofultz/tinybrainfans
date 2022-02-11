@@ -1,0 +1,288 @@
+# Comparators in FRACTRAN
+
+## Greater Than
+
+INPUT (n): 2^a * 3^b * 5^isGreater
+OUTPUT:    5^isGreater
+
+r2: a // first number
+r3: b // second number
+r5: isGreater // boolean; starts off at 1
+
+
+### The Program
+
+#### Pseudocode
+
+while true {
+    if (r2 >= 1 && r3 >= 1) {
+        decrement a and b
+    } else if (r3 >= 1 && r5 >= 1) {
+        decrement b and isGreater
+    } else if (r2 >= 1) {
+        decrement a
+    } else if (r3 >= 1) {
+        decrement b
+    } else {
+        break
+    }
+}
+
+#### FRACTRAN
+
+(
+    1 / 6,
+    1 / 15,
+    1 / 2,
+    1 / 3
+)
+
+
+### Analysis
+
+This is essentially a subtraction algorithm with a state to hold the greater
+than boolean. Once one of the values hits zero, we check to see if the remaining
+value is the second value. If so, we flip the isGreater flag to false.
+
+
+### Examples
+
+#### Example 1
+
+We will test that 5 > 2 is true. Our initial value (n) should be
+2^5 * 3^2 * 5^1. Our result should be r5 == 1, which means true.
+
+r2: 5
+r3: 2
+r5: 1
+n: 2^5 * 3^2 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^5 * 3^2 * 5^1) * (1 / 2 * 3)
+n: 2^4 * 3^1 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^4 * 3^1 * 5^1) * (1 / 2 * 3)
+n: 2^3 * 5^1
+
+Zero out remaining values.
+C: (2^3 * 5^1) * (1 / 2)
+n: 2^2 * 5^1
+
+Zero out remaining values.
+C: (2^2 * 5^1) * (1 / 2)
+n: 2^1 * 5^1
+
+Zero out remaining values.
+C: (2^1 * 5^1) * (1 / 2)
+n: 5^1
+
+HALT
+
+#### Example 2
+
+We will test that 1 > 2 is true. Our initial value (n) should be
+2^1 * 3^2 * 5^1. Our result should be r5 == 0, which means false.
+
+r2: 1
+r3: 2
+r5: 1
+n: 2^1 * 3^2 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^1 * 3^2 * 5^1) * (1 / 2 * 3)
+n: 3^1 * 5^1
+
+Remove isGreater flag
+B: (3^1 * 5^1) * (1 / 15)
+n: 1 or 5^0
+
+HALT
+
+
+## Less Than
+
+INPUT (n): 2^a * 3^b * 5^isLess
+OUTPUT:    5^isLess
+
+r2: a // first number
+r3: b // second number
+r5: isLess // boolean; starts off at 1
+
+
+### The Program
+
+#### Pseudocode
+
+while true {
+    if (r2 >= 1 && r3 >= 1) {
+        decrement a and b
+    } else if (r2 >= 1 && r5 >= 1) {
+        decrement b and isLess
+    } else if (r2 >= 1) {
+        decrement a
+    } else if (r3 >= 1) {
+        decrement b
+    } else {
+        break
+    }
+}
+
+#### FRACTRAN
+
+(
+    1 / 6,
+    1 / 10,
+    1 / 2,
+    1 / 3
+)
+
+
+### Analysis
+
+This is the same as above, but we change which variable we test at the end, from
+the first to the second.
+
+
+### Examples
+
+#### Example 1
+
+We will test that 2 < 3 is true. Our initial value (n) should be
+2^2 * 3^3 * 5^1. Our result should be r5 == 1, which means true.
+
+r2: 2
+r3: 3
+r5: 1
+n: 2^2 * 3^3 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^2 * 3^3 * 5^1) * (1 / 2 * 3)
+n: 2^1 * 3^2 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^1 * 3^2 * 5^1) * (1 / 2 * 3)
+n: 3^1 * 5^1
+
+Zero out remaining values.
+D: (3^1 * 5^1) * (1 / 3)
+n: 5^1
+
+HALT
+
+#### Example 2
+
+We will test that 3 < 2 is true. Our initial value (n) should be
+2^3 * 3^2 * 5^1. Our result should be r5 == 0, which means false.
+
+r2: 3
+r3: 2
+r5: 1
+n: 2^3 * 3^2 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^3 * 3^2 * 5^1) * (1 / 2 * 3)
+n: 2^2 * 3^1 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^2 * 3^1 * 5^1) * (1 / 2 * 3)
+n: 2^1 * 5^1
+
+Remove isLess flag
+B: (2^1 * 5^1) * (1 / 10)
+n: 1 or 5^0
+
+HALT
+
+
+## Equal To
+
+INPUT (n): 2^a * 3^b + 5^isEqual
+OUTPUT:    5^isEqual
+
+r2: a // first number
+r3: b // second number
+r5: isEqual // boolean; starts off at 1
+
+
+### The Program
+
+#### Pseudocode
+
+while true {
+    if (r2 >= 1 && r3 >= 1) {
+        decrement a and b
+    } else if (r2 >= 1 && r5 >= 1) {
+        decrement a and isEqual
+    } else if (r3 >= 1 && r5 >= 1) {
+        decrement b and isEqual
+    } else if (r2 >= 1) {
+        decrement a
+    } else if (r3 >= 1) {
+        decrement b
+    } else {
+        break;
+    }
+}
+
+#### FRACTRAN
+
+(
+    1 / 6,
+    1 / 10,
+    1 / 15,
+    1 / 2,
+    1 / 3
+)
+
+
+### Analysis
+
+This works the same as the previous function for "greater than", but checks both
+variables to set the flag. If either variable holds a value, then the flag is
+set to false.
+
+
+### Example
+
+#### Example 1
+
+We will test that 3 == 2. Our initial value (n) should be 2^3 * 3^2 * 5^1. Our
+result should be r5 == 0, or false.
+
+r2: 3
+r3: 2
+r5: 1
+n: 2^3 * 3^2 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^3 * 3^2 * 5^1) * (1 / 2^1 * 3^1)
+n: 2^2 * 3^1 * 5^1
+
+Decrement both values until one reaches zero.
+A: (2^2 * 3^1 * 5^1) * (1 / 2^1 * 3^1)
+n: 2^1 * 5^1
+
+Remove isEqual flag
+B: 2^1 * 5^1 * (1) / 2^1 * 5^1
+n: 1
+
+HALT
+
+#### Example 2
+
+We will test that 2 == 2. Our initial value (n) should be 2^2 * 3^2 * 5^1. Our
+result should be r5 == 1, or true.
+
+r2: 1
+r3: 1
+r5: 1
+n: 2^1 * 3^1 * 5^1
+
+A: (2^2 * 3^2 * 5^1) * (1 / 2^1 * 3^1)
+n: 2^1 * 3^1 * 5^1
+
+A: (2^1 * 3^1 * 5^1) * (1 / 2^1 * 3^1)
+n: 5^1
+
+HALT

@@ -1,0 +1,78 @@
+# Subtraction in FRACTRAN
+
+## The Program
+
+INPUT (n): 2^a * 3^b
+OUTPUT:    2^a - b (or) 3^b - a
+
+r2: a // first number
+r3: b // second number
+
+
+### Pseudocode
+
+while true {
+    // Fraction A
+    if (r2 >= 1 && r3 >= 1) {
+        decrement r2 and r3;
+    } else {
+        break;
+    }
+}
+
+
+### FRACTRAN
+
+(
+    1 / 6
+)
+
+
+## Examples
+
+### Example 1
+
+We will test is that 5 - 2 == 3. Our initial value (n) should be 2^5 * 3^2. Our
+result should be r2 == 3.
+
+r2: 5
+r3: 2
+n: 2^5 * 3^2
+
+Begin Program:
+
+Decrement both values.
+A: (2^5 * 3^2) * (1^1 / 2^1 * 3^1)
+n: 2^4 * 3^1
+
+Decrement both values.
+A: (2^4 * 3^1) * (1^1 / 2^1 * 3^1)
+n: 2^3
+
+HALT
+
+
+### Example 2
+
+We will test that 3 - 3 == 0. Our initial value (n) should be 2^3 * 3^3. Our
+result should be r2 == 0.
+
+r2: 3
+r3: 3
+n: 2^3 * 3^3 = 216
+
+Begin Program:
+
+Decrement both values.
+A: 2^3 * 3^3 * (1) / 2^1 * 3^1
+n: 2^2 * 3^2
+
+Decrement both values.
+A: 2^2 * 3^2 * (1) / 2^1 * 3^1
+n: 2^1 * 3^1
+
+Decrement both values.
+A: 2^1 * 3^1 * (1) / 2^1 * 3^1
+n: 1 or 2^0 * 3^0
+
+HALT
