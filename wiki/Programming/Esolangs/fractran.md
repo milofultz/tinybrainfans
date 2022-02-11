@@ -300,8 +300,8 @@ r47:         end
 8. http://raganwald.com/2020/05/03/fractran.html
 9. https://github.com/raganwald/FRACTRAN
 10. Example Programs
-    - [Comparators](./Comparators.fractran)
-    - [Subtraction](./Subtraction.fractran)
-    - [Multiplication](./Multiplication.fractran)
-    - [Division](./Division.fractran)
-    - [Euler Problem 001](./Euler001.fractran)
+    - [Comparators](./Comparators.fractran.txt)
+    - [Subtraction](./Subtraction.fractran.txt)
+    - [Multiplication](./Multiplication.fractran.txt)
+    - [Division](./Division.fractran.txt)
+    - [Euler Problem 001](./Euler001.fractran.txt)
