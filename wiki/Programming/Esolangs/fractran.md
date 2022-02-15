@@ -29,7 +29,7 @@ Following rule 1, with an input (*n*) of `18` aka `2^1 * 3^2` and the list of fr
 
 ## How It Works
 
-Going through this section, I *highly* recommend going over the above example between each section, integrating the new ideas to better understand what is happening.
+Going through this section, I *highly* recommend going over the above example between each section, integrating the new ideas to better understand what is happening. Going through the {{paper computing}} examples on this site will also prepare you for this, if you aren't too familiar with low-level programming.
 
 ### Memory and Registers
 

@@ -4,9 +4,31 @@
 <ul>
 <li><code>cp [-r] ./source ./destination</code> - Copy file or directory <code>[-r]</code> from source to destination</li>
 <li><code>mv [-r] ./source ./destination</code> - Move/rename file or directory <code>[-r]</code> from source to destination</li>
+<li><code>rm [-r] ./file</code> - Remove file or directory <code>[-r]</code> <strong>NOTE: THIS IS PERMANENT. There are no trash cans or recycle bins here.</strong></li>
 </ul>
 <h2><a href="https://www.maketecheasier.com/run-bash-commands-background-linux/" target="_blank">Background Tasks</a></h2>
 <p>You can run tasks in the background within a <a href="terminal.html">terminal</a> window by placing an <code>&amp;</code> at the end of the command you want running. You can see these background jobs with <code>jobs</code> and kill the job that you want with <code>kill %</code> followed by the index, or just <code>kill %</code> to kill all jobs.</p>
+<h2>Variables</h2>
+<p>Variables are all defined by a non-spaced variable name followed by an equals sign. Variables are recalled/invoked using the dollar sign followed by the variable name.</p>
+<pre><code class="language-shell">var_name=&quot;Bob&quot;
+number_var=123
+
+echo &quot;$var_name&quot;
+echo &quot;$number_var&quot;
+echo &quot;There are $number_var cans in ${var_name}&#x27;s closet.&quot;
+</code></pre>
+<p>Single quotes will preserve the literal value of all characters within it, while double quotes will allow the expansion/interpolation of the variables.[10] <strong>Always use double quotes when expanding your variables.</strong> Using double quotes around a variable will ensure that it will not be split up like a series of arguments[11].</p>
+<p>Variables that are within a string and directly next to another character that is not a space need to be enclosed within a dollar sign and curly braces, e.g. <code>${var_name}</code>.</p>
+<h2>Iteration</h2>
+<p>To iterate over a series of files, you can use a <code>for</code> loop:</p>
+<pre><code class="language-shell"># Files in directory include: a.txt, b.jpg, c.exe, d.txt
+# This will only iterate through a.txt and d.txt .
+
+for file in *.txt
+do
+  echo -e &quot;${file}:\n$(cat $file)&quot;
+done
+</code></pre>
 <h2>Event Designators</h2>
 <p>An event designator is a reference to a command line entry in the  history list.  Unless the reference is absolute, events are relative  to the current position in the history list.</p>
 <ul>
@@ -71,5 +93,7 @@ $ thing1 | thing2
 <li><a href="https://devhints.io/bash" target="_blank">https://devhints.io/bash</a></li>
 <li><a href="https://github.com/dylanaraps/pure-bash-bible" target="_blank">https://github.com/dylanaraps/pure-bash-bible</a></li>
 <li><a href="https://linoxide.com/make-bash-script-executable-using-chmod/" target="_blank">https://linoxide.com/make-bash-script-executable-using-chmod/</a></li>
+<li><a href="https://stackoverflow.com/a/6697781/14857724" target="_blank">https://stackoverflow.com/a/6697781/14857724</a></li>
+<li><a href="https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2" target="_blank">https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li></ul></details></section><p class="last-modified">Last modified: 202201231400</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li></ul></details></section><p class="last-modified">Last modified: 202202151911</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

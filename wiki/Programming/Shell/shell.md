@@ -9,10 +9,44 @@ The shell is the terminal of your operating system. This is the *nix shell.
 
 - `cp [-r] ./source ./destination` - Copy file or directory `[-r]` from source to destination
 - `mv [-r] ./source ./destination` - Move/rename file or directory `[-r]` from source to destination
+- `rm [-r] ./file` - Remove file or directory `[-r]` **NOTE: THIS IS PERMANENT. There are no trash cans or recycle bins here.**
 
 ## [Background Tasks][]
 
 You can run tasks in the background within a {{terminal}} window by placing an `&` at the end of the command you want running. You can see these background jobs with `jobs` and kill the job that you want with `kill %` followed by the index, or just `kill %` to kill all jobs.
+
+## Variables
+
+Variables are all defined by a non-spaced variable name followed by an equals sign. Variables are recalled/invoked using the dollar sign followed by the variable name.
+
+```shell
+var_name="Bob"
+number_var=123
+
+echo "$var_name"
+echo "$number_var"
+echo "There are $number_var cans in ${var_name}'s closet."
+```
+
+Single quotes will preserve the literal value of all characters within it, while double quotes will allow the expansion/interpolation of the variables.[10] **Always use double quotes when expanding your variables.** Using double quotes around a variable will ensure that it will not be split up like a series of arguments[11].
+
+Variables that are within a string and directly next to another character that is not a space need to be enclosed within a dollar sign and curly braces, e.g. `${var_name}`.
+
+## Iteration
+
+To iterate over a series of files, you can use a `for` loop:
+
+```shell
+# Files in directory include: a.txt, b.jpg, c.exe, d.txt
+# This will only iterate through a.txt and d.txt .
+
+for file in *.txt
+do
+	echo -e "${file}:\n$(cat $file)"
+done
+```
+
+
 
 ## Event Designators
 
@@ -95,5 +129,7 @@ tr -d "\r" < oldname.sh > newname.sh
 7. https://devhints.io/bash
 7. https://github.com/dylanaraps/pure-bash-bible
 7. https://linoxide.com/make-bash-script-executable-using-chmod/
+7. https://stackoverflow.com/a/6697781/14857724
+7. https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/
