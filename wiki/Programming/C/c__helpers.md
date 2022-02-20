@@ -9,12 +9,10 @@ C has a large amount of helper libraries and functions.
 
 - `char *getenv(const char *name)` - Get environment variable
   - `name` - Name of the environment variable[4]
-
 - `long int strtol(const char *nptr, char **endptr, int base)` - Converts a string into a long integer
-  -  `nptr` - String to be read
+  - `nptr` - String to be read
   - `endPtr` - On success, points to first char after number; on failure,  `NULL`
   - `base` - Base for number conversion
-
   - Returns converted number as  `long`
 
 ## `stdio.h`

@@ -135,6 +135,11 @@
 <td></td>
 </tr>
 <tr>
+<td>Go back a word</td>
+<td><code>b</code></td>
+<td></td>
+</tr>
+<tr>
 <td>Go to start/end of line</td>
 <td><code>0</code>/<code>$</code></td>
 <td></td>
@@ -330,6 +335,16 @@
 <td><code>:r !command</code></td>
 <td></td>
 </tr>
+<tr>
+<td>Insert on multiple lines[15]</td>
+<td><code>Ctrl + v</code>, select area, <code>I</code>, do edits, <code>esc</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Append to multiple lines[14]</td>
+<td><code>V</code>, select lines, <code>:&#x27;&lt;,&#x27;&gt;s/$/text/</code></td>
+<td><code>&#x27;&lt;,&#x27;&gt;</code> will get added to your command automatically after <code>:</code></td>
+</tr>
 </tbody></table><h3>Modes</h3>
 <table>
 <thead>
@@ -380,7 +395,12 @@
 </tr>
 <tr>
 <td>Execute shell command <code>x</code></td>
-<td><code>:![x]</code></td>
+<td><code>:!x</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Execute last edit again at cursor</td>
+<td><code>.</code></td>
 <td></td>
 </tr>
 </tbody></table><h2><code>~/.vimrc</code></h2>
@@ -418,5 +438,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 <li><a href="https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work" target="_blank">https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work</a></li>
 <li><a href="https://thevaluable.dev/vim-search-find-replace/" target="_blank">https://thevaluable.dev/vim-search-find-replace/</a></li>
 <li><a href="https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save" target="_blank">https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save</a></li>
+<li><a href="https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim" target="_blank">https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim</a></li>
+<li><a href="https://stackoverflow.com/a/9549765/14857724" target="_blank">https://stackoverflow.com/a/9549765/14857724</a></li>
+<li><a href="https://stackoverflow.com/a/9570259/14857724" target="_blank">https://stackoverflow.com/a/9570259/14857724</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section><p class="last-modified">Last modified: 202202071754</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section><p class="last-modified">Last modified: 202202160018</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

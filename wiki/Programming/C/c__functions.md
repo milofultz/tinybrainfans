@@ -26,7 +26,7 @@ int add(int m, int n)
 }
 ```
 
-#### `main()`
+### `main()`
 
 `main` is a special function that will begin executing when running your compiled file. This must be named `main`, but other functions can take on whatever other names you'd like.
 
@@ -42,9 +42,10 @@ int main()
 {
   int i;
 
-  for (i = 0; i < 10; ++i)
+  for (i = 0; i < 10; ++i) {
       printf("%d %d %d\n", i, add(2,i), add(-3,i));
-		  hooray()
+		  hooray();
+  }
   return 0;
 }
 
@@ -60,3 +61,37 @@ int hooray()
   printf("Hooray!");
 }
 ```
+
+#### Command Line Arguments[1]
+
+Command line args are brought in using two parameters within the `main` function declaration:
+
+- `int argc` - Number of arguments provided, including the path to the program itself
+- `char *argv[]` - Array of arguments provided as strings
+
+```c
+#include <stdio.h>
+
+int hooray(void);	// if no params, void is used
+
+int main(int argc, char *argv[])
+{
+  int i;
+
+  for (i = 1; i < argc; ++i) {
+      printf("%s\n", argv[i]);
+		  hooray();
+  }
+  
+  return 0;
+}
+
+int hooray()
+{
+  printf("Hooray!");
+}
+```
+
+## References
+
+1. https://www.delftstack.com/howto/c/argv-in-c/

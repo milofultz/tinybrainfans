@@ -50,6 +50,7 @@ Description | Command | Notes
 Move cursor (Left, Down, Up, Right) | `h`, `j`, `k`, `l` |
 See current cursor location and information | `Ctrl + g` |
 Go to start/end of next word | `w`/`e`
+Go back a word | `b` |
 Go to start/end of line | `0`/`$`
 Go to next page | `Ctrl + f`
 Go to next half page | `Ctrl + d`
@@ -100,6 +101,8 @@ Delete entire line or `n` lines, including newline | `[n]dd` |
 Delete from current column to end of line | `D` |
 Insert (or retrieve) contents of `FILENAME` at cursor | `:r FILENAME`|
 Insert (or retrieve) return of shell `command` at cursor | `:r !command`|
+Insert on multiple lines[15] | `Ctrl + v`, select area, `I`, do edits, `esc` |
+Append to multiple lines[14] | `V`, select lines, `:'<,'>s/$/text/` | `'<,'>` will get added to your command automatically after `:` 
 
 ### Modes
 
@@ -116,8 +119,9 @@ Exit current mode | `ESC`
 
 Description | Command | Notes
 --- | --- | ---
-Toggle fold at next logical break | `za` | 
-Execute shell command `x` | `:![x]` |
+Toggle fold at next logical break | `za` |
+Execute shell command `x` | `:!x` |
+Execute last edit again at cursor | `.` |
 
 ## `~/.vimrc`
 
@@ -165,3 +169,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 1. https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work
 1. https://thevaluable.dev/vim-search-find-replace/
 1. https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save
+1. https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim
+1. https://stackoverflow.com/a/9549765/14857724
+1. https://stackoverflow.com/a/9570259/14857724

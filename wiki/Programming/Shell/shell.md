@@ -32,6 +32,8 @@ Single quotes will preserve the literal value of all characters within it, while
 
 Variables that are within a string and directly next to another character that is not a space need to be enclosed within a dollar sign and curly braces, e.g. `${var_name}`.
 
+Variables in the shell also have a variety of parameter expansions[12] that allow pattern matching, replacement, string slicing, and more.
+
 ## Iteration
 
 To iterate over a series of files, you can use a `for` loop:
@@ -45,8 +47,6 @@ do
 	echo -e "${file}:\n$(cat $file)"
 done
 ```
-
-
 
 ## Event Designators
 
@@ -131,5 +131,6 @@ tr -d "\r" < oldname.sh > newname.sh
 7. https://linoxide.com/make-bash-script-executable-using-chmod/
 7. https://stackoverflow.com/a/6697781/14857724
 7. https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2
+7. https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/
