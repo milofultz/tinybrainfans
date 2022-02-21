@@ -20,9 +20,9 @@ Token | Effect
 `[` | If byte at data pointer is zero, jump to command after matching `]` 
 `]` | If byte at data pointer is not zero, jump to command after matching `[` 
 
-### Examples
+## Examples
 
-#### Addition
+### Addition
 
 A simple program that adds 2 + 2 could be written like so:
 
@@ -48,7 +48,7 @@ Second addend
 
 The process can be visualized like when using {{paper computers|paper computing}}, with multiple registers that are being incremented and decremented.
 
-#### Multiplication
+### Multiplication
 
 This program will multiply two numbers (between 1 and 3) together and print out the result.
 
@@ -100,3 +100,4 @@ Temp         // Used for refilling multiplier
 1. https://www.nayuki.io/page/brainfuck-interpreter-javascript
 1. https://sange.fi/esoteric/brainfuck/
 1. https://codeberg.org/milofultz/brainfuck
+1. https://esolangs.org/wiki/Brainfuck
