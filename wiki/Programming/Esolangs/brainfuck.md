@@ -9,6 +9,8 @@ Brainfuck is an esoteric Turing-complete programming language that is comprised 
 
 Brainfuck is read token by token, left to right. It utilizes an array of data and an input stream.
 
+Data bytes are assumed to store any value between 0 and 255 inclusive. Some implementations use wrapping (255 + 1 = 0, 0 - 1 = 255), while others do not (255 + 1 = 256, 0 - 1 = -1).
+
 Token | Effect
 --- | ---
 `>` | Increment the data pointer

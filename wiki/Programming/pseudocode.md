@@ -65,7 +65,7 @@ END WHILE
 
 ### Repeat Until
 
-This is akin to while, except the condition, which is placed at the bottom, is tested *after* going through the instructions a single time. If you are doing any {{paper computing}} or {{assembly}}, this is what you will most likely use in place of a while loop.
+This is akin to while, except the condition, which is placed at the bottom, is tested *after* going through the instructions a single time. If you are doing any {{paper computing}} or {{assembly}}, this is conceptually more akin to what you will use in place of a while or a for loop.
 
 ```pseudocode
 REPEAT
