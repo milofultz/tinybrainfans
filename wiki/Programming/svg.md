@@ -35,7 +35,7 @@ You can group SVG elements in a `<g>` container, and all transformations made on
 
 The `path` element is how you "pick up" and "put down" your "pen", as well as draw the lines which can make up a filled shape or just a stroked line. The directions go within the `d` attribute.
 
-`M x y` is when you place your pen a given position without a stroke. `L x y`is when you draw a line to (x,y) from your starting point.
+`M x y` is when you place your pen a given position without a stroke. `L x y`is when you draw a line to (x,y) from your starting point. `H x` draws a horizontal line to `x` and `V y` draws a vertical line to `y`.
 
 ```xml
 <!-- This will move the pen to (0, 10) and draw a line to (10, 0) in the given box -->
