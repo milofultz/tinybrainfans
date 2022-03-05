@@ -81,11 +81,22 @@ To delete all branches that have been merged, start out by pulling from remote t
 git branch --merged | egrep -v "(^\*|master|main|dev|staging)" | xargs git branch -d
 ```
 
-## Cherry Pick
+## Cherry Pick[16]
 
 > When should I use cherry-pick? **The short answer is: as rarely as possible.**
 
-For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects.
+For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects. 
+
+I have only ever used this when I accidentally added a commit to the wrong branch. So anyway, proceed with caution.
+
+If you have a commit from one branch you want to apply to another, this can be done by checking out your destination branch and calling `cherry-pick` with the hash of the desired commit you want to bring over.
+
+```shell
+git checkout target-branch
+git cherry-pick d3db33f
+```
+
+Now commit `d3db33f` is on `target-branch`.
 
 ## Revert
 
@@ -190,6 +201,7 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 12. https://fix.code-error.com/git-merge-with-force-overwrite/
 12. https://stackoverflow.com/questions/58273462/is-there-a-way-to-add-untracked-files-in-git-when-adding-via-patch
 12. https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits
+12. https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean
 
 [manually edit hunk]: https://rietta.com/blog/git-patch-manual-split/
 [stashing]: https://www.freecodecamp.org/news/git-stash-explained/

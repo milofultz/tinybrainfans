@@ -100,11 +100,17 @@
 <p>To delete all branches that have been merged, start out by pulling from remote to ensure you are using the most up to date info. Then check which branches are merged by running <code>git branch --merged</code>. We will be using <code>egrep</code> to grab these and put them into a macro that will delete each merged branch that doesn't fit within the regex. To ensure a branch that contains a certain keyword does not get deleted, add it to the <code>egrep -v &quot;(^...)&quot;</code> line, with each keyword separated by an OR <code>|</code>.</p>
 <pre><code class="language-bash">git branch --merged | egrep -v &quot;(^\*|master|main|dev|staging)&quot; | xargs git branch -d
 </code></pre>
-<h2>Cherry Pick</h2>
+<h2>Cherry Pick[16]</h2>
 <blockquote>
 <p>When should I use cherry-pick? <strong>The short answer is: as rarely as possible.</strong></p>
 </blockquote>
-<p>For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects.</p>
+<p>For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects. </p>
+<p>I have only ever used this when I accidentally added a commit to the wrong branch. So anyway, proceed with caution.</p>
+<p>If you have a commit from one branch you want to apply to another, this can be done by checking out your destination branch and calling <code>cherry-pick</code> with the hash of the desired commit you want to bring over.</p>
+<pre><code class="language-shell">git checkout target-branch
+git cherry-pick d3db33f
+</code></pre>
+<p>Now commit <code>d3db33f</code> is on <code>target-branch</code>.</p>
 <h2>Revert</h2>
 <p>A revert allows you to go back to a previous commit, reversing those previous between commit X (HEAD) and commit Y (the selected commit). This will create a reversal commit for each commit to be undone between X and Y. In the case of a single commit to be undone, it will make a single reversal commit.</p>
 <p>To revert one or many commits, open your <code>git log</code> and find the commit you want to revert back to. Save this hash. Then enter the following:</p>
@@ -172,5 +178,6 @@ fatal: Authentication failed for &#x27;https://github.com/milofultz/tod.git/&#x2
 <li><a href="https://fix.code-error.com/git-merge-with-force-overwrite/" target="_blank">https://fix.code-error.com/git-merge-with-force-overwrite/</a></li>
 <li><a href="https://stackoverflow.com/questions/58273462/is-there-a-way-to-add-untracked-files-in-git-when-adding-via-patch" target="_blank">https://stackoverflow.com/questions/58273462/is-there-a-way-to-add-untracked-files-in-git-when-adding-via-patch</a></li>
 <li><a href="https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits" target="_blank">https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits</a></li>
+<li><a href="https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean" target="_blank">https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section><p class="last-modified">Last modified: 202201021124</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section><p class="last-modified">Last modified: 202203021847</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
