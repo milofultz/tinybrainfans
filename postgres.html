@@ -106,7 +106,37 @@ FROM
 <td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
 <td>Show all schema in a given database</td>
 </tr>
-</tbody></table><h2>References</h2>
+</tbody></table><h2>Inserting a constant among multiple rows</h2>
+<p>I found this quirky syntax when working on a project recently and thought it would be helpful to document for the future. In a subquery, one can specify a default value that will be used for all returned rows. In this case, the return for the final <code>SELECT</code> query will be <code>(&#x27;Bob&#x27;, 1337)</code>. The value used in the subquery will be added to all returned rows.</p>
+<pre><code class="language-sql">CREATE TABLE agents (
+  id INT PRIMARY KEY,
+  name VARCHAR(64)
+);
+
+INSERT INTO 
+  agents (name)
+VALUES
+  (&#x27;Bob&#x27;);
+
+CREATE TABLE bullshit (
+  id INT primary key,
+  name VARCHAR(64) NOT NULL,
+  age INT NOT NULL
+);
+
+INSERT INTO 
+  bullshit (name, age)
+  SELECT 
+    name, 1337
+  FROM
+    agents;
+
+SELECT * FROM bullshit;
+
+DROP TABLE agents;
+DROP TABLE bullshit;
+</code></pre>
+<h2>References</h2>
 <ol>
 <li><a href="https://hub.packtpub.com/how-setup-postgresql-nodejs/" target="_blank">https://hub.packtpub.com/how-setup-postgresql-nodejs/</a></li>
 <li><a href="https://www.postgresqltutorial.com/postgresql-show-tables/" target="_blank">https://www.postgresqltutorial.com/postgresql-show-tables/</a></li>
@@ -119,4 +149,4 @@ FROM
 <li><a href="https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings" target="_blank">https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings</a></li>
 <li><a href="https://github.com/brianc/node-pg-types" target="_blank">https://github.com/brianc/node-pg-types</a></li>
 </ol>
-<p class="last-modified">Last modified: 202112080724</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202203091836</p></article></main><footer><nav><p><a href="index.html">Sitemap</a></p></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

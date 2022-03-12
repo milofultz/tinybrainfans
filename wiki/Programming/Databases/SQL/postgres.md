@@ -129,6 +129,40 @@ FROM
 | `TABLE x`                                              | Show the contents of table x.       |
 | `SELECT schema_name FROM information_schema.schemata;` | Show all schema in a given database |
 
+## Inserting a constant among multiple rows
+
+I found this quirky syntax when working on a project recently and thought it would be helpful to document for the future. In a subquery, one can specify a default value that will be used for all returned rows. In this case, the return for the final `SELECT` query will be `('Bob', 1337)`. The value used in the subquery will be added to all returned rows.
+
+```sql
+CREATE TABLE agents (
+	id INT PRIMARY KEY,
+  name VARCHAR(64)
+);
+
+INSERT INTO 
+	agents (name)
+VALUES
+	('Bob');
+
+CREATE TABLE bullshit (
+  id INT primary key,
+  name VARCHAR(64) NOT NULL,
+  age INT NOT NULL
+);
+
+INSERT INTO 
+	bullshit (name, age)
+  SELECT 
+  	name, 1337
+  FROM
+  	agents;
+
+SELECT * FROM bullshit;
+
+DROP TABLE agents;
+DROP TABLE bullshit;
+```
+
 ## References
 
 1. https://hub.packtpub.com/how-setup-postgresql-nodejs/

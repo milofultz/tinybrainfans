@@ -222,3 +222,4 @@ There are many different options to do {{test-driven development}} in C. One I h
 2. https://github.com/codeplea/tinyexpr/blob/master/smoke.c
 2. https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros
 2. https://stackoverflow.com/questions/7899119/what-does-s-mean-in-printf
+2. http://cslibrary.stanford.edu/101/EssentialC.pdf

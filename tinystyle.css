@@ -26,10 +26,9 @@
 }
 
 body {
-  background-color: var(--background);
+  background: var(--background);
   color: var(--text);
-  font-family: sans-serif;
-  line-height: 1.25;
+  font: 1rem/1.25 sans-serif;
   max-width: 50rem;
   padding: 1rem;
 }
@@ -46,7 +45,7 @@ h1 {
 
 a { color: var(--link); }
 a[target="_blank"]::after {
-  content: ' \2197';
+  content: '\2197';
   font-size: 0.66em;
   vertical-align: super;
 }
@@ -75,4 +74,27 @@ nav > *,
 footer .social > * {
   display: inline-block;
   margin: .3rem .5rem .3rem 0;
+}
+
+/* Spoilers */
+
+spoiler {
+  display: block;
+  position: relative;
+}
+spoiler::after {
+  background: #000;
+  bottom: -.1rem;
+  content: ' ';
+  left: -.25rem;
+  opacity: 1;
+  position: absolute;
+  right: -.25rem;
+  top: -.1rem;
+  visibility: visible;
+}
+spoiler:hover::after,
+spoiler:focus::after {
+  opacity: 0;
+  visibility: hidden;
 }
