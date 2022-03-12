@@ -1,40 +1,38 @@
-:root {
-  --dark-black: #000;
-  --bright-white: #fff;
+* {
+  --B: #000;
+  --b: #222;
 
-  --black: #202227;
-  --white: #dde0e7;
+  --W: #fff;
+  --w: #ddd;
 
-  --link-light: #00e;
-  --link-dark: #0ae;
-}
+  --ld: #00e;
+  --ll: #0ae;
 
-:root {
-  --background: var(--white);
-  --header: var(--dark-black);
-  --text: var(--black);
-  --link: var(--link-light);
+  --bg: var(--w);
+  --hd: var(--B);
+  --tx: var(--b);
+  --l: var(--ld);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--black);
-    --header: var(--bright-white);
-    --text: var(--white);
-    --link: var(--link-dark);
+  * {
+    --bg: var(--b);
+    --hd: var(--W);
+    --tx: var(--w);
+    --l: var(--ll);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--text);
+  background: var(--bg);
+  color: var(--tx);
   font: 1rem/1.25 sans-serif;
   max-width: 50rem;
   padding: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--header);
+  color: var(--hd);
   margin: 2em 0 1em;
 }
 
@@ -43,7 +41,7 @@ h1 {
   margin-top: 1em;
 }
 
-a { color: var(--link); }
+a { color: var(--l); }
 a[target="_blank"]::after {
   content: '\2197';
   font-size: 0.66em;
@@ -51,20 +49,20 @@ a[target="_blank"]::after {
 }
 
 pre {
-  border: .125rem solid var(--text);
+  border: .125rem solid var(--tx);
   padding: 0.5rem;
   white-space: pre-wrap;
 }
 
 table { border-collapse: collapse; }
-tr, th, td { border: 1px solid var(--text); }
+tr, th, td { border: 1px solid var(--tx); }
 th, td {
   padding: .5rem;
   text-align: left;
 }
 
 footer {
-  border-top: .125rem solid var(--text);
+  border-top: .125rem solid var(--tx);
   margin-top: 1rem;
 }
 
