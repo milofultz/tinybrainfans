@@ -17,7 +17,7 @@ C has a large amount of helper libraries and functions.
 
 ## `stdio.h`
 
-- `FILE fopen(const char *path, const char *mode)` - Open the file and return a stream of it.
+- `FILE *fopen(const char *path, const char *mode)` - Open the file and return a stream of it.
   - `path` - To the file to be opened
   - `mode` - How the file should be opened
     - `r` / `r+` - Open the file for reading / reading and writing, positioning the stream at the beginning of the file

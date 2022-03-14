@@ -175,7 +175,7 @@ p = &n; // point p to the address of n
 
 #### printf(string, [format, ...])
 
-If you use a format tag in the string, like `%d` or `%c`, you will need to add what will replace it in the list of `format` variables.
+If you use a format tag in the string, like `%d` or `%c`[14], you will need to add what will replace it in the list of `format` variables.
 
 ```c
 int fahr, celsius;
@@ -223,3 +223,4 @@ There are many different options to do {{test-driven development}} in C. One I h
 2. https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros
 2. https://stackoverflow.com/questions/7899119/what-does-s-mean-in-printf
 2. http://cslibrary.stanford.edu/101/EssentialC.pdf
+2. https://www.ibm.com/docs/en/i/7.4?topic=functions-printf-print-formatted-characters

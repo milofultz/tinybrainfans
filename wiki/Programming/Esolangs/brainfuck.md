@@ -103,3 +103,4 @@ Temp         // Used for refilling multiplier
 1. https://sange.fi/esoteric/brainfuck/
 1. https://codeberg.org/milofultz/brainfuck
 1. https://esolangs.org/wiki/Brainfuck
+1. https://codeberg.org/milofultz/decrypting-the-original-brainfuck-interpreter
