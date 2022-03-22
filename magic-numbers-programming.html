@@ -1,17 +1,35 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Magic numbers are numbers that have no semantic meaning. These are problematic for maintenance and bug fixing."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Magic Numbers (Programming)</title><link rel="stylesheet" href="tinystyle.css"></head><body>
 <main id="main"><article id="content"><h1 id="title">Magic Numbers (Programming)</h1><p>Magic numbers are numbers that have no semantic meaning within the program. These are problematic for maintenance and bug fixing since somebody reading the code later could have no idea what exactly the numbers represent.</p>
-<pre><code class="language-javascript">/* BAD: Magic Numbers */
+<p><strong>example.js</strong></p>
+<pre><code class="language-javascript">// BAD: Magic Numbers
 function calculateTotal(price) {
   return price + price * 0.09 + 2;
 }
 
-/* GOOD: Semantic Meaning! */
-function calculateTotal(price) {
-  const taxRate = 0.09;
-  const serviceCharge = 2;
-  const calculatedTax = price * 0.09;
+// GOOD: Semantic Meaning!
+function calculateTotal(price, taxRate = 9, serviceCharge = 2) {
+  const calculatedTax = priceDollars * (taxRatePercent / 100);
   
-  return price + calculatedTax + serviceCharge;
+  return priceDollars + calculatedTax + serviceChargeDollars;
+}
+
+// BETTER: Typing!
+
+/**
+ * @param {number} priceDollars
+ * @param {number=} taxRatePercent
+ * @param {number=} serviceChargeDollars
+ */
+function calculateTotal(priceDollars, taxRatePercent = 0.09, serviceChargeDollars = 2) {
+  const calculatedTax = priceDollars * (taxRatePercent / 100);
+  
+  return priceDollars + calculatedTax + serviceChargeDollars;
 }
 </code></pre>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="c.html">C</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202107080231</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p>An even better solution, if your language supports it, is to use strong typing or at least a type that forces a specific paradigm to be used. For instance, in Ruud van Asseldonk's article[1], he ensures that the correct time value is used in a sleep function by forcing the use of Python's <code>timedelta</code>. This value isn't just a number, which could be seconds, milliseconds, minutes, days, or whatever, it is a <code>timedelta</code> value and it will always be the same no matter what.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://ruudvanasseldonk.com/2022/03/20/please-put-units-in-names" target="_blank">https://ruudvanasseldonk.com/2022/03/20/please-put-units-in-names</a></li>
+<li><a href="jsdoc.html">JSDoc</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="c.html">C</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202203210144</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
