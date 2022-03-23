@@ -27,7 +27,7 @@ function calculateTotal(price, taxRate = 9, serviceCharge = 2) {
  * @param {number=} taxRatePercent
  * @param {number=} serviceChargeDollars
  */
-function calculateTotal(priceDollars, taxRatePercent = 0.09, serviceChargeDollars = 2) {
+function calculateTotal(priceDollars, taxRatePercent = 9, serviceChargeDollars = 2) {
   const calculatedTax = priceDollars * (taxRatePercent / 100);
   
   return priceDollars + calculatedTax + serviceChargeDollars;
