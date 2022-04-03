@@ -62,19 +62,28 @@ For example, `/[A-Z][0-9]\1/` will search for any char between A-Z, 0-9, and wha
 
 ## Common Regex Queries
 
-| Regex                                            | Matches                                           |
-| ------------------------------------------------ | ------------------------------------------------- |
-| `[\s\S]`                                         | Anything                                          |
-| `[^\n\r]`                                        | Anything except for a newline                     |
-| `[A-Za-z0-9]`                                    | Alphanumeric characters                           |
-| `[A-Za-z]`                                       | Alphabetic characters                             |
-| `[0-9]` or `\d`                                  | Numeric characters                                |
-| ```[\.,-\/#!$%\^&\*;:{}=\-_`~()@\+\?><\[\]\+]``` | All punctuation (non alphanum graphic characters) |
+### Character Sets
+
+| Regex                                            | Matches                                                      |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| `[\s\S]`                                         | Anything                                                     |
+| `[^\n\r]`                                        | Anything except for a newline                                |
+| `[A-Za-z0-9]`                                    | Alphanumeric characters                                      |
+| `[A-Za-z]`                                       | Alphabetic characters                                        |
+| `[0-9]` or `\d`                                  | Numeric characters                                           |
+| ```[\.,-\/#!$%\^&\*;:{}=\-_`~()@\+\?><\[\]\+]``` | All punctuation (non alphanum graphic characters)            |
+
+### Queries
+
+| Regex                     | Matches                                                      |
+| ------------------------- | ------------------------------------------------------------ |
+| `filename.svg|(filename)` | Match only if first query does not match (use match groups)[4] i.e. match `filename` only if it does not have extension of `svg` |
 
 ## References:
 
 1. https://regular-expressions.mobi/backref.html?wlr=1
 2. https://regexr.com/
 3. https://regexcrossword.com/
+3. http://www.rexegg.com/regex-best-trick.html
 
 [backreference]: https://regular-expressions.mobi/backref.html?wlr=1

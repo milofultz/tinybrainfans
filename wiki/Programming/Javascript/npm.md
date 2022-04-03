@@ -5,6 +5,28 @@ description: Node Package Manager is a hub from which you can install, manage, a
 
 Node Package Manager is a hub from which you can install, manage, and maintain {{node}}/{{Javascript}} projects. NPM is bundled with node, so of you have installed node, you have npm.
 
+## Delete old `node_modules`!
+
+`node_modules` folders take up stupid amounts of space on your computer. Luckily, if you regularly delete all of them on your computer, you can just reinstall the ones you need for projects you use/work on right now. (The following examples are all for OSX, but you can find Windows examples at the source[2]).
+
+Show all `node_modules` folders within and their respective size:
+
+```shell
+find . -name "node_modules" -type d -prune -print | xargs du -chs
+```
+
+Delete the `node_modules` folders found recursively within the current directory:
+
+```shell
+find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+```
+
+Delete the global `node_modules` folder:
+
+```shell
+npm ls -gp --depth=0 | awk -F/ '/node_modules/ && !/\/npm$/ {print $NF}' | xargs npm -g rm
+```
+
 ## Troubleshooting
 
 ### Global Packages Not Found
@@ -33,4 +55,5 @@ You can save packages as a devDependency by using `--save-dev` as an option in t
 
 ## References
 
-- https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+1. https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+1. https://trilon.io/blog/how-to-delete-all-nodemodules-recursively

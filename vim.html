@@ -4,6 +4,7 @@
 <p>Use it! It guides you through the basics of Vim by <em>doing things</em> instead of reading random wikis on the web and trying to cobble together how to do stuff. You can access it by typing <code>vimtutor</code> at the CLI.</p>
 <h2>Commands</h2>
 <p>All commands must be done in &quot;Normal&quot; mode, accessed by pressing <code>esc</code> if in write mode. Commands are case sensitive and must be confirmed with <code>Enter</code> unless otherwise noted.</p>
+<p>Many of these commands derive from the original <a href="unix.html">Unix</a> text line editor <code><a href="ed.html">ed</a></code>. If you don't understand why things are the way they are here, pulling the thread of <code>ed</code> may benefit your understanding.</p>
 <h3>Meta/File</h3>
 <table>
 <thead>
@@ -266,13 +267,13 @@
 </thead>
 <tbody>
 <tr>
-<td>Replace letter under cursor with letter <code>l</code></td>
-<td><code>r[l]</code></td>
+<td>Delete entire line or <code>n</code> lines, including newline</td>
+<td><code>[n]dd</code></td>
 <td></td>
 </tr>
 <tr>
-<td>Enter replace mode (like overwrite)</td>
-<td><code>R</code></td>
+<td>Delete from current column to end of line</td>
+<td><code>D</code></td>
 <td></td>
 </tr>
 <tr>
@@ -288,6 +289,16 @@
 <tr>
 <td>Delete contents of <code>n</code> lines and enter Insert mode</td>
 <td><code>c[n]c</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Replace letter under cursor with letter <code>l</code></td>
+<td><code>r[l]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Enter replace mode (like overwrite)</td>
+<td><code>R</code></td>
 <td></td>
 </tr>
 </tbody></table><h3>Text Manipulation</h3>
@@ -316,16 +327,6 @@
 <td></td>
 </tr>
 <tr>
-<td>Delete entire line or <code>n</code> lines, including newline</td>
-<td><code>[n]dd</code></td>
-<td></td>
-</tr>
-<tr>
-<td>Delete from current column to end of line</td>
-<td><code>D</code></td>
-<td></td>
-</tr>
-<tr>
 <td>Insert (or retrieve) contents of <code>FILENAME</code> at cursor</td>
 <td><code>:r FILENAME</code></td>
 <td></td>
@@ -344,6 +345,16 @@
 <td>Append to multiple lines[14]</td>
 <td><code>V</code>, select lines, <code>:&#x27;&lt;,&#x27;&gt;s/$/text/</code></td>
 <td><code>&#x27;&lt;,&#x27;&gt;</code> will get added to your command automatically after <code>:</code></td>
+</tr>
+<tr>
+<td>Join line below current line with current line[18]</td>
+<td><code>J</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Flip capitalization</td>
+<td><code>~</code></td>
+<td></td>
 </tr>
 </tbody></table><h3>Modes</h3>
 <table>
@@ -377,6 +388,31 @@
 <tr>
 <td>Exit current mode</td>
 <td><code>ESC</code></td>
+</tr>
+</tbody></table><h3>Recording[19-20]</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start recording under register <code>n</code></td>
+<td><code>qn</code></td>
+<td><code>n</code> can be any register</td>
+</tr>
+<tr>
+<td>Stop recording</td>
+<td><code>q</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Replay recorded keystrokes</td>
+<td><code>@n</code></td>
+<td><code>n</code> can be any register</td>
 </tr>
 </tbody></table><h3>Misc</h3>
 <table>
@@ -441,5 +477,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 <li><a href="https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim" target="_blank">https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim</a></li>
 <li><a href="https://stackoverflow.com/a/9549765/14857724" target="_blank">https://stackoverflow.com/a/9549765/14857724</a></li>
 <li><a href="https://stackoverflow.com/a/9570259/14857724" target="_blank">https://stackoverflow.com/a/9570259/14857724</a></li>
+<li><a href="http://texteditors.org/cgi-bin/wiki.pl?VIM" target="_blank">http://texteditors.org/cgi-bin/wiki.pl?VIM</a></li>
+<li><a href="http://texteditors.org/cgi-bin/wiki.pl?Vim_Cheat_Sheet" target="_blank">http://texteditors.org/cgi-bin/wiki.pl?Vim_Cheat_Sheet</a></li>
+<li><a href="https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled" target="_blank">https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled</a></li>
+<li><a href="https://riptutorial.com/vim/example/4731/recording-a-macro" target="_blank">https://riptutorial.com/vim/example/4731/recording-a-macro</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li></ul></details></section><p class="last-modified">Last modified: 202202160018</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="ed.html">ed</a></li><li><a href="git.html">git</a></li></ul></details></section><p class="last-modified">Last modified: 202204030500</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

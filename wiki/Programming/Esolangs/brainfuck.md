@@ -104,3 +104,6 @@ Temp         // Used for refilling multiplier
 1. https://codeberg.org/milofultz/brainfuck
 1. https://esolangs.org/wiki/Brainfuck
 1. https://codeberg.org/milofultz/decrypting-the-original-brainfuck-interpreter
+1. https://github.com/stedolan/bf.sed/blob/master/bf.sed
+1. http://calmerthanyouare.org/2015/01/07/optimizing-brainfuck.html
+1. https://git.sr.ht/~rabbits/uxn/tree/85a6d348ba93186eaa328f67c625fea1bacae1f4/item/projects/examples/exercises/brainfuck.tal

@@ -19,6 +19,8 @@ You can run tasks in the background within a {{terminal}} window by placing an `
 
 Variables are all defined by a non-spaced variable name followed by an equals sign. Variables are recalled/invoked using the dollar sign followed by the variable name.
 
+Variables that are within a string and directly next to another character that is not a space need to be enclosed within a dollar sign and curly braces, e.g. `${var_name}`.
+
 ```shell
 var_name="Bob"
 number_var=123
@@ -30,9 +32,44 @@ echo "There are $number_var cans in ${var_name}'s closet."
 
 Single quotes will preserve the literal value of all characters within it, while double quotes will allow the expansion/interpolation of the variables.[10] **Always use double quotes when expanding your variables.** Using double quotes around a variable will ensure that it will not be split up like a series of arguments[11].
 
-Variables that are within a string and directly next to another character that is not a space need to be enclosed within a dollar sign and curly braces, e.g. `${var_name}`.
+```shell
+var_name="Bob"
+number_var=123
+
+literal_values='$var_name $number_var'
+expanded_values="$var_name $number_var"
+
+echo "$literal_values"  # $var_name $number_var
+echo "$expanded_values" # Bob 123
+```
+
+### Parameter Expansions
 
 Variables in the shell also have a variety of parameter expansions[12] that allow pattern matching, replacement, string slicing, and more.
+
+Symbol | Description
+---|---
+`${var:-rep}` | If `var` is null or unset, replace it with literal `rep` or variable named `$rep` if preceded by a `$` (e.g. `${var:-$rep}`)[13] 
+
+## Conditionals
+
+There are a zillion operators to use in conditionals that are all slightly different than the usual `<`, `>`, `==`, etc.[14] But here is the general construction of if/then conditionals in shell.
+
+```shell
+# If var_name is equal to other_var
+if [[ "$var_name" -eq "$other_var" ]]
+then
+	# stuff happens
+fi
+
+# If var_name is NOT equal to other_var
+if [[ ! "$var_name" -eq "$other_var" ]]
+then
+	# stuff happens
+else
+	# other stuff happens
+fi
+```
 
 ## Iteration
 
@@ -121,16 +158,18 @@ tr -d "\r" < oldname.sh > newname.sh
 ## References
 
 1. https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/
-3. https://linuxize.com/post/how-to-create-bash-aliases/
+2. https://linuxize.com/post/how-to-create-bash-aliases/
 3. https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf
 4. https://stackoverflow.com/a/11428439
 5. https://unix.stackexchange.com/questions/19654/how-do-i-change-the-extension-of-multiple-files
 6. https://mywiki.wooledge.org/BashFAQ/030
 7. https://devhints.io/bash
-7. https://github.com/dylanaraps/pure-bash-bible
-7. https://linoxide.com/make-bash-script-executable-using-chmod/
-7. https://stackoverflow.com/a/6697781/14857724
-7. https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2
-7. https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5
+8. https://github.com/dylanaraps/pure-bash-bible
+9. https://linoxide.com/make-bash-script-executable-using-chmod/
+10. https://stackoverflow.com/a/6697781/14857724
+11. https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2
+12. https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5
+13. https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash
+14. https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/

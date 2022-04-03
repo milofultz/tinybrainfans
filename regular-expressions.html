@@ -49,6 +49,7 @@
 <p><code>\1</code>, where <code>1</code> is any incremental number, is called a <a href="https://regular-expressions.mobi/backref.html?wlr=1" target="_blank">backreference</a>. The number is referring to the capture group of the current reg ex. When called, the regex will search for the <em>exact instance found</em> of that regex. </p>
 <p>For example, <code>/[A-Z][0-9]\1/</code> will search for any char between A-Z, 0-9, and whatever character was found in the first character group. If you were searching through 'A9A' it would be a success, while 'A9B' would fail. This is because capture group <code>1</code> found an 'A', and therefore the backreference (<code>\1</code>) must also find an 'A'.</p>
 <h2>Common Regex Queries</h2>
+<h3>Character Sets</h3>
 <table>
 <thead>
 <tr>
@@ -81,10 +82,24 @@
 <td><code>[\.,-\/#!$%\^&amp;\*;:{}=\-_`~()@\+\?&gt;&lt;\[\]\+]</code></td>
 <td>All punctuation (non alphanum graphic characters)</td>
 </tr>
+</tbody></table><h3>Queries</h3>
+<table>
+<thead>
+<tr>
+<th>Regex</th>
+<th>Matches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>`filename.svg</td>
+<td>(filename)`</td>
+</tr>
 </tbody></table><h2>References:</h2>
 <ol>
 <li><a href="https://regular-expressions.mobi/backref.html?wlr=1" target="_blank">https://regular-expressions.mobi/backref.html?wlr=1</a></li>
 <li><a href="https://regexr.com/" target="_blank">https://regexr.com/</a></li>
 <li><a href="https://regexcrossword.com/" target="_blank">https://regexcrossword.com/</a></li>
+<li><a href="http://www.rexegg.com/regex-best-trick.html" target="_blank">http://www.rexegg.com/regex-best-trick.html</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="grep.html">grep</a></li><li><a href="html-forms.html">HTML Forms</a></li><li><a href="my-task-management-system.html">My Task Management System</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="regular-expressions-posix.html">Regular Expressions (POSIX)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section><p class="last-modified">Last modified: 202107020457</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="grep.html">grep</a></li><li><a href="html-forms.html">HTML Forms</a></li><li><a href="my-task-management-system.html">My Task Management System</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="regular-expressions-posix.html">Regular Expressions (POSIX)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section><p class="last-modified">Last modified: 202204030208</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

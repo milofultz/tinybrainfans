@@ -23,6 +23,8 @@ Here's a crude ASCII art of the basic composition of a terrarium in a mason jar:
 └─────────┘
 ```
 
+It doesn't need to be in a mason jar; you can put it in an open-top container, and that will need regular watering.
+
 For all layers below and including the substrate layer, you want to aim for an even distribution of material so that there will be no surprises.
 
 ### False Bottom[3]
@@ -69,6 +71,8 @@ Once you have created your terrarium, you'll need to add some water. Use a miste
 
 If you are planning on sealing your terrarium, this will only need to be done at it's creation. After you seal your terrarium and have placed it near it's ideal sunlight exposure, check on the condensation on the inside of your jar[9]. Ideally there should be some condensation in the morning and in the evening. If there is condensation all of the time, wipe away the condensed water every day or air out the terrarium until getting to the ideal amount. If there is no or not enough condensation, add a small amount of water and keep an eye on it until you have reached the proper amount.
 
+If you don't seal it and you are using a moss terrarium[12], you can spritz them a little every day, with a heavy watering every 2-3 days, depending on your local humidity.
+
 ### Mold
 
 If you are using springtails, mold is normal and will be handled soon enough by them as they feed on mold.
@@ -86,3 +90,4 @@ If you are using springtails, mold is normal and will be handled soon enough by 
 1. https://www.youtube.com/watch?v=s6DnKCnlSxE&list=PLGPT1t4CqpfiwUa1wQJJqzKWsuOiAMGF5&index=3
 1. https://www.youtube.com/watch?v=1yreHNcX818&list=PLGPT1t4Cqpfi_58FzQcXgY3YGiVH-fPUA
 1. https://www.youtube.com/watch?v=KR2Lo0rOF7g
+1. https://ifyoulived.org/moss.html

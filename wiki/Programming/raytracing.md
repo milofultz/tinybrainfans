@@ -105,6 +105,7 @@ PBM (Bit Map) | Monochrome using image values 0 and 1. Uses `P1` as the type and
 1. https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html
 1. http://www.playfuljs.com/a-first-person-engine-in-265-lines/
 1. https://www.youtube.com/watch?v=xW8skO7MFYw
+1. [Graphing calculator raytracer](https://www.youtube.com/watch?v=rY413t5fArw)
 
 **PGM Format**
 

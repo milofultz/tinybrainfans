@@ -14,3 +14,5 @@ description: The CHIP-8 is a computer with a very simple architecture and is com
 - https://tonisagrista.com/blog/2021/chip8-spec/
 - https://www.freecodecamp.org/news/creating-your-very-own-chip-8-emulator/
 - http://web.archive.org/web/20220104012043/www.devernay.free.fr/hacks/chip8/C8TECH10.HTM
+- http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#0.1
+- https://chip-8.github.io/links/

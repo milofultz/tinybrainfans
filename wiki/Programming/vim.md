@@ -13,6 +13,8 @@ Use it! It guides you through the basics of Vim by *doing things* instead of rea
 
 All commands must be done in "Normal" mode, accessed by pressing `esc` if in write mode. Commands are case sensitive and must be confirmed with `Enter` unless otherwise noted.
 
+Many of these commands derive from the original {{Unix}} text line editor `{{ed}}`. If you don't understand why things are the way they are here, pulling the thread of `ed` may benefit your understanding.
+
 ### Meta/File
 
 Description | Command | Notes
@@ -84,11 +86,13 @@ Move line down one line | `ddp` |
 
 Description | Command | Notes
 --- | --- | ---
-Replace letter under cursor with letter `l` | `r[l]` |
-Enter replace mode (like overwrite) | `R`
+Delete entire line or `n` lines, including newline | `[n]dd` |
+Delete from current column to end of line | `D` |
 Delete contents from cursor to end of `n` words and enter Insert mode | `c[n]e` or `c[n]w` |
 Delete contents from cursor to end of `n` lines and enter Insert mode | `c[n]$` |
 Delete contents of `n` lines and enter Insert mode | `c[n]c` |
+Replace letter under cursor with letter `l` | `r[l]` |
+Enter replace mode (like overwrite) | `R`
 
 ### Text Manipulation
 
@@ -97,12 +101,12 @@ Description | Command | Notes
 Insert mode | `i`|
 Append after current character/at end of line | `a`/`A`|
 Make a new line above/below current line and enter insert mode | `O`/`o` |
-Delete entire line or `n` lines, including newline | `[n]dd` |
-Delete from current column to end of line | `D` |
 Insert (or retrieve) contents of `FILENAME` at cursor | `:r FILENAME`|
 Insert (or retrieve) return of shell `command` at cursor | `:r !command`|
 Insert on multiple lines[15] | `Ctrl + v`, select area, `I`, do edits, `esc` |
 Append to multiple lines[14] | `V`, select lines, `:'<,'>s/$/text/` | `'<,'>` will get added to your command automatically after `:` 
+Join line below current line with current line[18] | `J`|
+Flip capitalization | `~` |
 
 ### Modes
 
@@ -114,6 +118,14 @@ Visual (selection using the cursor) | `v`
 Visual line (selection of lines) | `V`
 Visual block (selection of columns/lines) | `Ctrl+v`
 Exit current mode | `ESC`
+
+### Recording[19-20]
+
+Description | Command | Notes
+--- | --- | ---
+Start recording under register `n` | `qn` | `n` can be any register 
+Stop recording | `q` |
+Replay recorded keystrokes | `@n` | `n` can be any register 
 
 ### Misc
 
@@ -172,3 +184,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 1. https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim
 1. https://stackoverflow.com/a/9549765/14857724
 1. https://stackoverflow.com/a/9570259/14857724
+1. http://texteditors.org/cgi-bin/wiki.pl?VIM
+1. http://texteditors.org/cgi-bin/wiki.pl?Vim_Cheat_Sheet
+1. https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled
+1. https://riptutorial.com/vim/example/4731/recording-a-macro

@@ -1,5 +1,11 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Rebasing in git is a way to clean up your commit history and change the history of one branch to be after the changes of another."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Rebase (git)</title><link rel="stylesheet" href="tinystyle.css"></head><body>
 <main id="main"><article id="content"><h1 id="title">Rebase (git)</h1><p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
+<h2>The Golden Rule</h2>
+<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
+<p>From Linus Torvald[10]:</p>
+<blockquote>
+<p>People can (and probably should) rebase their <em>private</em> trees (their own work). That's a <em>cleanup</em>. But never other peoples code. That's a &quot;destroy history&quot;</p>
+</blockquote>
 <h2>Merge vs. Rebase</h2>
 <p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
 <h3>Squash and Rebase[11]</h3>
@@ -9,12 +15,6 @@
 </blockquote>
 <blockquote>
 <p>If you follow this process it  guarantees that ALL commits in master build and pass tests. This simple  fact makes debugging an issue much easier. You can use <strong>git</strong> bisect when trying to find the source of a bug. Git bisect becomes almost  completely ineffective  if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or  impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash  our commits. If you really want to have multiple commits for a feature,  at least squash down so that each commit builds and passes tests.</p>
-</blockquote>
-<h2>The Golden Rule</h2>
-<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
-<p>From Linus Torvald[10]:</p>
-<blockquote>
-<p>People can (and probably should) rebase their <em>private</em> trees (their own work). That's a <em>cleanup</em>. But never other peoples code. That's a &quot;destroy history&quot;</p>
 </blockquote>
 <h2>Simple Rebase</h2>
 <p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
@@ -74,5 +74,6 @@
 <li><a href="https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits" target="_blank">https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits</a></li>
 <li><a href="http://blog.nerdbank.net/2020/01/should-i-merge-or-rebase-in-git.html" target="_blank">http://blog.nerdbank.net/2020/01/should-i-merge-or-rebase-in-git.html</a></li>
 <li><a href="https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/" target="_blank">https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/</a></li>
+<li>Visual differences between merge, rebase, squash/merge: <a href="https://stackoverflow.com/a/43551395/14857724" target="_blank">https://stackoverflow.com/a/43551395/14857724</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202201271035</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202203232155</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -5,6 +5,14 @@ description: Rebasing in git is a way to clean up your commit history and change
 
 Rebasing in {{git}} is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.
 
+## The Golden Rule
+
+If your branch is being worked on by anybody else but you, **do not rebase!** Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️
+
+From Linus Torvald[10]:
+
+> People can (and probably should) rebase their _private_ trees (their own work). That's a _cleanup_. But never other peoples code. That's a "destroy history"
+
 ## Merge vs. Rebase
 
 Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.
@@ -16,14 +24,6 @@ One use of rebasing is this method, which alters your branch's history by squash
 > before you merge a feature branch back into your main branch (often `master` or `develop`), your feature branch should be squashed down to a single buildable commit, and then rebased from the up-to-date main branch.
 
 > If you follow this process it  guarantees that ALL commits in master build and pass tests. This simple  fact makes debugging an issue much easier. You can use **git** bisect when trying to find the source of a bug. Git bisect becomes almost  completely ineffective  if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or  impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash  our commits. If you really want to have multiple commits for a feature,  at least squash down so that each commit builds and passes tests.
-
-## The Golden Rule
-
-If your branch is being worked on by anybody else but you, **do not rebase!** Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️
-
-From Linus Torvald[10]:
-
-> People can (and probably should) rebase their _private_ trees (their own work). That's a _cleanup_. But never other peoples code. That's a "destroy history"
 
 ## Simple Rebase
 
@@ -80,3 +80,4 @@ Command(s) | Effect
 1. https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits
 1. http://blog.nerdbank.net/2020/01/should-i-merge-or-rebase-in-git.html
 1. https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/
+1. Visual differences between merge, rebase, squash/merge: https://stackoverflow.com/a/43551395/14857724

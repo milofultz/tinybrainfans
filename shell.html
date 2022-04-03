@@ -10,6 +10,7 @@
 <p>You can run tasks in the background within a <a href="terminal.html">terminal</a> window by placing an <code>&amp;</code> at the end of the command you want running. You can see these background jobs with <code>jobs</code> and kill the job that you want with <code>kill %</code> followed by the index, or just <code>kill %</code> to kill all jobs.</p>
 <h2>Variables</h2>
 <p>Variables are all defined by a non-spaced variable name followed by an equals sign. Variables are recalled/invoked using the dollar sign followed by the variable name.</p>
+<p>Variables that are within a string and directly next to another character that is not a space need to be enclosed within a dollar sign and curly braces, e.g. <code>${var_name}</code>.</p>
 <pre><code class="language-shell">var_name=&quot;Bob&quot;
 number_var=123
 
@@ -18,8 +19,45 @@ echo &quot;$number_var&quot;
 echo &quot;There are $number_var cans in ${var_name}&#x27;s closet.&quot;
 </code></pre>
 <p>Single quotes will preserve the literal value of all characters within it, while double quotes will allow the expansion/interpolation of the variables.[10] <strong>Always use double quotes when expanding your variables.</strong> Using double quotes around a variable will ensure that it will not be split up like a series of arguments[11].</p>
-<p>Variables that are within a string and directly next to another character that is not a space need to be enclosed within a dollar sign and curly braces, e.g. <code>${var_name}</code>.</p>
+<pre><code class="language-shell">var_name=&quot;Bob&quot;
+number_var=123
+
+literal_values=&#x27;$var_name $number_var&#x27;
+expanded_values=&quot;$var_name $number_var&quot;
+
+echo &quot;$literal_values&quot;  # $var_name $number_var
+echo &quot;$expanded_values&quot; # Bob 123
+</code></pre>
+<h3>Parameter Expansions</h3>
 <p>Variables in the shell also have a variety of parameter expansions[12] that allow pattern matching, replacement, string slicing, and more.</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${var:-rep}</code></td>
+<td>If <code>var</code> is null or unset, replace it with literal <code>rep</code> or variable named <code>$rep</code> if preceded by a <code>$</code> (e.g. <code>${var:-$rep}</code>)[13]</td>
+</tr>
+</tbody></table><h2>Conditionals</h2>
+<p>There are a zillion operators to use in conditionals that are all slightly different than the usual <code>&lt;</code>, <code>&gt;</code>, <code>==</code>, etc.[14] But here is the general construction of if/then conditionals in shell.</p>
+<pre><code class="language-shell"># If var_name is equal to other_var
+if [[ &quot;$var_name&quot; -eq &quot;$other_var&quot; ]]
+then
+  # stuff happens
+fi
+
+# If var_name is NOT equal to other_var
+if [[ ! &quot;$var_name&quot; -eq &quot;$other_var&quot; ]]
+then
+  # stuff happens
+else
+  # other stuff happens
+fi
+</code></pre>
 <h2>Iteration</h2>
 <p>To iterate over a series of files, you can use a <code>for</code> loop:</p>
 <pre><code class="language-shell"># Files in directory include: a.txt, b.jpg, c.exe, d.txt
@@ -97,5 +135,7 @@ $ thing1 | thing2
 <li><a href="https://stackoverflow.com/a/6697781/14857724" target="_blank">https://stackoverflow.com/a/6697781/14857724</a></li>
 <li><a href="https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2" target="_blank">https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2</a></li>
 <li><a href="https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5" target="_blank">https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5</a></li>
+<li><a href="https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash" target="_blank">https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash</a></li>
+<li><a href="https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1" target="_blank">https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li></ul></details></section><p class="last-modified">Last modified: 202202160019</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li></ul></details></section><p class="last-modified">Last modified: 202204030226</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://github.com/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
