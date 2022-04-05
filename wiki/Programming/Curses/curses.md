@@ -40,10 +40,7 @@ int main(void)
 
 ```bash
 $ gcc -lncurses goodbye.c -o goodbye
-# gcc        # the compiler
-# -lncurses  # the curses linker
-# goodbye.c  # our input file
-# -o goodbye # our output compiled program
+# -lncurses : the curses linker
 ```
 
 **Running**

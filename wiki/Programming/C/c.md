@@ -129,8 +129,8 @@ An enumeration constant is a list of constant integer values. They will start at
 ```c
 enum boolean { FALSE, TRUE }; // FALSE == 0, TRUE == 1
 enum months { JAN = 1, FEB, MAR, ...}; // JAN == 1, FEB == 2...
-enum fib { FIRST = 1, SECOND = 1, THIRD,
-           FOURTH, FIFTH = 5, SIXTH = 8 } // THIRD == 2, FOURTH == 3...
+enum fib { FIRST = 1, SECOND = 1, THIRD,  // THIRD == 2
+           FOURTH, FIFTH = 5, SIXTH = 8 } // FOURTH == 3
 ```
 
 These constants can be used the same as symbolic constants.
@@ -223,4 +223,4 @@ There are many different options to do {{test-driven development}} in C. One I h
 2. https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros
 2. https://stackoverflow.com/questions/7899119/what-does-s-mean-in-printf
 2. http://cslibrary.stanford.edu/101/EssentialC.pdf
-2. https://www.ibm.com/docs/en/i/7.4?topic=functions-printf-print-formatted-characters
+2. https://www.ibm.com/docs/en/i/7.4?topic=functions-printf-print-formatted-characterse

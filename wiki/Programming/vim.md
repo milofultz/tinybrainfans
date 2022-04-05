@@ -33,9 +33,9 @@ Open for reading/viewing | `:v path/to/file`
 
 Description | Command | Notes
 --- | --- | ---
-Undo | `u` | 
-Undo all changes to a line | `U` | 
-Redo | `Ctrl + R` | 
+Undo | `u` |
+Undo all changes to a line | `U` |
+Redo | `Ctrl + R` |
 
 ### Find
 
@@ -71,7 +71,7 @@ Copy is "yank" in Vim, so that's why they are "y".
 
 Description | Command | Notes
 --- | --- | ---
-Copy entire line or `n` lines, including newline | `[n]yy` |
+Copy entire line or `n` lines, including newline | `[n]Y` |
 Copy from cursor to end of line | `y$` |
 Copy from cursor to start of line | `y^` |
 Cut entire line or `n` lines, including newline | `[n]dd` |
@@ -89,7 +89,9 @@ Description | Command | Notes
 Delete entire line or `n` lines, including newline | `[n]dd` |
 Delete from current column to end of line | `D` |
 Delete contents from cursor to end of `n` words and enter Insert mode | `c[n]e` or `c[n]w` |
-Delete contents from cursor to end of `n` lines and enter Insert mode | `c[n]$` |
+Delete contents from cursor to end of `n` lines and enter Insert mode | `[n]C` |
+Delete character under cursor and enter Insert mode | `s` |
+Delete entire line and enter Insert mode | `S` |
 Delete contents of `n` lines and enter Insert mode | `c[n]c` |
 Replace letter under cursor with letter `l` | `r[l]` |
 Enter replace mode (like overwrite) | `R`
@@ -99,12 +101,13 @@ Enter replace mode (like overwrite) | `R`
 Description | Command | Notes
 --- | --- | ---
 Insert mode | `i`|
+Enter Insert mode at the beginning of the line | `I` |
 Append after current character/at end of line | `a`/`A`|
 Make a new line above/below current line and enter insert mode | `O`/`o` |
 Insert (or retrieve) contents of `FILENAME` at cursor | `:r FILENAME`|
 Insert (or retrieve) return of shell `command` at cursor | `:r !command`|
 Insert on multiple lines[15] | `Ctrl + v`, select area, `I`, do edits, `esc` |
-Append to multiple lines[14] | `V`, select lines, `:'<,'>s/$/text/` | `'<,'>` will get added to your command automatically after `:` 
+Append to multiple lines[14] | `V`, select lines, `:'<,'>s/$/text/` | `'<,'>` will get added to your command automatically after `:`
 Join line below current line with current line[18] | `J`|
 Flip capitalization | `~` |
 
@@ -123,9 +126,9 @@ Exit current mode | `ESC`
 
 Description | Command | Notes
 --- | --- | ---
-Start recording under register `n` | `qn` | `n` can be any register 
+Start recording under register `n` | `qn` | `n` can be any register
 Stop recording | `q` |
-Replay recorded keystrokes | `@n` | `n` can be any register 
+Replay recorded keystrokes | `@n` | `n` can be any register
 
 ### Misc
 
