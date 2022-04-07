@@ -91,3 +91,4 @@ If you are using springtails, mold is normal and will be handled soon enough by 
 1. https://www.youtube.com/watch?v=1yreHNcX818&list=PLGPT1t4Cqpfi_58FzQcXgY3YGiVH-fPUA
 1. https://www.youtube.com/watch?v=KR2Lo0rOF7g
 1. https://ifyoulived.org/moss.html
+1. [Edible Herb Terrarium](https://www.youtube.com/watch?v=Rr7Xkn6J90k)
