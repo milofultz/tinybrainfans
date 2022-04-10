@@ -23,7 +23,9 @@ One use of rebasing is this method, which alters your branch's history by squash
 
 > before you merge a feature branch back into your main branch (often `master` or `develop`), your feature branch should be squashed down to a single buildable commit, and then rebased from the up-to-date main branch.
 
-> If you follow this process it  guarantees that ALL commits in master build and pass tests. This simple  fact makes debugging an issue much easier. You can use **git** bisect when trying to find the source of a bug. Git bisect becomes almost  completely ineffective  if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or  impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash  our commits. If you really want to have multiple commits for a feature,  at least squash down so that each commit builds and passes tests.
+> If you follow this process it guarantees that ALL commits in master build and pass tests. This simple fact makes debugging an issue much easier. You can use **git** bisect when trying to find the source of a bug. Git bisect becomes almost completely ineffective if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash our commits. If you really want to have multiple commits for a feature, at least squash down so that each commit builds and passes tests.
+
+To do this, rebase the new branch off of the target branch you wish to merge into. Select every commit except the oldest one and set to `squash`. Select that first commit and set it to `reword`. Once the rebase starts on exit, you will be able to change the commit message that will hold all of the squashed commits. Once that is complete, merge it into the target cranch.
 
 ## Simple Rebase
 
@@ -67,6 +69,13 @@ Command(s) | Effect
 `f` / `fixup` | Fold this commit into the previous commit, using the previous commit's message
 `e` / `edit` | Stop at this commit and give user control until `rebase --continue`[9] 
 
+## Have I Rebased and Merged This Branch?[13]
+
+One problem with a rebase and merge or squash and rebase before merge is that the standard `git branch -d branch-name` will reject as it is not recognized as merged in to the target branch. A couple ways to check:
+
+1. Use `git log --oneline --cherry target-branch...starting-branch` to see which commits are present in both branches.
+2. If commit messages are maybe not true to the original, or a squash and rebase has occurred, you can use `git checkout target-branch~0; git merge starting-branch`. This will put you on a detached head of the target branch and try to merge in the starting branch's content. If this commit is merged in already, it should say `Already up to date.`.
+
 ## References
 
 1. https://www.youtube.com/watch?v=7Mh259hfxJg
@@ -81,3 +90,4 @@ Command(s) | Effect
 1. http://blog.nerdbank.net/2020/01/should-i-merge-or-rebase-in-git.html
 1. https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/
 1. Visual differences between merge, rebase, squash/merge: https://stackoverflow.com/a/43551395/14857724
+1. https://stackoverflow.com/a/34337939/14857724

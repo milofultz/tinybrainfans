@@ -13,7 +13,7 @@ description: Javascript frameworks are abundant and everywhere, so I wanted to c
 
 [htmx](https://htmx.org/): Super lightweight and lets you bake in your actions directly to the HTML. If your app is simple enough, means no JS is needed at all. Wild stuff.
 
-[Marko](https://markojs.com/): Can write your functionality into the HTML similar to Vue. 
+[Marko](https://markojs.com/): Can write your functionality into the HTML similar to Vue.
 
 {{React}}: The classic. Makes SPA's slick and clean using components, but requires quite a few dependencies and {{Webpack}} and {{Babel}}, so is a bit unwieldy.
 
@@ -21,7 +21,8 @@ description: Javascript frameworks are abundant and everywhere, so I wanted to c
 
 ## References
 
-- https://reactjs.org/
-- https://github.com/vuejs/vue
-- https://markojs.com/
-- https://backbonejs.org/#Getting-started
+1. https://reactjs.org/
+1. https://github.com/vuejs/vue
+1. https://markojs.com/
+1. https://backbonejs.org/#Getting-started
+

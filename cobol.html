@@ -1,5 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="COBOL is a high-level language mainly used with mainframes on legacy and modern systems."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - COBOL</title><link rel="stylesheet" href="tinystyle.css"></head><body>
-<main id="main"><article id="content"><h1 id="title">COBOL</h1><h2>Syntax</h2>
+<main id="main"><article id="content"><h1 id="title">COBOL</h1><p>Most of this is in the IBM Z/OS variety, but I assume most of it is pretty agnostic to the exact implementation hardware. Plus the manuals are all over the internet, so shouldn't be too hard to grab what you need.</p>
+<h2>Syntax</h2>
 <h3>Characters</h3>
 <p>'Characters' are lowest in the hierarchy and they cannot be divided further. The COBOL Character Set includes 78 characters which are shown below.</p>
 <table>
@@ -284,6 +285,52 @@ Invalid:
 <td>ALL literal</td>
 <td>Fills the data-item with Literal.</td>
 </tr>
+</tbody></table><h3>Variables (PICTURE Clause)[7]</h3>
+<p>These are only the common ones that I've found. There are LOTS.</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>A character position that can contain only a letter of the Latin alphabet or a space.</td>
+<td>Each ’A’ is counted as one character position in the size of the data item.</td>
+</tr>
+<tr>
+<td>S</td>
+<td>An indicator of the presence (but not the representation, and not necessarily the position) of an operational sign. An operational sign indicates whether the value of an item involved in an operation is positive or negative.</td>
+<td>Not counted in the size of the elementary item, unless an associated SIGN clause specifies the SEPARATE CHARACTER phrase (which would be counted as one character position).</td>
+</tr>
+<tr>
+<td>V</td>
+<td>An indicator of the location of the assumed decimal point. Does not represent a character position.<br>When the assumed decimal point is to the right of the rightmost symbol in the string, the V is redundant.</td>
+<td>Not counted in the size of the elementary item.</td>
+</tr>
+<tr>
+<td>X</td>
+<td>A character position that can contain any allowable character from the alphanumeric character set of the computer.</td>
+<td>Each ’X’ is counted as one character position in the size of the data item.</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>A leading numeric character position. When that position contains a zero, a space character replaces the zero.</td>
+<td>Each ’Z’ is counted as one character position in the size of the data item.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>A character position that contains a numeral.</td>
+<td>Each nine specifies one decimal digit in the value of the item. For usages DISPLAY and NATIONAL, each nine is counted as one character position in the size of the data item.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>A character position into which the numeral zero is inserted.</td>
+<td>Each zero is counted as one character position in the size of the data item.</td>
+</tr>
 </tbody></table><h2>Learning</h2>
 <h3>Courses</h3>
 <ul>
@@ -304,5 +351,6 @@ Invalid:
 <li><a href="https://www.teddit.net/r/cobol/comments/id13dc/newbie_with_cobol_and_absolutely_lost/" target="_blank">Debugging COBOL</a></li>
 <li><a href="https://www.tutorialspoint.com/cobol/cobol_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/cobol/cobol_basic_syntax.htm</a></li>
 <li><a href="http://www.csis.ul.ie/cobol/exercises/default.htm" target="_blank">http://www.csis.ul.ie/cobol/exercises/default.htm</a></li>
+<li><a href="https://www.ibm.com/docs/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf" target="_blank">https://www.ibm.com/docs/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf</a></li>
 </ol>
-<p class="last-modified">Last modified: 202204071821</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202204091905</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

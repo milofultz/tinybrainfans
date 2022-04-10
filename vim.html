@@ -3,7 +3,7 @@
 <h2>VimTutor</h2>
 <p>Use it! It guides you through the basics of Vim by <em>doing things</em> instead of reading random wikis on the web and trying to cobble together how to do stuff. You can access it by typing <code>vimtutor</code> at the CLI.</p>
 <h2>Commands</h2>
-<p>All commands must be done in &quot;Normal&quot; mode, accessed by pressing <code>esc</code> if in write mode. Commands are case sensitive and must be confirmed with <code>Enter</code> unless otherwise noted.</p>
+<p>All commands must be done in &quot;Normal&quot; mode, accessed by pressing <code>esc</code> if in write mode. Commands are case sensitive and must be confirmed with <code>Enter</code> unless otherwise noted. <code>&lt;c-x&gt;</code> means <code>Ctrl+x</code>.</p>
 <p>Many of these commands derive from the original <a href="unix.html">Unix</a> text line editor <code><a href="ed.html">ed</a></code>. If you don't understand why things are the way they are here, pulling the thread of <code>ed</code> may benefit your understanding.</p>
 <h3>Meta/File</h3>
 <table>
@@ -82,7 +82,7 @@
 </tr>
 <tr>
 <td>Redo</td>
-<td><code>Ctrl + R</code></td>
+<td><code>&lt;c-r&gt;</code></td>
 <td></td>
 </tr>
 </tbody></table><h3>Find</h3>
@@ -127,7 +127,7 @@
 </tr>
 <tr>
 <td>See current cursor location and information</td>
-<td><code>Ctrl + g</code></td>
+<td><code>&lt;c-g&gt;</code></td>
 <td></td>
 </tr>
 <tr>
@@ -147,22 +147,22 @@
 </tr>
 <tr>
 <td>Go to next page</td>
-<td><code>Ctrl + f</code></td>
+<td><code>&lt;c-f&gt;</code></td>
 <td></td>
 </tr>
 <tr>
 <td>Go to next half page</td>
-<td><code>Ctrl + d</code></td>
+<td><code>&lt;c-d&gt;</code></td>
 <td></td>
 </tr>
 <tr>
 <td>Go to previous page</td>
-<td><code>Ctrl + b</code></td>
+<td><code>&lt;c-b&gt;</code></td>
 <td></td>
 </tr>
 <tr>
 <td>Go to previous half page</td>
-<td><code>Ctrl + u</code></td>
+<td><code>&lt;c-u&gt;</code></td>
 <td></td>
 </tr>
 <tr>
@@ -353,7 +353,7 @@
 </tr>
 <tr>
 <td>Insert on multiple lines[15]</td>
-<td><code>Ctrl + v</code>, select area, <code>I</code>, do edits, <code>esc</code></td>
+<td><code>&lt;c-v&gt;</code>, select area, <code>I</code>, do edits, <code>esc</code></td>
 <td></td>
 </tr>
 <tr>
@@ -398,7 +398,7 @@
 </tr>
 <tr>
 <td>Visual block (selection of columns/lines)</td>
-<td><code>Ctrl+v</code></td>
+<td><code>&lt;c-v&gt;</code></td>
 </tr>
 <tr>
 <td>Exit current mode</td>
@@ -428,6 +428,51 @@
 <td>Replay recorded keystrokes</td>
 <td><code>@n</code></td>
 <td><code>n</code> can be any register</td>
+</tr>
+</tbody></table><h3>Split Screen</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Split current file horizontally</td>
+<td><code>&lt;c-w&gt; s</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Split current file vertically</td>
+<td><code>&lt;c-w&gt; v</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Navigate to different panes</td>
+<td><code>&lt;c-w&gt; {direction}</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Increase/decrease pane width</td>
+<td><code>&lt;c-w&gt; &gt;</code>, <code>&lt;c-w&gt; &lt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Increase/decrease pane height</td>
+<td><code>&lt;c-w&gt; +</code>, <code>&lt;c-w&gt; -</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Equalize pane height/width</td>
+<td><code>&lt;c-w&gt; =</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Close a pane</td>
+<td><code>&lt;c-w&gt; q</code></td>
+<td></td>
 </tr>
 </tbody></table><h3>Misc</h3>
 <table>
@@ -497,4 +542,4 @@ autocmd BufWritePre * :%s/\s\+$//e
 <li><a href="https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled" target="_blank">https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled</a></li>
 <li><a href="https://riptutorial.com/vim/example/4731/recording-a-macro" target="_blank">https://riptutorial.com/vim/example/4731/recording-a-macro</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="ed.html">ed</a></li><li><a href="git.html">git</a></li></ul></details></section><p class="last-modified">Last modified: 202204042150</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="ed.html">ed</a></li><li><a href="git.html">git</a></li></ul></details></section><p class="last-modified">Last modified: 202204101504</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

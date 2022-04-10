@@ -3,6 +3,8 @@ title: COBOL
 description: COBOL is a high-level language mainly used with mainframes on legacy and modern systems.
 ---
 
+Most of this is in the IBM Z/OS variety, but I assume most of it is pretty agnostic to the exact implementation hardware. Plus the manuals are all over the internet, so shouldn't be too hard to grab what you need.
+
 ## Syntax
 
 ### Characters
@@ -172,6 +174,19 @@ Reserved words are predefined words in COBOL. Different types of reserved words 
 |5     |QUOTES|Single or double quotes.|
 |6     |ALL literal|Fills the data-item with Literal.|
 
+### Variables (PICTURE Clause)[7]
+
+These are only the common ones that I've found. There are LOTS.
+
+Symbol | Meaning | Size
+--- | --- | ---
+A | A character position that can contain only a letter of the Latin alphabet or a space. | Each ’A’ is counted as one character position in the size of the data item.
+S | An indicator of the presence (but not the representation, and not necessarily the position) of an operational sign. An operational sign indicates whether the value of an item involved in an operation is positive or negative. | Not counted in the size of the elementary item, unless an associated SIGN clause specifies the SEPARATE CHARACTER phrase (which would be counted as one character position). 
+V | An indicator of the location of the assumed decimal point. Does not represent a character position.<br>When the assumed decimal point is to the right of the rightmost symbol in the string, the V is redundant. | Not counted in the size of the elementary item.
+X | A character position that can contain any allowable character from the alphanumeric character set of the computer. | Each ’X’ is counted as one character position in the size of the data item.
+Z | A leading numeric character position. When that position contains a zero, a space character replaces the zero. | Each ’Z’ is counted as one character position in the size of the data item.
+9 | A character position that contains a numeral. | Each nine specifies one decimal digit in the value of the item. For usages DISPLAY and NATIONAL, each nine is counted as one character position in the size of the data item.
+0 | A character position into which the numeral zero is inserted. | Each zero is counted as one character position in the size of the data item.
 
 ## Learning
 
@@ -195,4 +210,5 @@ Reserved words are predefined words in COBOL. Different types of reserved words 
 4. [Debugging COBOL](https://www.teddit.net/r/cobol/comments/id13dc/newbie_with_cobol_and_absolutely_lost/)
 5. https://www.tutorialspoint.com/cobol/cobol_basic_syntax.htm
 6. http://www.csis.ul.ie/cobol/exercises/default.htm
+7. https://www.ibm.com/docs/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf
 

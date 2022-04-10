@@ -14,8 +14,9 @@
 <p>before you merge a feature branch back into your main branch (often <code>master</code> or <code>develop</code>), your feature branch should be squashed down to a single buildable commit, and then rebased from the up-to-date main branch.</p>
 </blockquote>
 <blockquote>
-<p>If you follow this process it  guarantees that ALL commits in master build and pass tests. This simple  fact makes debugging an issue much easier. You can use <strong>git</strong> bisect when trying to find the source of a bug. Git bisect becomes almost  completely ineffective  if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or  impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash  our commits. If you really want to have multiple commits for a feature,  at least squash down so that each commit builds and passes tests.</p>
+<p>If you follow this process it guarantees that ALL commits in master build and pass tests. This simple fact makes debugging an issue much easier. You can use <strong>git</strong> bisect when trying to find the source of a bug. Git bisect becomes almost completely ineffective if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash our commits. If you really want to have multiple commits for a feature, at least squash down so that each commit builds and passes tests.</p>
 </blockquote>
+<p>To do this, rebase the new branch off of the target branch you wish to merge into. Select every commit except the oldest one and set to <code>squash</code>. Select that first commit and set it to <code>reword</code>. Once the rebase starts on exit, you will be able to change the commit message that will hold all of the squashed commits. Once that is complete, merge it into the target cranch.</p>
 <h2>Simple Rebase</h2>
 <p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
 <pre><code class="language-shell">$ git rebase {other-branch}
@@ -61,7 +62,13 @@
 <td><code>e</code> / <code>edit</code></td>
 <td>Stop at this commit and give user control until <code>rebase --continue</code>[9]</td>
 </tr>
-</tbody></table><h2>References</h2>
+</tbody></table><h2>Have I Rebased and Merged This Branch?[13]</h2>
+<p>One problem with a rebase and merge or squash and rebase before merge is that the standard <code>git branch -d branch-name</code> will reject as it is not recognized as merged in to the target branch. A couple ways to check:</p>
+<ol>
+<li>Use <code>git log --oneline --cherry target-branch...starting-branch</code> to see which commits are present in both branches.</li>
+<li>If commit messages are maybe not true to the original, or a squash and rebase has occurred, you can use <code>git checkout target-branch~0; git merge starting-branch</code>. This will put you on a detached head of the target branch and try to merge in the starting branch's content. If this commit is merged in already, it should say <code>Already up to date.</code>.</li>
+</ol>
+<h2>References</h2>
 <ol>
 <li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
 <li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
@@ -75,5 +82,6 @@
 <li><a href="http://blog.nerdbank.net/2020/01/should-i-merge-or-rebase-in-git.html" target="_blank">http://blog.nerdbank.net/2020/01/should-i-merge-or-rebase-in-git.html</a></li>
 <li><a href="https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/" target="_blank">https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/</a></li>
 <li>Visual differences between merge, rebase, squash/merge: <a href="https://stackoverflow.com/a/43551395/14857724" target="_blank">https://stackoverflow.com/a/43551395/14857724</a></li>
+<li><a href="https://stackoverflow.com/a/34337939/14857724" target="_blank">https://stackoverflow.com/a/34337939/14857724</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202203232155</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202204101434</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
