@@ -60,7 +60,7 @@ const app = Vue.createApp({
 
 State can be brought in to the templating engine using double curly braces.
 
-As tag content, it can be brought in directly. In the `data` return object, we have a `title` property that is then addressed within the `template` tag. e.g. `<h1>{{title}}</h1>`.
+As tag content, it can be brought in directly. In the `data` return object, we have a `title` property that is then addressed within the `template` tag. e.g. `<h1>{{% raw %}}{{title}}{{% endraw %}}</h1>`.
 
 As properties *of* the tag itself, we need to use something called the `v-bind:` directive. To do this, preface whatever property name you want to use a prop in with `v-bind:`, and set the value in double quotes, as if it were a Javascript string. e.g. ```<img v-bind:src="imageURL" v-bind:alt="`A man whose name is ${firstName} ${lastName}`"/>```.
 
