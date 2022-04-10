@@ -95,7 +95,7 @@ Props can be sent in to existing components just like in {{React}}, using proper
 
 ```vue
 <template>
-<p>{{msg}}</p>
+<p>{{% raw %}}{{msg}}{{% endraw %}}</p>
 </template>
 
 <script>
