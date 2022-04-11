@@ -8,11 +8,18 @@
 </ul>
 </li>
 <li>
-<code>long int strtol(const char *nptr, char **endptr, int base)</code> - Converts a string into a long integer<ul>
+<code>long int strtol(const char *nptr, char **endptr, int base)</code> - Converts a string into a long integer[1-2]<ul>
 <li><code>nptr</code> - String to be read</li>
 <li><code>endPtr</code> - On success, points to first char after number; on failure,  <code>NULL</code></li>
 <li><code>base</code> - Base for number conversion</li>
 <li>Returns converted number as  <code>long</code></li>
+</ul>
+</li>
+<li>
+<code>rand</code> and <code>srand</code> - Random number generation[5]<ul>
+<li><code>void srand(unsigned int seed)</code> - Set a seed for the pseudo-random number generator</li>
+<li><code>int rand(void)</code> - Return a pseudo-random number</li>
+<li>e.g. <code>srand(clock()); int num = rand();</code></li>
 </ul>
 </li>
 </ul>
@@ -37,5 +44,6 @@
 <li><a href="https://codeforwin.org/2018/01/convert-string-to-long-using-strtol-c.html" target="_blank">https://codeforwin.org/2018/01/convert-string-to-long-using-strtol-c.html</a></li>
 <li><a href="https://linux.die.net/man/3/fopen" target="_blank">https://linux.die.net/man/3/fopen</a></li>
 <li><a href="https://www.tutorialspoint.com/c_standard_library/c_function_getenv.htm" target="_blank">https://www.tutorialspoint.com/c_standard_library/c_function_getenv.htm</a></li>
+<li><a href="https://linux.die.net/man/3/srand" target="_blank">https://linux.die.net/man/3/srand</a></li>
 </ol>
-<p class="last-modified">Last modified: 202203132022</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202204111352</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

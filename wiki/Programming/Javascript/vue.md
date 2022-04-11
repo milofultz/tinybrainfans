@@ -66,7 +66,7 @@ As properties *of* the tag itself, we need to use something called the `v-bind:`
 
 While `v-bind:` is the explicit prefix for bound properties, you can also just use `:` in it's place. e.g. ```<img :src="imageURL" :alt="`A man whose name is ${firstName} ${lastName}`"/>```.
 
-### Methods
+### Methods and Event Handlers
 
 The contents of your **app.js** may look like this, containing methods within the `methods` object.
 
@@ -91,17 +91,19 @@ While `v-on:` is the explicit prefix for bound handlers, you can also just use `
 
 ### Props
 
-Props can be sent in to existing components just like in {{React}}, using properties on a {{JSX}} component. e.g. `<HelloWorld msg="Hello world!" />`. These props can be accessed inside the component file like so:
+Props can be sent in to existing components just like in {{React}}, using properties on a {{JSX}} component. e.g. `<HelloWorld msg="Hello world!" names="['Bob', 'John']" />`. These props can be accessed inside the component file like so:
 
 ```vue
 <template>
-<p>{{% raw %}}{{msg}}{{% endraw %}}</p>
+  <p :title="names">{{% raw %}}{{msg}}{{% endraw %}}</p>
 </template>
 
 <script>
 export default {
+  name: 'HelloWorld',
   props: {
     msg: String,
+    names: String,
   },
 }
 </script>
@@ -181,9 +183,36 @@ export default {
 }
 ```
 
+### Iteration
+
+If you have an array-like object you want to iterate through, you can use `v-for="item in array"`, using the {{Javascript}} `for ... in` syntax. Like {{React}}, we need to have a unique key for each item in the iteration.
+
+```vue
+<template>
+  <div :key="task.id" v-for="task in tasks">
+    <h1>{{% raw %}}{{ task.id }}{{% endraw %}}</h1>
+  </div>
+</template>
+```
+
 ### Lifecycle Methods
 
-TODO
+These methods pertain to the lifecycle of the component, like mounting, updating, and unmounting. These go in the top level of the export.
+
+```javascript
+export default {
+  props: {
+    userId: String,
+  },
+  created() {
+    console.log('Created!');
+  },
+};
+```
+
+This will run the `created` function when the component is created.
+
+For all the lifecycle methods, look at their site[6-7], or at [this diagram](https://vuejs.org/api/options-lifecycle.html).
 
 ## Getting Started
 
@@ -197,3 +226,5 @@ Using the Vue CLI[3] is the easiest way to get started. Similar to Create React 
 4. https://michaelnthiessen.com/unlock-full-potential-prop-types/
 5. https://code.luasoftware.com/tutorials/vuejs/vuejs-v-bind-and-v-on-shorthand/
 6. https://vuejs.org/guide/essentials/lifecycle.html
+7. https://vuejs.org/api/options-lifecycle.html
+8. Binding multiple props at once: https://stackoverflow.com/a/65300456/14857724

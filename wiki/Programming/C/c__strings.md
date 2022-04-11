@@ -7,16 +7,18 @@ Strings in {{C}} are {{arrays|Arrays (C)}} of characters.
 
 ## Basics
 
-Both of these strings are arrays of 6 characters in length. These two are the same:
+All of these strings are arrays of 6 characters in length, which includes the null termination character `\0`. The length of a C string is determined by searching for the null termination character. These three are the same:
 
 ```c
+#include <string.h>
+
 char str1[] = "Hello";
+
 char str2[] = {'H', 'e', 'l', 'l', 'o', '\0'};
+
+char str3[6];
+strcpy(str3, "Hello");
 ```
-
-### Length
-
-The length of a C string is determined by searching for the null termination character, `\0`.
 
 ## Syntax
 
@@ -25,6 +27,10 @@ The length of a C string is determined by searching for the null termination cha
 A string of multiple characters is signified by double quotes `"like this"`.
 
 A single character is signified by single quotes, like `'\0'`, `'a'`, or `'\a'`.
+
+## Functions
+
+Many helper functions can be brought in with the `string.h` helper file, like `strlen`, `strcpy`, `strcat`, etc.
 
 ## References
 

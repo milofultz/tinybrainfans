@@ -9,11 +9,16 @@ C has a large amount of helper libraries and functions.
 
 - `char *getenv(const char *name)` - Get environment variable
   - `name` - Name of the environment variable[4]
-- `long int strtol(const char *nptr, char **endptr, int base)` - Converts a string into a long integer
+- `long int strtol(const char *nptr, char **endptr, int base)` - Converts a string into a long integer[1-2]
   - `nptr` - String to be read
   - `endPtr` - On success, points to first char after number; on failure,  `NULL`
   - `base` - Base for number conversion
   - Returns converted number as  `long`
+- `rand` and `srand` - Random number generation[5]
+  - `void srand(unsigned int seed)` - Set a seed for the pseudo-random number generator
+  - `int rand(void)` - Return a pseudo-random number
+  - e.g. `srand(clock()); int num = rand();`
+  
 
 ## `stdio.h`
 
@@ -30,3 +35,4 @@ C has a large amount of helper libraries and functions.
 1. https://codeforwin.org/2018/01/convert-string-to-long-using-strtol-c.html
 1. https://linux.die.net/man/3/fopen
 1. https://www.tutorialspoint.com/c_standard_library/c_function_getenv.htm
+1. https://linux.die.net/man/3/srand
