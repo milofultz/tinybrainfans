@@ -76,6 +76,17 @@ One problem with a rebase and merge or squash and rebase before merge is that th
 1. Use `git log --oneline --cherry target-branch...starting-branch` to see which commits are present in both branches.
 2. If commit messages are maybe not true to the original, or a squash and rebase has occurred, you can use `git checkout target-branch~0; git merge starting-branch`. This will put you on a detached head of the target branch and try to merge in the starting branch's content. If this commit is merged in already, it should say `Already up to date.`.
 
+## Package Lock Conflicts[14]
+
+If you end up with `package-lock.json` conflicts in a rebase, follow these instructions:
+
+1. This is given that you are at a state in the rebase where all other previous or current conflicts have been managed and all that is left is the package lock.
+2. Run `npm install --package-lock-only`.
+3. Stage `package-lock.json` in the current commit.
+4. Run `git rebase continue` and commit.
+
+This should render you the up to date `package-lock.json` file without having to do all the merge conflicts manually.
+
 ## References
 
 1. https://www.youtube.com/watch?v=7Mh259hfxJg
@@ -91,3 +102,4 @@ One problem with a rebase and merge or squash and rebase before merge is that th
 1. https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/
 1. Visual differences between merge, rebase, squash/merge: https://stackoverflow.com/a/43551395/14857724
 1. https://stackoverflow.com/a/34337939/14857724
+1. https://marcelofernandes.dev/blog/solving-package-lock-json-conflicts/

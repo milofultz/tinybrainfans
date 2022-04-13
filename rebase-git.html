@@ -68,6 +68,15 @@
 <li>Use <code>git log --oneline --cherry target-branch...starting-branch</code> to see which commits are present in both branches.</li>
 <li>If commit messages are maybe not true to the original, or a squash and rebase has occurred, you can use <code>git checkout target-branch~0; git merge starting-branch</code>. This will put you on a detached head of the target branch and try to merge in the starting branch's content. If this commit is merged in already, it should say <code>Already up to date.</code>.</li>
 </ol>
+<h2>Package Lock Conflicts[14]</h2>
+<p>If you end up with <code>package-lock.json</code> conflicts in a rebase, follow these instructions:</p>
+<ol>
+<li>This is given that you are at a state in the rebase where all other previous or current conflicts have been managed and all that is left is the package lock.</li>
+<li>Run <code>npm install --package-lock-only</code>.</li>
+<li>Stage <code>package-lock.json</code> in the current commit.</li>
+<li>Run <code>git rebase continue</code> and commit.</li>
+</ol>
+<p>This should render you the up to date <code>package-lock.json</code> file without having to do all the merge conflicts manually.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
@@ -83,5 +92,6 @@
 <li><a href="https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/" target="_blank">https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/</a></li>
 <li>Visual differences between merge, rebase, squash/merge: <a href="https://stackoverflow.com/a/43551395/14857724" target="_blank">https://stackoverflow.com/a/43551395/14857724</a></li>
 <li><a href="https://stackoverflow.com/a/34337939/14857724" target="_blank">https://stackoverflow.com/a/34337939/14857724</a></li>
+<li><a href="https://marcelofernandes.dev/blog/solving-package-lock-json-conflicts/" target="_blank">https://marcelofernandes.dev/blog/solving-package-lock-json-conflicts/</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202204101434</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="npm.html">NPM</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202204111724</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

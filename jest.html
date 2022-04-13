@@ -25,7 +25,6 @@ test(&#x27;adds 1 + 2 to equal 3&#x27;, () =&gt; {
 });
 </code></pre>
 <p>Now we can run the test in the terminal with <code>npm run test</code>.</p>
-<h2>React</h2>
 <h2>Mocking</h2>
 <p>You can mock functions like <code>fetch</code> or <code>axios</code> by using the <code>jest.fn(() =&gt; {})</code> syntax.</p>
 <pre><code class="language-javascript">const someBlackBox = jest.fn(number =&gt; 42 + number);
@@ -61,10 +60,14 @@ console.log(
 expect(someOtherBlackBox.mock.calls.length).toBe(4);
 // etc. etc.
 </code></pre>
+<h2>Projects/Multiple Environments[4-5]</h2>
+<p>If you have elements in your application that need distinct or special test environments, use <code>projects</code>. This will allow you to use whatever configuration you want on whatever tests you want. Make sure you set up the correct <code>testMatch</code> values, or you will have a bad time.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://jestjs.io/" target="_blank">https://jestjs.io/</a></li>
 <li><a href="https://jestjs.io/docs/mock-functions" target="_blank">https://jestjs.io/docs/mock-functions</a></li>
 <li><a href="https://www.leighhalliday.com/mock-fetch-jest" target="_blank">https://www.leighhalliday.com/mock-fetch-jest</a></li>
+<li><a href="https://stackoverflow.com/questions/41318115/testing-two-environments-with-jest" target="_blank">https://stackoverflow.com/questions/41318115/testing-two-environments-with-jest</a></li>
+<li><a href="https://jestjs.io/docs/configuration#projects-arraystring--projectconfig" target="_blank">https://jestjs.io/docs/configuration#projects-arraystring--projectconfig</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="gherkin.html">Gherkin</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li><li><a href="testing-vanilla-javascript.html">Testing Vanilla Javascript</a></li></ul></details></section><p class="last-modified">Last modified: 202111070525</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="gherkin.html">Gherkin</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li><li><a href="testing-vanilla-javascript.html">Testing Vanilla Javascript</a></li></ul></details></section><p class="last-modified">Last modified: 202204112218</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -43,10 +43,6 @@ test('adds 1 + 2 to equal 3', () => {
 
 Now we can run the test in the terminal with `npm run test`.
 
-## React
-
-
-
 ## Mocking
 
 You can mock functions like `fetch` or `axios` by using the `jest.fn(() => {})` syntax.
@@ -89,8 +85,14 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 // etc. etc.
 ```
 
+## Projects/Multiple Environments[4-5]
+
+If you have elements in your application that need distinct or special test environments, use `projects`. This will allow you to use whatever configuration you want on whatever tests you want. Make sure you set up the correct `testMatch` values, or you will have a bad time.
+
 ## References
 
 1. https://jestjs.io/
 2. https://jestjs.io/docs/mock-functions
 3. https://www.leighhalliday.com/mock-fetch-jest
+4. https://stackoverflow.com/questions/41318115/testing-two-environments-with-jest
+5. https://jestjs.io/docs/configuration#projects-arraystring--projectconfig

@@ -47,6 +47,10 @@ source ~/.profile
 
 5. Try installing your package once again globally.
 
+### Package Lock Conflicts During Rebase
+
+See {{Rebase (git)}}.
+
 ## devDependencies
 
 You can save packages as a devDependency by using `--save-dev` as an option in the CLI.

@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="You can use xargs to build and execute command lines from standard input."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - xargs</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">xargs</h1><p><code>xargs</code> lets you chain together and patch up results from piped commands into other commands or applications.</p>
+<pre><code class="language-shell">$ find &quot;start/path&quot; -name &quot;filename.txt&quot; -print0 | xargs -0 -o vim
+$ git branch --merged | egrep -v &quot;(^\*|master|main|dev|staging)&quot; | xargs git branch -d
+</code></pre>
+<p>It is invoked like xargs <code>[option...] [command [initial-arguments]]</code>. For instance, the end result of that first example would be <code>vim {result of find command}</code>, and the end result of the second would be <code>git branch -d {result of egrep on results of git command}</code>.</p>
+<h2>Options</h2>
+<pre><code class="language-shell">$ xargs -0 --max-args=2
+</code></pre>
+<ul>
+<li><code>-0</code>: Use <code>\0</code> as the delimiter, which is useful for filenames with spaces. Ensure piped command delimits using <code>\0</code> and not spaces.</li>
+<li><code>-d delim</code>: Use <code>delim</code> as your delimiter between arguments</li>
+<li><code>-E eof-str</code>: Use <code>eof-str</code> as the signifier of end of file. When found, all following text is ignored.</li>
+<li><code>-n max-args</code>: Use at most <code>max-args</code> arguments per command line.</li>
+<li><code>-o</code>: Allow interactive programs to access pipe output. e.g. <code>find &quot;start/path&quot; -name &quot;filename.txt&quot; -print0 | xargs -0 -o vim</code>. This will send the filename found with <code>find</code> as the argument to <code><a href="vim.html">vim</a></code>.</li>
+</ul>
+<h2>Simple Version</h2>
+<p>You can do simple <code>xargs</code> recipes in <a href="shell.html">shell</a> using command substitution:</p>
+<pre><code class="language-shell">$ # xargs version
+$ find &quot;start/path&quot; -name &quot;filename.txt&quot; -print0 | xargs -0 -o vim
+$ # shell versions
+$ vim `find &quot;start/path&quot; -name &quot;filename.txt&quot;`
+$ vim $(find &quot;start/path&quot; -name &quot;filename.txt&quot;)
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.man7.org/linux/man-pages/man1/xargs.1.html" target="_blank">https://www.man7.org/linux/man-pages/man1/xargs.1.html</a></li>
+<li><a href="https://askubuntu.com/a/1158337" target="_blank">https://askubuntu.com/a/1158337</a></li>
+<li><a href="https://unix.stackexchange.com/a/5865" target="_blank">https://unix.stackexchange.com/a/5865</a></li>
+</ol>
+<p class="last-modified">Last modified: 202204131402</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
