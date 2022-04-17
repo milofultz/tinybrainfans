@@ -68,6 +68,19 @@ do
   echo -e &quot;${file}:\n$(cat $file)&quot;
 done
 </code></pre>
+<p>To iterate over numbers:</p>
+<pre><code class="language-shell">for i in {0..10}
+do
+  echo -e &quot;The number ${i}!&quot;
+done
+
+# or
+
+for ((i=0; i&lt;=10; i+=1))
+do
+  echo -e &quot;The number ${i}!&quot;
+done
+</code></pre>
 <h2>Event Designators</h2>
 <p>An event designator is a reference to a command line entry in the  history list.  Unless the reference is absolute, events are relative  to the current position in the history list.</p>
 <ul>
@@ -112,8 +125,16 @@ $ thing1 &gt; tempfile &amp;&amp; thing2 &lt; tempfile
 # shortest
 $ thing1 | thing2
 </code></pre>
+<h2>Command Substitution</h2>
+<p>Placing an argument within backticks or <code>$(...)</code> will execute the command first and insert the result. e.g. $</p>
+<pre><code>$ vim `find &quot;start/path&quot; -name &quot;filename.txt&quot;`
+$ # the same as
+$ vim $(find &quot;start/path&quot; -name &quot;filename.txt&quot;)
+$ # resolves to
+$ vim &quot;start/path/filename.txt&quot;
+</code></pre>
 <h2>Base64</h2>
-<p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64. </p>
+<p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64.</p>
 <p><code>echo -n &#x27;some string&#x27; | base64 &gt; output.txt</code> will encode a string as input and not encode unusable chars, like line feeds.</p>
 <p>The <code>--decode</code> flag may be added to reverse this process.</p>
 <h2>Troubleshooting</h2>
@@ -138,4 +159,4 @@ $ thing1 | thing2
 <li><a href="https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash" target="_blank">https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash</a></li>
 <li><a href="https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1" target="_blank">https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="xargs.html">xargs</a></li></ul></details></section><p class="last-modified">Last modified: 202204030226</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="xargs.html">xargs</a></li></ul></details></section><p class="last-modified">Last modified: 202204162323</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

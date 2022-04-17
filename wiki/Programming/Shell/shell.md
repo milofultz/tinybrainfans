@@ -49,7 +49,7 @@ Variables in the shell also have a variety of parameter expansions[12] that allo
 
 Symbol | Description
 ---|---
-`${var:-rep}` | If `var` is null or unset, replace it with literal `rep` or variable named `$rep` if preceded by a `$` (e.g. `${var:-$rep}`)[13] 
+`${var:-rep}` | If `var` is null or unset, replace it with literal `rep` or variable named `$rep` if preceded by a `$` (e.g. `${var:-$rep}`)[13]
 
 ## Conditionals
 
@@ -82,6 +82,22 @@ To iterate over a series of files, you can use a `for` loop:
 for file in *.txt
 do
 	echo -e "${file}:\n$(cat $file)"
+done
+```
+
+To iterate over numbers:
+
+```shell
+for i in {0..10}
+do
+  echo -e "The number ${i}!"
+done
+
+# or
+
+for ((i=0; i<=10; i+=1))
+do
+  echo -e "The number ${i}!"
 done
 ```
 
@@ -137,9 +153,19 @@ $ thing1 > tempfile && thing2 < tempfile
 $ thing1 | thing2
 ```
 
+## Command Substitution
+
+Placing an argument within backticks or `$(...)` will execute the command first and insert the result. e.g. $
+
+    $ vim `find "start/path" -name "filename.txt"`
+    $ # the same as
+    $ vim $(find "start/path" -name "filename.txt")
+    $ # resolves to
+    $ vim "start/path/filename.txt"
+
 ## Base64
 
-`base64 path/to/file > output.txt` will encode whatever file into base64. 
+`base64 path/to/file > output.txt` will encode whatever file into base64.
 
 `echo -n 'some string' | base64 > output.txt` will encode a string as input and not encode unusable chars, like line feeds.
 

@@ -41,9 +41,9 @@ You are done. When you need a folder, search for it. When you are done, put it a
 
 Low-tech meaning eschewing complicated, fragile, or problematic systems (e.g. Adobe, Evernote) for something simpler[7].
 
-### Plaintext Everything
+### {{Plaintext}} Everything
 
-A plain TXT file (or Markdown) can easily accomplish the 80/20 of task management, calendars, record keeping, or whatever else, and there are many many examples[5,6]. Advantages are it is universal, completely customizable, {{easily searchable|grep}}, cross platform, cloud synced through something like Dropbox, and nimble. Disadvantages are not a "sexy" GUI, potentially takes more maintenance, requires some planning.
+A plain TXT file (or Markdown) can easily accomplish the 80/20 of task management, calendars, record keeping, or whatever else, and there are many many examples[5,6,14]. Advantages are it is universal, completely customizable, {{easily searchable|grep}}, cross platform, cloud synced through something like Dropbox, and nimble. Disadvantages are not a "sexy" GUI, potentially takes more maintenance, requires some planning.
 
 ### Shell Scripts
 
@@ -72,3 +72,4 @@ This is more of a method, but I think it should get a mention here. Big point of
 1. https://github.com/alebcay/awesome-shell#command-line-productivity
 1. https://merveilles.town/@exquisitecorp/107359264170996361
 1. https://fernandogros.com/the-noguchi-filing-system/
+1. https://sive.rs/plaintext

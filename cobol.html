@@ -25,7 +25,7 @@
 <tr>
 <td>3</td>
 <td>Numeric</td>
-<td>0-9</td>
+<td><code>0</code>-<code>9</code></td>
 </tr>
 <tr>
 <td>4</td>
@@ -198,7 +198,7 @@
 <tr>
 <td>Comment Line</td>
 <td>Any line with an asterisk (<code>*</code>) or slash (<code>/</code>) in the indicator area (column 7) of the line.</td>
-<td><code>000250* THIS IS A COMMENT LINE 000102</code><br><code>000250/ THIS IS A COMMENT LINE 000102</code></td>
+<td><code>000250* THIS IS A COMMENT LINE 000102</code></td>
 </tr>
 <tr>
 <td>Comment Entry</td>
@@ -212,33 +212,14 @@ DISPLAY &#x27;Hello World&#x27;.
 </code></pre>
 <p>There are two types of literals, alphanumeric and numeric.</p>
 <h4>Alphanumeric Literals</h4>
-<p>Alphanumeric Literals are enclosed in quotes or apostrophe. Length can be up to 160 characters. An apostrophe or a quote can be a part of a literal only if it is paired. Starting and ending of the literal should be same, either apostrophe or quote.</p>
-<pre><code>Valid:
-  ‘This is valid’
-  &quot;This is valid&quot;
-  ‘This isn’’t invalid’
-
-Invalid:
-  ‘This is invalid”
-  ‘This isn’t valid’
-</code></pre>
+<p>Alphanumeric Literals are enclosed in single or double quotes. Length can be up to 160 characters.</p>
 <h4>Numeric Literal</h4>
-<p>A Numeric Literal is a combination of digits from <code>0</code> to <code>9</code>, <code>+</code>, <code>–</code>, or decimal point. Length can be up to 18 characters. Sign cannot be the rightmost character. Decimal point should not appear at the end.</p>
-<pre><code>Valid:
-  100
-  +10.9
-  -1.9
-
-Invalid:
-  1,00
-  10.
-  10.9-
-</code></pre>
+<p>A Numeric Literal is a combination of digits from <code>0</code> to <code>9</code>, <code>+</code>, <code>–</code>, or decimal point. Length can be up to 18 characters. Sign cannot be the rightmost character. Decimal point should not appear at the end. Valid examples are <code>100</code>, <code>+10.9</code>, and <code>-1.9</code>; invalid examples are <code>1,00</code>, <code>10.</code>, and <code>10.9-</code>.</p>
 <h3>COBOL Word</h3>
 <p>COBOL Word is a character string that can be a reserved word or a user-defined word. Length can be up to 30 characters.</p>
 <h4>User-Defined</h4>
 <p>User-defined words are used for naming files, data, records, paragraph names, and sections. Alphabets, digits, and hyphens are allowed while forming userdefined words. You cannot use COBOL reserved words.</p>
-<h4>Reserved Words</h4>
+<h4>Reserved Words[7, p. 12]</h4>
 <p>Reserved words are predefined words in COBOL. Different types of reserved words that we use frequently are as follows:</p>
 <ul>
 <li>Keywords</li>
@@ -282,8 +263,8 @@ Invalid:
 </tr>
 <tr>
 <td>6</td>
-<td>ALL literal</td>
-<td>Fills the data-item with Literal.</td>
+<td>ALL &quot;literal&quot;</td>
+<td>Fills the data-item with &quot;literal&quot;.</td>
 </tr>
 </tbody></table><h3>Variables (PICTURE Clause)[7]</h3>
 <p>These are only the common ones that I've found. There are LOTS.</p>
@@ -334,14 +315,15 @@ Invalid:
 </tbody></table><h2>Learning</h2>
 <h3>Courses</h3>
 <ul>
-<li><a href="https://www.ibm.com/blogs/ibm-training/free-course-announcing-learning-cobol-programming-with-vscode/" target="_blank">Learning COBOL Programming with VSCode</a></li>
+<li>Learning COBOL Programming with VSCode[8]</li>
+<li>IBM ZXplore[2]</li>
 </ul>
 <h3>Books on COBOL[3]</h3>
 <ul>
 <li><em>Fundamentals of Structured COBOL</em> by Carl Feingold</li>
 <li><a href="https://www.murach.com/shop/murachs-mainframe-cobol-detail" target="_blank"><em>Mainframe COBOL</em> from Murach</a></li>
 <li><em>Advanced COBOL for Structured and Object-Oriented Programming</em> by Gary DeWard Brown</li>
-<li>Any IBM COBOL manual</li>
+<li>Any IBM COBOL manual[7]</li>
 </ul>
 <h2>References</h2>
 <ol>
@@ -352,5 +334,7 @@ Invalid:
 <li><a href="https://www.tutorialspoint.com/cobol/cobol_basic_syntax.htm" target="_blank">https://www.tutorialspoint.com/cobol/cobol_basic_syntax.htm</a></li>
 <li><a href="http://www.csis.ul.ie/cobol/exercises/default.htm" target="_blank">http://www.csis.ul.ie/cobol/exercises/default.htm</a></li>
 <li><a href="https://www.ibm.com/docs/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf" target="_blank">https://www.ibm.com/docs/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf</a></li>
+<li><a href="https://www.ibm.com/blogs/ibm-training/free-course-announcing-learning-cobol-programming-with-vscode/" target="_blank">https://www.ibm.com/blogs/ibm-training/free-course-announcing-learning-cobol-programming-with-vscode/</a></li>
+<li><a href="https://github.com/openmainframeproject/cobol-programming-course" target="_blank">https://github.com/openmainframeproject/cobol-programming-course</a></li>
 </ol>
-<p class="last-modified">Last modified: 202204091905</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202204150632</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

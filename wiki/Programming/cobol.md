@@ -15,7 +15,7 @@ Most of this is in the IBM Z/OS variety, but I assume most of it is pretty agnos
 |------|----------------------------|---|
 |1     |Alphabets (Upper Case) | `A` - `Z` |
 |2     |Alphabets (Lower Case) | `a` - `z` |
-|3     |Numeric | 0-9                 |
+|3     |Numeric | `0`-`9`           |
 |4     |Space | ` ` |
 |5     |Plus Sign | `+` |
 |6     |Minus Sign or Hyphen | `-` |
@@ -102,7 +102,7 @@ There are two types of comments:
 
 Type | Description | Example
 --- | --- | ---
-Comment Line | Any line with an asterisk (`*`) or slash (`/`) in the indicator area (column 7) of the line. | `000250* THIS IS A COMMENT LINE 000102`<br>`000250/ THIS IS A COMMENT LINE 000102`
+Comment Line | Any line with an asterisk (`*`) or slash (`/`) in the indicator area (column 7) of the line. | `000250* THIS IS A COMMENT LINE 000102` 
 Comment Entry | Comment entries are those that are included in the optional paragraphs of an Identification Division. They are written in Area B and programmers use it for reference. | TODO
 
 ### Literal
@@ -118,34 +118,11 @@ There are two types of literals, alphanumeric and numeric.
 
 #### Alphanumeric Literals
 
-Alphanumeric Literals are enclosed in quotes or apostrophe. Length can be up to 160 characters. An apostrophe or a quote can be a part of a literal only if it is paired. Starting and ending of the literal should be same, either apostrophe or quote.
-
-```
-Valid:
-  ‘This is valid’
-  "This is valid"
-  ‘This isn’’t invalid’
-
-Invalid:
-  ‘This is invalid”
-  ‘This isn’t valid’
-```
+Alphanumeric Literals are enclosed in single or double quotes. Length can be up to 160 characters.
 
 #### Numeric Literal
 
-A Numeric Literal is a combination of digits from `0` to `9`, `+`, `–`, or decimal point. Length can be up to 18 characters. Sign cannot be the rightmost character. Decimal point should not appear at the end.
-
-```
-Valid:
-  100
-  +10.9
-  -1.9
-
-Invalid:
-  1,00
-  10.
-  10.9-
-```
+A Numeric Literal is a combination of digits from `0` to `9`, `+`, `–`, or decimal point. Length can be up to 18 characters. Sign cannot be the rightmost character. Decimal point should not appear at the end. Valid examples are `100`, `+10.9`, and `-1.9`; invalid examples are `1,00`, `10.`, and `10.9-`.
 
 ### COBOL Word
 
@@ -155,7 +132,7 @@ COBOL Word is a character string that can be a reserved word or a user-defined w
 
 User-defined words are used for naming files, data, records, paragraph names, and sections. Alphabets, digits, and hyphens are allowed while forming userdefined words. You cannot use COBOL reserved words.
 
-#### Reserved Words
+#### Reserved Words[7, p. 12]
 
 Reserved words are predefined words in COBOL. Different types of reserved words that we use frequently are as follows:
 
@@ -172,7 +149,7 @@ Reserved words are predefined words in COBOL. Different types of reserved words 
 |3     |ZERO/ZEROES                           |One or more zero depending on the size of the variable.|
 |4     |SPACES               |One or more spaces.|
 |5     |QUOTES|Single or double quotes.|
-|6     |ALL literal|Fills the data-item with Literal.|
+|6     |ALL "literal"|Fills the data-item with "literal".|
 
 ### Variables (PICTURE Clause)[7]
 
@@ -192,14 +169,15 @@ Z | A leading numeric character position. When that position contains a zero, a 
 
 ### Courses
 
-* [Learning COBOL Programming with VSCode](https://www.ibm.com/blogs/ibm-training/free-course-announcing-learning-cobol-programming-with-vscode/)
+* Learning COBOL Programming with VSCode[8]
+* IBM ZXplore[2]
 
 ### Books on COBOL[3]
 
 * *Fundamentals of Structured COBOL* by Carl Feingold
 * [*Mainframe COBOL* from Murach](https://www.murach.com/shop/murachs-mainframe-cobol-detail)
 * *Advanced COBOL for Structured and Object-Oriented Programming* by Gary DeWard Brown
-* Any IBM COBOL manual
+* Any IBM COBOL manual[7]
 
 
 ## References
@@ -211,4 +189,5 @@ Z | A leading numeric character position. When that position contains a zero, a 
 5. https://www.tutorialspoint.com/cobol/cobol_basic_syntax.htm
 6. http://www.csis.ul.ie/cobol/exercises/default.htm
 7. https://www.ibm.com/docs/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf
-
+8. https://www.ibm.com/blogs/ibm-training/free-course-announcing-learning-cobol-programming-with-vscode/
+9. https://github.com/openmainframeproject/cobol-programming-course
