@@ -56,7 +56,7 @@ pre {
   padding: 0.5rem 0.75rem;
   white-space: pre-wrap;
 }
-pre * { padding: 0; }
+pre code { padding: 0; }
 
 code {
   padding: 0 0.25rem;
