@@ -1,0 +1,162 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="The shell is the terminal of your operating system. This is the *nix shell."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Shell</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Shell</h1><p>The shell is the terminal of your operating system. This is the *nix shell.</p>
+<h2>Basic Functions</h2>
+<ul>
+<li><code>cp [-r] ./source ./destination</code> - Copy file or directory <code>[-r]</code> from source to destination</li>
+<li><code>mv [-r] ./source ./destination</code> - Move/rename file or directory <code>[-r]</code> from source to destination</li>
+<li><code>rm [-r] ./file</code> - Remove file or directory <code>[-r]</code> <strong>NOTE: THIS IS PERMANENT. There are no trash cans or recycle bins here.</strong></li>
+</ul>
+<h2><a href="https://www.maketecheasier.com/run-bash-commands-background-linux/" target="_blank">Background Tasks</a></h2>
+<p>You can run tasks in the background within a <a href="terminal.html">terminal</a> window by placing an <code>&amp;</code> at the end of the command you want running. You can see these background jobs with <code>jobs</code> and kill the job that you want with <code>kill %</code> followed by the index, or just <code>kill %</code> to kill all jobs.</p>
+<h2>Variables</h2>
+<p>Variables are all defined by a non-spaced variable name followed by an equals sign. Variables are recalled/invoked using the dollar sign followed by the variable name.</p>
+<p>Variables that are within a string and directly next to another character that is not a space need to be enclosed within a dollar sign and curly braces, e.g. <code>${var_name}</code>.</p>
+<pre><code class="language-shell">var_name=&quot;Bob&quot;
+number_var=123
+
+echo &quot;$var_name&quot;
+echo &quot;$number_var&quot;
+echo &quot;There are $number_var cans in ${var_name}&#x27;s closet.&quot;
+</code></pre>
+<p>Single quotes will preserve the literal value of all characters within it, while double quotes will allow the expansion/interpolation of the variables.[10] <strong>Always use double quotes when expanding your variables.</strong> Using double quotes around a variable will ensure that it will not be split up like a series of arguments[11].</p>
+<pre><code class="language-shell">var_name=&quot;Bob&quot;
+number_var=123
+
+literal_values=&#x27;$var_name $number_var&#x27;
+expanded_values=&quot;$var_name $number_var&quot;
+
+echo &quot;$literal_values&quot;  # $var_name $number_var
+echo &quot;$expanded_values&quot; # Bob 123
+</code></pre>
+<h3>Parameter Expansions</h3>
+<p>Variables in the shell also have a variety of parameter expansions[12] that allow pattern matching, replacement, string slicing, and more.</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${var:-rep}</code></td>
+<td>If <code>var</code> is null or unset, replace it with literal <code>rep</code> or variable named <code>$rep</code> if preceded by a <code>$</code> (e.g. <code>${var:-$rep}</code>)[13]</td>
+</tr>
+</tbody></table><h2>Conditionals</h2>
+<p>There are a zillion operators to use in conditionals that are all slightly different than the usual <code>&lt;</code>, <code>&gt;</code>, <code>==</code>, etc.[14] But here is the general construction of if/then conditionals in shell.</p>
+<pre><code class="language-shell"># If var_name is equal to other_var
+if [[ &quot;$var_name&quot; -eq &quot;$other_var&quot; ]]
+then
+  # stuff happens
+fi
+
+# If var_name is NOT equal to other_var
+if [[ ! &quot;$var_name&quot; -eq &quot;$other_var&quot; ]]
+then
+  # stuff happens
+else
+  # other stuff happens
+fi
+</code></pre>
+<h2>Iteration</h2>
+<p>To iterate over a series of files, you can use a <code>for</code> loop:</p>
+<pre><code class="language-shell"># Files in directory include: a.txt, b.jpg, c.exe, d.txt
+# This will only iterate through a.txt and d.txt .
+
+for file in *.txt
+do
+  echo -e &quot;${file}:\n$(cat $file)&quot;
+done
+</code></pre>
+<p>To iterate over numbers:</p>
+<pre><code class="language-shell">for i in {0..10}
+do
+  echo -e &quot;The number ${i}!&quot;
+done
+
+# or
+
+for ((i=0; i&lt;=10; i+=1))
+do
+  echo -e &quot;The number ${i}!&quot;
+done
+</code></pre>
+<h2>Event Designators</h2>
+<p>An event designator is a reference to a command line entry in the  history list.  Unless the reference is absolute, events are relative  to the current position in the history list.</p>
+<ul>
+<li><code>$_</code> Repeat the last argument used, e.g. <code>mkdir folder-name &amp;&amp; cd &quot;$_&quot;</code></li>
+<li><code>!!</code> Repeats the previous command</li>
+<li><code>!10</code> Repeat the 10th command from the history</li>
+<li><code>!-2</code> Repeat the 2nd command (from the last) from the history</li>
+<li><code>!string</code> Repeat the command that starts with “string” from the history</li>
+<li><code>!?string</code> Repeat the command that contains the word “string” from the history</li>
+<li><code>^str1^str2^</code> Substitute str1 in the previous command with str2 and execute it</li>
+<li><code>!!:$</code> Gets the last argument from the previous command.</li>
+<li><code>!string:n</code> Gets the nth argument from the command that starts with “string” from the history.</li>
+<li><code>!^</code> first argument of the previous command</li>
+<li><code>!$</code> last argument of the previous command</li>
+<li><code>!*</code> all arguments of the previous command</li>
+<li><code>!:2</code> second argument of the previous command</li>
+<li><code>!:2-3</code> second to third arguments of the previous command</li>
+<li><code>!:2-$</code> second to last arguments of the previous command</li>
+<li><code>!:2*</code> second to last arguments of the previous command</li>
+<li><code>!:2-</code> second to next to last arguments of the previous command</li>
+<li><code>!:0</code> the command itself</li>
+</ul>
+<h2>Aliases</h2>
+<p>WIthin your <code>~/.bashrc</code> file, add this line and populate it how you need:</p>
+<pre><code class="language-bash">alias alias_name=&quot;command_to_run&quot;
+
+# e.g.
+alias poo=&quot;say &#x27;I have to poop really bad&#x27;&quot;
+</code></pre>
+<p>When complete, run <code>source ~/.bashrc</code> or <code>source ~/.zshrc</code> and restart bash to have them take effect.</p>
+<h2>Pipe</h2>
+<blockquote>
+<p>To connect the STDOUT of one <strong>command</strong> to the STDIN of <strong>another</strong> use the | symbol, commonly known as a pipe.</p>
+</blockquote>
+<pre><code class="language-bash"># long way
+$ thing1 &gt; tempfile
+$ thing2 &lt; tempfile
+
+# shorter
+$ thing1 &gt; tempfile &amp;&amp; thing2 &lt; tempfile
+
+# shortest
+$ thing1 | thing2
+</code></pre>
+<h2>Command Substitution</h2>
+<p>Placing an argument within backticks or <code>$(...)</code> will execute the command first and insert the result. e.g. $</p>
+<pre><code>$ vim `find &quot;start/path&quot; -name &quot;filename.txt&quot;`
+$ # the same as
+$ vim $(find &quot;start/path&quot; -name &quot;filename.txt&quot;)
+$ # resolves to
+$ vim &quot;start/path/filename.txt&quot;
+</code></pre>
+<h2>Base64</h2>
+<p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64.</p>
+<p><code>echo -n &#x27;some string&#x27; | base64 &gt; output.txt</code> will encode a string as input and not encode unusable chars, like line feeds.</p>
+<p>The <code>--decode</code> flag may be added to reverse this process.</p>
+<h2>Troubleshooting</h2>
+<h3>Errors from Windows</h3>
+<p>If you got a script that looks totally fine but is throwing errors that make very little to no sense, like failing <code>cd</code> and <code>cp</code>, it's probably containing <code>\r</code> from a Windows computer.</p>
+<pre><code class="language-bash">tr -d &quot;\r&quot; &lt; oldname.sh &gt; newname.sh
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/" target="_blank">https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-base64-encode-and-decode-from-command-line/</a></li>
+<li><a href="https://linuxize.com/post/how-to-create-bash-aliases/" target="_blank">https://linuxize.com/post/how-to-create-bash-aliases/</a></li>
+<li><a href="https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf" target="_blank">https://askubuntu.com/questions/172982/what-is-the-difference-between-redirection-and-pipe/172989#172989?newreg=cfc8024a2d4b40daa24578e47df2b7cf</a></li>
+<li><a href="https://stackoverflow.com/a/11428439" target="_blank">https://stackoverflow.com/a/11428439</a></li>
+<li><a href="https://unix.stackexchange.com/questions/19654/how-do-i-change-the-extension-of-multiple-files" target="_blank">https://unix.stackexchange.com/questions/19654/how-do-i-change-the-extension-of-multiple-files</a></li>
+<li><a href="https://mywiki.wooledge.org/BashFAQ/030" target="_blank">https://mywiki.wooledge.org/BashFAQ/030</a></li>
+<li><a href="https://devhints.io/bash" target="_blank">https://devhints.io/bash</a></li>
+<li><a href="https://github.com/dylanaraps/pure-bash-bible" target="_blank">https://github.com/dylanaraps/pure-bash-bible</a></li>
+<li><a href="https://linoxide.com/make-bash-script-executable-using-chmod/" target="_blank">https://linoxide.com/make-bash-script-executable-using-chmod/</a></li>
+<li><a href="https://stackoverflow.com/a/6697781/14857724" target="_blank">https://stackoverflow.com/a/6697781/14857724</a></li>
+<li><a href="https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2" target="_blank">https://guide.bash.academy/expansions/?=Command_Substitution#a1.3.0_2</a></li>
+<li><a href="https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5" target="_blank">https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5</a></li>
+<li><a href="https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash" target="_blank">https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash</a></li>
+<li><a href="https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1" target="_blank">https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li><li><a href="low-no-tech-productivity.html">Low-/No-Tech Productivity</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="xargs.html">xargs</a></li></ul></details></section><p class="last-modified">Last modified: 202204162323</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

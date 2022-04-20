@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="SVG's are scalable vector graphics. They consist of instructions for the computer to follow to create the drawing."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - SVG</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">SVG</h1><p>SVG's are scalable vector graphics. They consist of instructions for the computer to follow to create the drawing.</p>
+<p>An SVG file is an <a href="xml.html">XML</a> markup file and thus is super simple to create yourself. All SVG's start out with an outer <code>svg</code> element.</p>
+<pre><code class="language-xml">&lt;svg version=&quot;1.1&quot; width=&quot;300&quot; height=&quot;200&quot; viewBox=&quot;x1 y1 x2 y2&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+  &lt;!-- Version is not necessary --&gt;
+  &lt;!-- W/H set during render, can be overwritten via CSS --&gt;
+  &lt;!-- Viewbox is the part of grid to be shown  --&gt;
+  &lt;!-- xmlns is required only for SVG files, not inline HTML --&gt;
+&lt;/svg&gt;
+</code></pre>
+<h2>Drawing Shapes and Paths</h2>
+<p>SVG's use a grid system, where positive X is <strong>right</strong> and positive Y is <strong>down</strong>. The top left of the document is then <code>0, 0</code>.</p>
+<p>By default, renderings that come first, are placed below renderings that come later.</p>
+<pre><code class="language-xml">&lt;svg ...&gt;
+  &lt;rect ...&gt;&lt;/rect&gt;      // Behind the circle
+  &lt;circle ...&gt;&lt;/circle&gt;  // On top of the rect
+&lt;/svg&gt;
+</code></pre>
+<p>You can group SVG elements in a <code>&lt;g&gt;</code> container, and all transformations made on the container will occur to their children.</p>
+<h3>Path</h3>
+<p>The <code>path</code> element is how you &quot;pick up&quot; and &quot;put down&quot; your &quot;pen&quot;, as well as draw the lines which can make up a filled shape or just a stroked line. The directions go within the <code>d</code> attribute.</p>
+<p><code>M x y</code> is when you place your pen a given position without a stroke. <code>L x y</code>is when you draw a line to (x,y) from your starting point. <code>H x</code> draws a horizontal line to <code>x</code> and <code>V y</code> draws a vertical line to <code>y</code>.</p>
+<pre><code class="language-xml">&lt;!-- This will move the pen to (0, 10) and draw a line to (10, 0) in the given box --&gt;
+&lt;path d=&quot;M 0 10 L 10 0&quot;&gt;&lt;/path&gt; 
+</code></pre>
+<h3>Shapes</h3>
+<p>Rectangles are drawn with the <code>rect</code> element.</p>
+<p>Circles are drawn with the <code>circle</code> element, with a center X/Y and a radius.</p>
+<pre><code class="language-xml">&lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;50&quot;/&gt;
+</code></pre>
+<p>Other polygons are drawn with the <code>polygon</code> element and a series of <code>X,Y</code> points separated by spaces.</p>
+<pre><code class="language-xml">&lt;polygon points=&quot;0,100 50,25 50,75 100,0&quot; /&gt;
+</code></pre>
+<h2>External file or inline <a href="html.html">HTML</a>?</h2>
+<p>External files allow the computer to only have to load the data once and then reuse it throughout the page. If you have it written out multiple times, that is a lot of extra work.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/18467982/are-svg-parameters-such-as-xmlns-and-version-needed" target="_blank">https://stackoverflow.com/questions/18467982/are-svg-parameters-such-as-xmlns-and-version-needed</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Positions" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Positions</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Element</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon</a></li>
+</ol>
+<p class="last-modified">Last modified: 202202282146</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

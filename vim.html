@@ -1,0 +1,545 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Vim is a command-line editor that is included with most *nix machines and OSX."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Vim</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Vim</h1><p>Vim is a command-line editor that is included with most *nix machines and <a href="macos.html">OSX</a>.</p>
+<h2>VimTutor</h2>
+<p>Use it! It guides you through the basics of Vim by <em>doing things</em> instead of reading random wikis on the web and trying to cobble together how to do stuff. You can access it by typing <code>vimtutor</code> at the CLI.</p>
+<h2>Commands</h2>
+<p>All commands must be done in &quot;Normal&quot; mode, accessed by pressing <code>esc</code> if in write mode. Commands are case sensitive and must be confirmed with <code>Enter</code> unless otherwise noted. <code>&lt;c-x&gt;</code> means <code>Ctrl+x</code>.</p>
+<p>Many of these commands derive from the original <a href="unix.html">Unix</a> text line editor <code><a href="ed.html">ed</a></code>. If you don't understand why things are the way they are here, pulling the thread of <code>ed</code> may benefit your understanding.</p>
+<h3>Meta/File</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quit</td>
+<td><code>:q</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Quit and do not save</td>
+<td><code>:cq</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Save and quit</td>
+<td><code>ZZ</code></td>
+<td>No need to confirm or press enter.</td>
+</tr>
+<tr>
+<td>Save</td>
+<td><code>:w</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Save and quit</td>
+<td><code>:wq</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Save only if file changed and quit</td>
+<td><code>:x</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Save As</td>
+<td><code>:w newFileName</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Open for editing</td>
+<td><code>:e path/to/file</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Open for reading/viewing</td>
+<td><code>:v path/to/file</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Undo/Redo</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Undo</td>
+<td><code>u</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Undo all changes to a line</td>
+<td><code>U</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Redo</td>
+<td><code>&lt;c-r&gt;</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Find</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Find next or previous <code>pattern</code></td>
+<td><code>/pattern</code> or <code>?pattern</code></td>
+<td>Go to next occurrence with <code>n</code> and previous with <code>N</code></td>
+</tr>
+<tr>
+<td>Find and replace from line <code>m</code> to line <code>n</code></td>
+<td><code>:[m],[n]s/pattern/repl[/options]</code></td>
+<td>To replace all, add <code>g</code> option; for confirmation, use <code>c</code> option</td>
+</tr>
+<tr>
+<td>Find and replace in whole file</td>
+<td><code>:%s/pattern/repl</code></td>
+<td>Same options apply as above</td>
+</tr>
+</tbody></table><h3>Navigation</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Move cursor (Left, Down, Up, Right)</td>
+<td><code>h</code>, <code>j</code>, <code>k</code>, <code>l</code></td>
+<td></td>
+</tr>
+<tr>
+<td>See current cursor location and information</td>
+<td><code>&lt;c-g&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to start/end of next word</td>
+<td><code>w</code>/<code>e</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go back a word</td>
+<td><code>b</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to start/end of line</td>
+<td><code>0</code>/<code>$</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to next page</td>
+<td><code>&lt;c-f&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to next half page</td>
+<td><code>&lt;c-d&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to previous page</td>
+<td><code>&lt;c-b&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to previous half page</td>
+<td><code>&lt;c-u&gt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to line<code>n</code></td>
+<td><code>[n]G</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to beginning of file</td>
+<td><code>gg</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to end of file</td>
+<td><code>G</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to beginning of line</td>
+<td><code>0</code> / <code>^</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to end of line</td>
+<td><code>$</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Go to matching bracket under cursor; e.g. <code>(</code> goes to <code>)</code> and vice versa; includes <code>[]{}</code></td>
+<td><code>%</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Copy (Yank), Cut, and Paste</h3>
+<p>Copy is &quot;yank&quot; in Vim, so that's why they are &quot;y&quot;.</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copy entire line or <code>n</code> lines, including newline</td>
+<td><code>[n]Y</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Copy from cursor to end of line</td>
+<td><code>y$</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Copy from cursor to start of line</td>
+<td><code>y^</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cut entire line or <code>n</code> lines, including newline</td>
+<td><code>[n]dd</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cut from cursor to end of line</td>
+<td><code>d$</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Cut from cursor to start of line</td>
+<td><code>d^</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Paste after the cursor</td>
+<td><code>p</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Paste before the cursor</td>
+<td><code>P</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Move line up one line</td>
+<td><code>ddkP</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Move line down one line</td>
+<td><code>ddp</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Delete</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Delete entire line or <code>n</code> lines, including newline</td>
+<td><code>[n]dd</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete from current column to end of line</td>
+<td><code>D</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete contents from cursor to end of <code>n</code> words and enter Insert mode</td>
+<td><code>c[n]e</code> or <code>c[n]w</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete contents from cursor to end of <code>n</code> lines and enter Insert mode</td>
+<td><code>[n]C</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete character under cursor and enter Insert mode</td>
+<td><code>s</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete entire line and enter Insert mode</td>
+<td><code>S</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Delete contents of <code>n</code> lines and enter Insert mode</td>
+<td><code>c[n]c</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Replace letter under cursor with letter <code>l</code></td>
+<td><code>r[l]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Enter replace mode (like overwrite)</td>
+<td><code>R</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Text Manipulation</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert mode</td>
+<td><code>i</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Enter Insert mode at the beginning of the line</td>
+<td><code>I</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Append after current character/at end of line</td>
+<td><code>a</code>/<code>A</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Make a new line above/below current line and enter insert mode</td>
+<td><code>O</code>/<code>o</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Insert (or retrieve) contents of <code>FILENAME</code> at cursor</td>
+<td><code>:r FILENAME</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Insert (or retrieve) return of shell <code>command</code> at cursor</td>
+<td><code>:r !command</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Insert on multiple lines[15]</td>
+<td><code>&lt;c-v&gt;</code>, select area, <code>I</code>, do edits, <code>esc</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Append to multiple lines[14]</td>
+<td><code>V</code>, select lines, <code>:&#x27;&lt;,&#x27;&gt;s/$/text/</code></td>
+<td><code>&#x27;&lt;,&#x27;&gt;</code> will get added to your command automatically after <code>:</code></td>
+</tr>
+<tr>
+<td>Join line below current line with current line[18]</td>
+<td><code>J</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Flip capitalization</td>
+<td><code>~</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Modes</h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td><code>i</code></td>
+</tr>
+<tr>
+<td>Replace (overwrite)</td>
+<td><code>R</code></td>
+</tr>
+<tr>
+<td>Visual (selection using the cursor)</td>
+<td><code>v</code></td>
+</tr>
+<tr>
+<td>Visual line (selection of lines)</td>
+<td><code>V</code></td>
+</tr>
+<tr>
+<td>Visual block (selection of columns/lines)</td>
+<td><code>&lt;c-v&gt;</code></td>
+</tr>
+<tr>
+<td>Exit current mode</td>
+<td><code>ESC</code></td>
+</tr>
+</tbody></table><h3>Recording[19-20]</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start recording under register <code>n</code></td>
+<td><code>qn</code></td>
+<td><code>n</code> can be any register</td>
+</tr>
+<tr>
+<td>Stop recording</td>
+<td><code>q</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Replay recorded keystrokes</td>
+<td><code>@n</code></td>
+<td><code>n</code> can be any register</td>
+</tr>
+</tbody></table><h3>Split Screen</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Split current file horizontally</td>
+<td><code>&lt;c-w&gt; s</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Split current file vertically</td>
+<td><code>&lt;c-w&gt; v</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Navigate to different panes</td>
+<td><code>&lt;c-w&gt; {direction}</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Increase/decrease pane width</td>
+<td><code>&lt;c-w&gt; &gt;</code>, <code>&lt;c-w&gt; &lt;</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Increase/decrease pane height</td>
+<td><code>&lt;c-w&gt; +</code>, <code>&lt;c-w&gt; -</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Equalize pane height/width</td>
+<td><code>&lt;c-w&gt; =</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Close a pane</td>
+<td><code>&lt;c-w&gt; q</code></td>
+<td></td>
+</tr>
+</tbody></table><h3>Misc</h3>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Toggle fold at next logical break</td>
+<td><code>za</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Execute shell command <code>x</code></td>
+<td><code>:!x</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Execute last edit again at cursor</td>
+<td><code>.</code></td>
+<td></td>
+</tr>
+</tbody></table><h2><code>~/.vimrc</code></h2>
+<p>Customizations in the config file to make using Vim a little nicer.</p>
+<h3>Clipboard</h3>
+<p>Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with <code>&quot;+</code>.[10]</p>
+<p>To make Vim always use the system clipboard, you can add this to your <code>~/.vimrc</code> file[10,11]:</p>
+<pre><code># Non-Mac
+set clipboard=unnamedplus
+# Mac
+set clipboard=unnamed
+</code></pre>
+<h3>Trim Trailing Whitespace on Save[13]</h3>
+<p>Before writing the buffer to file on any file (<code>*</code>), search and replace all whitespace characters (<code>\s</code>) at the end of a given line with nothing. Do not show any error messages if no matches exist (<code>e</code> flag).</p>
+<pre><code>&quot; Trim trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+</code></pre>
+<h2>Plugins and Packages</h2>
+<ul>
+<li><a href="https://github.com/amix/vimrc" target="_blank">Ultimate vimrc</a> - This is a great starting point that includes a lot of fantastic plugins and settings</li>
+<li><a href="https://github.com/mattn/emmet-vim" target="_blank">Emmet</a></li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.vim.org/" target="_blank">https://www.vim.org/</a></li>
+<li><a href="https://www.cyberciti.biz/faq/how-to-save-existing-file-to-a-new-file-save-as-in-vi-vim/" target="_blank">https://www.cyberciti.biz/faq/how-to-save-existing-file-to-a-new-file-save-as-in-vi-vim/</a></li>
+<li><a href="https://evanhahn.com/vim-colon-x-command/" target="_blank">https://evanhahn.com/vim-colon-x-command/</a></li>
+<li><a href="https://github.com/amix/vimrc" target="_blank">https://github.com/amix/vimrc</a></li>
+<li><a href="https://danielmiessler.com/study/vim/" target="_blank">https://danielmiessler.com/study/vim/</a></li>
+<li><a href="https://elijahmanor.com/blog/neovim-tmux" target="_blank">https://elijahmanor.com/blog/neovim-tmux</a></li>
+<li><a href="https://linuxize.com/post/how-to-copy-cut-paste-in-vim/" target="_blank">https://linuxize.com/post/how-to-copy-cut-paste-in-vim/</a></li>
+<li><a href="https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/" target="_blank">https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/</a></li>
+<li><a href="https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim" target="_blank">https://stackoverflow.com/questions/741814/move-entire-line-up-and-down-in-vim</a></li>
+<li><a href="https://vim.fandom.com/wiki/Accessing_the_system_clipboard" target="_blank">https://vim.fandom.com/wiki/Accessing_the_system_clipboard</a></li>
+<li><a href="https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work" target="_blank">https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work</a></li>
+<li><a href="https://thevaluable.dev/vim-search-find-replace/" target="_blank">https://thevaluable.dev/vim-search-find-replace/</a></li>
+<li><a href="https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save" target="_blank">https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save</a></li>
+<li><a href="https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim" target="_blank">https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim</a></li>
+<li><a href="https://stackoverflow.com/a/9549765/14857724" target="_blank">https://stackoverflow.com/a/9549765/14857724</a></li>
+<li><a href="https://stackoverflow.com/a/9570259/14857724" target="_blank">https://stackoverflow.com/a/9570259/14857724</a></li>
+<li><a href="http://texteditors.org/cgi-bin/wiki.pl?VIM" target="_blank">http://texteditors.org/cgi-bin/wiki.pl?VIM</a></li>
+<li><a href="http://texteditors.org/cgi-bin/wiki.pl?Vim_Cheat_Sheet" target="_blank">http://texteditors.org/cgi-bin/wiki.pl?Vim_Cheat_Sheet</a></li>
+<li><a href="https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled" target="_blank">https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled</a></li>
+<li><a href="https://riptutorial.com/vim/example/4731/recording-a-macro" target="_blank">https://riptutorial.com/vim/example/4731/recording-a-macro</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="ed.html">ed</a></li><li><a href="git.html">git</a></li><li><a href="xargs.html">xargs</a></li></ul></details></section><p class="last-modified">Last modified: 202204101504</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

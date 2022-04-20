@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Gherkin is a business readable language which helps you to describe business behavior without going into details of implementation."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Gherkin</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Gherkin</h1><p>Gherkin is a business readable language which helps you to describe business behavior without going into details of implementation. Built out of Behavior Driven Development[5], the goal is to create a document that can act as a test, the criteria, and the requirements of a feature. </p>
+<blockquote>
+<p>Remember, behavior scenarios are more than tests – they also represent requirements and acceptance criteria. Good Gherkin comes from good behavior.</p>
+<p>The Golden Gherkin Rule: Treat other readers as you would want to be treated. <strong>Write Gherkin so that people who don’t know the feature will understand it.</strong></p>
+<p>— Andrew Knight, automationpanda.com[3]</p>
+</blockquote>
+<p><em>NOTE: Gherkin files can actually be used as tests, but I'll be looking at them as mainly a planning and testing tool, so I won't be getting into the software here</em></p>
+<p>An example Gherkin feature[3]:</p>
+<pre><code class="language-gherkin">Feature: Google Searching
+
+  Scenario: Search from the search bar
+    Given a web browser is at the Google home page
+    When the user enters &quot;panda&quot; into the search bar
+    Then links related to &quot;panda&quot; are shown on the results page
+
+  Scenario: Image search
+    Given Google search results for &quot;panda&quot; are shown
+    When the user clicks on the &quot;Images&quot; link at the top of the results page
+    Then images related to &quot;panda&quot; are shown on the results page
+</code></pre>
+<p>Each feature of a project can stand by itself and is composed of a standard set of components.</p>
+<h2>Feature</h2>
+<p>This is the top of your Gherkin file, describing the feature on the <code>Feature</code> line, and an optional description below. The description is essentially a comment containing a <a href="scrum.html">user story</a> regarding that feature. A basic example including a description:</p>
+<pre><code class="language-gherkin">Feature: Google Searching
+  As a user, I want to search the internet for the information about a given topic, so that I can answer questions or solve problems.
+</code></pre>
+<h2>Background</h2>
+<p>In a feature that has multiple scenarios with the same <strong>Given</strong> clause, they can be placed inside of this section. THink of it sort of like a <code>beforeEach</code> from something like <a href="jasmine.html">Jasmine</a> or <a href="jest.html">Jest</a> but in plain language.</p>
+<pre><code class="language-gherkin">Feature: Google Searching
+
+  Background:
+    Given a web browser is at the Google home page
+
+  Scenario: Search from the search bar
+    # Given a web browser is at the Google home page
+    When the user enters &quot;panda&quot; into the search bar
+    Then links related to &quot;panda&quot; are shown on the results page
+
+  Scenario: Searches using I&#x27;m Feeling Lucky
+    # Given a web browser is at the Google home page
+    When the user enters &quot;panda&quot; into the search bar
+    And the user clicks I&#x27;m Feeling Lucky
+    Then the web browser navigates to the first search result for &quot;panda&quot;
+</code></pre>
+<h2>Scenario</h2>
+<p>Each scenario is a self-contained set of tests or requirements that has no bearing on any other scenarios within or outside of a feature.</p>
+<pre><code class="language-gherkin">  Scenario: Search from the search bar
+    Given a web browser is at the Google home page
+    When the user enters &quot;panda&quot; into the search bar
+    Then links related to &quot;panda&quot; are shown on the results page
+</code></pre>
+<h3>Given/When/Then</h3>
+<p><strong>Given</strong> sets the stage for the rest of the scenario. It should ensure that a user will incur the same behavior repeatedly.</p>
+<p><strong>When</strong> a certain interaction or behavior occurs, <strong>then</strong> a specific outcome is expected (<strong>and</strong> another, <strong>but</strong> not this outcome).</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://cucumber.io/docs/gherkin/reference/" target="_blank">https://cucumber.io/docs/gherkin/reference/</a></li>
+<li><a href="https://www.guru99.com/gherkin-test-cucumber.html#2" target="_blank">https://www.guru99.com/gherkin-test-cucumber.html#2</a></li>
+<li><a href="https://automationpanda.com/2017/01/27/bdd-101-gherkin-by-example/" target="_blank">https://automationpanda.com/2017/01/27/bdd-101-gherkin-by-example/</a></li>
+<li><a href="https://automationpanda.com/2017/01/30/bdd-101-writing-good-gherkin/" target="_blank">https://automationpanda.com/2017/01/30/bdd-101-writing-good-gherkin/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Behavior-driven_development" target="_blank">https://en.wikipedia.org/wiki/Behavior-driven_development</a></li>
+</ol>
+<p class="last-modified">Last modified: 202201151520</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

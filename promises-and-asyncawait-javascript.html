@@ -1,0 +1,150 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Promises and async/await are a way to handle asynchronous actions in Javascript."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Promises and Async/Await (Javascript)</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Promises and Async/Await (Javascript)</h1><p>Promises and async/await are a way to handle asynchronous actions in <a href="javascript.html">Javascript</a>.</p>
+<h2>Promises</h2>
+<h3>Single</h3>
+<pre><code class="language-javascript">const getDataFromAPI = (url) =&gt; {
+  // do stuff
+  return fetch(url);
+};
+
+function main (url) {
+  let apiData;
+  getDataFromAPI()
+    .then(data =&gt; apiData = data)
+    .catch(error =&gt; console.error(error));
+  
+  // do stuff
+}
+
+main(&#x27;www.fakeurl.com&#x27;);
+</code></pre>
+<h3>Multiple with no specific order</h3>
+<pre><code class="language-javascript">const getDataFromAPI = (url) =&gt; {
+  // do stuff
+  return fetch(url);
+};
+
+const mockUrls = [&#x27;url1&#x27;, &#x27;url2&#x27;, &#x27;url3&#x27;];
+
+function main (urls) {
+  let apiData; // ends up with an array of resolved values
+  const apiCalls = urls.map(url =&gt; getDataFromAPI(url));
+  Promise.all(apiCalls)
+    .then(data =&gt; apiData = data)
+    .catch(error =&gt; console.error(error));
+}
+
+main(mockUrls);
+</code></pre>
+<h3>Multiple with specific order[2]</h3>
+<pre><code class="language-javascript">const getDataFromAPI = (url) =&gt; {
+  // do stuff
+  return fetch(url)
+};
+
+const mockOrderedUrls = [&#x27;url1&#x27;, &#x27;url2&#x27;, &#x27;url3&#x27;];
+
+function main (orderedUrls) {  
+  let apiData = []; // an array of ordered resolved values
+  
+  const promiseFactory = (previousResult, newUrl) =&gt; {
+    // do check if it is the first invocation with no data
+    if (previousResult !== undefined) {
+      apiData.push(previousResult);
+    }
+    
+    return getDataFromAPI(newUrl);
+  };
+  
+  let result = Promise.resolve();
+  urls.forEach((url, index) =&gt; {
+    result = result
+      .then((data) =&gt; {
+        // do check if it is the first invocation, push no data
+        if (index === 0) {
+          promiseFactory(undefined, url);
+        } else {
+          promiseFactory(data, url);
+        }
+      })
+      .catch(error =&gt; {
+        // handle error
+      });
+  });
+  
+  // do stuff
+}
+
+main(mockOrderedUrls);
+</code></pre>
+<h2>Async/Await</h2>
+<h3>Single</h3>
+<pre><code class="language-javascript">const getDataFromAPI = () =&gt; {
+  // do stuff
+  return fetch(&#x27;url&#x27;);
+};
+
+async function main () {
+  let apiData;
+  try {
+    apiData = await getDataFromAPI();
+  } catch (error) {
+    // handle error
+  }
+  
+  // do stuff
+}
+</code></pre>
+<h3>Multiple with no specific order</h3>
+<pre><code class="language-javascript">const getDataFromAPI = (url) =&gt; {
+  // do stuff
+  return fetch(url);
+};
+
+const mockUrls = [&#x27;url1&#x27;, &#x27;url2&#x27;, &#x27;url3&#x27;];
+
+async function main (urls) {
+  let apiData; // ends up with an array of resolved values
+  try {
+    const result = urls.map(url =&gt; getDataFromAPI(url));
+    apiData = await Promise.all(result);
+  } catch (error) {
+    // handle error
+  }
+  
+  // do stuff
+}
+
+main(mockUrls);
+</code></pre>
+<h3>Multiple with specific order[3]</h3>
+<pre><code class="language-javascript">const getDataFromAPI = (url) =&gt; {
+  // do stuff
+  return fetch(url);
+};
+
+const mockOrderedUrls = [&#x27;url1&#x27;, &#x27;url2&#x27;, &#x27;url3&#x27;];
+
+async function main (urls) {
+  let apiData = []; // an array of ordered resolved values
+  try {
+    urls.forEach(async url =&gt; {
+      const result = await getDataFromAPI(url);
+      apiData.push(result);
+    }
+  } catch (error) {
+    // handle error
+  }
+  
+  // do stuff
+}
+
+main(mockOrderedUrls);
+</code></pre>
+<h2>References</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=V_Kr9OSfDeU" target="_blank">https://www.youtube.com/watch?v=V_Kr9OSfDeU</a></li>
+<li><a href="https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html" target="_blank">https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html</a></li>
+<li><a href="https://stackoverflow.com/questions/70816638/learning-promises-async-await-to-control-execution-order" target="_blank">https://stackoverflow.com/questions/70816638/learning-promises-async-await-to-control-execution-order</a></li>
+</ul>
+<p class="last-modified">Last modified: 202201260220</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

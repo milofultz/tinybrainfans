@@ -1,6 +1,6 @@
 ---
 title: Longboarding
-description: Longboarding is one of my favorite things: gets you somewhere and it's exercise.
+description: "Longboarding is one of my favorite things: gets you somewhere and it's exercise."
 ---
 
 Longboarding is one of my favorite things: gets you somewhere and it's {{exercise}}.

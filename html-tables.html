@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="The basics of HTML5 tables and semantic HTML tables."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - HTML Tables</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">HTML Tables</h1><p>The basics of <a href="html.html">HTML5</a> tables and <a href="semantic-html.html">semantic HTML</a> tables.</p>
+<h2>Summary of All Elements</h2>
+<pre><code class="language-html">&lt;table summary=&quot;Extended summary for accessibility and screen readers&quot;&gt;
+  &lt;!-- caption or title --&gt;
+  &lt;caption&gt;Caption&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;!-- row --&gt;
+    &lt;tr&gt; 
+      &lt;!-- col header --&gt;
+      &lt;th abbr=&quot;Shortened heading for accessibility/screen readers&quot; scope=&quot;col&quot;&gt;Header 1&lt;/th&gt;
+      &lt;th abbr=&quot;Shortened heading for accessibility/screen readers&quot; scope=&quot;col&quot;&gt;Header 2&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;!-- row header --&gt;
+      &lt;th abbr=&quot;Shortened heading for accessibility/screen readers&quot; scope=&quot;row&quot;&gt;Row Header&lt;/th&gt;
+      &lt;!-- table data --&gt;
+      &lt;td&gt;Some data&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Footer data 1&lt;/td&gt;
+      &lt;td&gt;Footer data 2&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;
+</code></pre>
+<p>More complex tables with empty cells/row headers have added accessibility needs, like <strong>scope=&quot;col/row&quot;</strong> depending on what the header organizing.</p>
+<h2>Merging Cells</h2>
+<p>The colspan attribute is used to <strong>span a single cell across multiple columns</strong> within a table, while the rowspan attribute is used to <strong>span a single cell across multiple rows</strong>. Each attribute accepts an integer value that indicates the number of cells to span across, with 1 being the default value.</p>
+<pre><code class="language-html">&lt;tr rowspan=&quot;2&quot;&gt;
+   &lt;td colspan=&quot;3&quot;&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+<p><strong>This can't be done using <a href="css.html">CSS</a>. It must be done using inline styles.</strong> </p>
+<h2>Borders</h2>
+<p>The <strong>border-collapse</strong> property determines a table’s border model. There are three values for the border-collapse property: <strong>collapse, separate, and inherit</strong>. By default, the border-collapse property value is separate, meaning that all of the different borders will stack up next to one another, as described above. The collapse value, on the other hand, condenses the borders into one, choosing the table cell as the primary border.</p>
+<p>The <strong>border-spacing</strong> property may accept two length values: the first value for horizontal spacing and the second value for vertical spacing.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://learn.shayhowe.com/html-css/organizing-data-with-tables/" target="_blank">https://learn.shayhowe.com/html-css/organizing-data-with-tables/</a></li>
+<li><a href="https://www.456bereastreet.com/archive/200410/bring_on_the_tables/" target="_blank">https://www.456bereastreet.com/archive/200410/bring_on_the_tables/</a></li>
+</ol>
+<p class="last-modified">Last modified: 202107020535</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

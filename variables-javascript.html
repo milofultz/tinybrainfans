@@ -1,0 +1,122 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="var, let, const are variables in Javascript."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Variables (Javascript)</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Variables (Javascript)</h1><p>All variables in <a href="javascript.html">Javascript</a> are <code>undefined</code> by default after declaration.</p>
+<h2>Difference Between Var, Let, and Const</h2>
+<p>Use <code>const</code> over <code>let</code> and <code>let</code> over <code>var</code> unless:</p>
+<ul>
+<li>The value may change</li>
+<li>The var needs to be initialized</li>
+<li>It is used in an iterator or a loop</li>
+</ul>
+<p><strong><a href="lexical-scoping.html">Block scoped</a></strong> means within a block or indentation level (starting with <code>{</code> and ending with <code>}</code>) or outside of a function. This means that one can use <code>let</code> outside of a function and declare a new variable with <code>let</code> again within a function.</p>
+<h3>const</h3>
+<p><code>const</code> is block scoped. Short for &quot;constant&quot;, meaning that it is a variable that once defined, cannot be redefined, changed through reassignment, redeclared, or updated. This also means one can cannot initialize a variable through <code>const</code> without a value. <code>const</code> can only be accessed within the scope they were created.</p>
+<pre><code class="language-javascript">const greeting = &quot;Hello there!&quot;;
+// This can never be changed, as it is a constant.
+greeting = &quot;Hi.&quot;; // This throws an error
+</code></pre>
+<p>Reference types created with <code>const</code> can have their <em>attributes</em> updated, but cannot be updated itself.</p>
+<pre><code class="language-javascript"> const greeting = {
+    &quot;brothers&quot; = 3;
+}
+
+// Not accepted, since `greeting` is has already been declared and assigned a value
+const greeting = {
+    &quot;sisters&quot; = 2;
+}
+
+const brothers = 1; // Accepted
+const brothers; // Unaccepted
+</code></pre>
+<h3>let</h3>
+<p><code>let</code> is also block scoped; <code>let</code> variables can be updated, but not redeclared.</p>
+<pre><code class="language-javascript">let greeting = &quot;Hello there!&quot;;
+greeting = &quot;Hi.&quot;;
+// This throws an error and won&#x27;t work
+let greeting = &quot;Hey hey hey&quot;;
+</code></pre>
+<h3>var</h3>
+<p><code>var</code> variables are function scoped and not a constant. Even when defined within a function, they can affect the global scope. These variables can also be redeclared and updated at any point.</p>
+<p>As of ES2015, <code>const</code> and <code>let</code> are fully supported in modern browsers, so <code>var</code> is not advised.</p>
+<pre><code class="language-javascript">var greeting = &quot;Hello there!&quot;;
+var greeting = &quot;Hey bayBEE!&quot;;
+//These are all acceptable
+</code></pre>
+<p>Define Multiple Variables At Once</p>
+<p>One can use commas to const many different variables at once.</p>
+<pre><code class="language-javascript">const yes = &#x27;yes&#x27;,
+      no = &#x27;no&#x27;,
+      hi = &#x27;hi&#x27;;
+</code></pre>
+<h3>Global Declaration</h3>
+<p>Global variable declarations are made by using no keyword before the definition:</p>
+<pre><code class="language-javascript">greeting = &quot;Hi.&quot;;
+</code></pre>
+<h2>Assignment as an Expression (a la Walrus Operator)</h2>
+<p><a href="https://stackoverflow.com/questions/63121979/is-there-a-walrus-operator-in-node-js/63122014#63122014" target="_blank">You can define a variable while running a condition</a> on an <code>if</code> or a <code>while</code> loop. This can help remove extra lines of code or going through variables over and over. Since the innermost parentheses get resolved first, it will function normally after assignment.</p>
+<pre><code class="language-javascript">let i = 0;
+while (i !== 3) {
+  console.log(i);
+  i++;
+}
+
+// Logs (0, 1, 2)
+
+// Written using assignment as an expression
+
+let i = -1;
+while ((i = i + 1) &lt; 3) { // === (i = i + 1) &lt; 3 === i &lt; 3
+  console.log(i);
+}
+
+// Logs (0, 1, 2)
+</code></pre>
+<h2>Hoisting</h2>
+<blockquote>
+<p>The JS code interpretation performed in two passes. During the first pass, the interpreter processes variable and function declarations. The second pass is the actual code execution step. The interpreter processes function expressions and undeclared variables.[7]</p>
+</blockquote>
+<h3>Hoisting Variables</h3>
+<p>The term &quot;hoisting&quot; is meant to represent a literal hoisting of variable and function declarations to the top of a Javascript file, where they will be declared before the file is interpreted (while this is not technically what happens, it's certainly more memorable).</p>
+<p>Consider the following example:</p>
+<pre><code class="language-javascript">var a = 1;
+console.log(a + &#x27; &#x27; + d);
+var d = 3;
+</code></pre>
+<p>In this example, because interpreters normally run from top to bottom, executing each line as they go, one would expect an error thrown at the <code>console.log</code> because it would not be aware of any variable named <code>d</code>. Because of hoisting, however, <code>d</code> is <em>declared</em> by the interpreter but not <em>initialized with a value</em>, so it actually logs <code>undefined</code> instead.</p>
+<p>Another weird case:</p>
+<pre><code class="language-javascript">var a = 1;
+d = 3;
+console.log(a + &#x27; &#x27; + d);
+var d;
+</code></pre>
+<p>Since the declaration of <code>d</code> (<code>var d;</code>) is &quot;hoisted&quot; above the assignment (<code>d = 3;</code>), this actually does not throw any errors and logs <code>3</code>.</p>
+<h3>Hoisting Functions</h3>
+<p>The hoisting of functions is similar to variable hoisting, in that the declaration of any named functions will be &quot;hoisted&quot;. However, what makes functions different in this is that <strong>their definition will be hoisted as well as their declaration</strong>.</p>
+<p>In general, you do not want to hoist any functions within the browser unless you have a good reason, since it costs a lot of extra memory for the browser. This can be avoided by using anonymous functions as opposed to named functions like below:</p>
+<pre><code class="language-javascript">// Outputs: &quot;Definition hoisted!&quot;
+definitionHoisted();
+
+// TypeError: undefined is not a function
+definitionNotHoisted();
+
+// named function
+function definitionHoisted() {
+    console.log(&quot;Definition hoisted!&quot;);
+}
+
+// anonymous function
+var definitionNotHoisted = function () {
+    console.log(&quot;Definition not hoisted!&quot;);
+};
+</code></pre>
+<h2>References:</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const</a></li>
+<li><a href="https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757146#overview" target="_blank">https://www.udemy.com/course/modern-javascript-from-the-beginning/learn/lecture/8757146#overview</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var</a></li>
+<li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html" target="_blank">http://www.ecma-international.org/ecma-262/6.0/index.html</a></li>
+<li><a href="https://www.youtube.com/watch?v=ppMlvGMT2qE" target="_blank">https://www.youtube.com/watch?v=ppMlvGMT2qE</a></li>
+<li><a href="https://stackoverflow.com/questions/15005098/why-does-javascript-hoist-variables" target="_blank">https://stackoverflow.com/questions/15005098/why-does-javascript-hoist-variables</a></li>
+<li><a href="http://adripofjavascript.com/blog/drips/variable-and-function-hoisting.html" target="_blank">http://adripofjavascript.com/blog/drips/variable-and-function-hoisting.html</a></li>
+</ol>
+<p class="last-modified">Last modified: 202106291355</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
