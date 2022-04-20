@@ -16,7 +16,7 @@ For example, if you were already tracking `file1` and refactoring part of `file1
 ### `--patch`
 
 Add only portions of a file as 'hunks': `git add --patch/-p {file or folder name}` (file or folder is optional). This will prompt you with options:
-- y - stage this hunk
+* y - stage this hunk
 * n - do not stage this hunk
 * q - quit; do not stage this hunk or any of the remaining ones
 * a - stage this hunk and all later hunks in the file
@@ -28,7 +28,7 @@ Add only portions of a file as 'hunks': `git add --patch/-p {file or folder name
 * k - leave this hunk undecided, see previous undecided hunk
 * K - leave this hunk undecided, see previous hunk
 * s - split the current hunk into smaller hunks
-* e - [manually edit the current hunk][manually edit hunk] (particularly if your code is really close together but needs to be broken down)
+* e - manually edit the current hunk[17] (particularly if your code is really close together but needs to be broken down)
 * ? - print help
 
 ### Split Up Previous Commits Into Smaller Commits[15]
@@ -75,7 +75,7 @@ An orphan branch is a new root commit, where:
 
 ### Delete All Merged Branches
 
-To delete all branches that have been merged, start out by pulling from remote to ensure you are using the most up to date info. Then check which branches are merged by running `git branch --merged`. We will be using `egrep` to grab these and put them into a macro that will delete each merged branch that doesn't fit within the regex. To ensure a branch that contains a certain keyword does not get deleted, add it to the `egrep -v "(^...)"` line, with each keyword separated by an OR `|`.
+To delete all branches that have been merged, start out by pulling from remote to ensure you are using the most up to date info. Then check which branches are merged by running `git branch --merged`. We will be using `egrep` to grab these and put them into a macro that will delete each merged branch that doesn't fit within the regex. To ensure a branch that contains a certain keyword does not get deleted, add it to the `egrep -v "(^...)"` line, with each keyword separated by an OR `|`. This is all then passed into {{xargs}} where it sends each merged branch as an argument to `git branch -d`. Note that this uses `-d` so it will *only* delete branches that have been merged into the current branch. This most likely won't include {{rebased branches|Rebase (git)}}.
 
 ```bash
 git branch --merged | egrep -v "(^\*|master|main|dev|staging)" | xargs git branch -d
@@ -112,9 +112,9 @@ The `-m` flag is used to revert a merge; to set where the mainline is, which par
 
 For example, lets say you accidentally committed to the main branch and pushed up. You can revert this with `git revert HEAD` or `git revert {hash}`, creating a commit dialog and fixing your mistake through *adding* to your commit history.
 
-## Stashing
+## Stashing[18]
 
-[Stashing][stashing] allows you to temporarily save changes without committing anything. 
+Stashing allows you to temporarily save changes without committing anything. 
 
 To stash some changes, use `git stash save 'message about stash'`, or just `git stash` if you want to leave out the message.
 
@@ -141,7 +141,7 @@ or
 
 ```
 remote: Invalid username or password.
-fatal: Authentication failed for 'https://github.com/milofultz/tod.git/'
+fatal: Authentication failed for 'https://gitlab.com/myusername/repo.git'
 ```
 
 Then you may have revoked or renewed your token and need to reset it. To do so, type this in the terminal:
@@ -188,7 +188,7 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 
 1. https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 2. https://koukia.ca/delete-a-local-and-a-remote-git-branch-61df0b10d323
-5. https://bugfactory.io/blog/orphaned-brachnes-in-git/
+3. https://bugfactory.io/blog/orphaned-brachnes-in-git/
 4. https://git-scm.com/docs/git-add
 5. https://devconnected.com/how-to-cherry-pick-git-commits/
 6. https://phoenixnap.com/kb/git-revert-last-commit
@@ -198,10 +198,9 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 10. https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git
 11. https://github.com/delventhalz/no-fear-git
 12. https://nfarina.com/post/9868516270/git-is-simpler
-12. https://fix.code-error.com/git-merge-with-force-overwrite/
-12. https://stackoverflow.com/questions/58273462/is-there-a-way-to-add-untracked-files-in-git-when-adding-via-patch
-12. https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits
-12. https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean
-
-[manually edit hunk]: https://rietta.com/blog/git-patch-manual-split/
-[stashing]: https://www.freecodecamp.org/news/git-stash-explained/
+13. https://fix.code-error.com/git-merge-with-force-overwrite/
+14. https://stackoverflow.com/questions/58273462/is-there-a-way-to-add-untracked-files-in-git-when-adding-via-patch
+15. https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits
+16. https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean
+17. https://rietta.com/blog/git-patch-manual-split/
+18. https://www.freecodecamp.org/news/git-stash-explained/ 

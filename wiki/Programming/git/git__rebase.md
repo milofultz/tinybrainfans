@@ -13,6 +13,10 @@ From Linus Torvald[10]:
 
 > People can (and probably should) rebase their _private_ trees (their own work). That's a _cleanup_. But never other peoples code. That's a "destroy history"
 
+## Another Good Rule
+
+ALWAYS make a backup of the branch you are trying to rebase with. If you screw it up, **the commits are gone**. Make a copy (`git commit -b branch-name-bak`), run your test, ensure it did the thing you wanted it to do, then hold on to your backup in case you were wrong.
+
 ## Merge vs. Rebase
 
 Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.
@@ -26,6 +30,8 @@ One use of rebasing is this method, which alters your branch's history by squash
 > If you follow this process it guarantees that ALL commits in master build and pass tests. This simple fact makes debugging an issue much easier. You can use **git** bisect when trying to find the source of a bug. Git bisect becomes almost completely ineffective if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash our commits. If you really want to have multiple commits for a feature, at least squash down so that each commit builds and passes tests.
 
 To do this, rebase the new branch off of the target branch you wish to merge into. Select every commit except the oldest one and set to `squash`. Select that first commit and set it to `reword`. Once the rebase starts on exit, you will be able to change the commit message that will hold all of the squashed commits. Once that is complete, merge it into the target cranch.
+
+You can also use the `git merge --squash` option[15].
 
 ## Simple Rebase
 
@@ -69,12 +75,79 @@ Command(s) | Effect
 `f` / `fixup` | Fold this commit into the previous commit, using the previous commit's message
 `e` / `edit` | Stop at this commit and give user control until `rebase --continue`[9] 
 
+## Rebasing Onto Squashed Commits[15-18]
+
+Lets say that you had three branches: `main`, `feature`, and `ft-addition`. `ft-addition` built upon the work of `feature`.
+
+```
+ft-addition             G-H-I
+                       /
+feature           D-E-F
+                 /
+main        A-B-C
+```
+
+We finish with `feature` and squash it before merging it into main (squashed commit being `S`.
+
+```
+ft-addition       D-E-F-G-H-I
+                 /
+main        A-B-C-S
+```
+
+We now have conflicting commit histories. The content of `S` is all of the commits `D`, `E`, `F`. If we `git rebase main` while checked out in the `ft-addition` branch, we would have to deal with conflicts on every commit as it tried to replay `D`, `E`, and `F` on top of `S`. This would mean lots of unnecessary merge conflict resolution.
+
+To fix this, we can use the `--onto` flag on `git rebase`. The syntax is as follows:
+
+```shell
+$ git checkout starting-branch
+$ git rebase --onto target-branch-or-commit commit-to-replay-from
+```
+
+For instance, with our example, we would want to replay commits `G`, `H`, and `I` but not `D`, `E`, or `F`. So we would use:
+
+```shell
+$ git checkout ft-addition
+$ git rebase --onto main G
+```
+
+This would result in this structure:
+
+```
+ft-addition         G-H-I
+                   /
+main        A-B-C-S
+```
+
 ## Have I Rebased and Merged This Branch?[13]
 
 One problem with a rebase and merge or squash and rebase before merge is that the standard `git branch -d branch-name` will reject as it is not recognized as merged in to the target branch. A couple ways to check:
 
 1. Use `git log --oneline --cherry target-branch...starting-branch` to see which commits are present in both branches.
-2. If commit messages are maybe not true to the original, or a squash and rebase has occurred, you can use `git checkout target-branch~0; git merge starting-branch`. This will put you on a detached head of the target branch and try to merge in the starting branch's content. If this commit is merged in already, it should say `Already up to date.`.
+2. If commit messages are maybe not true to the original, or a squash and rebase has occurred, you can use `git checkout target-branch~0; git merge starting-branch`. This will put you on a detached head of the target branch and try to merge in the starting branch's content. If this commit is merged in already, it should say `Already up to date.`. 
+
+You can put all of option 2 into a function in your shell as an {{alias|My git Aliases}}.
+
+```shell
+grbdiff () {
+    local TARGET=$(git rev-parse --abbrev-ref HEAD)
+    local STARTING="$1"
+
+    git checkout "${TARGET}~0" 2>/dev/null
+    git merge "${STARTING}" 2>/dev/null
+    local DIFF=$(gd --stat)
+    if [[ -z "$DIFF" ]]
+    then
+        echo -e "Branch '${TARGET}' contains contents of '${STARTING}'. Nothing to merge."
+    else
+        echo -e "Branch '${TARGET}' does not contain contents of '${STARTING}':\n${DIFF}"
+    fi
+
+    git checkout "${TARGET}" 2>/dev/null
+}
+```
+
+It can be executed by checking out the target branch and typing `grbdiff starting-branch`. If there are changes, it will print the diff.
 
 ## Package Lock Conflicts[14]
 
@@ -103,3 +176,7 @@ This should render you the up to date `package-lock.json` file without having to
 1. Visual differences between merge, rebase, squash/merge: https://stackoverflow.com/a/43551395/14857724
 1. https://stackoverflow.com/a/34337939/14857724
 1. https://marcelofernandes.dev/blog/solving-package-lock-json-conflicts/
+1. https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit
+1. https://scribe.rip/swiftblade/how-git-rebase-onto-works-71ff00e3f88c
+1. https://womanonrails.com/git-rebase-onto
+1. https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rbdiag_e

@@ -1,10 +1,11 @@
 ---
 title: Best Practices (Programming)
-description:
 ---
 
 ## Writing Code
 
+- Make readable code: readable code is the most important. It's easy to spoil clean code, but hard to get it back. In any time, improving readability is justice.[4]
+- It doesn't have to be fast. Of course it's better to be fast. But it is not important. This doesn't mean the code has to be super slow.[4]
 - **Programming isn't about the stack** or the systems architecture; the arch meta will change faster than you can learn it.
 - The number of frontend Frameworks out there are N+1.
 - **DRY, recursive funcs, polymorphism are [typically] afterthoughts and should not be a goal while you're developing the solution.**
@@ -40,3 +41,4 @@ description:
 1. https://www.reddit.com/r/webdev/comments/kzqmhb/im_in_awe_of_you_all/
 2. https://softwareengineering.stackexchange.com/questions/43151/should-you-sacrifice-code-readability-with-how-efficient-code-is
 3. https://www.infoq.com/articles/no-hotfix-deployment/
+4. https://github.com/cotowali/cotowali/blob/main/docs/development.md

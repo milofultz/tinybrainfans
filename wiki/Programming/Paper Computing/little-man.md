@@ -290,5 +290,6 @@ The first number in the inbox will be divided by the second.
 
 1. https://en.wikipedia.org/wiki/Little_man_computer
 2. https://www.youtube.com/watch?v=t-mOfXhgfQY&lc=UgwXIu1pFzxIC7pJyLd4AaABAg.9Slg5diLl1j9Slgcj6WvW6
+3. [Online LMC](https://www.101computing.net/LMC/)
 
 [Little Man Computer]: https://en.wikipedia.org/wiki/Little_man_computer

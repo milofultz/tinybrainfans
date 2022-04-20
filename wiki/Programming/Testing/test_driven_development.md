@@ -86,7 +86,7 @@ if (add() !== null) {
 
 ## Best Practices
 
-Write the test that forces you to write the code you already know you want to write. 
+> Write the test that forces you to write the code you already know you want to write. -- "Uncle" Bob Martin
 
 Avoid the central behaviors as long as possible. Don't go for the gold right away. 
 
@@ -116,6 +116,8 @@ const getTaxRates = (fetch, country) => {
 
 Using the brittle implementation, our tests are coupled with the implementation of the code we are testing, which will lead to problems if these global imports or functions like {{fetch|Fetch API}} ever change.
 
+This example uses {{Jest}} and their mock functions, but any mock function that allows introspeection and testing will do.
+
 **getTaxRate.test.js**
 
 ```javascript
@@ -132,7 +134,7 @@ const mockFetchImplementation = () => {
 
 // brittle implementation
 // Fetch gets used invisibly, non-explicitly, and is more difficult to see what is happening.
-// Fetch as a global is also being overwritten, which may not be desired for future tests.
+// Fetch as a global is also being overwritten, which may not be desired, nor possible, for future tests or all test suites.
 
 global.fetch = jest.fn(mockFetchImplementation);
 
@@ -169,11 +171,31 @@ describe('getTaxRates', () => {
 - It is [double-entry bookkeeping](https://en.wikipedia.org/wiki/Double-entry_bookkeeping) for development.
 - A test suite that you don't trust is worthless. A test suite that does not allow you to make a decision when it passes is useless. There can be NO HOLES.
 
+### But TDD is just writing more code!
+
+It is correct that TDD means more code, but it is *extremely useful* code that pays huge dividends from the time you create them and as long as the code exists. Your tests are a working documentation of what the code does, how it works, when it should or shouldn't work, and why it works the way it does.
+
+When you inevitably work on somebody else's code or god forbid your own, without tests you essentially have to start from square one, learning what it does along with what each piece of code it touches does; when you make changes, you either just cross your fingers and hope it worked or laboriously run the software and click around. With tests, you can get a broad overview of expected and desired behavior along with a reliable scaffolding to make changes and experiment with confidence.
+
+So while *initially* you write more code, in the long run, you save time and a lot of headache for you and your team.
+
+If you are still not convinced, Geepaw Hill[8] believes that our days are largely not even spent writing code, with the bulk of our time being trying to understand the problem space and "gakking around".
+
+> [Without TDD, p]rogramming the computer, the best part of the day, is often the very smallest part. The GAK [Geek At Keyboard] activity, much of which is just waiting around for things to run, or clicking through screens and typing in data in order to get to the part where you wanted to see something, that is the largest part of the day by quite a bit. And studying, the scanning and the reading, well, it’s somewhere in the middle. So those are your basic proportions.
+>
+> [...]
+>
+> [A]utomated tests are more code that has to be written. Somewhere between  half again as much and twice as much as you write now. Let’s say that part of our day doubles.
+>
+> [But] study time will go down after TDD. It’s not that we have to study any less code in the after picture than in the before. Rather, it’s that studying the same amount of code gets faster. Why? Because those twin files we talked about, one with shipping code and one with testing code, it’s almost like the test code forms a kind of Cliff’s Notes for the shipping code. A scaffolding that makes it easier for us to study, and this makes it far easier to tell what’s going on. This will cut our code study time in about half.
+>
+> Finally, we come to the GAK time, and this is the big payoff. TDD reduces the amount of time you spend in GAK by 80% or 90%. Because TDD tests run in that special tool kit. They’re fast. They don’t fire up  your application. They don’t depend on things like logins, or database  permissions, or waiting around for the web to load. They are built to be fast, small, and grouped into convenient suites. Nothing completely  eliminates the need for GAK work, but TDD slashes the amount of time you spend GAK-ing during the course of the workday.
+
 ## TDD Without A Test Suite
 
 *From [Jack Herrington's video on stress-free coding](https://www.youtube.com/watch?v=eAfUfKYcvBo)*
 
-Though orthodox TDD requires testing and a test framework, you can utilize these ideas without them (albeit on a smaller scale, as greater complexity will make this work still *work*, but not be as powerful or reliable). 
+Though orthodox TDD requires testing and a test framework, you can utilize these ideas without them (albeit on a smaller scale, as greater complexity will make this work, but not be as powerful or reliable). 
 
 When we are coding, we are usually operating within a few different risk levels that may appear or disappear based on our confidence, emotional state, etc.: 
 
@@ -192,4 +214,6 @@ So similar to TDD, where "red, green, refactor" is the rule, you code operating 
 4. [Examples of TDD in action](https://www.youtube.com/watch?v=58jGpV2Cg50)
 5. https://www.youtube.com/watch?v=XsFQEUP1MxI&list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr&index=2
 6. https://wallabyjs.com/?referrer=funfunfunction
-6. https://www.youtube.com/watch?v=eAfUfKYcvBo
+7. https://www.youtube.com/watch?v=eAfUfKYcvBo
+8. https://www.geepawhill.org/2018/04/14/tdd-the-lump-of-coding-fallacy/
+9. https://online-training.jbrains.ca/courses/wbitdd-01/lectures/34779823

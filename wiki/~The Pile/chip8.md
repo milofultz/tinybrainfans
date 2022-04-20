@@ -16,3 +16,4 @@ description: The CHIP-8 is a computer with a very simple architecture and is com
 - http://web.archive.org/web/20220104012043/www.devernay.free.fr/hacks/chip8/C8TECH10.HTM
 - http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#0.1
 - https://chip-8.github.io/links/
+- http://www.emulator101.com/introduction-to-chip-8.html

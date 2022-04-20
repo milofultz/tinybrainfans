@@ -14,6 +14,13 @@ Solving problems is the **ability to break problems into smaller problems**. Eve
 
 **The common thing to confuse "aptitude" with is "knowledge"**.  I also talk about this when discussing interviewing with colleagues: many interviews check for "knowledge" (what does this function do? what is a hash? what does "{{CSS}}" stand for?) because it's easy to do and (presumably) because people mistakenly consider it a good heuristic for whatever makes someone a good developer.  However, in general, **"knowledge" is easy to get** - go read wikipedia or a book or some documentation and memorize it.  **It's also not very useful** - if you don't know something, go look it up!  It helps because it makes you faster (not having to look everything up is why CPUs have instruction caches), and it might more quickly lead you toward a better solution (if you know several approaches already, you can more quickly consider which would be best), but much more important is "aptitude".  **It's much harder to teach someone how to think**.
 
+## Boring is Best[2]
+
+>  Boring and predictable are *expected qualities of the essential*.
+
+Boring means simple. Simple means maintainable. Maintainable gives longevity and reliability to your solution. No need to reinvent the wheel if you have a long lasting and reliable solution. Keep it boring.
+
 ## References
 
 1. https://www.reddit.com/r/adventofcode/comments/7kd8jt/what_would_you_say_are_the_minimal_skills_for/dre0uu3/
+1. https://jlwagner.net/blog/make-it-boring/

@@ -201,15 +201,15 @@ const testComponent = () => {
 		// do stuff
   });
   
-	// this will run the function once on mount
+	// this will run the function only once on mount (still not ideal)
   useEffect(() => {
 		// do stuff
   }, []);
   
-  // this will run anytime that variable `names` is changed
+  // this will run anytime that variables `names` or `obj.age` are changed
   useEffect(() => {
     // do stuff
-  }, [names]);
+  }, [names, obj.age]);
   
     // this will run anytime that variable `names` is changed and will 
     // run the returned "cleanup" function when the component is unmounted
@@ -221,6 +221,19 @@ const testComponent = () => {
   }, [names]);
   
   ...
+```
+
+In general, you should not try and overload a useEffect call. If you have different concerns or different async tasks, spread them out among different instances of useEffect. This example is trivial, but demonstrates how both of these *could* live in the same useEffect but shouldn't because of the scope of dependencies.[3]
+
+```react
+useEffect(() => {
+  getUserData(usernameInput)
+  	.then(data => setUserData(data));
+}, [usernameInput]);
+
+useEffect(() => {
+  useValidation(usernameInput, passwordInput);
+}, [usernameInput, passwordInput]);
 ```
 
 ## [useState][]
@@ -264,7 +277,8 @@ const testComponent = () => {
 
 1. https://reactjs.org/docs/context.html#dynamic-context
 2. https://daveceddia.com/usecontext-hook/
+3. https://blog.logrocket.com/guide-to-react-useeffect-hook/
 
 [useContext]: https://reactjs.org/docs/hooks-reference.html#usecontext
 [useEffect]: https://reactjs.org/docs/hooks-effect.html
-[useState]: https://reactjs.org/docs/hooks-state.html
+[useState]: https://reactjs.org/docs/hooks-state.html	"u"

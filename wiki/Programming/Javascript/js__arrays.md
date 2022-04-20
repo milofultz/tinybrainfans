@@ -7,6 +7,12 @@ description: Arrays in Javascript have many specific methods for modification an
 
 ## Methods
 
+### `forEach` and other methods[2]
+
+ `map`, `filter`, `forEach`, and others take a callback that iterates through each item. However, while `map`, `filter` and others return an array based on the return of the callback, `forEach` does not. For this reason, `forEach` should be used for **side effects** and *not* direct modification of the array itself.
+
+The focus of what is going on inside of a `map` or a `filter` or whatever is "what is being returned from this function?", whereas the focus of a `forEach` is "how is the data within this array being used?".
+
 ### reduce
 
 `reduce` will iterate through the items in the array and operate the callback function on each one, passing the previous value's result post-callback. Because of this, `reduce` can be used to build most array methods from scratch. That being said, usually using the more specific methods and currying them results in more readable code[1].
@@ -179,3 +185,4 @@ array.splice(1,1,17); // returns [2]; array now equals [1,17,3,4]
 ## References
 
 1. https://stackoverflow.com/a/36557522/14857724
+1. https://scribe.rip/@ntgard/foreach-is-for-side-effects-60fca9f78850

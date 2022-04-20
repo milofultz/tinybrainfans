@@ -139,14 +139,15 @@ There are lots of games that have recently come out to make assembly a little mo
 ## References
 
 1. https://www.tutorialspoint.com/assembly_programming/assembly_basic_syntax.htm
-6. https://www.youtube.com/watch?v=qhkEOyK1ek0
-7. https://www.youtube.com/watch?v=wLXIWKUWpSs
+2. https://www.youtube.com/watch?v=qhkEOyK1ek0
+3. https://www.youtube.com/watch?v=wLXIWKUWpSs
 4. https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf
-9. https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html
-10. https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
+5. https://www.cs.uaf.edu/2015/fall/cs301/lecture/09_16_stack.html
+6. https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
 7. https://www.hellboundhackers.org/articles/read-article.php?article_id=729
 8. https://www.chibialiens.com/8086/8086CheatSheet.pdf
 9. https://www.chibialiens.com/8086/
+10. [IDE and debugger for many systems](https://8bitworkshop.com/v3.9.0/?platform=vcs&file=examples%2Fhello.a)
 
 Game Boy:
 

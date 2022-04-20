@@ -25,7 +25,7 @@ A pocketmod is a small booklet made out of a standard letter size or A4 paper. E
 
 I used Pocketmods as a ledger for all my debits and credits when I had my own spreadsheet budgeting system pre-[YNAB](https://youneedabudget.com/).
 
-You can find [a PocketMod SVG template here](pmtemplt.svg).
+You can find [a PocketMod SVG template here (1kb)](pmtemplt.svg).
 
 ### Noguchi Filing System[13]
 
@@ -45,9 +45,9 @@ Low-tech meaning eschewing complicated, fragile, or problematic systems (e.g. Ad
 
 A plain TXT file (or Markdown) can easily accomplish the 80/20 of task management, calendars, record keeping, or whatever else, and there are many many examples[5,6,14]. Advantages are it is universal, completely customizable, {{easily searchable|grep}}, cross platform, cloud synced through something like Dropbox, and nimble. Disadvantages are not a "sexy" GUI, potentially takes more maintenance, requires some planning.
 
-### Shell Scripts
+### {{Shell}} Scripts
 
-This takes a bit more investment and planning, but learning how to make scripts in your shell ({{bash}}, {{zsh}}, etc.) can automate otherwise time consuming or annoying tasks[11]. For example:
+This takes a bit more investment and planning, but learning how to make scripts in your {{shell}} ({{bash}}, {{zsh}}, etc.) can automate otherwise time consuming or annoying tasks[11]. For example:
 
 - to-do list management[8,9]
 - convert youtube captions to an ebook[10]

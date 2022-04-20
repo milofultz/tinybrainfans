@@ -3,14 +3,15 @@ title: Paper Computing
 description: Paper computing is a way to learn about the most basic operation of Turing complete systems and programming in general.
 ---
 
-Paper computing is a way to learn about the most basic operation of [Turing complete][] systems and {{programming}} in general. This is also a great way to get familiar with the basics of machine code and {{assembly}}.
+Paper computing is a way to learn about the most basic operation of [Turing complete](https://www.youtube.com/watch?v=RPQD7-AOjMI) systems and {{programming}} in general. This is also a great way to get familiar with the basics of machine code and {{assembly}}.
 
 ## Models
 
 - {{The Know-how Computer}}
 - {{The Little Man Computer}}
-- [CARDIAC - CARDboard Illustrative Aid to Computation][]
+- [CARDIAC - CARDboard Illustrative Aid to Computation](https://www.cs.drexel.edu/~bls96/museum/cardiac.html)
 - [The Instructo](http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf)
+- [norpet](https://compudanzas.itch.io/norpet)
 
 ## References
 
@@ -27,8 +28,4 @@ Paper computing is a way to learn about the most basic operation of [Turing comp
 11. http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm
 12. http://www.pythondiary.com/blog/Oct.15,2014/building-cpu-simulator-python.html
 13. http://archive.computerhistory.org/resources/access/text/2018/04/102650177-05-01-acc.pdf
-
-[Turing complete]: https://www.youtube.com/watch?v=RPQD7-AOjMI
-[Know-how Computer]: https://en.wikipedia.org/wiki/WDR_paper_computer
-[The Little Man Computer]: https://en.wikipedia.org/wiki/Little_man_computer
-[CARDIAC - CARDboard Illustrative Aid to Computation]: https://www.cs.drexel.edu/~bls96/museum/cardiac.html
+14. https://compudanzas.itch.io/norpet

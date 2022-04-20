@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS dogs (
 
 ### ALTER TABLE
 
-Choose the table you want to modify with **ALTER TABLE** followed by the table name. [Columns can be added by using the **ADD COLUMN** statement][add columns], removed by using the **DROP** statement, and renamed with **RENAME TO**.
+Choose the table you want to modify with **ALTER TABLE** followed by the table name. Columns can be added by using the **ADD COLUMN** statement[6], removed by using the **DROP** statement, and renamed with **RENAME TO**.
 
 ```mysql
 ALTER TABLE dogs
@@ -259,7 +259,7 @@ GROUP BY team_name
 HAVING era > 2;
 ```
 
-### [EXISTS - Boolean Check][if row exists]
+### EXISTS - Boolean Check[5]
 
 You can use **SELECT EXISTS (...)** with an enclosed query to return either a 0 (false) or 1 (true) on if any rows were returned.
 
@@ -414,23 +414,16 @@ SELECT r.last_name,
 
 ## References
 
-- {{Common SQL Queries}}
-- https://sqlbolt.com/
-- https://www.mysqltutorial.org/mysql-primary-key/
-- https://www.educba.com/mysql-constraints/
-
-Schema Design:
-
-- https://ondras.zarovi.cz/sql/demo/
-
-Formatting:
-
-- https://www.sqlstyle.guide/
-- https://docs.telemetry.mozilla.org/concepts/sql_style.html
-- https://learnsql.com/blog/24-rules-sql-code-formatting-standard/
-- https://stackoverflow.com/questions/519876/sql-formatting-standards
-
-[if row exists]: https://www.tutorialspoint.com/best-way-to-test-if-a-row-exists-in-a-mysql-table
-
-[add columns]: https://www.mysqltutorial.org/mysql-add-column/
+1. {{Common SQL Queries}}
+2. https://sqlbolt.com/
+3. https://www.mysqltutorial.org/mysql-primary-key/
+4. https://www.educba.com/mysql-constraints/
+5. https://www.tutorialspoint.com/best-way-to-test-if-a-row-exists-in-a-mysql-table
+6. https://www.mysqltutorial.org/mysql-add-column/ 
+7. Schema Design: https://ondras.zarovi.cz/sql/demo/
+8. Formatting:
+   1. https://www.sqlstyle.guide/
+   1. https://docs.telemetry.mozilla.org/concepts/sql_style.html
+   1. https://learnsql.com/blog/24-rules-sql-code-formatting-standard/
+   1. https://stackoverflow.com/questions/519876/sql-formatting-standards
 
