@@ -27,6 +27,7 @@ Command  | Description
 --- | ---
 `n` | Set current line to `n` in buffer
 `^n` | Set current line to `n` lines before current line
+`n,m` | Range of lines from `n` to `m`
 `.` | Current line in buffer
 `$` | Set last line as current line
 `-` | Previous line in buffer
