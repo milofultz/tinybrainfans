@@ -77,6 +77,8 @@ Command(s) | Effect
 
 ## Rebasing Onto Squashed Commits[15-18]
 
+**MAKE A BACKUP**
+
 Lets say that you had three branches: `main`, `feature`, and `ft-addition`. `ft-addition` built upon the work of `feature`.
 
 ```

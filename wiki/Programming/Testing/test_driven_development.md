@@ -165,11 +165,21 @@ describe('getTaxRates', () => {
 });
 ```
 
+### Resist Integration Tests[10]
+
+> Put simply, the money premise says that we do TDD because we want more  value faster. Integration tests in most complex apps do not provide more value faster. As a direct result, in TDD we write very few integration  tests, and suggest them very rarely.
+
 ## Why Use TDD
 
 - Your code will ALWAYS be working just a second ago when you last tested.
 - It is [double-entry bookkeeping](https://en.wikipedia.org/wiki/Double-entry_bookkeeping) for development.
 - A test suite that you don't trust is worthless. A test suite that does not allow you to make a decision when it passes is useless. There can be NO HOLES.
+
+> TDD is currently our best known answer to the challenge of changing layered branching logic, and all of those values depend ultimately on exactly that: changing layered branching logic.
+>
+> "Making software" *is* "changing layered branching logic". TDD is the fastest way to do it that we currently have. That’s all it is.  It’s not mystical, or ideal, it’s not a slogan we can put over a poster with eagles on mountains. It’s a style of changing layered branching  logic.
+>
+> You want more money? You get more money by changing layered branching logic faster. -- Geepaw Hill[11]
 
 ### But TDD is just writing more code!
 
@@ -217,3 +227,5 @@ So similar to TDD, where "red, green, refactor" is the rule, you code operating 
 7. https://www.youtube.com/watch?v=eAfUfKYcvBo
 8. https://www.geepawhill.org/2018/04/14/tdd-the-lump-of-coding-fallacy/
 9. https://online-training.jbrains.ca/courses/wbitdd-01/lectures/34779823
+10. https://www.geepawhill.org/2018/04/04/tdd-resist-integration-tests/
+11. https://www.geepawhill.org/2018/08/26/were-in-tdd-for-the-money/

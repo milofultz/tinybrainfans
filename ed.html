@@ -1,9 +1,142 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="ed is a line editor that is included with most *nix machines."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - ed</title><link rel="stylesheet" href="tinystyle.css"></head><body>
-<main id="main"><article id="content"><h1 id="title">ed</h1><p>ed is a line editor that is included with most <a href="unix.html">*nix</a> machines. The language used in ed is the precursor to <a href="vim.html">Vim</a>, so it is useful in helping to understand the logic behind many of their commands.</p>
-<h2>References</h2>
+<main id="main"><article id="content"><h1 id="title">ed</h1><p>ed is a line editor that is included with all <a href="unix.html">*nix</a> machines. The language used in ed is the precursor to <a href="vim.html">Vim</a> and other *nix tools, so it is useful in helping to understand the logic behind many of their commands.</p>
+<pre><code class="language-shell">$ ed path/to/file.txt
+</code></pre>
+<p>This will load the file into the buffer for you to work on. Don't worry, it's not broken.</p>
+<h2>Basics</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>q</code></td>
+<td>Quit</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Write buffer to current file</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>Undo (ed only saves one command, so be careful!)</td>
+</tr>
+</tbody></table><p>If you receive <code>?</code> after typing a command, type <code>h</code> to see what error occurred. If you want the error messages to always print, you can type <code>H</code>.</p>
+<h2>Traversing The File</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>n</code></td>
+<td>Set current line to <code>n</code> in buffer</td>
+</tr>
+<tr>
+<td><code>^n</code></td>
+<td>Set current line to <code>n</code> lines before current line</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Current line in buffer</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Set last line as current line</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Previous line in buffer</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Next line in buffer</td>
+</tr>
+<tr>
+<td><code>,</code></td>
+<td>From first to last line. Same as <code>1,$</code></td>
+</tr>
+<tr>
+<td><code>;</code></td>
+<td>From current line to last line. Same as <code>.,$</code></td>
+</tr>
+</tbody></table><h2>File Editing</h2>
+<p>The following commands can all be preceded by an address, address symbol or range.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code></td>
+<td>Print line[s]</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>Print line[s] with line numbers</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Delete line[s]</td>
+</tr>
+<tr>
+<td><code>m[y]</code></td>
+<td>Move line[s] to before line <code>y</code></td>
+</tr>
+<tr>
+<td><code>j</code></td>
+<td>Joins the current line with the following line, or the range of lines together, replacing the first line with their joined text</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Yanks (copies) the current line[s] into the 'cut' buffer</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Pastes the 'cut' buffer after the current line</td>
+</tr>
+</tbody></table><h3>Insert Mode</h3>
+<p>Each of these will enter insert mode. All of these can be preceded by <code>n</code>, which will be substituted for the current line in the buffer.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[n]i</code></td>
+<td>Insert in line before current line</td>
+</tr>
+<tr>
+<td><code>[n]a</code></td>
+<td>Append to end of current line</td>
+</tr>
+<tr>
+<td><code>[n]c</code></td>
+<td>Replace the current line</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Exit insert mode</td>
+</tr>
+</tbody></table><h2>References</h2>
 <ol>
+<li><a href="https://linux.die.net/man/1/ed" target="_blank">https://linux.die.net/man/1/ed</a></li>
 <li><a href="https://elly.town/d/blog/2015-10-03-ed-tutorial.txt" target="_blank">https://elly.town/d/blog/2015-10-03-ed-tutorial.txt</a></li>
 <li><a href="https://www.tiltedwindmillpress.com/product/ed/" target="_blank">https://www.tiltedwindmillpress.com/product/ed/</a></li>
 <li><a href="https://www.gnu.org/software/ed/manual/ed_manual.html" target="_blank">https://www.gnu.org/software/ed/manual/ed_manual.html</a></li>
+<li><a href="https://www.gnu.org/fun/jokes/ed-msg.html" target="_blank">https://www.gnu.org/fun/jokes/ed-msg.html</a></li>
+<li><a href="https://www.tuhs.org/cgi-bin/utree.pl?file=V7/usr/src/cmd/ed.c" target="_blank">https://www.tuhs.org/cgi-bin/utree.pl?file=V7/usr/src/cmd/ed.c</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="vim.html">Vim</a></li></ul></details></section><p class="last-modified">Last modified: 202203311717</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="vim.html">Vim</a></li></ul></details></section><p class="last-modified">Last modified: 202204261735</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
