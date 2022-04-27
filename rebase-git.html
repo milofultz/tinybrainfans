@@ -86,13 +86,15 @@ $ git rebase --onto target-branch-or-commit commit-to-replay-from
 </code></pre>
 <p>For instance, with our example, we would want to replay commits <code>G</code>, <code>H</code>, and <code>I</code> but not <code>D</code>, <code>E</code>, or <code>F</code>. So we would use:</p>
 <pre><code class="language-shell">$ git checkout ft-addition
-$ git rebase --onto main G
+$ git rebase --onto main F
 </code></pre>
+<p>This replays all commits that are children of commit <code>F</code> onto the commit found at <code>main</code>.</p>
 <p>This would result in this structure:</p>
 <pre><code>ft-addition         G-H-I
                    /
 main        A-B-C-S
 </code></pre>
+<p>We change the parent of commit <code>G</code> from <code>F</code> to <code>S</code>.</p>
 <h2>Have I Rebased and Merged This Branch?[13]</h2>
 <p>One problem with a rebase and merge or squash and rebase before merge is that the standard <code>git branch -d branch-name</code> will reject as it is not recognized as merged in to the target branch. A couple ways to check:</p>
 <ol>
@@ -148,4 +150,4 @@ main        A-B-C-S
 <li><a href="https://womanonrails.com/git-rebase-onto" target="_blank">https://womanonrails.com/git-rebase-onto</a></li>
 <li><a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rbdiag_e" target="_blank">https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rbdiag_e</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="npm.html">NPM</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202204202336</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="npm.html">NPM</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202204271630</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

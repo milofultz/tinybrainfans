@@ -58,6 +58,22 @@ else
   # other stuff happens
 fi
 </code></pre>
+<h3><a href="regular-expressions-posix.html">Regular Expressions</a>[15]</h3>
+<p>Regular expressions in shell use <a href="regular-expressions-posix.html">POSIX style</a> patterns. A check can be made by using <code>=~</code> between the variable and the pattern.</p>
+<p>For instance, if we wanted to check if the date in a variable was between April 1 through April 3, we would use this:</p>
+<pre><code class="language-shell">if [[ &quot;$var_name&quot; =~ &#x27;April [1-3]&#x27; ]]
+then
+  #stuff happens
+fi
+</code></pre>
+<p>If you want to put the regex pattern into a variable, be sure to use single quotes in it's initialization and be sure to <strong>not</strong> use quotes around the variable when it's used. Double quotes disable the shell from recognizing it is a regex.[16]</p>
+<pre><code class="language-shell">re=&#x27;April [1-3]&#x27; # use single quotes
+
+if [[ &quot;$var_name&quot; =~ $re ]] # no quotes on $re
+then
+  #stuff happens
+fi
+</code></pre>
 <h2>Iteration</h2>
 <p>To iterate over a series of files, you can use a <code>for</code> loop:</p>
 <pre><code class="language-shell"># Files in directory include: a.txt, b.jpg, c.exe, d.txt
@@ -158,5 +174,7 @@ $ vim &quot;start/path/filename.txt&quot;
 <li><a href="https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5" target="_blank">https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5</a></li>
 <li><a href="https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash" target="_blank">https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash</a></li>
 <li><a href="https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1" target="_blank">https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1</a></li>
+<li><a href="https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement" target="_blank">https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement</a></li>
+<li><a href="https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement#comment27568516_18709962" target="_blank">https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement#comment27568516_18709962</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li><li><a href="low-no-tech-productivity.html">Low-/No-Tech Productivity</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="xargs.html">xargs</a></li></ul></details></section><p class="last-modified">Last modified: 202204162323</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li><li><a href="low-no-tech-productivity.html">Low-/No-Tech Productivity</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="xargs.html">xargs</a></li></ul></details></section><p class="last-modified">Last modified: 202204271831</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

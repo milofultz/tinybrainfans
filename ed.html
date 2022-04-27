@@ -1,8 +1,9 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="ed is a line editor that is included with most *nix machines."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - ed</title><link rel="stylesheet" href="tinystyle.css"></head><body>
 <main id="main"><article id="content"><h1 id="title">ed</h1><p>ed is a line editor that is included with all <a href="unix.html">*nix</a> machines. The language used in ed is the precursor to <a href="vim.html">Vim</a> and other *nix tools, so it is useful in helping to understand the logic behind many of their commands.</p>
-<pre><code class="language-shell">$ ed path/to/file.txt
+<pre><code class="language-shell">$ ed -p &quot;&gt;&quot; path/to/file.txt
 </code></pre>
 <p>This will load the file into the buffer for you to work on. Don't worry, it's not broken.</p>
+<p>The optional <code>-p &quot;&gt;&quot;</code> argument says to make the default command prompt for ed <code>&gt;</code> instead of a blank line. This can be any string.</p>
 <h2>Basics</h2>
 <table>
 <thead>
@@ -19,6 +20,10 @@
 <tr>
 <td><code>w</code></td>
 <td>Write buffer to current file</td>
+</tr>
+<tr>
+<td><code>e filename</code></td>
+<td>Open <code>filename</code> for editing</td>
 </tr>
 <tr>
 <td><code>u</code></td>
@@ -51,16 +56,16 @@
 <td>Current line in buffer</td>
 </tr>
 <tr>
-<td><code>$</code></td>
-<td>Set last line as current line</td>
-</tr>
-<tr>
 <td><code>-</code></td>
 <td>Previous line in buffer</td>
 </tr>
 <tr>
 <td><code>+</code></td>
 <td>Next line in buffer</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Set last line as current line</td>
 </tr>
 <tr>
 <td><code>,</code></td>
@@ -71,7 +76,7 @@
 <td>From current line to last line. Same as <code>.,$</code></td>
 </tr>
 </tbody></table><h2>File Editing</h2>
-<p>The following commands can all be preceded by an address, address symbol or range.</p>
+<p>The following commands can all be preceded by an address, address symbol or range. If not preceded by an address, symbol, or range, current line is used.</p>
 <table>
 <thead>
 <tr>
@@ -89,27 +94,22 @@
 <td>Print line[s] with line numbers</td>
 </tr>
 <tr>
-<td><code>d</code></td>
-<td>Delete line[s]</td>
+<td><code>t[y]</code></td>
+<td>Copy line[s] to line after <code>y</code> or after current line if not specified.</td>
 </tr>
 <tr>
 <td><code>m[y]</code></td>
 <td>Move line[s] to before line <code>y</code></td>
 </tr>
 <tr>
+<td><code>d</code></td>
+<td>Delete line[s]</td>
+</tr>
+<tr>
 <td><code>j</code></td>
-<td>Joins the current line with the following line, or the range of lines together, replacing the first line with their joined text</td>
+<td>Joins the specified line with the following line, or the range of lines together, replacing the first line with their joined text</td>
 </tr>
-<tr>
-<td><code>y</code></td>
-<td>Yanks (copies) the current line[s] into the 'cut' buffer</td>
-</tr>
-<tr>
-<td><code>x</code></td>
-<td>Pastes the 'cut' buffer after the current line</td>
-</tr>
-</tbody></table><h3>Insert Mode</h3>
-<p>Each of these will enter insert mode. All of these can be preceded by <code>n</code>, which will be substituted for the current line in the buffer.</p>
+</tbody></table><p>Each of the following will enter insert mode.</p>
 <table>
 <thead>
 <tr>
@@ -119,22 +119,24 @@
 </thead>
 <tbody>
 <tr>
-<td><code>[n]i</code></td>
-<td>Insert in line before current line</td>
+<td><code>i</code></td>
+<td>Insert in line before specified line</td>
 </tr>
 <tr>
-<td><code>[n]a</code></td>
-<td>Append to end of current line</td>
+<td><code>a</code></td>
+<td>Append to end of specified line</td>
 </tr>
 <tr>
-<td><code>[n]c</code></td>
-<td>Replace the current line</td>
+<td><code>c</code></td>
+<td>Replace (&quot;change&quot;) the specified line</td>
 </tr>
 <tr>
 <td><code>.</code></td>
 <td>Exit insert mode</td>
 </tr>
-</tbody></table><h2>References</h2>
+</tbody></table><h2>Regular Expressions</h2>
+<p>This is a deep well I won't cover fully here, but basic searches can be done by using <code>/pattern/</code>. It will set the current line to the first match.</p>
+<h2>References</h2>
 <ol>
 <li><a href="https://linux.die.net/man/1/ed" target="_blank">https://linux.die.net/man/1/ed</a></li>
 <li><a href="https://elly.town/d/blog/2015-10-03-ed-tutorial.txt" target="_blank">https://elly.town/d/blog/2015-10-03-ed-tutorial.txt</a></li>
@@ -143,4 +145,4 @@
 <li><a href="https://www.gnu.org/fun/jokes/ed-msg.html" target="_blank">https://www.gnu.org/fun/jokes/ed-msg.html</a></li>
 <li><a href="https://www.tuhs.org/cgi-bin/utree.pl?file=V7/usr/src/cmd/ed.c" target="_blank">https://www.tuhs.org/cgi-bin/utree.pl?file=V7/usr/src/cmd/ed.c</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="vim.html">Vim</a></li></ul></details></section><p class="last-modified">Last modified: 202204261838</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="vim.html">Vim</a></li></ul></details></section><p class="last-modified">Last modified: 202204271543</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source ~/.zshrc
+
 swiki ./wiki ./ -d
 
 new_changes=$(git status | grep -i "modified")
