@@ -71,6 +71,30 @@ else
 fi
 ```
 
+### {{Regular Expressions|Regular Expressions (POSIX)}}[15]
+
+Regular expressions in shell use {{POSIX style|Regular Expressions (POSIX)}} patterns. A check can be made by using `=~` between the variable and the pattern.
+
+For instance, if we wanted to check if the date in a variable was between April 1 through April 3, we would use this:
+
+```shell
+if [[ "$var_name" =~ 'April [1-3]' ]]
+then
+	#stuff happens
+fi
+```
+
+If you want to put the regex pattern into a variable, be sure to use single quotes in it's initialization and be sure to **not** use quotes around the variable when it's used. Double quotes disable the shell from recognizing it is a regex.[16]
+
+```shell
+re='April [1-3]' # use single quotes
+
+if [[ "$var_name" =~ $re ]] # no quotes on $re
+then
+	#stuff happens
+fi
+```
+
 ## Iteration
 
 To iterate over a series of files, you can use a `for` loop:
@@ -197,5 +221,7 @@ tr -d "\r" < oldname.sh > newname.sh
 12. https://guide.bash.academy/expansions/?=Command_Substitution#p2.2.2_5
 13. https://stackoverflow.com/questions/27445455/what-does-the-colon-dash-mean-in-bash
 14. https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1
+15. https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement
+16. https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement#comment27568516_18709962
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/

@@ -110,8 +110,10 @@ For instance, with our example, we would want to replay commits `G`, `H`, and `I
 
 ```shell
 $ git checkout ft-addition
-$ git rebase --onto main G
+$ git rebase --onto main F
 ```
+
+This replays all commits that are children of commit `F` onto the commit found at `main`.
 
 This would result in this structure:
 
@@ -120,6 +122,8 @@ ft-addition         G-H-I
                    /
 main        A-B-C-S
 ```
+
+We change the parent of commit `G` from `F` to `S`.
 
 ## Have I Rebased and Merged This Branch?[13]
 

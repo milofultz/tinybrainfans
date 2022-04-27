@@ -1,8 +1,13 @@
 #!/bin/zsh
 
-source ~/.zshrc
-
 swiki ./wiki ./ -d
-git add .
-git commit -m "Update"
-git push origin HEAD
+
+new_changes=$(git status | grep -i "modified")
+
+if [[ ! -z "$new_changes" ]]
+then
+    git add .
+    git commit -m "Update"
+    git push origin HEAD
+fi
+
