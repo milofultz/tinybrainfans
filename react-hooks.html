@@ -2,7 +2,7 @@
 <main id="main"><article id="content"><h1 id="title">React Hooks</h1><p>Hooks are functions that let you “hook into” <a href="react.html">React</a> state and lifecycle features from function components. Hooks allow the simplicity of functional components with the complexity and flexibility of class components.</p>
 <p>If these hooks are not exactly what you need, you can create your own <a href="custom-react-hooks.html">custom hooks</a> using the existing ones to achieve your goals.</p>
 <p>These examples are using Typescript for type annotations and clarity.</p>
-<h2><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">useContext</a></h2>
+<h2>useContext[4]</h2>
 <p>useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.</p>
 <p>In its most basic form (taken from Dave Ceddia[2]):</p>
 <pre><code class="language-react">import React, { createContext } from &#x27;react&#x27;;
@@ -156,8 +156,8 @@ export default function ChildComponent() {
   )
 }
 </code></pre>
-<h2><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">useEffect</a></h2>
-<p>useEffect lets you perform side effects on <a href="https://reactjs.org/docs/hooks-state.html" target="_blank" title="u">useState</a> changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>. <code>componentDidUnmount</code> is effectively replaced by returning a &quot;cleanup&quot; function in the useEffect callback.</p>
+<h2>useEffect[5]</h2>
+<p>useEffect lets you perform side effects on [useState][] changes, effectively replacing <code>componentDidMount</code> and <code>componentDidUpdate</code>. <code>componentDidUnmount</code> is effectively replaced by returning a &quot;cleanup&quot; function in the useEffect callback.</p>
 <pre><code class="language-react">import React, { useEffect } from &#x27;react&#x27;;
 
 const testComponent = () =&gt; {
@@ -199,7 +199,59 @@ useEffect(() =&gt; {
   useValidation(usernameInput, passwordInput);
 }, [usernameInput, passwordInput]);
 </code></pre>
-<h2><a href="https://reactjs.org/docs/hooks-state.html" target="_blank" title="u">useState</a></h2>
+<h2>useRef[7]</h2>
+<p><code>useRef</code> is a way to maintain mutable values without rerendering. It's most often used on DOM nodes, like input fields. This example from the React docs shows how you can access the element that the ref is applied to.</p>
+<pre><code class="language-react">function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const onButtonClick = () =&gt; {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
+  return (
+    &lt;&gt;
+      &lt;input ref={inputEl} type=&quot;text&quot; /&gt;
+      &lt;button onClick={onButtonClick}&gt;Focus the input&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<p>You can't use this as is to directly set a state value. For instance, the following won't render the value correctly because refs do not send out update notifications to React.</p>
+<pre><code class="language-react">function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+
+  return (
+    &lt;&gt;
+      &lt;input ref={inputEl} type=&quot;text&quot; /&gt;
+      &lt;p&gt;Input value is {inputEl.current.value}&lt;/p&gt;
+      {/* The value will be `null` until a rerender occurs */}
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<p>However, you <em>can</em> use a callback ref[8] to run code whenever the element the ref is applied to is updated. The following code shows how a callback can be applied to a ref to be run on each update.</p>
+<pre><code class="language-react">function TextInputWithFocusButton() {
+  const inputRef = useRef(null);
+  const [inputValue, setInputValue] = useState(&#x27;&#x27;);
+  
+  const inputChangeHandler = () =&gt; {
+    if (inputRef?.current?.value) {
+      setInputValue(inputRef.current.value);
+    }
+  };
+
+  return (
+    &lt;&gt;
+      &lt;input
+        ref={ inputRef }
+        onChange={ inputChangeHandler }
+        type=&quot;text&quot;
+      /&gt;
+      &lt;p&gt;Input value is { inputValue }&lt;/p&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h2>useState[6]</h2>
 <p>useState lets you use state within a functional component.</p>
 <p><strong>NOTE:</strong> useState does not have a callback as second argument, like the normal <code>setState</code> invocation does. Use useEffect to handle side effects and changes on state updates.</p>
 <pre><code class="language-react">import React, { useState } from &#x27;react&#x27;;
@@ -236,5 +288,10 @@ const testComponent = () =&gt; {
 <li><a href="https://reactjs.org/docs/context.html#dynamic-context" target="_blank">https://reactjs.org/docs/context.html#dynamic-context</a></li>
 <li><a href="https://daveceddia.com/usecontext-hook/" target="_blank">https://daveceddia.com/usecontext-hook/</a></li>
 <li><a href="https://blog.logrocket.com/guide-to-react-useeffect-hook/" target="_blank">https://blog.logrocket.com/guide-to-react-useeffect-hook/</a></li>
+<li><a href="https://reactjs.org/docs/hooks-reference.html#usecontext" target="_blank">https://reactjs.org/docs/hooks-reference.html#usecontext</a></li>
+<li><a href="https://reactjs.org/docs/hooks-effect.html" target="_blank">https://reactjs.org/docs/hooks-effect.html</a></li>
+<li><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">https://reactjs.org/docs/hooks-state.html</a></li>
+<li><a href="https://reactjs.org/docs/hooks-reference.html#useref" target="_blank">https://reactjs.org/docs/hooks-reference.html#useref</a></li>
+<li><a href="https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node" target="_blank">https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202204190430</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202204272308</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -9,7 +9,7 @@ If these hooks are not exactly what you need, you can create your own {{custom h
 
 These examples are using Typescript for type annotations and clarity.
 
-## [useContext][]
+## useContext[4]
 
 useContext is a way to pass global state values around to different components by wrapping components within a provider and then invoking the consumer in the necessary components.
 
@@ -186,7 +186,7 @@ export default function ChildComponent() {
 }
 ```
 
-## [useEffect][]
+## useEffect[5]
 
 useEffect lets you perform side effects on [useState][] changes, effectively replacing `componentDidMount` and `componentDidUpdate`. `componentDidUnmount` is effectively replaced by returning a "cleanup" function in the useEffect callback.
 
@@ -236,7 +236,69 @@ useEffect(() => {
 }, [usernameInput, passwordInput]);
 ```
 
-## [useState][]
+## useRef[7]
+
+`useRef` is a way to maintain mutable values without rerendering. It's most often used on DOM nodes, like input fields. This example from the React docs shows how you can access the element that the ref is applied to.
+
+```react
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  );
+}
+```
+
+You can't use this as is to directly set a state value. For instance, the following won't render the value correctly because refs do not send out update notifications to React.
+
+```react
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+    	<p>Input value is {inputEl.current.value}</p>
+      {/* The value will be `null` until a rerender occurs */}
+    </>
+  );
+}
+```
+
+However, you *can* use a callback ref[8] to run code whenever the element the ref is applied to is updated. The following code shows how a callback can be applied to a ref to be run on each update.
+
+```react
+function TextInputWithFocusButton() {
+  const inputRef = useRef(null);
+  const [inputValue, setInputValue] = useState('');
+  
+	const inputChangeHandler = () => {
+    if (inputRef?.current?.value) {
+      setInputValue(inputRef.current.value);
+    }
+  };
+
+  return (
+    <>
+      <input
+        ref={ inputRef }
+        onChange={ inputChangeHandler }
+        type="text"
+      />
+    	<p>Input value is { inputValue }</p>
+    </>
+  );
+}
+```
+
+## useState[6]
 
 useState lets you use state within a functional component.
 
@@ -278,7 +340,8 @@ const testComponent = () => {
 1. https://reactjs.org/docs/context.html#dynamic-context
 2. https://daveceddia.com/usecontext-hook/
 3. https://blog.logrocket.com/guide-to-react-useeffect-hook/
-
-[useContext]: https://reactjs.org/docs/hooks-reference.html#usecontext
-[useEffect]: https://reactjs.org/docs/hooks-effect.html
-[useState]: https://reactjs.org/docs/hooks-state.html	"u"
+4. https://reactjs.org/docs/hooks-reference.html#usecontext
+5. https://reactjs.org/docs/hooks-effect.html
+6. https://reactjs.org/docs/hooks-state.html
+7. https://reactjs.org/docs/hooks-reference.html#useref
+8. https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node

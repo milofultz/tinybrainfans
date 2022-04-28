@@ -38,6 +38,15 @@ Command  | Description
 `,` | From first to last line. Same as `1,$`
 `;` | From current line to last line. Same as `.,$`
 
+### Bookmarks
+
+This can be preceded by an address, address symbol or range. If not preceded by an address, symbol, or range, current line is used. Bookmarks can be placed on any lowercase letter, signified by `[x]` in the examples.
+
+Command | Description
+--- | ---
+`k[x]` | Mark selected line using lowercase letter
+`'[x]` | Recall marked line using lowercase letter
+
 ## File Editing
 
 The following commands can all be preceded by an address, address symbol or range. If not preceded by an address, symbol, or range, current line is used.

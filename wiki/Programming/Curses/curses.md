@@ -90,6 +90,7 @@ Attribute | Effect
 ### Display
 
 - `clrtoeol()` - Clears everything that is on the current line under the cursor[7].
+- `clear()` - Clears the screen.
 - `curs_set(0)` - Make cursor invisible on screen.
 
 ## References
