@@ -30,9 +30,13 @@ From Reddit's bodyweightfitness[2]:
 - Push-ups and Rows: adjust incline, speed, or depth, or do one of many variations.
 - Plank Shoulder Taps: adjust incline, speed, or leg spread angle or move to one foot.
 
-## Areas
+## Main Areas
 
-My goal when exercising is trying to 
+- Core
+- Chest
+- Back
+- Arms
+- Legs
 
 ## References
 
