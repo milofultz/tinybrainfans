@@ -73,17 +73,66 @@ For example, `/[A-Z][0-9]\1/` will search for any char between A-Z, 0-9, and wha
 | `[0-9]` or `\d`                                  | Numeric characters                                           |
 | ```[\.,-\/#!$%\^&\*;:{}=\-_`~()@\+\?><\[\]\+]``` | All punctuation (non alphanum graphic characters)            |
 
-### Queries
+### Does Not Contain
 
-| Regex                     | Matches                                                      |
-| ------------------------- | ------------------------------------------------------------ |
-| `filename.svg|(filename)` | Match only if first query does not match (use match groups)[4] i.e. match `filename` only if it does not have extension of `svg` |
+#### Strict
+
+> Note that the solution to **does not \*start with\*** is generally much more efficient than the solution to **does not \*contain\***.[5]
+
+If you are trying to test that a query doesn't have a specific thing, it's easier to use a negative lookahead (`?!`) at the start of the query than to try and force a weird negation into the middle. 
+
+For instance, if you wanted to check if `hede` is *not* in a string, you can use a negative lookahead to test if `hede` exists from the start of the string. If not, it will continue with the rest of the regex.
+
+```regex
+^(?!.*hede).*$
+```
+
+```
+^       From the start of the string,
+(?!     start a negative lookahead for
+  .*    anything, followed by
+  hede  'hede'
+)       . If the previous pattern isn't found,
+.*      find any pattern
+$       up to the end of the string.
+```
+
+#### Not Strict
+
+Another way to do this[4] is by using match groups, though this is a little loose, as it still returns a match, even though we won't *mean* it like that. Essentially, if a specific match group exists, then it is what we want.
+
+This example will match any file named `stromboli` with a file extension. *However*, we only want a file named `stromboli` that doesn't end in `.svg`. So we will use match groups as a final filter.
+
+```regex
+stromboli(\.svg|(.*))$
+```
+
+```
+stromboli\.  Look for if pattern 'stromboli.' exists,
+(            and if
+  svg        'svg'
+  |          or
+  (.*)       anything else
+)
+$            ends the string.
+```
+
+If this is called on this series of strings:
+
+```
+file/path/stromboli.svg
+file/path/stromboli.png
+file/path/stromboli.jpeg
+```
+
+They will all match, but we will only want instances that have a match group that includes `$2`. If we see that `$2` exists in the match groups, then we will have what we are looking for, or vice versa; if `$2` does not exist, then we don't want it.
 
 ## References:
 
 1. https://regular-expressions.mobi/backref.html?wlr=1
 2. https://regexr.com/
 3. https://regexcrossword.com/
-3. http://www.rexegg.com/regex-best-trick.html
+4. http://www.rexegg.com/regex-best-trick.html
+5. https://stackoverflow.com/a/5334825/14857724
 
 [backreference]: https://regular-expressions.mobi/backref.html?wlr=1

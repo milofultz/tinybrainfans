@@ -82,24 +82,48 @@
 <td><code>[\.,-\/#!$%\^&amp;\*;:{}=\-_`~()@\+\?&gt;&lt;\[\]\+]</code></td>
 <td>All punctuation (non alphanum graphic characters)</td>
 </tr>
-</tbody></table><h3>Queries</h3>
-<table>
-<thead>
-<tr>
-<th>Regex</th>
-<th>Matches</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>`filename.svg</td>
-<td>(filename)`</td>
-</tr>
-</tbody></table><h2>References:</h2>
+</tbody></table><h3>Does Not Contain</h3>
+<h4>Strict</h4>
+<blockquote>
+<p>Note that the solution to <strong>does not *start with*</strong> is generally much more efficient than the solution to <strong>does not *contain*</strong>.[5]</p>
+</blockquote>
+<p>If you are trying to test that a query doesn't have a specific thing, it's easier to use a negative lookahead (<code>?!</code>) at the start of the query than to try and force a weird negation into the middle. </p>
+<p>For instance, if you wanted to check if <code>hede</code> is <em>not</em> in a string, you can use a negative lookahead to test if <code>hede</code> exists from the start of the string. If not, it will continue with the rest of the regex.</p>
+<pre><code class="language-regex">^(?!.*hede).*$
+</code></pre>
+<pre><code>^       From the start of the string,
+(?!     start a negative lookahead for
+  .*    anything, followed by
+  hede  &#x27;hede&#x27;
+)       . If the previous pattern isn&#x27;t found,
+.*      find any pattern
+$       up to the end of the string.
+</code></pre>
+<h4>Not Strict</h4>
+<p>Another way to do this[4] is by using match groups, though this is a little loose, as it still returns a match, even though we won't <em>mean</em> it like that. Essentially, if a specific match group exists, then it is what we want.</p>
+<p>This example will match any file named <code>stromboli</code> with a file extension. <em>However</em>, we only want a file named <code>stromboli</code> that doesn't end in <code>.svg</code>. So we will use match groups as a final filter.</p>
+<pre><code class="language-regex">stromboli(\.svg|(.*))$
+</code></pre>
+<pre><code>stromboli\.  Look for if pattern &#x27;stromboli.&#x27; exists,
+(            and if
+  svg        &#x27;svg&#x27;
+  |          or
+  (.*)       anything else
+)
+$            ends the string.
+</code></pre>
+<p>If this is called on this series of strings:</p>
+<pre><code>file/path/stromboli.svg
+file/path/stromboli.png
+file/path/stromboli.jpeg
+</code></pre>
+<p>They will all match, but we will only want instances that have a match group that includes <code>$2</code>. If we see that <code>$2</code> exists in the match groups, then we will have what we are looking for, or vice versa; if <code>$2</code> does not exist, then we don't want it.</p>
+<h2>References:</h2>
 <ol>
 <li><a href="https://regular-expressions.mobi/backref.html?wlr=1" target="_blank">https://regular-expressions.mobi/backref.html?wlr=1</a></li>
 <li><a href="https://regexr.com/" target="_blank">https://regexr.com/</a></li>
 <li><a href="https://regexcrossword.com/" target="_blank">https://regexcrossword.com/</a></li>
 <li><a href="http://www.rexegg.com/regex-best-trick.html" target="_blank">http://www.rexegg.com/regex-best-trick.html</a></li>
+<li><a href="https://stackoverflow.com/a/5334825/14857724" target="_blank">https://stackoverflow.com/a/5334825/14857724</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="grep.html">grep</a></li><li><a href="html-forms.html">HTML Forms</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="regular-expressions-posix.html">Regular Expressions (POSIX)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section><p class="last-modified">Last modified: 202204030208</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="grep.html">grep</a></li><li><a href="html-forms.html">HTML Forms</a></li><li><a href="regular-expressions-javascript.html">Regular Expressions (Javascript)</a></li><li><a href="regular-expressions-posix.html">Regular Expressions (POSIX)</a></li><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section><p class="last-modified">Last modified: 202205021209</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
