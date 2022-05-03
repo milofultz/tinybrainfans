@@ -1,8 +1,10 @@
 #!/bin/zsh
 
-source ~/.zshrc
+TB_PATH="$HOME/Dropbox (Personal)/PARA/2 Areas/tinybrain"
 
-swiki ./wiki ./ -d
+cd "$TB_PATH"
+
+python3 "$HOME/Dropbox\ \(Personal\)/Code/swiki/swiki.py" ./wiki ./ -d
 
 new_changes=$(git status | grep -i "modified")
 
