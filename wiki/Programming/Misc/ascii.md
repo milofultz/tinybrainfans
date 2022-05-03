@@ -13,6 +13,18 @@ description: The American Standard Code for Information Interchange, but mostly 
 └────┴────┘  ╚════╩════╝
 ```
 
+## Shading
+
+```
+████
+▓▓▓▓
+▒▒▒▒
+░░░░
+    
+```
+
+
+
 ## References
 
 - https://en.wikipedia.org/wiki/ASCII
