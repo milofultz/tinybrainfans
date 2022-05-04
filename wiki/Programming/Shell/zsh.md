@@ -41,6 +41,10 @@ Plugins are installed using Oh My Zsh and the `~/.zshrc` file.
 
 - Git shortcuts: `{{git}}` is aliased to `g` and many of the most used commands are aliased as well, like `gaa` is `git add .` and `gcmsg` is `git commit -m `, etc. You can find a list of the shortcuts in the oh-my-zsh repo[2].
 
+## Profile
+
+Your profile, which includes your different environment variables, can be found at `.zprofile`.
+
 ## References
 
 1. https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e#file-mac-md

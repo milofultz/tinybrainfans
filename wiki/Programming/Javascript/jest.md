@@ -45,7 +45,9 @@ Now we can run the test in the terminal with `npm run test`.
 
 ## Mocking
 
-You can mock functions like `fetch` or `axios` by using the `jest.fn(() => {})` syntax.
+### Simple Functions
+
+You can mock simple functions like `fetch` or `axios` by using the `jest.fn(() => {})` syntax.
 
 ```javascript
 const someBlackBox = jest.fn(number => 42 + number);
@@ -84,6 +86,10 @@ console.log(
 expect(someOtherBlackBox.mock.calls.length).toBe(4);
 // etc. etc.
 ```
+
+### Libraries
+
+
 
 ## Projects/Multiple Environments[4-5]
 
