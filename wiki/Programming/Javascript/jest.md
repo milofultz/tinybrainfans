@@ -87,10 +87,6 @@ expect(someOtherBlackBox.mock.calls.length).toBe(4);
 // etc. etc.
 ```
 
-### Libraries
-
-
-
 ## Projects/Multiple Environments[4-5]
 
 If you have elements in your application that need distinct or special test environments, use `projects`. This will allow you to use whatever configuration you want on whatever tests you want. Make sure you set up the correct `testMatch` values, or you will have a bad time.
@@ -102,3 +98,4 @@ If you have elements in your application that need distinct or special test envi
 3. https://www.leighhalliday.com/mock-fetch-jest
 4. https://stackoverflow.com/questions/41318115/testing-two-environments-with-jest
 5. https://jestjs.io/docs/configuration#projects-arraystring--projectconfig
+6. https://scribe.rip/swlh/mock-a-library-in-jest-and-typescript-a8bec189efc3

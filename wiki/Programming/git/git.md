@@ -49,6 +49,24 @@ Git by default is not case sensitive when it comes to filenames and will ignore 
 
 If it is a file or files, you can change their name as normal and then within git via this command: `git mv -f filename.txt Filename.txt`. This will make it show up in your commit. If it is a directory, you will need to do this with every file within the directory.
 
+## Squash and Merge[19]
+
+### Why
+
+> before you merge a feature branch back into your main branch (often `master` or `develop`), your feature branch should be squashed down to a single buildable commit, and then rebased from the up-to-date main branch.
+
+> If you follow this process it guarantees that ALL commits in master build and pass tests. This simple fact makes debugging an issue much easier. You can use **git** bisect when trying to find the source of a bug. Git bisect becomes almost completely ineffective if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash our commits. If you really want to have multiple commits for a feature, at least squash down so that each commit builds and passes tests.
+
+### How
+
+Most simple is to use the `git merge --squash` option[20]. If you want to merge `starting-branch` into `target-branch`:
+
+- Check out `target-branch`
+- Use `git merge --squash starting-branch`
+- Commit all changes using `git commit`
+
+Another more intensive way to do it that gives you more control is to {{rebase|Rebase (git)}} the new branch off of the target branch you wish to merge into. Using {{interactive rebase|Rebase (git)}}, select every commit except the oldest one and set to `squash`. Select that first commit and set it to `reword`. Once the rebase starts on exit, you will be able to change the commit message that will hold all of the squashed commits. Once that is complete, merge it into the target branch.
+
 ## Branches
 
 Action | Command
@@ -204,3 +222,5 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 16. https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean
 17. https://rietta.com/blog/git-patch-manual-split/
 18. https://www.freecodecamp.org/news/git-stash-explained/ 
+19. https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/
+20. https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit

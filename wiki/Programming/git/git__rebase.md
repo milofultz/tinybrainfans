@@ -63,29 +63,9 @@ I only have used these so far, and they do the job for what I need.
 | `f` / `fixup`  | Fold this commit into the previous commit, using the previous commit's message |
 | `e` / `edit`   | Stop at this commit and give user control until `rebase --continue`[9] |
 
-## Squash and Rebase[11]
-
-### Why
-
-One use of rebasing is this method, which alters your branch's history by squashing all commits together, but simplifies many things for the future.
-
-> before you merge a feature branch back into your main branch (often `master` or `develop`), your feature branch should be squashed down to a single buildable commit, and then rebased from the up-to-date main branch.
-
-> If you follow this process it guarantees that ALL commits in master build and pass tests. This simple fact makes debugging an issue much easier. You can use **git** bisect when trying to find the source of a bug. Git bisect becomes almost completely ineffective if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash our commits. If you really want to have multiple commits for a feature, at least squash down so that each commit builds and passes tests.
-
-### How
-
-Most simple is to use the `git merge --squash` option[15]. If you want to merge `starting-branch` into `target-branch`:
-
-- Check out `target-branch`
-- Use `git merge --squash starting-branch`
-- Commit all changes using `git commit`
-
-Another more intensive way to do it that gives you more control is to rebase the new branch off of the target branch you wish to merge into. Using interactive rebase, select every commit except the oldest one and set to `squash`. Select that first commit and set it to `reword`. Once the rebase starts on exit, you will be able to change the commit message that will hold all of the squashed commits. Once that is complete, merge it into the target branch.
-
 ## Rebasing Onto Squashed Commits[15-18]
 
-**MAKE A BACKUP**
+First, **MAKE A BACKUP!**
 
 Lets say that you had three branches: `main`, `feature`, and `ft-addition`. `ft-addition` built upon the work of `feature`.
 
