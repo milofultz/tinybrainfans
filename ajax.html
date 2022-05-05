@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="AJAX stands for Asynchronous Javascript And XML. It is an asynchronous way to get and send data. Usually used with JSON. AJAX is built in to Javascript."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - AJAX</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">AJAX</h1><p>AJAX stands for Asynchronous <a href="javascript.html">Javascript</a> And <a href="xml.html">XML</a>. It is an asynchronous way to get and send data. Usually used with <a href="json.html">JSON</a>. AJAX is built in to Javascript.</p>
+<p>When an AJAX call is made in your Javascript code, the AJAX engine takes your request and converts it into a proper XmlHttpRequest. The website that is being queried then responds (with JSON or XML) and the AJAX engine then converts it into an <a href="html.html">HTML</a> response that can be parsed by Javascript.</p>
+<p>Ajax is able to asynchronously handle <a href="http.html">HTTP</a> requests and responses, interpreting the requests from JS to HTTP and responses from JSON to HTML responses. This allows a fluid application that doesn't need to refresh the browser to function.</p>
+<p>A standard implementation of AJAX involves these steps:</p>
+<ol>
+<li>Creating the XHR object</li>
+<li>Defining the request parameters</li>
+<li>Instructions on a successful and unsuccessful request</li>
+<li>Sending/starting the request</li>
+</ol>
+<h2>XMLHttpRequest (XHR Object)</h2>
+<p><strong>XMLHttpRequest</strong> is an API that is in the form of an object, with methods and properties attached. When a request is made and when a response is received, all of that work goes on behind the scenes and this object is updated as things happen.</p>
+<p>To use the XHR object, a new instance needs to be created and assigned to a variable.</p>
+<pre><code class="language-javascript">var xhr = new XMLHttpRequest();
+</code></pre>
+<h3>.open()</h3>
+<p><code>.open()</code> is an XHR function that takes three parameters: type of request, URL or file name, and a boolean of whether it is asynchronous or not.</p>
+<pre><code class="language-javascript">xhr.open(&#x27;GET&#x27;, &#x27;https://www.requestURL.com&#x27;, true);
+</code></pre>
+<h3>.onreadystatechange</h3>
+<p>You define a function at that property, and it will run every time the <code>readyState</code> property of the XHR object changes. The readyState values are:</p>
+<ul>
+<li>0 - Request not initialized</li>
+<li>1 - server connection established</li>
+<li>2 - request received</li>
+<li>3 - processing request</li>
+<li>4 - request finished and response is ready</li>
+</ul>
+<pre><code class="language-javascript">xhr.onreadystatechange = function () {
+  // if the readyState property of the XHR object (&#x27;xhr&#x27;) is 4
+  // AND the status in the XHR object is &#x27;OK&#x27;
+  if (this.readystatechange == 4 &amp;&amp; this.status === 200) {
+    // get the responseText from the XHR object (&#x27;xhr&#x27;)
+    console.log(this.responseText)
+  }
+}
+</code></pre>
+<h3>.onprogress</h3>
+<p><code>.onprogress</code> is a property that holds a function, defined by the developer, that will be called once the <code>readyState</code> is at 3, when the request is being processed.</p>
+<pre><code class="language-javascript">xhr.onprogres = function () {
+  // Show the loading image or something that denotes waiting  
+}
+</code></pre>
+<h3>.onload / .onerror</h3>
+<p><code>.onload</code> and <code>.onerror</code> are properties that hold functions, defined by the developer, that will be called once the <code>readyState</code> is at 4, when the request is finished and response is ready, or when an error is detected.</p>
+<pre><code class="language-javascript">xhr.onload = function () {
+  // if the status in the XHR object (xhr) is &#x27;OK&#x27;
+  if (this.status === 200) {
+    // get the responseText from the XHR object (&#x27;xhr&#x27;)
+    console.log(this.responseText)
+  }
+};
+
+xhr.onerror = function () {
+  console.log(&#x27;Request error&#x27;);
+};
+</code></pre>
+<h3>.setRequestHeader()</h3>
+<p>When making a <code>POST</code> request, you will need to set the request header. This function takes two parameters: the name of the header and the value it will have. This can be called multiple times in a row to set multiple parameters, and they will all be compiled together to one header. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" target="_blank">Learn more about HTTP headers here</a>.</p>
+<pre><code class="language-javascript">xhr.setRequestHeader(&#x27;Content-type&#x27;, &#x27;application/json&#x27;);
+</code></pre>
+<h3>.send()</h3>
+<p>This will send the request that has already been created by <code>.open()</code>. The body of the request should be passed in as a parameter, but it is optional, like in a simple GET request.</p>
+<pre><code class="language-javascript">xhr.send();
+</code></pre>
+<h2>Response Data Types</h2>
+<p>All of the previous examples have been for if you are making a request for a <strong>plaintext</strong> file, by getting the <code>responseText</code> property from the XHR object. If your response ends up being a <strong><a href="json.html">JSON</a></strong> file, you can parse this with <code>JSON.parse(this.responseText)</code>.</p>
+<h2>Libraries</h2>
+<ul>
+<li><a href="jquery.html">jQuery</a></li>
+<li>Axios</li>
+<li><a href="fetch-api.html">Fetch API</a></li>
+<li><a href="node.html">Node</a></li>
+</ul>
+<hr />
+<h3>References</h3>
+<ol>
+<li><a href="https://www.youtube.com/watch?v=82hnvUYY6QA" target="_blank">https://www.youtube.com/watch?v=82hnvUYY6QA</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest</a></li>
+</ol>
+<p class="last-modified">Last modified: 202107020539</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

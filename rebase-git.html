@@ -1,0 +1,143 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Rebasing in git is a way to clean up your commit history and change the history of one branch to be after the changes of another."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Rebase (git)</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Rebase (git)</h1><p>Rebasing in <a href="git.html">git</a> is a way to clean up your commit history and change the history of one branch to be after the changes of another. Most commonly, you rebase a feature branch on the end of the master/main branch.</p>
+<h2>The Golden Rule</h2>
+<p>If your branch is being worked on by anybody else but you, <strong>do not rebase!</strong> Because rebase is destructive, you will not be able to reconcile branches with git, leaving you to do the work manually. 💀⚰️</p>
+<p>From Linus Torvald[10]:</p>
+<blockquote>
+<p>People can (and probably should) rebase their <em>private</em> trees (their own work). That's a <em>cleanup</em>. But never other peoples code. That's a &quot;destroy history&quot;</p>
+</blockquote>
+<h2>Another Good Rule</h2>
+<p>ALWAYS make a backup of the branch you are trying to rebase with. If you screw it up, <strong>the commits are gone</strong>. Make a copy (<code>git commit -b branch-name-bak</code>), run your test, ensure it did the thing you wanted it to do, then hold on to your backup in case you were wrong.</p>
+<h2>Merge vs. Rebase</h2>
+<p>Merging and rebasing both achieve the same goals, but in different ways. Merging non-destructively maintains the history of the current branch when merging in other branches, with the cost of adding a new merge commit. Rebasing destructively changes the history of the current branch when rebasing on to other branches, but leaves no new commits.</p>
+<h2>Simple Rebase</h2>
+<p>To perform a simple rebase and put the commits of the current branch on to the tip of another branch, you can use the following command:</p>
+<pre><code class="language-shell">$ git rebase {other-branch}
+</code></pre>
+<p>For instance, if I were on a <code>feature</code> branch and I wanted to rebase on top of the <code>main</code> branch, I would use <code>git rebase main</code>. This will re-write the history destructively and prompt you if there are any conflicts to resolve before proceeding.</p>
+<h2>Interactive Rebase</h2>
+<p>To rebase one branch onto the nearest common ancestor of another, use the following command:</p>
+<pre><code class="language-shell">$ git rebase -i `git merge-base {other-branch} HEAD`
+</code></pre>
+<p>For instance, if I was on a <code>feature</code> branch and wanted to interactively rebase over all commits that occurred since it branched off of <code>main</code>, it would be <code>git rebase -i `git merge-base main HEAD` </code>.</p>
+<p>Note that when the commits are listed, they are listed oldest to newest, unlike the git log which is newest to oldest. This is very important!</p>
+<h3>Alias</h3>
+<p>In your <code>~/.gitconfig</code> file, you can add this in the <code>[alias]</code> section to invoke the above command using <code>git rbm {other-branch}</code>:</p>
+<pre><code class="language-sh">rbm = &quot;! f() { git rebase -i `git merge-base ${1} HEAD`; }; f&quot;
+</code></pre>
+<h3>Interactive Rebase Commands</h3>
+<p>I only have used these so far, and they do the job for what I need.</p>
+<table>
+<thead>
+<tr>
+<th>Command(s)</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>p</code> / <code>pick</code></td>
+<td>Keep the commit as it currently is</td>
+</tr>
+<tr>
+<td><code>r</code> / <code>reword</code></td>
+<td>Keep the commit and edit the commit message</td>
+</tr>
+<tr>
+<td><code>s</code> / <code>squash</code></td>
+<td>Combine this commit with the previous commit, and edit commit message for newly squashed commit</td>
+</tr>
+<tr>
+<td><code>f</code> / <code>fixup</code></td>
+<td>Fold this commit into the previous commit, using the previous commit's message</td>
+</tr>
+<tr>
+<td><code>e</code> / <code>edit</code></td>
+<td>Stop at this commit and give user control until <code>rebase --continue</code>[9]</td>
+</tr>
+</tbody></table><h2>Rebasing Onto Squashed Commits[15-18]</h2>
+<p>First, <strong>MAKE A BACKUP!</strong></p>
+<p>Lets say that you had three branches: <code>main</code>, <code>feature</code>, and <code>ft-addition</code>. <code>ft-addition</code> built upon the work of <code>feature</code>.</p>
+<pre><code>ft-addition             G-H-I
+                       /
+feature           D-E-F
+                 /
+main        A-B-C
+</code></pre>
+<p>We finish with <code>feature</code> and squash it before merging it into main (squashed commit being <code>S</code>.</p>
+<pre><code>ft-addition       D-E-F-G-H-I
+                 /
+main        A-B-C-S
+</code></pre>
+<p>We now have conflicting commit histories. The content of <code>S</code> is all of the commits <code>D</code>, <code>E</code>, <code>F</code>. If we <code>git rebase main</code> while checked out in the <code>ft-addition</code> branch, we would have to deal with conflicts on every commit as it tried to replay <code>D</code>, <code>E</code>, and <code>F</code> on top of <code>S</code>. This would mean lots of unnecessary merge conflict resolution.</p>
+<p>To fix this, we can use the <code>--onto</code> flag on <code>git rebase</code>. The syntax is as follows:</p>
+<pre><code class="language-shell">$ git checkout starting-branch
+$ git rebase --onto target-branch-or-commit commit-to-replay-from
+</code></pre>
+<p>For instance, with our example, we would want to replay commits <code>G</code>, <code>H</code>, and <code>I</code> but not <code>D</code>, <code>E</code>, or <code>F</code>. So we would use:</p>
+<pre><code class="language-shell">$ git checkout ft-addition
+$ git rebase --onto main F
+</code></pre>
+<p>This replays all commits that are children of commit <code>F</code> onto the commit found at <code>main</code>.</p>
+<p>This would result in this structure:</p>
+<pre><code>ft-addition         G-H-I
+                   /
+main        A-B-C-S
+</code></pre>
+<p>We change the parent of commit <code>G</code> from <code>F</code> to <code>S</code>.</p>
+<h2>Have I Rebased and Merged This Branch?[13]</h2>
+<p>One problem with a rebase and merge or squash and rebase before merge is that the standard <code>git branch -d branch-name</code> will reject as it is not recognized as merged in to the target branch. A couple ways to check:</p>
+<ol>
+<li>Use <code>git log --oneline --cherry target-branch...starting-branch</code> to see which commits are present in both branches.</li>
+<li>If commit messages are maybe not true to the original, or a squash and rebase has occurred, you can use <code>git checkout target-branch~0; git merge starting-branch</code>. This will put you on a detached head of the target branch and try to merge in the starting branch's content. If this commit is merged in already, it should say <code>Already up to date.</code>. </li>
+</ol>
+<p>You can put all of option 2 into a function in your shell as an <a href="my-git-aliases.html">alias</a>.</p>
+<pre><code class="language-shell">grbdiff () {
+    local TARGET=$(git rev-parse --abbrev-ref HEAD)
+    local STARTING=&quot;$1&quot;
+
+    git checkout &quot;${TARGET}~0&quot; 2&gt;/dev/null
+    git merge &quot;${STARTING}&quot; 2&gt;/dev/null
+    local DIFF=$(gd --stat)
+    if [[ -z &quot;$DIFF&quot; ]]
+    then
+        echo -e &quot;Branch &#x27;${TARGET}&#x27; contains contents of &#x27;${STARTING}&#x27;. Nothing to merge.&quot;
+    else
+        echo -e &quot;Branch &#x27;${TARGET}&#x27; does not contain contents of &#x27;${STARTING}&#x27;:\n${DIFF}&quot;
+    fi
+
+    git checkout &quot;${TARGET}&quot; 2&gt;/dev/null
+}
+</code></pre>
+<p>It can be executed by checking out the target branch and typing <code>grbdiff starting-branch</code>. If there are changes, it will print the diff.</p>
+<h2>Package Lock Conflicts[14]</h2>
+<p>If you end up with <code>package-lock.json</code> conflicts in a rebase, follow these instructions:</p>
+<ol>
+<li>This is given that you are at a state in the rebase where all other previous or current conflicts have been managed and all that is left is the package lock.</li>
+<li>Run <code>npm install --package-lock-only</code>.</li>
+<li>Stage <code>package-lock.json</code> in the current commit.</li>
+<li>Run <code>git rebase continue</code> and commit.</li>
+</ol>
+<p>This should render you the up to date <code>package-lock.json</code> file without having to do all the merge conflicts manually.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.youtube.com/watch?v=7Mh259hfxJg" target="_blank">https://www.youtube.com/watch?v=7Mh259hfxJg</a></li>
+<li><a href="https://www.youtube.com/watch?v=u5ywa435MbI" target="_blank">https://www.youtube.com/watch?v=u5ywa435MbI</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
+<li><a href="https://linuxhint.com/git-rebase-tutorial/" target="_blank">https://linuxhint.com/git-rebase-tutorial/</a></li>
+<li><a href="https://git-scm.com/docs/git-rebase" target="_blank">https://git-scm.com/docs/git-rebase</a></li>
+<li><a href="https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch" target="_blank">https://stackoverflow.com/questions/363908/how-do-i-use-git-rebase-i-to-rebase-all-changes-in-a-branch</a></li>
+<li><a href="https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336" target="_blank">https://betterprogramming.pub/git-workflow-etiquette-f22d96b8b0b8#3336</a></li>
+<li><a href="https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html" target="_blank">https://demisx.github.io/git/rebase/2015/07/02/git-rebase-keep-my-branch-changes.html</a></li>
+<li><a href="https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits" target="_blank">https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits</a></li>
+<li><a href="http://blog.nerdbank.net/2020/01/should-i-merge-or-rebase-in-git.html" target="_blank">http://blog.nerdbank.net/2020/01/should-i-merge-or-rebase-in-git.html</a></li>
+<li><a href="https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/" target="_blank">https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/</a></li>
+<li>Visual differences between merge, rebase, squash/merge: <a href="https://stackoverflow.com/a/43551395/14857724" target="_blank">https://stackoverflow.com/a/43551395/14857724</a></li>
+<li><a href="https://stackoverflow.com/a/34337939/14857724" target="_blank">https://stackoverflow.com/a/34337939/14857724</a></li>
+<li><a href="https://marcelofernandes.dev/blog/solving-package-lock-json-conflicts/" target="_blank">https://marcelofernandes.dev/blog/solving-package-lock-json-conflicts/</a></li>
+<li><a href="https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit" target="_blank">https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit</a></li>
+<li><a href="https://scribe.rip/swiftblade/how-git-rebase-onto-works-71ff00e3f88c" target="_blank">https://scribe.rip/swiftblade/how-git-rebase-onto-works-71ff00e3f88c</a></li>
+<li><a href="https://womanonrails.com/git-rebase-onto" target="_blank">https://womanonrails.com/git-rebase-onto</a></li>
+<li><a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rbdiag_e" target="_blank">https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rbdiag_e</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git.html">git</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="npm.html">NPM</a></li><li><a href="test-driven-development.html">Test-Driven Development</a></li></ul></details></section><p class="last-modified">Last modified: 202205050800</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

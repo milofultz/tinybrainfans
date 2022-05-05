@@ -1,0 +1,167 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="POSIX's Regular Expressions differ in implementation than the standard regex we know today."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Regular Expressions (POSIX)</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Regular Expressions (POSIX)</h1><p>POSIX's Regular Expressions differ in implementation than the <a href="regular-expressions.html">standard regex we know today</a>.</p>
+<h2>POSIX Regular Expressions Syntax</h2>
+<p>From the Wikipedia page[1]:</p>
+<h3>Basic Regular Syntax (BRE)</h3>
+<p>In the <a href="https://en.wikipedia.org/wiki/POSIX" target="_blank">POSIX</a> standard, Basic Regular Syntax (<strong>BRE</strong>) requires that the <a href="https://en.wikipedia.org/wiki/Metacharacter" target="_blank">metacharacters</a> <code>( )</code> and <code>{ }</code> be designated <code>\(\)</code> and <code>\{\}</code>, whereas Extended Regular Syntax (<strong>ERE</strong>) does not.</p>
+<table>
+<thead>
+<tr>
+<th>Metacharacter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>^</code></td>
+<td>Matches the starting position within the string. In line-based tools, it matches the starting position of any line.</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Matches any single character (many applications exclude <a href="https://en.wikipedia.org/wiki/Newline" target="_blank">newlines</a>, and exactly which characters are considered newlines is flavor-,  character-encoding-, and platform-specific, but it is safe to assume  that the line feed character is included). Within POSIX bracket expressions, the dot character matches a literal dot. For example, <code>a.c</code> matches &quot;abc&quot;, etc., but <code>[a.c]</code> matches only &quot;a&quot;, &quot;.&quot;, or &quot;c&quot;.</td>
+</tr>
+<tr>
+<td><code>[ ]</code></td>
+<td>A bracket expression. Matches a single character that is contained within the brackets. For example, <code>[abc]</code> matches &quot;a&quot;, &quot;b&quot;, or &quot;c&quot;. <code>[a-z]</code> specifies a range which matches any lowercase letter from &quot;a&quot; to &quot;z&quot;. These forms can be mixed: <code>[abcx-z]</code> matches &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;x&quot;, &quot;y&quot;, or &quot;z&quot;, as does <code>[a-cx-z]</code>. The <code>-</code> character is treated as a literal character if it is the last or the first (after the <code>^</code>, if present) character within the brackets: <code>[abc-]</code>, <code>[-abc]</code>. Note that backslash escapes are not allowed. The <code>]</code> character can be included in a bracket expression if it is the first (after the <code>^</code>) character: <code>[]abc]</code>.</td>
+</tr>
+<tr>
+<td><code>[^ ]</code></td>
+<td>Matches a single character that is not contained within the brackets. For example, <code>[^abc]</code> matches any character other than &quot;a&quot;, &quot;b&quot;, or &quot;c&quot;. <code>[^a-z]</code> matches any single character that is not a lowercase letter from &quot;a&quot; to &quot;z&quot;. Likewise, literal characters and ranges can be mixed.</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Matches the ending position of the string or the position just  before a string-ending newline. In line-based tools, it matches the  ending position of any line.</td>
+</tr>
+<tr>
+<td><code>( )</code></td>
+<td>Defines a marked subexpression. The string matched within the parentheses can be recalled later (see the next entry, <code>\*n*</code>). A marked subexpression is also called a block or capturing group. <strong>BRE mode requires <code>\( \)</code></strong>.</td>
+</tr>
+<tr>
+<td><code>\*n*</code></td>
+<td>Matches what the <em>n</em>th marked subexpression matched, where <em>n</em> is a digit from 1 to 9. This construct is vaguely defined in the  POSIX.2 standard. Some tools allow referencing more than nine capturing  groups. Also known as a backreference. <strong>backreferences are only supported in BRE mode</strong></td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Matches the preceding element zero or more times. For example, <code>ab*c</code> matches &quot;ac&quot;, &quot;abc&quot;, &quot;abbbc&quot;, etc. <code>[xyz]*</code> matches &quot;&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;, &quot;zx&quot;, &quot;zyx&quot;, &quot;xyzzy&quot;, and so on. <code>(ab)*</code> matches &quot;&quot;, &quot;ab&quot;, &quot;abab&quot;, &quot;ababab&quot;, and so on.</td>
+</tr>
+<tr>
+<td><code>{*m*,*n*}</code></td>
+<td>Matches the preceding element at least <em>m</em> and not more than <em>n</em> times. For example, <code>a{3,5}</code> matches only &quot;aaa&quot;, &quot;aaaa&quot;, and &quot;aaaaa&quot;. This is not found in a few older instances of regexes. <strong>BRE mode requires <code>\{\*m\*,\*n\*\}</code></strong>.</td>
+</tr>
+</tbody></table><h3>Extended Regular Syntax (ERE)</h3>
+<p>The meaning of metacharacters <a href="https://en.wikipedia.org/wiki/Escape_character" target="_blank">escaped</a> with a backslash is reversed for some characters in the POSIX Extended Regular Expression (<strong>ERE</strong>) syntax. With this syntax, a backslash causes the metacharacter to be treated as a literal character. So, for example, <code>\( \)</code> is now <code>( )</code> and <code>\{ \}</code> is now <code>{ }</code>. Additionally, support is removed for <code>\*n*</code> backreferences and the following metacharacters are added:</p>
+<table>
+<thead>
+<tr>
+<th>Metacharacter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>?</code></td>
+<td>Matches the preceding element zero or one time. For example, <code>ab?c</code> matches only &quot;ac&quot; or &quot;abc&quot;.</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Matches the preceding element one or more times. For example, <code>ab+c</code> matches &quot;abc&quot;, &quot;abbc&quot;, &quot;abbbc&quot;, and so on, but not &quot;ac&quot;.</td>
+</tr>
+<tr>
+<td>`</td>
+<td>`</td>
+</tr>
+</tbody></table><h3>Bracket Expressions/Character Classes</h3>
+<p>Pulled from regular-expressions.info[6]:</p>
+<blockquote>
+<p>Don’t confuse the POSIX term “character class” with what is normally called a <a href="https://www.regular-expressions.info/charclass.html" target="_blank">regular expression character class</a>. <code>[x-z0-9]</code> is an example of what this tutorial calls a “character class” and what POSIX calls a “bracket expression”. <code>[:digit:]</code> is a POSIX character class, used inside a bracket expression like <code>[x-z[:digit:]]</code>. The POSIX character class names must be written all lowercase.</p>
+<p>One key syntactic difference is that the backslash is NOT a  metacharacter in a POSIX bracket expression. So in POSIX, the regular  expression <code>[\d]</code> matches a <code>\</code> or a <code>d</code>. To match a <code>]</code>, put it as the first character after the opening <code>[</code> or the negating <code>^</code>. To match a <code>-</code>, put it right before the closing <code>]</code>. To match a <code>^</code>, put it before the final literal <code>-</code> or the closing <code>]</code>. Put together, <code>[]\d^-]</code> matches <code>]</code>, <code>\</code>, <code>d</code>, <code>^</code> or <code>-</code>.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>POSIX</th>
+<th>Description</th>
+<th>ASCII</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[:alnum:]</code></td>
+<td>Alphanumeric characters</td>
+<td><code>[a-zA-Z0-9]</code></td>
+</tr>
+<tr>
+<td><code>[:alpha:]</code></td>
+<td>Alphabetic characters</td>
+<td><code>[a-zA-Z]</code></td>
+</tr>
+<tr>
+<td><code>[:ascii:]</code></td>
+<td>ASCII characters</td>
+<td><code>[\x00-\x7F]</code></td>
+</tr>
+<tr>
+<td><code>[:blank:]</code></td>
+<td>Space and tab</td>
+<td><code>[ \t]</code></td>
+</tr>
+<tr>
+<td><code>[:cntrl:]</code></td>
+<td>Control characters</td>
+<td><code>[\x00-\x1F\x7F]</code></td>
+</tr>
+<tr>
+<td><code>[:digit:]</code></td>
+<td>Digits</td>
+<td><code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>[:graph:]</code></td>
+<td>Visible characters (anything except spaces and control characters)</td>
+<td><code>[\x21-\x7E]</code></td>
+</tr>
+<tr>
+<td><code>[:lower:]</code></td>
+<td>Lowercase letters</td>
+<td><code>[a-z]</code></td>
+</tr>
+<tr>
+<td><code>[:print:]</code></td>
+<td>Visible characters and spaces (anything except control characters)</td>
+<td><code>[\x20-\x7E]</code></td>
+</tr>
+<tr>
+<td><code>[:punct:]</code></td>
+<td>Punctuation (and symbols).</td>
+<td>`[!&quot;#$%&amp;'()*+, -./:;&lt;=&gt;?@[ \]^_‘{</td>
+</tr>
+<tr>
+<td><code>[:space:]</code></td>
+<td>All whitespace characters, including line breaks</td>
+<td><code>[ \t\r\n\v\f]</code></td>
+</tr>
+<tr>
+<td><code>[:upper:]</code></td>
+<td>Uppercase letters</td>
+<td><code>[A-Z]</code></td>
+</tr>
+<tr>
+<td><code>[:word:]</code></td>
+<td>Word characters (letters, numbers and underscores)</td>
+<td><code>[A-Za-z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>[:xdigit:]</code></td>
+<td>Hexadecimal digits</td>
+<td><code>[A-Fa-f0-9]</code></td>
+</tr>
+</tbody></table><h2>References</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Regular_expression#POSIX_basic_and_extended" target="_blank">https://en.wikipedia.org/wiki/Regular_expression#POSIX_basic_and_extended</a></li>
+<li><a href="http://web.archive.org/web/20160308115653/http://peope.net/old/regex.html" target="_blank">http://web.archive.org/web/20160308115653/http://peope.net/old/regex.html</a></li>
+<li><a href="http://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/Regular-Expressions.html" target="_blank">http://www.gnu.org/savannah-checkouts/gnu/libc/manual/html_node/Regular-Expressions.html</a></li>
+<li><a href="https://www.regular-expressions.info/posix.html" target="_blank">https://www.regular-expressions.info/posix.html</a></li>
+<li><a href="https://www.lemoda.net/c/unix-regex/" target="_blank">https://www.lemoda.net/c/unix-regex/</a></li>
+<li><a href="https://www.regular-expressions.info/posixbrackets.html" target="_blank">https://www.regular-expressions.info/posixbrackets.html</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="grep.html">grep</a></li><li><a href="regular-expressions-c.html">Regular Expressions (C)</a></li><li><a href="shell.html">Shell</a></li></ul></details></section><p class="last-modified">Last modified: 202201182333</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

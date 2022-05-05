@@ -1,0 +1,113 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="crontab is a way to schedule regular background tasks and shell commands."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - crontab</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">crontab</h1><h2>Quick Start</h2>
+<p>Create or edit a crontab entry using <code>crontab -e</code> in the <a href="shell.html">shell</a>. <strong>Don't edit them directly. Use <code>crontab -e</code> as the entry point.</strong></p>
+<h3>Format</h3>
+<p>Here is an example of a crontab entry:</p>
+<pre><code class="language-cron">0 10 */2 6-9 * ./path/to/backup.sh
+</code></pre>
+<p>A crontab entry has two parts:</p>
+<ol>
+<li>The scheduled recurring time to execute: <code>0 10 * * 1-5</code></li>
+<li>The <a href="shell.html">command</a> to be executed: <code>./path/to/backup.sh</code></li>
+</ol>
+<h4>Time</h4>
+<p>The time format is relative to the current time on your machine. From left to right:</p>
+<ol>
+<li>Minutes after the hour (0 to 59)</li>
+<li>Hour in 24 hour format (0 to 23)</li>
+<li>Day of the month (1 to 31)</li>
+<li>Month (1 to 12)</li>
+<li>Day of the week (0 to 7 or name e.g. Sun; 0 and 7 determine Sunday)</li>
+</ol>
+<p>There are multiple types of specifiers you can use in each slot:</p>
+<table>
+<thead>
+<tr>
+<th>Specifier</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>At a</td>
+</tr>
+<tr>
+<td>a,b,c</td>
+<td>At a, b and c</td>
+</tr>
+<tr>
+<td>a-b</td>
+<td>From a to b</td>
+</tr>
+<tr>
+<td>*</td>
+<td>first to last</td>
+</tr>
+<tr>
+<td>a-d/x</td>
+<td>From a to d with steps of x. <code>1-9/2</code> is the same as <code>1,3,5,7,9</code>. <code>*/15 * * * *</code> determines <em>every 15 minutes</em>; <code>0 */23 * * *</code> determines <em>every 23 hours</em>; etc.</td>
+</tr>
+</tbody></table><p>An example, where a script would run every other day at 10am from June through the end of September:</p>
+<pre><code>0               At the top of the hour
+  10            At 10am
+     */2        Every other day
+         6-9    From June through the end of September
+             *  Every day of the week
+</code></pre>
+<p>All five fields can also be replaced by a single <code>@</code> command:</p>
+<table>
+<thead>
+<tr>
+<th>String</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@reboot</code></td>
+<td>Run once i.e. at startup</td>
+</tr>
+<tr>
+<td><code>@yearly</code></td>
+<td>Run once a year i.e. <code>0 0 1 1 *</code></td>
+</tr>
+<tr>
+<td><code>@annually</code></td>
+<td>same as <code>@yearly</code></td>
+</tr>
+<tr>
+<td><code>@monthly</code></td>
+<td>Run once a month i.e. <code>0 0 1 * *</code></td>
+</tr>
+<tr>
+<td><code>@weekly</code></td>
+<td>Run once a week i.e. <code>0 0 * * 0</code></td>
+</tr>
+<tr>
+<td><code>@daily</code></td>
+<td>Run once a day i.e. <code>0 0 * * *</code></td>
+</tr>
+<tr>
+<td><code>@midnight</code></td>
+<td>same as <code>@daily</code></td>
+</tr>
+<tr>
+<td><code>@hourly</code></td>
+<td>Run once an hour i.e. <code>0 * * * *</code></td>
+</tr>
+</tbody></table><h4>Command</h4>
+<p>A command can be any command you would normally run in the <a href="shell.html">shell</a>. Everything must remain on one line, so I would recommend using <code>&amp;&amp;</code> and <a href="shell.html">shell scripts</a>.</p>
+<h2>Gotchas</h2>
+<ul>
+<li>The crontab file MUST end with a newline[2].</li>
+<li>If using a script, ensure your script file you want to execute does <strong>not</strong> have an extension[3]. e.g. <code>./backup</code> will run but <code>./backup.sh</code> won't. Add a shebang to your script file, like <code>#!/bin/zsh</code> for <a href="shell.html">shell</a> or <code>#!/usr/bin/env python3</code> for <a href="python.html">Python 3</a>[4].</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.markus-gattol.name/ws/time.html#cron" target="_blank">https://www.markus-gattol.name/ws/time.html#cron</a></li>
+<li><a href="https://askubuntu.com/a/23337" target="_blank">https://askubuntu.com/a/23337</a></li>
+<li><a href="https://askubuntu.com/a/111034" target="_blank">https://askubuntu.com/a/111034</a></li>
+<li><a href="https://stackoverflow.com/questions/22222473/shebang-doesnt-work-with-python3" target="_blank">https://stackoverflow.com/questions/22222473/shebang-doesnt-work-with-python3</a></li>
+</ol>
+<p class="last-modified">Last modified: 202205021255</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

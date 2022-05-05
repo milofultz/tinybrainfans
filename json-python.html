@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - JSON (Python)</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">JSON (Python)</h1><h2>Load <a href="json.html">JSON</a> from file</h2>
+<pre><code class="language-python">def load_json(fp):
+    with open(fp, &#x27;r&#x27;) as f:
+        output = json.load(f)
+    return output
+</code></pre>
+<h2>Save to JSON file</h2>
+<pre><code class="language-python">def save_json(fp):
+    with open(fp, &#x27;w&#x27;) as f:
+        # with pretty output kwargs
+        json.dump(sample, f, indent=4, sort_keys=True)
+</code></pre>
+<h2>References:</h2>
+<ol>
+<li><a href="https://docs.python.org/3/library/json.html" target="_blank">https://docs.python.org/3/library/json.html</a></li>
+<li><a href="python.html">Python</a></li>
+</ol>
+<p class="last-modified">Last modified: 202107020542</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

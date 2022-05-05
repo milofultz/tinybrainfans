@@ -35,6 +35,22 @@
 <h3>Case Sensitivity</h3>
 <p>Git by default is not case sensitive when it comes to filenames and will ignore renaming of file structures that are only by case. To change this default behavior, use <code>git config core.ignorecase false</code>. <strong>Note that setting this option to false on a case-insensitive file system is generally a bad idea. Doing so will lead to weird errors. For example, renaming a file in a way that only changes letter case will cause git to report spurious conflicts or create duplicate files.</strong></p>
 <p>If it is a file or files, you can change their name as normal and then within git via this command: <code>git mv -f filename.txt Filename.txt</code>. This will make it show up in your commit. If it is a directory, you will need to do this with every file within the directory.</p>
+<h2>Squash and Merge[19]</h2>
+<h3>Why</h3>
+<blockquote>
+<p>before you merge a feature branch back into your main branch (often <code>master</code> or <code>develop</code>), your feature branch should be squashed down to a single buildable commit, and then rebased from the up-to-date main branch.</p>
+</blockquote>
+<blockquote>
+<p>If you follow this process it guarantees that ALL commits in master build and pass tests. This simple fact makes debugging an issue much easier. You can use <strong>git</strong> bisect when trying to find the source of a bug. Git bisect becomes almost completely ineffective if there are broken commits on the master  branch; if you jump to a commit that isn’t clean, it’s difficult or impossible to tell if it introduced the bug. [...] [A] drawback is that we lose some granularity when we squash our commits. If you really want to have multiple commits for a feature, at least squash down so that each commit builds and passes tests.</p>
+</blockquote>
+<h3>How</h3>
+<p>Most simple is to use the <code>git merge --squash</code> option[20]. If you want to merge <code>starting-branch</code> into <code>target-branch</code>:</p>
+<ul>
+<li>Check out <code>target-branch</code></li>
+<li>Use <code>git merge --squash starting-branch</code></li>
+<li>Commit all changes using <code>git commit</code></li>
+</ul>
+<p>Another more intensive way to do it that gives you more control is to <a href="rebase-git.html">rebase</a> the new branch off of the target branch you wish to merge into. Using <a href="rebase-git.html">interactive rebase</a>, select every commit except the oldest one and set to <code>squash</code>. Select that first commit and set it to <code>reword</code>. Once the rebase starts on exit, you will be able to change the commit message that will hold all of the squashed commits. Once that is complete, merge it into the target branch.</p>
 <h2>Branches</h2>
 <table>
 <thead>
@@ -178,6 +194,8 @@ fatal: Authentication failed for &#x27;https://gitlab.com/myusername/repo.git&#x
 <li><a href="https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits" target="_blank">https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits</a></li>
 <li><a href="https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean" target="_blank">https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean</a></li>
 <li><a href="https://rietta.com/blog/git-patch-manual-split/" target="_blank">https://rietta.com/blog/git-patch-manual-split/</a></li>
-<li><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">https://www.freecodecamp.org/news/git-stash-explained/</a></li>
+<li><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">https://www.freecodecamp.org/news/git-stash-explained/</a> </li>
+<li><a href="https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/" target="_blank">https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/</a></li>
+<li><a href="https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit" target="_blank">https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section><p class="last-modified">Last modified: 202204172054</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section><p class="last-modified">Last modified: 202205050759</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

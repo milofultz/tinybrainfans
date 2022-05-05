@@ -1,0 +1,162 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="React Router is a way to link to other pages dynamically within your React single page application."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - React Router</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">React Router</h1><p>React Router is a way to link to other pages dynamically within your React single page application.</p>
+<p>All of these examples were pulled straight from the <a href="https://reactrouter.com/web/guides/quick-start" target="_blank" title="React Router Quick Start">docs</a>.</p>
+<h2>Installation</h2>
+<p><code>npm install react-router-dom</code></p>
+<h2>Usage</h2>
+<pre><code class="language-react">import React from &quot;react&quot;;
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from &quot;react-router-dom&quot;;
+
+export default function App() {
+  return (
+    &lt;Router&gt;
+      &lt;div&gt;
+        &lt;nav&gt;
+          &lt;ul&gt;
+            &lt;li&gt;
+              &lt;Link to=&quot;/&quot;&gt;Home&lt;/Link&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;Link to=&quot;/users&quot;&gt;Users&lt;/Link&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/nav&gt;
+
+        {/* A &lt;Switch&gt; looks through its children &lt;Route&gt;s and
+            renders the first one that matches the current URL. */}
+        &lt;Switch&gt;
+          &lt;Route path=&quot;/about&quot;&gt;
+            &lt;About /&gt;
+          &lt;/Route&gt;
+          &lt;Route path=&quot;/users&quot;&gt;
+            &lt;Users /&gt;
+          &lt;/Route&gt;
+          &lt;Route path=&quot;/&quot;&gt;
+            &lt;Home /&gt;
+          &lt;/Route&gt;
+        &lt;/Switch&gt;
+      &lt;/div&gt;
+    &lt;/Router&gt;
+  );
+}
+
+function Home() {
+  return &lt;h2&gt;Home&lt;/h2&gt;;
+}
+
+function About() {
+  return &lt;h2&gt;About&lt;/h2&gt;;
+}
+
+function Users() {
+  return &lt;h2&gt;Users&lt;/h2&gt;;
+}
+</code></pre>
+<h3>Nested Routing</h3>
+<pre><code class="language-react">import React from &quot;react&quot;;
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from &quot;react-router-dom&quot;;
+
+export default function App() {
+  return (
+    &lt;Router&gt;
+      &lt;div&gt;
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;Link to=&quot;/&quot;&gt;Home&lt;/Link&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;Link to=&quot;/topics&quot;&gt;Topics&lt;/Link&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;Switch&gt;
+          &lt;Route path=&quot;/about&quot;&gt;
+            &lt;About /&gt;
+          &lt;/Route&gt;
+          &lt;Route path=&quot;/topics&quot;&gt;
+            &lt;Topics /&gt;
+          &lt;/Route&gt;
+          &lt;Route path=&quot;/&quot;&gt;
+            &lt;Home /&gt;
+          &lt;/Route&gt;
+        &lt;/Switch&gt;
+      &lt;/div&gt;
+    &lt;/Router&gt;
+  );
+}
+
+function Home() {
+  return &lt;h2&gt;Home&lt;/h2&gt;;
+}
+
+function About() {
+  return &lt;h2&gt;About&lt;/h2&gt;;
+}
+
+function Topics() {
+  let match = useRouteMatch();
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Topics&lt;/h2&gt;
+
+      &lt;ul&gt;
+        &lt;li&gt;
+          &lt;Link to={`${match.url}/components`}&gt;Components&lt;/Link&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;Link to={`${match.url}/props-v-state`}&gt;
+            Props v. State
+          &lt;/Link&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+
+      {/* The Topics page has its own &lt;Switch&gt; with more routes
+          that build on the /topics URL path. You can think of the
+          2nd &lt;Route&gt; here as an &quot;index&quot; page for all topics, or
+          the page that is shown when no topic is selected */}
+      &lt;Switch&gt;
+        &lt;Route path={`${match.path}/:topicId`}&gt;
+          &lt;Topic /&gt;
+        &lt;/Route&gt;
+        &lt;Route path={match.path}&gt;
+          &lt;h3&gt;Please select a topic.&lt;/h3&gt;
+        &lt;/Route&gt;
+      &lt;/Switch&gt;
+    &lt;/div&gt;
+  );
+}
+
+function Topic() {
+  let { topicId } = useParams();
+  return &lt;h3&gt;Requested topic ID: {topicId}&lt;/h3&gt;;
+}
+</code></pre>
+<h2>References</h2>
+<ol>
+<li>
+<p><a href="https://github.com/ReactTraining/react-router" target="_blank">https://github.com/ReactTraining/react-router</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/philosophy.md" target="_blank">https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/philosophy.md</a></p>
+</li>
+</ol>
+<p class="last-modified">Last modified: 202107081858</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

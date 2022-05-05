@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Visual Studio Code/Codium is an open-source application developed by Microsoft for software and code development."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Visual Studio Code</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Visual Studio Code</h1><p>Visual Studio Code/Codium is an <a href="open-source.html">open-source</a> application developed by Microsoft for software and code development.</p>
+<h2>Snippets</h2>
+<p>Creating snippets is a simple way to make your life easier. To create your own, go to Preferences &gt; User Snippets and create a new one. Here is an example of a <a href="react.html">React</a> snippet for arrow function components:</p>
+<pre><code class="language-json">{
+  &quot;Arrow Function Component&quot;: {
+    &quot;scope&quot;: &quot;javascript,javascriptreact,typescript,typescriptreact&quot;,
+    &quot;prefix&quot;: &quot;afc&quot;,
+    &quot;body&quot;: [
+      &quot;const $1 = () =&gt; {&quot;,
+      &quot;&quot;,
+      &quot;};&quot;,
+      &quot;&quot;,
+      &quot;export default $1;&quot;,
+      &quot;&quot;
+    ],
+    &quot;description&quot;: &quot;Create arrow function React component&quot;
+  }
+}
+</code></pre>
+<p>The <strong>prefix</strong> is the shortcut you will type in.</p>
+<p>The <strong>body</strong> is what it will expand to. Note that each newline needs to be in its own set of quotes. You can use <code>$1</code>, <code>$2</code>, etc. to note each successive input to be carried out by the user after expansion.</p>
+<h2>Extensions Missing</h2>
+<p>If an extension is found on VS Code but not on VS Codium, it can still be installed by sideloading it as a VSIX.  &quot;You'll have to sideload that extension since the marketplace that VS Codium uses is OpenVSX which hosts only open source extensions&quot;[1]. </p>
+<p>You can download it on the website and in the &quot;Extensions&quot; pane of VS Codium, click the dots up top and choose &quot;Install VSIX&quot;.</p>
+<h2>References:</h2>
+<ol>
+<li><a href="https://www.reddit.com/r/vscode/comments/lt8y62/live_share_missing_from_extension_marketplace/" target="_blank">https://www.reddit.com/r/vscode/comments/lt8y62/live_share_missing_from_extension_marketplace/</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare" target="_blank">Live Share</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="sublime-text.html">Sublime Text</a></li></ul></details></section><p class="last-modified">Last modified: 202111170341</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
