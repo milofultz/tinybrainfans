@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/bin/bash
 
-python3 "$HOME/Dropbox (Personal)/Code/swiki/swiki.py" ./wiki ./ -d
+/usr/local/bin/python3 "$HOME/Dropbox (Personal)/Code/swiki/swiki.py" ./wiki ./ -d
 
 new_changes=$(git status | grep -i "modified")
 
