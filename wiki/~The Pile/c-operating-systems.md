@@ -1,0 +1,1 @@
+https://iq.opengenus.org/detect-operating-system-in-c/

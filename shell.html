@@ -149,10 +149,11 @@ $ vim $(find &quot;start/path&quot; -name &quot;filename.txt&quot;)
 $ # resolves to
 $ vim &quot;start/path/filename.txt&quot;
 </code></pre>
-<h2>Base64</h2>
-<p><code>base64 path/to/file &gt; output.txt</code> will encode whatever file into base64.</p>
-<p><code>echo -n &#x27;some string&#x27; | base64 &gt; output.txt</code> will encode a string as input and not encode unusable chars, like line feeds.</p>
-<p>The <code>--decode</code> flag may be added to reverse this process.</p>
+<h2>Using <a href="test-driven-development.html">TDD</a> with Shell Scripts</h2>
+<h3>DIY</h3>
+<p>Luckily, shell scripts are so simple and rely pretty much entirely on globals, so things like mocks, before each/all, and test runners are all pretty straightforward. If your script is simple, I think rolling your own tiny framework is a good solution. I made one sufficient for a project in a couple hours, but now I can use it for anything going forward, assuming the project and requirements are sufficiently simple.</p>
+<h3>Third-Party</h3>
+<p>There are many libraries that can help ensure your app is well tested and make development akin to other paradigms. The most promising I have seen is ShellSpec[17], but there are lots[18-19].</p>
 <h2>Troubleshooting</h2>
 <h3>Errors from Windows</h3>
 <p>If you got a script that looks totally fine but is throwing errors that make very little to no sense, like failing <code>cd</code> and <code>cp</code>, it's probably containing <code>\r</code> from a Windows computer.</p>
@@ -176,5 +177,8 @@ $ vim &quot;start/path/filename.txt&quot;
 <li><a href="https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1" target="_blank">https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1</a></li>
 <li><a href="https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement" target="_blank">https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement</a></li>
 <li><a href="https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement#comment27568516_18709962" target="_blank">https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement#comment27568516_18709962</a></li>
+<li><a href="https://github.com/shellspec/shellspec" target="_blank">https://github.com/shellspec/shellspec</a></li>
+<li><a href="https://github.com/timurb/shell-test-frameworks" target="_blank">https://github.com/timurb/shell-test-frameworks</a></li>
+<li><a href="https://thomaslevine.com/computing/shell-testing/" target="_blank">https://thomaslevine.com/computing/shell-testing/</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li><li><a href="crontab.html">crontab</a></li><li><a href="low-no-tech-productivity.html">Low-/No-Tech Productivity</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="xargs.html">xargs</a></li></ul></details></section><p class="last-modified">Last modified: 202204271831</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="bytebeat.html">Bytebeat</a></li><li><a href="crontab.html">crontab</a></li><li><a href="low-no-tech-productivity.html">Low-/No-Tech Productivity</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="xargs.html">xargs</a></li></ul></details></section><p class="last-modified">Last modified: 202205071015</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

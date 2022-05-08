@@ -3,6 +3,8 @@ title: crontab
 description: crontab is a way to schedule regular background tasks and shell commands.
 ---
 
+crontab is a super useful tool used for regular background tasks like backups[6].
+
 ## Quick Start
 
 Create or edit a crontab entry using `crontab -e` in the {{shell}}. **Don't edit them directly. Use `crontab -e` as the entry point.**
@@ -78,3 +80,5 @@ A command can be any command you would normally run in the {{shell}}. Everything
 1. https://askubuntu.com/a/23337
 1. https://askubuntu.com/a/111034
 1. https://stackoverflow.com/questions/22222473/shebang-doesnt-work-with-python3
+1. https://crontab.guru/
+1. https://kb.levine.org/homelab/how-to/general/how-to-backup-dotfiles-to-github/

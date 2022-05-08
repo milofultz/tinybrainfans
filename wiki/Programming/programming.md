@@ -15,6 +15,10 @@ But that being said, there is a lot of joy in programming and {{problem solving}
 
 While often programming is about "efficiency" or "productivity", if I ever forget the joy of reveling in a mundane or silly problem, twisting and flipping it to find a novel or interesting or satisfying solution, the rush of seeing your Rube Goldberg Mouse Trap-esque jalopy fire out the desired result, please pull me out of that hell at all costs.
 
+## Code Is Not Literature
+
+Code is not literature, it is an activity. It is a dialogue. You don't read code, you interact with it, you study it, you poke it and see what happens.[7]
+
 ## The Seven Ur-languages[2]
 
 From [madhadron](https://madhadron.com/posts/seven_languages.html):
@@ -39,3 +43,4 @@ From [madhadron](https://madhadron.com/posts/seven_languages.html):
 1. https://blog.plover.com/tech/olafs-report.html
 1. https://brianhreily.wordpress.com/2015/12/04/recreating-adams-megapode-modeler/
 1. https://www.geepawhill.org/2018/04/14/tdd-the-lump-of-coding-fallacy/
+1. https://gigamonkeys.com/code-reading/

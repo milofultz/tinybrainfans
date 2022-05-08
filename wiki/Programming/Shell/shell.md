@@ -187,13 +187,15 @@ Placing an argument within backticks or `$(...)` will execute the command first 
     $ # resolves to
     $ vim "start/path/filename.txt"
 
-## Base64
+## Using {{TDD|Test Driven Development}} with Shell Scripts
 
-`base64 path/to/file > output.txt` will encode whatever file into base64.
+### DIY
 
-`echo -n 'some string' | base64 > output.txt` will encode a string as input and not encode unusable chars, like line feeds.
+Luckily, shell scripts are so simple and rely pretty much entirely on globals, so things like mocks, before each/all, and test runners are all pretty straightforward. If your script is simple, I think rolling your own tiny framework is a good solution. I made one sufficient for a project in a couple hours, but now I can use it for anything going forward, assuming the project and requirements are sufficiently simple.
 
-The `--decode` flag may be added to reverse this process.
+### Third-Party
+
+There are many libraries that can help ensure your app is well tested and make development akin to other paradigms. The most promising I have seen is ShellSpec[17], but there are lots[18-19].
 
 ## Troubleshooting
 
@@ -223,5 +225,8 @@ tr -d "\r" < oldname.sh > newname.sh
 14. https://tldp.org/LDP/abs/html/comparison-ops.html#ICOMPARISON1
 15. https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement
 16. https://stackoverflow.com/questions/18709962/regex-matching-in-a-bash-if-statement#comment27568516_18709962
+17. https://github.com/shellspec/shellspec
+18. https://github.com/timurb/shell-test-frameworks
+19. https://thomaslevine.com/computing/shell-testing/
 
 [Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/
