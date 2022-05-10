@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Gemtext is a markup language used by the Gemini protocol."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Gemtext</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Gemtext</h1><p>All different types of markup should be separated by a blank line. e.g. there should be a line between a paragraph and links, links and headings, etc. Much of this is similar, but not the same, as <a href="markdown.html">markdown</a>.</p>
+<h2>Headings</h2>
+<p>A heading is preceded by either one, two, or three hashes, with one being the most prominent, and a space before the text.</p>
+<pre><code># Heading 1
+
+## Heading 2
+
+### Heading 3
+</code></pre>
+<h2>Text</h2>
+<p>A paragraph is one or more lines with no blank lines between them.</p>
+<pre><code>This is a very long line that would turn into it&#x27;s own paragraph, even if it went forever and was still all on one line.
+
+This is NOT a very long line.
+BUT
+it would still turn into it&#x27;s own paragraph,
+even if it had a billion lines, since each
+of these lines are not separated by a blank
+line.
+</code></pre>
+<p>The last paragraph would render without the line breaks, e.g. <code>This is NOT a very long line. BUT it would still turn into it&#x27;s own paragraph,</code> etc.</p>
+<h2>Links</h2>
+<p>Links are comprised of the <code>=&gt;</code> symbol, the link, and an optional human-friendly label.</p>
+<pre><code>=&gt; http://example.com
+=&gt; http://www.zombo.com The best website in the world
+</code></pre>
+<h2>Lists</h2>
+<p>List items are preceded by asterisks.</p>
+<pre><code>* One axle
+* Six wagon wheels
+* Five rations
+</code></pre>
+<h2>Blockquotes</h2>
+<p>Blockquotes are preceded by <code>&gt;</code> and must be on a single line.</p>
+<pre><code>&gt; This is an example of a blockquote.
+</code></pre>
+<h2>Preformatted/Code Blocks</h2>
+<p>Three backticks precede and succeed a block of preformatted text. Anything within this block will not be rendered as gemtext, but as raw text.</p>
+<pre><code>```
+# This could be some code or something
+#!/bin/sh
+
+echo &quot;hooray!&quot;
+```
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://gemini.circumlunar.space/docs/gemtext.gmi" target="_blank">https://gemini.circumlunar.space/docs/gemtext.gmi</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="websites.html">Websites</a></li></ul></details></section><p class="last-modified">Last modified: 202205100755</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

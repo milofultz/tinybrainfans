@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Websites should be simple to setup, easy to maintain, and fun."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Websites</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Websites</h1><p>Websites should be as simple as possible. For most people, they only need to be able to show text, images, and links to other things, all on a static site. These options are mostly going to be for those people.</p>
+<h2>Github/Codeberg Pages[5-6]</h2>
+<p>If you upload raw HTML, CSS, and JS files to one of these <a href="git.html">git</a> repos, it will render them as a static site at a specific URL. My personal website uses Jekyll as a way to render all of the pages (which is nice but a bit kludgy), but uses that same principle. This wiki uses my own software swiki[4], which renders everything out into raw HTML files.</p>
+<p>The advantage this has is that you don't have to worry about a domain or hosting or anything. Disadvantage is you need to understand the basics of <a href="git.html">git</a> to use it.</p>
+<h3>Scripting</h3>
+<p>If you are technically inclined, then you can utilize <a href="shell.html">shell scripting</a> to make building the pages simpler. I can't remember where I found this script, but someone I know online from <a href="https://merveilles.town" target="_blank">merveilles.town</a> had this on their site and I thought it was genius:</p>
+<pre><code class="language-shell">#!/bin/sh
+
+for p in posts/*; do
+  echo &quot;generating $(basename $p)...&quot;
+  cat blog/_header.html $p blog/_footer.html &gt; blog/$(basename $p)
+done
+echo &quot;done!&quot;
+</code></pre>
+<p>By putting their files into a <code>posts</code> folder and rendering them out to a different place, they can simplify maintenance on their site by abstracting common parts like the header and footer. You can also use whatever converter for something like <a href="markdown.html">markdown</a> or <a href="gemtext.html">gemtext</a></p>
+<h2>Lichen/WonderCMS[2-3]</h2>
+<p>These are both options that are &quot;set it and forget it&quot; once they've been installed on the hosting server. Obviously, that part is a bit tricky if you don't know how to do that, but if you have a technically inclined friend who can help, you should be off to the races.</p>
+<p>SImplest explanation is that they are Wordpress or Squarespace if you were able to make them easier to use by stripping away the bloat.</p>
+<p>Lichen uses <a href="gemtext.html">gemtext</a>, which is a format utilized by the gemini protocol. This is fairly constrained, but in a way that I find useful and nice. WonderCMS uses a WYSIWYG editor, so has more features, but I can only imagine runs into problems most WYSIWYG editors do.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Server_Side_Includes" target="_blank">https://en.wikipedia.org/wiki/Server_Side_Includes</a></li>
+<li><a href="https://lichen.sensorstation.co/" target="_blank">https://lichen.sensorstation.co/</a></li>
+<li><a href="https://www.wondercms.com/" target="_blank">https://www.wondercms.com/</a></li>
+<li><a href="https://codeberg.org/milofultz/swiki" target="_blank">https://codeberg.org/milofultz/swiki</a></li>
+<li><a href="https://pages.github.com/" target="_blank">https://pages.github.com/</a></li>
+<li><a href="https://codeberg.page/" target="_blank">https://codeberg.page/</a></li>
+</ol>
+<p class="last-modified">Last modified: 202205100742</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
