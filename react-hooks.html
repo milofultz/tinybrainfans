@@ -199,6 +199,42 @@ useEffect(() =&gt; {
   useValidation(usernameInput, passwordInput);
 }, [usernameInput, passwordInput]);
 </code></pre>
+<h2>useReducer[9-10]</h2>
+<p><code>useReducer</code> is used when the new state value requires the old state to be produced correctly, or when there is a complex amount of changes on the state. Usually when the state is an object with many properties. This abstraction allows you to dispatch an action that could alter the state in multiple specific ways without having to specify those changes every time.</p>
+<p>This concept and behavior is a core concept brought in from <a href="redux.html">Redux</a>. It is most useful when you have a central store for all your state values.</p>
+<pre><code>                 Call dispatch
+                with action obj
+        ┌───────────┐     ┌──────────┐
+        │ Component │  →  │ Dispatch │
+        └───────────┘     └──────────┘
+Rerender                             dispatch
+component    ↑                  ↓    action obj
+                                     to reducer
+        ┌───────────┐     ┌─────────┐
+        │   State   │  ←  │ Reducer │
+        └───────────┘     └─────────┘
+                  Update the
+                    State
+</code></pre>
+<p>A call to <code>useReducer</code> consists of a reducer function and the initial state, which will return a dispatch function, that accepts an action object, and the state object.</p>
+<h3>Reducer function</h3>
+<p>This reducer takes in an action object from the dispatch function and depending on the <code>type</code> value, will do different things. This example is for a stopwatch component from Dmitri Pavlutin[10].</p>
+<pre><code class="language-react">function reducer(state, action) {
+  switch (action.type) {
+    case &#x27;start&#x27;:
+      return { ...state, isRunning: true };
+    case &#x27;stop&#x27;:
+      return { ...state, isRunning: false };
+    case &#x27;reset&#x27;:
+      return { isRunning: false, time: 0 };
+    case &#x27;tick&#x27;:
+      return { ...state, time: state.time + 1 };
+    default:
+      throw new Error();
+  }
+}
+</code></pre>
+<p>You can use any logic here, but this is the standard way to do it: an object that contains a <code>type</code> as a string, and maybe a <code>payload</code>, containing data.</p>
 <h2>useRef[7]</h2>
 <p><code>useRef</code> is a way to maintain mutable values without rerendering. It's most often used on DOM nodes, like input fields. This example from the React docs shows how you can access the element that the ref is applied to.</p>
 <pre><code class="language-react">function TextInputWithFocusButton() {
@@ -293,5 +329,7 @@ const testComponent = () =&gt; {
 <li><a href="https://reactjs.org/docs/hooks-state.html" target="_blank">https://reactjs.org/docs/hooks-state.html</a></li>
 <li><a href="https://reactjs.org/docs/hooks-reference.html#useref" target="_blank">https://reactjs.org/docs/hooks-reference.html#useref</a></li>
 <li><a href="https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node" target="_blank">https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node</a></li>
+<li><a href="https://reactjs.org/docs/hooks-reference.html#usereducer" target="_blank">https://reactjs.org/docs/hooks-reference.html#usereducer</a></li>
+<li><a href="https://dmitripavlutin.com/react-usereducer/" target="_blank">https://dmitripavlutin.com/react-usereducer/</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202204272308</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202205101331</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

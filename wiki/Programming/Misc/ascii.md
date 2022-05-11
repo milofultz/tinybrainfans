@@ -13,6 +13,16 @@ description: The American Standard Code for Information Interchange, but mostly 
 └────┴────┘  ╚════╩════╝
 ```
 
+## Arrows
+
+```
+← → ↑ ↓
+ ↔   ↕
+◄ ► ▲ ▼
+```
+
+
+
 ## Shading
 
 ```

@@ -32,7 +32,13 @@ of these lines are not separated by a blank
 line.
 ```
 
-The last paragraph would render without the line breaks, e.g. ```This is NOT a very long line. BUT it would still turn into it's own paragraph,``` etc.
+The last paragraph would render as a paragraph **including** the line breaks, e.g.
+
+```html
+<p>
+  This is NOT a very long line.<br/>BUT<br/>it would still turn into it's own paragraph,<br/>even if it had a billion lines, since each<br/>of these lines are not separated by a blank<br/>line.
+</p>
+```
 
 ## Links
 

@@ -236,6 +236,53 @@ useEffect(() => {
 }, [usernameInput, passwordInput]);
 ```
 
+## useReducer[9-10]
+
+`useReducer` is used when the new state value requires the old state to be produced correctly, or when there is a complex amount of changes on the state. Usually when the state is an object with many properties. This abstraction allows you to dispatch an action that could alter the state in multiple specific ways without having to specify those changes every time.
+
+This concept and behavior is a core concept brought in from {{Redux}}. It is most useful when you have a central store for all your state values.
+
+```
+                 Call dispatch
+                with action obj
+        ┌───────────┐     ┌──────────┐
+        │ Component │  →  │ Dispatch │
+        └───────────┘     └──────────┘
+Rerender                             dispatch
+component    ↑                  ↓    action obj
+                                     to reducer
+        ┌───────────┐     ┌─────────┐
+        │   State   │  ←  │ Reducer │
+        └───────────┘     └─────────┘
+                  Update the
+                    State
+```
+
+A call to `useReducer` consists of a reducer function and the initial state, which will return a dispatch function, that accepts an action object, and the state object.
+
+### Reducer function
+
+This reducer takes in an action object from the dispatch function and depending on the `type` value, will do different things. This example is for a stopwatch component from Dmitri Pavlutin[10].
+
+```react
+function reducer(state, action) {
+  switch (action.type) {
+    case 'start':
+      return { ...state, isRunning: true };
+    case 'stop':
+      return { ...state, isRunning: false };
+    case 'reset':
+      return { isRunning: false, time: 0 };
+    case 'tick':
+      return { ...state, time: state.time + 1 };
+    default:
+      throw new Error();
+  }
+}
+```
+
+You can use any logic here, but this is the standard way to do it: an object that contains a `type` as a string, and maybe a `payload`, containing data.
+
 ## useRef[7]
 
 `useRef` is a way to maintain mutable values without rerendering. It's most often used on DOM nodes, like input fields. This example from the React docs shows how you can access the element that the ref is applied to.
@@ -345,3 +392,5 @@ const testComponent = () => {
 6. https://reactjs.org/docs/hooks-state.html
 7. https://reactjs.org/docs/hooks-reference.html#useref
 8. https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
+9. https://reactjs.org/docs/hooks-reference.html#usereducer
+10. https://dmitripavlutin.com/react-usereducer/
