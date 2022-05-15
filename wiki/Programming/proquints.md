@@ -41,7 +41,7 @@ Number | Hex | Binary | Character
 
 ## Using Proquints
 
-A 16-bit chunk of data can be represented as a proquint. To do this, we first have to change the number into its binary representation and then calculate the corresponding consonant (`co`) or vowel (`vo`):
+A 16-bit chunk of data can be represented as a proquint. To do this, we first have to change the number into its binary representation and then calculate the corresponding consonant (`con`) or vowel (`vo`):
 
 ```
   0 1 2 3 4 5 6 7 8 9 A B C D E F
@@ -75,4 +75,4 @@ Decoding this into decimal, we end up with `43,900`.
 ## References
 
 1. https://arxiv.org/html/0901.4016
-1. https://github.com/milofultz/proquabet
+1. https://codeberg.org/milofultz/proquabet

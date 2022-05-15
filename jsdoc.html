@@ -7,28 +7,33 @@
 <tr>
 <th>Name</th>
 <th>Arguments</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td><code>@param {type} argumentName Description</code></td>
+<td></td>
+</tr>
+<tr>
 <td><code>@param {type[=]} argumentName Description</code></td>
 <td><code>=</code> in type signifies optional argument</td>
-<td>For each argument in the function</td>
+</tr>
+<tr>
+<td>`@param {typeA</td>
+<td>typeB} argumentName Description`</td>
 </tr>
 <tr>
 <td><code>@returns {type} Description</code></td>
-<td></td>
 <td></td>
 </tr>
 </tbody></table><pre><code class="language-javascript">/**
  * Generates the change needed per frame to get from `start` to `end` in `length` seconds
  *
- * @param {number} start Initial value
- * @param {number} end Destination value
- * @param {number} seconds Length of time to get from start to end
- * @param {number=} fps FPS of the application (Pixi sets this to 60 by default)
- * @returns {number}
+ * @param {Number} start Initial value
+ * @param {Number} end Destination value
+ * @param {Number} seconds Length of time to get from start to end
+ * @param {Number=} fps FPS of the application (Pixi sets this to 60 by default)
+ * @returns {Number}
  */
 
 const get_animation_delta = (start, end, seconds, fps = 60) =&gt; {
@@ -42,22 +47,37 @@ const get_animation_delta = (start, end, seconds, fps = 60) =&gt; {
  * @param {Object.&lt;string, number&gt;} start Initial values
  * @param {Object.&lt;string, number&gt;} end Destination value
  * @param {number} seconds Length of time to get from start to end
- * @param {number} fps FPS of the application (Pixi sets this to 60 by default)
+ * @param {number=} fps FPS of the application (Pixi sets this to 60 by default)
  * @returns {Object.&lt;string, number&gt;}
  */
 
-export const get_all_animation_deltas = (start, end, seconds, fps = PIXI_FPS) =&gt; {
-  const output = {};
-  for (const key in start) {
-    output[key] = get_animation_delta(start[key], end[key], seconds, fps);
-  }
-  return output;
+const get_all_animation_deltas = (start, end, seconds, fps = PIXI_FPS) =&gt; {
+  // ...
 };
+</code></pre>
+<p>You can also use this for object properties:</p>
+<pre><code class="language-javascript">/**
+ * @param {Object} person
+ * @param {String} person.name
+ * @param {Number} person.age
+ */
+
+const personifier = (person) =&gt; {
+  // ...
+}
+</code></pre>
+<h3>Arrays[4]</h3>
+<pre><code class="language-javascript">/**
+ * @param {Object[]} people
+ * @param {String} people[].name
+ * @param {Number} people[].age
+ */
 </code></pre>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/JSDoc" target="_blank">https://en.wikipedia.org/wiki/JSDoc</a></li>
 <li><a href="https://stackoverflow.com/questions/6460604/how-to-describe-object-arguments-in-jsdoc" target="_blank">https://stackoverflow.com/questions/6460604/how-to-describe-object-arguments-in-jsdoc</a></li>
 <li><a href="https://ricostacruz.com/til/typescript-jsdoc" target="_blank">https://ricostacruz.com/til/typescript-jsdoc</a></li>
+<li><a href="https://stackoverflow.com/a/32747700/14857724" target="_blank">https://stackoverflow.com/a/32747700/14857724</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="magic-numbers-programming.html">Magic Numbers (Programming)</a></li></ul></details></section><p class="last-modified">Last modified: 202202102132</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="magic-numbers-programming.html">Magic Numbers (Programming)</a></li></ul></details></section><p class="last-modified">Last modified: 202205121412</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

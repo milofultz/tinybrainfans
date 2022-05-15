@@ -3,20 +3,21 @@ title: Color Palettes (CSS)
 description: These are color sets that I think are pleasant.
 ---
 
-## [Monokai](https://monokai.pro/)
+## [Monokai](https://monokai.pro/)[3]
 
 ```css
 :root {
   --red:    #ff6188;
-  --orange: #fc9867;
+  --orange: #e87d3e;
   --yellow: #ffd866;
-  --green:  #a9dc76;
-  --blue:   #78dce8;
-  --purple: #ab9df2;
+  --green:  #b4d273;
+  --blue:   #6c99bb;
+  --purple: #9e86c8;
+  --pink:   #b05279;
   
-  --white:  #fdf9f3;
-  --gray: 	#bcbbbb;
-  --black:  #2c292d;
+  --white:  #d6d6d6;
+  --gray: 	#797979;
+  --black:  #2e2e2e;
 }
 ```
 
@@ -224,3 +225,4 @@ From their page:
 
 1. https://jfly.uni-koeln.de/color/#pallet
 1. https://lospec.com/palette-list/1bit-monitor-glow
+1. https://gist.github.com/r-malon/8fc669332215c8028697a0bbfbfbb32a

@@ -7,15 +7,17 @@ description: How to best test your React software, including components, API cal
 
 ### Suites
 
-The suite of choice is definitely [Jest][], as Jest was built almost 100% specifically for the purpose of testing {{React}} by Facebook who developed it). 
+The suite of choice is definitely Jest[4], as Jest was built almost 100% specifically for the purpose of testing {{React}} by Facebook who developed it). 
 
-Next best would be [Mocha][]/[Chai][], as these play nicer with {{Mongoose}} servers, as Mongoose doesn't play nice with the concurrency of [Jest][].
+Next best would be Mocha[3]/Chai[2], as these play nicer with {{Mongoose}} servers, as Mongoose doesn't play nice with the concurrency of Jest.
 
 ### Helper Libraries
 
-I've found [React Testing Library][] to handle most of my use cases, as it gives you a way to handle front-end testing like a user would, with mouse clicks, input entry, and searching for elements in the DOM. 
+I've found React Testing Library[5] to handle most of my use cases, as it gives you a way to handle front-end testing like a user would, with mouse clicks, input entry, and searching for elements in the DOM. 
 
-[Enzyme][] is another alternative, but I have yet to try it out in a project.
+React Test Renderer[8] was useful for me when testing {{PixiJS}} applications, since it allowed use with canvas. May work with RTL also, but the examples I saw used this.
+
+Enzyme is another alternative, but I have yet to try it out in a project.
 
 ## Unit/Component Tests
 
@@ -106,9 +108,4 @@ Component.defaultProps = {
 5. https://testing-library.com/docs/react-testing-library/intro/
 6. https://enzymejs.github.io/enzyme/ 
 7. https://stackoverflow.com/questions/52783144/how-do-you-test-for-the-non-existence-of-an-element-using-jest-and-react-testing
-
-[Chai]: https://www.chaijs.com/
-[Mocha]: https://mochajs.org/
-[Jest]: https://jestjs.io/
-[React Testing Library]: https://testing-library.com/docs/react-testing-library/intro/
-[Enzyme]: https://enzymejs.github.io/enzyme/
+8. https://reactjs.org/docs/test-renderer.html
