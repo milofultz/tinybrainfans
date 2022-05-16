@@ -9,7 +9,7 @@ An SVG file is an {{XML}} markup file and thus is super simple to create yoursel
 
 ```xml
 <svg version="1.1" width="300" height="200" viewBox="x1 y1 x2 y2" xmlns="http://www.w3.org/2000/svg">
-	<!-- Version is not necessary -->
+  <!-- Version is not necessary -->
   <!-- W/H set during render, can be overwritten via CSS -->
   <!-- Viewbox is the part of grid to be shown  -->
   <!-- xmlns is required only for SVG files, not inline HTML -->

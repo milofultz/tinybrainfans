@@ -4,22 +4,6 @@
 <pre><code>alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 bdm = ! git branch --merged | egrep -v &quot;(^\*|master|main|dev|staging)&quot; | xargs git branch -d
 gud = ! f() { echo &quot;\nYOU DIED\n&quot;; git reset --hard; }; f
-grbdiff () {
-    local TARGET=$(git rev-parse --abbrev-ref HEAD)
-    local STARTING=&quot;$1&quot;
-
-    git checkout &quot;${TARGET}~0&quot; 2&gt;/dev/null
-    git merge &quot;${STARTING}&quot; 2&gt;/dev/null
-    local DIFF=$(gd --stat)
-    if [[ -z &quot;$DIFF&quot; ]]
-    then
-        echo -e &quot;Branch &#x27;${TARGET}&#x27; contains contents of &#x27;${STARTING}&#x27;. Nothing to merge.&quot;
-    else
-        echo -e &quot;Branch &#x27;${TARGET}&#x27; does not contain contents of &#x27;${STARTING}&#x27;:\n${DIFF}&quot;
-    fi
-
-    git checkout &quot;${TARGET}&quot; 2&gt;/dev/null
-}
 
 a = add
 aa = add .
@@ -44,8 +28,24 @@ rstst = restore --staged .
 <p>Find all the built-in aliases at the zsh repo[3].</p>
 <p>The following aliases are ones that I have added to fill in the gaps that I feel like have been left in the zsh shortcuts. Add this to your <a href="shell.html">shell</a>'s rc file:</p>
 <pre><code class="language-shell">alias gpf=&#x27;git push origin HEAD -f&#x27;
-alias grsts=&#x27;git restore --staged .&#x27;
+alias grstst=&#x27;git restore --staged .&#x27;
 alias gstapa=&#x27;git stash push --patch&#x27;
+grbdiff () {
+    local TARGET=$(git rev-parse --abbrev-ref HEAD)
+    local STARTING=&quot;$1&quot;
+
+    git checkout &quot;${TARGET}~0&quot; 2&gt;/dev/null
+    git merge &quot;${STARTING}&quot; 2&gt;/dev/null
+    local DIFF=$(gd --stat)
+    if [[ -z &quot;$DIFF&quot; ]]
+    then
+        echo -e &quot;Branch &#x27;${TARGET}&#x27; contains contents of &#x27;${STARTING}&#x27;. Nothing to merge.&quot;
+    else
+        echo -e &quot;Branch &#x27;${TARGET}&#x27; does not contain contents of &#x27;${STARTING}&#x27;:\n${DIFF}&quot;
+    fi
+
+    git checkout &quot;${TARGET}&quot; 2&gt;/dev/null
+}
 </code></pre>
 <h2>References</h2>
 <ol>
@@ -53,4 +53,4 @@ alias gstapa=&#x27;git stash push --patch&#x27;
 <li><a href="rebase-git.html">Rebase (git)</a></li>
 <li><a href="https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh" target="_blank">zsh built-in aliases</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git-alias.html">git alias</a></li><li><a href="rebase-git.html">Rebase (git)</a></li></ul></details></section><p class="last-modified">Last modified: 202204181850</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="git-alias.html">git alias</a></li><li><a href="rebase-git.html">Rebase (git)</a></li></ul></details></section><p class="last-modified">Last modified: 202205151502</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

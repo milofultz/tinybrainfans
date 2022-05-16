@@ -191,3 +191,7 @@ Z | A leading numeric character position. When that position contains a zero, a 
 7. https://www.ibm.com/docs/en/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf
 8. https://www.ibm.com/blogs/ibm-training/free-course-announcing-learning-cobol-programming-with-vscode/
 9. https://github.com/openmainframeproject/cobol-programming-course
+10. https://github.com/mikeroyal/COBOL-Guide
+11. https://monadical.com/posts/cobol.html#
+12. https://scribe.rip/modern-mainframe/beginners-guide-cobol-made-easy-introduction-ecf2f611ac76
+13. https://youtube.com/watch?v=77o14aHUuSo

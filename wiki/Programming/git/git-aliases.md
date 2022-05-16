@@ -11,22 +11,6 @@ This is a list of all of my current aliases I use with {{git}}. This is an outpu
 alias = ! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /
 bdm = ! git branch --merged | egrep -v "(^\*|master|main|dev|staging)" | xargs git branch -d
 gud = ! f() { echo "\nYOU DIED\n"; git reset --hard; }; f
-grbdiff () {
-    local TARGET=$(git rev-parse --abbrev-ref HEAD)
-    local STARTING="$1"
-
-    git checkout "${TARGET}~0" 2>/dev/null
-    git merge "${STARTING}" 2>/dev/null
-    local DIFF=$(gd --stat)
-    if [[ -z "$DIFF" ]]
-    then
-        echo -e "Branch '${TARGET}' contains contents of '${STARTING}'. Nothing to merge."
-    else
-        echo -e "Branch '${TARGET}' does not contain contents of '${STARTING}':\n${DIFF}"
-    fi
-
-    git checkout "${TARGET}" 2>/dev/null
-}
 
 a = add
 aa = add .
@@ -56,8 +40,24 @@ The following aliases are ones that I have added to fill in the gaps that I feel
 
 ```shell
 alias gpf='git push origin HEAD -f'
-alias grsts='git restore --staged .'
+alias grstst='git restore --staged .'
 alias gstapa='git stash push --patch'
+grbdiff () {
+    local TARGET=$(git rev-parse --abbrev-ref HEAD)
+    local STARTING="$1"
+
+    git checkout "${TARGET}~0" 2>/dev/null
+    git merge "${STARTING}" 2>/dev/null
+    local DIFF=$(gd --stat)
+    if [[ -z "$DIFF" ]]
+    then
+        echo -e "Branch '${TARGET}' contains contents of '${STARTING}'. Nothing to merge."
+    else
+        echo -e "Branch '${TARGET}' does not contain contents of '${STARTING}':\n${DIFF}"
+    fi
+
+    git checkout "${TARGET}" 2>/dev/null
+}
 ```
 
 ## References

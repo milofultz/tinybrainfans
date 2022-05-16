@@ -1,9 +1,7 @@
 ---
-title: Soft Skills
+title: Don't Be A Jerk
 description:
 ---
-
-**Don't be a jerk**
 
 It's better to be someone who is easy to work with but doesn't know enough than someone who knows it all but is awful to work with. You can teach knowledge, usually can't teach kindness.
 
