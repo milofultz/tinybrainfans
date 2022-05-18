@@ -73,6 +73,7 @@ A command can be any command you would normally run in the {{shell}}. Everything
 
 - The crontab file MUST end with a newline[2].
 - If using a script, ensure your script file you want to execute does **not** have an extension[3]. e.g. `./backup` will run but `./backup.sh` won't. Add a shebang to your script file, like `#!/bin/zsh` for {{shell}} or `#!/usr/bin/env python3` for {{Python 3|Python}}[4].
+- To ensure your `$PATH` and other aliases are present, preface your commands with `/bin/bash -l -c` (or whatever shell) and encapsulate your command in single quotes. e.g. `./build` turns into `/bin/zsh -l -c './build/'`.
 
 ## References
 
@@ -82,3 +83,4 @@ A command can be any command you would normally run in the {{shell}}. Everything
 1. https://stackoverflow.com/questions/22222473/shebang-doesnt-work-with-python3
 1. https://crontab.guru/
 1. https://kb.levine.org/homelab/how-to/general/how-to-backup-dotfiles-to-github/
+1. https://stackoverflow.com/questions/19831878/bundle-exec-not-working-with-crontab/19832002#19832002

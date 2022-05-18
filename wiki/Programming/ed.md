@@ -71,7 +71,12 @@ Command | Description
 
 ## Regular Expressions
 
-This is a deep well I won't cover fully here, but basic searches can be done by using `/pattern/`. It will set the current line to the first match.
+Command | Description
+--- | ----
+`/query` | Set current line to line of next instance of `query`
+`?query` | Set current line to line of previous instance of `query`
+`/` | Find the next instance
+`?` | Find the previous instance
 
 ## References
 

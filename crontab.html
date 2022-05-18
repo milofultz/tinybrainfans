@@ -103,6 +103,7 @@
 <ul>
 <li>The crontab file MUST end with a newline[2].</li>
 <li>If using a script, ensure your script file you want to execute does <strong>not</strong> have an extension[3]. e.g. <code>./backup</code> will run but <code>./backup.sh</code> won't. Add a shebang to your script file, like <code>#!/bin/zsh</code> for <a href="shell.html">shell</a> or <code>#!/usr/bin/env python3</code> for <a href="python.html">Python 3</a>[4].</li>
+<li>To ensure your <code>$PATH</code> and other aliases are present, preface your commands with <code>/bin/bash -l -c</code> (or whatever shell) and encapsulate your command in single quotes. e.g. <code>./build</code> turns into <code>/bin/zsh -l -c &#x27;./build/&#x27;</code>.</li>
 </ul>
 <h2>References</h2>
 <ol>
@@ -112,5 +113,6 @@
 <li><a href="https://stackoverflow.com/questions/22222473/shebang-doesnt-work-with-python3" target="_blank">https://stackoverflow.com/questions/22222473/shebang-doesnt-work-with-python3</a></li>
 <li><a href="https://crontab.guru/" target="_blank">https://crontab.guru/</a></li>
 <li><a href="https://kb.levine.org/homelab/how-to/general/how-to-backup-dotfiles-to-github/" target="_blank">https://kb.levine.org/homelab/how-to/general/how-to-backup-dotfiles-to-github/</a></li>
+<li><a href="https://stackoverflow.com/questions/19831878/bundle-exec-not-working-with-crontab/19832002#19832002" target="_blank">https://stackoverflow.com/questions/19831878/bundle-exec-not-working-with-crontab/19832002#19832002</a></li>
 </ol>
-<p class="last-modified">Last modified: 202205072014</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202205171055</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

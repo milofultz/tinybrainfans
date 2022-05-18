@@ -74,9 +74,33 @@ const personifier = (person) => {
  */
 ```
 
+### Types[5]
+
+```javascript
+/**
+ * A person with a name and age.
+ *
+ * @typedef {Object} Person
+ * @property {String} name
+ * @property {Number} age
+ */
+
+/**
+ * Creates a greeting to the person.
+ *
+ * @param {Person} person
+ * @returns {String}
+ */
+
+export const greet = (person) => { 
+  // ...
+}
+```
+
 ## References
 
 1. https://en.wikipedia.org/wiki/JSDoc
 1. https://stackoverflow.com/questions/6460604/how-to-describe-object-arguments-in-jsdoc
 1. https://ricostacruz.com/til/typescript-jsdoc
 1. https://stackoverflow.com/a/32747700/14857724
+1. https://jsdoc.app/tags-typedef.html
