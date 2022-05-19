@@ -1,21 +1,15 @@
 ---
-title: Vim
-description: Vim is a command-line editor that is included with most *nix machines and OSX.
+title: Vim Commands
+description: Vim commands are notoriously arcane and weird, but quick once you learn them.
 ---
 
-Vim is a command-line editor that is included with most *nix machines and {{OSX|MacOS}}.
-
-## VimTutor
-
-Use it! It guides you through the basics of Vim by *doing things* instead of reading random wikis on the web and trying to cobble together how to do stuff. You can access it by typing `vimtutor` at the CLI.
-
-## Commands
+Vim commands are notoriously arcane and weird, but quick once you learn them.
 
 All commands must be done in "Normal" mode, accessed by pressing `esc` if in write mode. Commands are case sensitive and must be confirmed with `Enter` unless otherwise noted. `<c-x>` means `Ctrl+x`.
 
 Many of these commands derive from the original {{Unix}} text line editor `{{ed}}`. If you don't understand why things are the way they are here, pulling the thread of `ed` may benefit your understanding.
 
-### Meta/File
+## Meta/File
 
 Description | Command | Notes
 --- | --- | ---
@@ -29,7 +23,7 @@ Save As | `:w newFileName` |
 Open for editing | `:e path/to/file`
 Open for reading/viewing | `:v path/to/file`
 
-### Undo/Redo
+## Undo/Redo
 
 Description | Command | Notes
 --- | --- | ---
@@ -45,7 +39,7 @@ Find next or previous `pattern` | `/pattern` or `?pattern` | Go to next occurren
 Find and replace from line `m` to line `n` | `:[m],[n]s/pattern/repl[/options]` | To replace all, add `g` option; for confirmation, use `c` option
 Find and replace in whole file | `:%s/pattern/repl` | Same options apply as above
 
-### Navigation
+## Navigation
 
 Description | Command | Notes
 --- | --- | ---
@@ -65,7 +59,7 @@ Go to beginning of line | `0` / `^` |
 Go to end of line | `$` |
 Go to matching bracket under cursor; e.g. `(` goes to `)` and vice versa; includes `[]{}` | `%`
 
-### Copy (Yank), Cut, and Paste
+## Copy (Yank), Cut, and Paste
 
 Copy is "yank" in Vim, so that's why they are "y".
 
@@ -82,7 +76,7 @@ Paste before the cursor | `P`|
 Move line up one line | `ddkP` |
 Move line down one line | `ddp` |
 
-### Delete
+## Delete
 
 Description | Command | Notes
 --- | --- | ---
@@ -96,7 +90,7 @@ Delete contents of `n` lines and enter Insert mode | `c[n]c` |
 Replace letter under cursor with letter `l` | `r[l]` |
 Enter replace mode (like overwrite) | `R`
 
-### Text Manipulation
+## Text Manipulation
 
 Description | Command | Notes
 --- | --- | ---
@@ -108,10 +102,10 @@ Insert (or retrieve) contents of `FILENAME` at cursor | `:r FILENAME`|
 Insert (or retrieve) return of shell `command` at cursor | `:r !command`|
 Insert on multiple lines[15] | `<c-v>`, select area, `I`, do edits, `esc` |
 Append to multiple lines[14] | `V`, select lines, `:'<,'>s/$/text/` | `'<,'>` will get added to your command automatically after `:`
-Join line below current line with current line[18] | `J`|
+Join line below current line with current line[17] | `J`|
 Flip capitalization | `~` |
 
-### Modes
+## Modes
 
 Mode | Command
 --- | ---
@@ -122,7 +116,7 @@ Visual line (selection of lines) | `V`
 Visual block (selection of columns/lines) | `<c-v>`
 Exit current mode | `ESC`
 
-### Recording[19-20]
+## Recording[18-19]
 
 Description | Command | Notes
 --- | --- | ---
@@ -130,7 +124,7 @@ Start recording under register `n` | `qn` | `n` can be any register
 Stop recording | `q` |
 Replay recorded keystrokes | `@n` | `n` can be any register
 
-### Split Screen
+## Split Screen
 
 Description | Command | Notes
 --- | --- | ---
@@ -142,44 +136,13 @@ Increase/decrease pane height | `<c-w> +`, `<c-w> -` |
 Equalize pane height/width | `<c-w> =` |
 Close a pane | `<c-w> q` |
 
-### Misc
+## Misc
 
 Description | Command | Notes
 --- | --- | ---
 Toggle fold at next logical break | `za` |
 Execute shell command `x` | `:!x` |
 Execute last edit again at cursor | `.` |
-
-## `~/.vimrc`
-
-Customizations in the config file to make using Vim a little nicer.
-
-### Clipboard
-
-Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with `"+`.[10]
-
-To make Vim always use the system clipboard, you can add this to your `~/.vimrc` file[10,11]:
-
-```
-# Non-Mac
-set clipboard=unnamedplus
-# Mac
-set clipboard=unnamed
-```
-
-### Trim Trailing Whitespace on Save[13]
-
-Before writing the buffer to file on any file (`*`), search and replace all whitespace characters (`\s`) at the end of a given line with nothing. Do not show any error messages if no matches exist (`e` flag).
-
-```
-" Trim trailing whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
-```
-
-## Plugins and Packages
-
-- [Ultimate vimrc](https://github.com/amix/vimrc) - This is a great starting point that includes a lot of fantastic plugins and settings
-- [Emmet](https://github.com/mattn/emmet-vim)
 
 ## References
 
@@ -198,7 +161,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 1. https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save
 1. https://stackoverflow.com/questions/11303032/how-to-add-text-at-the-end-of-each-line-in-vim
 1. https://stackoverflow.com/a/9549765/14857724
-1. https://stackoverflow.com/a/9570259/14857724
 1. http://texteditors.org/cgi-bin/wiki.pl?VIM
 1. http://texteditors.org/cgi-bin/wiki.pl?Vim_Cheat_Sheet
 1. https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled

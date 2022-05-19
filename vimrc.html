@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Vimrc is the config file for Vim."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Vimrc</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Vimrc</h1><p>Vimrc is the config file for Vim. Customizations in the config file to make using Vim a little nicer. The vimrc file can be found at <code>~/.vimrc</code>.</p>
+<h2>Starting Fresh[4]</h2>
+<p>If things aren't working how you like, don't be afraid to start over with a fresh install by renaming your original <code>.vimrc</code> file and your <code>.vim</code> directory to <code>.vimrc-bak</code> and <code>.vim-bak</code> respectively, and creating a new blank file and empty directory in their place.</p>
+<h2>Basics</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>syntax on</code></td>
+<td>Turn on syntax highlighting</td>
+</tr>
+<tr>
+<td><code>set number</code></td>
+<td>Use line numbers</td>
+</tr>
+<tr>
+<td><code>set number relativenumber</code></td>
+<td>Use current line number and relative numbers for others</td>
+</tr>
+</tbody></table><h2>Custom Commands[5]</h2>
+<p>A custom command is made using this format:</p>
+<pre><code class="language-vim">command[!] [CapitalizedCustomCommand] [vim command that will be run]
+</code></pre>
+<ul>
+<li>The <code>!</code> following <code>command</code> is only used if overwriting a default Vim command</li>
+<li><code>CapitalizedCustomCommand</code> MUST be capitalized or you will get an error.</li>
+</ul>
+<p>For example, if I wanted to create a custom command that would edit my global todo file, I could write <code>command TODO e ~/.tod</code>. This will execute <code>e ~/.tod</code> when I write <code>:TODO</code> while in command mode in Vim.</p>
+<h2>Clipboard</h2>
+<p>Vim will use it's own unnamed register unless specified to use the system clipboard. You can tell it to use the system clipboard on yank and paste by prefacing either with <code>&quot;+</code>.[1]</p>
+<p>To make Vim always use the system clipboard, you can add this to your <code>~/.vimrc</code> file[1,2]:</p>
+<pre><code># Non-Mac
+set clipboard=unnamedplus
+# Mac
+set clipboard=unnamed
+</code></pre>
+<h2>Trim Trailing Whitespace on Save[3]</h2>
+<p>Before writing the buffer to file on any file (<code>*</code>), search and replace all whitespace characters (<code>\s</code>) at the end of a given line with nothing. Do not show any error messages if no matches exist (<code>e</code> flag).</p>
+<pre><code>&quot; Trim trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+</code></pre>
+<h2>Other Plugins and Packages</h2>
+<ul>
+<li>Ultimate vimrc[6] - This is a great starting point that includes a lot of fantastic plugins and settings. That being said, there is a <em>lot</em> of bloat, so don't be afraid to blow it all up and start over[4].</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><a href="https://vim.fandom.com/wiki/Accessing_the_system_clipboard" target="_blank">https://vim.fandom.com/wiki/Accessing_the_system_clipboard</a></li>
+<li><a href="https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work" target="_blank">https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work</a></li>
+<li><a href="https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save" target="_blank">https://howchoo.com/vim/vim-how-to-remove-trailing-whitespace-on-save</a></li>
+<li><a href="https://stackoverflow.com/questions/8824942/how-can-i-reset-vim-back-to-a-plain-vanilla-install" target="_blank">https://stackoverflow.com/questions/8824942/how-can-i-reset-vim-back-to-a-plain-vanilla-install</a></li>
+<li><a href="https://yewtu.be/watch?v=Jm0IjtDAWcs" target="_blank">https://yewtu.be/watch?v=Jm0IjtDAWcs</a></li>
+<li><a href="https://github.com/amix/vimrc" target="_blank">https://github.com/amix/vimrc</a></li>
+</ol>
+<p class="last-modified">Last modified: 202205190756</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
