@@ -40,6 +40,8 @@ set clipboard=unnamedplus
 # Mac
 set clipboard=unnamed
 </code></pre>
+<h2>Language Specific Options[7,8]</h2>
+<p>You can set language specific options within the <code>~/.vim/ftplugin/</code> folder. For instance, a Python options file would be the file <code>~/.vim/ftplugin/python.vim</code>. If the filetype is not initially recognized by Vim, you can add it to the <code>ftdetect</code> folder[11].</p>
 <h2>Trim Trailing Whitespace on Save[3]</h2>
 <p>Before writing the buffer to file on any file (<code>*</code>), search and replace all whitespace characters (<code>\s</code>) at the end of a given line with nothing. Do not show any error messages if no matches exist (<code>e</code> flag).</p>
 <pre><code>&quot; Trim trailing whitespace on save
@@ -57,5 +59,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 <li><a href="https://stackoverflow.com/questions/8824942/how-can-i-reset-vim-back-to-a-plain-vanilla-install" target="_blank">https://stackoverflow.com/questions/8824942/how-can-i-reset-vim-back-to-a-plain-vanilla-install</a></li>
 <li><a href="https://yewtu.be/watch?v=Jm0IjtDAWcs" target="_blank">https://yewtu.be/watch?v=Jm0IjtDAWcs</a></li>
 <li><a href="https://github.com/amix/vimrc" target="_blank">https://github.com/amix/vimrc</a></li>
+<li><a href="https://stackoverflow.com/questions/11023194/automatically-wrap-long-git-commit-messages-in-vim" target="_blank">https://stackoverflow.com/questions/11023194/automatically-wrap-long-git-commit-messages-in-vim</a></li>
+<li><a href="https://www.gilesorr.com/blog/vim-ftplugin.html" target="_blank">https://www.gilesorr.com/blog/vim-ftplugin.html</a></li>
+<li><a href="https://thoughtbot.com/blog/writing-vim-syntax-plugins" target="_blank">https://thoughtbot.com/blog/writing-vim-syntax-plugins</a></li>
+<li><a href="https://vim.fandom.com/wiki/Keep_your_vimrc_file_clean" target="_blank">https://vim.fandom.com/wiki/Keep_your_vimrc_file_clean</a></li>
+<li><a href="http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect" target="_blank">http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect</a></li>
 </ol>
-<p class="last-modified">Last modified: 202205190756</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202205191345</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

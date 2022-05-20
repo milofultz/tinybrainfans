@@ -43,6 +43,10 @@ set clipboard=unnamedplus
 set clipboard=unnamed
 ```
 
+## Language Specific Options[7,8]
+
+You can set language specific options within the `~/.vim/ftplugin/` folder. For instance, a Python options file would be the file `~/.vim/ftplugin/python.vim`. If the filetype is not initially recognized by Vim, you can add it to the `ftdetect` folder[11].
+
 ## Trim Trailing Whitespace on Save[3]
 
 Before writing the buffer to file on any file (`*`), search and replace all whitespace characters (`\s`) at the end of a given line with nothing. Do not show any error messages if no matches exist (`e` flag).
@@ -64,3 +68,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 1. https://stackoverflow.com/questions/8824942/how-can-i-reset-vim-back-to-a-plain-vanilla-install
 1. https://yewtu.be/watch?v=Jm0IjtDAWcs
 1. https://github.com/amix/vimrc
+1. https://stackoverflow.com/questions/11023194/automatically-wrap-long-git-commit-messages-in-vim
+1. https://www.gilesorr.com/blog/vim-ftplugin.html
+1. https://thoughtbot.com/blog/writing-vim-syntax-plugins
+1. https://vim.fandom.com/wiki/Keep_your_vimrc_file_clean
+1. http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect
