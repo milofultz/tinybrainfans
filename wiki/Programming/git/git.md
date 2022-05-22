@@ -3,6 +3,16 @@ title: git
 description: git is a version control system.
 ---
 
+## Getting Started
+
+I recommend doing tutorials before really diving in, as the way version control, and particularly git, works will be very confusing if you don't really grok it.
+
+- Git Is Simpler Than You Think[12]
+- Git Training from UnseenWizzard[21]
+- No Fear Git[11]
+
+I would recommend not using the git docs unless you really need to as they, like most Unix tools, are not written for normal people and are therefore a bit obtuse and difficult to parse. Most people have tried to grok the concepts and put them in human terms and thus this site and other tutorials exist. The docs are good, but use them to complete your knowledge not as the basis.
+
 ## Commits
 
 Add files you want to commit: `git add {file or folder name}`. You can also add all by using `git add .`, but this is not recommended, as you don't want to add all unless you are POSITIVE it doesn't contain cruft or unwanted changes, which is rarely the case. An easy way to check what has changed in your files since last commit is to use the `--patch` flag.
@@ -224,3 +234,4 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 18. https://www.freecodecamp.org/news/git-stash-explained/ 
 19. https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/
 20. https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit
+21. https://github.com/UnseenWizzard/git_training

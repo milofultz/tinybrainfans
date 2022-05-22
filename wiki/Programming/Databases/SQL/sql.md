@@ -9,13 +9,17 @@ SQL is a Structured Query Language that uses a relational {{database}}. A relati
 
 ## Basic Syntax Rules
 
-The end of a query is denoted with a semicolon. 
+NOTE: Most of this document pertains to {{MySQL}}.
+
+The end of a query is denoted with a **semicolon**. 
 
 **Comments** are made with `--`. 
 
 **Whitespace** and line returns are optional but often added for readability.
 
 SQL queries are **case insensitive**, but by convention, the SQL commands and keywords are place in all capital letters to be easier to read by humans.
+
+Tables and columns can be escaped by using **backticks** to avoid overlaps with reserved words.[9]
 
 ## Creating/Using Databases
 
@@ -426,4 +430,5 @@ SELECT r.last_name,
    1. https://docs.telemetry.mozilla.org/concepts/sql_style.html
    1. https://learnsql.com/blog/24-rules-sql-code-formatting-standard/
    1. https://stackoverflow.com/questions/519876/sql-formatting-standards
+9. https://devtut.github.io/mysql/backticks.html
 

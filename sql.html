@@ -2,10 +2,12 @@
 <main id="main"><article id="content"><h1 id="title">SQL</h1><p>SQL is a Structured Query Language that uses a relational <a href="database.html">database</a>. A relational database represents a collection of related 2D tables, like spreadsheet. <strong>Tables</strong> of information about a certain thing hold <strong>rows</strong> that are specific instances of that thing with <strong>columns</strong> that show shared characteristics of those instances.</p>
 <p><strong>Database schemas</strong> describe the structure of each table and the datatypes that each column can contain.</p>
 <h2>Basic Syntax Rules</h2>
-<p>The end of a query is denoted with a semicolon. </p>
+<p>NOTE: Most of this document pertains to <a href="mysql.html">MySQL</a>.</p>
+<p>The end of a query is denoted with a <strong>semicolon</strong>. </p>
 <p><strong>Comments</strong> are made with <code>--</code>. </p>
 <p><strong>Whitespace</strong> and line returns are optional but often added for readability.</p>
 <p>SQL queries are <strong>case insensitive</strong>, but by convention, the SQL commands and keywords are place in all capital letters to be easier to read by humans.</p>
+<p>Tables and columns can be escaped by using <strong>backticks</strong> to avoid overlaps with reserved words.[9]</p>
 <h2>Creating/Using Databases</h2>
 <p>First, you want to see what databases exist using the <strong>SHOW DATABASES</strong> keyword.</p>
 <pre><code class="language-mysql">SHOW DATABASES;
@@ -393,5 +395,6 @@ Formatting:<ol>
 <li><a href="https://stackoverflow.com/questions/519876/sql-formatting-standards" target="_blank">https://stackoverflow.com/questions/519876/sql-formatting-standards</a></li>
 </ol>
 </li>
+<li><a href="https://devtut.github.io/mysql/backticks.html" target="_blank">https://devtut.github.io/mysql/backticks.html</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section><p class="last-modified">Last modified: 202204181756</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="common-sql-queries.html">Common SQL Queries</a></li><li><a href="mysql.html">MySQL</a></li><li><a href="sqlite3-python.html">SQLite3 (Python)</a></li></ul></details></section><p class="last-modified">Last modified: 202205220727</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
