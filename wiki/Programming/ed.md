@@ -71,6 +71,8 @@ Command | Description
 
 ## Regular Expressions
 
+Regular expressions in ed follow the standard {{POSIX Regular Expressions|Regular Expressions (POSIX)}}, which have their own quirks.
+
 Command | Description
 --- | ----
 `/query` | Set current line to line of next instance of `query`

@@ -400,22 +400,6 @@ WHERE
   );
 ```
 
-There is a clearer and more dense formatting, but it seems like a pain to write. I may adopt it soon though:
-
-```sql
-SELECT r.last_name,
-		   (SELECT MAX(YEAR(championship_date))
-	        FROM champions AS c
-         WHERE c.last_name = r.last_name 
-        	 AND c.confirmed = 'Y') AS last_championship_year
-  FROM riders AS r
- WHERE r.last_name IN (
-	      SELECT c.last_name
-          FROM champions AS c
-         WHERE YEAR(championship_date) > '2008' 
-   			   AND c.confirmed = 'Y');
-```
-
 ## References
 
 1. {{Common SQL Queries}}

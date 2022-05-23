@@ -211,6 +211,7 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 - https://dhwthompson.com/2019/my-favourite-git-commit
 - https://mtlynch.io/code-review-love/
 - https://sergeyzhuk.me/2018/12/29/code_review/
+- https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 
 ## References
 

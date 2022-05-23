@@ -123,11 +123,12 @@ FROM
 
 ## Commands
 
-| Command                                                | Description                         |
-| ------------------------------------------------------ | ----------------------------------- |
-| `\dt`                                                  | Display all tables in the database  |
-| `TABLE x`                                              | Show the contents of table x.       |
-| `SELECT schema_name FROM information_schema.schemata;` | Show all schema in a given database |
+| Command                                                | Description                                                  |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| `\dt`                                                  | Display all tables in the database                           |
+| `TABLE x`                                              | Show the contents of table x.                                |
+| `SELECT schema_name FROM information_schema.schemata;` | Show all schema in a given database                          |
+| `COALESCE(arg1, arg2, ...);`                           | Return the first non-null argument found, or null if none[11] |
 
 ## Inserting a constant among multiple rows
 
@@ -173,5 +174,6 @@ DROP TABLE bullshit;
 6. https://www.postgresqltutorial.com/postgresql-cheat-sheet/
 7. https://kb.objectrocket.com/postgresql/how-to-query-a-postgres-jsonb-column-1433
 8. https://www.postgresql.org/docs/12/functions-json.html
-8. https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings
-8. https://github.com/brianc/node-pg-types
+9. https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings
+10. https://github.com/brianc/node-pg-types
+11. https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-coalesce/

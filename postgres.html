@@ -106,6 +106,10 @@ FROM
 <td><code>SELECT schema_name FROM information_schema.schemata;</code></td>
 <td>Show all schema in a given database</td>
 </tr>
+<tr>
+<td><code>COALESCE(arg1, arg2, ...);</code></td>
+<td>Return the first non-null argument found, or null if none[11]</td>
+</tr>
 </tbody></table><h2>Inserting a constant among multiple rows</h2>
 <p>I found this quirky syntax when working on a project recently and thought it would be helpful to document for the future. In a subquery, one can specify a default value that will be used for all returned rows. In this case, the return for the final <code>SELECT</code> query will be <code>(&#x27;Bob&#x27;, 1337)</code>. The value used in the subquery will be added to all returned rows.</p>
 <pre><code class="language-sql">CREATE TABLE agents (
@@ -148,5 +152,6 @@ DROP TABLE bullshit;
 <li><a href="https://www.postgresql.org/docs/12/functions-json.html" target="_blank">https://www.postgresql.org/docs/12/functions-json.html</a></li>
 <li><a href="https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings" target="_blank">https://stackoverflow.com/questions/39168501/pg-promise-returns-integers-as-strings</a></li>
 <li><a href="https://github.com/brianc/node-pg-types" target="_blank">https://github.com/brianc/node-pg-types</a></li>
+<li><a href="https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-coalesce/" target="_blank">https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-coalesce/</a></li>
 </ol>
-<p class="last-modified">Last modified: 202203091836</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202205230838</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
