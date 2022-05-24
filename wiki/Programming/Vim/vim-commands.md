@@ -143,6 +143,7 @@ Description | Command | Notes
 Toggle fold at next logical break | `za` |
 Execute shell command `x` | `:!x` |
 Execute last edit again at cursor | `.` |
+Suspend Vim and go to shell | `<c-z>` | Type `fg` in the shell to return
 
 ## References
 

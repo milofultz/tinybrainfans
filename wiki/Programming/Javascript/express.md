@@ -34,7 +34,7 @@ Upon running one of these scripts (`npm run start/dev`), you should see a messag
 ```javascript
 // Parameters: `route`, and `callback` when request and response objects are received and created 
 app.get('/', (req, res) => {
-  data = 'We did it!';
+  const data = 'We did it!';
   res.send(data);
 });
 ```
