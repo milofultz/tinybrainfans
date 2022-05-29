@@ -169,6 +169,20 @@ int *p; // a pointer
 p = &n; // point p to the address of n
 ```
 
+To best understand pointers, start from the middle and go outwards, and when writing out pointers, arrays, and functions, use `[]` or `()` over `*` whenever possible. For instance[15]:
+
+```c
+int *a[10];
+int *a[10];      "a is"  
+     ^  
+int *a[10];      "a is an array"  
+      ^^^^ 
+int *a[10];      "a is an array of pointers"
+    ^
+int *a[10];      "a is an array of pointers to `int`".  
+^^^
+```
+
 ## Libraries
 
 ### stdio.h
@@ -212,15 +226,16 @@ There are many different options to do {{test-driven development}} in C. One I h
 
 1. https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf
 2. https://stackoverflow.com/questions/19379353/symbolic-constants-in-c-define-statement
-2. https://github.com/agavrel/42_CheatSheet
-2. https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html
-2. https://stackoverflow.com/questions/65820/unit-testing-c-code
-2. https://jera.com/techinfo/jtns/jtn002
-2. https://eradman.com/posts/tdd-in-c.html
-2. https://github.com/codeplea/minctest
-2. https://codeplea.com/minctest
-2. https://github.com/codeplea/tinyexpr/blob/master/smoke.c
-2. https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros
-2. https://stackoverflow.com/questions/7899119/what-does-s-mean-in-printf
-2. http://cslibrary.stanford.edu/101/EssentialC.pdf
-2. https://www.ibm.com/docs/en/i/7.4?topic=functions-printf-print-formatted-characterse
+3. https://github.com/agavrel/42_CheatSheet
+4. https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html
+5. https://stackoverflow.com/questions/65820/unit-testing-c-code
+6. https://jera.com/techinfo/jtns/jtn002
+7. https://eradman.com/posts/tdd-in-c.html
+8. https://github.com/codeplea/minctest
+9. https://codeplea.com/minctest
+10. https://github.com/codeplea/tinyexpr/blob/master/smoke.c
+11. https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros
+12. https://stackoverflow.com/questions/7899119/what-does-s-mean-in-printf
+13. http://cslibrary.stanford.edu/101/EssentialC.pdf
+14. https://www.ibm.com/docs/en/i/7.4?topic=functions-printf-print-formatted-characterse
+15. https://www.codementor.io/@dankhan/how-to-easily-decipher-complex-pointer-declarations-cpp-so24b66me

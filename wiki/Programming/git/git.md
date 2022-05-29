@@ -50,7 +50,7 @@ To split up an older commit, you will want to use an {{interactive `rebase`|Reba
 1. Start by specifying how many commits you want to go back within this command: `git rebase -i HEAD~N`, replacing N with the number of commits you want to go back.
 1. In the interactive rebase screen, replace the word `pick` with `edit` to stop git at that commit before proceeding with the rebase. Once done, save and exit the editor. This will activate the git rebase process.
 1. Git should have stopped at your specified hash, which you can see with a `git status`. It should say something like `You are currently editing a commit while rebasing branch 'branch_name' on 'f05d5ce'`.
-1. From there, you can continue as if you were splitting your most recent commit: `git reset HEAD~`. 
+1. From there, you can continue as if you were splitting your most recent commit: `git reset HEAD~`.
 1. Commit each change as desired and when complete, use `git rebase --continue` to finish the rebasing process.
 
 ### Case Sensitivity
@@ -113,7 +113,7 @@ git branch --merged | egrep -v "(^\*|master|main|dev|staging)" | xargs git branc
 
 > When should I use cherry-pick? **The short answer is: as rarely as possible.**
 
-For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects. 
+For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects.
 
 I have only ever used this when I accidentally added a commit to the wrong branch. So anyway, proceed with caution.
 
@@ -136,13 +136,13 @@ To revert one or many commits, open your `git log` and find the commit you want 
 $ git revert [-m 1] <commit-hash>
 ```
 
-The `-m` flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1. 
+The `-m` flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1.
 
 For example, lets say you accidentally committed to the main branch and pushed up. You can revert this with `git revert HEAD` or `git revert {hash}`, creating a commit dialog and fixing your mistake through *adding* to your commit history.
 
 ## Stashing[18]
 
-Stashing allows you to temporarily save changes without committing anything. 
+Stashing allows you to temporarily save changes without committing anything.
 
 To stash some changes, use `git stash save 'message about stash'`, or just `git stash` if you want to leave out the message.
 
@@ -205,13 +205,15 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 - Install vim using homebrew
 - Set vim to be the default editor with `git config --global core.editor "vim"`
 
-### Good Commit Hygiene
+### Good Commit and PR Hygiene
 
 - https://chris.beams.io/posts/git-commit/
 - https://dhwthompson.com/2019/my-favourite-git-commit
 - https://mtlynch.io/code-review-love/
 - https://sergeyzhuk.me/2018/12/29/code_review/
 - https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+> [C]ode review is significantly more effective if devs deliberately review the tests first, and most complex files next[.] -- mhoye[22]
 
 ## References
 
@@ -232,7 +234,8 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 15. https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits
 16. https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean
 17. https://rietta.com/blog/git-patch-manual-split/
-18. https://www.freecodecamp.org/news/git-stash-explained/ 
+18. https://www.freecodecamp.org/news/git-stash-explained/
 19. https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/
 20. https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit
 21. https://github.com/UnseenWizzard/git_training
+22. https://mastodon.social/@mhoye/108203495866171674

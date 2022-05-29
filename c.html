@@ -116,6 +116,17 @@ int *p; // a pointer
 
 p = &amp;n; // point p to the address of n
 </code></pre>
+<p>To best understand pointers, start from the middle and go outwards, and when writing out pointers, arrays, and functions, use <code>[]</code> or <code>()</code> over <code>*</code> whenever possible. For instance[15]:</p>
+<pre><code class="language-c">int *a[10];
+int *a[10];      &quot;a is&quot;  
+     ^  
+int *a[10];      &quot;a is an array&quot;  
+      ^^^^ 
+int *a[10];      &quot;a is an array of pointers&quot;
+    ^
+int *a[10];      &quot;a is an array of pointers to `int`&quot;.  
+^^^
+</code></pre>
 <h2>Libraries</h2>
 <h3>stdio.h</h3>
 <h4>printf(string, [format, ...])</h4>
@@ -154,5 +165,6 @@ printf(&quot;%2d F = %2d C&quot;, fahr, celsius); /* prints &quot;100 F = 37 C&q
 <li><a href="https://stackoverflow.com/questions/7899119/what-does-s-mean-in-printf" target="_blank">https://stackoverflow.com/questions/7899119/what-does-s-mean-in-printf</a></li>
 <li><a href="http://cslibrary.stanford.edu/101/EssentialC.pdf" target="_blank">http://cslibrary.stanford.edu/101/EssentialC.pdf</a></li>
 <li><a href="https://www.ibm.com/docs/en/i/7.4?topic=functions-printf-print-formatted-characterse" target="_blank">https://www.ibm.com/docs/en/i/7.4?topic=functions-printf-print-formatted-characterse</a></li>
+<li><a href="https://www.codementor.io/@dankhan/how-to-easily-decipher-complex-pointer-declarations-cpp-so24b66me" target="_blank">https://www.codementor.io/@dankhan/how-to-easily-decipher-complex-pointer-declarations-cpp-so24b66me</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="arrays-c.html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="command-line-arguments-in-c.html">Command Line Arguments in C</a></li><li><a href="curses.html">Curses</a></li><li><a href="functions-c.html">Functions (C)</a></li><li><a href="regular-expressions-c.html">Regular Expressions (C)</a></li><li><a href="strings-c.html">Strings (C)</a></li></ul></details></section><p class="last-modified">Last modified: 202204031859</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="arrays-c.html">Arrays (C)</a></li><li><a href="c-data-types.html">C Data Types</a></li><li><a href="command-line-arguments-in-c.html">Command Line Arguments in C</a></li><li><a href="curses.html">Curses</a></li><li><a href="functions-c.html">Functions (C)</a></li><li><a href="regular-expressions-c.html">Regular Expressions (C)</a></li><li><a href="strings-c.html">Strings (C)</a></li></ul></details></section><p class="last-modified">Last modified: 202205282146</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

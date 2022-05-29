@@ -44,3 +44,4 @@ From Reddit's bodyweightfitness[2]:
 1. https://teddit.net/r/bodyweightfitness/wiki/minroutine
 1. https://antranik.org/bodyweight-training/
 1. https://nchrs.xyz/site/exercise.html
+1. https://teddit.net/r/bodyweightfitness/wiki/routines/bwf-primer

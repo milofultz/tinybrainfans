@@ -1,0 +1,141 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Recursion is the act of calling a function within the function itself."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Recursion</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Recursion</h1><p>A recursive function is recursive when it calls itself within the function. Many, if not most, recursive functions can be done with looping and things like queues as well.</p>
+<h2>Why?</h2>
+<p>While you can use loops on many problem spaces where recursion is available, there are certain situations where recursion is necessary. The main situation is when a data structure can have a child of the same type. </p>
+<p>For instance, if your list can contain lists, you can't know how deep you will have to check for nested lists, since it could be infinite. What if your 100th nested array has an array as a child? etc.</p>
+<p>Another example is in a binary tree[2]. Since every binary tree can have children which are binary trees themselves, to traverse them properly, one must use recursion of some kind.</p>
+<p><em>Note: Depending on your language space, some of these situations could be done using a queue structure as well.</em></p>
+<h2>What Makes It Recursive</h2>
+<p>Recursive functions are composed of two elements:</p>
+<ul>
+<li>A base case</li>
+<li>A recursive case</li>
+</ul>
+<p>The <strong>base case</strong> is how the recursive function will exit. For instance, if we are using a recursive function to iterate through a list, the base case should be triggered when there are no more elements left in the list. There can be multiple base cases.</p>
+<p>The <strong>recursive case</strong> is what will be invoked as long as the base case is not met.</p>
+<h2>Examples</h2>
+<p>If you run through any of the examples below by hand, you will see that the iteration examples can be done in one invocation or call to the function. You can iterate through and return the result all at once. With the recursive examples, you will find yourself with multiple unfinished invocations at once that each eventually resolve into smaller results that make up the final result.</p>
+<h3>Find Fibonacci number[4] at position n</h3>
+<p>Using iteration:</p>
+<pre><code class="language-pseudocode">FUNCTION getFibonacciNumber(n)
+  IF (n == 0)
+    RETURN 0
+  END IF
+  
+  SET lastFibonacciNumber to 0
+  SET fibonacciNumber to 1
+  WHILE (n &gt; 1)
+    SET nextFibonacciNumber to (lastFibonacciNumber + fibonacciNumber)
+    SET lastFibonacciNumber to fibonacciNumber
+    SET fibonacciNumber to nextFibonacciNumber
+    DECREMENT n by 1
+  END WHILE
+  
+  RETURN fibonacciNumber
+END FUNCTION
+</code></pre>
+<p>Using recursion:</p>
+<pre><code class="language-pseudocode">FUNCTION getFibonacciNumber(n)
+  /* Base Case */
+  IF (n &lt;= 0)
+    RETURN 0
+  ELSE IF (n == 1)
+    RETURN 1
+  /* Recursive Case */
+  ELSE
+    RETURN getFibonacciNumber(n - 1) + getFibonacciNumber(n - 2)
+END FUNCTION
+</code></pre>
+<h3>Get the length of a linked list</h3>
+<p>Assume a linked list is made up of nodes:</p>
+<pre><code class="language-javascript">node1 = {
+  value: 1,
+  nextNode: /* address to next node or null */,
+};
+
+exampleList = [node0, node1, node2, node3];
+</code></pre>
+<p>Using iteration:</p>
+<pre><code class="language-pseudocode">FUNCTION getListLength(list)
+  SET length to 0
+  
+  WHILE (list[length].nextNode != null)
+    length += 1
+  END FOR
+  
+  RETURN length
+END FUNCTION
+
+/* Example call */
+getListLength(exampleList)
+</code></pre>
+<p>Using recursion:</p>
+<pre><code class="language-pseudocode">FUNCTION getListLength(list, length)
+  /* The base case */
+  IF (list[length].nextNode == null)
+    RETURN length
+  /* The recursive case */
+  ELSE
+    RETURN CALL getListLength(list, length + 1)
+  END IF
+END FUNCTION
+
+/* Example call */
+getListLength(exampleList, 0)
+</code></pre>
+<h3>Flatten all values of nested lists</h3>
+<p>This will take all values from all levels of lists and put them into the top level of a new list.</p>
+<p>An example list:</p>
+<pre><code>exampleList = [
+  [ [ 0, 1 ] ],
+  [ [ 2 ], 3 ],
+  4,
+  [ [ [ 5 ] ] ],
+]
+</code></pre>
+<p>Using iteration:</p>
+<pre><code class="language-pseudocode">FUNCTION flatten(list)
+  SET flattenedList to []
+  SET stack to list
+  /* The &quot;top&quot; of the stack is the end */
+  
+  WHILE (stack is not empty)
+    SET currentItem to item on top of stack
+    POP item off top of stack
+    IF (currentItem is an array)
+      FOR (value in currentItem)
+        PUSH value to top of list
+      END FOR
+    ELSE
+      ADD currentItem to flattenedList
+    END IF
+  END WHILE
+  
+  REVERSE flattenedList
+  
+  RETURN flattenedList
+END FUNCTION
+</code></pre>
+<p>Using recursion:</p>
+<pre><code class="language-pseudocode">FUNCTION flatten(list)
+  SET flattenedList to []
+  FOR (item in list)
+    /* Base case */
+    IF (item is not an array)
+      ADD item to flattenedList
+    /* Recursive case */
+    ELSE
+      CONCATENATE flatten(item) to flattenedList
+    END IF
+  END FOR
+  RETURN flattenedList
+END FUNCTION
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://wiki.c2.com/?TailRecursion" target="_blank">https://wiki.c2.com/?TailRecursion</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Binary_tree" target="_blank">https://en.wikipedia.org/wiki/Binary_tree</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Recursion" target="_blank">https://en.wikipedia.org/wiki/Recursion</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Fibonacci_sequence" target="_blank">https://en.wikipedia.org/wiki/Fibonacci_sequence</a></li>
+</ol>
+<p class="last-modified">Last modified: 202205281830</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

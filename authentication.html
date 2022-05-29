@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Authentication in web development is the way to verify that a given user is who they say they are."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Authentication</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">Authentication</h1><h2>How It Works</h2>
+<p>To authenticate that a user and their client are who they say they are, a few steps need to occur:</p>
+<ol>
+<li>User sends credentials (e.g. username and password) to server</li>
+<li>Server verifies these credentials are accurate by checking their data store, usually via a test of the password's hash in their database[3]</li>
+<li>Server returns to the client whether or not these credentials are accurate</li>
+</ol>
+<p>This is easy enough, but becomes unwieldy if the application needs you to verify your identity for various actions, as it will have to repeat these three steps for every request, which is very costly.</p>
+<h3>Token</h3>
+<p>One solution is to use a token protocol like JWT[4], which stores three elements within it:</p>
+<ol>
+<li>Header - Identifies which algorithm is used to generate the signature</li>
+<li>Payload - Contains data to be used for verification (e.g. username)</li>
+<li>Signature - Securely validates the token</li>
+</ol>
+<p>This token takes a JSON structure and puts it into a string via base64 encoding. So now instead of having to send the username and password and check with the database every single request, we can verify that the token is accurate and contains the necessary information for the user to act (e.g. their username). The steps that occur now are a little different:</p>
+<ol>
+<li>User sends credentials (e.g. username and password) to server</li>
+<li>Server verifies these credentials are accurate by checking their data store, usually via a test of the password's hash in their database</li>
+<li>If accurate, server creates a JWT that proves this user is who they say they are</li>
+<li>Server returns the JWT to the client</li>
+</ol>
+<p>For all further interactions:</p>
+<ol>
+<li>User sends JWT</li>
+<li>Server verifies JWT is valid</li>
+<li>Server performs requested action</li>
+</ol>
+<p>This is much simpler and less costly, as we only talk to the database one time. We don't need the password for every interaction since we verified it once that it is accurate and created a token that proves that on the server side.</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://kevin.burke.dev/kevin/things-to-use-instead-of-jwt/" target="_blank">https://kevin.burke.dev/kevin/things-to-use-instead-of-jwt/</a></li>
+<li><a href="https://frontegg.com/blog/token-based-authentication" target="_blank">https://frontegg.com/blog/token-based-authentication</a></li>
+<li><a href="https://auth0.com/blog/hashing-passwords-one-way-road-to-security/" target="_blank">https://auth0.com/blog/hashing-passwords-one-way-road-to-security/</a></li>
+<li><a href="https://jwt.io/" target="_blank">https://jwt.io/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/JSON_Web_Token" target="_blank">https://en.wikipedia.org/wiki/JSON_Web_Token</a></li>
+</ol>
+<p class="last-modified">Last modified: 202205270825</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

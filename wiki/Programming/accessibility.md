@@ -26,3 +26,4 @@ There needs to be a contrast of at LEAST 4.5:1 between the background and foregr
 3. https://www.a11yproject.com/checklist/
 4. https://www.w3.org/WAI/test-evaluate/#tools
 5. https://seirdy.one/2020/11/23/website-best-practices.html
+6. https://hidde.blog/more-common-a11y-issues/

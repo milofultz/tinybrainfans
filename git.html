@@ -37,7 +37,7 @@
 <li>Start by specifying how many commits you want to go back within this command: <code>git rebase -i HEAD~N</code>, replacing N with the number of commits you want to go back.</li>
 <li>In the interactive rebase screen, replace the word <code>pick</code> with <code>edit</code> to stop git at that commit before proceeding with the rebase. Once done, save and exit the editor. This will activate the git rebase process.</li>
 <li>Git should have stopped at your specified hash, which you can see with a <code>git status</code>. It should say something like <code>You are currently editing a commit while rebasing branch &#x27;branch_name&#x27; on &#x27;f05d5ce&#x27;</code>.</li>
-<li>From there, you can continue as if you were splitting your most recent commit: <code>git reset HEAD~</code>. </li>
+<li>From there, you can continue as if you were splitting your most recent commit: <code>git reset HEAD~</code>.</li>
 <li>Commit each change as desired and when complete, use <code>git rebase --continue</code> to finish the rebasing process.</li>
 </ol>
 <h3>Case Sensitivity</h3>
@@ -126,7 +126,7 @@
 <blockquote>
 <p>When should I use cherry-pick? <strong>The short answer is: as rarely as possible.</strong></p>
 </blockquote>
-<p>For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects. </p>
+<p>For this reason, I have not spent much time learning how to get this to work, as the only experience I have had was one of my colleagues using this and causing hours of work trying to fix the side effects.</p>
 <p>I have only ever used this when I accidentally added a commit to the wrong branch. So anyway, proceed with caution.</p>
 <p>If you have a commit from one branch you want to apply to another, this can be done by checking out your destination branch and calling <code>cherry-pick</code> with the hash of the desired commit you want to bring over.</p>
 <pre><code class="language-shell">git checkout target-branch
@@ -138,10 +138,10 @@ git cherry-pick d3db33f
 <p>To revert one or many commits, open your <code>git log</code> and find the commit you want to revert back to. Save this hash. Then enter the following:</p>
 <pre><code class="language-bash">$ git revert [-m 1] &lt;commit-hash&gt;
 </code></pre>
-<p>The <code>-m</code> flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1. </p>
+<p>The <code>-m</code> flag is used to revert a merge; to set where the mainline is, which parent you are wanting to revert back to. Most of the time it is 1.</p>
 <p>For example, lets say you accidentally committed to the main branch and pushed up. You can revert this with <code>git revert HEAD</code> or <code>git revert {hash}</code>, creating a commit dialog and fixing your mistake through <em>adding</em> to your commit history.</p>
 <h2>Stashing[18]</h2>
-<p>Stashing allows you to temporarily save changes without committing anything. </p>
+<p>Stashing allows you to temporarily save changes without committing anything.</p>
 <p>To stash some changes, use <code>git stash save &#x27;message about stash&#x27;</code>, or just <code>git stash</code> if you want to leave out the message.</p>
 <p>To see what you have stashed, use <code>git stash list</code> to see all stashed code. Then see what is in each stash by using <code>git stash show {index}</code>, and you can see it diffed by using the <code>-p</code> flag.</p>
 <p>Stashes can be listed recalled via the indexes shown: <code>git stash apply {index}</code> or <code>git stash pop {index}</code> if you want to remove it from the stashes after being applied.</p>
@@ -176,7 +176,7 @@ fatal: Authentication failed for &#x27;https://gitlab.com/myusername/repo.git&#x
 <li>Install vim using homebrew</li>
 <li>Set vim to be the default editor with <code>git config --global core.editor &quot;vim&quot;</code></li>
 </ul>
-<h3>Good Commit Hygiene</h3>
+<h3>Good Commit and PR Hygiene</h3>
 <ul>
 <li><a href="https://chris.beams.io/posts/git-commit/" target="_blank">https://chris.beams.io/posts/git-commit/</a></li>
 <li><a href="https://dhwthompson.com/2019/my-favourite-git-commit" target="_blank">https://dhwthompson.com/2019/my-favourite-git-commit</a></li>
@@ -184,6 +184,9 @@ fatal: Authentication failed for &#x27;https://gitlab.com/myusername/repo.git&#x
 <li><a href="https://sergeyzhuk.me/2018/12/29/code_review/" target="_blank">https://sergeyzhuk.me/2018/12/29/code_review/</a></li>
 <li><a href="https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html" target="_blank">https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html</a></li>
 </ul>
+<blockquote>
+<p>[C]ode review is significantly more effective if devs deliberately review the tests first, and most complex files next[.] -- mhoye[22]</p>
+</blockquote>
 <h2>References</h2>
 <ol>
 <li><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging" target="_blank">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging</a></li>
@@ -203,9 +206,10 @@ fatal: Authentication failed for &#x27;https://gitlab.com/myusername/repo.git&#x
 <li><a href="https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits" target="_blank">https://stackoverflow.com/questions/6217156/break-a-previous-commit-into-multiple-commits</a></li>
 <li><a href="https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean" target="_blank">https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean</a></li>
 <li><a href="https://rietta.com/blog/git-patch-manual-split/" target="_blank">https://rietta.com/blog/git-patch-manual-split/</a></li>
-<li><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">https://www.freecodecamp.org/news/git-stash-explained/</a> </li>
+<li><a href="https://www.freecodecamp.org/news/git-stash-explained/" target="_blank">https://www.freecodecamp.org/news/git-stash-explained/</a></li>
 <li><a href="https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/" target="_blank">https://blog.carbonfive.com/always-squash-and-rebase-your-git-commits/</a></li>
 <li><a href="https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit" target="_blank">https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit</a></li>
 <li><a href="https://github.com/UnseenWizzard/git_training" target="_blank">https://github.com/UnseenWizzard/git_training</a></li>
+<li><a href="https://mastodon.social/@mhoye/108203495866171674" target="_blank">https://mastodon.social/@mhoye/108203495866171674</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="websites.html">Websites</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section><p class="last-modified">Last modified: 202205220931</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="making-a-good-readme.html">Making a Good README</a></li><li><a href="my-git-aliases.html">My git Aliases</a></li><li><a href="rebase-git.html">Rebase (git)</a></li><li><a href="websites.html">Websites</a></li><li><a href="zsh.html">zsh</a></li></ul></details></section><p class="last-modified">Last modified: 202205282149</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
