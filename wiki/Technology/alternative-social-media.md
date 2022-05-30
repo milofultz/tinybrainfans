@@ -60,3 +60,4 @@ You can automate a lot of these switches by using an extension to automate it fo
 13. https://git.pleroma.social/pleroma/pleroma
 14. https://joinfediverse.wiki/Main_Page
 15. https://join-lemmy.org/
+16. https://p.xuv.be/fronting-social-surveillance

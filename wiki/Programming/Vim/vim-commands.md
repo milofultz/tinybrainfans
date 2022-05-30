@@ -104,6 +104,10 @@ Insert on multiple lines[15] | `<c-v>`, select area, `I`, do edits, `esc` |
 Append to multiple lines[14] | `V`, select lines, `:'<,'>s/$/text/` | `'<,'>` will get added to your command automatically after `:`
 Join line below current line with current line[17] | `J`|
 Flip capitalization | `~` |
+Autocomplete whole line from file | `<c-x><c-l>` |
+Autocomplete keyword from file | `<c-x><c-n>` |
+Autocomplete definition from file | `<c-x><c-d>` |
+Autocomplete filename from file | `<c-x><c-f>` |
 
 ## Modes
 
@@ -166,3 +170,4 @@ Suspend Vim and go to shell | `<c-z>` | Type `fg` in the shell to return
 1. http://texteditors.org/cgi-bin/wiki.pl?Vim_Cheat_Sheet
 1. https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled
 1. https://riptutorial.com/vim/example/4731/recording-a-macro
+1. https://teddit.net/r/vim/comments/uiyul0/you_can_use_cxcl_in_insert_mode_to_complete_lines/

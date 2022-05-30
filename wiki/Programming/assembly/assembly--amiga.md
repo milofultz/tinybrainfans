@@ -21,3 +21,4 @@ The Amiga was a personal computer from the 80's built on the Motorola 68000 chip
 - https://www.reaktor.com/blog/crash-course-to-amiga-assembly-programming/
 - https://archive.org/details/commodoreamigamanuals
 - https://archive.org/details/1987-08-compute-magazine/page/n89/mode/2up?view=theater
+- https://www.datagubbe.se/mkdem/

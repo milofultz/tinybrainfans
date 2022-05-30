@@ -2,6 +2,14 @@
 title: Best Practices (Programming)
 ---
 
+## Write code drunk, edit sober[5]
+
+When coding solutions to problems, overoptimization is your greatest enemy.
+
+1. Make it work, at all costs. Don't give two shits about it, because if it sucks, you can always delete it all anyway. Make liberal uses of {{git}} commits to scaffold your way to a solution, but don't be afraid to just blow it up and start over.
+2. When it works, refactor it. Make it understandable to a human being. Make it as concise as possible, but not too concise. Imagine you are seeing the code for the first time, does it make sense to you?
+3. If necessary, make it fast. Unless you are doing some very crucial code where milliseconds matter, this optimization is not as crucial as you think it is.
+
 ## Writing Code
 
 - Make readable code: readable code is the most important. It's easy to spoil clean code, but hard to get it back. In any time, improving readability is justice.[4]
@@ -12,7 +20,7 @@ title: Best Practices (Programming)
 - TAKE TIME OFF. **If you have 24 hrs time off that's three days office time. TAKE. THEM. AND. GO. AFK**. It's best to plan the time and let your team know. Try to make it non-work related (but not self-destructive): camping, reading, visit family, practice hobbies, volunteering with animal shelters, study fine art, date people .... Make memories. Please, just live your life.
 - **Understand what good testing means.** If you have trouble with this, look at tests on github of frameworks/languages. The basic form of tests come in the following for Javascript for front/back end devs (Node.js specific?): Unit Tests, Integration Tests, End-to-end tests. **Understand why they're utilized and how to leverage them for various use-cases.**
 - **Read the documentation. It's your job to understand what's going on internally** for your stack's framework(s) and if it takes you a few days to estimate the work-cost of utilizing a new lib reading docs is time well spent. If management doesn't understand this time after time then look for a new place to work.
-- Buy you a whiteboard. Plan your work on it - sprints, logic, component relationships, cat drawings. (and of course it doesn't have to be a whiteboard, but the open space of a whiteboard to track my weekly meetings, logic intuitions, etc. all are best expressed for me in a large space)
+- Buy you a whiteboard. {{Plan your work|Problem Solving}} on it - sprints, logic, component relationships, cat drawings. (and of course it doesn't have to be a whiteboard, but the open space of a whiteboard to track my weekly meetings, logic intuitions, etc. all are best expressed for me in a large space)
 - **Keep a journal** if you can (or a blog/vlog/written notes if that's the way you track your thoughts). **Reflecting on the way I thought about a problem or feature set has been the best way for me to recognize my growth.** (e.g. In college we never really discussed the implications of "Immutability" though it was mentioned and I found that as I kept journaling my understandings of Immutability with the context of the problems at hand it helped to give me a portrait of how/when to utilize it for future projects more effectively.)
 - "Make it correct, make it clear, make it concise, make it fast. In that order." - Wes Dyer
 - "Programs must be written for people to read, and only incidentally for machines to execute." - Abelson & Sussman, Structure and Interpretation of Computer Programs
@@ -42,3 +50,4 @@ title: Best Practices (Programming)
 2. https://softwareengineering.stackexchange.com/questions/43151/should-you-sacrifice-code-readability-with-how-efficient-code-is
 3. https://www.infoq.com/articles/no-hotfix-deployment/
 4. https://github.com/cotowali/cotowali/blob/main/docs/development.md
+5. https://www.bitquabit.com/post/learning-writing-and-coding-from-a-con-artist/

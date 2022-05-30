@@ -3,6 +3,16 @@ title: Goal Setting
 description: Goal setting is a way to hone your efforts towards a particular end result.
 ---
 
+Setting goals is crucial to feeling fulfilled. If live has no inherent meaning, setting goals is the closest when can get to finding that meaning[2].
+
+However, setting goals should not be a good/bad paradigm. It's a balance of desire to achieve the goal without the attachment to whether or not you **ever will**. If you can maintain this, whatever comes up, whether it allows you to work towards the goal or not, will not phase you.
+
+## Five-Minute Rule
+
+> The first five minutes are the hardest.[3]
+
+Getting started on doing a thing is almost always the hardest part (for me, anyway). Spend five minutes moving towards your goal and if you're still not feeling it, then move on. More than likely though, you will realize the problem was actuating on the task itself.
+
 ## Theme Years
 
 Notes on CGP Grey's "Your Theme" video[1]:
@@ -18,3 +28,5 @@ Notes on CGP Grey's "Your Theme" video[1]:
 ## References:
 
 1. https://www.youtube.com/watch?v=NVGuFdX5guE
+2. https://yewtu.be/watch?v=E7RgtMGL7CA&feature=youtu.be
+3. https://shawnblanc.net/2016/03/five-minutes/
