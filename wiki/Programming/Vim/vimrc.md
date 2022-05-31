@@ -17,9 +17,45 @@ Command | Effect
 `set number` | Use line numbers
 `set number relativenumber` | Use current line number and relative numbers for others
 
+## Remapping[12]
+
+Remapping is where you can expand one keystroke into another keystroke or set of keystrokes. There are multiple types of remapping:
+
+- `map` (recursive)
+- `noremap` (non-recursive)
+
+An example that would be in a `vimrc` file:
+
+```vimrc
+map j gg           (moves cursor to first line)
+map Q j            (moves cursor to first line)
+noremap W j        (moves cursor down one line)
+```
+
+The effect of this would be that:
+
+- `j` would expand to `gg`
+- `Q` would *also* expand to `gg`, since the first `map` of `j` is recursive
+- `W` would be expand to `j` but will *not* expand to `gg` since it is non-recursive
+
+### Modes
+
+`map` and `noremap` have different modes they can apply to:
+
+- `n`: normal only
+- `v`: visual and select
+- `o`: operator-pending
+- `x`: visual only
+- `s`: select only
+- `i`: insert
+- `c`: command-line
+- `l`: insert, command-line, regexp-search (and others. Collectively called "Lang-Arg" pseudo-mode)
+
+An example being `nnoremap` will make a non-recursive mapping that only applied to normal mode.
+
 ## Custom Commands[5]
 
-A custom command is made using this format:
+A command is used in the command mode, which is accessed through `:`. A custom command is made using this format:
 
 ```vim
 command[!] [CapitalizedCustomCommand] [vim command that will be run]
@@ -73,3 +109,4 @@ autocmd BufWritePre * :%s/\s\+$//e
 1. https://thoughtbot.com/blog/writing-vim-syntax-plugins
 1. https://vim.fandom.com/wiki/Keep_your_vimrc_file_clean
 1. http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect
+1. https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping

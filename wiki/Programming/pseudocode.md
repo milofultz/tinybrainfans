@@ -42,13 +42,14 @@ END IF
 
 ### Case
 
-The case is akin to if/then/else. The difference between the two is that a case evaluates a single expression and executes the matching sequence.
+The case is akin to if/then/else. The difference between the two is that a case evaluates a single expression and executes the matching sequence. The default case is for any value of the expression that doesn't match.
 
 ```pseudocode
 CASE yeast type OF
-	instant   : SET yeast amount to 1.5 tsp
-	active dry: SET yeast amount to 2 tsp
-	sourdough : SET yeast amount to 0 tsp
+	instant    : SET yeast amount to 1.5 tsp
+	active dry : SET yeast amount to 2 tsp
+	sourdough  : SET yeast amount to 0 tsp
+	DEFAULT    : SET yeast amount to 0 tsp
 END CASE	
 ```
 

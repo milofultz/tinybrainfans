@@ -11,25 +11,25 @@ Many of these commands derive from the original {{Unix}} text line editor `{{ed}
 
 ## Meta/File
 
-Description | Command | Notes
---- | --- | ---
-Quit | `:q` |
-Quit and do not save | `:cq` |
-Save and quit | `ZZ` | No need to confirm or press enter.
-Save | `:w` |
-Save and quit | `:wq` |
-Save only if file changed and quit | `:x` |
-Save As | `:w newFileName` |
+Description | Command
+--- | ---
+Quit | `:q` 
+Quit and do not save | `:cq` 
+Save and quit | `ZZ` 
+Save | `:w` 
+Save and quit | `:wq` 
+Save only if file changed and quit | `:x` 
+Save As | `:w newFileName` 
 Open for editing | `:e path/to/file`
 Open for reading/viewing | `:v path/to/file`
 
 ## Undo/Redo
 
-Description | Command | Notes
---- | --- | ---
-Undo | `u` |
-Undo all changes to a line | `U` |
-Redo | `<c-r>` |
+Description | Command
+--- | ---
+Undo | `u`
+Undo all changes to a line | `U` 
+Redo | `<c-r>` 
 
 ### Find
 
@@ -41,53 +41,61 @@ Find and replace in whole file | `:%s/pattern/repl` | Same options apply as abov
 
 ## Navigation
 
-Description | Command | Notes
---- | --- | ---
-Move cursor (Left, Down, Up, Right) | `h`, `j`, `k`, `l` |
-See current cursor location and information | `<c-g>` |
+Description | Command
+--- | ---
+Move cursor (Left, Down, Up, Right) | `h`, `j`, `k`, `l` 
+See current cursor location and information | `<c-g>` 
 Go to start/end of next word | `w`/`e`
-Go back a word | `b` |
+Go back a word | `b` 
+Go to next instance of character `a` | `f[a]` 
+Go to previous instance of character `a` | `F[a]` 
+Go to character before next instance of character `a` | `t[a]` 
+Go to character before previous instance of character `a` | `T[a]` 
+Repeat last `f`/`F`/`t`/`T` in same direction | `;`
+Repeat last `f`/`F`/`t`/`T` in opposite direction | `,`
 Go to start/end of line | `0`/`$`
+Go to line`n` | `[n]G` 
+Go to beginning of file | `[[` or `gg` 
+Go to end of file | `]]` or `G` 
+Go to beginning of line | `0` 
+Go to first non-space character of line |`^` 
+Go to end of line | `$` 
+Go to matching bracket under cursor; e.g. `(` goes to `)` and vice versa; includes `[]{}` | `%`
 Go to next page | `<c-f>`
 Go to next half page | `<c-d>`
 Go to previous page | `<c-b>`
 Go to previous half page | `<c-u>`
-Go to line`n` | `[n]G` |
-Go to beginning of file | `gg` |
-Go to end of file | `G` |
-Go to beginning of line | `0` / `^` |
-Go to end of line | `$` |
-Go to matching bracket under cursor; e.g. `(` goes to `)` and vice versa; includes `[]{}` | `%`
+
 
 ## Copy (Yank), Cut, and Paste
 
 Copy is "yank" in Vim, so that's why they are "y".
 
-Description | Command | Notes
---- | --- | ---
-Copy entire line or `n` lines, including newline | `[n]Y` |
-Copy from cursor to end of line | `y$` |
-Copy from cursor to start of line | `y^` |
-Cut entire line or `n` lines, including newline | `[n]dd` |
-Cut from cursor to end of line | `d$` |
-Cut from cursor to start of line | `d^` |
-Paste after the cursor | `p`|
-Paste before the cursor | `P`|
-Move line up one line | `ddkP` |
-Move line down one line | `ddp` |
+Description | Command
+--- | --- 
+Copy entire line or `n` lines, including newline | `[n]Y`
+Copy from cursor to end of line | `y$` 
+Copy from cursor to start of line | `y^`
+Cut entire line or `n` lines, including newline | `[n]dd`
+Cut from cursor to end of line | `d$`
+Cut from cursor to start of line | `d^`
+Paste after the cursor | `p`
+Paste before the cursor | `P`
+Move line up one line | `ddkP`
+Move line down one line | `ddp`
 
 ## Delete
 
-Description | Command | Notes
---- | --- | ---
-Delete entire line or `n` lines, including newline | `[n]dd` |
-Delete from current column to end of line | `D` |
-Delete contents from cursor to end of `n` words and enter Insert mode | `c[n]e` or `c[n]w` |
-Delete contents from cursor to end of `n` lines and enter Insert mode | `[n]C` |
-Delete character under cursor and enter Insert mode | `s` |
-Delete entire line and enter Insert mode | `S` |
-Delete contents of `n` lines and enter Insert mode | `c[n]c` |
-Replace letter under cursor with letter `l` | `r[l]` |
+Description | Command 
+--- | ---
+Delete entire line or `n` lines, including newline | `[n]dd`
+Delete from current column to end of line | `D`
+Delete contents from cursor to end of `n` words and enter Insert mode | `c[n]e` or `c[n]w`
+Delete contents from cursor to end of `n` lines and enter Insert mode | `[n]C`
+Delete character under cursor and enter Insert mode | `s`
+Delete entire line and enter Insert mode | `S`
+Delete contents of `n` lines and enter Insert mode | `c[n]c`
+Replace letter under cursor with letter `l` | `r[l]`
 Enter replace mode (like overwrite) | `R`
 
 ## Text Manipulation
@@ -122,32 +130,36 @@ Exit current mode | `ESC`
 
 ## Recording[18-19]
 
-Description | Command | Notes
---- | --- | ---
-Start recording under register `n` | `qn` | `n` can be any register
+A register is any key (`[a-zA-Z0-9]`).
+
+Description | Command
+--- | ---
+Start recording under register `n` | `qn` 
 Stop recording | `q` |
-Replay recorded keystrokes | `@n` | `n` can be any register
+Replay recorded keystrokes | `@n`
+Replay last macro | `@@`
 
 ## Split Screen
 
-Description | Command | Notes
---- | --- | ---
-Split current file horizontally | `<c-w> s` |
-Split current file vertically | `<c-w> v` |
-Navigate to different panes | `<c-w> {direction}` |
-Increase/decrease pane width | `<c-w> >`, `<c-w> <` |
-Increase/decrease pane height | `<c-w> +`, `<c-w> -` |
-Equalize pane height/width | `<c-w> =` |
-Close a pane | `<c-w> q` |
+Description | Command
+--- | ---
+Split current file horizontally | `<c-w> s`
+Split current file vertically | `<c-w> v`
+Navigate to different panes | `<c-w> {direction}`
+Increase/decrease pane width | `<c-w> >`, `<c-w> <`
+Increase/decrease pane height | `<c-w> +`, `<c-w> -`
+Equalize pane height/width | `<c-w> =`
+Close a pane | `<c-w> q`
 
 ## Misc
 
-Description | Command | Notes
---- | --- | ---
-Toggle fold at next logical break | `za` |
-Execute shell command `x` | `:!x` |
-Execute last edit again at cursor | `.` |
-Suspend Vim and go to shell | `<c-z>` | Type `fg` in the shell to return
+Description | Command
+--- | ---
+Toggle fold at next logical break | `za`
+Execute shell command `x` | `:!x`
+Execute last edit again at cursor | `.`
+Suspend Vim and go to shell | `<c-z>`
+Return to suspended Vim instance | `fg`
 
 ## References
 

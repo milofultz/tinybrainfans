@@ -25,11 +25,12 @@ ELSE
 END IF
 </code></pre>
 <h3>Case</h3>
-<p>The case is akin to if/then/else. The difference between the two is that a case evaluates a single expression and executes the matching sequence.</p>
+<p>The case is akin to if/then/else. The difference between the two is that a case evaluates a single expression and executes the matching sequence. The default case is for any value of the expression that doesn't match.</p>
 <pre><code class="language-pseudocode">CASE yeast type OF
-  instant   : SET yeast amount to 1.5 tsp
-  active dry: SET yeast amount to 2 tsp
-  sourdough : SET yeast amount to 0 tsp
+  instant    : SET yeast amount to 1.5 tsp
+  active dry : SET yeast amount to 2 tsp
+  sourdough  : SET yeast amount to 0 tsp
+  DEFAULT    : SET yeast amount to 0 tsp
 END CASE  
 </code></pre>
 <h3>While</h3>
@@ -92,4 +93,4 @@ END EXCEPTION
 <li><a href="http://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html" target="_blank">http://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html</a></li>
 <li><a href="https://www.youtube.com/watch?v=Ct-lOOUqmyY" target="_blank">https://www.youtube.com/watch?v=Ct-lOOUqmyY</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="pi-at-pc-framework.html">PI AT PC Framework</a></li></ul></details></section><p class="last-modified">Last modified: 202202242105</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="pi-at-pc-framework.html">PI AT PC Framework</a></li></ul></details></section><p class="last-modified">Last modified: 202205300927</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

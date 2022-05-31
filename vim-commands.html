@@ -8,54 +8,44 @@
 <tr>
 <th>Description</th>
 <th>Command</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Quit</td>
 <td><code>:q</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Quit and do not save</td>
 <td><code>:cq</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Save and quit</td>
 <td><code>ZZ</code></td>
-<td>No need to confirm or press enter.</td>
 </tr>
 <tr>
 <td>Save</td>
 <td><code>:w</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Save and quit</td>
 <td><code>:wq</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Save only if file changed and quit</td>
 <td><code>:x</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Save As</td>
 <td><code>:w newFileName</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Open for editing</td>
 <td><code>:e path/to/file</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Open for reading/viewing</td>
 <td><code>:v path/to/file</code></td>
-<td></td>
 </tr>
 </tbody></table><h2>Undo/Redo</h2>
 <table>
@@ -63,24 +53,20 @@
 <tr>
 <th>Description</th>
 <th>Command</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Undo</td>
 <td><code>u</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Undo all changes to a line</td>
 <td><code>U</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Redo</td>
 <td><code>&lt;c-r&gt;</code></td>
-<td></td>
 </tr>
 </tbody></table><h3>Find</h3>
 <table>
@@ -113,84 +99,96 @@
 <tr>
 <th>Description</th>
 <th>Command</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Move cursor (Left, Down, Up, Right)</td>
 <td><code>h</code>, <code>j</code>, <code>k</code>, <code>l</code></td>
-<td></td>
 </tr>
 <tr>
 <td>See current cursor location and information</td>
 <td><code>&lt;c-g&gt;</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Go to start/end of next word</td>
 <td><code>w</code>/<code>e</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Go back a word</td>
 <td><code>b</code></td>
-<td></td>
+</tr>
+<tr>
+<td>Go to next instance of character <code>a</code></td>
+<td><code>f[a]</code></td>
+</tr>
+<tr>
+<td>Go to previous instance of character <code>a</code></td>
+<td><code>F[a]</code></td>
+</tr>
+<tr>
+<td>Go to character before next instance of character <code>a</code></td>
+<td><code>t[a]</code></td>
+</tr>
+<tr>
+<td>Go to character before previous instance of character <code>a</code></td>
+<td><code>T[a]</code></td>
+</tr>
+<tr>
+<td>Repeat last <code>f</code>/<code>F</code>/<code>t</code>/<code>T</code> in same direction</td>
+<td><code>;</code></td>
+</tr>
+<tr>
+<td>Repeat last <code>f</code>/<code>F</code>/<code>t</code>/<code>T</code> in opposite direction</td>
+<td><code>,</code></td>
 </tr>
 <tr>
 <td>Go to start/end of line</td>
 <td><code>0</code>/<code>$</code></td>
-<td></td>
-</tr>
-<tr>
-<td>Go to next page</td>
-<td><code>&lt;c-f&gt;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>Go to next half page</td>
-<td><code>&lt;c-d&gt;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>Go to previous page</td>
-<td><code>&lt;c-b&gt;</code></td>
-<td></td>
-</tr>
-<tr>
-<td>Go to previous half page</td>
-<td><code>&lt;c-u&gt;</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Go to line<code>n</code></td>
 <td><code>[n]G</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Go to beginning of file</td>
-<td><code>gg</code></td>
-<td></td>
+<td><code>[[</code> or <code>gg</code></td>
 </tr>
 <tr>
 <td>Go to end of file</td>
-<td><code>G</code></td>
-<td></td>
+<td><code>]]</code> or <code>G</code></td>
 </tr>
 <tr>
 <td>Go to beginning of line</td>
-<td><code>0</code> / <code>^</code></td>
-<td></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Go to first non-space character of line</td>
+<td><code>^</code></td>
 </tr>
 <tr>
 <td>Go to end of line</td>
 <td><code>$</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Go to matching bracket under cursor; e.g. <code>(</code> goes to <code>)</code> and vice versa; includes <code>[]{}</code></td>
 <td><code>%</code></td>
-<td></td>
+</tr>
+<tr>
+<td>Go to next page</td>
+<td><code>&lt;c-f&gt;</code></td>
+</tr>
+<tr>
+<td>Go to next half page</td>
+<td><code>&lt;c-d&gt;</code></td>
+</tr>
+<tr>
+<td>Go to previous page</td>
+<td><code>&lt;c-b&gt;</code></td>
+</tr>
+<tr>
+<td>Go to previous half page</td>
+<td><code>&lt;c-u&gt;</code></td>
 </tr>
 </tbody></table><h2>Copy (Yank), Cut, and Paste</h2>
 <p>Copy is &quot;yank&quot; in Vim, so that's why they are &quot;y&quot;.</p>
@@ -199,59 +197,48 @@
 <tr>
 <th>Description</th>
 <th>Command</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Copy entire line or <code>n</code> lines, including newline</td>
 <td><code>[n]Y</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Copy from cursor to end of line</td>
 <td><code>y$</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Copy from cursor to start of line</td>
 <td><code>y^</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Cut entire line or <code>n</code> lines, including newline</td>
 <td><code>[n]dd</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Cut from cursor to end of line</td>
 <td><code>d$</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Cut from cursor to start of line</td>
 <td><code>d^</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Paste after the cursor</td>
 <td><code>p</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Paste before the cursor</td>
 <td><code>P</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Move line up one line</td>
 <td><code>ddkP</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Move line down one line</td>
 <td><code>ddp</code></td>
-<td></td>
 </tr>
 </tbody></table><h2>Delete</h2>
 <table>
@@ -259,54 +246,44 @@
 <tr>
 <th>Description</th>
 <th>Command</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Delete entire line or <code>n</code> lines, including newline</td>
 <td><code>[n]dd</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Delete from current column to end of line</td>
 <td><code>D</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Delete contents from cursor to end of <code>n</code> words and enter Insert mode</td>
 <td><code>c[n]e</code> or <code>c[n]w</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Delete contents from cursor to end of <code>n</code> lines and enter Insert mode</td>
 <td><code>[n]C</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Delete character under cursor and enter Insert mode</td>
 <td><code>s</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Delete entire line and enter Insert mode</td>
 <td><code>S</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Delete contents of <code>n</code> lines and enter Insert mode</td>
 <td><code>c[n]c</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Replace letter under cursor with letter <code>l</code></td>
 <td><code>r[l]</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Enter replace mode (like overwrite)</td>
 <td><code>R</code></td>
-<td></td>
 </tr>
 </tbody></table><h2>Text Manipulation</h2>
 <table>
@@ -422,29 +399,30 @@
 <td><code>ESC</code></td>
 </tr>
 </tbody></table><h2>Recording[18-19]</h2>
+<p>A register is any key (<code>[a-zA-Z0-9]</code>).</p>
 <table>
 <thead>
 <tr>
 <th>Description</th>
 <th>Command</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Start recording under register <code>n</code></td>
 <td><code>qn</code></td>
-<td><code>n</code> can be any register</td>
 </tr>
 <tr>
 <td>Stop recording</td>
 <td><code>q</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Replay recorded keystrokes</td>
 <td><code>@n</code></td>
-<td><code>n</code> can be any register</td>
+</tr>
+<tr>
+<td>Replay last macro</td>
+<td><code>@@</code></td>
 </tr>
 </tbody></table><h2>Split Screen</h2>
 <table>
@@ -452,44 +430,36 @@
 <tr>
 <th>Description</th>
 <th>Command</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Split current file horizontally</td>
 <td><code>&lt;c-w&gt; s</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Split current file vertically</td>
 <td><code>&lt;c-w&gt; v</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Navigate to different panes</td>
 <td><code>&lt;c-w&gt; {direction}</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Increase/decrease pane width</td>
 <td><code>&lt;c-w&gt; &gt;</code>, <code>&lt;c-w&gt; &lt;</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Increase/decrease pane height</td>
 <td><code>&lt;c-w&gt; +</code>, <code>&lt;c-w&gt; -</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Equalize pane height/width</td>
 <td><code>&lt;c-w&gt; =</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Close a pane</td>
 <td><code>&lt;c-w&gt; q</code></td>
-<td></td>
 </tr>
 </tbody></table><h2>Misc</h2>
 <table>
@@ -497,29 +467,28 @@
 <tr>
 <th>Description</th>
 <th>Command</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Toggle fold at next logical break</td>
 <td><code>za</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Execute shell command <code>x</code></td>
 <td><code>:!x</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Execute last edit again at cursor</td>
 <td><code>.</code></td>
-<td></td>
 </tr>
 <tr>
 <td>Suspend Vim and go to shell</td>
 <td><code>&lt;c-z&gt;</code></td>
-<td>Type <code>fg</code> in the shell to return</td>
+</tr>
+<tr>
+<td>Return to suspended Vim instance</td>
+<td><code>fg</code></td>
 </tr>
 </tbody></table><h2>References</h2>
 <ol>
@@ -544,4 +513,4 @@
 <li><a href="https://riptutorial.com/vim/example/4731/recording-a-macro" target="_blank">https://riptutorial.com/vim/example/4731/recording-a-macro</a></li>
 <li><a href="https://teddit.net/r/vim/comments/uiyul0/you_can_use_cxcl_in_insert_mode_to_complete_lines/" target="_blank">https://teddit.net/r/vim/comments/uiyul0/you_can_use_cxcl_in_insert_mode_to_complete_lines/</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="vim.html">Vim</a></li></ul></details></section><p class="last-modified">Last modified: 202205300759</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="vim.html">Vim</a></li></ul></details></section><p class="last-modified">Last modified: 202205310748</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

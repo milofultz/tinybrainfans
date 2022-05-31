@@ -23,8 +23,38 @@
 <td><code>set number relativenumber</code></td>
 <td>Use current line number and relative numbers for others</td>
 </tr>
-</tbody></table><h2>Custom Commands[5]</h2>
-<p>A custom command is made using this format:</p>
+</tbody></table><h2>Remapping[12]</h2>
+<p>Remapping is where you can expand one keystroke into another keystroke or set of keystrokes. There are multiple types of remapping:</p>
+<ul>
+<li><code>map</code> (recursive)</li>
+<li><code>noremap</code> (non-recursive)</li>
+</ul>
+<p>An example that would be in a <code>vimrc</code> file:</p>
+<pre><code class="language-vimrc">map j gg           (moves cursor to first line)
+map Q j            (moves cursor to first line)
+noremap W j        (moves cursor down one line)
+</code></pre>
+<p>The effect of this would be that:</p>
+<ul>
+<li><code>j</code> would expand to <code>gg</code></li>
+<li><code>Q</code> would <em>also</em> expand to <code>gg</code>, since the first <code>map</code> of <code>j</code> is recursive</li>
+<li><code>W</code> would be expand to <code>j</code> but will <em>not</em> expand to <code>gg</code> since it is non-recursive</li>
+</ul>
+<h3>Modes</h3>
+<p><code>map</code> and <code>noremap</code> have different modes they can apply to:</p>
+<ul>
+<li><code>n</code>: normal only</li>
+<li><code>v</code>: visual and select</li>
+<li><code>o</code>: operator-pending</li>
+<li><code>x</code>: visual only</li>
+<li><code>s</code>: select only</li>
+<li><code>i</code>: insert</li>
+<li><code>c</code>: command-line</li>
+<li><code>l</code>: insert, command-line, regexp-search (and others. Collectively called &quot;Lang-Arg&quot; pseudo-mode)</li>
+</ul>
+<p>An example being <code>nnoremap</code> will make a non-recursive mapping that only applied to normal mode.</p>
+<h2>Custom Commands[5]</h2>
+<p>A command is used in the command mode, which is accessed through <code>:</code>. A custom command is made using this format:</p>
 <pre><code class="language-vim">command[!] [CapitalizedCustomCommand] [vim command that will be run]
 </code></pre>
 <ul>
@@ -64,5 +94,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 <li><a href="https://thoughtbot.com/blog/writing-vim-syntax-plugins" target="_blank">https://thoughtbot.com/blog/writing-vim-syntax-plugins</a></li>
 <li><a href="https://vim.fandom.com/wiki/Keep_your_vimrc_file_clean" target="_blank">https://vim.fandom.com/wiki/Keep_your_vimrc_file_clean</a></li>
 <li><a href="http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect" target="_blank">http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect</a></li>
+<li><a href="https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping" target="_blank">https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping</a></li>
 </ol>
-<p class="last-modified">Last modified: 202205191345</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202205310736</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

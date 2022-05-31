@@ -9,3 +9,4 @@ description:
 - https://seasonedcitizenprepper.com/preparedness-downloads/
 - https://teddit.net/r/AskReddit/comments/444cnh/what_are_some_free_services_on_the_internet/cznc9la/
 - https://xuv.be/uH-bench-open-source-public-bench.html
+- https://maudbausier.com/ETCP-chair.html
