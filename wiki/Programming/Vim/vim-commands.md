@@ -22,6 +22,10 @@ Save only if file changed and quit | `:x`
 Save As | `:w newFileName` 
 Open for editing | `:e path/to/file`
 Open for reading/viewing | `:v path/to/file`
+Open file under cursor | `gf`
+Go to next file in buffer | `:bn`
+Go to previous file in buffer | `:bN`
+See all files in buffer | `:ls` or `:buffers`
 
 ## Undo/Redo
 
@@ -90,6 +94,7 @@ Description | Command
 --- | ---
 Delete entire line or `n` lines, including newline | `[n]dd`
 Delete from current column to end of line | `D`
+Delete whitespace from cursor until first non-whitespace character | `dw`
 Delete contents from cursor to end of `n` words and enter Insert mode | `c[n]e` or `c[n]w`
 Delete contents from cursor to end of `n` lines and enter Insert mode | `[n]C`
 Delete character under cursor and enter Insert mode | `s`
