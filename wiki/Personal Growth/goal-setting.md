@@ -13,6 +13,16 @@ However, setting goals should not be a good/bad paradigm. It's a balance of desi
 
 Getting started on doing a thing is almost always the hardest part (for me, anyway). Spend five minutes moving towards your goal and if you're still not feeling it, then move on. More than likely though, you will realize the problem was actuating on the task itself.
 
+## SOFA[4,5]
+
+Start Often Finish rArely is about giving up the attachment to finishing things. 
+
+> The point of SOFA club is to start as many things ~~as possible~~ as you have the ability, interest, and capacity to, with no regard or goal whatsoever for finishing those projects.      
+>
+> The goal is acquiring many experiences. The side effects include entertainment and increased skill.
+>
+> Here's the secret sauce that makes the whole thing work: You can be finished with your project whenever you decide to be done with it.
+
 ## Theme Years
 
 Notes on CGP Grey's "Your Theme" video[1]:
@@ -30,3 +40,5 @@ Notes on CGP Grey's "Your Theme" video[1]:
 1. https://www.youtube.com/watch?v=NVGuFdX5guE
 2. https://yewtu.be/watch?v=E7RgtMGL7CA&feature=youtu.be
 3. https://shawnblanc.net/2016/03/five-minutes/
+4. https://merveilles.town/web/statuses/108090211679488850
+5. https://tilde.town/~dozens/sofa/

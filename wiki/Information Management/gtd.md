@@ -12,3 +12,4 @@ If you want a quick to the point overview, look at Sandra's post[1] on the basic
 1. https://idiomdrottning.org/gtd-overview
 1. https://idiomdrottning.org/gtd-bad-paths
 1. https://idiomdrottning.org/texts -> GTD header
+1. https://hamberg.no/gtd

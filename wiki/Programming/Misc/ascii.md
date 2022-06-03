@@ -39,4 +39,4 @@ description: The American Standard Code for Information Interchange, but mostly 
 
 - https://en.wikipedia.org/wiki/ASCII
 - https://theasciicode.com.ar/extended-ascii-code/box-drawings-single-vertical-line-character-ascii-code-179.html
-
+- https://merveilles.town/web/statuses/108118602443265634

@@ -1,5 +1,5 @@
 ---
-title: Consulting
+title: Consulting/Freelancing
 description:
 ---
 
@@ -13,3 +13,4 @@ description:
 ## References
 
 - https://www.reddit.com/r/talesfromtechsupport/comments/l2pqsl/handover_of_work_total_disaster/
+- https://thomasorus.com/freelancing-notes.html

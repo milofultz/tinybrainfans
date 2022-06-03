@@ -96,6 +96,32 @@ Temp         // Used for refilling multiplier
 
 ```
 
+### Fibonacci[10]
+
+This program will print the ASCII character found at each fibonacci number (`0x01`, `0x01`, `0x02`, `0x03`, `0x05`, etc.)
+
+```brainfuck
++[.[->+>+<<]>]
+```
+
+Expanded:
+
+```
++          // set 0th fib number to 1
+[          // while next fib number is not 0
+    .      // print current fib number
+    [      // while previous fub number is not 0
+        -  // decrement previous fib number
+        >  // increment next fib number
+        +  
+        >  // increment 2nd next fix number
+        +
+        << // go back to previous fib number
+    ]      // (if previous fib number is zero,)
+    >      // set current fib number to next fib number
+]
+```
+
 ## References
 
 1. https://en.wikipedia.org/wiki/Brainfuck
@@ -107,3 +133,4 @@ Temp         // Used for refilling multiplier
 1. https://github.com/stedolan/bf.sed/blob/master/bf.sed
 1. http://calmerthanyouare.org/2015/01/07/optimizing-brainfuck.html
 1. https://git.sr.ht/~rabbits/uxn/tree/85a6d348ba93186eaa328f67c625fea1bacae1f4/item/projects/examples/exercises/brainfuck.tal
+1. https://codegolf.stackexchange.com/a/42443/98237

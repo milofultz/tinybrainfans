@@ -58,9 +58,9 @@ Go to character before previous instance of character `a` | `T[a]`
 Repeat last `f`/`F`/`t`/`T` in same direction | `;`
 Repeat last `f`/`F`/`t`/`T` in opposite direction | `,`
 Go to start/end of line | `0`/`$`
-Go to line`n` | `[n]G` 
-Go to beginning of file | `[[` or `gg` 
-Go to end of file | `]]` or `G` 
+Go to line`n` | `[n]G` or `[n]gg` 
+Go to beginning of file | `gg` 
+Go to end of file | `G` 
 Go to beginning of line | `0` 
 Go to first non-space character of line |`^` 
 Go to end of line | `$` 
@@ -79,10 +79,12 @@ Description | Command
 --- | --- 
 Copy entire line or `n` lines, including newline | `[n]Y`
 Copy from cursor to end of line | `y$` 
-Copy from cursor to start of line | `y^`
+Copy from cursor to first non-space character on the line | `y^`
+Copy from cursor to start of line | `y0`
 Cut entire line or `n` lines, including newline | `[n]dd`
 Cut from cursor to end of line | `d$`
-Cut from cursor to start of line | `d^`
+Cut from cursor to first non-space character on the line | `d^`
+Cut from cursor to start of line | `d0`
 Paste after the cursor | `p`
 Paste before the cursor | `P`
 Move line up one line | `ddkP`

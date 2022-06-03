@@ -35,6 +35,37 @@ SImplest explanation is that they are Wordpress or Squarespace if you were able 
 
 Lichen uses {{gemtext}}, which is a format utilized by the gemini protocol. This is fairly constrained, but in a way that I find useful and nice. WonderCMS uses a WYSIWYG editor, so has more features, but I can only imagine runs into problems most WYSIWYG editors do.
 
+## Server-Side Includes
+
+This is definitely a situation for more tech-focused people. Server-side includes allows modularity in a website by modularizing parts of a webpage (the header, the footer, the navigation, etc.) and letting the server put them in your webpages when they are loaded. 
+
+The user would need to log into the actual server that holds all these files to do any editing, so in this way it is very direct and simple, but is a real turn off for anyone who is daunted by this kind of workflow.
+
+### How it works
+
+For example, if you have a `head` page, you would make a file called something like `ssi-head.html`:
+
+**ssi-head.html**
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Webpage!</title>
+</head>
+```
+
+And then include it in your pages like in this `example.shtml` (if you want to know why `shtml`, see [7]):
+
+```html
+<!--#include file="ssi-head.html" -->
+<body>
+  Some content
+</body>
+```
+
+When a user pulls up `example.shtml` on your site, it will automatically populate your file with the contents of `ssi-head.html`.
+
 ## References
 
 1. https://en.wikipedia.org/wiki/Server_Side_Includes
@@ -43,3 +74,4 @@ Lichen uses {{gemtext}}, which is a format utilized by the gemini protocol. This
 4. https://codeberg.org/milofultz/swiki
 5. https://pages.github.com/
 6. https://codeberg.page/
+7. https://www.andreas.com/faq-ssi.html

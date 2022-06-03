@@ -18,6 +18,25 @@ echo &quot;done!&quot;
 <p>These are both options that are &quot;set it and forget it&quot; once they've been installed on the hosting server. Obviously, that part is a bit tricky if you don't know how to do that, but if you have a technically inclined friend who can help, you should be off to the races.</p>
 <p>SImplest explanation is that they are Wordpress or Squarespace if you were able to make them easier to use by stripping away the bloat.</p>
 <p>Lichen uses <a href="gemtext.html">gemtext</a>, which is a format utilized by the gemini protocol. This is fairly constrained, but in a way that I find useful and nice. WonderCMS uses a WYSIWYG editor, so has more features, but I can only imagine runs into problems most WYSIWYG editors do.</p>
+<h2>Server-Side Includes</h2>
+<p>This is definitely a situation for more tech-focused people. Server-side includes allows modularity in a website by modularizing parts of a webpage (the header, the footer, the navigation, etc.) and letting the server put them in your webpages when they are loaded. </p>
+<p>The user would need to log into the actual server that holds all these files to do any editing, so in this way it is very direct and simple, but is a real turn off for anyone who is daunted by this kind of workflow.</p>
+<h3>How it works</h3>
+<p>For example, if you have a <code>head</code> page, you would make a file called something like <code>ssi-head.html</code>:</p>
+<p><strong>ssi-head.html</strong></p>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;My Webpage!&lt;/title&gt;
+&lt;/head&gt;
+</code></pre>
+<p>And then include it in your pages like in this <code>example.shtml</code> (if you want to know why <code>shtml</code>, see [7]):</p>
+<pre><code class="language-html">&lt;!--#include file=&quot;ssi-head.html&quot; --&gt;
+&lt;body&gt;
+  Some content
+&lt;/body&gt;
+</code></pre>
+<p>When a user pulls up <code>example.shtml</code> on your site, it will automatically populate your file with the contents of <code>ssi-head.html</code>.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://en.wikipedia.org/wiki/Server_Side_Includes" target="_blank">https://en.wikipedia.org/wiki/Server_Side_Includes</a></li>
@@ -26,5 +45,6 @@ echo &quot;done!&quot;
 <li><a href="https://codeberg.org/milofultz/swiki" target="_blank">https://codeberg.org/milofultz/swiki</a></li>
 <li><a href="https://pages.github.com/" target="_blank">https://pages.github.com/</a></li>
 <li><a href="https://codeberg.page/" target="_blank">https://codeberg.page/</a></li>
+<li><a href="https://www.andreas.com/faq-ssi.html" target="_blank">https://www.andreas.com/faq-ssi.html</a></li>
 </ol>
-<p class="last-modified">Last modified: 202205100742</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202206030745</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
