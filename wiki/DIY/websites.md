@@ -75,3 +75,4 @@ When a user pulls up `example.shtml` on your site, it will automatically populat
 5. https://pages.github.com/
 6. https://codeberg.page/
 7. https://www.andreas.com/faq-ssi.html
+8. https://solar.lowtechmagazine.com//2018/09/how-to-build-a-lowtech-website/

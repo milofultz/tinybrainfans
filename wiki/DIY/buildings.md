@@ -13,3 +13,4 @@ Eventually would love to have a frugal living meta to collate many of these idea
 4. https://zerowastechef.substack.com/p/put-waste-to-work-in-the-backyard
 5. https://www.lowtechmagazine.com/2022/01/the-revenge-of-the-hot-water-bottle.html
 6. https://www.youtube.com/channel/UCAL3JXZSzSm8AlZyD3nQdBA
+7. https://www.youtube.com/watch?v=Y7AKosBrSNk
