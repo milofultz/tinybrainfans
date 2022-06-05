@@ -1,8 +1,50 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Code Style Best Practices</title><link rel="stylesheet" href="tinystyle.css"></head><body>
 <main id="main"><article id="content"><h1 id="title">Code Style Best Practices</h1><p>Having ruthless consistency across a project makes it easy to hunt down problems and allows people to read the code faster[2]. Using tools like linters (<a href="eslint.html">ESLint</a>, StyleLint, etc.) and preprocessors (<a href="sass.html">Sass</a>, <a href="pug.html">Pug</a>, etc.) can aid with this.</p>
+<p>There are different areas of code style, but anything handled via a linter or preprocessor should be to reduce cognitive load.</p>
+<h2>Common Practices</h2>
+<ul>
+<li>Utilizing vertical over horizontal space to aid readability</li>
+<li>Preferring being explicit over implicit (don't be clever)</li>
+<li>Constants using all caps in snake case: <code>FRAMES_PER_SECOND</code></li>
+<li>Classes having first letter capitalized: <code>User</code></li>
+<li>Avoid global variables</li>
+</ul>
+<p>Whatever you do, just make it consistent.</p>
+<h2>Naming</h2>
+<p>Naming things is said to be one of the hardest things in computer science[6], and there's a reason that idea persists:</p>
+<blockquote>
+<p>When 334 developers were asked to choose 47 variable names, the median  probability that two would choose the same name was just 6.9%.[7]</p>
+</blockquote>
+<p>This means given the same context and workspace, programmers ended up having a more or less 1 in 15 chance of naming things the same way. Add this to the already notoriously bike-shed-y space of code style and you can have some wildly different code between people, which will make understanding very difficult across different developers.</p>
+<h3>Naming Molds</h3>
+<blockquote>
+<p>[D]evelopers chose much better names if they consciously first decided what concepts they’d wanted to include, and then selected the words best representing those concepts. (And in addition, “Respondents who were  coached with the model tended to use longer names with more concepts.”)</p>
+<p>“As a team, you can talk about ‘name molds’. You can say, ‘Okay, what do we do? Do we always do the quantifier in the beginning, or at the end? What is our plan here?’ Hermans summarized.[7]</p>
+</blockquote>
+<p>Settling on this as part of your extended code style or project planning minimizes the cognitive overhead a developer must have to understand a given concept and make people feel a little more at home in somebody else's space. When it comes to mission critical situations, this can mean real time and money saved, as well as long-term bugs averted.</p>
+<blockquote>
+<p>We are really trying to balance two competing goals:</p>
+<ol>
+<li>
+<p>Brevity -- Don't explain what I already know.  You mention this in  relation to a tight loop variable: &quot;I bet you didn’t need me to explain  dL stood for Drivers License. It might have even annoyed you if I had  spelled it out.&quot;</p>
+</li>
+<li>
+<p>Clarity -- Don't confuse me.  Don't make me look something up to figure it out.</p>
+</li>
+</ol>
+<p>Maximize brevity while retaining clarity.[5]</p>
+</blockquote>
+<blockquote>
+<p>It's all about managing entropy. Less surprising means you can use fewer letters. More surprising means more letters.[5]</p>
+</blockquote>
 <h2>References</h2>
 <ol>
 <li><a href="https://web.archive.org/web/20060221013853/https://thc.org/root/phun/unmaintain.html" target="_blank">https://web.archive.org/web/20060221013853/https://thc.org/root/phun/unmaintain.html</a></li>
 <li><a href="https://www.youtube.com/watch?app=desktop&amp;v=a0glBQXOcl4" target="_blank">https://www.youtube.com/watch?app=desktop&amp;v=a0glBQXOcl4</a></li>
+<li><a href="https://stackoverflow.com/questions/1722112/what-are-the-most-common-naming-conventions-in-c" target="_blank">https://stackoverflow.com/questions/1722112/what-are-the-most-common-naming-conventions-in-c</a></li>
+<li><a href="https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/" target="_blank">https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/</a></li>
+<li><a href="https://news.ycombinator.com/item?id=31436814" target="_blank">https://news.ycombinator.com/item?id=31436814</a></li>
+<li><a href="https://nitter.net/timbray/status/817025379109990402?cn=cmVwbHk%3D" target="_blank">https://nitter.net/timbray/status/817025379109990402?cn=cmVwbHk%3D</a></li>
+<li><a href="https://thenewstack.io/best-practices-for-naming-variables-what-the-research-shows/" target="_blank">https://thenewstack.io/best-practices-for-naming-variables-what-the-research-shows/</a></li>
 </ol>
-<p class="last-modified">Last modified: 202205092052</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202206041544</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

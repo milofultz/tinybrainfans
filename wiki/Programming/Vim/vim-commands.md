@@ -65,6 +65,8 @@ Go to beginning of line | `0`
 Go to first non-space character of line |`^` 
 Go to end of line | `$` 
 Go to matching bracket under cursor; e.g. `(` goes to `)` and vice versa; includes `[]{}` | `%`
+Go to next enclosing brace | `]}`
+Go to previous enclosing brace | `[{`
 Go to next page | `<c-f>`
 Go to next half page | `<c-d>`
 Go to previous page | `<c-b>`

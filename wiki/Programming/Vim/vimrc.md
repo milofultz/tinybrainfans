@@ -95,6 +95,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 ## Other Plugins and Packages
 
 - Ultimate vimrc[6] - This is a great starting point that includes a lot of fantastic plugins and settings. That being said, there is a *lot* of bloat, so don't be afraid to blow it all up and start over[4].
+- Anything by tpope[13]
 
 ## References
 
@@ -110,3 +111,4 @@ autocmd BufWritePre * :%s/\s\+$//e
 1. https://vim.fandom.com/wiki/Keep_your_vimrc_file_clean
 1. http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect
 1. https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
+1. https://github.com/tpope
