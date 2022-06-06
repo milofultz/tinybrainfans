@@ -44,3 +44,4 @@ From [madhadron](https://madhadron.com/posts/seven_languages.html):
 1. https://brianhreily.wordpress.com/2015/12/04/recreating-adams-megapode-modeler/
 1. https://www.geepawhill.org/2018/04/14/tdd-the-lump-of-coding-fallacy/
 1. https://gigamonkeys.com/code-reading/
+1. https://chelseatroy.com/2021/10/04/yow-keynote-what-counts-as-a-programming-language/
