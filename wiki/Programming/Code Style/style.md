@@ -9,10 +9,10 @@ There are different areas of code style, but anything handled via a linter or pr
 
 ## Common Practices
 
-- Utilizing vertical over horizontal space to aid readability
-- Preferring being explicit over implicit (don't be clever)
-- Constants using all caps in snake case: `FRAMES_PER_SECOND`
-- Classes having first letter capitalized: `User`
+- Utilize vertical over horizontal space to aid readability
+- Prefer being explicit over implicit (don't be clever)
+- Constants use all caps in snake case: `FRAMES_PER_SECOND`
+- Classes have first letter capitalized: `User`
 - Avoid global variables
 
 Whatever you do, just make it consistent.
