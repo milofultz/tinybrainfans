@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Use this to convert all tabs to spaces. Don't want to automate this
+# because it is super destructive and should be cautious. From:
+# https://stackoverflow.com/a/11094620/14857724
+
+# find . -name '*.md' -type f -exec zsh -c 'expand -t 2 "$0" > /tmp/e && mv /tmp/e "$0"' {} \;
+
 /usr/local/bin/python3 "$HOME/Dropbox (Personal)/Code/swiki/swiki.py" ./wiki ./ -d
 
 new_changes=$(git status | grep -i "modified")
