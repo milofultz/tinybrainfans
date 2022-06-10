@@ -1,19 +1,39 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="This design pattern is used to separate functionality, logic, and component management."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Model View Controller</title><link rel="stylesheet" href="tinystyle.css"></head><body>
 <main id="main"><article id="content"><h1 id="title">Model View Controller</h1><p>This design pattern is used to separate functionality, logic, and component management. MVC can feel or seem confusing because there is not one way to do it, and many different frameworks that utilize MVC do it differently from one another.</p>
+<h2>Flow</h2>
+<p>Let's say you want to look at the new cats on cats.com. What usually happens is:</p>
+<ul>
+<li>you, a user/client, goes to this webpage. </li>
+<li>This webpage sends a request to the cats.com server, and that request is managed by a <strong>controller</strong>. </li>
+<li>This <strong>controller</strong> asks the <strong>model</strong> for all the newest cat pictures. </li>
+<li>The <strong>model</strong> queries the database for all the newest cat pictures and gives them to the <strong>controller</strong>. </li>
+<li>The <strong>controller</strong> then turns to the <strong>view</strong> and tells it to turn these pictures into a nice viewable webpage. </li>
+<li>The <strong>view</strong> gives this nicely formatted webpage back to the <strong>controller</strong>.</li>
+<li>The <strong>controller</strong> then sends it back to you, the user or client.</li>
+</ul>
+<pre><code class="language-sequence">User-&gt;Controller  : Makes request for webpage
+Controller-&gt;Model : Requests data for page
+Model-&gt;Model      : Queries data from database
+Model-&gt;Controller : Returns queried data
+Controller-&gt;View  : Requests data as a webpage
+View-&gt;View        : Formats data to webpage
+View-&gt;Controller  : Returns webpage
+Controller-&gt;User  : Returns user&#x27;s webpage
+</code></pre>
 <h2>Components</h2>
 <h3>Model</h3>
 <p>The model is the <strong>brain</strong> of the application, responsible for getting and manipulating the data. It is often interacting with some kind of <a href="database.html">database</a> or data in a file.</p>
 <p>The model is often communicating with the <strong>controller</strong>, which is requesting data and/or updating the <strong>view</strong>. Sometimes the updating of the view is delegated to the model, sometimes to the controller.</p>
 <h3>View</h3>
 <p>This is what the user interacts with. In web development, this is usually made up of <a href="html.html">HTML</a> and <a href="css.html">CSS</a>.</p>
-<p>The view is usually told what to show by the <strong>controller</strong> by being given dynamic values, usually with some kind of template engine, like <a href="handlebars.html">Handlebars</a>, ERV, HAML, <a href="jinja2.html">Jinja2</a>, etc.</p>
+<p>The view is usually told what to show by the <strong>controller</strong> by being given dynamic values, usually with some kind of template engine, like <a href="handlebars.html">Handlebars</a>, ERV, HAML, <a href="jinja2.html">Jinja2</a>, <a href="pug.html">Pug</a>, etc.</p>
 <h3>Controller</h3>
 <p>The controller takes in user input and decides what to do with it. Usually the user interaction with the browser will go through some kind of <strong>router</strong> which will then give the controller a specific method to execute.</p>
 <p>The controller acts as a middleman between the <strong>controller</strong> and the <strong>view</strong>. It takes the user input, passes it to the <strong>model</strong> which will then return some data to the controller, who then tells the <strong>view</strong> what to display to the user.</p>
 <h3>Example Frameworks Using MVC</h3>
 <ul>
-<li>Ruby on Rails</li>
-<li>Sinatra</li>
+<li><a href="ruby.html">Ruby</a> on Rails</li>
+<li>Sinatra (<a href="ruby.html">Ruby</a>)</li>
 <li>Laravel</li>
 <li>Codeigniter</li>
 <li>Zend</li>
@@ -21,13 +41,14 @@
 <li>Backbone</li>
 <li><a href="angular.html">Angular</a></li>
 <li>Django</li>
-<li>Flask</li>
+<li>Flask (<a href="python.html">Python</a>)</li>
 <li><a href="react.html">React</a> (view)</li>
 </ul>
-<hr />
-<h3>References:</h3>
+<h2>References:</h2>
 <ol>
 <li><a href="https://www.youtube.com/watch?v=pCvZtjoRq1I" target="_blank">https://www.youtube.com/watch?v=pCvZtjoRq1I</a></li>
 <li><a href="https://www.youtube.com/watch?v=DUg2SWWK18I" target="_blank">https://www.youtube.com/watch?v=DUg2SWWK18I</a></li>
+<li><a href="https://www.learnenough.com/ruby-on-rails-7th-edition-tutorial#sec-mvc" target="_blank">https://www.learnenough.com/ruby-on-rails-7th-edition-tutorial#sec-mvc</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Model-view-controller" target="_blank">https://en.wikipedia.org/wiki/Model-view-controller</a></li>
 </ol>
-<p class="last-modified">Last modified: 202111210912</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202206092204</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
