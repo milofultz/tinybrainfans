@@ -64,7 +64,7 @@ numbers.reduce((sum, val) => sum + val); // returns 15
 const numbers = [1,2,3,4,5];
 numbers.reduce((resultArray, val) => {
   if (val % 2 === 0) {
-		resultArray.push(val);
+    resultArray.push(val);
   }
   return resultArray;
 }, []); // returns [2,4];
@@ -77,7 +77,7 @@ const numbers = [1,2,3,4,5];
 numbers.reduce((resultArray, val) => {
   if (val > 2) {
     const newNum = val / 2;
-		resultArray.push(newNum);
+    resultArray.push(newNum);
   }
   return resultArray;
 }, []); // returns [1.5, 2, 2.5];
@@ -125,7 +125,7 @@ numbers = numbers
   .filter(number => number.ticker !== 0)
   // Decrement ticker
   .map(number => {
-  	number.ticker--;
+    number.ticker--;
     return number;
   });
 ```
@@ -150,7 +150,7 @@ An example compare function:
 const array = [3,2,4,1];
 
 const compareFunction = (a, b) => {
-	if (a < b) {
+  if (a < b) {
     // leave a before b
     return -1;
   } else if (a > b) {

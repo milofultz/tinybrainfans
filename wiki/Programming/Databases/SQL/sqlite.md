@@ -19,9 +19,9 @@ A column with type `INTEGER PRIMARY KEY` is an alias for the `ROWID`, which is a
 
 ```sqlite
 CREATE TABLE IF NOT EXISTS dogs (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	dog_name TEXT,
-	good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  dog_name TEXT,
+  good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
 );
 ```
 
@@ -32,7 +32,7 @@ At the end of your schema, add the line `FOREIGN KEY(col_name) REFERENCES foreig
 ```sqlite
 -- Referencing the above table `dogs`
 CREATE TABLE IF NOT EXISTS owners (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
   dog_id INTEGER,
   FOREIGN KEY(dog_id) REFERENCES dogs(id)
@@ -53,15 +53,15 @@ Dates can be input as a string (formatted like `"YYYY-MM-DD"`) via the `date()` 
 
 ```sqlite
 CREATE TABLE IF NOT EXISTS datetimes (
-	date TEXT
+  date TEXT
 );
 
 INSERT INTO
-	dates
+  dates
 VALUES
-	(date("2021-10-01")),
-	(date("2000-01-01"));
-	
+  (date("2021-10-01")),
+  (date("2000-01-01"));
+  
 -- results in two rows being added as 
 -- [("2021-10-01"), ("2000-01-01")] 
 ```
@@ -143,10 +143,10 @@ Instead of `:memory:`, you can also use the path to a SQLite database file.
 // With escaped arguments
 
 const sql = `
-	SELECT
-		*
-	FROM
-		table
+  SELECT
+    *
+  FROM
+    table
 `;
 
 db.run(sql, function(err) {
@@ -161,12 +161,12 @@ With escaped arguments:
 
 ```javascript
 const sql = `
-	UPDATE
-		table
+  UPDATE
+    table
   SET
-		name = ?
-	WHERE
-		name = ?
+    name = ?
+  WHERE
+    name = ?
 `;
 const data = ['Ansi C', 'C'];
 

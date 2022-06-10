@@ -56,8 +56,8 @@ The `size` attribute chooses how many choices are visible at a time. The boolean
 ```html
 <label for="things">Things!</label>
 <select id="things" name="things" multiple>
-	<option value="thing1">Thing 1</option>
-	<option value="thing2" selected>Thing 2</option>
+  <option value="thing1">Thing 1</option>
+  <option value="thing2" selected>Thing 2</option>
 </select>
 ```
 

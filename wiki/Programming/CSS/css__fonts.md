@@ -21,7 +21,7 @@ A new feature that has pretty good coverage allows the use of `system-ui` in pla
 
 ```css
 @font-face {
-	font-family: 'Verlag Condensed Bold';
+  font-family: 'Verlag Condensed Bold';
   src: url('https://brandlive-upload.s3-us-west-2.amazonaws.com/933/documents/1wp6lcexy4/verlagcondensedbold.otf');
   [ unicode-range: <unicode-range>; ]
   [ font-variant: <font-variant>; ]

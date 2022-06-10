@@ -41,14 +41,14 @@ The size or length of an array needs some calculation. The built in `sizeof` fun
 int main() 
 {
     int total, single, len;
-  	int array[10];
+    int array[10];
   
     total = sizeof(array);
     single = sizeof(array[0]);
     len = total / single;
 
     printf("total: %d, single: %d,len: %d", total, single, len);
-		// total: 40, single: 4, len: 10
+    // total: 40, single: 4, len: 10
 
     return 0;
 }
@@ -64,14 +64,14 @@ void reverse(char str[], int len);
 int main() 
 {
     int total, single, len;
-  	char array[] = "hello";
+    char array[] = "hello";
   
     total = sizeof(array);
     single = sizeof(array[0]);
     len = total / single;
     printf("%d, %d, %d\n", total, single, len);
   
-  	reverse(array, len);
+    reverse(array, len);
 
     return 0;
 }

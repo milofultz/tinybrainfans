@@ -22,7 +22,7 @@ app = Flask(__name__)
 @app.route("/")
 # Execute the following function
 def hello_world():
-  	# Return the following webpage to the user
+    # Return the following webpage to the user
     return "<p>Hello, World!</p>"
 ```
 

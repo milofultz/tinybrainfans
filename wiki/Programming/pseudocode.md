@@ -32,11 +32,11 @@ A series of discrete paths that can be taken based on whether each condition is 
 
 ```pseudocode
 IF the yeast is bubbling THEN
-	Add the yeast to the dough mixture
+  Add the yeast to the dough mixture
 ELSE IF the yeast is not bubbling AND you don't have time to go to the store THEN
-	Make flatbread instead
+  Make flatbread instead
 ELSE 
-	Go to the store and get more yeast
+  Go to the store and get more yeast
 END IF
 ```
 
@@ -46,11 +46,11 @@ The case is akin to if/then/else. The difference between the two is that a case 
 
 ```pseudocode
 CASE yeast type OF
-	instant    : SET yeast amount to 1.5 tsp
-	active dry : SET yeast amount to 2 tsp
-	sourdough  : SET yeast amount to 0 tsp
-	DEFAULT    : SET yeast amount to 0 tsp
-END CASE	
+  instant    : SET yeast amount to 1.5 tsp
+  active dry : SET yeast amount to 2 tsp
+  sourdough  : SET yeast amount to 0 tsp
+  DEFAULT    : SET yeast amount to 0 tsp
+END CASE  
 ```
 
 ### While
@@ -59,8 +59,8 @@ If the condition is met, do the enclosed instructions and return to the beginnin
 
 ```pseudocode
 WHILE dough is sticky to the touch
-	Knead and fold dough three times
-	Rotate 90 degrees
+  Knead and fold dough three times
+  Rotate 90 degrees
 END WHILE
 ```
 
@@ -70,8 +70,8 @@ This is akin to while, except the condition, which is placed at the bottom, is t
 
 ```pseudocode
 REPEAT
-	Knead and fold dough three times
-	Rotate 90 degrees
+  Knead and fold dough three times
+  Rotate 90 degrees
 UNTIL dough is not sticky to the touch
 ```
 
@@ -82,10 +82,10 @@ A for loop will execute a set of instructions for each item within a group.
 ```pseudocode
 SET number of loaves to 0
 FOR each loaf of bread
-	Slice each one inch segment from one end to the other
-	Put sliced bread into paper bags
-	Place on shelf for sale
-	INCREMENT number of loaves by 1
+  Slice each one inch segment from one end to the other
+  Put sliced bread into paper bags
+  Place on shelf for sale
+  INCREMENT number of loaves by 1
 END FOR
 ```
 
@@ -96,8 +96,8 @@ This is shorthand for calling another algorithm, subroutine, or set of instructi
 ```pseudocode
 SET number of loaves to 0
 FOR each loaf of bread
-	CALL PackageBreadLoaf with this loaf of bread
-	INCREMENT number of loaves by 1
+  CALL PackageBreadLoaf with this loaf of bread
+  INCREMENT number of loaves by 1
 END FOR
 ```
 
@@ -109,7 +109,7 @@ If no exceptions are found, the exception block will be skipped. If an exception
 
 ```pseudocode
 BEGIN
-	IF the yeast is bubbling THEN
+  IF the yeast is bubbling THEN
     Add the yeast to the dough mixture
   ELSE IF the yeast is not bubbling AND you don't have time to go to the store THEN
     Make flatbread instead
@@ -117,12 +117,12 @@ BEGIN
     Go to the store and get more yeast
   END IF
 EXCEPTION
-	WHEN there is no yeast
-		Go to the store and buy yeast
-	WHEN there is no dough mixture
-		Make the dough mixture first
-	WHEN there is no store
-		Make sourdough starter
+  WHEN there is no yeast
+    Go to the store and buy yeast
+  WHEN there is no dough mixture
+    Make the dough mixture first
+  WHEN there is no store
+    Make sourdough starter
 END EXCEPTION
 ```
 

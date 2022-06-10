@@ -17,11 +17,11 @@ Create your config file in the root directory of your {{node}} project at `eslin
 
 ```json
 {
-	"extends": "eslint:recommended",
-	"rules": {
-		"semi": ["error", "always"],
-		"quotes": ["error", "double"]
-	}
+  "extends": "eslint:recommended",
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"]
+  }
 }
 ```
 
@@ -73,7 +73,7 @@ Using the [`id-match`](https://eslint.org/docs/rules/id-match) rule, you can spe
 
 ```json
 {
-	"id-match": ["error", "^(_{1,2})?[a-zA-Z0-9]+(_[a-zA-Z0-9]+)*$"]
+  "id-match": ["error", "^(_{1,2})?[a-zA-Z0-9]+(_[a-zA-Z0-9]+)*$"]
 }
 ```
 

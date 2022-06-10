@@ -22,7 +22,7 @@ To get it running, set up your `package.json` with a script to run. You can also
 
 ```json
 "scripts": {
-	"start": "node app.js",
+  "start": "node app.js",
   "dev": "nodemon app.js"
 }
 ```

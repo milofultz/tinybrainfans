@@ -20,13 +20,13 @@ Once you have these, you can create test cases and unit tests within them. The t
 
 ```python
 class WidgetTestCase(unittest.TestCase):
-  	def setUpClass()
+    def setUpClass()
   
     def setUp(self):
         self.widget = Widget('The widget')
         
     def tearDown(self):
-				pass
+        pass
 
     def test_default_widget_size(self):
         self.assertEqual(self.widget.size(), (50,50),

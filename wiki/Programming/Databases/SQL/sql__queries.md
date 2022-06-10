@@ -25,5 +25,5 @@ SELECT email, COUNT(email)
 
 ## References
 
-[duplicates]: https://learnsql.com/blog/how-to-find-duplicate-values-in-sql/	"Finding duplicate values in SQL"
+[duplicates]: https://learnsql.com/blog/how-to-find-duplicate-values-in-sql/  "Finding duplicate values in SQL"
 

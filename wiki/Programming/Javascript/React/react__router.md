@@ -170,5 +170,5 @@ function Topic() {
 
 2. https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/philosophy.md
 
-   [docs]: https://reactrouter.com/web/guides/quick-start	"React Router Quick Start"
+   [docs]: https://reactrouter.com/web/guides/quick-start "React Router Quick Start"
 

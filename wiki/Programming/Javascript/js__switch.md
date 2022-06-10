@@ -59,7 +59,7 @@ switch (number) {
     console.log('Definitely negative 1');
     break;
   case 1:
-  	console.log('True');
+    console.log('True');
     break;
   case 0:
     console.log('False');

@@ -110,7 +110,7 @@ Note: media queries don't have an exact space so far as I have found, but there 
 
 ```css
 .grid { 
-	...
+  ...
 }
 
 @media (screen) and (max-width: 800px) {
@@ -189,7 +189,7 @@ h1, h2, h3, h4 {
 }
 
 a {
-	...
+  ...
 }
 
 /* | UTILITIES */
@@ -241,11 +241,11 @@ Modules that will be reused often throughout the project (buttons, forms, media 
 }
 
   .button--white {
-		...
+    ...
   }
 
   .button--magenta {
-		...
+    ...
   }
 ```
 

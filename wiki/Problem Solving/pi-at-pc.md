@@ -46,8 +46,8 @@ An example of this would be creating an adding machine. The pseudocode for somet
 Get first number from user
 Get second number from user
 While the second number is greater than zero
-	Subtract one from the second number
-	Add one to the first number
+  Subtract one from the second number
+  Add one to the first number
 Return the first number to the user as the final sum
 ```
 

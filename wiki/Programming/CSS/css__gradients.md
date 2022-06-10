@@ -27,7 +27,7 @@ You can make an immediate switch between colors by setting starting and ending p
 
 ```css
 .selector {
-	background-image: linear-gradient(to right bottom, white 50%, orange 50%);
+  background-image: linear-gradient(to right bottom, white 50%, orange 50%);
 }
 ```
 
@@ -35,9 +35,9 @@ You can make an immediate switch between colors by setting starting and ending p
 
 ```css
 h1.gradient-text {
-	/* Create the bg gradient */
+  /* Create the bg gradient */
   background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-	/* Confine gradient area to width of content */
+  /* Confine gradient area to width of content */
   display: inline-block;
   /* Clip the bg gradient to the text area */
   -webkit-background-clip: text;

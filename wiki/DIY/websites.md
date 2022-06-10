@@ -19,8 +19,8 @@ If you are technically inclined, then you can utilize {{shell scripting|shell}} 
 #!/bin/sh
 
 for p in posts/*; do
-	echo "generating $(basename $p)..."
-	cat blog/_header.html $p blog/_footer.html > blog/$(basename $p)
+  echo "generating $(basename $p)..."
+  cat blog/_header.html $p blog/_footer.html > blog/$(basename $p)
 done
 echo "done!"
 ```

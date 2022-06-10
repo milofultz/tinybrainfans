@@ -13,7 +13,7 @@ A simple application using `argparse`:
 import argparse
 
 if __name__ == "__main__":
-  	# What will show up using the built-in help
+    # What will show up using the built-in help
     argparser = argparse.ArgumentParser(description='Create wiki at output dir from input dir.')
     # Positional arguments
     # In `args` dict, var found at `input_dir`

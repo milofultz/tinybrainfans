@@ -11,8 +11,8 @@ Here is the structure of a function definition in {{C}}.
 /*
 return-type function-name(parameter declarations, if any)
 {
-	declarations
-	statements
+  declarations
+  statements
 }
 */
 
@@ -86,7 +86,7 @@ When a function is invoked within the `main` function, a **function prototype** 
 #include <stdio.h>
 
 int add(int m, int n);
-int hooray(void); 			// if no params, void is used
+int hooray(void);       // if no params, void is used
 
 int main()
 {
@@ -94,7 +94,7 @@ int main()
 
   for (i = 0; i < 10; ++i) {
       printf("%d %d %d\n", i, add(2,i), add(-3,i));
-		  hooray();
+      hooray();
   }
   return 0;
 }
@@ -122,7 +122,7 @@ Command line args are brought in using two parameters within the `main` function
 ```c
 #include <stdio.h>
 
-int hooray(void);	// if no params, void is used
+int hooray(void); // if no params, void is used
 
 int main(int argc, char *argv[])
 {
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
 
   for (i = 1; i < argc; ++i) {
       printf("%s\n", argv[i]);
-		  hooray();
+      hooray();
   }
   
   return 0;

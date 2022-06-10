@@ -9,12 +9,12 @@ The basics of {{HTML5|HTML}} tables and {{semantic HTML}} tables.
 
 ```html
 <table summary="Extended summary for accessibility and screen readers">
-	<!-- caption or title -->
+  <!-- caption or title -->
   <caption>Caption</caption>
   <thead>
-		<!-- row -->
+    <!-- row -->
     <tr> 
-			<!-- col header -->
+      <!-- col header -->
       <th abbr="Shortened heading for accessibility/screen readers" scope="col">Header 1</th>
       <th abbr="Shortened heading for accessibility/screen readers" scope="col">Header 2</th>
     </tr>
@@ -23,7 +23,7 @@ The basics of {{HTML5|HTML}} tables and {{semantic HTML}} tables.
     <tr>
       <!-- row header -->
       <th abbr="Shortened heading for accessibility/screen readers" scope="row">Row Header</th>
-			<!-- table data -->
+      <!-- table data -->
       <td>Some data</td>
     </tr>
   </tbody>

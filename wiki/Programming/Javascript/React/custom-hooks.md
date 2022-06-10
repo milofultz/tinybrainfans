@@ -19,7 +19,7 @@ This custom hook will log whenever your input value changes.
 import { useEffect } from 'react';
 
 const useUpdateLogger = (value) => {
-	useEffect(() => console.log(value), [value]);
+  useEffect(() => console.log(value), [value]);
 };
 
 export default useUpdateLogger;

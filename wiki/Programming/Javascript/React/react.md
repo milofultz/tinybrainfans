@@ -207,7 +207,7 @@ const TrackingWrapper = ({ children }) => {
   return (
     <div className="tracking-wrapper" onClick={this.logInteraction}>
       {/* This will pass in all children components that this component encloses */}
-			{ children }
+      { children }
     </div>
   )
 };

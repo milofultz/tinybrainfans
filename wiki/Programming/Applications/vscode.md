@@ -12,18 +12,18 @@ Creating snippets is a simple way to make your life easier. To create your own, 
 ```json
 {
   "Arrow Function Component": {
-		"scope": "javascript,javascriptreact,typescript,typescriptreact",
-		"prefix": "afc",
-		"body": [
-			"const $1 = () => {",
-			"",
-			"};",
-			"",
-			"export default $1;",
-			""
-		],
-		"description": "Create arrow function React component"
-	}
+    "scope": "javascript,javascriptreact,typescript,typescriptreact",
+    "prefix": "afc",
+    "body": [
+      "const $1 = () => {",
+      "",
+      "};",
+      "",
+      "export default $1;",
+      ""
+    ],
+    "description": "Create arrow function React component"
+  }
 }
 ```
 

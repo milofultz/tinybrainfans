@@ -16,24 +16,24 @@ You will first need [masm][] to compile your assembly into machine code. masm ca
 Create a file called `hello_world.asm`. Copy this into it's contents:
 
 ```assembly
-.386									; Tell assembler to use the 386 instruction set
-.model flat, stdcall  					; Specify the flat memory model and use stdcall to pass parameters RtoL
-option casemap :none					; Force case sensitivity
+.386                                  ; Tell assembler to use the 386 instruction set
+.model flat, stdcall                  ; Specify the flat memory model and use stdcall to pass parameters RtoL
+option casemap :none                  ; Force case sensitivity
 
-include \masm32\include\windows.inc  	; Include Win32 API constants and defs
-include \masm32\include\kernel32.inc 	; Include ExitProcess
-include \masm32\include\masm32.inc 		; Include StdOut
+include \masm32\include\windows.inc   ; Include Win32 API constants and defs
+include \masm32\include\kernel32.inc  ; Include ExitProcess
+include \masm32\include\masm32.inc    ; Include StdOut
 
-includelib \masm32\lib\kernel32.lib 	; The libraries necessary for the above includes to function
+includelib \masm32\lib\kernel32.lib   ; The libraries necessary for the above includes to function
 includelib \masm32\lib\masm32.lib
 
-.data   								; The section for all initialized data
-	HelloWorld db "Hello World!", 0  	; definebyte HelloWorld to equal Hello World! plus a NUL char
+.data                                 ; The section for all initialized data
+  HelloWorld db "Hello World!", 0     ; definebyte HelloWorld to equal Hello World! plus a NUL char
 
-.code  									; Starting point for program code
-start:   								; All code must live between this and end start
-	invoke StdOut, addr HelloWorld  	; Run function StdOut with address of HelloWorld as the param 
-	invoke ExitProcess, 0 				; Invoke ExitProcess with 0 (success) as the parameter
+.code                                 ; Starting point for program code
+start:                                ; All code must live between this and end start
+  invoke StdOut, addr HelloWorld      ; Run function StdOut with address of HelloWorld as the param 
+  invoke ExitProcess, 0               ; Invoke ExitProcess with 0 (success) as the parameter
 
 end start 
 ```
@@ -69,7 +69,7 @@ Running `hello_world.exe`  in the command line should result in the message bein
 
 `invoke` is a special function in [masm][] to call functions without having to push parameters beforehand.
 
-```masm
+```assembly
 invoke SendMessage, [hWnd], WM_CLOSE, 0, 0
 
 ; equivalent to

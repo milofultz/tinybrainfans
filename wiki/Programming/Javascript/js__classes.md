@@ -17,7 +17,7 @@ A decorator is a function that accepts an object and **adds more properties or f
 ```javascript
 // this decorator makes obj more 'carlike'
 var carlike = function (obj, loc) {
-	obj.loc = loc;
+  obj.loc = loc;
   obj.move = function () {
     obj.loc++;
   };
@@ -51,14 +51,14 @@ Using shared methods allows you to save space in memory, as only one instance of
 
 ```javascript
 var Car = function (loc) {
-	var obj = {loc: loc};
-	// using UnderscoreJS (see polyfill)
+  var obj = {loc: loc};
+  // using UnderscoreJS (see polyfill)
   return _.extend(obj, carMethods);
 }
 
 var carMethods = {
   move: function () {
-	  this.loc++;
+    this.loc++;
   }
 }
 
@@ -82,7 +82,7 @@ Using `Object.create()`, we can create an object that inherits all properties of
 
 ```javascript
 var Car = function (loc) {
-	var obj = Object.create(Car.prototype);
+  var obj = Object.create(Car.prototype);
   obj.loc = loc;
   return obj;
 }
@@ -126,16 +126,16 @@ The ES6 implementation is extremely similar to the pseudoclassical implementatio
 
 ```javascript
 class Car {
-	constructor(loc) {
+  constructor(loc) {
     // var this = Object.create(Car.prototype);
-		this.loc = loc;
+    this.loc = loc;
     // copy all prototypes to `this`
     // return this;
-	}
-	
-	move() {
-		this.loc++;
-	}
+  }
+  
+  move() {
+    this.loc++;
+  }
 }
 
 var newCar = new Car(0);
@@ -149,7 +149,7 @@ Polymorphism is the design of objects to be able to share behaviors and override
 
 ```javascript
 var Shape = function (name, sides, sideLength) {
-	var obj = {
+  var obj = {
     name: name,
     sides: sides,
     sideLength: sideLength
@@ -177,18 +177,18 @@ Using `_.extend` to update the object.
 
 ```javascript
 var Shape = function (name, sides, sideLength) {
-	var obj = {
+  var obj = {
     name: name,
     sides: sides,
     sideLength: sideLength
   };
-	// using UnderscoreJS (see polyfill)
+  // using UnderscoreJS (see polyfill)
   return _.extend(obj, shapeMethods);
 };
 
 var shapeMethods = {
   calcPerimeter: function () {
-	  return this.sides * this.sideLength;
+    return this.sides * this.sideLength;
   }
 };
 
@@ -199,7 +199,7 @@ var Square = function (name, sideLength) {
 
 var squareMethods = {
   calcArea: function () {
-	  return Math.pow(this.sideLength, 2);
+    return Math.pow(this.sideLength, 2);
   }
 };
 
@@ -225,7 +225,7 @@ Shape.prototype.calcPerimeter = function () {
 
 var Square = function (name, sideLength) {
   var obj = Object.create(Square.prototype);
-	obj.name = name;
+  obj.name = name;
   obj.sides = 4;
   obj.sideLength = sideLength;
   return obj;
@@ -246,7 +246,7 @@ Using the `new` keyword.
 
 ```javascript
 var Shape = function (name, sides, sideLength) {
-	// this = Object.create(Shape.prototype);
+  // this = Object.create(Shape.prototype);
   this.name = name;
   this.sides = sides;
   this.sideLength = sideLength;

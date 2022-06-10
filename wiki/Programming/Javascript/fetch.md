@@ -12,11 +12,11 @@ The syntax for `fetch` is `fetch('URL')`. `fetch()` ALWAYS returns {{promises}}.
 ```javascript
 fetch('http://web.site')
   .then(function (response) {
-	  // response is a Promise, so it will be resolved within this function
+    // response is a Promise, so it will be resolved within this function
     return response.json();
     // response.json is *also* a Promise
   }).then(function (json) {
-		// do thing with JSON response
+    // do thing with JSON response
   }).catch(function (error) {
     console.log(error);
   });

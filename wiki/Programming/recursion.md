@@ -36,20 +36,20 @@ Using iteration:
 
 ```pseudocode
 FUNCTION getFibonacciNumber(n)
-	IF (n == 0)
-		RETURN 0
-	END IF
-	
-	SET lastFibonacciNumber to 0
-	SET fibonacciNumber to 1
-	WHILE (n > 1)
-		SET nextFibonacciNumber to (lastFibonacciNumber + fibonacciNumber)
-		SET lastFibonacciNumber to fibonacciNumber
-		SET fibonacciNumber to nextFibonacciNumber
-		DECREMENT n by 1
-	END WHILE
-	
-	RETURN fibonacciNumber
+  IF (n == 0)
+    RETURN 0
+  END IF
+  
+  SET lastFibonacciNumber to 0
+  SET fibonacciNumber to 1
+  WHILE (n > 1)
+    SET nextFibonacciNumber to (lastFibonacciNumber + fibonacciNumber)
+    SET lastFibonacciNumber to fibonacciNumber
+    SET fibonacciNumber to nextFibonacciNumber
+    DECREMENT n by 1
+  END WHILE
+  
+  RETURN fibonacciNumber
 END FUNCTION
 ```
 
@@ -57,14 +57,14 @@ Using recursion:
 
 ```pseudocode
 FUNCTION getFibonacciNumber(n)
-	/* Base Case */
-	IF (n <= 0)
-		RETURN 0
-	ELSE IF (n == 1)
-		RETURN 1
-	/* Recursive Case */
-	ELSE
-		RETURN getFibonacciNumber(n - 1) + getFibonacciNumber(n - 2)
+  /* Base Case */
+  IF (n <= 0)
+    RETURN 0
+  ELSE IF (n == 1)
+    RETURN 1
+  /* Recursive Case */
+  ELSE
+    RETURN getFibonacciNumber(n - 1) + getFibonacciNumber(n - 2)
 END FUNCTION
 ```
 
@@ -74,8 +74,8 @@ Assume a linked list is made up of nodes:
 
 ```javascript
 node1 = {
-	value: 1,
-	nextNode: /* address to next node or null */,
+  value: 1,
+  nextNode: /* address to next node or null */,
 };
 
 exampleList = [node0, node1, node2, node3];
@@ -85,13 +85,13 @@ Using iteration:
 
 ```pseudocode
 FUNCTION getListLength(list)
-	SET length to 0
-	
-	WHILE (list[length].nextNode != null)
-		length += 1
-	END FOR
-	
-	RETURN length
+  SET length to 0
+  
+  WHILE (list[length].nextNode != null)
+    length += 1
+  END FOR
+  
+  RETURN length
 END FUNCTION
 
 /* Example call */
@@ -102,11 +102,11 @@ Using recursion:
 
 ```pseudocode
 FUNCTION getListLength(list, length)
-	/* The base case */
-	IF (list[length].nextNode == null)
-		RETURN length
-	/* The recursive case */
-	ELSE
+  /* The base case */
+  IF (list[length].nextNode == null)
+    RETURN length
+  /* The recursive case */
+  ELSE
     RETURN CALL getListLength(list, length + 1)
   END IF
 END FUNCTION
@@ -123,10 +123,10 @@ An example list:
 
 ```
 exampleList = [
-	[ [ 0, 1 ] ],
-	[ [ 2 ], 3 ],
-	4,
-	[ [ [ 5 ] ] ],
+  [ [ 0, 1 ] ],
+  [ [ 2 ], 3 ],
+  4,
+  [ [ [ 5 ] ] ],
 ]
 ```
 
@@ -134,23 +134,23 @@ Using iteration:
 
 ```pseudocode
 FUNCTION flatten(list)
-	SET flattenedList to []
-	SET stack to list
-	/* The "top" of the stack is the end */
-	
-	WHILE (stack is not empty)
-		SET currentItem to item on top of stack
-		POP item off top of stack
-		IF (currentItem is an array)
-			FOR (value in currentItem)
-				PUSH value to top of list
-			END FOR
-		ELSE
-			ADD currentItem to flattenedList
-		END IF
-	END WHILE
-	
-	REVERSE flattenedList
+  SET flattenedList to []
+  SET stack to list
+  /* The "top" of the stack is the end */
+  
+  WHILE (stack is not empty)
+    SET currentItem to item on top of stack
+    POP item off top of stack
+    IF (currentItem is an array)
+      FOR (value in currentItem)
+        PUSH value to top of list
+      END FOR
+    ELSE
+      ADD currentItem to flattenedList
+    END IF
+  END WHILE
+  
+  REVERSE flattenedList
   
   RETURN flattenedList
 END FUNCTION
@@ -160,17 +160,17 @@ Using recursion:
 
 ```pseudocode
 FUNCTION flatten(list)
-	SET flattenedList to []
-	FOR (item in list)
-		/* Base case */
-		IF (item is not an array)
-			ADD item to flattenedList
-		/* Recursive case */
-		ELSE
-			CONCATENATE flatten(item) to flattenedList
-		END IF
-	END FOR
-	RETURN flattenedList
+  SET flattenedList to []
+  FOR (item in list)
+    /* Base case */
+    IF (item is not an array)
+      ADD item to flattenedList
+    /* Recursive case */
+    ELSE
+      CONCATENATE flatten(item) to flattenedList
+    END IF
+  END FOR
+  RETURN flattenedList
 END FUNCTION
 ```
 

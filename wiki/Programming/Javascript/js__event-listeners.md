@@ -7,7 +7,7 @@ Event listeners in {{Javascript}} run a function on the emitting of an event, in
 
 ```javascript
 element.addEventListener('eventType', function(e) {
-	// do something
+  // do something
 });
 ```
 
@@ -54,7 +54,7 @@ document.getElementById('outer').addEventListener('click', () => {
 
 // This will fire only when a specific child or any of its children are clicked (delegated to specific children)
 document.getElementById('outer').addEvenetListener('click', () => {
-	const innerOne = event.target.closest('#inner-1');
+  const innerOne = event.target.closest('#inner-1');
   if (innerOne) {
     console.log('delegated');
   }

@@ -17,13 +17,13 @@ An example makefile could be as follows (from [2]):
 
 ```makefile
 blah: blah.o
-	cc blah.o -o blah # Runs third
+  cc blah.o -o blah # Runs third
 
 blah.o: blah.c
-	cc -c blah.c -o blah.o # Runs second
+  cc -c blah.c -o blah.o # Runs second
 
 blah.c:
-	echo "int main() { return 0; }" > blah.c # Runs first
+  echo "int main() { return 0; }" > blah.c # Runs first
 ```
 
 > [This] Makefile has three separate *rules*. When you run `make blah` in the terminal, it will build a program called `blah` in a series of steps:
@@ -56,11 +56,11 @@ The `all` target will specify all the rules you want to run inplace of a single 
 all: one two three
 
 one:
-	# commands
+  # commands
 two:
-	# commands
+  # commands
 three:
-	# commands
+  # commands
 ```
 
 ### `clean`

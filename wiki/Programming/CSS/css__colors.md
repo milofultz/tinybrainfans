@@ -16,7 +16,7 @@ description: These are color sets that I think are pleasant.
   --pink:   #b05279;
   
   --white:  #d6d6d6;
-  --gray: 	#797979;
+  --gray:   #797979;
   --black:  #2e2e2e;
 }
 ```
@@ -124,7 +124,7 @@ description: These are color sets that I think are pleasant.
   --dark-red:    #aa0000; /* candy apple */
   --dark-orange: #aa5500; /* tan */
   --dark-green:  #00aa00; /* grass */
-  --dark-cyan: 	 #00aaaa; /* tiffany blue */
+  --dark-cyan:   #00aaaa; /* tiffany blue */
   --dark-blue:   #0000aa; /* deep blue */
   --dark-purple: #aa00aa; /* magenta */
   
@@ -136,8 +136,8 @@ description: These are color sets that I think are pleasant.
   --purple: #ff55ff; /* pink */
   
   --white:      #ffffff;
-	--gray-light: #aaaaaa;
-  --gray-dark: 	#555555;
+  --gray-light: #aaaaaa;
+  --gray-dark:  #555555;
   --black:      #000000;
 }
 ```

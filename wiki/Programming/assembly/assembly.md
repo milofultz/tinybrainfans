@@ -117,14 +117,14 @@ ret
 This will push three values to the stack **in reverse order of what the function expects, because LIFO**, and then invokes the function, which will use those values.
 
 ```assembly
-push [var] ; Push last parameter first
-push 216   ; Push the second parameter
-push eax   ; Push first parameter last
+push [var]   ; Push last parameter first
+push 216     ; Push the second parameter
+push eax     ; Push first parameter last
 
 call _myFunc ; Call the function (assume C naming)
 
-add esp, 12	; Flush the three 4 byte values on the stack by 
-			; adding 12 to the stack pointer
+add esp, 12  ; Flush the three 4 byte values on the stack by 
+             ; adding 12 to the stack pointer
 ```
 
 ## Games

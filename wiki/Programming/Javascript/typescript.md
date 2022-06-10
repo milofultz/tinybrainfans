@@ -81,7 +81,7 @@ const getNameAndAge =
 
 // with type or interface
 type Person = {
-	name: string,
+  name: string,
   age: number
 };
 
@@ -144,7 +144,7 @@ With `useState` in {{React}} hooks, you will need to use a special syntax in cre
 
 ```typescript
 type HashtagListener {
-	...
+  ...
 }
 
 const [editedHashtagListeners, setEditedHashtagListeners] = useState<HashtagListener[]>([]);
@@ -224,7 +224,7 @@ type Roles = 'owner' | 'admin';
 
 interface User {
   name: string;
-	channels: {
+  channels: {
     // channel at `index` must be a string
     // value must be an array containing values within Roles
     [index: string]: Roles[];

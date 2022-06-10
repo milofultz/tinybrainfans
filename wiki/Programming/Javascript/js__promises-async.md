@@ -59,10 +59,10 @@ const getDataFromAPI = (url) => {
 const mockOrderedUrls = ['url1', 'url2', 'url3'];
 
 function main (orderedUrls) {  
-	let apiData = []; // an array of ordered resolved values
+  let apiData = []; // an array of ordered resolved values
   
   const promiseFactory = (previousResult, newUrl) => {
-		// do check if it is the first invocation with no data
+    // do check if it is the first invocation with no data
     if (previousResult !== undefined) {
       apiData.push(previousResult);
     }
@@ -75,14 +75,14 @@ function main (orderedUrls) {
     result = result
       .then((data) => {
         // do check if it is the first invocation, push no data
-      	if (index === 0) {
+        if (index === 0) {
           promiseFactory(undefined, url);
         } else {
           promiseFactory(data, url);
         }
       })
-	    .catch(error => {
-      	// handle error
+      .catch(error => {
+        // handle error
       });
   });
   
@@ -103,7 +103,7 @@ const getDataFromAPI = () => {
 };
 
 async function main () {
-	let apiData;
+  let apiData;
   try {
     apiData = await getDataFromAPI();
   } catch (error) {
@@ -130,7 +130,7 @@ async function main (urls) {
     const result = urls.map(url => getDataFromAPI(url));
     apiData = await Promise.all(result);
   } catch (error) {
-		// handle error
+    // handle error
   }
   
   // do stuff
@@ -152,12 +152,12 @@ const mockOrderedUrls = ['url1', 'url2', 'url3'];
 async function main (urls) {
   let apiData = []; // an array of ordered resolved values
   try {
-		urls.forEach(async url => {
+    urls.forEach(async url => {
       const result = await getDataFromAPI(url);
       apiData.push(result);
     }
   } catch (error) {
-		// handle error
+    // handle error
   }
   
   // do stuff

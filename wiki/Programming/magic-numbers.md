@@ -10,7 +10,7 @@ Magic numbers are numbers that have no semantic meaning within the program. Thes
 ```javascript
 // BAD: Magic Numbers
 function calculateTotal(price) {
-	return price + price * 0.09 + 2;
+  return price + price * 0.09 + 2;
 }
 
 // GOOD: Semantic Meaning!

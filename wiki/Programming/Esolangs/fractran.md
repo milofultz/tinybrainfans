@@ -73,7 +73,7 @@ Then we can write out the step in plain English:
 
 ```
 If the composition of n contains {at least 1 in register 3}, then
-	decrement {1 in register 3} AND
+  decrement {1 in register 3} AND
   increment {1 in register 2}.
 ```
 
@@ -81,8 +81,8 @@ Or in a more discrete and program-ish way:
 
 ```
 if (r3 >= 1) {
-	r3 -= 1;
-	r2 += 1;
+  r3 -= 1;
+  r2 += 1;
 }
 ```
 
@@ -91,10 +91,10 @@ Using a more extreme example, we could use a fraction like `365,625 / 242`, or `
 ```
 if (r2 >= 1 && r11 >= 2) {
   r2  -= 1;
-	r11 -= 2;
-	r3  += 2;
-	r5  += 5;
-	r13 += 1;
+  r11 -= 2;
+  r3  += 2;
+  r5  += 5;
+  r13 += 1;
 }
 ```
 
@@ -110,15 +110,15 @@ These are some things I've deduced after messing with this and seeing some progr
 
   ```pseudocode
   while true {
-  	if (r3 >= 1) {
-  		r3 -= 1;
-  		r2 += 1;
-  	} else if (r2 >= 2) {
-  		r2 -= 2;
-  		r5 += 1;
-  	} else {
-  		break;
-  	}
+    if (r3 >= 1) {
+      r3 -= 1;
+      r2 += 1;
+    } else if (r2 >= 2) {
+      r2 -= 2;
+      r5 += 1;
+    } else {
+      break;
+    }
   }
   ```
 

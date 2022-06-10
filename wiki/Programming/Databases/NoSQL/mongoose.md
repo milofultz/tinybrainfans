@@ -93,7 +93,7 @@ This makes it easy to encapsulate the whole thing inside of a file for export in
 const mongoose = require('mongoose');
 
 const attendeeSchema = new mongoose.Schema({
-	...
+  ...
 });
 
 const Attendee = mongoose.model('Attendee', attendeeSchema);

@@ -46,7 +46,7 @@ You define a function at that property, and it will run every time the `readySta
 
 ```javascript
 xhr.onreadystatechange = function () {
-	// if the readyState property of the XHR object ('xhr') is 4
+  // if the readyState property of the XHR object ('xhr') is 4
   // AND the status in the XHR object is 'OK'
   if (this.readystatechange == 4 && this.status === 200) {
     // get the responseText from the XHR object ('xhr')
@@ -61,7 +61,7 @@ xhr.onreadystatechange = function () {
 
 ```javascript
 xhr.onprogres = function () {
-	// Show the loading image or something that denotes waiting	
+  // Show the loading image or something that denotes waiting 
 }
 ```
 
@@ -71,7 +71,7 @@ xhr.onprogres = function () {
 
 ```javascript
 xhr.onload = function () {
-	// if the status in the XHR object (xhr) is 'OK'
+  // if the status in the XHR object (xhr) is 'OK'
   if (this.status === 200) {
     // get the responseText from the XHR object ('xhr')
     console.log(this.responseText)

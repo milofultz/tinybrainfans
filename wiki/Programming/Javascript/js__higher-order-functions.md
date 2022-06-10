@@ -25,7 +25,7 @@ In the example below, a function called `counter` keeps track of how many times 
 
 ```javascript
 var counter = function () {
-	var count = 0;
+  var count = 0;
   console.log(count);
   var add1 = function () {
     count++;

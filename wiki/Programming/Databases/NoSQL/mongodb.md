@@ -34,7 +34,7 @@ mongoose.connect('mongodb://localhost:27017/test', { // create connection to loc
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() { 													 // Inside here is where the action happens
+db.once('open', function() {                           // Inside here is where the action happens
   // Create schema for collection
   const kittySchema = new mongoose.Schema({
     name: String,
@@ -51,7 +51,7 @@ db.once('open', function() { 													 // Inside here is where the action ha
   });         // Create a new document of Cat
   console.log(kitty.name);                             // 'Zildjian'
   kitty.save()
-    .then(() => console.log('meow'));        					 // Save the new document in the Cat collection
+    .then(() => console.log('meow'));                  // Save the new document in the Cat collection
 });
 ```
 
@@ -133,11 +133,11 @@ And to get the field back with a `null` value in the place of that missing field
 ... { $match: { id: 1 }},
 ... // show all fields and cast summary to null if missing
 ... { $project: {
-... 	_id: 0,
-... 	id: 1,
-... 	summary: { $ifNull: [ '$summary', null ]},
-... 	recommend: 1,
-... 	helpfulness: 1
+...   _id: 0,
+...   id: 1,
+...   summary: { $ifNull: [ '$summary', null ]},
+...   recommend: 1,
+...   helpfulness: 1
 ... }}
 ... ]);
 ```

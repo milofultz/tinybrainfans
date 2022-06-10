@@ -83,7 +83,7 @@ import { Channel } from '../types/types';
 
 
 export interface ExampleContextInformation {
-	name: string;
+  name: string;
   age: number;
   setName: Function;
   setAge: Function;
@@ -92,7 +92,7 @@ export interface ExampleContextInformation {
 // Fill this in with the default values. We will redefine the setters
 // once in the component where this is used.
 export const ExampleContext = createContext<ExampleContextInformation>({ 
-	name: '',
+  name: '',
   age: null,
   setName: () => {},
   setAge: () => {},
@@ -108,23 +108,23 @@ import { ExampleContext, ExampleContextInformation } from './ExampleContext';
 import { AnotherContext, AnotherContextInformation } from './AnotherContext';
 
 interface GlobalProps { 
-	exampleContextObject: ExampleContextInformation, 
-	anotherContextObject: AnotherContextInformation,
+  exampleContextObject: ExampleContextInformation, 
+  anotherContextObject: AnotherContextInformation,
 }
 
 export function GlobalContext(props: any) {
-	const {
-		exampleContextObject,
-		anotherContextObject
-	}: GlobalProps = props;
+  const {
+    exampleContextObject,
+    anotherContextObject
+  }: GlobalProps = props;
 
-	return (
+  return (
     <ExampleContext.Provider value={exampleContextObject}>
       <AnotherContext.Provider value={anotherContextObject}>
         {props.children}
       </AnotherContext.Provider>
     </ExampleContext.Provider>
-	);
+  );
 }
 ```
 
@@ -143,11 +143,11 @@ export default function App() {
   const [anotherVar, setAnotherVar] = useState<number>(0);
   
   const exampleContextObject: ExampleContextInformation = {
-		name,
+    name,
     age,
     setName: (name: string) => setName(name),
     setAge: (age: number) => setAge(age),
-	};
+  };
   
   const anotherContextObject: AnotherContextInformation = {
     anotherVar,
@@ -159,7 +159,7 @@ export default function App() {
       exampleContextObject={exampleContextObject}
       anotherContextObject={anotherContextObject}
      >
-    	{/* Components in here have access to contexts via useContext */}
+      {/* Components in here have access to contexts via useContext */}
       <ChildComponent />
     </GlobalContext>
   )
@@ -198,12 +198,12 @@ const testComponent = () => {
   
   // this will run on every rerender (generally don't want this)
   useEffect(() => {
-		// do stuff
+    // do stuff
   });
   
-	// this will run the function only once on mount (still not ideal)
+  // this will run the function only once on mount (still not ideal)
   useEffect(() => {
-		// do stuff
+    // do stuff
   }, []);
   
   // this will run anytime that variables `names` or `obj.age` are changed
@@ -228,7 +228,7 @@ In general, you should not try and overload a useEffect call. If you have differ
 ```react
 useEffect(() => {
   getUserData(usernameInput)
-  	.then(data => setUserData(data));
+    .then(data => setUserData(data));
 }, [usernameInput]);
 
 useEffect(() => {
@@ -312,7 +312,7 @@ function TextInputWithFocusButton() {
   return (
     <>
       <input ref={inputEl} type="text" />
-    	<p>Input value is {inputEl.current.value}</p>
+      <p>Input value is {inputEl.current.value}</p>
       {/* The value will be `null` until a rerender occurs */}
     </>
   );
@@ -326,7 +326,7 @@ function TextInputWithFocusButton() {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
   
-	const inputChangeHandler = () => {
+  const inputChangeHandler = () => {
     if (inputRef?.current?.value) {
       setInputValue(inputRef.current.value);
     }
@@ -339,7 +339,7 @@ function TextInputWithFocusButton() {
         onChange={ inputChangeHandler }
         type="text"
       />
-    	<p>Input value is { inputValue }</p>
+      <p>Input value is { inputValue }</p>
     </>
   );
 }
@@ -361,7 +361,7 @@ interface Name {
 
 const testComponent = () => {  
   // this will create a getter and setter for state variable `names`
-	const [counter, setCounter] = useState<number>(0);
+  const [counter, setCounter] = useState<number>(0);
   const [names, setNames] = useState<Name[]>([]);
   
   // sets counter 
@@ -369,14 +369,14 @@ const testComponent = () => {
     setCounter(counter + 1);
   };
   
-	const onSubmit = (firstName, lastName) => {
+  const onSubmit = (firstName, lastName) => {
     setNames([
-    	...names,
-  	  {
+      ...names,
+      {
         first: firstName,
         last: lastName
       }
-	  ]);
+    ]);
   }  
   
   ...

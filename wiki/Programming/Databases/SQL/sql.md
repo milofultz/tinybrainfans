@@ -48,16 +48,16 @@ What it sounds like, will make a new table. Use `IF NOT EXISTS` to skip if table
 
 ```sql
 CREATE TABLE friends (
-	column DataType TableConstraint DEFAULT dafault_value,
-	...
+  column DataType TableConstraint DEFAULT dafault_value,
+  ...
 );
 ```
 
 ```sql
 CREATE TABLE IF NOT EXISTS dogs (
-	id INTEGER AUTO_INCREMENT PRIMARY KEY,
-	dog_name VARCHAR(10),
-	good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  dog_name VARCHAR(10),
+  good_boy INTEGER DEFAULT 1  -- Boolean, default is TRUE
 );
 ```
 
@@ -140,8 +140,8 @@ The **WHERE** clause helps filter out results via a condition. **AND** or **OR**
 SELECT columnName, anotherColumn 
 FROM tableName
 WHERE a = b
-	AND a = c
-	OR c = b
+  AND a = c
+  OR c = b
 ```
 
 Results of a query can be sorted via the **ORDER BY** keywords, followed by **ASC** or **DESC** (**ASC** is the default).
@@ -178,13 +178,13 @@ LIMIT num_limit OFFSET num_offset
 SELECT * 
 FROM clients c
 WHERE c.client = 17
-	AND c.client IN (
-		# The following line combines the values of `active_client` and `alt_clients`, separated by a comma 
-		# and effectively creates a new field called 'all_clients'.
-		SELECT CONCAT(active_client, ',', alt_clients) AS all_clients 
-		FROM users
-		WHERE userId = 7070
-	);
+  AND c.client IN (
+    # The following line combines the values of `active_client` and `alt_clients`, separated by a comma 
+    # and effectively creates a new field called 'all_clients'.
+    SELECT CONCAT(active_client, ',', alt_clients) AS all_clients 
+    FROM users
+    WHERE userId = 7070
+  );
 ```
 
 ### JOIN
@@ -215,10 +215,10 @@ Where `n` is the two table's intersection, `u` is the union of the two tables, a
 SELECT * 
 FROM table1
 FULL JOIN table2 -- or INNER or LEFT, etc.
-	ON table1.id = table2.id
+  ON table1.id = table2.id
 -- This can be altered to exclude what overlaps
 WHERE table1.id IS NULL 
-	OR table2.id IS NULL
+  OR table2.id IS NULL
 ```
 
 ### AS
@@ -249,7 +249,7 @@ These functions can also be run on subsections of these columns using **GROUP BY
 ```sql
 -- returns an entry for the player with lowest ERA on each team
 SELECT player_name, 
-	MIN(era) FROM pitcher_stats
+  MIN(era) FROM pitcher_stats
 GROUP BY team_name;
 ```
 
@@ -258,7 +258,7 @@ Further filtering of what should be included in each GROUP can be done with **HA
 ```sql
 -- returns an entry for the player with lowest ERA above 2 on each team
 SELECT player_name, 
-	MIN(era) FROM pitcher_stats
+  MIN(era) FROM pitcher_stats
 GROUP BY team_name
 HAVING era > 2;
 ```
@@ -270,9 +270,9 @@ You can use **SELECT EXISTS (...)** with an enclosed query to return either a 0 
 ```mysql
 -- will return 1 if any rows are found where the name field contains 'John'
 SELECT EXISTS (
-	SELECT * 
+  SELECT * 
   FROM example_table
-	WHERE name = 'John'
+  WHERE name = 'John'
 );
 ```
 
@@ -298,7 +298,7 @@ With incomplete data or default values, you can choose which exact columns you w
 ```sql
 INSERT INTO mytable (column_name, another_column_name)
 VALUES (value_or_expr, another_value_or_expr),
-	(value_or_expr_2, another_value_or_expr_2);
+  (value_or_expr_2, another_value_or_expr_2);
 ```
 
 ### UPDATE / SET
@@ -311,9 +311,9 @@ It is recommended to query the items you are going to update before updating the
 -- Update all costs of candy in food I like by raising them 3%
 UPDATE food_i_like
 SET cost = cost * 1.03,
-	updated = "2021-01-01"
+  updated = "2021-01-01"
 WHERE 
-	type = "candy";
+  type = "candy";
 ```
 
 ### DELETE FROM 
@@ -376,7 +376,7 @@ There are many different opinions about how to format correctly (see below), but
 
 ```sql
 SELECT
-	r.last_name,
+  r.last_name,
   (
     SELECT
       MAX(YEAR(championship_date))
@@ -387,16 +387,16 @@ SELECT
       AND c.confirmed = 'Y'
   ) AS last_championship_year
 FROM 
-	riders AS r
+  riders AS r
 WHERE 
-	r.last_name IN (
+  r.last_name IN (
     SELECT
-    	c.last_name
+      c.last_name
     FROM 
-    	champions AS c
+      champions AS c
     WHERE 
-    	YEAR(championship_date) > '2008'
-    	AND c.confirmed = 'Y'
+      YEAR(championship_date) > '2008'
+      AND c.confirmed = 'Y'
   );
 ```
 

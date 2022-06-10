@@ -48,12 +48,12 @@ The contents of your **app.js** may look like this, containing state within the 
 
 ```javascript
 const app = Vue.createApp({
-	data() {
-		return {
-			firstName: 'Jane',
+  data() {
+    return {
+      firstName: 'Jane',
       lastName: 'Doe',
       imageURL: 'example.com',
-		}
+    }
   }
 });
 ```
@@ -72,7 +72,7 @@ The contents of your **app.js** may look like this, containing methods within th
 
 ```javascript
 const app = Vue.createApp({
-	data() {
+  data() {
     return {
       firstName: 'Bob',
     };

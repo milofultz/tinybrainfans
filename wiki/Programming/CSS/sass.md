@@ -56,23 +56,23 @@ Nesting is extremely useful in {{BEM}}, as the otherwise long and ugly class nam
 
 // good
 .block {
-	...
-	
-	&--modifier {  // & === `.block`
-	  ...
-	}
-	
-	&__element {
-	  ...
-	  
-	  &:hover {
-	  	...
-	  }
-	  
-	  &--modifier {
-	    ...
-	  }
-	}
+  ...
+  
+  &--modifier {  // & === `.block`
+    ...
+  }
+  
+  &__element {
+    ...
+    
+    &:hover {
+      ...
+    }
+    
+    &--modifier {
+      ...
+    }
+  }
 }
 ```
 
@@ -121,7 +121,7 @@ Functions are created by using `@function` with a name and a parameter list. Ins
 
 // called
 p {
-	margin: divide(60, 2) * 1px;
+  margin: divide(60, 2) * 1px;
 }
 ```
 
@@ -231,14 +231,14 @@ The difference between this and a mixin is instead of bringing *code into anothe
 }
 
 .long-panel {
-	@extend %panel;
-	width: 1000px;
+  @extend %panel;
+  width: 1000px;
 }
 
 // compiled result
 .big-panel,
 .long-panel {
-	background-color: red;
+  background-color: red;
   height: 70px;
   border: 2px solid green;
 }
@@ -249,7 +249,7 @@ The difference between this and a mixin is instead of bringing *code into anothe
 }
 
 .long-panel {
-	width: 1000px;
+  width: 1000px;
 }
 ```
 

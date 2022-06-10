@@ -29,7 +29,7 @@ Writing {{HTML}} in Pug is very similar to {{Emmet}} shorthand/selectors in {{CS
 ```
 doctype html
 html(lang="en")
-	body
+  body
     header#header.header.header__wrapper
       .header__logo
         span
@@ -40,14 +40,14 @@ html(lang="en")
 //- outputs
 
 //- <!DOCTYPE html>  
-//-	<html lang="en">
+//- <html lang="en">
 //-   <body>
-//-   	<header id="header" class="header header__wrapper">
-//-   	  <div class="header__logo">
-//-   	    <span><img src="..." alt="Logo" /> Some &lt;b&gt;text&lt;/b&gt;!</span>
-//-   	  </div>
-//-   	  <h1>Company Name</h1>
-//-   	</header>
+//-     <header id="header" class="header header__wrapper">
+//-       <div class="header__logo">
+//-         <span><img src="..." alt="Logo" /> Some &lt;b&gt;text&lt;/b&gt;!</span>
+//-       </div>
+//-       <h1>Company Name</h1>
+//-     </header>
 //-   </body>
 //- </html>
 ```
@@ -101,9 +101,9 @@ p !{'this <b>is it</b>'}
 - const test = "Yeah!";
 
 p
-	span thing!
-	= test
-	
+  span thing!
+  = test
+  
 //- Outputs:
 //- <p><span>thing!</span>Yeah!</p>
 ```
@@ -125,8 +125,8 @@ p.
   up on multiple lines
 
 p
-	img(src="stuff")
-	| This works, too.
+  img(src="stuff")
+  | This works, too.
   
 //- outputs
 //- <p>This text can be broken
@@ -220,10 +220,10 @@ each item in items
 
 ```
 - 
-	var people = {
-		'John': 'Johnson',
-		'Ashley': 'Ashtown',
-	};
+  var people = {
+    'John': 'Johnson',
+    'Ashley': 'Ashtown',
+  };
 
 each last, first in people
   p= first + ' ' + last
@@ -243,12 +243,12 @@ The mixin needs to be declared and defined. It's usually easiest to do this in a
 //- Here the mixins are declared
 
 mixin makeStrong(text)
-	strong= text
+  strong= text
 
 mixin makeList(list)
-	ul.generated-list
-		each item in list
-			li= item
+  ul.generated-list
+    each item in list
+      li= item
 ```
 
 Then the file that will use them needs to include that file:
@@ -260,9 +260,9 @@ include _mixins.pug
 
 h1 This is my list!
 .contents
-	p
-		+makeStrong('I love these foods!')
-	+makeList(faveFoods)
+  p
+    +makeStrong('I love these foods!')
+  +makeList(faveFoods)
 ```
 
 Compiling this will return this HTML:
@@ -270,11 +270,11 @@ Compiling this will return this HTML:
 ```
 <h1>This is my list!</h1>
 <div class="contents">
-	<p><strong>I love these foods!</strong></p>
-	<ul class="generated-list">
-		<li>pizza</li>
-		<li>pie</li>
-		<li>spaghetti</li>
+  <p><strong>I love these foods!</strong></p>
+  <ul class="generated-list">
+    <li>pizza</li>
+    <li>pie</li>
+    <li>spaghetti</li>
   </ul>
 </div>
 ```
@@ -285,8 +285,8 @@ You can pass in a block to a mixin, where a block is some pug that is "within" t
 
 ```
 mixin wrapper
-	section.wrapper
-		block
+  section.wrapper
+    block
 ```
 
 In the main file:
@@ -295,16 +295,16 @@ In the main file:
 include _mixins.pug
 
 +wrapper
-	h1 the REAL content
-	p.yeah this is some stuff
+  h1 the REAL content
+  p.yeah this is some stuff
 ```
 
 Outputs:
 
 ```
 <section class="wrapper">
-	<h1>the REAL content</h1>
-	<p class="yeah">this is some stuff</p>
+  <h1>the REAL content</h1>
+  <p class="yeah">this is some stuff</p>
 </section>
 ```
 

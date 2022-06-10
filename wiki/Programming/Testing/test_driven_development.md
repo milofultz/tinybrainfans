@@ -34,7 +34,7 @@ Once you have this, you would want to create more tests. And sometimes that will
 ```javascript
 const add = (first, second) => {
   if (first === 2) {
- 	  return 4; 
+    return 4; 
   } else {
     return 6;
   }
@@ -62,7 +62,7 @@ const add = (first, second) => {
   } else if (second === undefined) {
     return first;
   }
-	return first + second;
+  return first + second;
 }
 
 // tests
@@ -102,15 +102,15 @@ Use [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) t
 // works, but brittle
 const getTaxRates = (country) => {
   return fetch(`external.api/example/${country}`)
-  	.then(response => response.json())
-  	.then(taxRateInfo => taxRateInfo.rate)
+    .then(response => response.json())
+    .then(taxRateInfo => taxRateInfo.rate)
 }
 
 // best, robust
 const getTaxRates = (fetch, country) => {
   return fetch(`external.api/example/${country}`)
-  	.then(response => response.json())
-  	.then(taxRateInfo => taxRateInfo.rate)
+    .then(response => response.json())
+    .then(taxRateInfo => taxRateInfo.rate)
 }
 ```
 
@@ -125,11 +125,11 @@ This example uses {{Jest}} and their mock functions, but any mock function that 
 
 // This will properly mock the return value of the external API
 const mockFetchImplementation = () => {
-	return Promise.resolve({
-  	json: () => Promise.resolve({
-  		rate: 10
-		});
-	});
+  return Promise.resolve({
+    json: () => Promise.resolve({
+      rate: 10
+    });
+  });
 };
 
 // brittle implementation
@@ -141,9 +141,9 @@ global.fetch = jest.fn(mockFetchImplementation);
 describe('getTaxRates', () => {
   it('gets a tax rate for a given country (brittle)', () => {
     return getTaxRates('DE')
-    	.then(taxRate => {
-      	expect(taxRate).toBe(10);
-      	expect(fetch).toHaveBeenCalledTimes(1);
+      .then(taxRate => {
+        expect(taxRate).toBe(10);
+        expect(fetch).toHaveBeenCalledTimes(1);
       });
   });
 });
@@ -157,9 +157,9 @@ const fakeFetch = jest.fn(mockFetchImplementation);
 describe('getTaxRates', () => {
   it('gets a tax rate for a given country (brittle)', () => {
     return getTaxRates(fakeFetch, 'DE')
-    	.then(taxRate => {
-      	expect(taxRate).toBe(10);
-      	expect(fetch).toHaveBeenCalledTimes(1);
+      .then(taxRate => {
+        expect(taxRate).toBe(10);
+        expect(fetch).toHaveBeenCalledTimes(1);
       });
   });
 });

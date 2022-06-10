@@ -61,7 +61,7 @@ pool.connect(function (err, client, done) { // Connect to the DB
   });
   // Build a dynamic query using `age`
   var ageQuery = format('SELECT * from numbers WHERE age = %L', age);
-	// Query the DB for all rows from the numbers table where age is = 732
+  // Query the DB for all rows from the numbers table where age is = 732
   client.query(ageQuery, function (err, result) {
     if (err) {
       console.log(err);
@@ -95,19 +95,19 @@ To create a schema, use  `CREATE SCHEMA name`, followed by the other components.
 
 ```sql
 CREATE SCHEMA schema_example
-	CREATE TABLE people(
+  CREATE TABLE people(
     id INT PRIMARY KEY,
     name TEXT NOT NULL,
     age INT,
     birthday DATE
   )
   CREATE VIEW john_club AS
-  	SELECT 
-  		*
-  	FROM
-  		people
-  	WHERE
-  		name = 'John';
+    SELECT 
+      *
+    FROM
+      people
+    WHERE
+      name = 'John';
 ```
 
 ## Querying JSONB Columns
@@ -116,9 +116,9 @@ The way to retrieve the values found at given columns in a JSONB column is by us
 
 ```postgres
 SELECT
-	column_name -> 'property_name' AS display_name
+  column_name -> 'property_name' AS display_name
 FROM
-	table_name;
+  table_name;
 ```
 
 ## Commands
@@ -136,14 +136,14 @@ I found this quirky syntax when working on a project recently and thought it wou
 
 ```sql
 CREATE TABLE agents (
-	id INT PRIMARY KEY,
+  id INT PRIMARY KEY,
   name VARCHAR(64)
 );
 
 INSERT INTO 
-	agents (name)
+  agents (name)
 VALUES
-	('Bob');
+  ('Bob');
 
 CREATE TABLE bullshit (
   id INT primary key,
@@ -152,11 +152,11 @@ CREATE TABLE bullshit (
 );
 
 INSERT INTO 
-	bullshit (name, age)
+  bullshit (name, age)
   SELECT 
-  	name, 1337
+    name, 1337
   FROM
-  	agents;
+    agents;
 
 SELECT * FROM bullshit;
 

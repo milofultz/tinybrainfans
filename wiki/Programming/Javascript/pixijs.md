@@ -21,7 +21,7 @@ Create an `index.html` file and populate it with the following:
   <!-- Import the most recent PixiJS -->
   <script src="https://pixijs.download/release/pixi.js"></script>
   <script>
-		// Create the application helper
+    // Create the application helper
     let app = new PIXI.Application({ width: 640, height: 360 });
     // Add the Application's `view` to the body
     document.body.appendChild(app.view);

@@ -55,7 +55,7 @@ Claude Heiland-Allen made a fully Javascript version, making a blob and renderin
       for (var t = 0; t < n / 2; t++) {
         // For each channel
         for (var c = 0; c < 2; c++) {
-      	  // Make bytebeat
+          // Make bytebeat
           var k = 2 * c - 1;
           var o = t & ((k * t) >> ((-k * t) >> ((t >> 8) & (t >> 16))));
           // Write output of bytebeat to end of WAV file

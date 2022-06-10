@@ -94,8 +94,8 @@ Lets make our first context. Append this to our `sublime-syntax` file:
 
 ```yaml
 contexts:
-	main:
-		# The main context is the initial starting point of our syntax.
+  main:
+    # The main context is the initial starting point of our syntax.
     # Include other contexts from here (or specify them directly).
     - match: '\d'
       scope: constant.numeric
@@ -135,7 +135,7 @@ That last line, `push: function`, will now move us out of the default context of
       push: function
       
   function:
-		- match: '\)'
+    - match: '\)'
       scope: variable.function
       pop: true
 ```
@@ -144,15 +144,15 @@ At the moment, only numbers that are outside of our parentheses will be highligh
 
 ```yaml
 contexts:
-	main:
-		# The main context is the initial starting point of our syntax.
+  main:
+    # The main context is the initial starting point of our syntax.
     # Include other contexts from here (or specify them directly).
     - match: '\('
       scope: variable.function
       push: function
       
   function:
-		- match: '\)'
+    - match: '\)'
       scope: variable.function
       pop: true
     

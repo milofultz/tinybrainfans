@@ -59,15 +59,15 @@ There are a zillion operators to use in conditionals that are all slightly diffe
 # If var_name is equal to other_var
 if [[ "$var_name" -eq "$other_var" ]]
 then
-	# stuff happens
+  # stuff happens
 fi
 
 # If var_name is NOT equal to other_var
 if [[ ! "$var_name" -eq "$other_var" ]]
 then
-	# stuff happens
+  # stuff happens
 else
-	# other stuff happens
+  # other stuff happens
 fi
 ```
 
@@ -80,7 +80,7 @@ For instance, if we wanted to check if the date in a variable was between April 
 ```shell
 if [[ "$var_name" =~ 'April [1-3]' ]]
 then
-	#stuff happens
+  #stuff happens
 fi
 ```
 
@@ -91,7 +91,7 @@ re='April [1-3]' # use single quotes
 
 if [[ "$var_name" =~ $re ]] # no quotes on $re
 then
-	#stuff happens
+  #stuff happens
 fi
 ```
 
@@ -105,7 +105,7 @@ To iterate over a series of files, you can use a `for` loop:
 
 for file in *.txt
 do
-	echo -e "${file}:\n$(cat $file)"
+  echo -e "${file}:\n$(cat $file)"
 done
 ```
 
