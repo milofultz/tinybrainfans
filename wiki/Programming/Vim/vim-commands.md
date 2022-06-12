@@ -87,8 +87,8 @@ Cut entire line or `n` lines, including newline | `[n]dd`
 Cut from cursor to end of line | `d$`
 Cut from cursor to first non-space character on the line | `d^`
 Cut from cursor to start of line | `d0`
-Paste after the cursor | `p`
 Paste before the cursor | `P`
+Paste after the cursor | `p`
 Move line up one line | `ddkP`
 Move line down one line | `ddp`
 
@@ -118,6 +118,8 @@ Make a new line above/below current line and enter insert mode | `O`/`o` |
 Insert (or retrieve) contents of `FILENAME` at cursor | `:r FILENAME`|
 Insert (or retrieve) return of shell `command` at cursor | `:r !command`|
 Insert on multiple lines[15] | `<c-v>`, select area, `I`, do edits, `esc` |
+Indent line(s) in command mode | `<<` or `>>`
+Indent line in insert mode | `<c-d>` or `<c-t>`
 Append to multiple lines[14] | `V`, select lines, `:'<,'>s/$/text/` | `'<,'>` will get added to your command automatically after `:`
 Join line below current line with current line[17] | `J`|
 Flip capitalization | `~` |

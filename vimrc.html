@@ -72,6 +72,10 @@ set clipboard=unnamed
 </code></pre>
 <h2>Language Specific Options[7,8]</h2>
 <p>You can set language specific options within the <code>~/.vim/ftplugin/</code> folder. For instance, a Python options file would be the file <code>~/.vim/ftplugin/python.vim</code>. If the filetype is not initially recognized by Vim, you can add it to the <code>ftdetect</code> folder[11].</p>
+<p>If you want to associate one format with another language, you can use the following to associate them:</p>
+<pre><code>&quot; Make sure all types of *.txt are rendered with markdown syntax
+autocmd BufNewFile,BufRead *.txt set ft=markdown
+</code></pre>
 <h2>Trim Trailing Whitespace on Save[3]</h2>
 <p>Before writing the buffer to file on any file (<code>*</code>), search and replace all whitespace characters (<code>\s</code>) at the end of a given line with nothing. Do not show any error messages if no matches exist (<code>e</code> flag).</p>
 <pre><code>&quot; Trim trailing whitespace on save
@@ -97,5 +101,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 <li><a href="http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect" target="_blank">http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect</a></li>
 <li><a href="https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping" target="_blank">https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping</a></li>
 <li><a href="https://github.com/tpope" target="_blank">https://github.com/tpope</a></li>
+<li><a href="https://nickjanetakis.com/blog/using-vims-autocmd-to-set-a-custom-file-type-for-specific-files" target="_blank">https://nickjanetakis.com/blog/using-vims-autocmd-to-set-a-custom-file-type-for-specific-files</a></li>
 </ol>
-<p class="last-modified">Last modified: 202206041555</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202206120847</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

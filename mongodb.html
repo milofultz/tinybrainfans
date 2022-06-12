@@ -18,7 +18,7 @@ mongoose.connect(&#x27;mongodb://localhost:27017/test&#x27;, { // create connect
 
 const db = mongoose.connection;
 db.on(&#x27;error&#x27;, console.error.bind(console, &#x27;connection error:&#x27;));
-db.once(&#x27;open&#x27;, function() {                            // Inside here is where the action happens
+db.once(&#x27;open&#x27;, function() {                           // Inside here is where the action happens
   // Create schema for collection
   const kittySchema = new mongoose.Schema({
     name: String,
@@ -35,7 +35,7 @@ db.once(&#x27;open&#x27;, function() {                            // Inside here
   });         // Create a new document of Cat
   console.log(kitty.name);                             // &#x27;Zildjian&#x27;
   kitty.save()
-    .then(() =&gt; console.log(&#x27;meow&#x27;));                   // Save the new document in the Cat collection
+    .then(() =&gt; console.log(&#x27;meow&#x27;));                  // Save the new document in the Cat collection
 });
 </code></pre>
 <p>In the terminal, run <code>node server.js</code>. This should log <code>&#x27;Zildjian&#x27;</code> along with <code>meow</code>.</p>
@@ -200,4 +200,4 @@ if (requests.length) {
 <li><a href="https://docs.mongodb.com/database-tools/mongodump/" target="_blank">https://docs.mongodb.com/database-tools/mongodump/</a></li>
 <li><a href="https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file" target="_blank">https://stackoverflow.com/questions/21233290/mongorestore-error-dont-know-what-to-do-with-the-dump-file</a></li>
 </ul>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="mongoose.html">Mongoose</a></li></ul></details></section><p class="last-modified">Last modified: 202108230454</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="mongoose.html">Mongoose</a></li></ul></details></section><p class="last-modified">Last modified: 202206101419</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

@@ -9,29 +9,29 @@
 <pre><code class="language-assembly">include &quot;64cube.inc&quot;    ; Include the helper functinos for 64cube
 
 ENUM $0                 ; Enumerate the following vars starting at $0000
-  counter rBYTE 1        ; Set counter to type of byte with value of 1
-ENDE                     ; End enumeration
+  counter rBYTE 1       ; Set counter to type of byte with value of 1
+ENDE                    ; End enumeration
 
   org $200              ; Specify the origin of the ROM program
-  sei                    ; Set interrupt flag to 1
-  ldx #$ff               ; Load 255 into X
+  sei                   ; Set interrupt flag to 1
+  ldx #$ff              ; Load 255 into X
   txs                   ; Transfer the contents of x to the stack
                         ;   pointer
 
   lda #$0               ; Load 0 into A
   sta VIDEO             ; Store A into VIDEO (location $100)
 
-  _setw IRQ, VBLANK_IRQ  ; Store the address of IRQ at VBLANK_IRQ (in the
+  _setw IRQ, VBLANK_IRQ ; Store the address of IRQ at VBLANK_IRQ (in the
                         ;   include file)
   cli                   ; Clear interrupt flag
 
-Infinite:                ; Set label for &#x27;Infinite&#x27; at this address
+Infinite:               ; Set label for &#x27;Infinite&#x27; at this address
   jmp Infinite          ; Jump to the &#x27;Infinite&#x27; label, effectively
                         ;   creating an infinite loop
 
-IRQ:                     ; Set label for &#x27;IRQ&#x27; at this address
-  inc counter            ; Increment the value at &#x27;counter&#x27;
-  rti                    ; Return to where the interrupt occurred
+IRQ:                    ; Set label for &#x27;IRQ&#x27; at this address
+  inc counter           ; Increment the value at &#x27;counter&#x27;
+  rti                   ; Return to where the interrupt occurred
 </code></pre>
 <p>This is the relevant contents of <code>64cube.inc</code>:</p>
 <pre><code class="language-assembly">...
@@ -61,12 +61,12 @@ ENDM                        ; Signify the end of the macro
   txs
 
   ; This will set the video buffer page in a 4k page in memory
-  lda #$f                    ; Load high byte of page into &#x27;a&#x27;
+  lda #$f                   ; Load high byte of page into &#x27;a&#x27;
                             ;   register
   sta VIDEO                 ; Store value in &#x27;a&#x27; register at &#x27;VIDEO&#x27;
 
   ; This will create a pixel of color #64 at pixel address $f820
-  lda #$64                   ; Load decimal value 64 into &#x27;a&#x27;
+  lda #$64                  ; Load decimal value 64 into &#x27;a&#x27;
                             ;   register
   ;sta $f820                ; Store value in &#x27;a&#x27; register at $f820
   sta $f000 + 32 + 32 * 64  ; Same as above but with MATH
@@ -99,59 +99,59 @@ ENDM                        ; Signify the end of the macro
 <p>This example shows how to set up a custom palette as well as drawing those colors to screen.</p>
 <pre><code class="language-assembly">include &quot;64cube.inc&quot;      ; Include the helper functions
 
-ENUM $0                    ; Enumerate values starting from $0000
-  counter rBYTE 1          ; Set &#x27;counter&#x27; as 1 byte
+ENUM $0                   ; Enumerate values starting from $0000
+  counter rBYTE 1         ; Set &#x27;counter&#x27; as 1 byte
 ENDE                      ; End enumeration
 
   org $200                ; Set program origin to $0200
-  sei                      ; Set interrupt disable flag
+  sei                     ; Set interrupt disable flag
   ldx #$ff                ; Load value $ff into X
-  txs                      ; Transfer value of X into the stack
+  txs                     ; Transfer value of X into the stack
                           ;   pointer
 
   ; This will set the video buffer page in the $f000 page in memory
-  lda #$f                  ; Load high byte of page into &#x27;a&#x27;
+  lda #$f                 ; Load high byte of page into &#x27;a&#x27;
                           ;   register
-  sta VIDEO                ; Store value in A at &#x27;VIDEO&#x27;
+  sta VIDEO               ; Store value in A at &#x27;VIDEO&#x27;
 
   ; This will set the colors buffer page in the $5000 page in memory
-  lda #$5                  ; Load highbyte of page into &#x27;a&#x27;
+  lda #$5                 ; Load highbyte of page into &#x27;a&#x27;
                           ;   register
   sta COLORS              ; Store value in A at &#x27;COLORS&#x27;
 
-  _setw IRQ, VBLANK_IRQ    ; Set value of VBLANK_IRQ to address of
+  _setw IRQ, VBLANK_IRQ   ; Set value of VBLANK_IRQ to address of
                           ;   &#x27;IRQ&#x27; label
   jsr Draw                ; Jump to &#x27;Draw&#x27; subroutine
 
-  cli                      ; Clear interrupt disable flag
+  cli                     ; Clear interrupt disable flag
 
-Infinite:                  ; Set &#x27;Infinite&#x27; label
+Infinite:                 ; Set &#x27;Infinite&#x27; label
   jmp Infinite            ; Create infinite loop
 
 IRQ:                      ; Set &#x27;IRQ&#x27; label
-  inc counter              ; Increment &#x27;counter&#x27;
-  rti                      ; Return from interrupt
+  inc counter             ; Increment &#x27;counter&#x27;
+  rti                     ; Return from interrupt
 
-Draw:                      ; Set &#x27;Draw&#x27; label
+Draw:                     ; Set &#x27;Draw&#x27; label
   ; This will create pixels of colors from the palette below at address
   ;   $f820. The color is found by referencing the colors page at the
   ;   addresses listed below (#1, #2, #3).
 
   lda #0                  ; Create counter of 0 at A
-  Loop:                    ; Create Loop label
+  Loop:                   ; Create Loop label
     adc #1                ; Increment A
-    tax                    ; Transfer value of A into X
-    sta $f000 + 32 * 64 + 31,X   ; Store X into
+    tax                   ; Transfer value of A into X
+    sta $f000 + 32 * 64 + 31,X  ; Store X into
                                 ;   $f000 + 32 * 64 + 31 and X
     cmp #3                ; Compare x with 3
     bne Loop              ; If not equal go back to Loop
-  rts                      ; Else return from subroutine
+  rts                     ; Else return from subroutine
 
 Palette:                          ; Set &#x27;Palette&#x27; label
   ; This will set the palette of colors available in the COLORS page,
   ;   enumerating from $00 upward within that page.
-  org $0500                        ; Set program origin to $0500
-  hex 000000 ff0000 00ff00 0000ff  ; Set these colors in colors page
+  org $0500                       ; Set program origin to $0500
+  hex 000000 ff0000 00ff00 0000ff ; Set these colors in colors page
 </code></pre>
 <h3>Video Address Locations</h3>
 <p>These are assuming the video page is being held in the 4k <code>$f000</code> page.</p>
@@ -196,4 +196,4 @@ Palette:                          ; Set &#x27;Palette&#x27; label
 <li><a href="https://milofultz.com/2021/09/18/minicube64" target="_blank">https://milofultz.com/2021/09/18/minicube64</a></li>
 <li><a href="https://milofultz.com/2021/11/09/bubble-sort-6502" target="_blank">https://milofultz.com/2021/11/09/bubble-sort-6502</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="fantasy-consoles.html">Fantasy Consoles</a></li></ul></details></section><p class="last-modified">Last modified: 202201090814</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="fantasy-consoles.html">Fantasy Consoles</a></li></ul></details></section><p class="last-modified">Last modified: 202206101419</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

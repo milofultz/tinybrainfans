@@ -83,6 +83,13 @@ set clipboard=unnamed
 
 You can set language specific options within the `~/.vim/ftplugin/` folder. For instance, a Python options file would be the file `~/.vim/ftplugin/python.vim`. If the filetype is not initially recognized by Vim, you can add it to the `ftdetect` folder[11].
 
+If you want to associate one format with another language, you can use the following to associate them:
+
+```
+" Make sure all types of *.txt are rendered with markdown syntax
+autocmd BufNewFile,BufRead *.txt set ft=markdown
+```
+
 ## Trim Trailing Whitespace on Save[3]
 
 Before writing the buffer to file on any file (`*`), search and replace all whitespace characters (`\s`) at the end of a given line with nothing. Do not show any error messages if no matches exist (`e` flag).
@@ -112,3 +119,4 @@ autocmd BufWritePre * :%s/\s\+$//e
 1. http://vimdoc.sourceforge.net/htmldoc/filetype.html#ftdetect
 1. https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
 1. https://github.com/tpope
+1. https://nickjanetakis.com/blog/using-vims-autocmd-to-set-a-custom-file-type-for-specific-files

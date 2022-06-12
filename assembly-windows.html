@@ -5,24 +5,24 @@
 <p>You will first need <a href="https://masm32.com/" target="_blank">masm</a> to compile your assembly into machine code. masm can be installed via the <a href="https://www.masm32.com/install.htm" target="_blank">MASM32 SDK</a>.</p>
 <h3>Your First Program</h3>
 <p>Create a file called <code>hello_world.asm</code>. Copy this into it's contents:</p>
-<pre><code class="language-assembly">.386                  ; Tell assembler to use the 386 instruction set
-.model flat, stdcall            ; Specify the flat memory model and use stdcall to pass parameters RtoL
-option casemap :none          ; Force case sensitivity
+<pre><code class="language-assembly">.386                                  ; Tell assembler to use the 386 instruction set
+.model flat, stdcall                  ; Specify the flat memory model and use stdcall to pass parameters RtoL
+option casemap :none                  ; Force case sensitivity
 
-include \masm32\include\windows.inc    ; Include Win32 API constants and defs
-include \masm32\include\kernel32.inc   ; Include ExitProcess
-include \masm32\include\masm32.inc     ; Include StdOut
+include \masm32\include\windows.inc   ; Include Win32 API constants and defs
+include \masm32\include\kernel32.inc  ; Include ExitProcess
+include \masm32\include\masm32.inc    ; Include StdOut
 
 includelib \masm32\lib\kernel32.lib   ; The libraries necessary for the above includes to function
 includelib \masm32\lib\masm32.lib
 
-.data                   ; The section for all initialized data
-  HelloWorld db &quot;Hello World!&quot;, 0    ; definebyte HelloWorld to equal Hello World! plus a NUL char
+.data                                 ; The section for all initialized data
+  HelloWorld db &quot;Hello World!&quot;, 0     ; definebyte HelloWorld to equal Hello World! plus a NUL char
 
-.code                    ; Starting point for program code
-start:                   ; All code must live between this and end start
-  invoke StdOut, addr HelloWorld    ; Run function StdOut with address of HelloWorld as the param 
-  invoke ExitProcess, 0         ; Invoke ExitProcess with 0 (success) as the parameter
+.code                                 ; Starting point for program code
+start:                                ; All code must live between this and end start
+  invoke StdOut, addr HelloWorld      ; Run function StdOut with address of HelloWorld as the param 
+  invoke ExitProcess, 0               ; Invoke ExitProcess with 0 (success) as the parameter
 
 end start 
 </code></pre>
@@ -42,7 +42,7 @@ Hello, World!
 <h2>masm-specific Syntax</h2>
 <h3><code>invoke</code></h3>
 <p><code>invoke</code> is a special function in <a href="https://masm32.com/" target="_blank">masm</a> to call functions without having to push parameters beforehand.</p>
-<pre><code class="language-masm">invoke SendMessage, [hWnd], WM_CLOSE, 0, 0
+<pre><code class="language-assembly">invoke SendMessage, [hWnd], WM_CLOSE, 0, 0
 
 ; equivalent to
 
@@ -57,4 +57,4 @@ call [SendMessage]
 <li><a href="https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf" target="_blank">https://doc.lagout.org/operating%20system%20/Windows/winasmtut.pdf</a></li>
 <li><a href="https://masm32.com/" target="_blank">https://masm32.com/</a> </li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li></ul></details></section><p class="last-modified">Last modified: 202107112140</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="assembly.html">Assembly</a></li></ul></details></section><p class="last-modified">Last modified: 202206101424</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

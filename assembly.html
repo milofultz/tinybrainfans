@@ -213,14 +213,14 @@ pop eax
 ret
 </code></pre>
 <p>This will push three values to the stack <strong>in reverse order of what the function expects, because LIFO</strong>, and then invokes the function, which will use those values.</p>
-<pre><code class="language-assembly">push [var] ; Push last parameter first
-push 216   ; Push the second parameter
-push eax   ; Push first parameter last
+<pre><code class="language-assembly">push [var]   ; Push last parameter first
+push 216     ; Push the second parameter
+push eax     ; Push first parameter last
 
 call _myFunc ; Call the function (assume C naming)
 
 add esp, 12  ; Flush the three 4 byte values on the stack by 
-      ; adding 12 to the stack pointer
+             ; adding 12 to the stack pointer
 </code></pre>
 <h2>Games</h2>
 <p>There are lots of games that have recently come out to make assembly a little more accessible. Here are the references I have found and heard about from others:</p>
@@ -248,4 +248,4 @@ add esp, 12  ; Flush the three 4 byte values on the stack by
 <li><a href="https://github.com/pret/pokered" target="_blank">https://github.com/pret/pokered</a></li>
 <li><a href="https://eldred.fr/gb-asm-tutorial/index.html" target="_blank">https://eldred.fr/gb-asm-tutorial/index.html</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="fractran.html">FRACTRAN</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="pi-at-pc-framework.html">PI AT PC Framework</a></li><li><a href="pseudocode.html">Pseudocode</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li><li><a href="uxn.html">uxn</a></li></ul></details></section><p class="last-modified">Last modified: 202204171518</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="assembly-unix.html">Assembly (Unix)</a></li><li><a href="assembly-windows.html">Assembly (Windows)</a></li><li><a href="c.html">C</a></li><li><a href="fractran.html">FRACTRAN</a></li><li><a href="paper-computing.html">Paper Computing</a></li><li><a href="pi-at-pc-framework.html">PI AT PC Framework</a></li><li><a href="pseudocode.html">Pseudocode</a></li><li><a href="the-know-how-computer.html">The Know-how Computer</a></li><li><a href="the-little-man-computer.html">The Little Man Computer</a></li><li><a href="uxn.html">uxn</a></li></ul></details></section><p class="last-modified">Last modified: 202206101425</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
