@@ -3,9 +3,10 @@
 <ul>
 <li>Using a <code>*</code> will work as a wildcard for every file within that level of the given directory, or as a wildcard within a filename.</li>
 <li>Using two <code>**</code> in the filepath will look within every level recursively from that point forward. e.g. <code>**/.DS_Store</code> will find a file called <code>.DS_Store</code> in the root directory as well as any others in any folders within that root directory. <code>lib/**/__pycache__</code> will match any files or folders named <code>__pycache__</code> that are within the <code>lib</code> directory at any depth.</li>
+<li>Using a <code>#</code> at the beginning of your line is a comment. A hash will represent a comment anywhere but the beginning of the line. <code># a comment</code> works but <code>tags # a comment</code> will look for a file named <code>tags # a comment</code>.</li>
 </ul>
 <h2>Global gitignore</h2>
-<p>You can ignore files globally by adding them to <code>~/.gitignore_global</code>. </p>
+<p>You can ignore files globally by adding them to <code>~/.gitignore_global</code>. You can also use a git template[3] and add an <code>exclude</code> file.</p>
 <h2>Delete previous files in gitignore</h2>
 <p>If you add a file to <code>.gitignore</code> after previously committing that file, you may see untracked changes on those files. You have to remove the old files from the git repository to remove that error.</p>
 <ul>
@@ -16,5 +17,6 @@
 <ol>
 <li><a href="https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository" target="_blank">https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository</a></li>
 <li><a href="https://git-scm.com/docs/gitignore" target="_blank">https://git-scm.com/docs/gitignore</a></li>
+<li><a href="https://www.darrik.dev/writing/custom-git-template/" target="_blank">https://www.darrik.dev/writing/custom-git-template/</a></li>
 </ol>
-<p class="last-modified">Last modified: 202206101419</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202206121038</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
