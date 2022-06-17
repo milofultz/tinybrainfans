@@ -10,6 +10,7 @@ I recommend doing tutorials before really diving in, as the way version control,
 - Git Is Simpler Than You Think[12]
 - Git Training from UnseenWizzard[21]
 - No Fear Git[11]
+- Git Immersion[23]
 
 I would recommend not using the git docs unless you really need to as they, like most Unix tools, are not written for normal people and are therefore a bit obtuse and difficult to parse. Most people have tried to grok the concepts and put them in human terms and thus this site and other tutorials exist. The docs are good, but use them to complete your knowledge not as the basis.
 
@@ -239,3 +240,4 @@ In your {{Bash}} or equivalent rc file, set an alias of `g` to `git`. Surprising
 20. https://tech.bakkenbaeck.com/post/Rebasing_Onto_A_Squashed_Commit
 21. https://github.com/UnseenWizzard/git_training
 22. https://mastodon.social/@mhoye/108203495866171674
+23. https://gitimmersion.com/lab_01.html
