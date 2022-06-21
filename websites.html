@@ -1,8 +1,10 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Websites should be simple to setup, easy to maintain, and fun."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - Websites</title><link rel="stylesheet" href="tinystyle.css"></head><body>
 <main id="main"><article id="content"><h1 id="title">Websites</h1><p>Websites should be as simple as possible. For most people, they only need to be able to show text, images, and links to other things, all on a static site. These options are mostly going to be for those people.</p>
 <h2>Github/Codeberg Pages[5-6]</h2>
-<p>If you upload raw HTML, CSS, and JS files to one of these <a href="git.html">git</a> repos, it will render them as a static site at a specific URL. My personal website uses Jekyll as a way to render all of the pages (which is nice but a bit kludgy), but uses that same principle. This wiki uses my own software swiki[4], which renders everything out into raw HTML files.</p>
+<p>If you upload raw HTML, CSS, and JS files to one of these <a href="git.html">git</a> repos, it will render them as a static site at a specific URL. If your website doesn't need write privileges (comments, database, etc.), your site should work.</p>
 <p>The advantage this has is that you don't have to worry about a domain or hosting or anything. Disadvantage is you need to understand the basics of <a href="git.html">git</a> to use it.</p>
+<p>Some static site generators include Jekyll[10,11] or gemkill[9] for basic sites, and swiki[4] for wiki-style backlinking.</p>
+<p>I made an ultraminimal <a href="jekyll.html">Jekyll</a>-adjacent static site builder in <a href="ruby.html">Ruby</a>. This lets you write in <a href="gemtext.html">gemtext</a>, make a frame for your HTML pages, run gemkill, and your site is built.</p>
 <h3>Scripting</h3>
 <p>If you are technically inclined, then you can utilize <a href="shell.html">shell scripting</a> to make building the pages simpler. I can't remember where I found this script, but someone I know online from <a href="https://merveilles.town" target="_blank">merveilles.town</a> had this on their site and I thought it was genius:</p>
 <pre><code class="language-shell">#!/bin/sh
@@ -13,7 +15,7 @@ for p in posts/*; do
 done
 echo &quot;done!&quot;
 </code></pre>
-<p>By putting their files into a <code>posts</code> folder and rendering them out to a different place, they can simplify maintenance on their site by abstracting common parts like the header and footer. You can also use whatever converter for something like <a href="markdown.html">markdown</a> or <a href="gemtext.html">gemtext</a></p>
+<p>By putting their files into a <code>posts</code> folder and rendering them out to a different place, they can simplify maintenance on their site by abstracting common parts like the header and footer. You can also use whatever converter for something like <a href="markdown.html">markdown</a> or <a href="gemtext.html">gemtext</a>.</p>
 <h2>Lichen/WonderCMS[2-3]</h2>
 <p>These are both options that are &quot;set it and forget it&quot; once they've been installed on the hosting server. Obviously, that part is a bit tricky if you don't know how to do that, but if you have a technically inclined friend who can help, you should be off to the races.</p>
 <p>SImplest explanation is that they are Wordpress or Squarespace if you were able to make them easier to use by stripping away the bloat.</p>
@@ -47,5 +49,8 @@ echo &quot;done!&quot;
 <li><a href="https://codeberg.page/" target="_blank">https://codeberg.page/</a></li>
 <li><a href="https://www.andreas.com/faq-ssi.html" target="_blank">https://www.andreas.com/faq-ssi.html</a></li>
 <li><a href="https://solar.lowtechmagazine.com//2018/09/how-to-build-a-lowtech-website/" target="_blank">https://solar.lowtechmagazine.com//2018/09/how-to-build-a-lowtech-website/</a></li>
+<li><a href="https://codeberg.org/milofultz/gemkill" target="_blank">https://codeberg.org/milofultz/gemkill</a></li>
+<li><a href="https://planet-geek.com/2015/04/06/geekitude/sorry-jekyll-im-done-with-you/" target="_blank">https://planet-geek.com/2015/04/06/geekitude/sorry-jekyll-im-done-with-you/</a></li>
+<li><a href="https://jekyllrb.com/" target="_blank">https://jekyllrb.com/</a></li>
 </ol>
-<p class="last-modified">Last modified: 202206101419</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<p class="last-modified">Last modified: 202206201640</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

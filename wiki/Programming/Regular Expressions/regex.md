@@ -26,13 +26,13 @@ This syntax is for {{Javascript}}, but it is mostly what I have used in everythi
 
 ### Shorthand Character Classes
 
-- `\w` is any alphanumeric char or underscore.
+- `\w` is any alphanumeric char or underscore (`/a-zA-Z0-9_/`).
 - `\W` is anything *but* an alphanumeric char or underscore.
 - `\d` is any digit.
 - `\D` is anything *but* a digit.
 - `\s` is any whitespace character.
 - `\S` is any non-whitespace character.
-- `\b` denotes a word boundary. Placed after a string of chars, it matches if the string is found and is succeeded by anything but an alphanum or underscore.
+- `\b` denotes a word boundary. Placed after a string of `\w` type chars, it matches if the char is succeeded by anything **but** a `\w` type char.
 
 ### Lookahead and Lookbehind
 

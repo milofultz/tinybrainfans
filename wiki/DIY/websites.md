@@ -7,9 +7,13 @@ Websites should be as simple as possible. For most people, they only need to be 
 
 ## Github/Codeberg Pages[5-6]
 
-If you upload raw HTML, CSS, and JS files to one of these {{git}} repos, it will render them as a static site at a specific URL. My personal website uses Jekyll as a way to render all of the pages (which is nice but a bit kludgy), but uses that same principle. This wiki uses my own software swiki[4], which renders everything out into raw HTML files.
+If you upload raw HTML, CSS, and JS files to one of these {{git}} repos, it will render them as a static site at a specific URL. If your website doesn't need write privileges (comments, database, etc.), your site should work.
 
 The advantage this has is that you don't have to worry about a domain or hosting or anything. Disadvantage is you need to understand the basics of {{git}} to use it.
+
+Some static site generators include Jekyll[10,11] or gemkill[9] for basic sites, and swiki[4] for wiki-style backlinking.
+
+I made an ultraminimal {{Jekyll}}-adjacent static site builder in {{Ruby}}. This lets you write in {{gemtext}}, make a frame for your HTML pages, run gemkill, and your site is built.
 
 ### Scripting
 
@@ -25,7 +29,7 @@ done
 echo "done!"
 ```
 
-By putting their files into a `posts` folder and rendering them out to a different place, they can simplify maintenance on their site by abstracting common parts like the header and footer. You can also use whatever converter for something like {{markdown}} or {{gemtext}}
+By putting their files into a `posts` folder and rendering them out to a different place, they can simplify maintenance on their site by abstracting common parts like the header and footer. You can also use whatever converter for something like {{markdown}} or {{gemtext}}.
 
 ## Lichen/WonderCMS[2-3]
 
@@ -76,3 +80,6 @@ When a user pulls up `example.shtml` on your site, it will automatically populat
 6. https://codeberg.page/
 7. https://www.andreas.com/faq-ssi.html
 8. https://solar.lowtechmagazine.com//2018/09/how-to-build-a-lowtech-website/
+9. https://codeberg.org/milofultz/gemkill
+10. https://planet-geek.com/2015/04/06/geekitude/sorry-jekyll-im-done-with-you/
+11. https://jekyllrb.com/
