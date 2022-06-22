@@ -382,6 +382,8 @@ const testComponent = () => {
   ...
 ```
 
+**In certain circumstances, useState functions can call themselves twice, *even though you only invoked them once*[11,12,13].** If you find yourself asking why things are not behaving correctly before or after a useState call, this is probably why.
+
 ## References
 
 1. https://reactjs.org/docs/context.html#dynamic-context
@@ -394,3 +396,7 @@ const testComponent = () => {
 8. https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
 9. https://reactjs.org/docs/hooks-reference.html#usereducer
 10. https://dmitripavlutin.com/react-usereducer/
+11. https://stackoverflow.com/questions/62106596/reactjs-setstate-being-called-twice-in-a-function-called-once-why
+12. https://github.com/facebook/react/issues/12856
+13. https://kentcdodds.com/blog/react-strict-mode#it-runs-code-twice
+14. https://scribe.rip/you-dont-know-usestate-until-you-ve-used-functional-updates-5da52117620f

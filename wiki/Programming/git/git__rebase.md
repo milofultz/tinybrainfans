@@ -63,6 +63,16 @@ I only have used these so far, and they do the job for what I need.
 | `f` / `fixup`  | Fold this commit into the previous commit, using the previous commit's message |
 | `e` / `edit`   | Stop at this commit and give user control until `rebase --continue`[9] |
 
+### Revert back to unresolved state/conflicts [19]
+
+If you have made changes to a file that had merge conflicts and want to restart the conflict resolution, use the following command to bring them back.
+
+```shell
+$ git checkout -m FILE
+```
+
+
+
 ## Rebasing Onto Squashed Commits[15-18]
 
 First, **MAKE A BACKUP!**
@@ -174,3 +184,4 @@ This should render you the up to date `package-lock.json` file without having to
 1. https://scribe.rip/swiftblade/how-git-rebase-onto-works-71ff00e3f88c
 1. https://womanonrails.com/git-rebase-onto
 1. https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rbdiag_e
+1. https://stackoverflow.com/a/14409744/14857724

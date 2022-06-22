@@ -319,6 +319,7 @@ const testComponent = () =&gt; {
   
   ...
 </code></pre>
+<p><strong>In certain circumstances, useState functions can call themselves twice, <em>even though you only invoked them once</em>[11,12,13].</strong> If you find yourself asking why things are not behaving correctly before or after a useState call, this is probably why.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://reactjs.org/docs/context.html#dynamic-context" target="_blank">https://reactjs.org/docs/context.html#dynamic-context</a></li>
@@ -331,5 +332,9 @@ const testComponent = () =&gt; {
 <li><a href="https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node" target="_blank">https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node</a></li>
 <li><a href="https://reactjs.org/docs/hooks-reference.html#usereducer" target="_blank">https://reactjs.org/docs/hooks-reference.html#usereducer</a></li>
 <li><a href="https://dmitripavlutin.com/react-usereducer/" target="_blank">https://dmitripavlutin.com/react-usereducer/</a></li>
+<li><a href="https://stackoverflow.com/questions/62106596/reactjs-setstate-being-called-twice-in-a-function-called-once-why" target="_blank">https://stackoverflow.com/questions/62106596/reactjs-setstate-being-called-twice-in-a-function-called-once-why</a></li>
+<li><a href="https://github.com/facebook/react/issues/12856" target="_blank">https://github.com/facebook/react/issues/12856</a></li>
+<li><a href="https://kentcdodds.com/blog/react-strict-mode#it-runs-code-twice" target="_blank">https://kentcdodds.com/blog/react-strict-mode#it-runs-code-twice</a></li>
+<li><a href="https://scribe.rip/you-dont-know-usestate-until-you-ve-used-functional-updates-5da52117620f" target="_blank">https://scribe.rip/you-dont-know-usestate-until-you-ve-used-functional-updates-5da52117620f</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202206101419</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202206220737</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
