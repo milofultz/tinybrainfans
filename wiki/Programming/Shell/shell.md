@@ -11,9 +11,13 @@ The shell is the terminal of your operating system. This is the *nix shell.
 - `mv [-r] ./source ./destination` - Move/rename file or directory `[-r]` from source to destination
 - `rm [-r] ./file` - Remove file or directory `[-r]` **NOTE: THIS IS PERMANENT. There are no trash cans or recycle bins here.**
 
-## [Background Tasks][]
+## Background Tasks[21]
 
 You can run tasks in the background within a {{terminal}} window by placing an `&` at the end of the command you want running. You can see these background jobs with `jobs` and kill the job that you want with `kill %` followed by the index, or just `kill %` to kill all jobs.
+
+You can also bring these background tasks to the foreground by typing `fg %` followed by the index. Or send a suspended job to the background by typing `bg %` followed by the index.
+
+To suspend a process, you can use `<c-z>` (for instance, in suspending a {{Vim}} process).
 
 ## Variables
 
@@ -228,5 +232,5 @@ tr -d "\r" < oldname.sh > newname.sh
 17. https://github.com/shellspec/shellspec
 18. https://github.com/timurb/shell-test-frameworks
 19. https://thomaslevine.com/computing/shell-testing/
-
-[Background Tasks]: https://www.maketecheasier.com/run-bash-commands-background-linux/
+20. https://rhodesmill.org/brandon/2009/commands-with-comma/
+21. https://www.maketecheasier.com/run-bash-commands-background-linux/

@@ -1,3 +1,55 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content=""><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - JSON</title><link rel="stylesheet" href="tinystyle.css"></head><body>
-<main id="main"><article id="content"><h1 id="title">JSON</h1><p>There's currently nothing here.</p>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="json-python.html">JSON (Python)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="yaml.html">YAML</a></li></ul></details></section></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="JSON is the de facto standard for serializing data over the internet."><!-- Bing --><meta name="msvalidate.01" content="45CBBE1BD8265A2217DFDA630EB8F84A" /><title>Tiny Brain Fans - JSON</title><link rel="stylesheet" href="tinystyle.css"></head><body>
+<main id="main"><article id="content"><h1 id="title">JSON</h1><h2>Syntax</h2>
+<p>JSON is a recursive data format; at the top level a JSON object is a dictionary that holds key/value pairs, and it can hold more dictionaries within it, which themselves will hold key/value pairs.</p>
+<p>JSON files can hold these data types:</p>
+<ul>
+<li>Number (both integers and floats are the same type)</li>
+<li>String</li>
+<li>Boolean</li>
+<li>Array</li>
+<li>Dictionary</li>
+<li><code>null</code></li>
+</ul>
+<p>Note that it has no comments and no date type. All data must fall into one of these categories. On parse, however, it is common to parse specified values into a proper type[1], like an ISO 8601 date could be <a href="regular-expressions.html">regexed</a> into the proper Date format, etc.</p>
+<p>Trailing commas are not allowed, and all strings must be quoted with double quotes, not single quotes.</p>
+<h2>Example</h2>
+<pre><code class="language-json">{
+  &quot;string&quot;: &quot;hello, world!&quot;,
+  &quot;number&quot;: 1,
+  &quot;boolean&quot;: true,
+  &quot;array&quot;: [1,2,3],
+  &quot;dictionary&quot;: {
+    &quot;nested key&quot;: &quot;nested value&quot;
+  },
+  &quot;null&quot;: null
+}
+</code></pre>
+<h2>Parsing</h2>
+<p>Because JSON is a recursive data format without complex types, it is easy to parse from a programming standpoint. A <a href="pseudocode.html">pseudocode</a> example:</p>
+<pre><code class="language-pseudocode">CREATE output AS an empty hash map or dictionary
+
+FUNCTION parse_dict HAS PARAMETERS raw_dict, parsed_dict
+  FOR key, value IN dict
+    IF key IS NOT A hash map or dictionary
+      # Here you could place a conditional to to parse special types, like dates
+      SET parsed_dict[key] TO value
+    ELSE
+      SET parsed_dict[key] TO empty hash map or dictionary
+      CALL parse_dict WITH key, value, parsed_dict[key]
+    END IF
+  END FOR
+END FUNCTION
+
+OPEN json file
+SET json_contents TO contents of json file
+
+CALL parse_dict WITH json_contents, output
+
+RETURN output
+</code></pre>
+<h2>References</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse</a></li>
+<li><a href="https://en.wikipedia.org/wiki/JSON" target="_blank">https://en.wikipedia.org/wiki/JSON</a></li>
+</ol>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="ajax.html">AJAX</a></li><li><a href="how-to-load-local-json-files.html">How To Load Local JSON Files</a></li><li><a href="json-python.html">JSON (Python)</a></li><li><a href="mongodb.html">MongoDB</a></li><li><a href="yaml.html">YAML</a></li></ul></details></section><p class="last-modified">Last modified: 202206230948</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>

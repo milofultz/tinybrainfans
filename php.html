@@ -3,7 +3,10 @@
 <h2>Syntax</h2>
 <p>PHP code must be enclosed within special tags: <code>&lt;?php</code> and <code>?&gt;</code></p>
 <pre><code class="language-php">&lt;?php
-  echo &quot;Hello, world!&quot;;
+  $hello = &quot;Hello&quot;
+  $world = &quot;world&quot;
+  // Say hello
+  echo &quot;${hello}, &quot; . &quot;${world}!&quot;;
 ?&gt;
 </code></pre>
 <h3>Variables</h3>
@@ -18,13 +21,243 @@ $greeting = &quot;Hello, $name&quot;;
 </code></pre>
 <h3>Function</h3>
 <p>Functions are defined similar to <a href="javascript.html">Javascript</a>:</p>
-<pre><code class="language-php">function example($arg1, $arg2) {
+<pre><code class="language-php">function example($arg1, $arg2 = &quot;Yeah&quot;) {
   echo &quot;Yay&quot;;
   return 1;
 }
+
+example(&quot;1&quot;);
+example(&quot;1&quot;, &quot;2&quot;);
+
+// Anonymous function;
+
+$add = function($num1, $num2) {
+  return $num1 + $num2;
+}
+
+$add(5, 5);
+
+$sub = fn($num1, $num2) =&gt; $num1 - $num2;
+
+$sub(5, 5);
 </code></pre>
+<h3>Scope</h3>
+<p>Functions create a scope where variables defined within are only accessible within, but also that variables defined outside of the scope are not readily accessible. To access a globally scoped variable, the variable must be introduced with a <code>global</code> call.</p>
+<pre><code class="language-php">$outside = &quot;test&quot;;
+
+function example() {
+  // echo $outside;  This will error out
+  global $outside;
+  echo $outside;
+
+  $inside = &quot;We are no longer &quot; . $outside;
+
+  return 1;
+}
+
+// echo $inside;  This will error out
+</code></pre>
+<h3>Super Globals[3]</h3>
+<p>Super globals are variables that are available at all levels. These include syste information, request information, cookies, etc.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$GLOBALS</td>
+<td>A superglobal variable that holds information about any variables in global scope.</td>
+</tr>
+<tr>
+<td>$_GET</td>
+<td>Contains information about variables passed through a URL or a form.</td>
+</tr>
+<tr>
+<td>$_POST</td>
+<td>Contains information about variables passed through a form.</td>
+</tr>
+<tr>
+<td>$_COOKIE</td>
+<td>Contains information about variables passed through a cookie.</td>
+</tr>
+<tr>
+<td>$_SESSION</td>
+<td>Contains information about variables passed through a session.</td>
+</tr>
+<tr>
+<td>$_SERVER</td>
+<td>Contains information about the server environment.</td>
+</tr>
+<tr>
+<td>$_ENV</td>
+<td>Contains information about the environment variables.</td>
+</tr>
+<tr>
+<td>$_FILES</td>
+<td>Contains information about files uploaded to the script.</td>
+</tr>
+<tr>
+<td>$_REQUEST</td>
+<td>Contains information about variables passed through the form or URL.</td>
+</tr>
+</tbody></table><h2>Data Types</h2>
+<ul>
+<li>String: single or double quotes</li>
+<li>Integer</li>
+<li>Float</li>
+<li>Boolean</li>
+<li>Array</li>
+<li>Objects</li>
+<li><code>null</code></li>
+<li>Resource</li>
+</ul>
+<h3>String Methods</h3>
+<p><code>htmlspecialchars(str)</code> will escape all HTML characters in a string, making you safer from script injections.</p>
+<p>Alternatively, if the input string is a cookie, <code>GET</code> value, etc., you can use <code>filter_input</code>[4], which has special rules and helper variables.</p>
+<h3>Arrays</h3>
+<pre><code class="language-php">$numbers = [1,2,3,4];
+// or
+$numbers = array(1,2,3,4);
+
+$first_item = $numbers[0];
+</code></pre>
+<p>Associative arrays are like <a href="javascript.html">Javascript</a> objects or <a href="python.html">Python</a> dictionaries.</p>
+<pre><code class="language-php">$people = {
+  &quot;john&quot; =&gt; 55,
+  &quot;jane&quot; =&gt; 19,
+  &quot;bob&quot; =&gt; 11,
+  &quot;jill&quot; =&gt; 92
+};
+
+$john_age = $people[&quot;john&quot;];
+</code></pre>
+<h4>Methods</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Args</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>array_push(arr, val1[, val2...])</code></td>
+<td></td>
+<td>Add elements to end of array</td>
+</tr>
+<tr>
+<td><code>array_pop(arr)</code></td>
+<td></td>
+<td>Pop element off end of array</td>
+</tr>
+<tr>
+<td><code>array_shift(arr)</code></td>
+<td></td>
+<td>Pop element off beginning of array</td>
+</tr>
+<tr>
+<td><code>array_unset(arr[n])</code></td>
+<td><code>n</code>: Index of element</td>
+<td>Delete element from array <strong>while maintaining order</strong></td>
+</tr>
+<tr>
+<td><code>array_chunk(arr, n)</code></td>
+<td><code>n</code>: Max number of elements per &quot;chunk&quot;</td>
+<td>Break up array into an array of regular sized subarrays</td>
+</tr>
+<tr>
+<td><code>array_merge(arr1, arr2)</code></td>
+<td></td>
+<td>Concatenate <code>arr2</code> to the end of <code>arr1</code> and return concatenated array</td>
+</tr>
+<tr>
+<td><code>[...arr1, ...arr2]</code></td>
+<td></td>
+<td>Same as above</td>
+</tr>
+<tr>
+<td><code>array_combine(arr1, arr2)</code></td>
+<td></td>
+<td>Create associative array using <code>arr1</code> as keys and <code>arr2</code> as values. Like <a href="pythons.html">Python's</a> <code>zip</code>.</td>
+</tr>
+<tr>
+<td><code>array_keys(assArr1)</code></td>
+<td></td>
+<td>Make array of keys from an associative array</td>
+</tr>
+<tr>
+<td><code>array_flip(assArr1)</code></td>
+<td></td>
+<td>Flip keys and values in an associative array</td>
+</tr>
+<tr>
+<td><code>range(start, end)</code></td>
+<td></td>
+<td>Create array of values from start to end, inclusive</td>
+</tr>
+<tr>
+<td><code>array_map(fn(n) =&gt; any, arr)</code></td>
+<td></td>
+<td>For each item in array, run callback and add return to resulting array</td>
+</tr>
+<tr>
+<td><code>array_filter(arr, fn(n) =&gt; bool)</code></td>
+<td>For each item in array, if result of callback is true, add value to return array.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>array_reduce(arr, fn(lastResult, n) =&gt; result)</code></td>
+<td></td>
+<td>For each item in array, run callback and use previous result of array as <code>lastResult</code> of next iteration, ending with the final result as return. For instance, if you had an array of numbers you can sum all the values.</td>
+</tr>
+</tbody></table><h3>Conditionals</h3>
+<p>Conditionals are written the same way as <a href="javascript.html">Javascript</a>, in terms of <code>if</code> blocks, except <code>elseif</code> is together instead of separated. Ternary statements and <a href="switch-case-javascript.html">switch cases</a> are the same as well.</p>
+<p>Like <a href="javascript.html">Javascript</a>, PHP has double- and triple-equals for testing equality; double is for testing equal in value, triple is for testing identical in value and type.</p>
+<h4>Conditional HTML</h4>
+<p>PHP can render HTML conditionally without resorting to running <code>echo</code> everywhere.</p>
+<pre><code class="language-php">&lt;?php if ($loggedIn) { ?&gt;
+  &lt;h1&gt;You are logged in!&lt;/h1&gt;
+  &lt;p&gt;Any valid HTML will be conditionally rendered&lt;/p&gt;
+&lt;?php } else if ($var === 1) { ?&gt;
+  &lt;p&gt;Something else&lt;/p&gt;
+&lt;?php } else { ?&gt;
+  &lt;p&gt;Last thing&lt;/p&gt;
+&lt;?php } ?&gt;
+</code></pre>
+<h3>Loops</h3>
+<p>For loops, while loops, and do while loops are the same as <a href="javascript.html">Javascript</a>.</p>
+<p>The <code>foreach</code> loop is unique to PHP in that it is similar to <a href="javascripts.html">Javascript's</a> <code>.forEach</code> method on iterables, but is a statement that takes in an array or associative array as an expression:</p>
+<pre><code class="language-php">$posts = [&quot;title1&quot;, &quot;title2&quot;, &quot;title3&quot;];
+
+foreach ($posts as $post) {
+  echo $post;
+}
+
+$posts = {
+  &quot;title1&quot; =&gt; &quot;Content1&quot;,
+  &quot;title2&quot; =&gt; &quot;Content2&quot;,
+  &quot;title3&quot; =&gt; &quot;Content3&quot;
+};
+
+foreach ($posts as $key =&gt; $value) {
+  echo $key . &quot; - &quot; . $value;
+}
+</code></pre>
+<h2>Common Functions</h2>
+<p><code>echo</code> (multiple values), <code>print</code> (single value), <code>print_r</code> (for arrays).</p>
+<p>When debugging, use <code>var_dump</code> for more info or <code>var_export</code> for type representation.</p>
+<h2>Requests</h2>
+<p>To set a cookie, use <code>setcookie(name, value, exp)</code>.</p>
 <h2>References</h2>
 <ol>
 <li><a href="https://www.learn-php.org/en/Hello%2C_World%21" target="_blank">https://www.learn-php.org/en/Hello%2C_World%21</a></li>
+<li><a href="https://piped.kavin.rocks/watch?v=BUCiSSyIGGU" target="_blank">https://piped.kavin.rocks/watch?v=BUCiSSyIGGU</a></li>
+<li><a href="https://www.php.net/manual/en/language.variables.superglobals.php" target="_blank">https://www.php.net/manual/en/language.variables.superglobals.php</a></li>
+<li><a href="https://www.php.net/manual/en/function.filter-input.php" target="_blank">https://www.php.net/manual/en/function.filter-input.php</a></li>
+<li><a href="https://stackoverflow.com/questions/3812526/conditional-statements-in-php-code-between-html-code" target="_blank">https://stackoverflow.com/questions/3812526/conditional-statements-in-php-code-between-html-code</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="mysql.html">MySQL</a></li></ul></details></section><p class="last-modified">Last modified: 202206101419</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="mysql.html">MySQL</a></li></ul></details></section><p class="last-modified">Last modified: 202206250642</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
