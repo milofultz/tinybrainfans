@@ -110,6 +110,13 @@ Super globals are variables that are available at all levels. These include syst
 
 ### String Methods
 
+Strings can be concatenated using `.`.
+
+```php
+$str = "Hello, " . "World!";
+$str .= " Good afternoon, good evening, and goodnight.";
+```
+
 `htmlspecialchars(str)` will escape all HTML characters in a string, making you safer from script injections.
 
 Alternatively, if the input string is a cookie, `GET` value, etc., you can use `filter_input`[4], which has special rules and helper variables.
