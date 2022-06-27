@@ -91,7 +91,7 @@ export interface ExampleContextInformation {
 
 // Fill this in with the default values. We will redefine the setters
 // once in the component where this is used.
-export const ExampleContext = createContext<ExampleContextInformation>({ 
+export const ExampleContext = createContext<ExampleContextInformation>({
   name: '',
   age: null,
   setName: () => {},
@@ -107,8 +107,8 @@ import React from 'react';
 import { ExampleContext, ExampleContextInformation } from './ExampleContext';
 import { AnotherContext, AnotherContextInformation } from './AnotherContext';
 
-interface GlobalProps { 
-  exampleContextObject: ExampleContextInformation, 
+interface GlobalProps {
+  exampleContextObject: ExampleContextInformation,
   anotherContextObject: AnotherContextInformation,
 }
 
@@ -141,19 +141,19 @@ export default function App() {
   const [name, setName] = useState<string>('');
   const [age, setAge] = useState<number | null>('');
   const [anotherVar, setAnotherVar] = useState<number>(0);
-  
+
   const exampleContextObject: ExampleContextInformation = {
     name,
     age,
     setName: (name: string) => setName(name),
     setAge: (age: number) => setAge(age),
   };
-  
+
   const anotherContextObject: AnotherContextInformation = {
     anotherVar,
     setAnotherVar: (anotherVar: number) => setAnotherVar(anotherVar),
   }
-  
+
   return (
     <GlobalContext
       exampleContextObject={exampleContextObject}
@@ -176,7 +176,7 @@ import { AnotherContext } from './AnotherContext';
 export default function ChildComponent() {
   const { age, setAge } = useContext(ExampleContext);
   const { anotherVar } = useContext(AnotherContext);
-  
+
   return (
     <div>
       <p>Your age is {age} and this is {anotherVar}!</p>
@@ -195,23 +195,23 @@ import React, { useEffect } from 'react';
 
 const testComponent = () => {
   ...
-  
+
   // this will run on every rerender (generally don't want this)
   useEffect(() => {
     // do stuff
   });
-  
+
   // this will run the function only once on mount (still not ideal)
   useEffect(() => {
     // do stuff
   }, []);
-  
+
   // this will run anytime that variables `names` or `obj.age` are changed
   useEffect(() => {
     // do stuff
   }, [names, obj.age]);
-  
-    // this will run anytime that variable `names` is changed and will 
+
+    // this will run anytime that variable `names` is changed and will
     // run the returned "cleanup" function when the component is unmounted
   useEffect(() => {
     // do stuff
@@ -219,7 +219,7 @@ const testComponent = () => {
       // cleanup stuff
     }
   }, [names]);
-  
+
   ...
 ```
 
@@ -325,7 +325,7 @@ However, you *can* use a callback ref[8] to run code whenever the element the re
 function TextInputWithFocusButton() {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
-  
+
   const inputChangeHandler = () => {
     if (inputRef?.current?.value) {
       setInputValue(inputRef.current.value);
@@ -359,16 +359,16 @@ interface Name {
   last: string,
 }
 
-const testComponent = () => {  
+const testComponent = () => {
   // this will create a getter and setter for state variable `names`
   const [counter, setCounter] = useState<number>(0);
   const [names, setNames] = useState<Name[]>([]);
-  
-  // sets counter 
+
+  // sets counter
   const onClick = () => {
     setCounter(counter + 1);
   };
-  
+
   const onSubmit = (firstName, lastName) => {
     setNames([
       ...names,
@@ -377,8 +377,8 @@ const testComponent = () => {
         last: lastName
       }
     ]);
-  }  
-  
+  }
+
   ...
 ```
 
@@ -400,3 +400,5 @@ const testComponent = () => {
 12. https://github.com/facebook/react/issues/12856
 13. https://kentcdodds.com/blog/react-strict-mode#it-runs-code-twice
 14. https://scribe.rip/you-dont-know-usestate-until-you-ve-used-functional-updates-5da52117620f
+15. https://reactjs.org/docs/hooks-rules.html
+16. https://kentcdodds.com/blog/usememo-and-usecallback

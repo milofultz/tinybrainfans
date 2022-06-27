@@ -71,7 +71,7 @@ export interface ExampleContextInformation {
 
 // Fill this in with the default values. We will redefine the setters
 // once in the component where this is used.
-export const ExampleContext = createContext&lt;ExampleContextInformation&gt;({ 
+export const ExampleContext = createContext&lt;ExampleContextInformation&gt;({
   name: &#x27;&#x27;,
   age: null,
   setName: () =&gt; {},
@@ -84,8 +84,8 @@ export const ExampleContext = createContext&lt;ExampleContextInformation&gt;({
 import { ExampleContext, ExampleContextInformation } from &#x27;./ExampleContext&#x27;;
 import { AnotherContext, AnotherContextInformation } from &#x27;./AnotherContext&#x27;;
 
-interface GlobalProps { 
-  exampleContextObject: ExampleContextInformation, 
+interface GlobalProps {
+  exampleContextObject: ExampleContextInformation,
   anotherContextObject: AnotherContextInformation,
 }
 
@@ -115,19 +115,19 @@ export default function App() {
   const [name, setName] = useState&lt;string&gt;(&#x27;&#x27;);
   const [age, setAge] = useState&lt;number | null&gt;(&#x27;&#x27;);
   const [anotherVar, setAnotherVar] = useState&lt;number&gt;(0);
-  
+
   const exampleContextObject: ExampleContextInformation = {
     name,
     age,
     setName: (name: string) =&gt; setName(name),
     setAge: (age: number) =&gt; setAge(age),
   };
-  
+
   const anotherContextObject: AnotherContextInformation = {
     anotherVar,
     setAnotherVar: (anotherVar: number) =&gt; setAnotherVar(anotherVar),
   }
-  
+
   return (
     &lt;GlobalContext
       exampleContextObject={exampleContextObject}
@@ -147,7 +147,7 @@ import { AnotherContext } from &#x27;./AnotherContext&#x27;;
 export default function ChildComponent() {
   const { age, setAge } = useContext(ExampleContext);
   const { anotherVar } = useContext(AnotherContext);
-  
+
   return (
     &lt;div&gt;
       &lt;p&gt;Your age is {age} and this is {anotherVar}!&lt;/p&gt;
@@ -162,23 +162,23 @@ export default function ChildComponent() {
 
 const testComponent = () =&gt; {
   ...
-  
+
   // this will run on every rerender (generally don&#x27;t want this)
   useEffect(() =&gt; {
     // do stuff
   });
-  
+
   // this will run the function only once on mount (still not ideal)
   useEffect(() =&gt; {
     // do stuff
   }, []);
-  
+
   // this will run anytime that variables `names` or `obj.age` are changed
   useEffect(() =&gt; {
     // do stuff
   }, [names, obj.age]);
-  
-    // this will run anytime that variable `names` is changed and will 
+
+    // this will run anytime that variable `names` is changed and will
     // run the returned &quot;cleanup&quot; function when the component is unmounted
   useEffect(() =&gt; {
     // do stuff
@@ -186,7 +186,7 @@ const testComponent = () =&gt; {
       // cleanup stuff
     }
   }, [names]);
-  
+
   ...
 </code></pre>
 <p>In general, you should not try and overload a useEffect call. If you have different concerns or different async tasks, spread them out among different instances of useEffect. This example is trivial, but demonstrates how both of these <em>could</em> live in the same useEffect but shouldn't because of the scope of dependencies.[3]</p>
@@ -268,7 +268,7 @@ component    ↑                  ↓    action obj
 <pre><code class="language-react">function TextInputWithFocusButton() {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState(&#x27;&#x27;);
-  
+
   const inputChangeHandler = () =&gt; {
     if (inputRef?.current?.value) {
       setInputValue(inputRef.current.value);
@@ -297,16 +297,16 @@ interface Name {
   last: string,
 }
 
-const testComponent = () =&gt; {  
+const testComponent = () =&gt; {
   // this will create a getter and setter for state variable `names`
   const [counter, setCounter] = useState&lt;number&gt;(0);
   const [names, setNames] = useState&lt;Name[]&gt;([]);
-  
-  // sets counter 
+
+  // sets counter
   const onClick = () =&gt; {
     setCounter(counter + 1);
   };
-  
+
   const onSubmit = (firstName, lastName) =&gt; {
     setNames([
       ...names,
@@ -315,8 +315,8 @@ const testComponent = () =&gt; {
         last: lastName
       }
     ]);
-  }  
-  
+  }
+
   ...
 </code></pre>
 <p><strong>In certain circumstances, useState functions can call themselves twice, <em>even though you only invoked them once</em>[11,12,13].</strong> If you find yourself asking why things are not behaving correctly before or after a useState call, this is probably why.</p>
@@ -336,5 +336,7 @@ const testComponent = () =&gt; {
 <li><a href="https://github.com/facebook/react/issues/12856" target="_blank">https://github.com/facebook/react/issues/12856</a></li>
 <li><a href="https://kentcdodds.com/blog/react-strict-mode#it-runs-code-twice" target="_blank">https://kentcdodds.com/blog/react-strict-mode#it-runs-code-twice</a></li>
 <li><a href="https://scribe.rip/you-dont-know-usestate-until-you-ve-used-functional-updates-5da52117620f" target="_blank">https://scribe.rip/you-dont-know-usestate-until-you-ve-used-functional-updates-5da52117620f</a></li>
+<li><a href="https://reactjs.org/docs/hooks-rules.html" target="_blank">https://reactjs.org/docs/hooks-rules.html</a></li>
+<li><a href="https://kentcdodds.com/blog/usememo-and-usecallback" target="_blank">https://kentcdodds.com/blog/usememo-and-usecallback</a></li>
 </ol>
-<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202206220737</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
+<section id="backlinks"><details><summary>Backlinks</summary><ul><li><a href="custom-react-hooks.html">Custom React Hooks</a></li><li><a href="immer.html">Immer</a></li><li><a href="react.html">React</a></li></ul></details></section><p class="last-modified">Last modified: 202206261338</p></article></main><footer><nav><a href="index.html">Sitemap</a></nav><div class="social"><p>Built using <a href="http://codeberg.org/milofultz/swiki" target="_blank" rel="noopener noreferrer">{{SWIKI}}</a></p><p><a href="http://github.com/milofultz/" target="_blank" rel="noopener noreferrer">GitHub</a></p><p><a href="http://milofultz.com/" target="_blank" rel="noopener noreferrer">milofultz.com</a></p><p><a href="https://merveilles.town/@milofultz" target="_blank" rel="me noopener noreferrer">Mastodon</a></p></div></footer></body></html>
