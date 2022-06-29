@@ -9,13 +9,13 @@ If you are just getting started with assembly, I highly recommend you get starte
 
 ## Compilation and Linking
 
-For more specifics, visit the {{OSX|Assembly (Unix)}} and {{Windows|Assembly (Windows)}} assembly pages. 
+For more specifics, visit the {{OSX|Assembly (Unix)}} and {{Windows|Assembly (Windows)}} assembly pages.
 
-You will first need a program to compile your assembly into machine code. Most common is the program [nasm][] for {{Unix}} systems and [masm][] for {{Windows}} systems.
+You will first need a program to compile your assembly into machine code. Most common is the program [nasm](https://nasm.us/) for {{Unix}} systems and [masm](https://www.masm32.com) for {{Windows}} systems.
 
 After you have written your code, you will need to assemble your code, translating it from the human readable assembly language into a file object.
 
-You will then need to [link](https://en.wikipedia.org/wiki/Linker_%28computing%29) your newly created output file. This will pull all the needed libraries into a single executable. 
+You will then need to [link](https://en.wikipedia.org/wiki/Linker_%28computing%29) your newly created output file. This will pull all the needed libraries into a single executable.
 
 ## Syntax and Keywords
 
@@ -61,13 +61,13 @@ A section is an assembler directive that tells the assembler what kind of code f
 Address | Name | Description
 --- | --- | ---
 EAX | Accumulator Register | calculations for operations and results data
-EBX | Base Register | pointer to data in the DS segment 
-ECX | Count Register | counter for string and loop operations 
-EDX | Data Register | input/output pointer 
-ESI | Source Index | source pointer for string operations 
-EDI | Destination Index | destination pointer for string operations 
-ESP | {{Stack}} Pointer | stack pointer, **should not be used** 
-EBP | Base Pointer | pointer to data on the {{stack}} 
+EBX | Base Register | pointer to data in the DS segment
+ECX | Count Register | counter for string and loop operations
+EDX | Data Register | input/output pointer
+ESI | Source Index | source pointer for string operations
+EDI | Destination Index | destination pointer for string operations
+ESP | {{Stack}} Pointer | stack pointer, **should not be used**
+EBP | Base Pointer | pointer to data on the {{stack}}
 
 ### 16-Bit Segment
 
@@ -96,7 +96,7 @@ The overflow flag will be set to 1 (true) if the operation overflows beyond the 
 
 ### Sign Flag (`SF`)
 
-The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.  
+The sign flag will be set to 1 (true) after an arithmetic operation when the result is negative.
 
 ### Zero Flag (`ZF`)
 
@@ -123,7 +123,7 @@ push eax     ; Push first parameter last
 
 call _myFunc ; Call the function (assume C naming)
 
-add esp, 12  ; Flush the three 4 byte values on the stack by 
+add esp, 12  ; Flush the three 4 byte values on the stack by
              ; adding 12 to the stack pointer
 ```
 
@@ -148,13 +148,10 @@ There are lots of games that have recently come out to make assembly a little mo
 8. https://www.chibialiens.com/8086/8086CheatSheet.pdf
 9. https://www.chibialiens.com/8086/
 10. [IDE and debugger for many systems](https://8bitworkshop.com/v3.9.0/?platform=vcs&file=examples%2Fhello.a)
+11. https://github.com/hackclub/some-assembly-required
 
 Game Boy:
 
 1. https://github.com/pret/pokered
 1. https://eldred.fr/gb-asm-tutorial/index.html
-
-[masm]: https://www.masm32.com
-[nasm]: https://nasm.us/
-[homebrew]: https://brew.sh/
 
