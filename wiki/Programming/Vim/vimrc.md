@@ -3,7 +3,7 @@ title: Vimrc
 description: Vimrc is the config file for Vim.
 ---
 
-Vimrc is the config file for Vim. Customizations in the config file to make using Vim a little nicer. The vimrc file can be found at `~/.vimrc`.
+Vimrc is the config file for {{Vim}}. Customizations in the config file to make using Vim a little nicer. The vimrc file can be found at `~/.vimrc`.
 
 ## Starting Fresh[4]
 
