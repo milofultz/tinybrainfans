@@ -50,6 +50,8 @@ a[target="_blank"]::after {
   vertical-align: super;
 }
 
+blockquote { font-style: italic; }
+
 pre {
   background: var(--c);
   border: .125rem solid var(--t);
