@@ -15,3 +15,4 @@ Use it! It guides you through the {{basic commands|Vim Commands}} of Vim by *doi
 1. https://danielmiessler.com/study/vim/
 1. https://elijahmanor.com/blog/neovim-tmux
 1. http://texteditors.org/cgi-bin/wiki.pl?VIM
+1. https://www.vimgolf.com/
