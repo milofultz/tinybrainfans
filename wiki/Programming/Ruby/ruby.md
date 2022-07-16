@@ -37,6 +37,17 @@ To instatiate this, you can call `Greeter.new("Bob")` or whatever name, and assi
 
 Classes can be modified after ther are defined, and these changes are retroactively propagated through all instances, since it is using the class as a reference.
 
+## Array Methods
+
+Since I use these all the time and always forget which does what, I put the analogous {{Javascript}} method here for sake of lookup.
+
+| JS Method | Ruby Method | Example              |
+|-----------|-------------|----------------------|
+| forEach   | each        | `[1,2,3].each { | num | puts num }` |
+| map       | map         | `[1,2,3].map { | num | num + 1 }` |
+| filter    | select      | `[1,2,3].select { | num | num > 1 }` |
+| reduce    | inject      | `[1,2,3].inject(0) { | sum, num | sum + num }` |
+
 ## References
 
 1. https://www.ruby-lang.org/en/
@@ -53,3 +64,4 @@ Classes can be modified after ther are defined, and these changes are retroactiv
 12. https://piped.kavin.rocks/watch?v=B3Fbujmgo60
 13. https://www.learnenough.com/ruby-on-rails-7th-edition-tutorial
 14. https://scribe.rip/retention-science/ruby-is-still-a-diamond-b789d2661266
+15. https://en.wikipedia.org/wiki/Why%27s_(poignant)_Guide_to_Ruby

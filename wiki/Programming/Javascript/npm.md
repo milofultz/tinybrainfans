@@ -21,6 +21,8 @@ Delete the `node_modules` folders found recursively within the current directory
 find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
 ```
 
+*Note: using a package like `trash-cli`[3] can help if you don't want your mistakes to be irreversible.*
+
 Delete the global `node_modules` folder:
 
 ```shell
@@ -60,4 +62,6 @@ You can save packages as a devDependency by using `--save-dev` as an option in t
 ## References
 
 1. https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-1. https://trilon.io/blog/how-to-delete-all-nodemodules-recursively
+2. https://trilon.io/blog/how-to-delete-all-nodemodules-recursively
+3. https://github.com/andreafrancia/trash-cli
+
