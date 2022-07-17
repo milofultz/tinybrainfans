@@ -12,13 +12,13 @@ Node Package Manager is a hub from which you can install, manage, and maintain {
 Show all `node_modules` folders within and their respective size:
 
 ```shell
-find . -name "node_modules" -type d -prune -print | xargs du -chs
+find . -name "node_modules" -type d -prune -print0 | xargs -0 du -chs
 ```
 
 Delete the `node_modules` folders found recursively within the current directory:
 
 ```shell
-find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;
+find . -name 'node_modules' -type d -prune -print0 -exec rm -rf '{}' \;
 ```
 
 *Note: using a package like `trash-cli`[3] can help if you don't want your mistakes to be irreversible.*

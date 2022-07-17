@@ -8,6 +8,11 @@
 
 /usr/local/bin/python3 "$HOME/Dropbox (Personal)/Code/swiki/swiki.py" ./wiki ./ -d
 
+if [[ -z $1 ]]
+then
+  exit
+fi
+
 new_changes=$(git status | grep -i "modified")
 
 if [[ ! -z "$new_changes" ]]
